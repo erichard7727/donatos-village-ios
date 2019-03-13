@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KBY-0s-7Uf">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Village Container-->
+        <scene sceneID="wbf-hT-3EV">
+            <objects>
+                <viewController storyboardIdentifier="VillageContainer" id="KBY-0s-7Uf" customClass="VillageContainer" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VDh-cZ-QGY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app-background" translatesAutoresizingMaskIntoConstraints="NO" id="pbO-86-rO9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Village Container" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrE-Ei-tVZ">
+                                <rect key="frame" x="122.5" y="323" width="130" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pbO-86-rO9" firstAttribute="bottom" secondItem="VDh-cZ-QGY" secondAttribute="bottom" id="6sJ-7g-S9s"/>
+                            <constraint firstItem="pbO-86-rO9" firstAttribute="trailing" secondItem="VDh-cZ-QGY" secondAttribute="trailing" id="AXq-BN-ID9"/>
+                            <constraint firstItem="pbO-86-rO9" firstAttribute="top" secondItem="VDh-cZ-QGY" secondAttribute="top" id="Gof-pe-9Rq"/>
+                            <constraint firstItem="pbO-86-rO9" firstAttribute="leading" secondItem="VDh-cZ-QGY" secondAttribute="leading" id="c4Y-3K-DK0"/>
+                            <constraint firstItem="JrE-Ei-tVZ" firstAttribute="centerY" secondItem="VDh-cZ-QGY" secondAttribute="centerY" id="wRV-E7-s7s"/>
+                            <constraint firstItem="JrE-Ei-tVZ" firstAttribute="centerX" secondItem="VDh-cZ-QGY" secondAttribute="centerX" id="xRT-aw-U2e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pIY-ge-wvH"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="pbO-86-rO9" id="iAd-I5-LWO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pkl-eG-aPB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.199999999999999" y="116.49175412293854"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app-background" width="375" height="667"/>
+    </resources>
+</document>

@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D43663C32229ACA9006354F2 /* LoginPasswordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */; };
+		D43663C42229ACA9006354F2 /* LoginPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663C22229ACA9006354F2 /* LoginPasswordViewController.swift */; };
+		D43663C72229BBC8006354F2 /* UIViewController+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663C62229BBC8006354F2 /* UIViewController+NavigationBar.swift */; };
+		D43663CB222A0DCB006354F2 /* Nantes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43663CA222A0DCB006354F2 /* Nantes.framework */; };
+		D43663CE222A13F2006354F2 /* ForgotPasswordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43663CC222A13F1006354F2 /* ForgotPasswordViewController.storyboard */; };
+		D43663CF222A13F2006354F2 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663CD222A13F2006354F2 /* ForgotPasswordViewController.swift */; };
+		D43663D2222A24BE006354F2 /* UIButton+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663D1222A24BE006354F2 /* UIButton+Loading.swift */; };
+		D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */; };
+		D43663DC222C63A5006354F2 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663DB222C63A5006354F2 /* UserSettingsViewController.swift */; };
+		D43663DE222C63AE006354F2 /* UserSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43663DD222C63AE006354F2 /* UserSettingsViewController.storyboard */; };
+		D44B5F0522295B4700941CCE /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44B5F0422295B4700941CCE /* VillageCore.framework */; };
+		D44B5F07222970BB00941CCE /* TintedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B5F06222970BB00941CCE /* TintedTextField.swift */; };
+		D47FD3F6220FB23700376D31 /* VillageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29B8220757CC0091BEFB /* VillageContainer.swift */; };
+		D47FD3F7220FB23C00376D31 /* VillageContainer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29BA220757DE0091BEFB /* VillageContainer.storyboard */; };
+		D47FD3F9220FB74B00376D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D47FD3F8220FB74B00376D31 /* Assets.xcassets */; };
+		D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD3FE220FBD4700376D31 /* Constants.swift */; };
+		D47FD402220FC08700376D31 /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD401220FC08700376D31 /* Image+Named.swift */; };
+		D4CC29B1220756D60091BEFB /* VillageCoreUI.h in Headers */ = {isa = PBXBuildFile; fileRef = D4CC29AF220756D60091BEFB /* VillageCoreUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4CC2A712209C4140091BEFB /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CC2A702209C4140091BEFB /* Promises.framework */; };
+		D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */; };
+		D4F8A57522109E31005FDB6A /* LoginIdentityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */; };
+		D4F8A57722109E55005FDB6A /* LoginIdentityViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A57622109E55005FDB6A /* LoginIdentityViewController.storyboard */; };
+		D4F8A57B22109FAF005FDB6A /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57A22109FAF005FDB6A /* SideMenuController.swift */; };
+		D4F8A57D22109FDA005FDB6A /* SideMenuControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57C22109FDA005FDB6A /* SideMenuControllerDelegate.swift */; };
+		D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57E22109FE8005FDB6A /* UIViewController+SideMenuController.swift */; };
+		D4F8A5822210A1DC005FDB6A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A5812210A1DC005FDB6A /* HomeViewController.swift */; };
+		D4F8A5842210A1F8005FDB6A /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A5832210A1F8005FDB6A /* HomeViewController.storyboard */; };
+		D4F8A5862210A267005FDB6A /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A5852210A267005FDB6A /* MainMenuViewController.swift */; };
+		D4F8A5882210A274005FDB6A /* MainMenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A5872210A274005FDB6A /* MainMenuViewController.storyboard */; };
+		D4F8A5922210B6DE005FDB6A /* proximanova-sbolditalic-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A58A2210B6DE005FDB6A /* proximanova-sbolditalic-webfont.ttf */; };
+		D4F8A5932210B6DE005FDB6A /* proximanova-light-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A58B2210B6DE005FDB6A /* proximanova-light-webfont.ttf */; };
+		D4F8A5942210B6DE005FDB6A /* proximanova-black-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A58C2210B6DE005FDB6A /* proximanova-black-webfont.ttf */; };
+		D4F8A5952210B6DE005FDB6A /* proximanova-reg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A58D2210B6DE005FDB6A /* proximanova-reg-webfont.ttf */; };
+		D4F8A5962210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A58E2210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf */; };
+		D4F8A5972210B6DE005FDB6A /* proximanova-lightitalic-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A58F2210B6DE005FDB6A /* proximanova-lightitalic-webfont.ttf */; };
+		D4F8A5982210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A5902210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf */; };
+		D4F8A5992210B6DE005FDB6A /* proximanova-sbold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A5912210B6DE005FDB6A /* proximanova-sbold-webfont.ttf */; };
+		D4F8A59C2210D556005FDB6A /* KeyboardAwareScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A59B2210D556005FDB6A /* KeyboardAwareScrollView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginPasswordViewController.storyboard; sourceTree = "<group>"; };
+		D43663C22229ACA9006354F2 /* LoginPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPasswordViewController.swift; sourceTree = "<group>"; };
+		D43663C62229BBC8006354F2 /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
+		D43663CA222A0DCB006354F2 /* Nantes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nantes.framework; path = ../../../Carthage/Build/iOS/Nantes.framework; sourceTree = "<group>"; };
+		D43663CC222A13F1006354F2 /* ForgotPasswordViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgotPasswordViewController.storyboard; sourceTree = "<group>"; };
+		D43663CD222A13F2006354F2 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		D43663D1222A24BE006354F2 /* UIButton+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Loading.swift"; sourceTree = "<group>"; };
+		D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserViewController.swift; sourceTree = "<group>"; };
+		D43663DB222C63A5006354F2 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
+		D43663DD222C63AE006354F2 /* UserSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserSettingsViewController.storyboard; sourceTree = "<group>"; };
+		D44B5F0422295B4700941CCE /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D44B5F06222970BB00941CCE /* TintedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintedTextField.swift; sourceTree = "<group>"; };
+		D47FD3F8220FB74B00376D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D47FD3FE220FBD4700376D31 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D47FD401220FC08700376D31 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
+		D4CC29AC220756D60091BEFB /* VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4CC29AF220756D60091BEFB /* VillageCoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VillageCoreUI.h; sourceTree = "<group>"; };
+		D4CC29B0220756D60091BEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4CC29B8220757CC0091BEFB /* VillageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillageContainer.swift; sourceTree = "<group>"; };
+		D4CC29BA220757DE0091BEFB /* VillageContainer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VillageContainer.storyboard; sourceTree = "<group>"; };
+		D4CC2A702209C4140091BEFB /* Promises.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Promises.framework; path = ../../../Carthage/Build/iOS/Promises.framework; sourceTree = "<group>"; };
+		D4F8A56D221098F8005FDB6A /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SimpleTransition.swift"; sourceTree = "<group>"; };
+		D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIdentityViewController.swift; sourceTree = "<group>"; };
+		D4F8A57622109E55005FDB6A /* LoginIdentityViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginIdentityViewController.storyboard; sourceTree = "<group>"; };
+		D4F8A57A22109FAF005FDB6A /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		D4F8A57C22109FDA005FDB6A /* SideMenuControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuControllerDelegate.swift; sourceTree = "<group>"; };
+		D4F8A57E22109FE8005FDB6A /* UIViewController+SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SideMenuController.swift"; sourceTree = "<group>"; };
+		D4F8A5812210A1DC005FDB6A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D4F8A5832210A1F8005FDB6A /* HomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
+		D4F8A5852210A267005FDB6A /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		D4F8A5872210A274005FDB6A /* MainMenuViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenuViewController.storyboard; sourceTree = "<group>"; };
+		D4F8A58A2210B6DE005FDB6A /* proximanova-sbolditalic-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-sbolditalic-webfont.ttf"; sourceTree = "<group>"; };
+		D4F8A58B2210B6DE005FDB6A /* proximanova-light-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-light-webfont.ttf"; sourceTree = "<group>"; };
+		D4F8A58C2210B6DE005FDB6A /* proximanova-black-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-black-webfont.ttf"; sourceTree = "<group>"; };
+		D4F8A58D2210B6DE005FDB6A /* proximanova-reg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-reg-webfont.ttf"; sourceTree = "<group>"; };
+		D4F8A58E2210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-extrabold-webfont.ttf"; sourceTree = "<group>"; };
+		D4F8A58F2210B6DE005FDB6A /* proximanova-lightitalic-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-lightitalic-webfont.ttf"; sourceTree = "<group>"; };
+		D4F8A5902210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-regitalic-webfont.ttf"; sourceTree = "<group>"; };
+		D4F8A5912210B6DE005FDB6A /* proximanova-sbold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-sbold-webfont.ttf"; sourceTree = "<group>"; };
+		D4F8A59B2210D556005FDB6A /* KeyboardAwareScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareScrollView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4CC29A9220756D60091BEFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D43663CB222A0DCB006354F2 /* Nantes.framework in Frameworks */,
+				D44B5F0522295B4700941CCE /* VillageCore.framework in Frameworks */,
+				D4CC2A712209C4140091BEFB /* Promises.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D43663DA222C6380006354F2 /* UserSettings */ = {
+			isa = PBXGroup;
+			children = (
+				D43663DB222C63A5006354F2 /* UserSettingsViewController.swift */,
+				D43663DD222C63AE006354F2 /* UserSettingsViewController.storyboard */,
+			);
+			path = UserSettings;
+			sourceTree = "<group>";
+		};
+		D47FD400220FC05500376D31 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D47FD401220FC08700376D31 /* Image+Named.swift */,
+				D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */,
+				D43663C62229BBC8006354F2 /* UIViewController+NavigationBar.swift */,
+				D43663D1222A24BE006354F2 /* UIButton+Loading.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4CC29A2220756D60091BEFB = {
+			isa = PBXGroup;
+			children = (
+				D4CC29AE220756D60091BEFB /* Source */,
+				D4CC29AD220756D60091BEFB /* Products */,
+				D4CC2A61220866AE0091BEFB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D4CC29AD220756D60091BEFB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4CC29AC220756D60091BEFB /* VillageCoreUI.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4CC29AE220756D60091BEFB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D47FD3FE220FBD4700376D31 /* Constants.swift */,
+				D4CC29B8220757CC0091BEFB /* VillageContainer.swift */,
+				D4CC29BA220757DE0091BEFB /* VillageContainer.storyboard */,
+				D4F8A5852210A267005FDB6A /* MainMenuViewController.swift */,
+				D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */,
+				D4F8A5872210A274005FDB6A /* MainMenuViewController.storyboard */,
+				D47FD400220FC05500376D31 /* Extensions */,
+				D4F8A59A2210D539005FDB6A /* UIKitSubclasses */,
+				D4F8A57822109F77005FDB6A /* UIComponents */,
+				D4F8A57222109BDE005FDB6A /* Screens */,
+				D4CC29B7220756F70091BEFB /* Supporting Files */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		D4CC29B7220756F70091BEFB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8A5892210B6AF005FDB6A /* Fonts */,
+				D47FD3F8220FB74B00376D31 /* Assets.xcassets */,
+				D4CC29AF220756D60091BEFB /* VillageCoreUI.h */,
+				D4CC29B0220756D60091BEFB /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D4CC2A61220866AE0091BEFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D43663CA222A0DCB006354F2 /* Nantes.framework */,
+				D44B5F0422295B4700941CCE /* VillageCore.framework */,
+				D4F8A56D221098F8005FDB6A /* VillageCore.framework */,
+				D4CC2A702209C4140091BEFB /* Promises.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4F8A57222109BDE005FDB6A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8A57322109DE2005FDB6A /* Authentication */,
+				D4F8A5802210A1CB005FDB6A /* Home */,
+				D43663DA222C6380006354F2 /* UserSettings */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		D4F8A57322109DE2005FDB6A /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */,
+				D4F8A57622109E55005FDB6A /* LoginIdentityViewController.storyboard */,
+				D43663C22229ACA9006354F2 /* LoginPasswordViewController.swift */,
+				D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */,
+				D43663CD222A13F2006354F2 /* ForgotPasswordViewController.swift */,
+				D43663CC222A13F1006354F2 /* ForgotPasswordViewController.storyboard */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		D4F8A57822109F77005FDB6A /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8A57922109FA2005FDB6A /* SideMenuController */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		D4F8A57922109FA2005FDB6A /* SideMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8A57A22109FAF005FDB6A /* SideMenuController.swift */,
+				D4F8A57C22109FDA005FDB6A /* SideMenuControllerDelegate.swift */,
+				D4F8A57E22109FE8005FDB6A /* UIViewController+SideMenuController.swift */,
+			);
+			path = SideMenuController;
+			sourceTree = "<group>";
+		};
+		D4F8A5802210A1CB005FDB6A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8A5812210A1DC005FDB6A /* HomeViewController.swift */,
+				D4F8A5832210A1F8005FDB6A /* HomeViewController.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D4F8A5892210B6AF005FDB6A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8A58C2210B6DE005FDB6A /* proximanova-black-webfont.ttf */,
+				D4F8A58E2210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf */,
+				D4F8A58B2210B6DE005FDB6A /* proximanova-light-webfont.ttf */,
+				D4F8A58F2210B6DE005FDB6A /* proximanova-lightitalic-webfont.ttf */,
+				D4F8A58D2210B6DE005FDB6A /* proximanova-reg-webfont.ttf */,
+				D4F8A5902210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf */,
+				D4F8A5912210B6DE005FDB6A /* proximanova-sbold-webfont.ttf */,
+				D4F8A58A2210B6DE005FDB6A /* proximanova-sbolditalic-webfont.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D4F8A59A2210D539005FDB6A /* UIKitSubclasses */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8A59B2210D556005FDB6A /* KeyboardAwareScrollView.swift */,
+				D44B5F06222970BB00941CCE /* TintedTextField.swift */,
+			);
+			path = UIKitSubclasses;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D4CC29A7220756D60091BEFB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4CC29B1220756D60091BEFB /* VillageCoreUI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D4CC29AB220756D60091BEFB /* VillageCoreUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4CC29B4220756D60091BEFB /* Build configuration list for PBXNativeTarget "VillageCoreUI" */;
+			buildPhases = (
+				D4CC29A7220756D60091BEFB /* Headers */,
+				D4CC29A8220756D60091BEFB /* Sources */,
+				D4CC29A9220756D60091BEFB /* Frameworks */,
+				D4CC29AA220756D60091BEFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VillageCoreUI;
+			productName = VillageCoreUI;
+			productReference = D4CC29AC220756D60091BEFB /* VillageCoreUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4CC29A3220756D60091BEFB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = Dynamit;
+				TargetAttributes = {
+					D4CC29AB220756D60091BEFB = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+					};
+				};
+			};
+			buildConfigurationList = D4CC29A6220756D60091BEFB /* Build configuration list for PBXProject "VillageCoreUI" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D4CC29A2220756D60091BEFB;
+			productRefGroup = D4CC29AD220756D60091BEFB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4CC29AB220756D60091BEFB /* VillageCoreUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4CC29AA220756D60091BEFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4F8A5952210B6DE005FDB6A /* proximanova-reg-webfont.ttf in Resources */,
+				D4F8A5842210A1F8005FDB6A /* HomeViewController.storyboard in Resources */,
+				D43663CE222A13F2006354F2 /* ForgotPasswordViewController.storyboard in Resources */,
+				D4F8A5992210B6DE005FDB6A /* proximanova-sbold-webfont.ttf in Resources */,
+				D4F8A5942210B6DE005FDB6A /* proximanova-black-webfont.ttf in Resources */,
+				D47FD3F9220FB74B00376D31 /* Assets.xcassets in Resources */,
+				D4F8A5982210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf in Resources */,
+				D4F8A5922210B6DE005FDB6A /* proximanova-sbolditalic-webfont.ttf in Resources */,
+				D4F8A5972210B6DE005FDB6A /* proximanova-lightitalic-webfont.ttf in Resources */,
+				D43663C32229ACA9006354F2 /* LoginPasswordViewController.storyboard in Resources */,
+				D47FD3F7220FB23C00376D31 /* VillageContainer.storyboard in Resources */,
+				D43663DE222C63AE006354F2 /* UserSettingsViewController.storyboard in Resources */,
+				D4F8A5882210A274005FDB6A /* MainMenuViewController.storyboard in Resources */,
+				D4F8A5962210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf in Resources */,
+				D4F8A57722109E55005FDB6A /* LoginIdentityViewController.storyboard in Resources */,
+				D4F8A5932210B6DE005FDB6A /* proximanova-light-webfont.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4CC29A8220756D60091BEFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D47FD3F6220FB23700376D31 /* VillageContainer.swift in Sources */,
+				D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */,
+				D4F8A57B22109FAF005FDB6A /* SideMenuController.swift in Sources */,
+				D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */,
+				D43663DC222C63A5006354F2 /* UserSettingsViewController.swift in Sources */,
+				D47FD402220FC08700376D31 /* Image+Named.swift in Sources */,
+				D43663D2222A24BE006354F2 /* UIButton+Loading.swift in Sources */,
+				D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */,
+				D43663C42229ACA9006354F2 /* LoginPasswordViewController.swift in Sources */,
+				D43663C72229BBC8006354F2 /* UIViewController+NavigationBar.swift in Sources */,
+				D44B5F07222970BB00941CCE /* TintedTextField.swift in Sources */,
+				D4F8A5822210A1DC005FDB6A /* HomeViewController.swift in Sources */,
+				D4F8A5862210A267005FDB6A /* MainMenuViewController.swift in Sources */,
+				D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */,
+				D43663CF222A13F2006354F2 /* ForgotPasswordViewController.swift in Sources */,
+				D4F8A57522109E31005FDB6A /* LoginIdentityViewController.swift in Sources */,
+				D4F8A57D22109FDA005FDB6A /* SideMenuControllerDelegate.swift in Sources */,
+				D4F8A59C2210D556005FDB6A /* KeyboardAwareScrollView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D4CC29B2220756D60091BEFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D4CC29B3220756D60091BEFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D4CC29B5220756D60091BEFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../Carthage/Build/iOS";
+				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dynamit.villagecoreui;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D4CC29B6220756D60091BEFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../Carthage/Build/iOS";
+				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(CONFIGURATION_BUILD_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dynamit.villagecoreui;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4CC29A6220756D60091BEFB /* Build configuration list for PBXProject "VillageCoreUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4CC29B2220756D60091BEFB /* Debug */,
+				D4CC29B3220756D60091BEFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4CC29B4220756D60091BEFB /* Build configuration list for PBXNativeTarget "VillageCoreUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4CC29B5220756D60091BEFB /* Debug */,
+				D4CC29B6220756D60091BEFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4CC29A3220756D60091BEFB /* Project object */;
+}

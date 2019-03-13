@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="12l-6f-HTu">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="proximanova-black-webfont.ttf">
+            <string>ProximaNova-Black</string>
+        </array>
+        <array key="proximanova-reg-webfont.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Login Identity View Controller-->
+        <scene sceneID="rgh-nT-NBs">
+            <objects>
+                <viewController storyboardIdentifier="LoginIdentityViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="12l-6f-HTu" customClass="LoginIdentityViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eOT-ep-OKS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app-background" translatesAutoresizingMaskIntoConstraints="NO" id="Ny7-Lq-lAi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXA-Xy-zbT" customClass="KeyboardAwareScrollView" customModule="VillageCoreUI" customModuleProvider="target">
+                                <rect key="frame" x="20" y="0.0" width="335" height="667"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="naH-Ff-pAh">
+                                        <rect key="frame" x="0.0" y="153" width="335" height="361"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOZ-ze-vLm">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="130"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="client-logo" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-zS-vo0">
+                                                        <rect key="frame" x="102.5" y="0.0" width="130" height="130"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vKB-zS-vo0" secondAttribute="trailing" id="CaY-Xu-17a"/>
+                                                    <constraint firstItem="vKB-zS-vo0" firstAttribute="centerX" secondItem="aOZ-ze-vLm" secondAttribute="centerX" id="LWJ-da-X76"/>
+                                                    <constraint firstItem="vKB-zS-vo0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aOZ-ze-vLm" secondAttribute="leading" id="LZ9-xN-7qe"/>
+                                                    <constraint firstItem="vKB-zS-vo0" firstAttribute="top" secondItem="aOZ-ze-vLm" secondAttribute="top" id="RrG-Ea-rXh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vKB-zS-vo0" secondAttribute="bottom" id="fg7-vs-yad"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wEZ-im-m2j">
+                                                <rect key="frame" x="0.0" y="170" width="335" height="80"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KF2-eI-yC0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="32"/>
+                                                        <fontDescription key="fontDescription" name="ProximaNova-Black" family="Proxima Nova" pointSize="28"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email address below to log in to Village." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipL-9I-O5I" customClass="NantesLabel">
+                                                        <rect key="frame" x="0.0" y="42" width="335" height="38"/>
+                                                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="V1A-mb-aCx">
+                                                <rect key="frame" x="0.0" y="290" width="335" height="71"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kK5-JV-qFe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="28"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aTt-NO-cq0" customClass="TintedTextField" customModule="VillageCoreUI" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="4.5" width="297" height="19"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="username"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="12l-6f-HTu" id="N4W-0f-hM8"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUE-sl-Qar">
+                                                                <rect key="frame" x="307" y="0.0" width="28" height="28"/>
+                                                                <state key="normal" image="forward-arrow"/>
+                                                                <connections>
+                                                                    <action selector="onSubmit:" destination="12l-6f-HTu" eventType="touchUpInside" id="ttr-7n-NkR"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter a valid email address." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HB-fr-clW">
+                                                        <rect key="frame" x="0.0" y="40" width="335" height="18"/>
+                                                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                                                        <color key="textColor" red="1" green="0.028078071964938167" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6TR-nW-AXH">
+                                                        <rect key="frame" x="0.0" y="70" width="335" height="1"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="F3b-VW-qu7"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="naH-Ff-pAh" secondAttribute="bottom" id="4TM-MP-te4"/>
+                                    <constraint firstItem="naH-Ff-pAh" firstAttribute="width" secondItem="LXA-Xy-zbT" secondAttribute="width" id="PML-Rx-u5A"/>
+                                    <constraint firstItem="naH-Ff-pAh" firstAttribute="centerY" secondItem="LXA-Xy-zbT" secondAttribute="centerY" id="hJU-WS-6ZW"/>
+                                    <constraint firstItem="naH-Ff-pAh" firstAttribute="leading" secondItem="LXA-Xy-zbT" secondAttribute="leading" id="ioN-2Z-3nb"/>
+                                    <constraint firstAttribute="trailing" secondItem="naH-Ff-pAh" secondAttribute="trailing" id="mcn-q3-YjH"/>
+                                    <constraint firstItem="naH-Ff-pAh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="LXA-Xy-zbT" secondAttribute="top" id="vOZ-FS-fEg"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LXA-Xy-zbT" firstAttribute="top" secondItem="eOT-ep-OKS" secondAttribute="top" id="0ID-Qi-X20"/>
+                            <constraint firstAttribute="bottom" secondItem="Ny7-Lq-lAi" secondAttribute="bottom" id="D0a-Gy-OA0"/>
+                            <constraint firstItem="Ny7-Lq-lAi" firstAttribute="top" secondItem="eOT-ep-OKS" secondAttribute="top" id="JjL-Tn-Raa"/>
+                            <constraint firstItem="j9U-QQ-Ox1" firstAttribute="trailing" secondItem="LXA-Xy-zbT" secondAttribute="trailing" constant="20" id="mrp-DH-NlS"/>
+                            <constraint firstItem="LXA-Xy-zbT" firstAttribute="bottom" secondItem="j9U-QQ-Ox1" secondAttribute="bottom" id="ovD-mP-eVz"/>
+                            <constraint firstAttribute="trailing" secondItem="Ny7-Lq-lAi" secondAttribute="trailing" id="sNV-BF-VSP"/>
+                            <constraint firstItem="LXA-Xy-zbT" firstAttribute="leading" secondItem="j9U-QQ-Ox1" secondAttribute="leading" constant="20" id="uea-tG-7se"/>
+                            <constraint firstItem="Ny7-Lq-lAi" firstAttribute="leading" secondItem="eOT-ep-OKS" secondAttribute="leading" id="xdl-ca-9XK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="j9U-QQ-Ox1"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="Ny7-Lq-lAi" id="lb9-wF-wSv"/>
+                        <outlet property="clientLogoImageView" destination="vKB-zS-vo0" id="Okq-7d-mS7"/>
+                        <outlet property="detailLabel" destination="ipL-9I-O5I" id="08E-PR-xGm"/>
+                        <outlet property="identityField" destination="aTt-NO-cq0" id="of0-zs-Jmk"/>
+                        <outlet property="invalidIdentityLabel" destination="9HB-fr-clW" id="uTd-bM-Hmt"/>
+                        <outlet property="scrollView" destination="LXA-Xy-zbT" id="vIZ-3m-bhy"/>
+                        <outlet property="submitButton" destination="vUE-sl-Qar" id="gsj-AL-bzS"/>
+                        <outlet property="titleLabel" destination="KF2-eI-yC0" id="TQ8-mF-HcT"/>
+                        <segue destination="pWf-GO-eDe" kind="show" identifier="loginPassword" id="fdB-k0-UOa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UoI-XS-km8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-694" y="16"/>
+        </scene>
+        <!--LoginPasswordViewController-->
+        <scene sceneID="VBk-0g-Ifp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LoginPasswordViewController" id="pWf-GO-eDe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IBE-bG-oP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="-51"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app-background" width="375" height="667"/>
+        <image name="client-logo" width="130" height="130"/>
+        <image name="forward-arrow" width="28" height="28"/>
+    </resources>
+</document>

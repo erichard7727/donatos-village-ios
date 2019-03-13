@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Brewfile">
+   </FileRef>
+   <FileRef
+      location = "group:Gemfile">
+   </FileRef>
+   <FileRef
+      location = "group:Cartfile">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Clients">
+      <FileRef
+         location = "group:Clients/DonatosVillage/DonatosVillage.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Product">
+      <Group
+         location = "container:"
+         name = "Core">
+         <FileRef
+            location = "group:Product/Core/VillageCore/VillageCore.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:Product/Core/VillageCoreUI/VillageCoreUI.xcodeproj">
+         </FileRef>
+      </Group>
+      <Group
+         location = "container:"
+         name = "Features">
+      </Group>
+   </Group>
+</Workspace>
