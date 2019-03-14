@@ -8,11 +8,19 @@
 
 import Moya
 
+fileprivate let defaultPageSize = 50
+
 /// Describes all of the Village Core API Endpoints
 ///
 /// - foundationSettings: Gets basic configuration data. To be called
 ///     immediately upon application initialization.
-public  enum VillageCoreAPI {
+public enum VillageCoreAPI {
+    
+    public enum KudoType: String {
+        case received
+        case given
+    }
+    
     // Foundation Settings
     case foundationSettings(licenseKey: String)
     
@@ -22,12 +30,16 @@ public  enum VillageCoreAPI {
     case initiateResetPassword(emailAddress: String)
     case logout
     
-    // Account
-    case myAccount
-    
     // People
     case me
     case securityPolicies(userId: String)
+    
+    // Directory
+    case directory(page: Int)
+    case getPersonDetails(personId: String)
+    
+    // Kudos
+    case kudos(_ kudoType: KudoType, personId: String, page: Int)
 }
 
 // MARK: - TargetType
@@ -55,14 +67,20 @@ extension VillageCoreAPI: TargetType {
         case .logout:
             return "accounts/1.0/logout"
             
-        case .myAccount:
-            return "accounts/1.0/me"
-            
         case .me:
             return "people/1.0/me"
             
         case let .securityPolicies(userId):
             return "people/1.0/\(userId)/policy"
+            
+        case let .directory(page):
+            return "people/1.0/people/\(page)-\(defaultPageSize)"
+            
+        case let .getPersonDetails(personId):
+            return "people/1.0/person/\(personId)"
+            
+        case .kudos(_):
+            return "kudos/1.0/kudos"
         }
     }
 
@@ -77,14 +95,16 @@ extension VillageCoreAPI: TargetType {
         switch self {
         case .foundationSettings(_),
              .me,
-             .securityPolicies(_):
+             .securityPolicies(_),
+             .directory(_),
+             .getPersonDetails(_),
+             .kudos(_):
             return .get
             
         case .validateIdentity(_),
              .login(_),
              .initiateResetPassword(_),
-             .logout,
-             .myAccount:
+             .logout:
             return .post
         }
     }
@@ -96,9 +116,11 @@ extension VillageCoreAPI: TargetType {
              .login(_),
              .initiateResetPassword(_),
              .logout,
-             .myAccount,
              .me,
-             .securityPolicies(_):
+             .securityPolicies(_),
+             .directory(_),
+             .getPersonDetails(_),
+             .kudos(_):
             return Data()
         }
     }
@@ -106,9 +128,9 @@ extension VillageCoreAPI: TargetType {
     public var task: Task {
         switch self {
         case .foundationSettings(_),
-             .myAccount,
              .me,
-             .securityPolicies(_):
+             .securityPolicies(_),
+             .getPersonDetails(_):
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId
@@ -172,7 +194,27 @@ extension VillageCoreAPI: TargetType {
                 ],
                 encoding: URLEncoding.default
             )
+            
+        case .directory(_):
+            return Task.requestParameters(
+                parameters: [
+                    "diagId": User.current.diagnosticId,
+                    "filter": "ACTIVE",
+                    ],
+                encoding: URLEncoding.default
+            )
+            
+        case let .kudos(kudoType, personId, page):
+            return Task.requestParameters(
+                parameters: [
+                    "diagId": User.current.diagnosticId,
+                    "paging": "\(page)-\(defaultPageSize)",
+                    "filter": "\(kudoType.rawValue),personId:\(personId)",
+                ],
+                encoding: URLEncoding.default
+            )
         }
+        
     }
 
 }
@@ -188,9 +230,11 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .initiateResetPassword(_):
             return false
             
-        case .myAccount,
-             .me,
-             .securityPolicies(_):
+        case .me,
+             .securityPolicies(_),
+             .directory(_),
+             .getPersonDetails(_),
+             .kudos(_):
             return true
         }
     }
