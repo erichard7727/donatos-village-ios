@@ -43,6 +43,7 @@
 		D4B4E83522391D06002DED70 /* SecurityPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83422391D06002DED70 /* SecurityPolicies.swift */; };
 		D4B4E83822395928002DED70 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83722395928002DED70 /* Person.swift */; };
 		D4B4E83A22399BE7002DED70 /* DirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83922399BE7002DED70 /* DirectoryService.swift */; };
+		D4B4E83C223A9509002DED70 /* Person+Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83B223A9509002DED70 /* Person+Directory.swift */; };
 		D4B4E83E223AA7BC002DED70 /* KudosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83D223AA7BC002DED70 /* KudosService.swift */; };
 		D4B4E840223AA7F4002DED70 /* Kudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83F223AA7F4002DED70 /* Kudo.swift */; };
 		D4C54E4C220E4D4500191DB1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C54E3D220E2EE600191DB1 /* Alamofire.framework */; };
@@ -117,6 +118,7 @@
 		D4B4E83422391D06002DED70 /* SecurityPolicies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPolicies.swift; sourceTree = "<group>"; };
 		D4B4E83722395928002DED70 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		D4B4E83922399BE7002DED70 /* DirectoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryService.swift; sourceTree = "<group>"; };
+		D4B4E83B223A9509002DED70 /* Person+Directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+Directory.swift"; sourceTree = "<group>"; };
 		D4B4E83D223AA7BC002DED70 /* KudosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KudosService.swift; sourceTree = "<group>"; };
 		D4B4E83F223AA7F4002DED70 /* Kudo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kudo.swift; sourceTree = "<group>"; };
 		D4C54E3C220E2EE600191DB1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../../../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				D4615855220F44250072D224 /* User+Authentication.swift */,
 				D4B4E83422391D06002DED70 /* SecurityPolicies.swift */,
 				D4B4E83722395928002DED70 /* Person.swift */,
+				D4B4E83B223A9509002DED70 /* Person+Directory.swift */,
 				D4B4E83F223AA7F4002DED70 /* Kudo.swift */,
 			);
 			path = Models;
@@ -403,6 +406,7 @@
 				D4B4E83822395928002DED70 /* Person.swift in Sources */,
 				D4B4E83522391D06002DED70 /* SecurityPolicies.swift in Sources */,
 				D4615854220F44100072D224 /* User+Keychain.swift in Sources */,
+				D4B4E83C223A9509002DED70 /* Person+Directory.swift in Sources */,
 				D4615856220F44250072D224 /* User+Authentication.swift in Sources */,
 				D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */,
 				D461584A220F24450072D224 /* Promises+Utilities.swift in Sources */,
