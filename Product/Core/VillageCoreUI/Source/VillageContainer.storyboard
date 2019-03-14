@@ -47,6 +47,32 @@
             </objects>
             <point key="canvasLocation" x="-23.199999999999999" y="116.49175412293854"/>
         </scene>
+        <!--VillageContainerLoadingContentViewController-->
+        <scene sceneID="B6P-yx-8B9">
+            <objects>
+                <viewController storyboardIdentifier="VillageContainerLoadingContentViewController" id="3NG-b3-ubI" userLabel="VillageContainerLoadingContentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yFe-40-Elf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app-background" translatesAutoresizingMaskIntoConstraints="NO" id="ZKk-5e-jbB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZKk-5e-jbB" firstAttribute="bottom" secondItem="yFe-40-Elf" secondAttribute="bottom" id="Agz-Lt-r9Y"/>
+                            <constraint firstItem="ZKk-5e-jbB" firstAttribute="leading" secondItem="yFe-40-Elf" secondAttribute="leading" id="KDc-sm-97r"/>
+                            <constraint firstItem="ZKk-5e-jbB" firstAttribute="trailing" secondItem="yFe-40-Elf" secondAttribute="trailing" id="XjM-56-Yta"/>
+                            <constraint firstItem="ZKk-5e-jbB" firstAttribute="top" secondItem="yFe-40-Elf" secondAttribute="top" id="k3a-P1-1oe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yFw-qp-hWj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WWL-hD-e82" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688.79999999999995" y="118.29085457271366"/>
+        </scene>
     </scenes>
     <resources>
         <image name="app-background" width="375" height="667"/>
