@@ -41,6 +41,8 @@
 		D4615854220F44100072D224 /* User+Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4615853220F44100072D224 /* User+Keychain.swift */; };
 		D4615856220F44250072D224 /* User+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4615855220F44250072D224 /* User+Authentication.swift */; };
 		D4B4E83522391D06002DED70 /* SecurityPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83422391D06002DED70 /* SecurityPolicies.swift */; };
+		D4B4E83822395928002DED70 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83722395928002DED70 /* Person.swift */; };
+		D4B4E840223AA7F4002DED70 /* Kudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83F223AA7F4002DED70 /* Kudo.swift */; };
 		D4C54E4C220E4D4500191DB1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C54E3D220E2EE600191DB1 /* Alamofire.framework */; };
 		D4C54E4D220E4D4500191DB1 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CC2A692209B5B50091BEFB /* Moya.framework */; };
 		D4C54E4E220E4D4500191DB1 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CC2A6E2209C4070091BEFB /* Promises.framework */; };
@@ -111,6 +113,8 @@
 		D4615853220F44100072D224 /* User+Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Keychain.swift"; sourceTree = "<group>"; };
 		D4615855220F44250072D224 /* User+Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Authentication.swift"; sourceTree = "<group>"; };
 		D4B4E83422391D06002DED70 /* SecurityPolicies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPolicies.swift; sourceTree = "<group>"; };
+		D4B4E83722395928002DED70 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		D4B4E83F223AA7F4002DED70 /* Kudo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kudo.swift; sourceTree = "<group>"; };
 		D4C54E3C220E2EE600191DB1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../../../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		D4C54E3D220E2EE600191DB1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../../../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D4C54E4A220E4CB800191DB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -184,6 +188,8 @@
 				D4615853220F44100072D224 /* User+Keychain.swift */,
 				D4615855220F44250072D224 /* User+Authentication.swift */,
 				D4B4E83422391D06002DED70 /* SecurityPolicies.swift */,
+				D4B4E83722395928002DED70 /* Person.swift */,
+				D4B4E83F223AA7F4002DED70 /* Kudo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				D4173893220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift in Sources */,
 				D417388A220C4FD500F5B1F6 /* URL+StaticString.swift in Sources */,
 				D4615852220F30570072D224 /* AuthenticationService.swift in Sources */,
+				D4B4E83822395928002DED70 /* Person.swift in Sources */,
 				D4B4E83522391D06002DED70 /* SecurityPolicies.swift in Sources */,
 				D4615854220F44100072D224 /* User+Keychain.swift in Sources */,
 				D4615856220F44250072D224 /* User+Authentication.swift in Sources */,
@@ -395,6 +402,7 @@
 				D4CC29BD220759410091BEFB /* ClientConfiguration.swift in Sources */,
 				D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */,
 				D417388F220C502700F5B1F6 /* VillageProvider.swift in Sources */,
+				D4B4E840223AA7F4002DED70 /* Kudo.swift in Sources */,
 				D4615847220F1AE50072D224 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
