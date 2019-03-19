@@ -21,7 +21,12 @@ final class LoginIdentityViewController: UIViewController, UIGestureRecognizerDe
         }
     }
     
-    @IBOutlet private weak var clientLogoImageView: UIImageView!
+    @IBOutlet private weak var clientLogoImageView: UIImageView! {
+        didSet {
+            clientLogoImageView.setImage(named: "client_logo")
+        }
+    }
+    
     @IBOutlet private weak var titleLabel: UILabel!
     
     @IBOutlet private weak var detailLabel: NantesLabel! {

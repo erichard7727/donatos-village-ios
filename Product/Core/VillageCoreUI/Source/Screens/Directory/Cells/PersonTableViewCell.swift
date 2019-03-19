@@ -34,7 +34,7 @@ final class PersonTableViewCell: UITableViewCell {
     func initializeCell() {
         nameLabel.text = ""
         titleLabel.text = ""
-        avatarImageView.image = nil
+        avatarImageView.setImage(named: "default-avatar")
     }
     
     func configureForPerson(_ person: Person) {

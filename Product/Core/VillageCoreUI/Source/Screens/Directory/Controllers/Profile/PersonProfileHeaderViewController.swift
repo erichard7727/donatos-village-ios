@@ -17,7 +17,11 @@ final class PersonProfileHeaderViewController: UIViewController {
     var person: Person!
     
     /// Profile image view.
-    @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet var profileImageView: UIImageView! {
+        didSet {
+            profileImageView.setImage(named: "default-avatar")
+        }
+    }
     
     /// Width constraint on profile image.
     @IBOutlet var profileImageWidthConstraint: NSLayoutConstraint!
