@@ -18,17 +18,51 @@ protocol PersonProfileViewControllerDelegate {
 /// Person contact view controller.
 final class ContactPersonViewController: UITableViewController {
     
+    /// Types of rows to display.
+    private enum Row {
+        case directMessage
+        case email(String)
+        case phone(String)
+        case twitter(String)
+    }
+    
+    private var rows: [Row] = []
+    
     /// Person to display information for.
-    var person: Person!
-    var currentPerson: Person?
+    var person: Person! {
+        didSet {
+            configureRows()
+        }
+    }
+    
+    var currentPerson: Person? {
+        didSet {
+            configureRows()
+        }
+    }
+    
+    private func configureRows() {
+        let directMessageEnabled: Bool = {
+            if Constants.Settings.directMessagesEnabled,
+                let currentPerson = self.currentPerson,
+                let otherPerson = self.person,
+                currentPerson.id != otherPerson.id {
+                return true
+            } else {
+                return false
+            }
+        }()
+        
+        self.rows = [
+            (directMessageEnabled ? Row.directMessage : nil),
+            Row.email(person.emailAddress),
+            person.phone.flatMap({ $0.isEmpty ? nil : $0 }).map({ Row.phone($0) }),
+            person.twitter.flatMap({ $0.isEmpty ? nil : $0 }).map({ Row.twitter($0) }),
+        ].compactMap({ $0 })
+    }
     
     /// Delegated object.
     var delegate: PersonProfileViewControllerDelegate?
-    
-    /// Types of rows to display.
-    enum Rows: Int {
-        case directMessage, email, phone, twitter
-    }
     
     // MARK: UIViewController
     
@@ -38,86 +72,37 @@ final class ContactPersonViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        firstly {
-            self.person.getDetails()
-        }.then { [weak self] person in
-            self?.person = person
-            self?.tableView.reloadSections([0] , with: .automatic)
-        }.catch { error in
-            assertionFailure(error.localizedDescription)
-        }
-    }
-    
     // MARK: UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if Constants.Settings.directMessagesEnabled {
-            return 4
-        } else {
-            return 3
-        }
+        return rows.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactPersonTableViewCell") as? ContactPersonTableViewCell else { fatalError("Type mismatch") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactPersonTableViewCell") as? ContactPersonTableViewCell else {
+            fatalError("Type mismatch")
+        }
         
-        if Constants.Settings.directMessagesEnabled,
-           let row = Rows(rawValue: (indexPath as NSIndexPath).row) {
+        let row = self.rows[indexPath.row]
+        
+        switch row {
+        case .directMessage:
+            cell.buttonTextLabel.text = "Send Direct Message"
+            cell.iconImageView.image = UIImage.named("profile-email-icon")
             
-            switch row {
-            case .directMessage:
-                guard let currentPerson = self.currentPerson else {
-                    fatalError("currentPerson not set")
-                }
-                
-                guard let person = self.person else {
-                    fatalError("person not set")
-                }
-                
-                let directMessageEnabled = currentPerson.id != person.id
-                cell.isUserInteractionEnabled = directMessageEnabled
-                cell.buttonTextLabel.alpha = directMessageEnabled ? 1.0 : 0.5
-                cell.iconImageView.alpha = directMessageEnabled ? 1.0 : 0.5
-                cell.buttonTextLabel.text = "Send Direct Message"
-                cell.iconImageView.image = UIImage.named("profile-email-icon")
-
-            case .email:
-                cell.buttonTextLabel.text = person.emailAddress
-                cell.iconImageView.image = UIImage.named("profile-email-icon")
-
-            case .phone:
-                cell.buttonTextLabel.text = (person.phone == "" ? "<No Phone Number>" : person.phone)
-                cell.buttonTextLabel.textColor = (person.phone == "" ? UIColor.lightGray : UIColor.darkGray)
-                cell.iconImageView.image = UIImage.named("profile-phone-icon")
-
-            case .twitter:
-                cell.buttonTextLabel.text = person.twitter == "" ? "<No Twitter Profile>" : person.twitter
-                cell.buttonTextLabel.textColor = (person.twitter == "" ? UIColor.lightGray : UIColor.darkGray)
-                cell.iconImageView.image = UIImage.named("profile-twitter-icon")
-            }
+        case .email(let emailAddress):
+            cell.buttonTextLabel.text = emailAddress
+            cell.iconImageView.image = UIImage.named("profile-email-icon")
             
-        } else if !Constants.Settings.directMessagesEnabled,
-               let row = Rows(rawValue: (indexPath as NSIndexPath).row + 1) {
+        case .phone(let phoneNumber):
+            cell.buttonTextLabel.text = phoneNumber
+            cell.buttonTextLabel.textColor = UIColor.darkGray
+            cell.iconImageView.image = UIImage.named("profile-phone-icon")
             
-            switch row {
-            case .email:
-                cell.buttonTextLabel.text = person.emailAddress
-                cell.iconImageView.image = UIImage.named("profile-email-icon")
-            case .phone:
-                cell.buttonTextLabel.text = (person.phone == "" ? "<No Phone Number>" : person.phone)
-                cell.buttonTextLabel.textColor = (person.phone == "" ? UIColor.lightGray : UIColor.darkGray)
-                cell.iconImageView.image = UIImage.named("profile-phone-icon")
-            case .twitter:
-                cell.buttonTextLabel.text = (person.twitter == "" ? "<No Twitter Profile>" : person.twitter)
-                cell.buttonTextLabel.textColor = (person.twitter == "" ? UIColor.lightGray : UIColor.darkGray)
-                cell.iconImageView.image = UIImage.named("profile-twitter-icon")
-            default:
-                break
-            }
-            
+        case .twitter(let twitter):
+            cell.buttonTextLabel.text = twitter
+            cell.buttonTextLabel.textColor = UIColor.darkGray
+            cell.iconImageView.image = UIImage.named("profile-twitter-icon")
         }
 
         return cell
@@ -142,35 +127,20 @@ final class ContactPersonViewController: UITableViewController {
             }
         }
         
-        if Constants.Settings.directMessagesEnabled,
-           let row = Rows(rawValue: (indexPath as NSIndexPath).row) {
+        let row = self.rows[indexPath.row]
+        
+        switch row {
+        case .directMessage:
+            self.shouldShowAndStartDirectMessage(person, controller: self)
             
-            switch row {
-            case .directMessage:
-                self.shouldShowAndStartDirectMessage(person, controller: self)
-            case .email:
-                attemptURL("mailto:\(person.emailAddress)")
-            case .phone where person.phone?.isEmpty == false:
-                attemptURL("tel://\(person.phone!)")
-            case .twitter where person.twitter?.isEmpty == false:
-                attemptURL("https://twitter.com/\(person.twitter!)")
-            default:
-                attemptURL("")
-            }
+        case .email(let emailAddress):
+            attemptURL("mailto:\(emailAddress)")
             
-        } else if !Constants.Settings.directMessagesEnabled,
-                  let row = Rows(rawValue: (indexPath as NSIndexPath).row + 1) {
+        case .phone(let phoneNumber):
+            attemptURL("tel://\(phoneNumber)")
             
-            switch row {
-            case .email:
-                attemptURL("mailto:\(person.emailAddress)")
-            case .phone where person.phone?.isEmpty == false:
-                attemptURL("tel://\(person.phone!)")
-            case .twitter where person.twitter?.isEmpty == false:
-                attemptURL("https://twitter.com/\(person.twitter!)")
-            default:
-                attemptURL("")
-            }
+        case .twitter(let twitter):
+            attemptURL("https://twitter.com/\(twitter)")
         }
         
         tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
