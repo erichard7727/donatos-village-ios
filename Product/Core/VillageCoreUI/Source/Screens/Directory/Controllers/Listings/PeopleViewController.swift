@@ -69,10 +69,7 @@ final class PeopleViewController: UIViewController {
         
         emptyStateLabel.alpha = 0
         
-        // Add in refresh control.
-        //enableRefreshing()
         activityIndicator.startAnimating()
-        activityIndicator.alpha = 1
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -108,10 +105,10 @@ final class PeopleViewController: UIViewController {
         refreshControl = nil
     }
     
-    func refreshTableView() {
-        // Wrapper around refreshing action so as to not introduce implementation details to callers.
-        refreshTableView(nil)
-    }
+//    func refreshTableView() {
+//        // Wrapper around refreshing action so as to not introduce implementation details to callers.
+//        refreshTableView(nil)
+//    }
     
     @objc func refreshTableView(_ sender: UIRefreshControl!) {
         // Don't refresh data if we're in search mode.
@@ -140,9 +137,9 @@ final class PeopleViewController: UIViewController {
                 self.emptyStateLabel.alpha = 1
                 self.emptyStateLabel.text = "There are no people to display."
             }
-        }.always {
-            self.refreshControl?.endRefreshing()
-            self.activityIndicator.alpha = 0
+        }.always { [weak self] in
+            self?.refreshControl?.endRefreshing()
+            self?.activityIndicator.stopAnimating()
         }.catch { (error) in
             assertionFailure(error.localizedDescription)
         }
@@ -228,7 +225,6 @@ extension PeopleViewController: UITableViewDelegate {
         let person = filteredpeople[indexPath.row]
         
         activityIndicator.startAnimating()
-        activityIndicator.alpha = 1
         
         firstly {
             person.getDetails()
@@ -238,7 +234,6 @@ extension PeopleViewController: UITableViewDelegate {
             self?.performSegue(withIdentifier: "ShowPersonProfileSegue", sender: person)
         }.always { [weak self] in
             self?.activityIndicator.stopAnimating()
-            self?.activityIndicator.alpha = 0
         }
         
     }
@@ -262,9 +257,9 @@ extension PeopleViewController: UISearchControllerDelegate, UISearchResultsUpdat
     func willDismissSearchController(_ searchController: UISearchController) {
         // Re-enable refreshing content after searching.
         enableRefreshing()
+        
         filteredpeople = Array(originalPeople)
         activityIndicator.stopAnimating()
-        activityIndicator.alpha = 0
         if filteredpeople.count == 0 {
             emptyStateLabel.alpha = 1
             self.emptyStateLabel.text = "There are no people to display."
@@ -285,6 +280,8 @@ extension PeopleViewController: UISearchControllerDelegate, UISearchResultsUpdat
         }
         
         loadingMorePeople = true
+        
+        activityIndicator.startAnimating()
         
         firstly {
             People.search(for: searchText, page: searchCurrentPage)
@@ -318,7 +315,6 @@ extension PeopleViewController: UISearchControllerDelegate, UISearchResultsUpdat
         }.always { [weak self] in
             self?.loadingMorePeople = false
             self?.activityIndicator.stopAnimating()
-            self?.activityIndicator.alpha = 0
         }.catch { (error) in
             assertionFailure(error.localizedDescription)
         }
@@ -349,9 +345,9 @@ extension PeopleViewController: UISearchBarDelegate {
         tableView.reloadData()
         self.tableView.reloadSections([0], with: .automatic)
         activityIndicator.startAnimating()
-        activityIndicator.alpha = 1
         
         if searchText.trimmingCharacters(in: CharacterSet.urlQueryAllowed.inverted).isEmpty {
+            activityIndicator.stopAnimating()
             self.searchText = searchText
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.searchAPI), object: nil)
         } else {
@@ -362,6 +358,7 @@ extension PeopleViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        activityIndicator.stopAnimating()
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.searchAPI), object: nil)
         searchAPI()
     }
@@ -408,10 +405,10 @@ extension PeopleViewController {
                 self.emptyStateLabel.alpha = 1
                 self.emptyStateLabel.text = "There are no people to display."
             }
-        }.always {
-            self.loadingMorePeople = false
-            self.progressIndicator.alpha = 0
-            self.activityIndicator.alpha = 0
+        }.always { [weak self] in
+            self?.loadingMorePeople = false
+            self?.progressIndicator.alpha = 0
+            self?.activityIndicator.stopAnimating()
         }.catch { (error) in
             assertionFailure(error.localizedDescription)
         }
