@@ -77,6 +77,9 @@ final class PeopleViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        tableView.indexPathForSelectedRow.flatMap({ tableView.deselectRow(at: $0, animated: true) })
+        
         loadMorePeople()
     }
     
@@ -149,7 +152,10 @@ final class PeopleViewController: UIViewController {
         if let identifier = segue.identifier {
             switch identifier {
             case "ShowPersonProfileSegue":
-                guard let controller = segue.destination as? PersonProfileViewController else {
+                guard
+                    let controller = segue.destination as? PersonProfileViewController,
+                    let person = sender as? Person
+                else {
                     fatalError("Type mismatch")
                 }
                 
@@ -157,9 +163,6 @@ final class PeopleViewController: UIViewController {
                     return
                 }
                 
-                tableView.deselectRow(at: indexPath, animated: true)
-                
-                let person = filteredpeople[indexPath.row]
                 controller.person = person
                 controller.delegate = self
             
@@ -219,9 +222,27 @@ extension PeopleViewController: UITableViewDataSource {
 }
 
 extension PeopleViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "ShowPersonProfileSegue", sender: nil)
+        
+        let person = filteredpeople[indexPath.row]
+        
+        activityIndicator.startAnimating()
+        activityIndicator.alpha = 1
+        
+        firstly {
+            person.getDetails()
+        }.then { [weak self] (personWithDetails) in
+            self?.performSegue(withIdentifier: "ShowPersonProfileSegue", sender: personWithDetails)
+        }.catch { [weak self] _ in
+            self?.performSegue(withIdentifier: "ShowPersonProfileSegue", sender: person)
+        }.always { [weak self] in
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.alpha = 0
+        }
+        
     }
+    
 }
 
 extension PeopleViewController: PersonProfileViewControllerDelegate {
