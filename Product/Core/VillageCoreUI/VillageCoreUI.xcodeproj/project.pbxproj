@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D42FE5C222411E1700B46C8F /* SendEmailTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */; };
+		D42FE5C422411E2000B46C8F /* SendEmailTokenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */; };
 		D43663C32229ACA9006354F2 /* LoginPasswordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */; };
 		D43663C42229ACA9006354F2 /* LoginPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663C22229ACA9006354F2 /* LoginPasswordViewController.swift */; };
 		D43663C72229BBC8006354F2 /* UIViewController+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663C62229BBC8006354F2 /* UIViewController+NavigationBar.swift */; };
@@ -73,6 +75,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailTokenViewController.swift; sourceTree = "<group>"; };
+		D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendEmailTokenViewController.storyboard; sourceTree = "<group>"; };
 		D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginPasswordViewController.storyboard; sourceTree = "<group>"; };
 		D43663C22229ACA9006354F2 /* LoginPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPasswordViewController.swift; sourceTree = "<group>"; };
 		D43663C62229BBC8006354F2 /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
@@ -402,6 +406,8 @@
 				D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */,
 				D43663CD222A13F2006354F2 /* ForgotPasswordViewController.swift */,
 				D43663CC222A13F1006354F2 /* ForgotPasswordViewController.storyboard */,
+				D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */,
+				D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -545,6 +551,7 @@
 				D43663C32229ACA9006354F2 /* LoginPasswordViewController.storyboard in Resources */,
 				D4B4E858223AE980002DED70 /* Directory.storyboard in Resources */,
 				D47FD3F7220FB23C00376D31 /* VillageContainer.storyboard in Resources */,
+				D42FE5C422411E2000B46C8F /* SendEmailTokenViewController.storyboard in Resources */,
 				D43663DE222C63AE006354F2 /* UserSettingsViewController.storyboard in Resources */,
 				D4F8A5882210A274005FDB6A /* MainMenuViewController.storyboard in Resources */,
 				D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */,
@@ -590,6 +597,7 @@
 				D4B4E861223AFEF7002DED70 /* PersonProfileViewController.swift in Sources */,
 				D4B4E890223B3763002DED70 /* KudosListController.swift in Sources */,
 				D4B4E869223B281E002DED70 /* ProfileBottomContainerViewController.swift in Sources */,
+				D42FE5C222411E1700B46C8F /* SendEmailTokenViewController.swift in Sources */,
 				D4984EA1223FAF9600793CFE /* KudoCell.swift in Sources */,
 				D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */,
 				D43663CF222A13F2006354F2 /* ForgotPasswordViewController.swift in Sources */,
