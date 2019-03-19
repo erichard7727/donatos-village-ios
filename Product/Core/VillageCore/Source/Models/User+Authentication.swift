@@ -13,8 +13,43 @@ import Promises
 
 extension User {
     
-    public func validateIdentity() -> Promise<User> {
-        return AuthenticationService.validateIdentity(user: self)
+    public enum ValidateIdentityNextStep {
+        case enterPassword(User)
+        case confirmEmail(User)
+        case createAccount(User)
+        
+        internal init(_ authServiceNextStep: AuthenticationService.ValidateIdentityNextStep) {
+            switch authServiceNextStep {
+            case .enterPassword(let user):
+                self = .enterPassword(user)
+            case .confirmEmail(let user):
+                self = .confirmEmail(user)
+            case .createAccount(let user):
+                self = .createAccount(user)
+            }
+        }
+    }
+    
+    public enum DomainInitiationMode {
+        case invitation
+        case confirmation
+        
+        internal var authServiceMode: AuthenticationService.DomainInitiationMode {
+            switch self {
+            case .invitation: return .invitation
+            case .confirmation: return .confirmation
+            }
+        }
+    }
+    
+    public func validateIdentity() -> Promise<ValidateIdentityNextStep> {
+        return firstly {
+            AuthenticationService.validateIdentity(user: self)
+        }.then { User.ValidateIdentityNextStep.init($0) }
+    }
+    
+    public static func initiateDomatin(mode: DomainInitiationMode, emailAddress: String) -> Promise<Void> {
+        return AuthenticationService.initiateDomatin(mode: mode.authServiceMode, emailAddress: emailAddress)
     }
     
     public func login() -> Promise<User> {

@@ -30,6 +30,11 @@ fileprivate let defaultPageSize = 50
 ///     immediately upon application initialization.
 public enum VillageCoreAPI {
     
+    public enum DomainInitiationMode: String {
+        case invitation = "invite"
+        case confirmation = "confirm"
+    }
+    
     public enum KudoType: String {
         case received
         case given
@@ -40,6 +45,7 @@ public enum VillageCoreAPI {
     
     // Authorization
     case validateIdentity(identity: String)
+    case initiateDomain(_ mode: DomainInitiationMode, emailAddress: String)
     case login(identity: String, password: String, prefetch: String?, pushType: String, pushToken: String?, appPlatform: String, appVersion: String)
     case initiateResetPassword(emailAddress: String)
     case logout
@@ -73,6 +79,9 @@ extension VillageCoreAPI: TargetType {
             
         case .validateIdentity(_):
             return "auth/1.0/auth_validate_identity"
+            
+        case .initiateDomain:
+            return "auth/1.0/auth_initiate_domain_confirmation"
             
         case .login(_):
             return "accounts/1.0/login"
@@ -126,6 +135,7 @@ extension VillageCoreAPI: TargetType {
             return .get
             
         case .validateIdentity(_),
+             .initiateDomain,
              .login(_),
              .initiateResetPassword(_),
              .logout,
@@ -138,6 +148,7 @@ extension VillageCoreAPI: TargetType {
         switch self {
         case .foundationSettings(_),
              .validateIdentity(_),
+             .initiateDomain,
              .login(_),
              .initiateResetPassword(_),
              .logout,
@@ -170,6 +181,19 @@ extension VillageCoreAPI: TargetType {
                 bodyParameters: [
                     "licenseKey": ClientConfiguration.current.licenseKey,
                     "identity": identity,
+                ],
+                bodyEncoding: JSONEncoding.default,
+                urlParameters: [
+                    "diagId": User.current.diagnosticId
+                ]
+            )
+            
+        case let .initiateDomain(mode, emailAddress):
+            return Task.requestCompositeParameters(
+                bodyParameters: [
+                    "licenseKey": ClientConfiguration.current.licenseKey,
+                    "inviteToken": mode.rawValue,
+                    "emailAddress": emailAddress,
                 ],
                 bodyEncoding: JSONEncoding.default,
                 urlParameters: [
@@ -272,6 +296,7 @@ extension VillageCoreAPI: AuthorizedTargetType {
         switch self {
         case .foundationSettings(_),
              .validateIdentity(_),
+             .initiateDomain,
              .login(_),
              .logout,
              .initiateResetPassword(_):
