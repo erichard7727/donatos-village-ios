@@ -25,12 +25,30 @@
 		D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD3FE220FBD4700376D31 /* Constants.swift */; };
 		D47FD402220FC08700376D31 /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD401220FC08700376D31 /* Image+Named.swift */; };
 		D4984EA0223E83E700793CFE /* StatefulUserInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */; };
+		D4984EA1223FAF9600793CFE /* KudoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E880223B3753002DED70 /* KudoCell.swift */; };
+		D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E87B223B3752002DED70 /* Kudos.storyboard */; };
+		D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E883223B3753002DED70 /* KudoCell.xib */; };
+		D4B4E853223AE980002DED70 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E848223AE980002DED70 /* PeopleViewController.swift */; };
+		D4B4E858223AE980002DED70 /* Directory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E84E223AE980002DED70 /* Directory.storyboard */; };
+		D4B4E859223AE980002DED70 /* ContactPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E850223AE980002DED70 /* ContactPersonTableViewCell.swift */; };
+		D4B4E85A223AE980002DED70 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E851223AE980002DED70 /* PersonTableViewCell.swift */; };
 		D4B4E85C223AF121002DED70 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B4E85B223AF121002DED70 /* AlamofireImage.framework */; };
 		D4B4E85E223AF3AE002DED70 /* UIColor+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E85D223AF3AE002DED70 /* UIColor+Named.swift */; };
+		D4B4E861223AFEF7002DED70 /* PersonProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E84C223AE980002DED70 /* PersonProfileViewController.swift */; };
+		D4B4E862223AFF22002DED70 /* InvitePersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E847223AE980002DED70 /* InvitePersonController.swift */; };
+		D4B4E863223AFFD6002DED70 /* PersonProfileHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E84D223AE980002DED70 /* PersonProfileHeaderViewController.swift */; };
+		D4B4E864223AFFF6002DED70 /* ContactPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E84A223AE980002DED70 /* ContactPersonViewController.swift */; };
 		D4B4E868223B241C002DED70 /* UIAlertController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E867223B241C002DED70 /* UIAlertController+Utilities.swift */; };
+		D4B4E869223B281E002DED70 /* ProfileBottomContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E84B223AE980002DED70 /* ProfileBottomContainerViewController.swift */; };
 		D4B4E86D223B355B002DED70 /* TabItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E86B223B355A002DED70 /* TabItem.xib */; };
 		D4B4E86E223B355B002DED70 /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E86C223B355A002DED70 /* TabItemView.swift */; };
+		D4B4E890223B3763002DED70 /* KudosListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E871223B3751002DED70 /* KudosListController.swift */; };
+		D4B4E891223B37B0002DED70 /* MyAchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E87A223B3751002DED70 /* MyAchievementsViewController.swift */; };
 		D4B4E893223B3971002DED70 /* ParentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E892223B3971002DED70 /* ParentScrollView.swift */; };
+		D4B4E896223B3D0E002DED70 /* AchievementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E882223B3753002DED70 /* AchievementCollectionViewCell.swift */; };
+		D4B4E897223B3D0E002DED70 /* AchievementCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E886223B3753002DED70 /* AchievementCollectionViewCell.xib */; };
+		D4B4E899223B3E5E002DED70 /* AchievementImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E88C223B3754002DED70 /* AchievementImageView.swift */; };
+		D4B4E89A223B3E5E002DED70 /* AchievementImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E88D223B3754002DED70 /* AchievementImage.xib */; };
 		D4CC29B1220756D60091BEFB /* VillageCoreUI.h in Headers */ = {isa = PBXBuildFile; fileRef = D4CC29AF220756D60091BEFB /* VillageCoreUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4CC2A712209C4140091BEFB /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CC2A702209C4140091BEFB /* Promises.framework */; };
 		D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */; };
@@ -71,11 +89,49 @@
 		D47FD3FE220FBD4700376D31 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D47FD401220FC08700376D31 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
 		D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulUserInterface.swift; sourceTree = "<group>"; };
+		D4B4E847223AE980002DED70 /* InvitePersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitePersonController.swift; sourceTree = "<group>"; };
+		D4B4E848223AE980002DED70 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		D4B4E84A223AE980002DED70 /* ContactPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPersonViewController.swift; sourceTree = "<group>"; };
+		D4B4E84B223AE980002DED70 /* ProfileBottomContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBottomContainerViewController.swift; sourceTree = "<group>"; };
+		D4B4E84C223AE980002DED70 /* PersonProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonProfileViewController.swift; sourceTree = "<group>"; };
+		D4B4E84D223AE980002DED70 /* PersonProfileHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonProfileHeaderViewController.swift; sourceTree = "<group>"; };
+		D4B4E84E223AE980002DED70 /* Directory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Directory.storyboard; sourceTree = "<group>"; };
+		D4B4E850223AE980002DED70 /* ContactPersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPersonTableViewCell.swift; sourceTree = "<group>"; };
+		D4B4E851223AE980002DED70 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		D4B4E85B223AF121002DED70 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = ../../../Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		D4B4E85D223AF3AE002DED70 /* UIColor+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Named.swift"; sourceTree = "<group>"; };
 		D4B4E867223B241C002DED70 /* UIAlertController+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Utilities.swift"; sourceTree = "<group>"; };
 		D4B4E86B223B355A002DED70 /* TabItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabItem.xib; sourceTree = "<group>"; };
 		D4B4E86C223B355A002DED70 /* TabItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
+		D4B4E871223B3751002DED70 /* KudosListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KudosListController.swift; sourceTree = "<group>"; };
+		D4B4E872223B3751002DED70 /* AchievementDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementDetailsViewController.swift; sourceTree = "<group>"; };
+		D4B4E873223B3751002DED70 /* RedeemMyPointsSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemMyPointsSelectionViewController.swift; sourceTree = "<group>"; };
+		D4B4E874223B3751002DED70 /* GiveKudosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveKudosViewController.swift; sourceTree = "<group>"; };
+		D4B4E875223B3751002DED70 /* PurchaseHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryViewController.swift; sourceTree = "<group>"; };
+		D4B4E876223B3751002DED70 /* MyKudosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKudosViewController.swift; sourceTree = "<group>"; };
+		D4B4E877223B3751002DED70 /* LeaderboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewController.swift; sourceTree = "<group>"; };
+		D4B4E878223B3751002DED70 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		D4B4E879223B3751002DED70 /* RedeemMyPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemMyPointsViewController.swift; sourceTree = "<group>"; };
+		D4B4E87A223B3751002DED70 /* MyAchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAchievementsViewController.swift; sourceTree = "<group>"; };
+		D4B4E87B223B3752002DED70 /* Kudos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Kudos.storyboard; sourceTree = "<group>"; };
+		D4B4E87D223B3753002DED70 /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
+		D4B4E87E223B3753002DED70 /* PurchaseHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchaseHistoryCell.xib; sourceTree = "<group>"; };
+		D4B4E87F223B3753002DED70 /* RedeemPointsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPointsCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4B4E880223B3753002DED70 /* KudoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KudoCell.swift; sourceTree = "<group>"; };
+		D4B4E881223B3753002DED70 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		D4B4E882223B3753002DED70 /* AchievementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4B4E883223B3753002DED70 /* KudoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KudoCell.xib; sourceTree = "<group>"; };
+		D4B4E884223B3753002DED70 /* AchievementHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementHeaderCell.swift; sourceTree = "<group>"; };
+		D4B4E885223B3753002DED70 /* AchievementHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AchievementHeaderCell.xib; sourceTree = "<group>"; };
+		D4B4E886223B3753002DED70 /* AchievementCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AchievementCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4B4E887223B3753002DED70 /* RedeemPointsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RedeemPointsCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4B4E888223B3753002DED70 /* PurchaseHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryCell.swift; sourceTree = "<group>"; };
+		D4B4E88A223B3754002DED70 /* ProgressBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBar.xib; sourceTree = "<group>"; };
+		D4B4E88B223B3754002DED70 /* ItemRedeemedModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRedeemedModal.swift; sourceTree = "<group>"; };
+		D4B4E88C223B3754002DED70 /* AchievementImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementImageView.swift; sourceTree = "<group>"; };
+		D4B4E88D223B3754002DED70 /* AchievementImage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AchievementImage.xib; sourceTree = "<group>"; };
+		D4B4E88E223B3754002DED70 /* ProgessBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgessBarView.swift; sourceTree = "<group>"; };
+		D4B4E88F223B3754002DED70 /* ItemRedeemedModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemRedeemedModal.xib; sourceTree = "<group>"; };
 		D4B4E892223B3971002DED70 /* ParentScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentScrollView.swift; sourceTree = "<group>"; };
 		D4CC29AC220756D60091BEFB /* VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CC29AF220756D60091BEFB /* VillageCoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VillageCoreUI.h; sourceTree = "<group>"; };
@@ -150,6 +206,123 @@
 				D43663DA222C6380006354F2 /* UserSettings */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		D4B4E844223AE7CE002DED70 /* Directory */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E84E223AE980002DED70 /* Directory.storyboard */,
+				D4B4E84F223AE980002DED70 /* Cells */,
+				D4B4E845223AE980002DED70 /* Controllers */,
+			);
+			path = Directory;
+			sourceTree = "<group>";
+		};
+		D4B4E845223AE980002DED70 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E846223AE980002DED70 /* Listings */,
+				D4B4E849223AE980002DED70 /* Profile */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D4B4E846223AE980002DED70 /* Listings */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E847223AE980002DED70 /* InvitePersonController.swift */,
+				D4B4E848223AE980002DED70 /* PeopleViewController.swift */,
+			);
+			path = Listings;
+			sourceTree = "<group>";
+		};
+		D4B4E849223AE980002DED70 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E84A223AE980002DED70 /* ContactPersonViewController.swift */,
+				D4B4E84B223AE980002DED70 /* ProfileBottomContainerViewController.swift */,
+				D4B4E84C223AE980002DED70 /* PersonProfileViewController.swift */,
+				D4B4E84D223AE980002DED70 /* PersonProfileHeaderViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		D4B4E84F223AE980002DED70 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E850223AE980002DED70 /* ContactPersonTableViewCell.swift */,
+				D4B4E851223AE980002DED70 /* PersonTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D4B4E86A223B3524002DED70 /* TabItemView */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E86B223B355A002DED70 /* TabItem.xib */,
+				D4B4E86C223B355A002DED70 /* TabItemView.swift */,
+			);
+			path = TabItemView;
+			sourceTree = "<group>";
+		};
+		D4B4E86F223B370B002DED70 /* Kudos */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E87B223B3752002DED70 /* Kudos.storyboard */,
+				D4B4E87C223B3753002DED70 /* Cells */,
+				D4B4E870223B3751002DED70 /* Controllers */,
+				D4B4E889223B3754002DED70 /* Views */,
+			);
+			path = Kudos;
+			sourceTree = "<group>";
+		};
+		D4B4E870223B3751002DED70 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E871223B3751002DED70 /* KudosListController.swift */,
+				D4B4E872223B3751002DED70 /* AchievementDetailsViewController.swift */,
+				D4B4E873223B3751002DED70 /* RedeemMyPointsSelectionViewController.swift */,
+				D4B4E874223B3751002DED70 /* GiveKudosViewController.swift */,
+				D4B4E875223B3751002DED70 /* PurchaseHistoryViewController.swift */,
+				D4B4E876223B3751002DED70 /* MyKudosViewController.swift */,
+				D4B4E877223B3751002DED70 /* LeaderboardTableViewController.swift */,
+				D4B4E878223B3751002DED70 /* LeaderboardViewController.swift */,
+				D4B4E879223B3751002DED70 /* RedeemMyPointsViewController.swift */,
+				D4B4E87A223B3751002DED70 /* MyAchievementsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D4B4E87C223B3753002DED70 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E87D223B3753002DED70 /* LeaderboardCell.xib */,
+				D4B4E87E223B3753002DED70 /* PurchaseHistoryCell.xib */,
+				D4B4E87F223B3753002DED70 /* RedeemPointsCollectionViewCell.swift */,
+				D4B4E880223B3753002DED70 /* KudoCell.swift */,
+				D4B4E881223B3753002DED70 /* LeaderboardCell.swift */,
+				D4B4E882223B3753002DED70 /* AchievementCollectionViewCell.swift */,
+				D4B4E886223B3753002DED70 /* AchievementCollectionViewCell.xib */,
+				D4B4E883223B3753002DED70 /* KudoCell.xib */,
+				D4B4E884223B3753002DED70 /* AchievementHeaderCell.swift */,
+				D4B4E885223B3753002DED70 /* AchievementHeaderCell.xib */,
+				D4B4E887223B3753002DED70 /* RedeemPointsCollectionViewCell.xib */,
+				D4B4E888223B3753002DED70 /* PurchaseHistoryCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D4B4E889223B3754002DED70 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4E88A223B3754002DED70 /* ProgressBar.xib */,
+				D4B4E88B223B3754002DED70 /* ItemRedeemedModal.swift */,
+				D4B4E88C223B3754002DED70 /* AchievementImageView.swift */,
+				D4B4E88D223B3754002DED70 /* AchievementImage.xib */,
+				D4B4E88E223B3754002DED70 /* ProgessBarView.swift */,
+				D4B4E88F223B3754002DED70 /* ItemRedeemedModal.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D4CC29A2220756D60091BEFB = {
@@ -356,20 +529,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */,
 				D4F8A5952210B6DE005FDB6A /* proximanova-reg-webfont.ttf in Resources */,
 				D4F8A5842210A1F8005FDB6A /* HomeViewController.storyboard in Resources */,
 				D43663CE222A13F2006354F2 /* ForgotPasswordViewController.storyboard in Resources */,
 				D4F8A5992210B6DE005FDB6A /* proximanova-sbold-webfont.ttf in Resources */,
 				D4B4E86D223B355B002DED70 /* TabItem.xib in Resources */,
+				D4B4E89A223B3E5E002DED70 /* AchievementImage.xib in Resources */,
 				D4F8A5942210B6DE005FDB6A /* proximanova-black-webfont.ttf in Resources */,
 				D47FD3F9220FB74B00376D31 /* Assets.xcassets in Resources */,
 				D4F8A5982210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf in Resources */,
 				D4F8A5922210B6DE005FDB6A /* proximanova-sbolditalic-webfont.ttf in Resources */,
+				D4B4E897223B3D0E002DED70 /* AchievementCollectionViewCell.xib in Resources */,
 				D4F8A5972210B6DE005FDB6A /* proximanova-lightitalic-webfont.ttf in Resources */,
 				D43663C32229ACA9006354F2 /* LoginPasswordViewController.storyboard in Resources */,
+				D4B4E858223AE980002DED70 /* Directory.storyboard in Resources */,
 				D47FD3F7220FB23C00376D31 /* VillageContainer.storyboard in Resources */,
 				D43663DE222C63AE006354F2 /* UserSettingsViewController.storyboard in Resources */,
 				D4F8A5882210A274005FDB6A /* MainMenuViewController.storyboard in Resources */,
+				D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */,
 				D4F8A5962210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf in Resources */,
 				D4F8A57722109E55005FDB6A /* LoginIdentityViewController.storyboard in Resources */,
 				D4F8A5932210B6DE005FDB6A /* proximanova-light-webfont.ttf in Resources */,
@@ -384,22 +562,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4B4E86E223B355B002DED70 /* TabItemView.swift in Sources */,
+				D4B4E896223B3D0E002DED70 /* AchievementCollectionViewCell.swift in Sources */,
 				D47FD3F6220FB23700376D31 /* VillageContainer.swift in Sources */,
+				D4B4E862223AFF22002DED70 /* InvitePersonController.swift in Sources */,
 				D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */,
 				D4F8A57B22109FAF005FDB6A /* SideMenuController.swift in Sources */,
 				D4B4E893223B3971002DED70 /* ParentScrollView.swift in Sources */,
 				D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */,
+				D4B4E891223B37B0002DED70 /* MyAchievementsViewController.swift in Sources */,
 				D43663DC222C63A5006354F2 /* UserSettingsViewController.swift in Sources */,
 				D4984EA0223E83E700793CFE /* StatefulUserInterface.swift in Sources */,
+				D4B4E853223AE980002DED70 /* PeopleViewController.swift in Sources */,
 				D47FD402220FC08700376D31 /* Image+Named.swift in Sources */,
 				D43663D2222A24BE006354F2 /* UIButton+Loading.swift in Sources */,
+				D4B4E859223AE980002DED70 /* ContactPersonTableViewCell.swift in Sources */,
+				D4B4E863223AFFD6002DED70 /* PersonProfileHeaderViewController.swift in Sources */,
 				D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */,
+				D4B4E899223B3E5E002DED70 /* AchievementImageView.swift in Sources */,
+				D4B4E864223AFFF6002DED70 /* ContactPersonViewController.swift in Sources */,
 				D43663C42229ACA9006354F2 /* LoginPasswordViewController.swift in Sources */,
+				D4B4E85A223AE980002DED70 /* PersonTableViewCell.swift in Sources */,
 				D43663C72229BBC8006354F2 /* UIViewController+NavigationBar.swift in Sources */,
 				D4B4E85E223AF3AE002DED70 /* UIColor+Named.swift in Sources */,
 				D44B5F07222970BB00941CCE /* TintedTextField.swift in Sources */,
 				D4F8A5822210A1DC005FDB6A /* HomeViewController.swift in Sources */,
 				D4F8A5862210A267005FDB6A /* MainMenuViewController.swift in Sources */,
+				D4B4E861223AFEF7002DED70 /* PersonProfileViewController.swift in Sources */,
+				D4B4E890223B3763002DED70 /* KudosListController.swift in Sources */,
+				D4B4E869223B281E002DED70 /* ProfileBottomContainerViewController.swift in Sources */,
+				D4984EA1223FAF9600793CFE /* KudoCell.swift in Sources */,
 				D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */,
 				D43663CF222A13F2006354F2 /* ForgotPasswordViewController.swift in Sources */,
 				D4F8A57522109E31005FDB6A /* LoginIdentityViewController.swift in Sources */,
