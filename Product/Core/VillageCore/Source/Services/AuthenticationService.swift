@@ -81,6 +81,10 @@ struct AuthenticationService {
         }
     }
     
+    static func invite(emailAddress: String) -> Promise<Void> {
+        return VillageService.shared.request(target: VillageCoreAPI.inviteUser(email: emailAddress)).asVoid()
+    }
+    
     static func logout(user: User) -> Promise<Void> {
         return VillageService.shared.request(target: VillageCoreAPI.logout).asVoid()
     }

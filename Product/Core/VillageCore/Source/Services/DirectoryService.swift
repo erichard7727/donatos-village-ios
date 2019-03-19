@@ -28,9 +28,31 @@ struct DirectoryService {
         }
     }
     
+    static func search(for term: String, page: Int = 1) -> Promise<People> {
+        return firstly {
+            let search = VillageCoreAPI.searchDirectory(term: term, page: page)
+            return VillageService.shared.request(target: search)
+        }.then { (json: JSON) -> People in
+            let people = json["people"].arrayValue.compactMap({ Person(from: $0) })
+            return people
+        }
+    }
+    
     static func getDetails(for person: Person) -> Promise<Person> {
         return firstly {
             let personDetails = VillageCoreAPI.getPersonDetails(personId: person.id.description)
+            return VillageService.shared.request(target: personDetails)
+        }.then { (json: JSON) -> Person in
+            guard let person = Person(from: json) else {
+                throw DirectoryServiceError.unknown
+            }
+            return person
+        }
+    }
+    
+    static func getDetails(for user: User) -> Promise<Person> {
+        return firstly {
+            let personDetails = VillageCoreAPI.getPersonDetails(personId: user.personId.description)
             return VillageService.shared.request(target: personDetails)
         }.then { (json: JSON) -> Person in
             guard let person = Person(from: json) else {

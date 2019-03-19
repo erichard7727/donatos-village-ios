@@ -46,6 +46,9 @@
 		D4B4E83C223A9509002DED70 /* Person+Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83B223A9509002DED70 /* Person+Directory.swift */; };
 		D4B4E83E223AA7BC002DED70 /* KudosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83D223AA7BC002DED70 /* KudosService.swift */; };
 		D4B4E840223AA7F4002DED70 /* Kudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83F223AA7F4002DED70 /* Kudo.swift */; };
+		D4B4E860223AFA51002DED70 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E85F223AFA51002DED70 /* AnalyticsService.swift */; };
+		D4B4E866223B0016002DED70 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E865223B0016002DED70 /* Group.swift */; };
+		D4B4E895223B3C47002DED70 /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E894223B3C47002DED70 /* Achievements.swift */; };
 		D4C54E4C220E4D4500191DB1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C54E3D220E2EE600191DB1 /* Alamofire.framework */; };
 		D4C54E4D220E4D4500191DB1 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CC2A692209B5B50091BEFB /* Moya.framework */; };
 		D4C54E4E220E4D4500191DB1 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CC2A6E2209C4070091BEFB /* Promises.framework */; };
@@ -121,6 +124,9 @@
 		D4B4E83B223A9509002DED70 /* Person+Directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+Directory.swift"; sourceTree = "<group>"; };
 		D4B4E83D223AA7BC002DED70 /* KudosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KudosService.swift; sourceTree = "<group>"; };
 		D4B4E83F223AA7F4002DED70 /* Kudo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kudo.swift; sourceTree = "<group>"; };
+		D4B4E85F223AFA51002DED70 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
+		D4B4E865223B0016002DED70 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		D4B4E894223B3C47002DED70 /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
 		D4C54E3C220E2EE600191DB1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../../../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		D4C54E3D220E2EE600191DB1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../../../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D4C54E4A220E4CB800191DB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -197,6 +203,8 @@
 				D4B4E83722395928002DED70 /* Person.swift */,
 				D4B4E83B223A9509002DED70 /* Person+Directory.swift */,
 				D4B4E83F223AA7F4002DED70 /* Kudo.swift */,
+				D4B4E865223B0016002DED70 /* Group.swift */,
+				D4B4E894223B3C47002DED70 /* Achievements.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,6 +215,7 @@
 				D4615851220F30570072D224 /* AuthenticationService.swift */,
 				D4B4E83922399BE7002DED70 /* DirectoryService.swift */,
 				D4B4E83D223AA7BC002DED70 /* KudosService.swift */,
+				D4B4E85F223AFA51002DED70 /* AnalyticsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -399,8 +408,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4615844220F19880072D224 /* VillageService.swift in Sources */,
+				D4B4E895223B3C47002DED70 /* Achievements.swift in Sources */,
 				D4173893220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift in Sources */,
 				D417388A220C4FD500F5B1F6 /* URL+StaticString.swift in Sources */,
+				D4B4E866223B0016002DED70 /* Group.swift in Sources */,
+				D4B4E860223AFA51002DED70 /* AnalyticsService.swift in Sources */,
 				D4B4E83A22399BE7002DED70 /* DirectoryService.swift in Sources */,
 				D4615852220F30570072D224 /* AuthenticationService.swift in Sources */,
 				D4B4E83822395928002DED70 /* Person.swift in Sources */,

@@ -50,7 +50,8 @@ fileprivate extension Kudo {
             let comment = response["comment"].string,
             let receiver = Person(from: response["receiver"]),
             let sender = Person(from: response["sender"]),
-            let date = response["dateCreated"].string
+            let dateString = response["dateCreated"].string,
+            let date = villageCoreAPIDateFormatter.date(from: dateString)
         else {
             return nil
         }

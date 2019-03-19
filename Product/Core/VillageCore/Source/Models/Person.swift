@@ -10,7 +10,7 @@ import Foundation
 
 public typealias People = [Person]
 
-public struct Person  {
+public struct Person {
     
     public let id: Int
     public let emailAddress: String
@@ -28,5 +28,18 @@ public struct Person  {
 
     public let kudos: (count: Int, points: Int)
     public let directories: [Int]
+    
 
+}
+
+extension Person: Hashable {
+    
+    public var hashValue: Int {
+        return id
+    }
+    
+    public static func == (lhs: Person, rhs: Person) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
 }

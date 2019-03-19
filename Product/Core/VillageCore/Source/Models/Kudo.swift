@@ -19,6 +19,6 @@ public struct Kudo  {
     public let points: Int
     public let receiver: Person
     public let sender: Person
-    public let date: String
+    public let date: Date
     
 }

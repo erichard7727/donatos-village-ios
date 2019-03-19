@@ -9,6 +9,8 @@
 import Foundation
 import Promises
 
+// MARK: - AuthenticationService
+
 extension User {
     
     public func validateIdentity() -> Promise<User> {
@@ -41,6 +43,10 @@ extension User {
         return AuthenticationService.initiateResetPassword(user: self)
     }
     
+    public static func invite(emailAddress: String) -> Promise<Void> {
+        return AuthenticationService.invite(emailAddress: emailAddress)
+    }
+    
     @discardableResult public func logout() -> Promise<User> {
         func resetUserToGuest() -> User {
             self.removeAll()
@@ -55,6 +61,16 @@ extension User {
         }.recover { _ in
             return resetUserToGuest()
         }
+    }
+    
+}
+
+// MARK: DirectoryService
+
+extension User {
+    
+    public func getPerson() -> Promise<Person> {
+        return DirectoryService.getDetails(for: self)
     }
     
 }
