@@ -84,9 +84,10 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToPeople(_ sender: Any? = nil) {
-        //        let vc = ...
-        //        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show People")
+        let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PeopleViewController") as! PeopleViewController
+        vc.delegate = self
+        
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     
@@ -103,4 +104,13 @@ private extension MainMenuViewController {
         print("TODO - show ContentLibrary")
         self.sideMenuController?.hideMenu()
     }
+}
+
+extension MainMenuViewController: PeopleViewControllerDelegate {
+    
+    func shouldShowAndStartDirectMessage(_ directMessage: Group, controller: PeopleViewController) {
+        #warning("TODO - Implmenent PeopleViewControllerDelegate")
+        assertionFailure()
+    }
+    
 }
