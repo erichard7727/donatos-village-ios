@@ -68,8 +68,7 @@ extension User {
     public var displayName: String {
         get {
             guard let displayName = keychain.string(forKey: "displayName") else {
-                assertionFailure("Programmer error! Property not available until login is called for the first time.")
-                return ""
+                return "Guest"
             }
             return displayName
         }
