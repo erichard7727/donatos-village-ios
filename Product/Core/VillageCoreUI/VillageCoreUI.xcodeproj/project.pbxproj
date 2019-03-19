@@ -128,6 +128,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D4B4E843223AE7BE002DED70 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8A57322109DE2005FDB6A /* Authentication */,
+				D4F8A5802210A1CB005FDB6A /* Home */,
+				D43663DA222C6380006354F2 /* UserSettings */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
 		D4CC29A2220756D60091BEFB = {
 			isa = PBXGroup;
 			children = (
@@ -189,9 +199,9 @@
 		D4F8A57222109BDE005FDB6A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				D4F8A57322109DE2005FDB6A /* Authentication */,
-				D4F8A5802210A1CB005FDB6A /* Home */,
-				D43663DA222C6380006354F2 /* UserSettings */,
+				D4B4E843223AE7BE002DED70 /* Foundation */,
+				D4B4E844223AE7CE002DED70 /* Directory */,
+				D4B4E86F223B370B002DED70 /* Kudos */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

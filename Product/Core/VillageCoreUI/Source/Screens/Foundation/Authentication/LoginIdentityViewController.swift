@@ -1,5 +1,5 @@
 //
-//  LoginPasswordViewController.swift
+//  LoginIdentityViewController.swift
 //  VillageCoreUI
 //
 //  Created by Rob Feldmann on 2/10/19.
@@ -11,7 +11,7 @@ import Promises
 import VillageCore
 import Nantes
 
-final class LoginPasswordViewController: UIViewController, UIGestureRecognizerDelegate {
+final class LoginIdentityViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet private weak var scrollView: UIScrollView!
     
@@ -21,50 +21,54 @@ final class LoginPasswordViewController: UIViewController, UIGestureRecognizerDe
         }
     }
     
-    @IBOutlet private weak var detailLabel: UILabel!
-    @IBOutlet private weak var passwordField: TintedTextField!
-    @IBOutlet private weak var showPasswordButton: UIButton!
+    @IBOutlet private weak var clientLogoImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
     
-    @IBOutlet private weak var invalidPasswordLabel: UILabel! {
+    @IBOutlet private weak var detailLabel: NantesLabel! {
         didSet {
-            invalidPasswordLabel.isHidden = true
+            detailLabel.attributedText = {
+                let detailText = NSMutableAttributedString(
+                    string: "Enter your email address below to log in to ",
+                    attributes: [
+                        NSAttributedString.Key.foregroundColor: UIColor.white,
+                        NSAttributedString.Key.font: UIFont(name: "ProximaNova-Regular", size: 17.0)!
+                    ]
+                )
+                let applicationNameText = NSAttributedString(
+                    string: ClientConfiguration.current.applicationName,
+                    attributes: [
+                        NSAttributedString.Key.font: UIFont(name: "ProximaNova-SemiBold", size: 17.0)!
+                    ]
+                )
+                let period = NSMutableAttributedString(
+                    string: ".",
+                    attributes: [
+                        NSAttributedString.Key.foregroundColor: UIColor.white,
+                        NSAttributedString.Key.font: UIFont(name: "ProximaNova-Regular", size: 17.0)!
+                    ]
+                )
+                detailText.append(applicationNameText)
+                detailText.append(period)
+                return detailText
+            }()
+        }
+    }
+    
+    @IBOutlet private weak var identityField: TintedTextField!
+    
+    @IBOutlet private weak var invalidIdentityLabel: UILabel! {
+        didSet {
+            invalidIdentityLabel.isHidden = true
         }
     }
     
     @IBOutlet private weak var submitButton: UIButton!
     
-    @IBOutlet private weak var forgotPasswordLabel: NantesLabel! {
-        didSet {
-            forgotPasswordLabel.attributedText = {
-                let text = NSMutableAttributedString(
-                    string: "Trouble signing in? ",
-                    attributes: [
-                        NSAttributedString.Key.foregroundColor: UIColor.white,
-                        NSAttributedString.Key.font: UIFont(name: "ProximaNova-Regular", size: 16)!
-                    ]
-                )
-                let resetText = NSAttributedString(
-                    string: "Reset your password.",
-                    attributes: [
-                        NSAttributedString.Key.font: UIFont(name: "ProximaNova-SemiBold", size: 16)!
-                    ]
-                )
-
-                text.append(resetText)
-                return text
-            }()
-            
-            forgotPasswordLabel.labelTappedBlock = { [weak self] in
-                self?.performSegue(withIdentifier: "showForgotPassword", sender: self)
-            }
-        }
-    }
-    
 }
 
 // MARK: - UIViewController Overrides
 
-extension LoginPasswordViewController {
+extension LoginIdentityViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,33 +81,11 @@ extension LoginPasswordViewController {
         
         self.vlg_setNavigationBarBackgroundVisible(false, animated: animated)
     }
-    
-}
-
-// MARK: - Public Methods
-
-extension LoginPasswordViewController {
-    
 }
 
 // MARK: Target/Action
 
-private extension LoginPasswordViewController {
-    
-    @IBAction func onShowPassword(_ sender: Any? = nil) {
-        let toggledSecureTextEntry = !passwordField.isSecureTextEntry
-        
-        // Set the Show/Hide button copy
-        let buttonCopy = toggledSecureTextEntry ? "Show" : "Hide"
-        showPasswordButton.setTitle(buttonCopy, for: .normal)
-        
-        // HACK: http://stackoverflow.com/a/7137588
-        // "It must be input-focus issue: when focused, UITextField can change only ON->OFF."
-        // Toggle secure entry state.
-        passwordField.resignFirstResponder()
-        passwordField.isSecureTextEntry = toggledSecureTextEntry
-        passwordField.becomeFirstResponder()
-    }
+private extension LoginIdentityViewController {
     
     @IBAction func onSubmit(_ sender: Any? = nil) {
         guard validateForm() else {
@@ -113,10 +95,10 @@ private extension LoginPasswordViewController {
         firstly { () -> Promise<User> in
             view.endEditing(true)
             setLoading(true)
-            User.current.password = passwordField.text
-            return User.current.loginWithDetails()
+            User.current = User(identity: identityField.text!)
+            return User.current.validateIdentity()
         }.then { [weak self] _ in
-            self?.performSegue(withIdentifier: "unwindToVillageContainer", sender: self)
+            self?.performSegue(withIdentifier: "loginPassword", sender: self)
         }.catch { [weak self] _ in
             let alert = UIAlertController(title: "Invalid Email", message: "The email you entered is invalid or does not exist.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -126,21 +108,11 @@ private extension LoginPasswordViewController {
         }
     }
     
-    @IBAction func unwindToLoginPasswordController(segue: UIStoryboardSegue) {
-        switch segue.source {
-        case is ForgotPasswordViewController:
-            self.navigationController?.popViewController(animated: true)
-            
-        default:
-            assertionFailure("Unable to handle unwind from \(String(describing: segue.source))")
-            break
-        }
-    }
 }
 
 // MARK: - Private Methods
 
-private extension LoginPasswordViewController {
+private extension LoginIdentityViewController {
     
     func configureBackButton() {
         // Hide the actual back button text
@@ -156,14 +128,14 @@ private extension LoginPasswordViewController {
     }
 
     @discardableResult func validateForm() -> Bool {
-        if let password = passwordField.text, !password.isEmpty {
-            invalidPasswordLabel.isHidden = true
+        if let identity = identityField.text, !identity.isEmpty {
+            invalidIdentityLabel.isHidden = true
             return true
         } else {
-            invalidPasswordLabel.isHidden = false
+            invalidIdentityLabel.isHidden = false
             
             DispatchQueue.main.async {
-                let rect = self.invalidPasswordLabel.convert(self.invalidPasswordLabel.bounds, to: self.scrollView)
+                let rect = self.invalidIdentityLabel.convert(self.invalidIdentityLabel.bounds, to: self.scrollView)
                 self.scrollView.scrollRectToVisible(rect, animated: true)
             }
 
@@ -180,7 +152,7 @@ private extension LoginPasswordViewController {
 
 // MARK: - UITextFieldDelegate
 
-extension LoginPasswordViewController: UITextFieldDelegate {
+extension LoginIdentityViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard validateForm() else {
