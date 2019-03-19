@@ -81,6 +81,26 @@ extension LoginIdentityViewController {
         
         self.vlg_setNavigationBarBackgroundVisible(false, animated: animated)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "loginPassword"?:
+            // No config necessary
+            break
+            
+        case "confirmEmail"? where segue.destination is SendEmailTokenViewController:
+            let vc = segue.destination as! SendEmailTokenViewController
+            vc.configure(mode: .confirmation, emailAddress: User.current.emailAddress)
+            
+        case "createAccount"? where segue.destination is SendEmailTokenViewController:
+            let vc = segue.destination as! SendEmailTokenViewController
+            vc.configure(mode: .invitation, emailAddress: User.current.emailAddress)
+            
+        default:
+            assertionFailure("Unhandle segue")
+            break
+        }
+    }
 }
 
 // MARK: Target/Action
@@ -92,13 +112,20 @@ private extension LoginIdentityViewController {
             return
         }
 
-        firstly { () -> Promise<User> in
+        firstly { () -> Promise<User.ValidateIdentityNextStep> in
             view.endEditing(true)
             setLoading(true)
             User.current = User(identity: identityField.text!)
             return User.current.validateIdentity()
-        }.then { [weak self] _ in
-            self?.performSegue(withIdentifier: "loginPassword", sender: self)
+        }.then { [weak self] nextStep in
+            switch nextStep {
+            case .enterPassword:
+                self?.performSegue(withIdentifier: "loginPassword", sender: self)
+            case .confirmEmail:
+                self?.performSegue(withIdentifier: "confirmEmail", sender: self)
+            case .createAccount:
+                self?.performSegue(withIdentifier: "createAccount", sender: self)
+            }
         }.catch { [weak self] _ in
             let alert = UIAlertController(title: "Invalid Email", message: "The email you entered is invalid or does not exist.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))

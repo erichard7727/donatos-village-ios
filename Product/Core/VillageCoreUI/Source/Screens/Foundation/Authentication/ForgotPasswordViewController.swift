@@ -107,7 +107,7 @@ private extension ForgotPasswordViewController {
 
     func setLoading(_ isLoading: Bool) {
         view.isUserInteractionEnabled = !isLoading
-        resetPasswordButton.vlg_setLoading(true)
+        resetPasswordButton.vlg_setLoading(isLoading)
     }
     
 }
