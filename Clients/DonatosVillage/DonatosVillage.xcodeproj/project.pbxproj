@@ -210,6 +210,7 @@
 				"$(SRCROOT)/../../Carthage/Build/iOS/FBLPromises.framework",
 				"$(SRCROOT)/../../Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(SRCROOT)/../../Carthage/Build/iOS/Nantes.framework",
+				"$(SRCROOT)/../../Carthage/Build/iOS/AlamofireImage.framework",
 			);
 			name = "Carthage (Copy Frameworks)";
 			outputFileListPaths = (
@@ -222,6 +223,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FBLPromises.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftyJSON.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Nantes.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AlamofireImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
