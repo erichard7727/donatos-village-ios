@@ -254,41 +254,44 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZu-Z1-pA5">
                                                 <rect key="frame" x="0.0" y="339" width="375" height="44"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QK-8A-1do" customClass="TabItemView" customModule="VillageCoreUI" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="0.0" width="114.5" height="44"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Yzt-Ij-f0V">
+                                                        <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QK-8A-1do" customClass="TabItemView" customModule="VillageCoreUI" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="114.5" height="44"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="44" id="qiP-ZX-qG9"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOf-x4-ufB" customClass="TabItemView" customModule="VillageCoreUI" customModuleProvider="target">
+                                                                <rect key="frame" x="114.5" y="0.0" width="114" height="44"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="44" id="Aoc-uV-GDu"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6w-L8-hBl" customClass="TabItemView" customModule="VillageCoreUI" customModuleProvider="target">
+                                                                <rect key="frame" x="228.5" y="0.0" width="114.5" height="44"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="44" id="zcF-Ys-tRU"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="qiP-ZX-qG9"/>
+                                                            <constraint firstItem="k6w-L8-hBl" firstAttribute="width" secondItem="9QK-8A-1do" secondAttribute="width" id="5uK-4K-WCf"/>
+                                                            <constraint firstItem="JOf-x4-ufB" firstAttribute="width" secondItem="9QK-8A-1do" secondAttribute="width" id="v70-tJ-RYY"/>
                                                         </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOf-x4-ufB" customClass="TabItemView" customModule="VillageCoreUI" customModuleProvider="target">
-                                                        <rect key="frame" x="130.5" y="0.0" width="114" height="44"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="Aoc-uV-GDu"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6w-L8-hBl" customClass="TabItemView" customModule="VillageCoreUI" customModuleProvider="target">
-                                                        <rect key="frame" x="244.5" y="0.0" width="114.5" height="44"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="zcF-Ys-tRU"/>
-                                                        </constraints>
-                                                    </view>
+                                                    </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="9QK-8A-1do" firstAttribute="leading" secondItem="eZu-Z1-pA5" secondAttribute="leading" constant="16" id="5Rf-mc-ZBw"/>
-                                                    <constraint firstItem="JOf-x4-ufB" firstAttribute="top" secondItem="9QK-8A-1do" secondAttribute="top" id="85G-cp-V1c"/>
-                                                    <constraint firstItem="k6w-L8-hBl" firstAttribute="leading" secondItem="JOf-x4-ufB" secondAttribute="trailing" id="Prc-dO-qVQ"/>
-                                                    <constraint firstAttribute="bottom" secondItem="JOf-x4-ufB" secondAttribute="bottom" id="i7o-a5-rKp"/>
-                                                    <constraint firstItem="k6w-L8-hBl" firstAttribute="width" secondItem="9QK-8A-1do" secondAttribute="width" id="iTC-f2-fnZ"/>
-                                                    <constraint firstItem="JOf-x4-ufB" firstAttribute="leading" secondItem="9QK-8A-1do" secondAttribute="trailing" id="kyE-P2-kVs"/>
-                                                    <constraint firstAttribute="trailing" secondItem="k6w-L8-hBl" secondAttribute="trailing" constant="16" id="oIZ-vP-WlN"/>
-                                                    <constraint firstItem="k6w-L8-hBl" firstAttribute="top" secondItem="9QK-8A-1do" secondAttribute="top" id="sTM-KE-xhz"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Yzt-Ij-f0V" secondAttribute="bottom" id="Len-Zx-dYa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Yzt-Ij-f0V" secondAttribute="trailing" constant="16" id="Vxa-h2-LFg"/>
+                                                    <constraint firstItem="Yzt-Ij-f0V" firstAttribute="top" secondItem="eZu-Z1-pA5" secondAttribute="top" id="aeh-PO-0YA"/>
+                                                    <constraint firstItem="Yzt-Ij-f0V" firstAttribute="leading" secondItem="eZu-Z1-pA5" secondAttribute="leading" constant="16" id="m9k-Gz-0Yr"/>
                                                     <constraint firstAttribute="height" constant="44" id="toc-n9-sXl"/>
-                                                    <constraint firstItem="JOf-x4-ufB" firstAttribute="top" secondItem="eZu-Z1-pA5" secondAttribute="top" id="wnt-b0-szC"/>
-                                                    <constraint firstItem="JOf-x4-ufB" firstAttribute="width" secondItem="9QK-8A-1do" secondAttribute="width" id="ywi-eK-qvi"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -586,7 +589,7 @@
     </scenes>
     <resources>
         <image name="add-icon" width="24" height="24"/>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
         <image name="back-button" width="28" height="28"/>
         <image name="default-avatar" width="130" height="130"/>
         <image name="menu-icon" width="47" height="28"/>

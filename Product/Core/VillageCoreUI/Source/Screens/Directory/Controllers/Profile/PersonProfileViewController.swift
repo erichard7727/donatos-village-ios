@@ -132,11 +132,14 @@ final class PersonProfileViewController: UIViewController {
                 received.list = .received(receiver: profilePerson)
                 self.pages.append(received)
                 
-                //MyAchievementsViewController
-                let achievements = storyboard.instantiateViewController(withIdentifier: achievementControllerId) as! MyAchievementsViewController
-                achievements.otherUser = profilePerson
-                achievements.personId = String(profilePerson.id)
-                self.pages.append(achievements)
+                if Constants.Settings.achievementsEnabled {
+                    //MyAchievementsViewController
+                    let achievements = storyboard.instantiateViewController(withIdentifier: achievementControllerId) as! MyAchievementsViewController
+                    achievements.otherUser = profilePerson
+                    achievements.personId = String(profilePerson.id)
+                    self.pages.append(achievements)
+                }
+                
             }
             
             pagedViewController.setViewControllers([self.pages.first! as! ContactPersonViewController], direction: .forward, animated: false, completion: nil)
@@ -159,9 +162,13 @@ final class PersonProfileViewController: UIViewController {
         super.viewDidLoad()
         
         if !Constants.Settings.kudosEnabled {
-            kudoTab?.alpha = 0
-            achievementTab?.alpha = 0
+            kudoTab?.isHidden = true
+            achievementTab?.isHidden = true
             showKudos = false
+        }
+        
+        if !Constants.Settings.achievementsEnabled {
+            achievementTab?.isHidden = true
         }
         
         if let person = self.person {

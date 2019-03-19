@@ -105,11 +105,6 @@ final class PeopleViewController: UIViewController {
         refreshControl = nil
     }
     
-//    func refreshTableView() {
-//        // Wrapper around refreshing action so as to not introduce implementation details to callers.
-//        refreshTableView(nil)
-//    }
-    
     @objc func refreshTableView(_ sender: UIRefreshControl!) {
         // Don't refresh data if we're in search mode.
         if searchController.isActive {

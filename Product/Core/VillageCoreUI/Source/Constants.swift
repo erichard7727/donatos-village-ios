@@ -21,5 +21,6 @@ extension Constants {
         static let invitationsEnabled = true
         static let directMessagesEnabled = true
         static let kudosEnabled = true
+        static let achievementsEnabled = false
     }
 }
