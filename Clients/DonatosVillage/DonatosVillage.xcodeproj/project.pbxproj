@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		D47FD3F2220FB16300376D31 /* VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47FD3F1220FB15900376D31 /* VillageCoreUI.framework */; };
 		D47FD3F3220FB16300376D31 /* VillageCoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47FD3F1220FB15900376D31 /* VillageCoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4879A40224196B600CBA8FB /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */; };
+		D4879A41224196B600CBA8FB /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3E224196B500CBA8FB /* AppCenter.framework */; };
+		D4879A42224196B600CBA8FB /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */; };
 		D4CC29CF22075D070091BEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29CE22075D070091BEFB /* AppDelegate.swift */; };
 		D4CC29D622075D080091BEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D522075D080091BEFB /* Assets.xcassets */; };
 		D4CC29D922075D080091BEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D722075D080091BEFB /* LaunchScreen.storyboard */; };
@@ -47,6 +50,9 @@
 
 /* Begin PBXFileReference section */
 		D47FD3EC220FB15900376D31 /* VillageCoreUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VillageCoreUI.xcodeproj; path = ../../Product/Core/VillageCoreUI/VillageCoreUI.xcodeproj; sourceTree = "<group>"; };
+		D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
+		D4879A3E224196B500CBA8FB /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
+		D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
 		D4CC29CB22075D070091BEFB /* DonatosVillage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonatosVillage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CC29CE22075D070091BEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4CC29D522075D080091BEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +65,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4879A40224196B600CBA8FB /* AppCenterAnalytics.framework in Frameworks */,
+				D4879A42224196B600CBA8FB /* AppCenterCrashes.framework in Frameworks */,
+				D4879A41224196B600CBA8FB /* AppCenter.framework in Frameworks */,
 				D47FD3F2220FB16300376D31 /* VillageCoreUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +81,16 @@
 				D47FD3F1220FB15900376D31 /* VillageCoreUI.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D4879A3C2241967300CBA8FB /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				D4879A3E224196B500CBA8FB /* AppCenter.framework */,
+				D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */,
+				D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */,
+			);
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		D4CC29C222075D070091BEFB = {
@@ -98,6 +117,7 @@
 				D4CC29D522075D080091BEFB /* Assets.xcassets */,
 				D4CC29D722075D080091BEFB /* LaunchScreen.storyboard */,
 				D4CC29DA22075D080091BEFB /* Info.plist */,
+				D4879A3C2241967300CBA8FB /* Vendor */,
 			);
 			path = DonatosVillage;
 			sourceTree = "<group>";
@@ -408,6 +428,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PH47MC4D6A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DonatosVillage/Vendor",
+				);
 				INFOPLIST_FILE = DonatosVillage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
