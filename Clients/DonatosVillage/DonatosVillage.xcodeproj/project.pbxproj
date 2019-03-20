@@ -12,6 +12,9 @@
 		D4879A40224196B600CBA8FB /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */; };
 		D4879A41224196B600CBA8FB /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3E224196B500CBA8FB /* AppCenter.framework */; };
 		D4879A42224196B600CBA8FB /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */; };
+		D4879A462242575800CBA8FB /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A452242575800CBA8FB /* VillageCore.framework */; };
+		D4879A472242822500CBA8FB /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A452242575800CBA8FB /* VillageCore.framework */; };
+		D4879A482242822500CBA8FB /* VillageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A452242575800CBA8FB /* VillageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4CC29CF22075D070091BEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29CE22075D070091BEFB /* AppDelegate.swift */; };
 		D4CC29D622075D080091BEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D522075D080091BEFB /* Assets.xcassets */; };
 		D4CC29D922075D080091BEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D722075D080091BEFB /* LaunchScreen.storyboard */; };
@@ -41,6 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D4879A482242822500CBA8FB /* VillageCore.framework in Embed Frameworks */,
 				D47FD3F3220FB16300376D31 /* VillageCoreUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -53,6 +57,7 @@
 		D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		D4879A3E224196B500CBA8FB /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
+		D4879A452242575800CBA8FB /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CC29CB22075D070091BEFB /* DonatosVillage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonatosVillage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CC29CE22075D070091BEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4CC29D522075D080091BEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,9 +70,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4879A462242575800CBA8FB /* VillageCore.framework in Frameworks */,
 				D4879A40224196B600CBA8FB /* AppCenterAnalytics.framework in Frameworks */,
 				D4879A42224196B600CBA8FB /* AppCenterCrashes.framework in Frameworks */,
 				D4879A41224196B600CBA8FB /* AppCenter.framework in Frameworks */,
+				D4879A472242822500CBA8FB /* VillageCore.framework in Frameworks */,
 				D47FD3F2220FB16300376D31 /* VillageCoreUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +132,7 @@
 		D54C3D91F4C5144E14E60397 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4879A452242575800CBA8FB /* VillageCore.framework */,
 				D47FD3EC220FB15900376D31 /* VillageCoreUI.xcodeproj */,
 			);
 			name = Frameworks;
