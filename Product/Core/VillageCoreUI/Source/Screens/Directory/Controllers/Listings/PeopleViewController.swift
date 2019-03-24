@@ -449,8 +449,9 @@ extension PeopleViewController: InvitePersonControllerDelegate {
             
             let alert = UIAlertController.dismissable(title: "User Invited", message: "An email invitation has been sent.")
             self.present(alert, animated: true, completion: nil)
-        }.catch { _ in
-            let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending an invitation to that user. Please check the address and try again.")
+        }.catch { (error) in
+            let errorMessage = (error as? VillageServiceError)?.userDisplayableMessage ?? VillageServiceError.genericFailureMessage
+            let alert = UIAlertController.dismissable(title: "Error", message: errorMessage)
             self.present(alert, animated: true, completion: nil)
         }
         

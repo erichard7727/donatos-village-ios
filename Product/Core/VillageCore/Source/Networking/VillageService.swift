@@ -19,16 +19,16 @@ public enum VillageServiceError: Swift.Error {
     case apiErrorUnknown
     case apiInvalidResponse
     
-    var userDisplayableMessage: String {
+    public var userDisplayableMessage: String {
         switch self {
         case .apiError(let message):
             return message
         default:
-            return genericFailureMessage
+            return VillageServiceError.genericFailureMessage
         }
     }
     
-    var genericFailureMessage: String {
+    public static var genericFailureMessage: String {
         return "An error has occurred, your request could not be completed at this time."
     }
 }
