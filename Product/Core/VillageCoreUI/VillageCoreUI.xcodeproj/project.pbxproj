@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D411BC3B2247B3EE003D2F08 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC332247B3EE003D2F08 /* SettingsController.swift */; };
+		D411BC3C2247B3EE003D2F08 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC342247B3EE003D2F08 /* EditSettingsController.swift */; };
+		D411BC3D2247B3EE003D2F08 /* UserSettingsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC352247B3EE003D2F08 /* UserSettingsHeaderController.swift */; };
+		D411BC3E2247B3EE003D2F08 /* UserSettingsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC372247B3EE003D2F08 /* UserSettingsInfoCell.swift */; };
+		D411BC3F2247B3EE003D2F08 /* UserSettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC382247B3EE003D2F08 /* UserSettingsSwitchCell.swift */; };
+		D411BC402247B3EE003D2F08 /* UserSettingsGenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC392247B3EE003D2F08 /* UserSettingsGenericCell.swift */; };
+		D411BC412247B3EE003D2F08 /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D411BC3A2247B3EE003D2F08 /* UserSettings.storyboard */; };
+		D411BC432247E687003D2F08 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC422247E687003D2F08 /* ProgressIndicator.swift */; };
+		D411BC452247F807003D2F08 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC442247F807003D2F08 /* UIImage+Rotation.swift */; };
+		D411BC472247F844003D2F08 /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC462247F844003D2F08 /* UIImage+Scaling.swift */; };
 		D42FE5C222411E1700B46C8F /* SendEmailTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */; };
 		D42FE5C422411E2000B46C8F /* SendEmailTokenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */; };
 		D43663C32229ACA9006354F2 /* LoginPasswordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */; };
@@ -16,9 +26,8 @@
 		D43663CF222A13F2006354F2 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663CD222A13F2006354F2 /* ForgotPasswordViewController.swift */; };
 		D43663D2222A24BE006354F2 /* UIButton+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663D1222A24BE006354F2 /* UIButton+Loading.swift */; };
 		D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */; };
-		D43663DC222C63A5006354F2 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663DB222C63A5006354F2 /* UserSettingsViewController.swift */; };
-		D43663DE222C63AE006354F2 /* UserSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43663DD222C63AE006354F2 /* UserSettingsViewController.storyboard */; };
 		D44B5F07222970BB00941CCE /* TintedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B5F06222970BB00941CCE /* TintedTextField.swift */; };
+		D46724F02248160B00F4D7E5 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46724EF2248160B00F4D7E5 /* Bundle+Version.swift */; };
 		D47FD3F6220FB23700376D31 /* VillageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29B8220757CC0091BEFB /* VillageContainer.swift */; };
 		D47FD3F7220FB23C00376D31 /* VillageContainer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29BA220757DE0091BEFB /* VillageContainer.storyboard */; };
 		D47FD3F9220FB74B00376D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D47FD3F8220FB74B00376D31 /* Assets.xcassets */; };
@@ -76,6 +85,16 @@
 		09211B1EE7FB79BF0961EF47 /* Pods-VillageCoreUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.release.xcconfig"; sourceTree = "<group>"; };
 		5C04355281BA1F6AD929B6B6 /* Pods_VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B61F17A4EF4656C09B68F0A /* Pods-VillageCoreUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.debug.xcconfig"; sourceTree = "<group>"; };
+		D411BC332247B3EE003D2F08 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		D411BC342247B3EE003D2F08 /* EditSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
+		D411BC352247B3EE003D2F08 /* UserSettingsHeaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsHeaderController.swift; sourceTree = "<group>"; };
+		D411BC372247B3EE003D2F08 /* UserSettingsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsInfoCell.swift; sourceTree = "<group>"; };
+		D411BC382247B3EE003D2F08 /* UserSettingsSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsSwitchCell.swift; sourceTree = "<group>"; };
+		D411BC392247B3EE003D2F08 /* UserSettingsGenericCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsGenericCell.swift; sourceTree = "<group>"; };
+		D411BC3A2247B3EE003D2F08 /* UserSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
+		D411BC422247E687003D2F08 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
+		D411BC442247F807003D2F08 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
+		D411BC462247F844003D2F08 /* UIImage+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
 		D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailTokenViewController.swift; sourceTree = "<group>"; };
 		D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendEmailTokenViewController.storyboard; sourceTree = "<group>"; };
 		D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginPasswordViewController.storyboard; sourceTree = "<group>"; };
@@ -85,9 +104,8 @@
 		D43663CD222A13F2006354F2 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D43663D1222A24BE006354F2 /* UIButton+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Loading.swift"; sourceTree = "<group>"; };
 		D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserViewController.swift; sourceTree = "<group>"; };
-		D43663DB222C63A5006354F2 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
-		D43663DD222C63AE006354F2 /* UserSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserSettingsViewController.storyboard; sourceTree = "<group>"; };
 		D44B5F06222970BB00941CCE /* TintedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintedTextField.swift; sourceTree = "<group>"; };
+		D46724EF2248160B00F4D7E5 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Bundle+Version.swift"; path = "../../../VillageCore/Source/Extensions/Bundle+Version.swift"; sourceTree = "<group>"; };
 		D47FD3F8220FB74B00376D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D47FD3FE220FBD4700376D31 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D47FD401220FC08700376D31 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
@@ -184,24 +202,48 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		D43663DA222C6380006354F2 /* UserSettings */ = {
+		D411BC312247B37B003D2F08 /* UserSettings */ = {
 			isa = PBXGroup;
 			children = (
-				D43663DB222C63A5006354F2 /* UserSettingsViewController.swift */,
-				D43663DD222C63AE006354F2 /* UserSettingsViewController.storyboard */,
+				D411BC362247B3EE003D2F08 /* Cells */,
+				D411BC322247B3EE003D2F08 /* Controller */,
+				D411BC3A2247B3EE003D2F08 /* UserSettings.storyboard */,
 			);
 			path = UserSettings;
+			sourceTree = "<group>";
+		};
+		D411BC322247B3EE003D2F08 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D411BC332247B3EE003D2F08 /* SettingsController.swift */,
+				D411BC342247B3EE003D2F08 /* EditSettingsController.swift */,
+				D411BC352247B3EE003D2F08 /* UserSettingsHeaderController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D411BC362247B3EE003D2F08 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D411BC372247B3EE003D2F08 /* UserSettingsInfoCell.swift */,
+				D411BC382247B3EE003D2F08 /* UserSettingsSwitchCell.swift */,
+				D411BC392247B3EE003D2F08 /* UserSettingsGenericCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		D47FD400220FC05500376D31 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				D47FD401220FC08700376D31 /* Image+Named.swift */,
+				D411BC442247F807003D2F08 /* UIImage+Rotation.swift */,
+				D411BC462247F844003D2F08 /* UIImage+Scaling.swift */,
 				D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */,
 				D43663C62229BBC8006354F2 /* UIViewController+NavigationBar.swift */,
 				D43663D1222A24BE006354F2 /* UIButton+Loading.swift */,
 				D4B4E85D223AF3AE002DED70 /* UIColor+Named.swift */,
 				D4B4E867223B241C002DED70 /* UIAlertController+Utilities.swift */,
+				D46724EF2248160B00F4D7E5 /* Bundle+Version.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -211,7 +253,7 @@
 			children = (
 				D4F8A57322109DE2005FDB6A /* Authentication */,
 				D4F8A5802210A1CB005FDB6A /* Home */,
-				D43663DA222C6380006354F2 /* UserSettings */,
+				D411BC312247B37B003D2F08 /* UserSettings */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -421,6 +463,7 @@
 				D4B4E86A223B3524002DED70 /* TabItemView */,
 				D4B4E892223B3971002DED70 /* ParentScrollView.swift */,
 				D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */,
+				D411BC422247E687003D2F08 /* ProgressIndicator.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -552,10 +595,10 @@
 				D4B4E897223B3D0E002DED70 /* AchievementCollectionViewCell.xib in Resources */,
 				D4F8A5972210B6DE005FDB6A /* proximanova-lightitalic-webfont.ttf in Resources */,
 				D43663C32229ACA9006354F2 /* LoginPasswordViewController.storyboard in Resources */,
+				D411BC412247B3EE003D2F08 /* UserSettings.storyboard in Resources */,
 				D4B4E858223AE980002DED70 /* Directory.storyboard in Resources */,
 				D47FD3F7220FB23C00376D31 /* VillageContainer.storyboard in Resources */,
 				D42FE5C422411E2000B46C8F /* SendEmailTokenViewController.storyboard in Resources */,
-				D43663DE222C63AE006354F2 /* UserSettingsViewController.storyboard in Resources */,
 				D4F8A5882210A274005FDB6A /* MainMenuViewController.storyboard in Resources */,
 				D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */,
 				D4F8A5962210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf in Resources */,
@@ -605,24 +648,30 @@
 				D4B4E893223B3971002DED70 /* ParentScrollView.swift in Sources */,
 				D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */,
 				D4B4E891223B37B0002DED70 /* MyAchievementsViewController.swift in Sources */,
-				D43663DC222C63A5006354F2 /* UserSettingsViewController.swift in Sources */,
+				D411BC3F2247B3EE003D2F08 /* UserSettingsSwitchCell.swift in Sources */,
 				D4984EA0223E83E700793CFE /* StatefulUserInterface.swift in Sources */,
+				D411BC432247E687003D2F08 /* ProgressIndicator.swift in Sources */,
 				D4B4E853223AE980002DED70 /* PeopleViewController.swift in Sources */,
 				D47FD402220FC08700376D31 /* Image+Named.swift in Sources */,
 				D43663D2222A24BE006354F2 /* UIButton+Loading.swift in Sources */,
 				D4B4E859223AE980002DED70 /* ContactPersonTableViewCell.swift in Sources */,
 				D4B4E863223AFFD6002DED70 /* PersonProfileHeaderViewController.swift in Sources */,
 				D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */,
+				D411BC3C2247B3EE003D2F08 /* EditSettingsController.swift in Sources */,
 				D4B4E899223B3E5E002DED70 /* AchievementImageView.swift in Sources */,
 				D4B4E864223AFFF6002DED70 /* ContactPersonViewController.swift in Sources */,
 				D43663C42229ACA9006354F2 /* LoginPasswordViewController.swift in Sources */,
+				D411BC452247F807003D2F08 /* UIImage+Rotation.swift in Sources */,
 				D4B4E85A223AE980002DED70 /* PersonTableViewCell.swift in Sources */,
 				D43663C72229BBC8006354F2 /* UIViewController+NavigationBar.swift in Sources */,
 				D4B4E85E223AF3AE002DED70 /* UIColor+Named.swift in Sources */,
 				D44B5F07222970BB00941CCE /* TintedTextField.swift in Sources */,
 				D4F8A5822210A1DC005FDB6A /* HomeViewController.swift in Sources */,
+				D411BC402247B3EE003D2F08 /* UserSettingsGenericCell.swift in Sources */,
+				D411BC3D2247B3EE003D2F08 /* UserSettingsHeaderController.swift in Sources */,
 				D4F8A5862210A267005FDB6A /* MainMenuViewController.swift in Sources */,
 				D4B4E861223AFEF7002DED70 /* PersonProfileViewController.swift in Sources */,
+				D411BC472247F844003D2F08 /* UIImage+Scaling.swift in Sources */,
 				D4B4E890223B3763002DED70 /* KudosListController.swift in Sources */,
 				D4B4E869223B281E002DED70 /* ProfileBottomContainerViewController.swift in Sources */,
 				D42FE5C222411E1700B46C8F /* SendEmailTokenViewController.swift in Sources */,
@@ -630,9 +679,12 @@
 				D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */,
 				D43663CF222A13F2006354F2 /* ForgotPasswordViewController.swift in Sources */,
 				D4F8A57522109E31005FDB6A /* LoginIdentityViewController.swift in Sources */,
+				D411BC3B2247B3EE003D2F08 /* SettingsController.swift in Sources */,
 				D4B4E868223B241C002DED70 /* UIAlertController+Utilities.swift in Sources */,
+				D46724F02248160B00F4D7E5 /* Bundle+Version.swift in Sources */,
 				D4F8A57D22109FDA005FDB6A /* SideMenuControllerDelegate.swift in Sources */,
 				D4F8A59C2210D556005FDB6A /* KeyboardAwareScrollView.swift in Sources */,
+				D411BC3E2247B3EE003D2F08 /* UserSettingsInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

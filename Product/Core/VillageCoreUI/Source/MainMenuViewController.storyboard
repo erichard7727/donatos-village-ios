@@ -533,9 +533,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bqg-IJ-Xam">
-                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="width" secondItem="bqg-IJ-Xam" secondAttribute="height" multiplier="1:1" id="4jq-a4-K4Y"/>
                                                             <constraint firstAttribute="width" constant="40" id="c7S-Jc-7yX"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="xLk-nd-8OS"/>
                                                         </constraints>
@@ -601,6 +602,7 @@
                     <size key="freeformSize" width="375" height="90"/>
                     <connections>
                         <outlet property="avatarImageView" destination="bqg-IJ-Xam" id="caK-FO-TLf"/>
+                        <outlet property="avatarImageViewHeightConstraint" destination="xLk-nd-8OS" id="dgZ-u5-URy"/>
                         <outlet property="displayNameLabel" destination="pOV-qR-6j1" id="UdM-AX-Ny1"/>
                         <outlet property="usernameLabel" destination="MAl-tz-HNL" id="A0S-zj-nIL"/>
                     </connections>
@@ -611,7 +613,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app-background" width="414" height="736"/>
+        <image name="app-background" width="375" height="667"/>
         <image name="menu-collapse" width="28" height="28"/>
         <image name="menu-content-library" width="29" height="24"/>
         <image name="menu-direct-messages" width="28" height="28"/>

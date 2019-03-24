@@ -22,6 +22,7 @@
 		D4615852220F30570072D224 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4615851220F30570072D224 /* AuthenticationService.swift */; };
 		D4615854220F44100072D224 /* User+Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4615853220F44100072D224 /* User+Keychain.swift */; };
 		D4615856220F44250072D224 /* User+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4615855220F44250072D224 /* User+Authentication.swift */; };
+		D46724F22248163E00F4D7E5 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46724F12248163D00F4D7E5 /* Bundle+Version.swift */; };
 		D4B4E83522391D06002DED70 /* SecurityPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83422391D06002DED70 /* SecurityPolicies.swift */; };
 		D4B4E83822395928002DED70 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83722395928002DED70 /* Person.swift */; };
 		D4B4E83A22399BE7002DED70 /* DirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83922399BE7002DED70 /* DirectoryService.swift */; };
@@ -64,6 +65,7 @@
 		D4615851220F30570072D224 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		D4615853220F44100072D224 /* User+Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Keychain.swift"; sourceTree = "<group>"; };
 		D4615855220F44250072D224 /* User+Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Authentication.swift"; sourceTree = "<group>"; };
+		D46724F12248163D00F4D7E5 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
 		D4B4E83422391D06002DED70 /* SecurityPolicies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPolicies.swift; sourceTree = "<group>"; };
 		D4B4E83722395928002DED70 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		D4B4E83922399BE7002DED70 /* DirectoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryService.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				D4173892220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift */,
 				D4615849220F24450072D224 /* Promises+Utilities.swift */,
 				D44B5F082229875300941CCE /* Optional+Utils.swift */,
+				D46724F12248163D00F4D7E5 /* Bundle+Version.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			files = (
 				D4615844220F19880072D224 /* VillageService.swift in Sources */,
 				D4B4E895223B3C47002DED70 /* Achievements.swift in Sources */,
+				D46724F22248163E00F4D7E5 /* Bundle+Version.swift in Sources */,
 				D4173893220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift in Sources */,
 				D417388A220C4FD500F5B1F6 /* URL+StaticString.swift in Sources */,
 				D4B4E866223B0016002DED70 /* Group.swift in Sources */,

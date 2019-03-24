@@ -61,6 +61,28 @@ struct DirectoryService {
             return person
         }
     }
+    
+    static func updateDetails(for person: Person, avatarData: Data?) -> Promise<Person> {
+        return firstly {
+            let updatePerson = VillageCoreAPI.updatePerson(
+                id: person.id.description,
+                firstName: person.firstName,
+                lastName: person.lastName,
+                jobTitle: person.jobTitle,
+                email: person.emailAddress,
+                phone: person.phone,
+                twitter: person.twitter,
+                directories: person.directories,
+                avatarData: avatarData
+            )
+            return VillageService.shared.request(target: updatePerson)
+        }.then { (json: JSON) -> Person in
+            guard let person = Person(from: json) else {
+                throw DirectoryServiceError.unknown
+            }
+            return person
+        }
+    }
 
 }
 

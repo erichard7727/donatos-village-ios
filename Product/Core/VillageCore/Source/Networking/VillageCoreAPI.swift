@@ -54,6 +54,7 @@ public enum VillageCoreAPI {
     // People
     case me
     case securityPolicies(userId: String)
+    case updatePerson(id: String, firstName: String?, lastName: String?, jobTitle: String?, email: String?, phone: String?, twitter: String?, directories: [Int]?, avatarData: Data?)
     
     // Directory
     case directory(page: Int)
@@ -101,6 +102,9 @@ extension VillageCoreAPI: TargetType {
         case let .securityPolicies(userId):
             return "people/1.0/\(userId)/policy"
             
+        case let .updatePerson(id, _, _, _, _, _, _, _, _):
+            return "people/1.0/person/\(id)"
+            
         case let .directory(page):
             return "people/1.0/people/\(page)-\(defaultPageSize)"
             
@@ -141,6 +145,9 @@ extension VillageCoreAPI: TargetType {
              .logout,
              .inviteUser(_):
             return .post
+            
+        case .updatePerson:
+            return .put
         }
     }
 
@@ -155,6 +162,7 @@ extension VillageCoreAPI: TargetType {
              .inviteUser(_),
              .me,
              .securityPolicies(_),
+             .updatePerson,
              .directory(_),
              .getPersonDetails(_),
              .kudos(_),
@@ -246,6 +254,32 @@ extension VillageCoreAPI: TargetType {
                 encoding: URLEncoding.default
             )
             
+        case let .updatePerson(_, firstName, lastName, jobTitle, email, phone, twitter, directories, avatarData):
+            return Task.requestCompositeParameters(
+                bodyParameters: {
+                    var params: [String: Any] = [:]
+                    firstName.flatMap({ params["firstName"] = $0 })
+                    lastName.flatMap({ params["lastName"] = $0 })
+                    jobTitle.flatMap({ params["jobTitle"] = $0 })
+                    email.flatMap({ params["emailAddress"] = $0 })
+                    phone.flatMap({ params["phone"] = $0 })
+                    twitter.flatMap({ params["twitter"] = $0 })
+                    directories.flatMap({ params["directories"] = $0 })
+                    avatarData.flatMap({
+                        params["avatar"] = [
+                            "title": "avatar.png",
+                            "type": "image/png",
+                            "content": $0.base64EncodedString()
+                        ]
+                    })
+                    return params
+                }(),
+                bodyEncoding: JSONEncoding.default,
+                urlParameters: [
+                    "diagId": User.current.diagnosticId
+                ]
+            )
+            
         case let .inviteUser(email):
             return Task.requestCompositeParameters(
                 bodyParameters: [
@@ -304,6 +338,7 @@ extension VillageCoreAPI: AuthorizedTargetType {
             
         case .me,
              .securityPolicies(_),
+             .updatePerson,
              .inviteUser(_),
              .directory(_),
              .getPersonDetails(_),

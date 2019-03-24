@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		9659F9DB611700F634E32994 /* Pods_DonatosVillage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E943258A11A7B681BE7388D8 /* Pods_DonatosVillage.framework */; };
+		D46724EC22480F6500F4D7E5 /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46724EB22480F6500F4D7E5 /* VillageCore.framework */; };
+		D46724ED22480F6500F4D7E5 /* VillageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46724EB22480F6500F4D7E5 /* VillageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D47FD3F2220FB16300376D31 /* VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47FD3F1220FB15900376D31 /* VillageCoreUI.framework */; };
 		D47FD3F3220FB16300376D31 /* VillageCoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47FD3F1220FB15900376D31 /* VillageCoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4879A40224196B600CBA8FB /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */; };
 		D4879A41224196B600CBA8FB /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3E224196B500CBA8FB /* AppCenter.framework */; };
 		D4879A42224196B600CBA8FB /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */; };
-		D4AE68892242AD1F00A3FB25 /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE68862242AD0300A3FB25 /* VillageCore.framework */; };
-		D4AE688A2242AD1F00A3FB25 /* VillageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE68862242AD0300A3FB25 /* VillageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4CC29CF22075D070091BEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29CE22075D070091BEFB /* AppDelegate.swift */; };
 		D4CC29D622075D080091BEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D522075D080091BEFB /* Assets.xcassets */; };
 		D4CC29D922075D080091BEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D722075D080091BEFB /* LaunchScreen.storyboard */; };
@@ -44,7 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D4AE688A2242AD1F00A3FB25 /* VillageCore.framework in Embed Frameworks */,
+				D46724ED22480F6500F4D7E5 /* VillageCore.framework in Embed Frameworks */,
 				D47FD3F3220FB16300376D31 /* VillageCoreUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -55,6 +55,7 @@
 /* Begin PBXFileReference section */
 		43565619D7EDB88B2A852C60 /* Pods-DonatosVillage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.release.xcconfig"; sourceTree = "<group>"; };
 		6A21354782F5AAF5295BF86C /* Pods-DonatosVillage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.debug.xcconfig"; sourceTree = "<group>"; };
+		D46724EB22480F6500F4D7E5 /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47FD3EC220FB15900376D31 /* VillageCoreUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VillageCoreUI.xcodeproj; path = ../../Product/Core/VillageCoreUI/VillageCoreUI.xcodeproj; sourceTree = "<group>"; };
 		D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		D4879A3E224196B500CBA8FB /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
@@ -77,8 +78,8 @@
 				D4879A42224196B600CBA8FB /* AppCenterCrashes.framework in Frameworks */,
 				D4879A41224196B600CBA8FB /* AppCenter.framework in Frameworks */,
 				D47FD3F2220FB16300376D31 /* VillageCoreUI.framework in Frameworks */,
-				D4AE68892242AD1F00A3FB25 /* VillageCore.framework in Frameworks */,
 				9659F9DB611700F634E32994 /* Pods_DonatosVillage.framework in Frameworks */,
+				D46724EC22480F6500F4D7E5 /* VillageCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +116,7 @@
 		D4CC29C222075D070091BEFB = {
 			isa = PBXGroup;
 			children = (
+				D46724EB22480F6500F4D7E5 /* VillageCore.framework */,
 				D4CC29CD22075D070091BEFB /* DonatosVillage */,
 				D4CC29CC22075D070091BEFB /* Products */,
 				D54C3D91F4C5144E14E60397 /* Frameworks */,

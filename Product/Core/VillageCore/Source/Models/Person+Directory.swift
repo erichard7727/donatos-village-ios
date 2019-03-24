@@ -17,6 +17,10 @@ extension Person {
     public func getDetails() -> Promise<Person> {
         return DirectoryService.getDetails(for: self)
     }
+    
+    public func updateDetails(avatarData: Data?) -> Promise<Person> {
+        return DirectoryService.updateDetails(for: self, avatarData: avatarData)
+    }
 
 }
 
