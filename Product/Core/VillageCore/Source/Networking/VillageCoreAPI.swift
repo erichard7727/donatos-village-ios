@@ -35,6 +35,26 @@ public enum VillageCoreAPI {
         case confirmation = "confirm"
     }
     
+    public enum NoticeType {
+        case all
+        case notice
+        case news
+        
+        fileprivate var apiValue: String {
+            switch self {
+            case .notice:
+                return "notice"
+                
+            case .news:
+                return "news"
+                
+            case .all:
+                assertionFailure()
+                return ""
+            }
+        }
+    }
+    
     public enum KudoType: String {
         case received
         case given
@@ -60,6 +80,12 @@ public enum VillageCoreAPI {
     case directory(page: Int)
     case searchDirectory(term: String, page: Int)
     case getPersonDetails(personId: String)
+    
+    // Notices
+    case notices(_ noticeType: NoticeType, page: Int)
+    case noticeDetail(noticeId: String)
+    case noticeAcknowledgedList(noticeId: String, page: Int)
+    case acknowledgeNotice(noticeId: String)
     
     // Kudos
     case kudos(_ kudoType: KudoType, personId: String, page: Int)
@@ -115,6 +141,16 @@ extension VillageCoreAPI: TargetType {
         case let .getPersonDetails(personId):
             return "people/1.0/person/\(personId)"
             
+        case .notices:
+            return "notice/1.0"
+            
+        case let .noticeDetail(noticeId):
+            return "notice/1.0/\(noticeId)"
+            
+        case let .noticeAcknowledgedList(noticeId, _),
+             let .acknowledgeNotice(noticeId):
+            return "notice/1.0/\(noticeId)/acknowledge"
+            
         case .kudos(_):
             return "kudos/1.0/kudos"
         }
@@ -134,6 +170,9 @@ extension VillageCoreAPI: TargetType {
              .securityPolicies(_),
              .directory(_),
              .getPersonDetails(_),
+             .notices,
+             .noticeDetail,
+             .noticeAcknowledgedList,
              .kudos(_),
              .searchDirectory(_):
             return .get
@@ -143,7 +182,8 @@ extension VillageCoreAPI: TargetType {
              .login(_),
              .initiateResetPassword(_),
              .logout,
-             .inviteUser(_):
+             .inviteUser(_),
+             .acknowledgeNotice:
             return .post
             
         case .updatePerson:
@@ -165,6 +205,10 @@ extension VillageCoreAPI: TargetType {
              .updatePerson,
              .directory(_),
              .getPersonDetails(_),
+             .notices,
+             .noticeDetail,
+             .noticeAcknowledgedList,
+             .acknowledgeNotice,
              .kudos(_),
              .searchDirectory(_):
             return Data()
@@ -174,9 +218,12 @@ extension VillageCoreAPI: TargetType {
     public var task: Task {
         switch self {
         case .foundationSettings(_),
+             .logout,
              .me,
              .securityPolicies(_),
-             .getPersonDetails(_):
+             .getPersonDetails(_),
+             .noticeDetail,
+             .acknowledgeNotice:
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId
@@ -246,14 +293,6 @@ extension VillageCoreAPI: TargetType {
                 ]
             )
             
-        case .logout:
-            return Task.requestParameters(
-                parameters: [
-                    "diagId": User.current.diagnosticId
-                ],
-                encoding: URLEncoding.default
-            )
-            
         case let .updatePerson(_, firstName, lastName, jobTitle, email, phone, twitter, directories, avatarData):
             return Task.requestCompositeParameters(
                 bodyParameters: {
@@ -300,6 +339,31 @@ extension VillageCoreAPI: TargetType {
                 encoding: URLEncoding.default
             )
             
+        case let .notices(noticeType, page):
+            let diagId = User.current.diagnosticId
+            let paging = "\(page)-\(defaultPageSize)"
+            
+            switch noticeType {
+            case .news, .notice:
+                return Task.requestParameters(
+                    parameters: [
+                        "diagId": diagId,
+                        "paging": paging,
+                        "filter": "type:\(noticeType.apiValue)",
+                    ],
+                    encoding: URLEncoding.default
+                )
+                
+            case .all:
+                return Task.requestParameters(
+                    parameters: [
+                        "diagId": diagId,
+                        "paging": paging,
+                    ],
+                    encoding: URLEncoding.default
+                )
+            }
+            
         case let .kudos(kudoType, personId, page):
             return Task.requestParameters(
                 parameters: [
@@ -310,7 +374,8 @@ extension VillageCoreAPI: TargetType {
                 encoding: URLEncoding.default
             )
             
-        case let .searchDirectory(_, page):
+        case let .searchDirectory(_, page),
+             let .noticeAcknowledgedList(_, page):
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId,
@@ -342,6 +407,10 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .inviteUser(_),
              .directory(_),
              .getPersonDetails(_),
+             .notices,
+             .noticeDetail,
+             .noticeAcknowledgedList,
+             .acknowledgeNotice,
              .kudos(_),
              .searchDirectory(_):
             return true
