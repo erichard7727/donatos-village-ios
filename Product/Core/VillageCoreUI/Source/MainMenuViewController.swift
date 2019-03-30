@@ -56,9 +56,8 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToNotices(_ sender: Any? = nil) {
-//        let vc = ...
-//        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show Notices")
+        let vc = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as! NoticesViewController
+        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     

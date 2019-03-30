@@ -26,6 +26,7 @@
 		D46724F4224828C300F4D7E5 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46724F3224828C300F4D7E5 /* Notice.swift */; };
 		D46724F62248E6D300F4D7E5 /* MediaAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */; };
 		D46724F82248E7DF00F4D7E5 /* NoticeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46724F72248E7DF00F4D7E5 /* NoticeService.swift */; };
+		D479D2FB224AD78800AFB3DA /* Notice+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479D2FA224AD78800AFB3DA /* Notice+Services.swift */; };
 		D4B4E83522391D06002DED70 /* SecurityPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83422391D06002DED70 /* SecurityPolicies.swift */; };
 		D4B4E83822395928002DED70 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83722395928002DED70 /* Person.swift */; };
 		D4B4E83A22399BE7002DED70 /* DirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83922399BE7002DED70 /* DirectoryService.swift */; };
@@ -72,6 +73,7 @@
 		D46724F3224828C300F4D7E5 /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
 		D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAttachment.swift; sourceTree = "<group>"; };
 		D46724F72248E7DF00F4D7E5 /* NoticeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeService.swift; sourceTree = "<group>"; };
+		D479D2FA224AD78800AFB3DA /* Notice+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notice+Services.swift"; sourceTree = "<group>"; };
 		D4B4E83422391D06002DED70 /* SecurityPolicies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPolicies.swift; sourceTree = "<group>"; };
 		D4B4E83722395928002DED70 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		D4B4E83922399BE7002DED70 /* DirectoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryService.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				D4B4E865223B0016002DED70 /* Group.swift */,
 				D4B4E894223B3C47002DED70 /* Achievements.swift */,
 				D46724F3224828C300F4D7E5 /* Notice.swift */,
+				D479D2FA224AD78800AFB3DA /* Notice+Services.swift */,
 				D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */,
 			);
 			path = Models;
@@ -399,6 +402,7 @@
 				D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */,
 				D4B4E83E223AA7BC002DED70 /* KudosService.swift in Sources */,
 				D417388F220C502700F5B1F6 /* VillageProvider.swift in Sources */,
+				D479D2FB224AD78800AFB3DA /* Notice+Services.swift in Sources */,
 				D4B4E840223AA7F4002DED70 /* Kudo.swift in Sources */,
 				D4615847220F1AE50072D224 /* User.swift in Sources */,
 			);

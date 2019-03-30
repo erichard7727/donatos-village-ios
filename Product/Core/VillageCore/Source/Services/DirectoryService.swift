@@ -110,7 +110,8 @@ internal extension Person {
             twitter: response["twitter"].string,
             deactivated: response["deactivated"].boolValue,
             kudos: (count: response["kudos"]["totalKudos"].intValue, points: response["kudos"]["totalPoints"].intValue),
-            directories: response["directories"].arrayValue.compactMap({ $0.int })
+            directories: response["directories"].arrayValue.compactMap({ $0.int }),
+            acknowledgeDate: villageCoreAPIDateFormatter.date(from: response["acknowledgeDate"].stringValue)
         )
     }
     

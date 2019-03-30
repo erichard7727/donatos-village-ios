@@ -33,6 +33,13 @@ public enum VillageServiceError: Swift.Error {
     }
 }
 
+public extension Error {
+    public var vlg_userDisplayableMessage: String {
+        return (self as? VillageServiceError)?.userDisplayableMessage
+            ?? VillageServiceError.genericFailureMessage
+    }
+}
+
 /// A wrapper around the VillageProvider Request -> Response flow that
 /// provides common API handling behaviors (mainly error handling).
 ///

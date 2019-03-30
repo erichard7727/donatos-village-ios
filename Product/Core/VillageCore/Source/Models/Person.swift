@@ -29,6 +29,8 @@ public struct Person {
     public let kudos: (count: Int, points: Int)
     public var directories: [Int]
     
+    public var acknowledgeDate: Date?
+    
 
 }
 

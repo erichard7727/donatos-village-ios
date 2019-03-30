@@ -12,6 +12,7 @@ import SwiftyJSON
 
 enum NoticeServiceError: Error {
     case unknown
+    case invalidUrl
 }
 
 struct NoticeService {
@@ -38,6 +39,18 @@ struct NoticeService {
             let notices = json["content"].arrayValue.compactMap({ Notice(from: $0) })
             return notices
         }
+    }
+    
+    public static func detailRequest(notice: Notice) throws -> URLRequest {
+        guard let detailUrl = URL(string: "\(ClientConfiguration.current.appBaseURL)notice/1.0/\(notice.id)") else {
+            throw NoticeServiceError.invalidUrl
+        }
+        
+        var request = URLRequest(url: detailUrl)
+        let cookieHeaders = HTTPCookieStorage.shared.cookies.map({ HTTPCookie.requestHeaderFields(with: $0) }) ?? [:]
+        let combinedHeaders = (request.allHTTPHeaderFields ?? [:])?.merging(cookieHeaders, uniquingKeysWith: {(_, new) in return new })
+        request.allHTTPHeaderFields = combinedHeaders
+        return request
     }
     
     static func getAcknowledgedList(notice: Notice, page: Int = 1) -> Promise<People> {
@@ -70,7 +83,7 @@ internal extension Notice {
             let title = response["title"].string,
             let body = response["body"].string,
             let type = NoticeType(apiValue: response["type"].stringValue),
-            let publishDate = response["publishDate"].string,
+            let publishDate = villageCoreAPIDateFormatter.date(from: response["publishDate"].stringValue),
             let person = Person.init(from: response["person"])
         else {
             return nil

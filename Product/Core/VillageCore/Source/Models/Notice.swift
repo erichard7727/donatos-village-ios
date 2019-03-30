@@ -30,7 +30,7 @@ public struct Notice {
     public let body: String
     public let type: NoticeType
 
-    public let publishDate: String
+    public let publishDate: Date
     public let isActive: Bool
 
     public let acknowledgeRequired: Bool
@@ -39,12 +39,6 @@ public struct Notice {
 
     public let mediaAttachments: [MediaAttachment]
     public let person: Person
-}
-
-public extension Notice {
-    public var detailURL: URL? {
-        return URL(string: "\(ClientConfiguration.current.appBaseURL)notice/1.0/\(self.id)")
-    }
 }
 
 extension Notice: Hashable {

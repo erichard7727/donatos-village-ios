@@ -12,6 +12,7 @@ import Foundation
 public let AnalyticsEventViewItem: String = "AnalyticsEventViewItem"
 public let AnalyticsParameterItemLocationID: String = "AnalyticsParameterItemLocationID"
 public let AnalyticsParameterItemCategory: String = "AnalyticsParameterItemCategory"
+public let AnalyticsParameterItemName: String = "AnalyticsParameterItemName"
 
 public struct AnalyticsService {
     
