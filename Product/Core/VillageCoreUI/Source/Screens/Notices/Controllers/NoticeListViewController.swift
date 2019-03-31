@@ -12,13 +12,34 @@ import VillageCore
 
 final class NoticeListViewController: UIViewController {
     
-    private class Section {
-        var title: String
+    private class Section: Comparable {
+
+        let title: String
         var notices: [Notice]
+        
+        private let date: Date
+        
+        fileprivate static let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            return formatter
+        }()
         
         init(title: String, notices: [Notice]) {
             self.title = title
             self.notices = notices
+            self.date = Section.dateFormatter.date(from: title)!
+        }
+        
+        // Comparable
+        
+        static func < (lhs: NoticeListViewController.Section, rhs: NoticeListViewController.Section) -> Bool {
+            return Calendar.current.compare(lhs.date, to: rhs.date, toGranularity: .day) == .orderedAscending
+        }
+        
+        static func == (lhs: NoticeListViewController.Section, rhs: NoticeListViewController.Section) -> Bool {
+            return Calendar.current.isDate(lhs.date, equalTo: rhs.date, toGranularity: .day)
         }
     }
     
@@ -157,13 +178,17 @@ private extension NoticeListViewController {
                 notice in formatter.string(from: notice.publishDate)
             })
             
+            var sections = self.sections
+            
             groupedNotices.forEach({ (title, notices) in
-                if let section = self.sections.first(where: { $0.title == title }) {
+                if let section = sections.first(where: { $0.title == title }) {
                     section.notices += notices
                 } else {
-                    self.sections += [Section(title: title, notices: notices)]
+                    sections += [Section(title: title, notices: notices)]
                 }
             })
+            
+            self.sections = sections.sorted(by: >)
             
             self.currentPage = page
             
