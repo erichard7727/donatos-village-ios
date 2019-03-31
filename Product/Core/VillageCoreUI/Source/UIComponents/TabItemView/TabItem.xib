@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="proximanova-reg-webfont.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TabItemView" customModule="Kindred_Village" customModuleProvider="target">
+            <connections>
+                <outlet property="tabBarUnderline" destination="49D-CK-kUe" id="zIu-5i-mXE"/>
+                <outlet property="tabButton" destination="fh2-Zb-slv" id="0g1-XU-ymC"/>
+                <outlet property="view" destination="iN0-l3-epB" id="hRa-9z-db0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49D-CK-kUe">
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="NNs-do-pua"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fh2-Zb-slv">
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="tabButtonClicked:" destination="-1" eventType="touchUpInside" id="jUJ-Xi-Yzq"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="fh2-Zb-slv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3H5-gX-1Mf"/>
+                <constraint firstItem="fh2-Zb-slv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="a2k-ir-ggD"/>
+                <constraint firstItem="49D-CK-kUe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gO7-gP-9X0"/>
+                <constraint firstAttribute="trailing" secondItem="49D-CK-kUe" secondAttribute="trailing" id="gw7-x8-0d0"/>
+                <constraint firstAttribute="bottom" secondItem="49D-CK-kUe" secondAttribute="bottom" id="hGr-d0-1Ob"/>
+                <constraint firstAttribute="trailing" secondItem="fh2-Zb-slv" secondAttribute="trailing" id="ikv-WH-PLX"/>
+                <constraint firstItem="49D-CK-kUe" firstAttribute="top" secondItem="fh2-Zb-slv" secondAttribute="bottom" id="qGV-Fb-po1"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="-188.5"/>
+        </view>
+    </objects>
+</document>

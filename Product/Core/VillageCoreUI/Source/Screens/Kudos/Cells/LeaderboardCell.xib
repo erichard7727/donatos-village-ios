@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="proximanova-light-webfont.ttf">
+            <string>ProximaNova-Light</string>
+        </array>
+        <array key="proximanova-reg-webfont.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+        <array key="proximanova-sbold-webfont.ttf">
+            <string>ProximaNova-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeaderboardCell" rowHeight="75" id="A6H-cL-LKQ" customClass="LeaderboardCell" customModule="DTEKnow_App_Store" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A6H-cL-LKQ" id="daI-Tg-0Lz">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tKt-JI-6xt">
+                        <rect key="frame" x="16" y="8.5" width="58" height="58"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="58" id="Rq3-8V-zlq"/>
+                            <constraint firstAttribute="height" constant="58" id="ykt-ZN-96S"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sr. Account Representative" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTT-Mu-FOt">
+                        <rect key="frame" x="97" y="39" width="270" height="15.5"/>
+                        <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Antonio Barnes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o97-G8-RCb">
+                        <rect key="frame" x="97" y="20" width="117.5" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="AFq-GR-D8n"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ADh-H2-342">
+                        <rect key="frame" x="222" y="20" width="32" height="17"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="994   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCd-2B-6QP">
+                                <rect key="frame" x="1" y="1.5" width="30.5" height="14"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2666666667" green="0.69019607839999997" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="LGI-Zp-YIv"/>
+                            <constraint firstItem="pCd-2B-6QP" firstAttribute="centerX" secondItem="ADh-H2-342" secondAttribute="centerX" id="TqV-q5-3ih"/>
+                            <constraint firstAttribute="width" constant="32" id="m9a-uI-tl3"/>
+                            <constraint firstItem="pCd-2B-6QP" firstAttribute="centerY" secondItem="ADh-H2-342" secondAttribute="centerY" id="x1K-3q-8dP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tKt-JI-6xt" firstAttribute="top" secondItem="daI-Tg-0Lz" secondAttribute="top" constant="8" id="1W0-lg-ulu"/>
+                    <constraint firstItem="OTT-Mu-FOt" firstAttribute="trailing" secondItem="daI-Tg-0Lz" secondAttribute="trailingMargin" id="81y-BW-6fk"/>
+                    <constraint firstItem="OTT-Mu-FOt" firstAttribute="leading" secondItem="o97-G8-RCb" secondAttribute="leading" id="AHw-0j-f82"/>
+                    <constraint firstItem="ADh-H2-342" firstAttribute="leading" secondItem="o97-G8-RCb" secondAttribute="trailing" constant="7.5" id="PXE-ng-0W0"/>
+                    <constraint firstItem="o97-G8-RCb" firstAttribute="top" secondItem="daI-Tg-0Lz" secondAttribute="topMargin" constant="12" id="PhY-xw-XLy"/>
+                    <constraint firstItem="tKt-JI-6xt" firstAttribute="leading" secondItem="daI-Tg-0Lz" secondAttribute="leadingMargin" constant="8" id="UwF-Ak-LdX"/>
+                    <constraint firstItem="OTT-Mu-FOt" firstAttribute="top" secondItem="o97-G8-RCb" secondAttribute="bottom" constant="2" id="b2Q-R7-jo1"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="OTT-Mu-FOt" secondAttribute="bottom" constant="12" id="cYQ-QM-4pk"/>
+                    <constraint firstItem="ADh-H2-342" firstAttribute="centerY" secondItem="o97-G8-RCb" secondAttribute="centerY" id="e8K-Rs-PNm"/>
+                    <constraint firstAttribute="bottom" secondItem="tKt-JI-6xt" secondAttribute="bottom" constant="8" id="f8D-H9-gbf"/>
+                    <constraint firstItem="o97-G8-RCb" firstAttribute="leading" secondItem="tKt-JI-6xt" secondAttribute="trailing" constant="23" id="qSs-qP-UV9"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImageView" destination="tKt-JI-6xt" id="wy9-NG-vT1"/>
+                <outlet property="avatarImageViewWidthConstraint" destination="Rq3-8V-zlq" id="9nW-ji-TNS"/>
+                <outlet property="greenView" destination="ADh-H2-342" id="OFj-gn-0GA"/>
+                <outlet property="nameLabel" destination="o97-G8-RCb" id="oNb-H3-mZW"/>
+                <outlet property="pointLabel" destination="pCd-2B-6QP" id="vsW-eR-gXF"/>
+                <outlet property="titleLabel" destination="OTT-Mu-FOt" id="rmS-zU-VcV"/>
+            </connections>
+            <point key="canvasLocation" x="44.5" y="-293.5"/>
+        </tableViewCell>
+    </objects>
+</document>

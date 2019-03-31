@@ -17,18 +17,53 @@ enum AuthenticationServiceError: Error {
 
 struct AuthenticationService {
     
+    enum ValidateIdentityNextStep {
+        case enterPassword(User)
+        case confirmEmail(User)
+        case createAccount(User)
+    }
+    
+    enum DomainInitiationMode {
+        case invitation
+        case confirmation
+    }
+    
     private init() { }
     
-    static func validateIdentity(user: User) -> Promise<User> {
+    static func validateIdentity(user: User) -> Promise<ValidateIdentityNextStep> {
         return firstly {
             let validate = VillageCoreAPI.validateIdentity(
                 identity: user.identity
             )
             return VillageService.shared.request(target: validate)
-        }.then { (json: JSON) -> User in
+        }.then { (json: JSON) -> ValidateIdentityNextStep in
             user.emailAddress = try json["emailAddress"].string.orThrow(AuthenticationServiceError.invalidIdentity)
-            return user
+            
+            switch json["nextStep"].string {
+            case "INIT_ACCOUNT"?:
+                return .createAccount(user)
+                
+            case "CONFIRM_EMAIL"?:
+                return .confirmEmail(user)
+                
+            case "ENTER_PASSWORD"?:
+                return .enterPassword(user)
+                
+            default:
+                throw AuthenticationServiceError.invalidIdentity
+            }
         }
+    }
+    
+    static func initiateDomatin(mode: DomainInitiationMode, emailAddress: String) -> Promise<Void> {
+        let apiMode: VillageCoreAPI.DomainInitiationMode = {
+            switch mode {
+            case .invitation: return .invitation
+            case .confirmation: return .confirmation
+            }
+        }()
+        let initiateDomatin = VillageCoreAPI.initiateDomain(apiMode, emailAddress: emailAddress)
+        return VillageService.shared.request(target: initiateDomatin).asVoid()
     }
     
     static func login(user: User) -> Promise<User> {
@@ -79,6 +114,10 @@ struct AuthenticationService {
             user.emailAddress = try json["emailAddress"].string.orThrow(AuthenticationServiceError.invalidIdentity)
             return user
         }
+    }
+    
+    static func invite(emailAddress: String) -> Promise<Void> {
+        return VillageService.shared.request(target: VillageCoreAPI.inviteUser(email: emailAddress)).asVoid()
     }
     
     static func logout(user: User) -> Promise<Void> {

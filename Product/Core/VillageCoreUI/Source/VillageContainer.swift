@@ -25,8 +25,12 @@ public class VillageContainer: SideMenuController {
         }
     }
     
-    private var homeVC: UIViewController!
-    
+    private lazy var homeVC: UIViewController = {
+        let storyboard = UIStoryboard(name: "HomeViewController", bundle: Constants.bundle)
+        let homeVC = storyboard.instantiateInitialViewController() as! HomeViewController
+        return UINavigationController(rootViewController: homeVC)
+    }()
+
     convenience init() {
         let mainMenuVC: UIViewController = {
             let storyboard = UIStoryboard(name: "MainMenuViewController", bundle: Constants.bundle)
@@ -34,15 +38,10 @@ public class VillageContainer: SideMenuController {
             return mainMenuVC
         }()
         
-        let homeVC: UIViewController = {
-            let storyboard = UIStoryboard(name: "HomeViewController", bundle: Constants.bundle)
-            let homeVC = storyboard.instantiateInitialViewController() as! HomeViewController
-            return UINavigationController(rootViewController: homeVC)
-        }()
+        let storyboard = UIStoryboard(name: "VillageContainer", bundle: Constants.bundle)
+        let whileLoadingVC = storyboard.instantiateViewController(withIdentifier: "VillageContainerLoadingContentViewController")
 
-        self.init(menuViewController: mainMenuVC, contentViewController: homeVC)
-        
-        self.homeVC = homeVC
+        self.init(menuViewController: mainMenuVC, contentViewController: UINavigationController(rootViewController: whileLoadingVC))
     }
     
     // MARK: - UIViewController Overrides

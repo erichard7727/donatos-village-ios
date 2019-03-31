@@ -13,4 +13,15 @@ class Constants {
     static let bundle = Bundle(for: Constants.self)
     
     private init() { }
+    
+}
+
+extension Constants {
+    struct Settings {
+        static let invitationsEnabled = true
+        static let directMessagesEnabled = true
+        static let kudosEnabled = true
+        static let achievementsEnabled = false
+        static let manageNoticesEnabled = false
+    }
 }

@@ -24,7 +24,7 @@ public class User {
         }
     }
     
-    public let identity: String
+    public private(set) var identity: String
     
     private init() {
         self.identity = ""
@@ -40,6 +40,17 @@ public class User {
         return self === User.guest
     }
     
+}
+
+public extension User {
+    public func update(from person: Person) {
+        self.identity = person.emailAddress
+        self.emailAddress = person.emailAddress
+        person.displayName.flatMap({ self.displayName = $0 })
+        self.avatarURL = person.avatarURL
+        self.deactivated = person.deactivated
+        User.save(self)
+    }
 }
 
 fileprivate extension User {

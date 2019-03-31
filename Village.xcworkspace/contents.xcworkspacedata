@@ -5,6 +5,10 @@
       location = "group:Brewfile">
    </FileRef>
    <FileRef
+      location = "group:Podfile"
+      assignedFileDataType = "public.ruby-script">
+   </FileRef>
+   <FileRef
       location = "group:Gemfile">
    </FileRef>
    <FileRef
@@ -35,4 +39,7 @@
          name = "Features">
       </Group>
    </Group>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

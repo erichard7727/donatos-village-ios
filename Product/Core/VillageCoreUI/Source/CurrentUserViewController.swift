@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 import VillageCore
 
 final class CurrentUserViewController: UIViewController {
@@ -17,6 +18,8 @@ final class CurrentUserViewController: UIViewController {
             avatarImageView.clipsToBounds = true
         }
     }
+    
+    @IBOutlet private weak var avatarImageViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet private weak var displayNameLabel: UILabel!
     @IBOutlet private weak var usernameLabel: UILabel!
@@ -33,11 +36,21 @@ extension CurrentUserViewController {
         guard !user.isGuest else {
             displayNameLabel.text = nil
             usernameLabel.text = nil
+            avatarImageView.setImage(named: "default-avatar")
             return
         }
         
         displayNameLabel.text = user.displayName
         usernameLabel.text = user.emailAddress
+        
+        if let url = user.avatarURL {
+            let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
+                size: avatarImageView.frame.size,
+                radius: avatarImageViewHeightConstraint.constant / 2
+            )
+            
+            avatarImageView.af_setImage(withURL: url, placeholderImage: UIImage.named("default-avatar"), filter: filter)
+        }
     }
 }
 
@@ -60,8 +73,8 @@ extension CurrentUserViewController {
 private extension CurrentUserViewController {
     
     @IBAction func onViewSettings(_ sender: Any? = nil) {
-        let settingsVC = UIStoryboard(name: "UserSettingsViewController", bundle: Constants.bundle).instantiateInitialViewController()!
-        sideMenuController?.setContentViewController(settingsVC, fadeAnimation: true)
+        let settingsVC = UIStoryboard(name: "UserSettings", bundle: Constants.bundle).instantiateViewController(withIdentifier: "EditSettingsController") as! EditSettingsController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: settingsVC), fadeAnimation: true)
         sideMenuController?.hideMenu()
     }
     
