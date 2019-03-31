@@ -9,41 +9,30 @@
 import UIKit
 import VillageCore
 
-fileprivate class PersonWrapper {
+fileprivate typealias PeopleWrapper = [PersonWrapper]
+
+fileprivate class PersonWrapper: NSObject {
     let person: Person
     
     init(_ person: Person) {
         self.person = person
     }
     
-    @objc func lastName() -> String {
+    @objc var firstName: String {
+        return person.firstName ?? ""
+    }
+    
+    @objc var lastName: String {
         return person.lastName ?? ""
     }
-}
-
-
-class NoticeAcknowledgement: NSObject, Comparable {
-    let firstName: String
-    @objc let lastName: String
-    let displayName: String
-    let title: String
-    var acknowledged: Bool = false
-    var id: Int = -1
-    let acknowledgedDate: Date?
     
-    init(firstName: String, lastName: String, displayName: String, title: String, acknowledged: Bool, id: Int, acknowledgedDate: Date?) {
-        self.firstName = firstName
-        self.lastName = lastName
-        self.displayName = displayName
-        self.title = title
-        self.acknowledged = acknowledged
-        self.id = id
-        self.acknowledgedDate = acknowledgedDate
+    @objc var displayName: String {
+        return person.displayName ?? ""
     }
-}
-
-func <(lhs: NoticeAcknowledgement, rhs: NoticeAcknowledgement) -> Bool {
-    return lhs.lastName.compare(rhs.lastName) == ComparisonResult.orderedAscending
+    
+    @objc var jobTitle: String {
+        return person.jobTitle ?? ""
+    }
 }
 
 class NoticeAcknowledgementsViewController: UIViewController {
@@ -57,17 +46,17 @@ class NoticeAcknowledgementsViewController: UIViewController {
     
     var searchController: UISearchController!
     
-    var noticeAcknowledgements: People = [] {
+    private var noticeAcknowledgements: PeopleWrapper = [] {
         didSet {
             sections = Array(repeating: [], count: collation.sectionTitles.count)
             
             let sortedObjects = collation.sortedArray(
-                from: noticeAcknowledgements.map(PersonWrapper.init),
-                collationStringSelector: #selector(PersonWrapper.lastName)
-                ) as! [PersonWrapper]
+                from: noticeAcknowledgements,
+                collationStringSelector: #selector(getter: PersonWrapper.lastName)
+            ) as! [PersonWrapper]
             
             for object in sortedObjects {
-                let sectionNumber = collation.section(for: object, collationStringSelector: #selector(PersonWrapper.lastName))
+                let sectionNumber = collation.section(for: object, collationStringSelector: #selector(getter: PersonWrapper.lastName))
                 sections[sectionNumber].append(object.person)
             }
             
@@ -78,7 +67,7 @@ class NoticeAcknowledgementsViewController: UIViewController {
         }
     }
     
-    var originalAcknowledgements: People = []
+    private var originalAcknowledgements: PeopleWrapper = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +100,7 @@ class NoticeAcknowledgementsViewController: UIViewController {
         firstly {
             notice.getAcknowledgedList()
         }.then { [weak self] (people) in
-            self?.noticeAcknowledgements.append(contentsOf: people)
+            self?.noticeAcknowledgements.append(contentsOf: people.map(PersonWrapper.init))
             self?.originalAcknowledgements = self?.noticeAcknowledgements ?? []
         }.catch { [weak self] (error) in
             let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
@@ -212,7 +201,7 @@ extension NoticeAcknowledgementsViewController: UISearchControllerDelegate, UISe
                 NSPredicate(format: "firstName CONTAINS[cd] %@", word),
                 NSPredicate(format: "lastName CONTAINS[cd] %@", word),
                 NSPredicate(format: "displayName CONTAINS[cd] %@", word),
-                NSPredicate(format: "title CONTAINS[cd] %@", word)
+                NSPredicate(format: "jobTitle CONTAINS[cd] %@", word)
             ]
             
             return NSCompoundPredicate(type: .or, subpredicates: subpredicates)
@@ -220,7 +209,7 @@ extension NoticeAcknowledgementsViewController: UISearchControllerDelegate, UISe
         
         if strippedSearchString.count > 0 {
             let array = (originalAcknowledgements as NSArray).filtered(using: NSCompoundPredicate(type: .and, subpredicates: predicates))
-            if let acknowledgementArray = array as? People {
+            if let acknowledgementArray = array as? PeopleWrapper {
                 noticeAcknowledgements = acknowledgementArray
             }
         } else {
