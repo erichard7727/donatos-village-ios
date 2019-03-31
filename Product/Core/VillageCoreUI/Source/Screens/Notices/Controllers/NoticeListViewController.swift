@@ -57,7 +57,7 @@ final class NoticeListViewController: UIViewController {
     
     @IBOutlet private weak var addButton: UIBarButtonItem! {
         didSet {
-            if !User.current.securityPolicies.contains(.manageNotices) {
+            if !Constants.Settings.manageNoticesEnabled || !User.current.securityPolicies.contains(.manageNotices) {
                 addButton.tintColor = UIColor.clear
                 addButton.isEnabled = false
             }
@@ -123,7 +123,8 @@ extension NoticeListViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "CreateNotice", User.current.securityPolicies.contains(.manageNotices) {
+        if identifier == "CreateNotice",
+           (Constants.Settings.manageNoticesEnabled && User.current.securityPolicies.contains(.manageNotices)) {
             return true
         }
         return false
@@ -253,7 +254,7 @@ extension NoticeListViewController: UITableViewDataSource {
                 cell.markAccepted(false)
             }
             
-            if User.current.securityPolicies.contains(.manageNotices) {
+            if Constants.Settings.manageNoticesEnabled && User.current.securityPolicies.contains(.manageNotices) {
                 if notice.acknowledgeRequired {
                     if notice.isAcknowledged {
                         let greenColor = UIColor.init(red: 68/255.0, green: 176/255.0, blue: 49/255.0, alpha: 1.0)
