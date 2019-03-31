@@ -8,11 +8,9 @@
 
 import UIKit
 
-protocol NoticeCellDelegate: class {
-    func percentageButtonPressed(noticeId: String)
-}
-
 class NoticeCell: UITableViewCell {
+    
+    var percentageButtonPressed: (() -> Void)?
 
     @IBOutlet weak var noticeTitleLabel: UILabel!
     @IBOutlet weak var leftSquareView: UIView!
@@ -24,8 +22,6 @@ class NoticeCell: UITableViewCell {
     var noticeBody: String = ""
     var acknowledgementRequired: Bool = false
     var acknowledged: Bool = false
-    
-    weak var delegate: NoticeCellDelegate?
     
     let greenColor = UIColor.init(red: 68/255.0, green: 176/255.0, blue: 49/255.0, alpha: 1.0)
     let fadedGreenColor = UIColor.init(red: 68/255.0, green: 176/255.0, blue: 49/255.0, alpha: 0.16)
@@ -76,7 +72,7 @@ class NoticeCell: UITableViewCell {
     }
     
     @objc func percentageButtonTapped(_ button: UIButton) {
-        delegate?.percentageButtonPressed(noticeId: noticeId)
+        percentageButtonPressed?()
     }
 }
 

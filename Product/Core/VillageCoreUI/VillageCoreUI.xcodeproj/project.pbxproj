@@ -33,7 +33,7 @@
 		D460B81D224AC434003DCA2C /* ViewNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B815224AC433003DCA2C /* ViewNoticeViewController.swift */; };
 		D460B81E224AC434003DCA2C /* NoticeAcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B816224AC433003DCA2C /* NoticeAcknowledgementsViewController.swift */; };
 		D460B81F224AC434003DCA2C /* CreateNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B817224AC433003DCA2C /* CreateNoticeViewController.swift */; };
-		D460B820224AC434003DCA2C /* NoticesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B818224AC433003DCA2C /* NoticesViewController.swift */; };
+		D460B820224AC434003DCA2C /* NoticeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B818224AC433003DCA2C /* NoticeListViewController.swift */; };
 		D460B821224AC434003DCA2C /* Notices.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D460B819224AC434003DCA2C /* Notices.storyboard */; };
 		D46724F02248160B00F4D7E5 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46724EF2248160B00F4D7E5 /* Bundle+Version.swift */; };
 		D479D2FD224AE87000AFB3DA /* IndentedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479D2FC224AE87000AFB3DA /* IndentedTextField.swift */; };
@@ -120,7 +120,7 @@
 		D460B815224AC433003DCA2C /* ViewNoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewNoticeViewController.swift; sourceTree = "<group>"; };
 		D460B816224AC433003DCA2C /* NoticeAcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeAcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		D460B817224AC433003DCA2C /* CreateNoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNoticeViewController.swift; sourceTree = "<group>"; };
-		D460B818224AC433003DCA2C /* NoticesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticesViewController.swift; sourceTree = "<group>"; };
+		D460B818224AC433003DCA2C /* NoticeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeListViewController.swift; sourceTree = "<group>"; };
 		D460B819224AC434003DCA2C /* Notices.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notices.storyboard; sourceTree = "<group>"; };
 		D46724EF2248160B00F4D7E5 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Bundle+Version.swift"; path = "../../../VillageCore/Source/Extensions/Bundle+Version.swift"; sourceTree = "<group>"; };
 		D479D2FC224AE87000AFB3DA /* IndentedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentedTextField.swift; sourceTree = "<group>"; };
@@ -276,7 +276,7 @@
 				D460B815224AC433003DCA2C /* ViewNoticeViewController.swift */,
 				D460B816224AC433003DCA2C /* NoticeAcknowledgementsViewController.swift */,
 				D460B817224AC433003DCA2C /* CreateNoticeViewController.swift */,
-				D460B818224AC433003DCA2C /* NoticesViewController.swift */,
+				D460B818224AC433003DCA2C /* NoticeListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -698,7 +698,7 @@
 				D460B81E224AC434003DCA2C /* NoticeAcknowledgementsViewController.swift in Sources */,
 				D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */,
 				D4F8A57B22109FAF005FDB6A /* SideMenuController.swift in Sources */,
-				D460B820224AC434003DCA2C /* NoticesViewController.swift in Sources */,
+				D460B820224AC434003DCA2C /* NoticeListViewController.swift in Sources */,
 				D4B4E893223B3971002DED70 /* ParentScrollView.swift in Sources */,
 				D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */,
 				D4B4E891223B37B0002DED70 /* MyAchievementsViewController.swift in Sources */,
