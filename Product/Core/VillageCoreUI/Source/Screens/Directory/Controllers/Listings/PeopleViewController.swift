@@ -54,7 +54,7 @@ final class PeopleViewController: UIViewController {
     override func viewDidLoad() {
         setupTableView()
         
-        if !Constants.Settings.invitationsEnabled && !User.current.securityPolicies.contains(.inviteUsers) {
+        if !Constants.Settings.invitationsEnabled || !User.current.securityPolicies.contains(.inviteUsers) {
             addBarButtonItem.tintColor = UIColor.clear
             addBarButtonItem.isEnabled = false
         }
