@@ -21,19 +21,6 @@ extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        firstly {
-            People.getDirectory()
-        }.then { people in
-            people.first!.getDetails()
-        }.then { person in
-            person.kudosReceived().then { (person, $0) }
-        }.then { (person, kudos) in
-            person.kudosGiven().then { (person, $0) }
-        }.then { (person, kudos) in
-            print(kudos)
-        }.catch { (error) in
-            print(error)
-        }
         
     }
     
