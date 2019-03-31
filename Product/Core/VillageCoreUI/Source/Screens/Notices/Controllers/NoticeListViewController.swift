@@ -82,7 +82,7 @@ final class NoticeListViewController: UIViewController {
     
     private var sections: [Section] = []
     private var isLoadingMoreData = false
-    private var currentPage = 1
+    private var currentPage = 0
     
     private var isAllDataLoaded = false {
         didSet {
@@ -90,17 +90,26 @@ final class NoticeListViewController: UIViewController {
         }
     }
     
+    private var needsRefresh = false
 }
 
 // MARK: - UIViewController Overrides
 
 extension NoticeListViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.Notice.WasAcknowledged, object: nil, queue: nil) { [weak self] (_) in
+            self?.needsRefresh = true
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if currentPage == 1 {
-            loadNotices(page: currentPage)
+        if needsRefresh || currentPage == 0 {
+            loadNotices(page: 1, isRefreshing: needsRefresh)
         }
     }
     
@@ -201,6 +210,7 @@ private extension NoticeListViewController {
             self.present(alert, animated: true, completion: nil)
         }.always { [weak self] in
             self?.isLoadingMoreData = false
+            self?.needsRefresh = false
             
             if isRefreshing {
                 self?.refreshControl.endRefreshing()

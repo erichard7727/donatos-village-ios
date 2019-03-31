@@ -89,6 +89,9 @@ public enum VillageCoreAPI {
     
     // Kudos
     case kudos(_ kudoType: KudoType, personId: String, page: Int)
+    
+    // Streams
+    case streamsHistory
 }
 
 // MARK: - TargetType
@@ -153,6 +156,9 @@ extension VillageCoreAPI: TargetType {
             
         case .kudos(_):
             return "kudos/1.0/kudos"
+            
+        case .streamsHistory:
+            return "streams/1.0/history"
         }
     }
 
@@ -174,7 +180,8 @@ extension VillageCoreAPI: TargetType {
              .noticeDetail,
              .noticeAcknowledgedList,
              .kudos(_),
-             .searchDirectory(_):
+             .searchDirectory(_),
+             .streamsHistory:
             return .get
             
         case .validateIdentity(_),
@@ -210,7 +217,8 @@ extension VillageCoreAPI: TargetType {
              .noticeAcknowledgedList,
              .acknowledgeNotice,
              .kudos(_),
-             .searchDirectory(_):
+             .searchDirectory(_),
+             .streamsHistory:
             return Data()
         }
     }
@@ -223,7 +231,8 @@ extension VillageCoreAPI: TargetType {
              .securityPolicies(_),
              .getPersonDetails(_),
              .noticeDetail,
-             .acknowledgeNotice:
+             .acknowledgeNotice,
+             .streamsHistory:
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId
@@ -412,7 +421,8 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .noticeAcknowledgedList,
              .acknowledgeNotice,
              .kudos(_),
-             .searchDirectory(_):
+             .searchDirectory(_),
+             .streamsHistory:
             return true
         }
     }

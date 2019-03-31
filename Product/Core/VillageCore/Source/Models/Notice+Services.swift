@@ -10,6 +10,13 @@ import Foundation
 import Promises
 import SwiftyJSON
 
+public extension Notification.Name {
+    public struct Notice {
+        /// Posted whenever User.current changes.
+        public static let WasAcknowledged = Notification.Name(rawValue: "com.dynamit.villageCore.notification.name.notice.wasAcknowledged")
+    }
+}
+
 // MARK: - Notice Service
 
 extension Notice {
@@ -23,7 +30,11 @@ extension Notice {
     }
     
     public func acknowledge() -> Promise<Notice> {
-        return NoticeService.acknowledge(notice: self)
+        return firstly {
+            NoticeService.acknowledge(notice: self)
+        }.then { notice in
+            NotificationCenter.default.post(name: Notification.Name.Notice.WasAcknowledged, object: notice, userInfo: nil)
+        }
     }
     
 }

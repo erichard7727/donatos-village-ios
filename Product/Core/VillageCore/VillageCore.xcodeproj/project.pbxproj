@@ -27,6 +27,9 @@
 		D46724F62248E6D300F4D7E5 /* MediaAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */; };
 		D46724F82248E7DF00F4D7E5 /* NoticeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46724F72248E7DF00F4D7E5 /* NoticeService.swift */; };
 		D479D2FB224AD78800AFB3DA /* Notice+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479D2FA224AD78800AFB3DA /* Notice+Services.swift */; };
+		D48A6A1D225133A000411518 /* StreamsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A6A1C225133A000411518 /* StreamsService.swift */; };
+		D48A6A1F2251373700411518 /* Unread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A6A1E2251373700411518 /* Unread.swift */; };
+		D48A6A212251393F00411518 /* Unread+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A6A202251393F00411518 /* Unread+Services.swift */; };
 		D4B4E83522391D06002DED70 /* SecurityPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83422391D06002DED70 /* SecurityPolicies.swift */; };
 		D4B4E83822395928002DED70 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83722395928002DED70 /* Person.swift */; };
 		D4B4E83A22399BE7002DED70 /* DirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83922399BE7002DED70 /* DirectoryService.swift */; };
@@ -74,6 +77,9 @@
 		D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAttachment.swift; sourceTree = "<group>"; };
 		D46724F72248E7DF00F4D7E5 /* NoticeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeService.swift; sourceTree = "<group>"; };
 		D479D2FA224AD78800AFB3DA /* Notice+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notice+Services.swift"; sourceTree = "<group>"; };
+		D48A6A1C225133A000411518 /* StreamsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsService.swift; sourceTree = "<group>"; };
+		D48A6A1E2251373700411518 /* Unread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unread.swift; sourceTree = "<group>"; };
+		D48A6A202251393F00411518 /* Unread+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unread+Services.swift"; sourceTree = "<group>"; };
 		D4B4E83422391D06002DED70 /* SecurityPolicies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPolicies.swift; sourceTree = "<group>"; };
 		D4B4E83722395928002DED70 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		D4B4E83922399BE7002DED70 /* DirectoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryService.swift; sourceTree = "<group>"; };
@@ -157,6 +163,8 @@
 				D46724F3224828C300F4D7E5 /* Notice.swift */,
 				D479D2FA224AD78800AFB3DA /* Notice+Services.swift */,
 				D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */,
+				D48A6A1E2251373700411518 /* Unread.swift */,
+				D48A6A202251393F00411518 /* Unread+Services.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,6 +177,7 @@
 				D4B4E83D223AA7BC002DED70 /* KudosService.swift */,
 				D4B4E85F223AFA51002DED70 /* AnalyticsService.swift */,
 				D46724F72248E7DF00F4D7E5 /* NoticeService.swift */,
+				D48A6A1C225133A000411518 /* StreamsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -398,8 +407,11 @@
 				D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */,
 				D461584A220F24450072D224 /* Promises+Utilities.swift in Sources */,
 				D46724F82248E7DF00F4D7E5 /* NoticeService.swift in Sources */,
+				D48A6A1D225133A000411518 /* StreamsService.swift in Sources */,
+				D48A6A212251393F00411518 /* Unread+Services.swift in Sources */,
 				D4CC29BD220759410091BEFB /* ClientConfiguration.swift in Sources */,
 				D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */,
+				D48A6A1F2251373700411518 /* Unread.swift in Sources */,
 				D4B4E83E223AA7BC002DED70 /* KudosService.swift in Sources */,
 				D417388F220C502700F5B1F6 /* VillageProvider.swift in Sources */,
 				D479D2FB224AD78800AFB3DA /* Notice+Services.swift in Sources */,
