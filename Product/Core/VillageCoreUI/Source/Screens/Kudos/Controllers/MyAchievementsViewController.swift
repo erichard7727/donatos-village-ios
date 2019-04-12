@@ -74,7 +74,7 @@ class MyAchievementsViewController: UIViewController {
         }
     }
     
-    @IBAction func menuButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction override func menuButtonPressed(_ sender: UIBarButtonItem) {
         sideMenuController?.showMenu()
     }
 }

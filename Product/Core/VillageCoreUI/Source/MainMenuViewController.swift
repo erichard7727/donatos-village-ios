@@ -126,9 +126,8 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToContentLibrary(_ sender: Any? = nil) {
-        //        let vc = ...
-        //        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show ContentLibrary")
+        let vc = UIStoryboard(name: "ContentLibrary", bundle: Constants.bundle).instantiateViewController(withIdentifier: "ContentLibraryViewController") as! ContentLibraryViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
 }
