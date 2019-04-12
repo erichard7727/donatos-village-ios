@@ -30,6 +30,9 @@
 		D48A6A1D225133A000411518 /* StreamsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A6A1C225133A000411518 /* StreamsService.swift */; };
 		D48A6A1F2251373700411518 /* Unread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A6A1E2251373700411518 /* Unread.swift */; };
 		D48A6A212251393F00411518 /* Unread+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A6A202251393F00411518 /* Unread+Services.swift */; };
+		D48A6A2422514E6500411518 /* ContentLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A6A2322514E6500411518 /* ContentLibrary.swift */; };
+		D48A6A262251531D00411518 /* ContentLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A6A252251531D00411518 /* ContentLibraryService.swift */; };
+		D48A6A282252230B00411518 /* ContentLibrary+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A6A272252230B00411518 /* ContentLibrary+Services.swift */; };
 		D4B4E83522391D06002DED70 /* SecurityPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83422391D06002DED70 /* SecurityPolicies.swift */; };
 		D4B4E83822395928002DED70 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83722395928002DED70 /* Person.swift */; };
 		D4B4E83A22399BE7002DED70 /* DirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E83922399BE7002DED70 /* DirectoryService.swift */; };
@@ -80,6 +83,9 @@
 		D48A6A1C225133A000411518 /* StreamsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsService.swift; sourceTree = "<group>"; };
 		D48A6A1E2251373700411518 /* Unread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unread.swift; sourceTree = "<group>"; };
 		D48A6A202251393F00411518 /* Unread+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unread+Services.swift"; sourceTree = "<group>"; };
+		D48A6A2322514E6500411518 /* ContentLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLibrary.swift; sourceTree = "<group>"; };
+		D48A6A252251531D00411518 /* ContentLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLibraryService.swift; sourceTree = "<group>"; };
+		D48A6A272252230B00411518 /* ContentLibrary+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentLibrary+Services.swift"; sourceTree = "<group>"; };
 		D4B4E83422391D06002DED70 /* SecurityPolicies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPolicies.swift; sourceTree = "<group>"; };
 		D4B4E83722395928002DED70 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		D4B4E83922399BE7002DED70 /* DirectoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryService.swift; sourceTree = "<group>"; };
@@ -165,6 +171,8 @@
 				D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */,
 				D48A6A1E2251373700411518 /* Unread.swift */,
 				D48A6A202251393F00411518 /* Unread+Services.swift */,
+				D48A6A2322514E6500411518 /* ContentLibrary.swift */,
+				D48A6A272252230B00411518 /* ContentLibrary+Services.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,6 +186,7 @@
 				D4B4E85F223AFA51002DED70 /* AnalyticsService.swift */,
 				D46724F72248E7DF00F4D7E5 /* NoticeService.swift */,
 				D48A6A1C225133A000411518 /* StreamsService.swift */,
+				D48A6A252251531D00411518 /* ContentLibraryService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -406,14 +415,17 @@
 				D4615856220F44250072D224 /* User+Authentication.swift in Sources */,
 				D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */,
 				D461584A220F24450072D224 /* Promises+Utilities.swift in Sources */,
+				D48A6A262251531D00411518 /* ContentLibraryService.swift in Sources */,
 				D46724F82248E7DF00F4D7E5 /* NoticeService.swift in Sources */,
 				D48A6A1D225133A000411518 /* StreamsService.swift in Sources */,
 				D48A6A212251393F00411518 /* Unread+Services.swift in Sources */,
 				D4CC29BD220759410091BEFB /* ClientConfiguration.swift in Sources */,
+				D48A6A282252230B00411518 /* ContentLibrary+Services.swift in Sources */,
 				D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */,
 				D48A6A1F2251373700411518 /* Unread.swift in Sources */,
 				D4B4E83E223AA7BC002DED70 /* KudosService.swift in Sources */,
 				D417388F220C502700F5B1F6 /* VillageProvider.swift in Sources */,
+				D48A6A2422514E6500411518 /* ContentLibrary.swift in Sources */,
 				D479D2FB224AD78800AFB3DA /* Notice+Services.swift in Sources */,
 				D4B4E840223AA7F4002DED70 /* Kudo.swift in Sources */,
 				D4615847220F1AE50072D224 /* User.swift in Sources */,

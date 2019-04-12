@@ -87,6 +87,10 @@ public enum VillageCoreAPI {
     case noticeAcknowledgedList(noticeId: String, page: Int)
     case acknowledgeNotice(noticeId: String)
     
+    // Content Library
+    case contentLibraryRoot(page: Int)
+    case contentLibraryDirectory(contentId: String)
+    
     // Kudos
     case kudos(_ kudoType: KudoType, personId: String, page: Int)
     
@@ -154,6 +158,12 @@ extension VillageCoreAPI: TargetType {
              let .acknowledgeNotice(noticeId):
             return "notice/1.0/\(noticeId)/acknowledge"
             
+        case .contentLibraryRoot(_):
+            return "content/1.0"
+            
+        case let .contentLibraryDirectory(contentId):
+            return "content/1.0/@\(contentId)"
+            
         case .kudos(_):
             return "kudos/1.0/kudos"
             
@@ -179,6 +189,8 @@ extension VillageCoreAPI: TargetType {
              .notices,
              .noticeDetail,
              .noticeAcknowledgedList,
+             .contentLibraryRoot,
+             .contentLibraryDirectory,
              .kudos(_),
              .searchDirectory(_),
              .streamsHistory:
@@ -216,6 +228,8 @@ extension VillageCoreAPI: TargetType {
              .noticeDetail,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
+             .contentLibraryRoot,
+             .contentLibraryDirectory,
              .kudos(_),
              .searchDirectory(_),
              .streamsHistory:
@@ -232,6 +246,7 @@ extension VillageCoreAPI: TargetType {
              .getPersonDetails(_),
              .noticeDetail,
              .acknowledgeNotice,
+             .contentLibraryDirectory,
              .streamsHistory:
             return Task.requestParameters(
                 parameters: [
@@ -384,7 +399,8 @@ extension VillageCoreAPI: TargetType {
             )
             
         case let .searchDirectory(_, page),
-             let .noticeAcknowledgedList(_, page):
+             let .noticeAcknowledgedList(_, page),
+             let .contentLibraryRoot(page):
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId,
@@ -420,6 +436,8 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .noticeDetail,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
+             .contentLibraryRoot,
+             .contentLibraryDirectory,
              .kudos(_),
              .searchDirectory(_),
              .streamsHistory:
