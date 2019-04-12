@@ -20,7 +20,15 @@ final class MainMenuViewController: UIViewController {
     
     @IBOutlet private weak var menuOptionKudosContainer: UIView!
     @IBOutlet private weak var menuOptionKudos: UIView!
-    @IBOutlet private weak var menuOptionKudosChildrenContainer: UIStackView!
+    @IBOutlet private weak var menuOptionsKudosExpandButton: UIButton!
+    @IBOutlet private weak var menuOptionKudosChildrenContainer: UIStackView! {
+        didSet {
+            menuOptionKudosChildrenContainer.arrangedSubviews.forEach { (view) in
+                view.alpha = self.areKudosCollapsed ? 0 : 1
+                view.isHidden = areKudosCollapsed
+            }
+        }
+    }
     @IBOutlet private weak var menuOptionKudosStream: UIView!
     @IBOutlet private weak var menuOptionKudosMyKudos: UIView!
     @IBOutlet private weak var menuOptionKudosAchievements: UIView!
@@ -33,6 +41,19 @@ final class MainMenuViewController: UIViewController {
         didSet {
             noticesUnreadBadge.layer.masksToBounds = true
             noticesUnreadBadge.isHidden = true
+        }
+    }
+    
+    private var areKudosCollapsed = true {
+        didSet {
+            UIView.animate(withDuration: 0.25) {
+                self.menuOptionsKudosExpandButton.transform = self.menuOptionsKudosExpandButton.transform.rotated(by: .pi / 1) // 180 degrees
+                self.menuOptionKudosChildrenContainer.arrangedSubviews.forEach { (view) in
+                    view.alpha = self.areKudosCollapsed ? 0 : 1
+                    view.isHidden = self.areKudosCollapsed
+                }
+                self.menuOptionKudosChildrenContainer.layoutIfNeeded()
+            }
         }
     }
     
@@ -128,7 +149,7 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onToggleKudos(_ sender: Any? = nil) {
-        print("TODO - animate show/hide Kudos")
+        areKudosCollapsed.toggle()
     }
     
     @IBAction func onGoToKudosStream(_ sender: Any? = nil) {

@@ -356,7 +356,7 @@
                                                                                 <rect key="frame" x="0.0" y="25.666666666666629" width="27" height="27"/>
                                                                             </imageView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="jlD-tR-Wgo">
-                                                                                <rect key="frame" x="41.999999999999986" y="14" width="244.66666666666663" height="50"/>
+                                                                                <rect key="frame" x="41.999999999999986" y="14" width="201.66666666666663" height="50"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Kudos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6s-mY-8Sc">
                                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="49.333333333333336" height="20.333333333333329"/>
@@ -365,15 +365,15 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="998" verticalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWM-52-d3k">
-                                                                                        <rect key="frame" x="55.333333333333329" y="0.0" width="189.33333333333337" height="50"/>
+                                                                                        <rect key="frame" x="55.333333333333329" y="0.0" width="146.33333333333337" height="50"/>
                                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
                                                                             </stackView>
-                                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNl-zN-11t">
-                                                                                <rect key="frame" x="286.66666666666669" y="25" width="28" height="28"/>
+                                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNl-zN-11t">
+                                                                                <rect key="frame" x="258.66666666666669" y="25" width="28" height="28"/>
                                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <state key="normal" image="menu-expand"/>
                                                                                 <state key="selected" image="menu-collapse"/>
@@ -767,6 +767,7 @@
                         <outlet property="menuOptionHome" destination="xz0-AL-ce4" id="He3-Sx-U0h"/>
                         <outlet property="menuOptionKudos" destination="b4E-D1-qaA" id="XRi-oY-MDZ"/>
                         <outlet property="menuOptionKudosAchievements" destination="YPe-0t-7jm" id="kN3-4M-WJd"/>
+                        <outlet property="menuOptionKudosChildrenContainer" destination="ISQ-g8-s5e" id="b71-6V-17t"/>
                         <outlet property="menuOptionKudosContainer" destination="neF-Iz-sFA" id="Tgh-ka-Myo"/>
                         <outlet property="menuOptionKudosGiveKudos" destination="kxM-hd-nTg" id="5nU-ND-OeF"/>
                         <outlet property="menuOptionKudosLeaderboard" destination="aqR-YT-yrA" id="C40-cW-aqt"/>
@@ -775,6 +776,7 @@
                         <outlet property="menuOptionNotices" destination="RJk-LN-ufd" id="Oqy-Fn-CBG"/>
                         <outlet property="menuOptionOtherGroups" destination="3B9-T6-UvX" id="Y5i-Eg-FCn"/>
                         <outlet property="menuOptionPeople" destination="7D1-Os-hFb" id="5wx-eG-CwT"/>
+                        <outlet property="menuOptionsKudosExpandButton" destination="eNl-zN-11t" id="cvB-Kq-lkR"/>
                         <outlet property="noticesUnreadBadge" destination="a10-kO-9y7" id="tJo-6R-iwt"/>
                     </connections>
                 </viewController>
