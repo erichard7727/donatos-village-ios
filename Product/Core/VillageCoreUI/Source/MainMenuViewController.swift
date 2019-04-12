@@ -17,7 +17,16 @@ final class MainMenuViewController: UIViewController {
     @IBOutlet private weak var menuOptionGroups: UIView!
     @IBOutlet private weak var menuOptionOtherGroups: UIView!
     @IBOutlet private weak var menuOptionPeople: UIView!
+    
+    @IBOutlet private weak var menuOptionKudosContainer: UIView!
     @IBOutlet private weak var menuOptionKudos: UIView!
+    @IBOutlet private weak var menuOptionKudosChildrenContainer: UIStackView!
+    @IBOutlet private weak var menuOptionKudosStream: UIView!
+    @IBOutlet private weak var menuOptionKudosMyKudos: UIView!
+    @IBOutlet private weak var menuOptionKudosAchievements: UIView!
+    @IBOutlet private weak var menuOptionKudosGiveKudos: UIView!
+    @IBOutlet private weak var menuOptionKudosLeaderboard: UIView!
+    
     @IBOutlet private weak var menuOptionContentLibrary: UIView!
     
     @IBOutlet private weak var noticesUnreadBadge: UILabel! {
@@ -118,10 +127,42 @@ private extension MainMenuViewController {
         self.sideMenuController?.hideMenu()
     }
     
-    @IBAction func onGoToKudos(_ sender: Any? = nil) {
-        //        let vc = ...
-        //        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show Kudos")
+    @IBAction func onToggleKudos(_ sender: Any? = nil) {
+        print("TODO - animate show/hide Kudos")
+    }
+    
+    @IBAction func onGoToKudosStream(_ sender: Any? = nil) {
+//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
+//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        print("TODO - show Kudos Stream")
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToKudosMine(_ sender: Any? = nil) {
+//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
+//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        print("TODO - show My Kudos")
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToKudosAchievements(_ sender: Any? = nil) {
+//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
+//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        print("TODO - show Achievements")
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToKudosGive(_ sender: Any? = nil) {
+//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
+//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        print("TODO - show Give Kudos")
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToKudosLeaderboard(_ sender: Any? = nil) {
+//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
+//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        print("TODO - show Leaderboard")
         self.sideMenuController?.hideMenu()
     }
     
