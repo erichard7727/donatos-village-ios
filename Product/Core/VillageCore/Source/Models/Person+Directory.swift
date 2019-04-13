@@ -58,4 +58,12 @@ extension Person {
         return KudosService.getKudosGiven(for: self, page: page)
     }
     
+    public func achievements(page: Int = 1) -> Promise<Achievements> {
+        return KudosService.getAchievements(for: self, page: page)
+    }
+    
+    public func giveKudo(for achievement: Achievement, reason: String) -> Promise<Void> {
+        return KudosService.giveKudo(to: self, for: achievement, comment: reason)
+    }
+    
 }
