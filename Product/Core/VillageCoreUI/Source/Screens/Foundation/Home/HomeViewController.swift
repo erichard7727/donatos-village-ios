@@ -22,18 +22,21 @@ extension HomeViewController {
         super.viewDidLoad()
         
         firstly {
-            ContentLibrary.getRootDirectory(page: 1)
-        }.then { (library) -> Promise<ContentLibrary> in
-            guard let rpd = library.first(where: { $0.name == "Root Parent Directory" }) else { throw PromiseError.validationFailure }
-            return rpd.getDirectory()
-        }.then { (library) -> Promise<ContentLibrary> in
-            guard let cd = library.first(where: { $0.name == "Child Directory" }) else { throw PromiseError.validationFailure }
-            return cd.getDirectory()
-        }.then { (library) in
-            guard let ecp = library.first(where: { $0.name == "Example Content Page" }) else { throw PromiseError.validationFailure }
-            print(try ecp.request().url?.absoluteString ?? "Unknown")
-        }.catch { (error) in
-            print(error.localizedDescription)
+            return People.getDirectory().then { $0.first! }
+        }.then { person in
+            person.achievements().then { (person, $0.first!) }
+        }.then { (person, achievement) in
+            person.giveKudo(for: achievement, reason: "Testing networking.").then { person }
+        }.then { person in
+            person.kudosReceived()
+        }.then { kudos -> Promise<People> in
+            print(kudos)
+            return Kudos.weeklyLeaderboard()
+        }.then { people -> Promise<People> in
+            print(people)
+            return Kudos.leaderboard()
+        }.then { people in
+            print(people)
         }
     }
     
