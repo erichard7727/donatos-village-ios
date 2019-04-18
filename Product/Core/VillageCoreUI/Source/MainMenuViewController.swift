@@ -232,7 +232,7 @@ private extension MainMenuViewController {
 
 extension MainMenuViewController: PeopleViewControllerDelegate {
     
-    func shouldShowAndStartDirectMessage(_ directMessage: Group, controller: PeopleViewController) {
+    func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: PeopleViewController) {
         #warning("TODO - Implmenent PeopleViewControllerDelegate")
         assertionFailure()
     }

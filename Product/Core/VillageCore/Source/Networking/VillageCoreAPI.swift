@@ -101,6 +101,19 @@ public enum VillageCoreAPI {
     
     // Streams
     case streamsHistory
+//    case homeStream
+//    case inviteToStream
+    case streamsMembers(streamId: String)
+    case likeMessage(streamId: String, messageId: String)
+    case dislikeMessage(streamId: String, messageId: String)
+    case otherStreams(page: Int)
+    case subscriptions
+    case subscribeToStream(streamId: String)
+    case streamDetails(streamId: String)
+    case sendMessage(message: Message)
+//    case getMessagesWithHistory
+//    case getMessagesNoHistory
+//    case createStream
 }
 
 // MARK: - TargetType
@@ -171,7 +184,7 @@ extension VillageCoreAPI: TargetType {
             
         case .kudos, .giveKudo:
             return "kudos/1.0/kudos"
-            
+
         case .achievements, .givableAchievements:
             return "kudos/1.0/achievements/"
             
@@ -180,6 +193,32 @@ extension VillageCoreAPI: TargetType {
             
         case .streamsHistory:
             return "streams/1.0/history"
+        
+        case let .streamsMembers(streamId):
+            return "streams/1.0/members/\(streamId)"
+        
+        case let .likeMessage(streamId, messageId):
+            return "streams/1.0/messages/\(streamId)/\(messageId)/like"
+            
+        case let .dislikeMessage(streamId, messageId):
+            return "streams/1.0/messages/\(streamId)/\(messageId)/dislike"
+            
+        case .otherStreams(_):
+            return "streams/1.0/streams/"
+            
+        case .subscriptions:
+            return "streams/1.0/subscriptions/"
+            
+        case .subscribeToStream(_):
+            return "stream/1.0/subscriptions/"
+            
+        case let .streamDetails(streamId):
+            return "streams/1.0/stream/\(streamId)"
+            
+        case let .sendMessage(message):
+            return "streams/1.0/messages/\(message.streamId)/\(message.id)"
+
+
         }
     }
 
@@ -204,10 +243,14 @@ extension VillageCoreAPI: TargetType {
              .contentLibraryDirectory,
              .kudos,
              .achievements,
+             .streamsHistory,
              .givableAchievements,
              .kudosLeaderboard,
              .searchDirectory,
-             .streamsHistory:
+             .streamsMembers,
+             .otherStreams,
+             .subscriptions,
+             .streamDetails:
             return .get
             
         case .validateIdentity,
@@ -220,7 +263,11 @@ extension VillageCoreAPI: TargetType {
              .giveKudo:
             return .post
             
-        case .updatePerson:
+        case .updatePerson,
+             .likeMessage(_),
+             .dislikeMessage(_),
+             .subscribeToStream(_),
+             .sendMessage(_):
             return .put
         }
     }
@@ -251,7 +298,15 @@ extension VillageCoreAPI: TargetType {
              .givableAchievements,
              .kudosLeaderboard,
              .searchDirectory,
-             .streamsHistory:
+             .streamsHistory,
+             .streamsMembers,
+             .likeMessage(_),
+             .dislikeMessage(_),
+             .otherStreams(_),
+             .subscriptions,
+             .subscribeToStream(_),
+             .streamDetails(_),
+             .sendMessage(_):
             return Data()
         }
     }
@@ -266,7 +321,12 @@ extension VillageCoreAPI: TargetType {
              .noticeDetail,
              .acknowledgeNotice,
              .contentLibraryDirectory,
-             .streamsHistory:
+             .streamsHistory,
+             .streamsMembers(_),
+             .likeMessage(_),
+             .dislikeMessage(_),
+             .subscriptions,
+             .streamDetails(_):
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId
@@ -445,7 +505,7 @@ extension VillageCoreAPI: TargetType {
                 ],
                 encoding: URLEncoding.default
             )
-            
+
         case let .givableAchievements(page):
             return Task.requestParameters(
                 parameters: [
@@ -455,7 +515,7 @@ extension VillageCoreAPI: TargetType {
                 ],
                 encoding: URLEncoding.default
             )
-            
+
         case let .kudosLeaderboard(page, days):
             return Task.requestParameters(
                 parameters: {
@@ -470,6 +530,52 @@ extension VillageCoreAPI: TargetType {
                 }(),
                 encoding: URLEncoding.default
             )
+             
+        case let .otherStreams(page):
+            return Task.requestParameters(
+                parameters: [
+                    "diagId": User.current.diagnosticId,
+                    "paging": "\(page)-\(defaultPageSize)",
+                    "filter": "available",
+                ],
+                encoding: URLEncoding.default
+            )
+            
+        case let .subscribeToStream(streamId):
+            return Task.requestCompositeParameters(
+                bodyParameters: [
+                    "streamId": streamId,
+                    "subscribed": true,
+                ],
+                bodyEncoding: JSONEncoding.default,
+                urlParameters: [
+                    "diagId": User.current.diagnosticId
+                ]
+            )
+            
+        case let .sendMessage(message):
+            return Task.requestCompositeParameters(
+                bodyParameters: {
+                    var params: [String: Any] = [:]
+                    params["id"] = message.id
+                    message.person.flatMap({ params["person"] = $0 })
+                    message.text.flatMap({ params["text"] = $0 })
+                    message.ownderDisplayName.flatMap({ params["ownerDisplayName"] = $0 })
+                    message.lastUpdated.flatMap({ params["lastUpdated"] = $0 })
+                    message.createdDate.flatMap({ params["createdDate"] = $0 })
+                    params["streamId"] = message.streamId
+                    message.likesCount.flatMap({ params["likesCount"] = $0 })
+                    message.hasUserLikedMessage.flatMap({ params["hasUserLikedMessage"] = $0 })
+                    message.isSystem.flatMap({ params["isSystem"] = $0 })
+                    
+                    return params
+            }(),
+                bodyEncoding: JSONEncoding.default,
+                urlParameters: [
+                    "diagId": User.current.diagnosticId
+                ]
+            )
+            
             
         case let .searchDirectory(_, page),
              let .noticeAcknowledgedList(_, page),
@@ -482,9 +588,7 @@ extension VillageCoreAPI: TargetType {
                 encoding: URLEncoding.default
             )
         }
-        
     }
-
 }
 
 extension VillageCoreAPI: AuthorizedTargetType {
@@ -517,7 +621,15 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .givableAchievements,
              .kudosLeaderboard,
              .searchDirectory,
-             .streamsHistory:
+             .streamsHistory,
+             .streamsMembers(_),
+             .likeMessage(_),
+             .dislikeMessage(_),
+             .otherStreams(_),
+             .subscriptions,
+             .subscribeToStream(_),
+             .streamDetails(_),
+             .sendMessage(_):
             return true
         }
     }

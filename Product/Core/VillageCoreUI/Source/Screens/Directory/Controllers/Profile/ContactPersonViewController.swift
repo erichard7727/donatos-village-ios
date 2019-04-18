@@ -12,7 +12,7 @@ import VillageCore
 
 /// Protocol for ContactPersonViewController delegates.
 protocol PersonProfileViewControllerDelegate {
-    func shouldShowAndStartDirectMessage(_ directMessage: Group, controller: ContactPersonViewController)
+    func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: ContactPersonViewController)
 }
 
 /// Person contact view controller.

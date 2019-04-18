@@ -13,7 +13,7 @@ import AlamofireImage
 import VillageCore
 
 protocol PeopleViewControllerDelegate {
-    func shouldShowAndStartDirectMessage(_ directMessage: Group, controller: PeopleViewController)
+    func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: PeopleViewController)
 }
 
 final class PeopleViewController: UIViewController {
@@ -239,7 +239,7 @@ extension PeopleViewController: UITableViewDelegate {
 
 extension PeopleViewController: PersonProfileViewControllerDelegate {
 
-    func shouldShowAndStartDirectMessage(_ directMessage: Group, controller: ContactPersonViewController) {
+    func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: ContactPersonViewController) {
         delegate?.shouldShowAndStartDirectMessage(directMessage, controller: self)
     }
 }
