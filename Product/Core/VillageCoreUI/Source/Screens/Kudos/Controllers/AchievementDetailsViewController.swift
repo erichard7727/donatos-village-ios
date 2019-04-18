@@ -16,7 +16,7 @@ class AchievementDetailsViewController: UIViewController {
     var kudos: Kudos = []
     var achievementImage: UIImage!
     var currentPage: Int = 1
-    var personId: Int?
+    var person: Person?
     var otherUser: Person?
     
     @IBOutlet weak var tableView: UITableView!
@@ -43,7 +43,7 @@ class AchievementDetailsViewController: UIViewController {
         tableView.estimatedRowHeight = 30
         displayProgressFooterView()
         
-        automaticallyAdjustsScrollViewInsets = false
+        tableView.contentInsetAdjustmentBehavior = .never
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,30 +52,22 @@ class AchievementDetailsViewController: UIViewController {
     }
     
     func getKudosForAchievement() {
+        guard let person = self.person else { return }
         
-        if let id = personId {
-            kudosService.getKudos(filter: .received, currentPage: currentPage, achievementId: achievement.achievementId, personId: id) { result in
-                self.progressIndicator.alpha = 0
-                switch result {
-                case .success(let kudosList):
-                    if let list = kudosList , list.count > 0 {
-                        self.currentPage = self.currentPage + 1
-                        self.kudos = list
-                        self.tableView.reloadSections([1], with: .automatic)
-                    } else if kudosList?.count == 0 {
-                        self.kudosEmptyLabel.alpha = 1
-                    }
-                case .error(let error):
-                    var errorMessage: String
-                    if let localizedFailure = error.userInfo[NSLocalizedFailureReasonErrorKey] as? [String: AnyObject], let error = localizedFailure["error"] as? [String: AnyObject], let code = error["code"], let errorDescription = error["description"] as? String {
-                        errorMessage = "E" + String(describing: code) + " - " + String(describing: errorDescription)
-                    } else {
-                        errorMessage = "Could not update Achievement data."
-                    }
-                    let alert = UIAlertController.dismissableAlert("Error", message: errorMessage)
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
+        firstly {
+            person.kudosReceived(achievement: achievement, page: currentPage)
+        }.then { [weak self] kudos in
+            guard let `self` = self else { return }
+            self.currentPage = self.currentPage + 1
+            self.kudos = kudos
+            self.tableView.reloadSections([1], with: .automatic)
+            self.kudosEmptyLabel.isHidden = !kudos.isEmpty
+        }.catch { [weak self] error in
+            let errorMessage = (error as? VillageServiceError)?.userDisplayableMessage ?? VillageServiceError.genericFailureMessage
+            let alert = UIAlertController.dismissable(title: "Error", message: errorMessage)
+            self?.present(alert, animated: true, completion: nil)
+        }.always { [weak self] in
+            self?.progressIndicator.alpha = 0
         }
     }
     
@@ -90,7 +82,7 @@ class AchievementDetailsViewController: UIViewController {
         progressIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         progressIndicator.center = headerView.center
         headerView.addSubview(progressIndicator)
-        progressIndicator.bringSubview(toFront: headerView)
+        progressIndicator.bringSubviewToFront(headerView)
         progressIndicator.startAnimating()
         progressIndicator.alpha = 1
         headerView.backgroundColor = UIColor.white
@@ -112,11 +104,7 @@ extension AchievementDetailsViewController: UITableViewDataSource {
         if section == 0 {
             return 1
         } else if section == 1 {
-            if kudos != nil {
-                return kudos.count
-            } else {
-                return 0
-            }
+            return kudos.count
         } else {
             return 0
         }
@@ -129,14 +117,14 @@ extension AchievementDetailsViewController: UITableViewDataSource {
             
             cell.achievementTitle.text = achievement.title
             
-            let remainder = CGFloat(achievement.personPoints).truncatingRemainder(dividingBy: CGFloat(achievement.pointsCap))
+            let remainder = CGFloat(achievement.userPoints ?? 0).truncatingRemainder(dividingBy: CGFloat(achievement.pointsCap))
             let remainderPercentage = remainder/CGFloat(achievement.pointsCap) as CGFloat
             cell.achievementImageView.progress = remainderPercentage
             cell.pointsLabel.text = "\(Int(remainder))/\(Int(achievement.pointsCap))"
-            cell.points = Int(achievement.personPoints)
+            cell.points = Int(achievement.userPoints ?? 0)
             cell.pointsCap = Int(achievement.pointsCap)
             
-            cell.achievementImageView.badgeNumber = Int(achievement.personPoints / achievement.pointsCap)
+            cell.achievementImageView.badgeNumber = Int((achievement.userPoints ?? 0) / achievement.pointsCap)
             
             
             if let image = achievementImage {
@@ -148,13 +136,13 @@ extension AchievementDetailsViewController: UITableViewDataSource {
                     cell.achievementImageView.imageView.alpha = 1.0
                 }
             } else {
-                if let attachmentJson = achievement.attachmentJSON, let url = URL(string: attachmentJson[0].url) {
+                if let url = achievement.mediaAttachments.first?.url {
                     let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
                         size: cell.achievementImageView.imageView.frame.size,
                         radius: cell.achievementImageView.imageView.frame.size.height / 2
                     )
                     cell.achievementImageView.imageView.af_setImage(withURL: url, filter: filter, completion: { result in
-                        if self.achievement.personPoints/self.achievement.pointsCap < 1 {
+                        if (self.achievement.userPoints ?? 0) / self.achievement.pointsCap < 1 {
                             cell.achievementImageView.imageView.alpha = 0.6
                         } else {
                             cell.achievementImageView.imageView.alpha = 1.0
@@ -164,7 +152,7 @@ extension AchievementDetailsViewController: UITableViewDataSource {
                 }
             }
             
-            cell.descriptionLabel.text = achievement.achievementDescription
+            cell.descriptionLabel.text = achievement.description
             
             return cell
         } else {
@@ -174,16 +162,16 @@ extension AchievementDetailsViewController: UITableViewDataSource {
             let kudo = kudos[indexPath.row]
             let achievementString = "for " + kudo.achievementTitle
             
-            let regAttributes = [NSFontAttributeName: UIFont(name: "ProximaNova-Regular", size: 15.0)!]
-            let boldAttributes = [NSFontAttributeName: UIFont(name: "ProximaNova-SemiBold", size: 15.0)!]
+            let regAttributes = [NSAttributedString.Key.font: UIFont(name: "ProximaNova-Regular", size: 15.0)!]
+            let boldAttributes = [NSAttributedString.Key.font: UIFont(name: "ProximaNova-SemiBold", size: 15.0)!]
             
-            let sender = NSAttributedString(string: kudo.sender.displayName, attributes: boldAttributes)
+            let sender = NSAttributedString(string: kudo.sender.displayName ?? "", attributes: boldAttributes)
             
             let title = NSMutableAttributedString()
             title.append(sender)
             
             if let otherReceiver = otherUser {
-                let receiver = NSAttributedString(string: otherReceiver.displayName, attributes: boldAttributes)
+                let receiver = NSAttributedString(string: otherReceiver.displayName ?? "", attributes: boldAttributes)
                 
                 title.append(NSAttributedString(string: " gave ", attributes: regAttributes))
                 title.append(receiver)
@@ -193,19 +181,15 @@ extension AchievementDetailsViewController: UITableViewDataSource {
             }
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM dd"
-            var dateString = ""
-            if let date = kudo.created {
-                dateString = formatter.string(from: date as Date)
-            }
             
             cell.configure(
                 title: title,
                 comment: kudo.comment,
                 points: kudo.points,
-                date: dateString
+                date: formatter.string(from: kudo.date)
             )
-            
-            if let url = URL(string: kudo.sender.avatar.url), let avatarImageView = cell.avatarImageView {
+
+            if let url = kudo.sender.avatarURL, let avatarImageView = cell.avatarImageView {
                 let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
                     size: avatarImageView.frame.size,
                     radius: avatarImageView.frame.size.height / 2

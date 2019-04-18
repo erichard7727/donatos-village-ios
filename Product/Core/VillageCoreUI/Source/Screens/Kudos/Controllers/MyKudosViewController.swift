@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import VillageCore
 
 class MyKudosViewController: UIViewController {
     
     // MARK: - Pulic (Internal) Vars
     
-    var context: AppContext!
     var selectedFilter: filter?
     
     enum filter {
@@ -77,10 +77,10 @@ class MyKudosViewController: UIViewController {
         guard let sideMenuController = sideMenuController else {
             return
         }
-        sideMenuController.showLeftMenuController(true)
+        sideMenuController.showMenu()
     }
     
-    internal func onTabClick(_ sender: UIButton) {
+    @objc internal func onTabClick(_ sender: UIButton) {
         if sender == receivedTab?.tabButton && selectedTab != receivedTab {
             selectReceivedTab()
         } else if sender == givenTab?.tabButton && selectedTab != givenTab {
@@ -91,37 +91,36 @@ class MyKudosViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    fileprivate func loadPages() {
-        
-        guard let session = self.context.session,
-              let person = session.person else {
-            assertionFailure("Person not found")
-            return
-        }
-        
-        pages.removeAll()
-        
-        let storyboard = UIStoryboard(name: "Kudos", bundle: Constants.bundle)
-        let kudosListControllerId = "KudosListController"
-        
-        // Received Kudos
-        let received = storyboard.instantiateViewController(withIdentifier: kudosListControllerId) as! KudosListController
-        received.list = .received(context: self.context, receiver: person)
-        pages.append(received)
-        
-        // Given Kudos
-        let given = storyboard.instantiateViewController(withIdentifier: kudosListControllerId) as! KudosListController
-        given.list = .given(context: self.context, giver: person)
-        pages.append(given)
-        
-        pageController?.setViewControllers([pages.first!], direction: .forward, animated: false, completion: nil)
-        
-        if selectedFilter == filter.given {
-            selectGivenTab()
-        } else if selectedFilter == filter.received {
-            selectReceivedTab()
-        } else {
-            selectReceivedTab()
+    fileprivate func loadPages() {        
+        firstly {
+            User.current.getPerson()
+        }.then { [weak self] person in
+            guard let `self` = self else { return }
+            
+            self.pages.removeAll()
+            
+            let storyboard = UIStoryboard(name: "Kudos", bundle: Constants.bundle)
+            let kudosListControllerId = "KudosListController"
+            
+            // Received Kudos
+            let received = storyboard.instantiateViewController(withIdentifier: kudosListControllerId) as! KudosListController
+            received.list = .received(receiver: person)
+            self.pages.append(received)
+            
+            // Given Kudos
+            let given = storyboard.instantiateViewController(withIdentifier: kudosListControllerId) as! KudosListController
+            given.list = .given(giver: person)
+            self.pages.append(given)
+            
+            self.pageController?.setViewControllers([self.pages.first!], direction: .forward, animated: false, completion: nil)
+            
+            if self.selectedFilter == filter.given {
+                self.selectGivenTab()
+            } else if self.selectedFilter == filter.received {
+                self.selectReceivedTab()
+            } else {
+                self.selectReceivedTab()
+            }
         }
     }
     

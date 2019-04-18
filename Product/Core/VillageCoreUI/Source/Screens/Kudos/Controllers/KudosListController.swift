@@ -153,8 +153,7 @@ class KudosListController: UIViewController, StatefulUserInterface {
                 return giver.kudosGiven(page: self.currentPage)
             
             default:
-                assertionFailure()
-                return Promise([])
+                return User.current.getPerson().then { $0.kudosStream(page: self.currentPage) }
             }
         }()
         

@@ -153,37 +153,33 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToKudosStream(_ sender: Any? = nil) {
-//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
-//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
-        print("TODO - show Kudos Stream")
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "KudosListController") as! KudosListController
+        vc.list = .allStream
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     
     @IBAction func onGoToKudosMine(_ sender: Any? = nil) {
-//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
-//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
-        print("TODO - show My Kudos")
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "MyKudosViewController") as! MyKudosViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     
     @IBAction func onGoToKudosAchievements(_ sender: Any? = nil) {
-//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
-//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
-        print("TODO - show Achievements")
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "MyAchievementsViewController") as! MyAchievementsViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     
     @IBAction func onGoToKudosGive(_ sender: Any? = nil) {
-//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
-//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
-        print("TODO - show Give Kudos")
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GiveKudosViewController") as! GiveKudosViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     
     @IBAction func onGoToKudosLeaderboard(_ sender: Any? = nil) {
-//        let vc = UIStoryboard(name: "<#name#>", bundle: Constants.bundle).instantiateViewController(withIdentifier: "<#identifier#>") as! <#ViewController#>
-//        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
-        print("TODO - show Leaderboard")
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "LeaderboardViewController") as! LeaderboardViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     

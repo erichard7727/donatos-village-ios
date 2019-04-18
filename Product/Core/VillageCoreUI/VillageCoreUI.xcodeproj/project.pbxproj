@@ -17,6 +17,11 @@
 		D411BC432247E687003D2F08 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC422247E687003D2F08 /* ProgressIndicator.swift */; };
 		D411BC452247F807003D2F08 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC442247F807003D2F08 /* UIImage+Rotation.swift */; };
 		D411BC472247F844003D2F08 /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC462247F844003D2F08 /* UIImage+Scaling.swift */; };
+		D4164B752268011A0025E6E9 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B702268011A0025E6E9 /* PersonCell.swift */; };
+		D4164B762268011A0025E6E9 /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4164B712268011A0025E6E9 /* PersonCell.xib */; };
+		D4164B772268011A0025E6E9 /* SelectPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B732268011A0025E6E9 /* SelectPeopleViewController.swift */; };
+		D4164B7A226801670025E6E9 /* PersonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B79226801660025E6E9 /* PersonLabel.swift */; };
+		D4164B7C226802570025E6E9 /* PersonSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B7B226802570025E6E9 /* PersonSearchViewController.swift */; };
 		D42FE5C222411E1700B46C8F /* SendEmailTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */; };
 		D42FE5C422411E2000B46C8F /* SendEmailTokenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */; };
 		D43663C32229ACA9006354F2 /* LoginPasswordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */; };
@@ -48,6 +53,19 @@
 		D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E883223B3753002DED70 /* KudoCell.xib */; };
 		D4A6976522600D7700ECC0A8 /* ContentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE82225FFCCB00A215E4 /* ContentDetailController.swift */; };
 		D4A6976622600DF600ECC0A8 /* MenuButtonBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE8C2260018200A215E4 /* MenuButtonBehavior.swift */; };
+		D4A6976D226400CD00ECC0A8 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E87D223B3753002DED70 /* LeaderboardCell.xib */; };
+		D4A69770226400DA00ECC0A8 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E881223B3753002DED70 /* LeaderboardCell.swift */; };
+		D4A69771226400E800ECC0A8 /* AchievementHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E884223B3753002DED70 /* AchievementHeaderCell.swift */; };
+		D4A69772226400E800ECC0A8 /* AchievementHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E885223B3753002DED70 /* AchievementHeaderCell.xib */; };
+		D4A69775226400F200ECC0A8 /* ProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E88A223B3754002DED70 /* ProgressBar.xib */; };
+		D4A697762264010000ECC0A8 /* ItemRedeemedModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E88B223B3754002DED70 /* ItemRedeemedModal.swift */; };
+		D4A697772264010800ECC0A8 /* ProgessBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E88E223B3754002DED70 /* ProgessBarView.swift */; };
+		D4A697782264010C00ECC0A8 /* ItemRedeemedModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E88F223B3754002DED70 /* ItemRedeemedModal.xib */; };
+		D4A69779226409D700ECC0A8 /* AchievementDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E872223B3751002DED70 /* AchievementDetailsViewController.swift */; };
+		D4A6977B226411D100ECC0A8 /* GiveKudosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E874223B3751002DED70 /* GiveKudosViewController.swift */; };
+		D4A6977D226411DF00ECC0A8 /* MyKudosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E876223B3751002DED70 /* MyKudosViewController.swift */; };
+		D4A6977E226411DF00ECC0A8 /* LeaderboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E877223B3751002DED70 /* LeaderboardTableViewController.swift */; };
+		D4A6977F226411DF00ECC0A8 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E878223B3751002DED70 /* LeaderboardViewController.swift */; };
 		D4A697822264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */; };
 		D4AE68792242A5F200A3FB25 /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE68782242A5F200A3FB25 /* VillageCore.framework */; };
 		D4B4E853223AE980002DED70 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E848223AE980002DED70 /* PeopleViewController.swift */; };
@@ -111,6 +129,11 @@
 		D411BC422247E687003D2F08 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		D411BC442247F807003D2F08 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
 		D411BC462247F844003D2F08 /* UIImage+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
+		D4164B702268011A0025E6E9 /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		D4164B712268011A0025E6E9 /* PersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
+		D4164B732268011A0025E6E9 /* SelectPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPeopleViewController.swift; sourceTree = "<group>"; };
+		D4164B79226801660025E6E9 /* PersonLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonLabel.swift; path = "../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Common/Views/PersonLabel.swift"; sourceTree = "<group>"; };
+		D4164B7B226802570025E6E9 /* PersonSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchViewController.swift; sourceTree = "<group>"; };
 		D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailTokenViewController.swift; sourceTree = "<group>"; };
 		D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendEmailTokenViewController.storyboard; sourceTree = "<group>"; };
 		D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginPasswordViewController.storyboard; sourceTree = "<group>"; };
@@ -255,6 +278,35 @@
 				D411BC392247B3EE003D2F08 /* UserSettingsGenericCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		D4164B6E226800BD0025E6E9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D4164B6F2268011A0025E6E9 /* Cells */,
+				D4164B722268011A0025E6E9 /* Controllers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D4164B6F2268011A0025E6E9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D4164B702268011A0025E6E9 /* PersonCell.swift */,
+				D4164B712268011A0025E6E9 /* PersonCell.xib */,
+			);
+			name = Cells;
+			path = "../../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Common/Cells";
+			sourceTree = "<group>";
+		};
+		D4164B722268011A0025E6E9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4164B7B226802570025E6E9 /* PersonSearchViewController.swift */,
+				D4164B732268011A0025E6E9 /* SelectPeopleViewController.swift */,
+			);
+			name = Controllers;
+			path = "../../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Common/Controllers";
 			sourceTree = "<group>";
 		};
 		D460B80F224AC41E003DCA2C /* Notices */ = {
@@ -527,6 +579,7 @@
 				D460B80F224AC41E003DCA2C /* Notices */,
 				D4B4E86F223B370B002DED70 /* Kudos */,
 				D4CEAE7D225FFC9800A215E4 /* Content Library */,
+				D4164B6E226800BD0025E6E9 /* Common */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -554,6 +607,7 @@
 				D4B4E892223B3971002DED70 /* ParentScrollView.swift */,
 				D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */,
 				D411BC422247E687003D2F08 /* ProgressIndicator.swift */,
+				D4164B79226801660025E6E9 /* PersonLabel.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -674,9 +728,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */,
+				D4A697782264010C00ECC0A8 /* ItemRedeemedModal.xib in Resources */,
 				D4F8A5952210B6DE005FDB6A /* proximanova-reg-webfont.ttf in Resources */,
+				D4A69775226400F200ECC0A8 /* ProgressBar.xib in Resources */,
 				D4F8A5842210A1F8005FDB6A /* HomeViewController.storyboard in Resources */,
+				D4A6976D226400CD00ECC0A8 /* LeaderboardCell.xib in Resources */,
+				D4A69772226400E800ECC0A8 /* AchievementHeaderCell.xib in Resources */,
 				D43663CE222A13F2006354F2 /* ForgotPasswordViewController.storyboard in Resources */,
+				D4164B762268011A0025E6E9 /* PersonCell.xib in Resources */,
 				D4F8A5992210B6DE005FDB6A /* proximanova-sbold-webfont.ttf in Resources */,
 				D4B4E86D223B355B002DED70 /* TabItem.xib in Resources */,
 				D460B821224AC434003DCA2C /* Notices.storyboard in Resources */,
@@ -739,17 +798,24 @@
 				D4B4E862223AFF22002DED70 /* InvitePersonController.swift in Sources */,
 				D460B81E224AC434003DCA2C /* NoticeAcknowledgementsViewController.swift in Sources */,
 				D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */,
+				D4164B752268011A0025E6E9 /* PersonCell.swift in Sources */,
 				D4F8A57B22109FAF005FDB6A /* SideMenuController.swift in Sources */,
 				D460B820224AC434003DCA2C /* NoticeListViewController.swift in Sources */,
 				D4B4E893223B3971002DED70 /* ParentScrollView.swift in Sources */,
+				D4A697762264010000ECC0A8 /* ItemRedeemedModal.swift in Sources */,
 				D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */,
 				D4B4E891223B37B0002DED70 /* MyAchievementsViewController.swift in Sources */,
 				D4A6976622600DF600ECC0A8 /* MenuButtonBehavior.swift in Sources */,
+				D4A69770226400DA00ECC0A8 /* LeaderboardCell.swift in Sources */,
+				D4164B772268011A0025E6E9 /* SelectPeopleViewController.swift in Sources */,
+				D4A6977E226411DF00ECC0A8 /* LeaderboardTableViewController.swift in Sources */,
 				D411BC3F2247B3EE003D2F08 /* UserSettingsSwitchCell.swift in Sources */,
 				D4A6976522600D7700ECC0A8 /* ContentDetailController.swift in Sources */,
+				D4164B7A226801670025E6E9 /* PersonLabel.swift in Sources */,
 				D4984EA0223E83E700793CFE /* StatefulUserInterface.swift in Sources */,
 				D460B81F224AC434003DCA2C /* CreateNoticeViewController.swift in Sources */,
 				D4CEAE84225FFCCB00A215E4 /* ContentLibraryCell.swift in Sources */,
+				D4A6977F226411DF00ECC0A8 /* LeaderboardViewController.swift in Sources */,
 				D411BC432247E687003D2F08 /* ProgressIndicator.swift in Sources */,
 				D4B4E853223AE980002DED70 /* PeopleViewController.swift in Sources */,
 				D47FD402220FC08700376D31 /* Image+Named.swift in Sources */,
@@ -763,6 +829,8 @@
 				D411BC3C2247B3EE003D2F08 /* EditSettingsController.swift in Sources */,
 				D4B4E899223B3E5E002DED70 /* AchievementImageView.swift in Sources */,
 				D4B4E864223AFFF6002DED70 /* ContactPersonViewController.swift in Sources */,
+				D4A69771226400E800ECC0A8 /* AchievementHeaderCell.swift in Sources */,
+				D4A6977B226411D100ECC0A8 /* GiveKudosViewController.swift in Sources */,
 				D43663C42229ACA9006354F2 /* LoginPasswordViewController.swift in Sources */,
 				D4CEAE8A226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift in Sources */,
 				D4A697822264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift in Sources */,
@@ -781,17 +849,21 @@
 				D4B4E869223B281E002DED70 /* ProfileBottomContainerViewController.swift in Sources */,
 				D460B81A224AC434003DCA2C /* NewsCell.swift in Sources */,
 				D42FE5C222411E1700B46C8F /* SendEmailTokenViewController.swift in Sources */,
+				D4A697772264010800ECC0A8 /* ProgessBarView.swift in Sources */,
 				D4984EA1223FAF9600793CFE /* KudoCell.swift in Sources */,
+				D4A6977D226411DF00ECC0A8 /* MyKudosViewController.swift in Sources */,
 				D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */,
 				D479D2FD224AE87000AFB3DA /* IndentedTextField.swift in Sources */,
 				D43663CF222A13F2006354F2 /* ForgotPasswordViewController.swift in Sources */,
 				D4F8A57522109E31005FDB6A /* LoginIdentityViewController.swift in Sources */,
 				D411BC3B2247B3EE003D2F08 /* SettingsController.swift in Sources */,
+				D4A69779226409D700ECC0A8 /* AchievementDetailsViewController.swift in Sources */,
 				D4B4E868223B241C002DED70 /* UIAlertController+Utilities.swift in Sources */,
 				D46724F02248160B00F4D7E5 /* Bundle+Version.swift in Sources */,
 				D4F8A57D22109FDA005FDB6A /* SideMenuControllerDelegate.swift in Sources */,
 				D460B81B224AC434003DCA2C /* NoticeCell.swift in Sources */,
 				D4F8A59C2210D556005FDB6A /* KeyboardAwareScrollView.swift in Sources */,
+				D4164B7C226802570025E6E9 /* PersonSearchViewController.swift in Sources */,
 				D411BC3E2247B3EE003D2F08 /* UserSettingsInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

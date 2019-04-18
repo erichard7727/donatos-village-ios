@@ -8,16 +8,38 @@
 
 import UIKit
 import AlamofireImage
+import VillageCore
+import Promises
 
-class LeaderboardTableViewController: UIViewController, KudosServiceInjected {
+class LeaderboardTableViewController: UIViewController {
+    
+    enum Filter {
+        case week
+        case all
+        
+        fileprivate func leaderboard(page: Int) -> Promise<People> {
+            switch self {
+            case .week:
+                return Kudos.weeklyLeaderboard(page: page)
+            case .all:
+                return Kudos.leaderboard(page: page)
+            }
+        }
+    }
+    
+    static func make(for filter: Filter) -> LeaderboardTableViewController {
+        let storyboard = UIStoryboard(name: "Kudos", bundle: Constants.bundle)
+        let vc = storyboard.instantiateViewController(withIdentifier: "LeaderboardTableViewController") as! LeaderboardTableViewController
+        vc.filter = filter
+        return vc
+    }
     
     //Reuse people JSON parser from Notices in Other Models
-    var list: [Persons]!
-    var context: AppContext!
-    var filter: FetchLeaderboardFilter!
-    var currentPage: Int = 2
-    var progressIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    var loadingMorePeople: Bool = false
+    private var list: People = []
+    private var filter: Filter!
+    private var currentPage: Int = 1
+    private var progressIndicator = UIActivityIndicatorView(style: .gray)
+    private var loadingMorePeople: Bool = false
     
     @IBOutlet weak var emptyStateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -34,7 +56,7 @@ class LeaderboardTableViewController: UIViewController, KudosServiceInjected {
         emptyStateLabel.text = "Nobody is on the Leaderboard."
         
         tableView.register(kudosNib, forCellReuseIdentifier: "LeaderboardCell")
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 75.0
         
         tableView.alpha = 0
@@ -43,6 +65,8 @@ class LeaderboardTableViewController: UIViewController, KudosServiceInjected {
         })
         
         displayProgressFooterView()
+        
+        loadMorePeople()
     }
     
     func displayProgressFooterView() {
@@ -50,7 +74,7 @@ class LeaderboardTableViewController: UIViewController, KudosServiceInjected {
         progressIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         progressIndicator.center = headerView.center
         headerView.addSubview(progressIndicator)
-        progressIndicator.bringSubview(toFront: headerView)
+        progressIndicator.bringSubviewToFront(headerView)
         progressIndicator.startAnimating()
         progressIndicator.alpha = 0
         headerView.backgroundColor = UIColor.white
@@ -61,28 +85,21 @@ class LeaderboardTableViewController: UIViewController, KudosServiceInjected {
     func loadMorePeople() {
         self.loadingMorePeople = true
         
-        kudosService.getLeaderboard(filter: filter, page: self.currentPage) {
-            allResult in
-            self.loadingMorePeople = false
-            switch allResult {
-            case .success(let allPeople):
-                if let people = allPeople {
-                    if people.count > 0 {
-                        self.list.append(contentsOf: people)
-                        self.currentPage = self.currentPage + 1
-                        self.tableView.reloadSections([0], with: .automatic)
-                    }
-                }
-            case .error(let error):
-                var errorMessage: String
-                if let localizedFailure = error.userInfo[NSLocalizedFailureReasonErrorKey] as? [String: AnyObject], let error = localizedFailure["error"] as? [String: AnyObject], let code = error["code"], let errorDescription = error["description"] as? String {
-                    errorMessage = "E" + String(describing: code) + " - " + String(describing: errorDescription)
-                } else {
-                    errorMessage = "Could not update Leaderboard data."
-                }
-                let alert = UIAlertController.dismissableAlert("Error", message: errorMessage)
-                self.present(alert, animated: true, completion: nil)
+        firstly {
+            self.filter.leaderboard(page: self.currentPage)
+        }.then { [weak self] people in
+            guard let `self` = self else { return }
+            
+            if !people.isEmpty {
+                self.list.append(contentsOf: people)
+                self.currentPage = self.currentPage + 1
+                self.tableView.reloadSections([0], with: .automatic)
             }
+        }.catch { [weak self] error in
+            let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
+            self?.present(alert, animated: true, completion: nil)
+        }.always {
+            self.loadingMorePeople = false
         }
     }
 }
@@ -102,15 +119,15 @@ extension LeaderboardTableViewController: UITableViewDataSource {
         
         let leaderBoardPerson = list[indexPath.row]
         
-        if let points = leaderBoardPerson.points {
-            cell.pointLabel.text = String(points)
+        if leaderBoardPerson.kudos.points > 0 {
+            cell.pointLabel.text = leaderBoardPerson.kudos.points.description
         }
         cell.nameLabel.text = leaderBoardPerson.displayName
         cell.titleLabel.text = leaderBoardPerson.jobTitle
         cell.personID = String(leaderBoardPerson.id)
         
         
-        if let url = URL(string: leaderBoardPerson.avatar.url) {
+        if let url = leaderBoardPerson.avatarURL {
             let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
                 size: cell.avatarImageView.frame.size,
                 radius: cell.avatarImageView.frame.size.height / 2

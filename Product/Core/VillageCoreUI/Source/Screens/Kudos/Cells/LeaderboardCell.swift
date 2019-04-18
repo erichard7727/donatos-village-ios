@@ -23,7 +23,7 @@ class LeaderboardCell: UITableViewCell {
         
         avatarImageView.clipsToBounds = true
         avatarImageView.layer.cornerRadius = avatarImageViewWidthConstraint.constant / 2.0
-        avatarImageView.backgroundColor = UIColor.appGray()
+        avatarImageView.backgroundColor = UIColor.vlgGray
     }
     
     func setCell() {

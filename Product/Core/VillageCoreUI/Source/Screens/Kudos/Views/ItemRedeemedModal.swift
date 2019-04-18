@@ -9,7 +9,6 @@
 import UIKit
 
 class ItemRedeemedModal: UIViewController {
-    var context: AppContext!
     
     @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var itemImageView: UIImageView!

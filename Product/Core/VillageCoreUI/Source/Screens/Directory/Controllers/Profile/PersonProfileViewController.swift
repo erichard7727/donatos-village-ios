@@ -136,7 +136,7 @@ final class PersonProfileViewController: UIViewController {
                     //MyAchievementsViewController
                     let achievements = storyboard.instantiateViewController(withIdentifier: achievementControllerId) as! MyAchievementsViewController
                     achievements.otherUser = profilePerson
-                    achievements.personId = String(profilePerson.id)
+                    achievements.person = profilePerson
                     self.pages.append(achievements)
                 }
                 

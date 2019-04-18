@@ -33,7 +33,7 @@ public struct ClientConfiguration: Codable {
         public var localizedDescription: String {
             switch self {
             case .missingConfigurationFile:
-                return "Could not find an NSDataAsset named 'client-configuration' in Bundle.main or in VillageCore."
+                return "Could not find an NSDataAsset named 'client-configuration' in Constants.bundlen or in VillageCore."
                 
             case .invalidConfigurationFormat(let decodingError):
                 return decodingError.localizedDescription
