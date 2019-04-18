@@ -150,18 +150,13 @@
 		D4B4E86C223B355A002DED70 /* TabItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		D4B4E871223B3751002DED70 /* KudosListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KudosListController.swift; sourceTree = "<group>"; };
 		D4B4E872223B3751002DED70 /* AchievementDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementDetailsViewController.swift; sourceTree = "<group>"; };
-		D4B4E873223B3751002DED70 /* RedeemMyPointsSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemMyPointsSelectionViewController.swift; sourceTree = "<group>"; };
 		D4B4E874223B3751002DED70 /* GiveKudosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveKudosViewController.swift; sourceTree = "<group>"; };
-		D4B4E875223B3751002DED70 /* PurchaseHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryViewController.swift; sourceTree = "<group>"; };
 		D4B4E876223B3751002DED70 /* MyKudosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKudosViewController.swift; sourceTree = "<group>"; };
 		D4B4E877223B3751002DED70 /* LeaderboardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewController.swift; sourceTree = "<group>"; };
 		D4B4E878223B3751002DED70 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
-		D4B4E879223B3751002DED70 /* RedeemMyPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemMyPointsViewController.swift; sourceTree = "<group>"; };
 		D4B4E87A223B3751002DED70 /* MyAchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAchievementsViewController.swift; sourceTree = "<group>"; };
 		D4B4E87B223B3752002DED70 /* Kudos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Kudos.storyboard; sourceTree = "<group>"; };
 		D4B4E87D223B3753002DED70 /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
-		D4B4E87E223B3753002DED70 /* PurchaseHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchaseHistoryCell.xib; sourceTree = "<group>"; };
-		D4B4E87F223B3753002DED70 /* RedeemPointsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPointsCollectionViewCell.swift; sourceTree = "<group>"; };
 		D4B4E880223B3753002DED70 /* KudoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KudoCell.swift; sourceTree = "<group>"; };
 		D4B4E881223B3753002DED70 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		D4B4E882223B3753002DED70 /* AchievementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -169,8 +164,6 @@
 		D4B4E884223B3753002DED70 /* AchievementHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementHeaderCell.swift; sourceTree = "<group>"; };
 		D4B4E885223B3753002DED70 /* AchievementHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AchievementHeaderCell.xib; sourceTree = "<group>"; };
 		D4B4E886223B3753002DED70 /* AchievementCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AchievementCollectionViewCell.xib; sourceTree = "<group>"; };
-		D4B4E887223B3753002DED70 /* RedeemPointsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RedeemPointsCollectionViewCell.xib; sourceTree = "<group>"; };
-		D4B4E888223B3753002DED70 /* PurchaseHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryCell.swift; sourceTree = "<group>"; };
 		D4B4E88A223B3754002DED70 /* ProgressBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBar.xib; sourceTree = "<group>"; };
 		D4B4E88B223B3754002DED70 /* ItemRedeemedModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRedeemedModal.swift; sourceTree = "<group>"; };
 		D4B4E88C223B3754002DED70 /* AchievementImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementImageView.swift; sourceTree = "<group>"; };
@@ -392,13 +385,10 @@
 			children = (
 				D4B4E871223B3751002DED70 /* KudosListController.swift */,
 				D4B4E872223B3751002DED70 /* AchievementDetailsViewController.swift */,
-				D4B4E873223B3751002DED70 /* RedeemMyPointsSelectionViewController.swift */,
 				D4B4E874223B3751002DED70 /* GiveKudosViewController.swift */,
-				D4B4E875223B3751002DED70 /* PurchaseHistoryViewController.swift */,
 				D4B4E876223B3751002DED70 /* MyKudosViewController.swift */,
 				D4B4E877223B3751002DED70 /* LeaderboardTableViewController.swift */,
 				D4B4E878223B3751002DED70 /* LeaderboardViewController.swift */,
-				D4B4E879223B3751002DED70 /* RedeemMyPointsViewController.swift */,
 				D4B4E87A223B3751002DED70 /* MyAchievementsViewController.swift */,
 			);
 			path = Controllers;
@@ -408,8 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				D4B4E87D223B3753002DED70 /* LeaderboardCell.xib */,
-				D4B4E87E223B3753002DED70 /* PurchaseHistoryCell.xib */,
-				D4B4E87F223B3753002DED70 /* RedeemPointsCollectionViewCell.swift */,
 				D4B4E880223B3753002DED70 /* KudoCell.swift */,
 				D4B4E881223B3753002DED70 /* LeaderboardCell.swift */,
 				D4B4E882223B3753002DED70 /* AchievementCollectionViewCell.swift */,
@@ -417,8 +405,6 @@
 				D4B4E883223B3753002DED70 /* KudoCell.xib */,
 				D4B4E884223B3753002DED70 /* AchievementHeaderCell.swift */,
 				D4B4E885223B3753002DED70 /* AchievementHeaderCell.xib */,
-				D4B4E887223B3753002DED70 /* RedeemPointsCollectionViewCell.xib */,
-				D4B4E888223B3753002DED70 /* PurchaseHistoryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
