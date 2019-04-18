@@ -18,7 +18,11 @@ final class MainMenuViewController: UIViewController {
     @IBOutlet private weak var menuOptionOtherGroups: UIView!
     @IBOutlet private weak var menuOptionPeople: UIView!
     
-    @IBOutlet private weak var menuOptionKudosContainer: UIView!
+    @IBOutlet private weak var menuOptionKudosContainer: UIView! {
+        didSet {
+            menuOptionKudosContainer.isHidden = !Constants.Settings.kudosEnabled
+        }
+    }
     @IBOutlet private weak var menuOptionKudos: UIView!
     @IBOutlet private weak var menuOptionsKudosExpandButton: UIButton!
     @IBOutlet private weak var menuOptionKudosChildrenContainer: UIStackView! {
@@ -31,9 +35,21 @@ final class MainMenuViewController: UIViewController {
     }
     @IBOutlet private weak var menuOptionKudosStream: UIView!
     @IBOutlet private weak var menuOptionKudosMyKudos: UIView!
-    @IBOutlet private weak var menuOptionKudosAchievements: UIView!
+    @IBOutlet private weak var menuOptionKudosAchievements: UIView! {
+        didSet {
+            if !Constants.Settings.achievementsEnabled {
+                menuOptionKudosAchievements.removeFromSuperview()
+            }
+        }
+    }
     @IBOutlet private weak var menuOptionKudosGiveKudos: UIView!
-    @IBOutlet private weak var menuOptionKudosLeaderboard: UIView!
+    @IBOutlet private weak var menuOptionKudosLeaderboard: UIView! {
+        didSet {
+            if !Constants.Settings.achievementsEnabled {
+                menuOptionKudosLeaderboard.removeFromSuperview()
+            }
+        }
+    }
     
     @IBOutlet private weak var menuOptionContentLibrary: UIView!
     
