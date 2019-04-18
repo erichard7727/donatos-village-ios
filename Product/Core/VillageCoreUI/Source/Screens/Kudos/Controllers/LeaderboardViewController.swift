@@ -10,8 +10,6 @@ import UIKit
 
 class LeaderboardViewController: UIViewController {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet fileprivate weak var thisWeekTab: TabItemView? {
         didSet {
             // Configure tab
@@ -65,12 +63,6 @@ class LeaderboardViewController: UIViewController {
     
     fileprivate var pages = [LeaderboardTableViewController]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        activityIndicator.startAnimating()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -83,6 +75,7 @@ class LeaderboardViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pageController = segue.destination as? UIPageViewController {

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -597,10 +598,6 @@
                                     <segue destination="Bo4-NG-rt4" kind="embed" id="Sjh-fC-E1d"/>
                                 </connections>
                             </containerView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DYB-N9-aUC">
-                                <rect key="frame" x="169" y="309" width="37" height="37"/>
-                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -609,9 +606,7 @@
                             <constraint firstItem="cbc-1I-IVi" firstAttribute="top" secondItem="HbB-pV-yfe" secondAttribute="bottom" id="ArX-vd-QvD"/>
                             <constraint firstItem="fEi-Ep-57h" firstAttribute="leading" secondItem="dsV-zt-fSk" secondAttribute="leadingMargin" id="Kac-nX-x29"/>
                             <constraint firstItem="xW0-05-IHg" firstAttribute="width" secondItem="fEi-Ep-57h" secondAttribute="width" id="T3H-DI-Uqb"/>
-                            <constraint firstItem="DYB-N9-aUC" firstAttribute="centerY" secondItem="HbB-pV-yfe" secondAttribute="centerY" id="TgA-xo-grg"/>
                             <constraint firstItem="fEi-Ep-57h" firstAttribute="top" secondItem="QzO-YF-4Es" secondAttribute="bottom" id="ZkI-6h-TNJ"/>
-                            <constraint firstItem="DYB-N9-aUC" firstAttribute="centerX" secondItem="HbB-pV-yfe" secondAttribute="centerX" id="fNQ-ct-T6G"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xW0-05-IHg" secondAttribute="trailing" id="fvD-At-9ad"/>
                             <constraint firstItem="HbB-pV-yfe" firstAttribute="leading" secondItem="dsV-zt-fSk" secondAttribute="leading" id="hxU-2T-EtG"/>
                             <constraint firstItem="HbB-pV-yfe" firstAttribute="top" secondItem="fEi-Ep-57h" secondAttribute="bottom" constant="8" id="jjS-eT-BeC"/>
@@ -631,7 +626,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="DYB-N9-aUC" id="uDe-ic-q97"/>
                         <outlet property="allTimeTab" destination="xW0-05-IHg" id="KfT-LL-J8x"/>
                         <outlet property="thisWeekTab" destination="fEi-Ep-57h" id="cn8-Lb-UWk"/>
                     </connections>
@@ -674,6 +668,10 @@
                                 <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="OCS-iq-vQc">
+                                <rect key="frame" x="169" y="289" width="37" height="37"/>
+                                <color key="color" name="vlgMediumGray"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -681,8 +679,10 @@
                             <constraint firstAttribute="trailing" secondItem="oqx-Rk-d7v" secondAttribute="trailing" id="F2l-sU-SrR"/>
                             <constraint firstItem="oqx-Rk-d7v" firstAttribute="top" secondItem="ohc-Qn-ja1" secondAttribute="bottom" id="Q2K-WN-n9A"/>
                             <constraint firstItem="MKO-1I-pR8" firstAttribute="top" secondItem="oqx-Rk-d7v" secondAttribute="bottom" id="TD5-Sx-QMv"/>
+                            <constraint firstItem="MJ7-yC-glJ" firstAttribute="top" secondItem="OCS-iq-vQc" secondAttribute="bottom" constant="8" id="eSl-YE-H14"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MJ7-yC-glJ" secondAttribute="trailing" id="gim-qf-uQz"/>
                             <constraint firstItem="oqx-Rk-d7v" firstAttribute="leading" secondItem="8SZ-vM-HwS" secondAttribute="leading" id="lnR-oF-5VB"/>
+                            <constraint firstItem="OCS-iq-vQc" firstAttribute="centerX" secondItem="8SZ-vM-HwS" secondAttribute="centerX" id="n8U-4Y-QCG"/>
                             <constraint firstItem="MJ7-yC-glJ" firstAttribute="centerX" secondItem="oqx-Rk-d7v" secondAttribute="centerX" id="nP5-0w-K0V"/>
                             <constraint firstItem="MJ7-yC-glJ" firstAttribute="centerY" secondItem="oqx-Rk-d7v" secondAttribute="centerY" id="yYo-dA-UeS"/>
                         </constraints>
@@ -692,6 +692,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emptyStateLabel" destination="MJ7-yC-glJ" id="k3e-ZD-Pad"/>
+                        <outlet property="loadingIndicator" destination="OCS-iq-vQc" id="PDB-Xd-gTB"/>
                         <outlet property="tableView" destination="oqx-Rk-d7v" id="0FR-Vo-K3y"/>
                     </connections>
                 </viewController>
@@ -703,5 +704,8 @@
     <resources>
         <image name="back-button" width="28" height="28"/>
         <image name="menu-icon" width="47" height="28"/>
+        <namedColor name="vlgMediumGray">
+            <color red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

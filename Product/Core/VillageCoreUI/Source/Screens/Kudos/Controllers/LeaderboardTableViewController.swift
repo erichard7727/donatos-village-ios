@@ -38,22 +38,30 @@ class LeaderboardTableViewController: UIViewController {
     private var list: People = []
     private var filter: Filter!
     private var currentPage: Int = 1
-    private var progressIndicator = UIActivityIndicatorView(style: .gray)
+    
+    private lazy var progressIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .gray)
+        view.hidesWhenStopped = true
+        return view
+    }()
+    
     private var loadingMorePeople: Bool = false
     
-    @IBOutlet weak var emptyStateLabel: UILabel!
+    @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var emptyStateLabel: UILabel! {
+        didSet {
+            emptyStateLabel.text = "Nobody is on the Leaderboard."
+            emptyStateLabel.isHidden = true
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let kudosNib = UINib(nibName: "LeaderboardCell", bundle: Constants.bundle)
         
-        if list.count > 0 {
-            emptyStateLabel.alpha = 0
-        } else {
-            emptyStateLabel.alpha = 1
-        }
-        emptyStateLabel.text = "Nobody is on the Leaderboard."
+        let kudosNib = UINib(nibName: "LeaderboardCell", bundle: Constants.bundle)
         
         tableView.register(kudosNib, forCellReuseIdentifier: "LeaderboardCell")
         tableView.rowHeight = UITableView.automaticDimension
@@ -66,7 +74,10 @@ class LeaderboardTableViewController: UIViewController {
         
         displayProgressFooterView()
         
-        loadMorePeople()
+        self.loadingIndicator.startAnimating()
+        loadMorePeople { [weak self] in
+            self?.loadingIndicator.stopAnimating()
+        }
     }
     
     func displayProgressFooterView() {
@@ -75,14 +86,12 @@ class LeaderboardTableViewController: UIViewController {
         progressIndicator.center = headerView.center
         headerView.addSubview(progressIndicator)
         progressIndicator.bringSubviewToFront(headerView)
-        progressIndicator.startAnimating()
-        progressIndicator.alpha = 0
         headerView.backgroundColor = UIColor.white
         tableView.tableFooterView = headerView
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -headerView.frame.height, right: 0)
     }
     
-    func loadMorePeople() {
+    func loadMorePeople(completion: @escaping () -> Void) {
         self.loadingMorePeople = true
         
         firstly {
@@ -90,16 +99,20 @@ class LeaderboardTableViewController: UIViewController {
         }.then { [weak self] people in
             guard let `self` = self else { return }
             
+            self.list.append(contentsOf: people)
+            self.tableView.reloadSections([0], with: .automatic)
+            
             if !people.isEmpty {
-                self.list.append(contentsOf: people)
                 self.currentPage = self.currentPage + 1
-                self.tableView.reloadSections([0], with: .automatic)
             }
+            
+            self.emptyStateLabel.isHidden = !self.list.isEmpty
         }.catch { [weak self] error in
             let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
             self?.present(alert, animated: true, completion: nil)
-        }.always {
-            self.loadingMorePeople = false
+        }.always { [weak self] in
+            self?.loadingMorePeople = false
+            completion()
         }
     }
 }
@@ -146,9 +159,10 @@ extension LeaderboardTableViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height {
             if !loadingMorePeople {
-                progressIndicator.alpha = 1
-                loadingMorePeople = true
-                loadMorePeople()
+                progressIndicator.startAnimating()
+                loadMorePeople { [weak self] in
+                    self?.progressIndicator.stopAnimating()
+                }
             }
         }
     }

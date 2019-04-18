@@ -22,7 +22,11 @@ class AchievementDetailsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var kudosEmptyLabel: UILabel!
     
-    let progressIndicator = UIActivityIndicatorView(style: .gray)
+    lazy var progressIndicator: UIActivityIndicatorView =  {
+        let view = UIActivityIndicatorView(style: .gray)
+        view.hidesWhenStopped = true
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +52,16 @@ class AchievementDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getKudosForAchievement()
+        
+        if self.currentPage == 1 {
+            getKudosForAchievement()
+        }
     }
     
     func getKudosForAchievement() {
         guard let person = self.person else { return }
+        
+        progressIndicator.startAnimating()
         
         firstly {
             person.kudosReceived(achievement: achievement, page: currentPage)
@@ -67,7 +76,7 @@ class AchievementDetailsViewController: UIViewController {
             let alert = UIAlertController.dismissable(title: "Error", message: errorMessage)
             self?.present(alert, animated: true, completion: nil)
         }.always { [weak self] in
-            self?.progressIndicator.alpha = 0
+            self?.progressIndicator.stopAnimating()
         }
     }
     
@@ -83,8 +92,6 @@ class AchievementDetailsViewController: UIViewController {
         progressIndicator.center = headerView.center
         headerView.addSubview(progressIndicator)
         progressIndicator.bringSubviewToFront(headerView)
-        progressIndicator.startAnimating()
-        progressIndicator.alpha = 1
         headerView.backgroundColor = UIColor.white
         tableView.tableFooterView = headerView
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -headerView.frame.height, right: 0)

@@ -36,7 +36,8 @@ class MyAchievementsViewController: UIViewController {
             } else {
                 return User.current.getPerson()
             }
-        }.then { person in
+        }.then { [weak self] person -> Promise<Achievements> in
+            self?.person = person
             return person.achievements()
         }.then { [weak self] achievements in
             self?.achievements = achievements
