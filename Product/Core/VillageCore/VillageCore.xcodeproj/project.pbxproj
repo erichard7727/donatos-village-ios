@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29B3F24EB594D04C3C2D8936 /* Pods_VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D8B1C81BB2D36985F1F084E /* Pods_VillageCore.framework */; };
+		D4164B6B2267EF3E0025E6E9 /* Achievements+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */; };
 		D417388A220C4FD500F5B1F6 /* URL+StaticString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */; };
 		D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417388C220C501F00F5B1F6 /* VillageCoreAPI.swift */; };
 		D417388F220C502700F5B1F6 /* VillageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417388E220C502700F5B1F6 /* VillageProvider.swift */; };
@@ -62,6 +63,7 @@
 		45DCC8839FF8438852BB242E /* Pods-VillageCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCore.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCore/Pods-VillageCore.debug.xcconfig"; sourceTree = "<group>"; };
 		5D8B1C81BB2D36985F1F084E /* Pods_VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC68224E87A5F7E81695ABC5 /* Pods-VillageCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCore.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCore/Pods-VillageCore.release.xcconfig"; sourceTree = "<group>"; };
+		D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Achievements+Services.swift"; sourceTree = "<group>"; };
 		D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+StaticString.swift"; sourceTree = "<group>"; };
 		D417388C220C501F00F5B1F6 /* VillageCoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillageCoreAPI.swift; sourceTree = "<group>"; };
 		D417388E220C502700F5B1F6 /* VillageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillageProvider.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				D4B4E83F223AA7F4002DED70 /* Kudo.swift */,
 				D4A6976B22622BA100ECC0A8 /* Kudo+Services.swift */,
 				D4B4E894223B3C47002DED70 /* Achievements.swift */,
+				D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */,
 				D4B4E865223B0016002DED70 /* Group.swift */,
 				D46724F3224828C300F4D7E5 /* Notice.swift */,
 				D479D2FA224AD78800AFB3DA /* Notice+Services.swift */,
@@ -413,6 +416,7 @@
 				D4615852220F30570072D224 /* AuthenticationService.swift in Sources */,
 				D4B4E83822395928002DED70 /* Person.swift in Sources */,
 				D4B4E83522391D06002DED70 /* SecurityPolicies.swift in Sources */,
+				D4164B6B2267EF3E0025E6E9 /* Achievements+Services.swift in Sources */,
 				D4615854220F44100072D224 /* User+Keychain.swift in Sources */,
 				D4B4E83C223A9509002DED70 /* Person+Directory.swift in Sources */,
 				D4615856220F44250072D224 /* User+Authentication.swift in Sources */,

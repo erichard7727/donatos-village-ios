@@ -18,21 +18,35 @@ struct KudosService {
     
     private init() { }
     
-    static func getKudosReceived(for person: Person, page: Int = 1) -> Promise<Kudos> {
-        return getKudos(.received, for: person, page: page)
+    static func getKudosStream(for person: Person, page: Int = 1) -> Promise<Kudos> {
+        return getKudos(.all, for: person, page: page)
     }
     
-    static func getKudosGiven(for person: Person, page: Int = 1) -> Promise<Kudos> {
-        return getKudos(.given, for: person, page: page)
+    static func getKudosReceived(for person: Person, achievement: Achievement? = nil, page: Int = 1) -> Promise<Kudos> {
+        return getKudos(.received, for: person, achievement: achievement, page: page)
     }
     
-    static func getKudos(_ kudoType: VillageCoreAPI.KudoType, for person: Person, page: Int = 1) -> Promise<Kudos> {
+    static func getKudosGiven(for person: Person, achievement: Achievement? = nil, page: Int = 1) -> Promise<Kudos> {
+        return getKudos(.given, for: person, achievement: achievement, page: page)
+    }
+    
+    static func getKudos(_ kudoType: VillageCoreAPI.KudoType, for person: Person, achievement: Achievement? = nil, page: Int = 1) -> Promise<Kudos> {
         return firstly {
-            let kudos = VillageCoreAPI.kudos(kudoType, personId: person.id.description, page: page)
+            let kudos = VillageCoreAPI.kudos(kudoType, personId: person.id.description, achievementId: achievement?.id, page: page)
             return VillageService.shared.request(target: kudos)
         }.then { (json: JSON) -> Kudos in
             let kudos = json["kudos"].arrayValue.compactMap({ Kudo(from: $0) })
             return kudos
+        }
+    }
+    
+    static func givableAchievements(page: Int = 1) -> Promise<Achievements> {
+        return firstly {
+            let achievements = VillageCoreAPI.givableAchievements(page: page)
+            return VillageService.shared.request(target: achievements)
+        }.then { (json: JSON) -> Achievements in
+            let achievements = json["achievements"].arrayValue.compactMap({ Achievement(from: $0) })
+            return achievements
         }
     }
     

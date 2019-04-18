@@ -56,6 +56,7 @@ public enum VillageCoreAPI {
     }
     
     public enum KudoType: String {
+        case all = ""
         case received
         case given
     }
@@ -92,7 +93,7 @@ public enum VillageCoreAPI {
     case contentLibraryDirectory(contentId: String)
     
     // Kudos
-    case kudos(_ kudoType: KudoType, personId: String, page: Int)
+    case kudos(_ kudoType: KudoType, personId: String, achievementId: String?, page: Int)
     case achievements(personId: String, page: Int)
     case givableAchievements(page: Int)
     case giveKudo(receiverId: Int, achievementId: String, points: Int, comment: String)
@@ -406,12 +407,17 @@ extension VillageCoreAPI: TargetType {
                 )
             }
             
-        case let .kudos(kudoType, personId, page):
+        case let .kudos(kudoType, personId, achievementId, page):
+            let filters: [String?] = [
+                (kudoType == .all) ? nil : kudoType.rawValue,
+                "personId:\(personId)",
+                achievementId.flatMap({ "achievementId:\($0)" })
+            ]
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId,
                     "paging": "\(page)-\(defaultPageSize)",
-                    "filter": "\(kudoType.rawValue),personId:\(personId)",
+                    "filter": filters.compactMap({ $0 }).joined(separator: ","),
                 ],
                 encoding: URLEncoding.default
             )
