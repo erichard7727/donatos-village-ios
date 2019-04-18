@@ -90,7 +90,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
     fileprivate var selectedAchievementIndex: Int? {
         didSet {
             guard let selectedAchievementIndex = selectedAchievementIndex,
-                  selectedAchievementIndex < achievements.count else {
+                  selectedAchievementIndex <= achievements.count else {
                 categoryTextField.text = nil
                 return
             }
@@ -119,6 +119,12 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
         }.then { [weak self] achievements in
             self?.achievements = achievements
             self?.pickerView.reloadAllComponents()
+            if achievements.count == 1 {
+                self?.selectedAchievementIndex = 0
+                DispatchQueue.main.async {
+                    self?.pickerView.selectRow(0, inComponent: 0, animated: false)
+                }
+            }
         }.catch { [weak self] error in
             let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem fetching eligible Achievements to give Kudos for.")
             self?.present(alert, animated: true, completion: nil)
@@ -266,6 +272,15 @@ extension GiveKudosViewController: UITextViewDelegate {
 // MARK: - UITextFieldDelegate
 
 extension GiveKudosViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == categoryTextField {
+            // Only allow selecting an achievement if there are more than one
+            return achievements.count > 1
+        } else {
+            return true
+        }
+    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == categoryTextField, textField.text?.isEmpty == true, achievements != nil && !achievements.isEmpty {
