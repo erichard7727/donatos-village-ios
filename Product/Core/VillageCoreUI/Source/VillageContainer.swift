@@ -89,6 +89,8 @@ extension VillageContainer: UIApplicationDelegate {
         
         print(ClientConfiguration.current)
         
+        applyTheme()
+        
         runAppStartupFlow()
         
         return true
@@ -165,6 +167,17 @@ private extension VillageContainer {
                 throw FontRegistrationError.failedRegisteringFont(name: fontName, error: error.takeUnretainedValue())
             }
         }
+    }
+    
+    /// Applies the theme via appearance proxy.
+    func applyTheme() {
+        UINavigationBar.appearance().barTintColor = UIColor.vlgRed
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [
+            .font: UIFont(name: "ProximaNova-Semibold", size: 15.0)!,
+            .foregroundColor: UIColor.white
+        ]
     }
     
     @objc func runAppStartupFlow() {

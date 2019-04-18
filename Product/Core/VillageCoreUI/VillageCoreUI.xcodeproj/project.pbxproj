@@ -88,6 +88,7 @@
 		D4B4E897223B3D0E002DED70 /* AchievementCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E886223B3753002DED70 /* AchievementCollectionViewCell.xib */; };
 		D4B4E899223B3E5E002DED70 /* AchievementImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E88C223B3754002DED70 /* AchievementImageView.swift */; };
 		D4B4E89A223B3E5E002DED70 /* AchievementImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E88D223B3754002DED70 /* AchievementImage.xib */; };
+		D4C037F0226942D200BA7D9D /* UINavigationController+BarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C037EF226942D200BA7D9D /* UINavigationController+BarStyle.swift */; };
 		D4CC29B1220756D60091BEFB /* VillageCoreUI.h in Headers */ = {isa = PBXBuildFile; fileRef = D4CC29AF220756D60091BEFB /* VillageCoreUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4CEAE84225FFCCB00A215E4 /* ContentLibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE7F225FFCCB00A215E4 /* ContentLibraryCell.swift */; };
 		D4CEAE87225FFCCB00A215E4 /* ContentLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CEAE83225FFCCB00A215E4 /* ContentLibrary.storyboard */; };
@@ -196,6 +197,7 @@
 		D4B4E88E223B3754002DED70 /* ProgessBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgessBarView.swift; sourceTree = "<group>"; };
 		D4B4E88F223B3754002DED70 /* ItemRedeemedModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemRedeemedModal.xib; sourceTree = "<group>"; };
 		D4B4E892223B3971002DED70 /* ParentScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentScrollView.swift; sourceTree = "<group>"; };
+		D4C037EF226942D200BA7D9D /* UINavigationController+BarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+BarStyle.swift"; sourceTree = "<group>"; };
 		D4CC29AC220756D60091BEFB /* VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CC29AF220756D60091BEFB /* VillageCoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VillageCoreUI.h; sourceTree = "<group>"; };
 		D4CC29B0220756D60091BEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				D4B4E85D223AF3AE002DED70 /* UIColor+Named.swift */,
 				D4B4E867223B241C002DED70 /* UIAlertController+Utilities.swift */,
 				D46724EF2248160B00F4D7E5 /* Bundle+Version.swift */,
+				D4C037EF226942D200BA7D9D /* UINavigationController+BarStyle.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				D411BC3B2247B3EE003D2F08 /* SettingsController.swift in Sources */,
 				D4A69779226409D700ECC0A8 /* AchievementDetailsViewController.swift in Sources */,
 				D4B4E868223B241C002DED70 /* UIAlertController+Utilities.swift in Sources */,
+				D4C037F0226942D200BA7D9D /* UINavigationController+BarStyle.swift in Sources */,
 				D46724F02248160B00F4D7E5 /* Bundle+Version.swift in Sources */,
 				D4F8A57D22109FDA005FDB6A /* SideMenuControllerDelegate.swift in Sources */,
 				D460B81B224AC434003DCA2C /* NoticeCell.swift in Sources */,

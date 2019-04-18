@@ -15,6 +15,8 @@ extension UIColor {
     static let vlgMediumGray = UIColor.named("vlgMediumGray")!
     static let vlgOrange = UIColor.named("vlgOrange")!
     static let vlgBlue = UIColor.named("vlgBlue")!
+    static let vlgRed = UIColor.named("vlgRed")!
+    static let vlgTan = UIColor.named("vlgTan")!
 }
 
 extension UIColor {
