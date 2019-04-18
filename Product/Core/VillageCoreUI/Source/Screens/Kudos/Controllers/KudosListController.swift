@@ -165,7 +165,7 @@ class KudosListController: UIViewController, StatefulUserInterface {
             }
             
             let formatter = DateFormatter()
-            formatter.dateFormat = "MMM dd"
+            formatter.dateFormat = "MMM dd, yyyy"
             
             let groupedKudos = Dictionary(grouping: kudos, by: { kudo in kudo.date })
                 .flatMap({ (key, value) -> [String: Kudos] in
@@ -250,7 +250,7 @@ extension KudosListController: UITableViewDataSource {
         }
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd"
+        formatter.dateFormat = "MMM dd, yyyy"
         var dateString = ""
         dateString = formatter.string(from: kudo.date as Date)
         
