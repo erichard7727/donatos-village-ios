@@ -48,6 +48,7 @@
 		D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E883223B3753002DED70 /* KudoCell.xib */; };
 		D4A6976522600D7700ECC0A8 /* ContentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE82225FFCCB00A215E4 /* ContentDetailController.swift */; };
 		D4A6976622600DF600ECC0A8 /* MenuButtonBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE8C2260018200A215E4 /* MenuButtonBehavior.swift */; };
+		D4A697822264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */; };
 		D4AE68792242A5F200A3FB25 /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE68782242A5F200A3FB25 /* VillageCore.framework */; };
 		D4B4E853223AE980002DED70 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E848223AE980002DED70 /* PeopleViewController.swift */; };
 		D4B4E858223AE980002DED70 /* Directory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E84E223AE980002DED70 /* Directory.storyboard */; };
@@ -134,6 +135,7 @@
 		D47FD3FE220FBD4700376D31 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D47FD401220FC08700376D31 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
 		D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulUserInterface.swift; sourceTree = "<group>"; };
+		D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodatesKeyboardBehavior.swift; sourceTree = "<group>"; };
 		D4AE68782242A5F200A3FB25 /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B4E847223AE980002DED70 /* InvitePersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitePersonController.swift; sourceTree = "<group>"; };
 		D4B4E848223AE980002DED70 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				D4CEAE8C2260018200A215E4 /* MenuButtonBehavior.swift */,
+				D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */,
 			);
 			path = ViewControllerBehaviors;
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				D4B4E864223AFFF6002DED70 /* ContactPersonViewController.swift in Sources */,
 				D43663C42229ACA9006354F2 /* LoginPasswordViewController.swift in Sources */,
 				D4CEAE8A226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift in Sources */,
+				D4A697822264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift in Sources */,
 				D411BC452247F807003D2F08 /* UIImage+Rotation.swift in Sources */,
 				D4B4E85A223AE980002DED70 /* PersonTableViewCell.swift in Sources */,
 				D43663C72229BBC8006354F2 /* UIViewController+NavigationBar.swift in Sources */,
