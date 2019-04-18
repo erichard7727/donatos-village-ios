@@ -57,6 +57,14 @@ class MyKudosViewController: UIViewController {
     
     // MARK: - UIViewController Lifecycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -72,13 +80,6 @@ class MyKudosViewController: UIViewController {
     }
     
     // MARK: - Target/Action
-    
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        guard let sideMenuController = sideMenuController else {
-            return
-        }
-        sideMenuController.showMenu()
-    }
     
     @objc internal func onTabClick(_ sender: UIButton) {
         if sender == receivedTab?.tabButton && selectedTab != receivedTab {

@@ -22,18 +22,12 @@ final class InvitePersonController: UIViewController, UIGestureRecognizerDelegat
 
 extension InvitePersonController {
     
-    
-    
-}
-
-// MARK: - Target/Action
-
-private extension InvitePersonController {
-    
-    @IBAction func goBack(_ sender: Any? = nil) {
-        if let navigationController = self.navigationController {
-            navigationController.popViewController(animated: true)
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
     }
     
 }

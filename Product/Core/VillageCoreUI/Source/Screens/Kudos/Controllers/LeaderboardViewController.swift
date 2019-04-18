@@ -63,6 +63,14 @@ class LeaderboardViewController: UIViewController {
     
     fileprivate var pages = [LeaderboardTableViewController]()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -101,12 +109,6 @@ class LeaderboardViewController: UIViewController {
         self.selectThisWeekTab()
     }
     
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        guard let sideMenuController = sideMenuController else {
-            return
-        }
-        sideMenuController.showMenu()
-    }
 }
 
 // MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate

@@ -52,6 +52,12 @@ final class PeopleViewController: UIViewController {
     // MARK: UIViewController
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
         setupTableView()
         
         if !Constants.Settings.invitationsEnabled || !User.current.securityPolicies.contains(.inviteUsers) {
@@ -168,10 +174,6 @@ final class PeopleViewController: UIViewController {
             default: break
             }
         }
-    }
-    
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        sideMenuController?.showMenu()
     }
     
 }

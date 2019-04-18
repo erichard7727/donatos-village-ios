@@ -30,6 +30,10 @@ class MyAchievementsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
         firstly { () -> Promise<Person> in
             if let person = self.person {
                 return Promise(person)
@@ -75,9 +79,6 @@ class MyAchievementsViewController: UIViewController {
         }
     }
     
-    @IBAction override func menuButtonPressed(_ sender: UIBarButtonItem) {
-        sideMenuController?.showMenu()
-    }
 }
 
 extension MyAchievementsViewController: UICollectionViewDelegate {

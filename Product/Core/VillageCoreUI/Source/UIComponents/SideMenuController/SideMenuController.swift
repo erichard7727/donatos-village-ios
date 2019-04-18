@@ -118,7 +118,7 @@ public class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         self.contentViewController = newContentViewController
     }
     
-    public func showMenu() {
+    @objc public func showMenu() {
         //Need the tasks to be split so we can call 'begin' when a pan gesture starts and 'finish' when it completes
         self.beginShowMenu()
         self.finishShowMenu()

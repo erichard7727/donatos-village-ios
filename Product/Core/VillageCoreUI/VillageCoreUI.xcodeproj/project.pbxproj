@@ -52,7 +52,7 @@
 		D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E87B223B3752002DED70 /* Kudos.storyboard */; };
 		D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E883223B3753002DED70 /* KudoCell.xib */; };
 		D4A6976522600D7700ECC0A8 /* ContentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE82225FFCCB00A215E4 /* ContentDetailController.swift */; };
-		D4A6976622600DF600ECC0A8 /* MenuButtonBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE8C2260018200A215E4 /* MenuButtonBehavior.swift */; };
+		D4A6976622600DF600ECC0A8 /* LeftBarButtonBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE8C2260018200A215E4 /* LeftBarButtonBehavior.swift */; };
 		D4A6976D226400CD00ECC0A8 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E87D223B3753002DED70 /* LeaderboardCell.xib */; };
 		D4A69770226400DA00ECC0A8 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E881223B3753002DED70 /* LeaderboardCell.swift */; };
 		D4A69771226400E800ECC0A8 /* AchievementHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E884223B3753002DED70 /* AchievementHeaderCell.swift */; };
@@ -206,7 +206,7 @@
 		D4CEAE82225FFCCB00A215E4 /* ContentDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentDetailController.swift; sourceTree = "<group>"; };
 		D4CEAE83225FFCCB00A215E4 /* ContentLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContentLibrary.storyboard; path = "../../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Content Library/ContentLibrary.storyboard"; sourceTree = "<group>"; };
 		D4CEAE89226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLifecycleBehavior.swift; sourceTree = "<group>"; };
-		D4CEAE8C2260018200A215E4 /* MenuButtonBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonBehavior.swift; sourceTree = "<group>"; };
+		D4CEAE8C2260018200A215E4 /* LeftBarButtonBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftBarButtonBehavior.swift; sourceTree = "<group>"; };
 		D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SimpleTransition.swift"; sourceTree = "<group>"; };
 		D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIdentityViewController.swift; sourceTree = "<group>"; };
 		D4F8A57622109E55005FDB6A /* LoginIdentityViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginIdentityViewController.storyboard; sourceTree = "<group>"; };
@@ -564,7 +564,7 @@
 		D4CEAE8B2260016500A215E4 /* ViewControllerBehaviors */ = {
 			isa = PBXGroup;
 			children = (
-				D4CEAE8C2260018200A215E4 /* MenuButtonBehavior.swift */,
+				D4CEAE8C2260018200A215E4 /* LeftBarButtonBehavior.swift */,
 				D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */,
 			);
 			path = ViewControllerBehaviors;
@@ -805,7 +805,7 @@
 				D4A697762264010000ECC0A8 /* ItemRedeemedModal.swift in Sources */,
 				D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */,
 				D4B4E891223B37B0002DED70 /* MyAchievementsViewController.swift in Sources */,
-				D4A6976622600DF600ECC0A8 /* MenuButtonBehavior.swift in Sources */,
+				D4A6976622600DF600ECC0A8 /* LeftBarButtonBehavior.swift in Sources */,
 				D4A69770226400DA00ECC0A8 /* LeaderboardCell.swift in Sources */,
 				D4164B772268011A0025E6E9 /* SelectPeopleViewController.swift in Sources */,
 				D4A6977E226411DF00ECC0A8 /* LeaderboardTableViewController.swift in Sources */,

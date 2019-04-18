@@ -119,13 +119,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fXJ-H5-RHK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Notice Acknowledgements" id="G2O-p7-D85">
-                        <barButtonItem key="leftBarButtonItem" image="back-button" id="Xxw-b1-FCh">
-                            <connections>
-                                <action selector="back:" destination="kaI-Mr-bvA" id="zvd-2W-9Pi"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Notice Acknowledgements" id="G2O-p7-D85"/>
                     <connections>
                         <outlet property="tableView" destination="kxG-It-uA8" id="7UJ-vL-3IJ"/>
                     </connections>
@@ -371,12 +365,6 @@
                         <viewLayoutGuide key="safeArea" id="Ytd-pv-Xgf"/>
                     </view>
                     <navigationItem key="navigationItem" title="News / Notices" id="cqT-rF-N31">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" id="njv-KN-lIN">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="menuItemPressed:" destination="uOo-Z1-IfQ" id="4LS-Nz-mZt"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="V16-gT-xFG">
                             <color key="tintColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -604,13 +592,7 @@
                         <viewLayoutGuide key="safeArea" id="gez-MA-0UL"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Create Notice" id="V5K-pc-CiS">
-                        <barButtonItem key="leftBarButtonItem" image="back-button" id="zhM-0l-w9o">
-                            <connections>
-                                <action selector="back:" destination="URp-mZ-J2b" id="V1R-Zn-89r"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Create Notice" id="V5K-pc-CiS"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="900"/>
                     <connections>
@@ -661,13 +643,7 @@
                         <viewLayoutGuide key="safeArea" id="0Fx-MT-J7I"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Notice Title" id="EgU-1S-DJl">
-                        <barButtonItem key="leftBarButtonItem" image="back-button" id="JOS-e9-bU4">
-                            <connections>
-                                <action selector="back:" destination="6zU-Oh-HkH" id="Xxk-QX-bP6"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Notice Title" id="EgU-1S-DJl"/>
                     <connections>
                         <outlet property="acknowledgeHeightConstraint" destination="YDc-pG-Vui" id="28l-iR-ONj"/>
                         <outlet property="containerView" destination="UT6-pk-ggl" id="PVV-zE-Nru"/>
@@ -678,8 +654,4 @@
             <point key="canvasLocation" x="1050.4000000000001" y="373.76311844077964"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="back-button" width="28" height="28"/>
-        <image name="menu-icon" width="47" height="28"/>
-    </resources>
 </document>

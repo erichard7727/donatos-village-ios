@@ -98,12 +98,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Give Kudos" id="Iw2-VE-E7w">
-                        <barButtonItem key="leftBarButtonItem" image="back-button" id="BSg-P4-RVV">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="zUC-9q-5r5" id="8oh-h7-jhF"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="SELECT" id="pp6-TB-oKc">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
@@ -194,14 +188,7 @@
                             <constraint firstItem="3GC-Yg-BSp" firstAttribute="top" secondItem="5BX-NZ-nWo" secondAttribute="bottom" id="z0A-zZ-AwW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Kudos" id="ogY-ok-aRa">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" style="done" id="MWs-ye-8kd">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="menuItemPressed:" destination="8ob-KN-mb0" id="YGT-ty-Oq4"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="My Kudos" id="ogY-ok-aRa"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="givenTab" destination="hjC-i0-eHw" id="D6j-pU-yJa"/>
@@ -264,14 +251,7 @@
                             <constraint firstAttribute="trailing" secondItem="WHo-lg-Uq3" secondAttribute="trailing" constant="15" id="ykc-GX-fKZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Kudos Stream" id="jnp-Pr-OPn">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" style="done" id="0KB-15-nLE">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="menuItemPressed:" destination="uOp-IG-S4s" id="oyh-Wy-CQM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Kudos Stream" id="jnp-Pr-OPn"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -429,14 +409,7 @@
                             <constraint firstItem="Dxd-Ip-V7b" firstAttribute="leading" secondItem="Ygi-S4-2YN" secondAttribute="leading" id="qFz-ob-tTa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Give Kudos" id="a7V-4Y-PXF">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" style="done" id="qWr-PF-J08">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="menuItemPressed:" destination="uzj-Lp-myE" id="vyo-R4-Iqa"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Give Kudos" id="a7V-4Y-PXF"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <connections>
@@ -487,14 +460,7 @@
                             <constraint firstItem="j5h-mi-ckx" firstAttribute="leading" secondItem="9Ij-IW-3EQ" secondAttribute="leadingMargin" id="ydG-PO-9vo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Achievements" id="Mbr-d3-5yc">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" style="done" id="RvZ-eC-JIQ">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="menuButtonPressed:" destination="s18-4P-3et" id="ugQ-6T-AdY"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="My Achievements" id="Mbr-d3-5yc"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <connections>
@@ -547,14 +513,7 @@
                             <constraint firstItem="QgY-5U-xeh" firstAttribute="leading" secondItem="Y78-H8-n8D" secondAttribute="leading" id="xCp-OU-aHa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Achievement Details" id="aZP-X1-rg7">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" id="sFa-tb-AdR">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="gLT-8a-suO" id="qBd-JA-0vk"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Achievement Details" id="aZP-X1-rg7"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <connections>
@@ -614,14 +573,7 @@
                             <constraint firstItem="xW0-05-IHg" firstAttribute="leading" secondItem="fEi-Ep-57h" secondAttribute="trailing" id="zam-c4-L33"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Leaderboard" id="eTe-YZ-3Io">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" style="done" id="ek6-V8-llg">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="menuItemPressed:" destination="cp2-1m-lsD" id="xsD-cb-jTa"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Leaderboard" id="eTe-YZ-3Io"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -702,8 +654,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back-button" width="28" height="28"/>
-        <image name="menu-icon" width="47" height="28"/>
         <namedColor name="vlgMediumGray">
             <color red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -107,6 +107,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
         super.viewDidLoad()
         
         addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack),
             AccommodatesKeyboardBehavior(),
         ])
         
@@ -180,14 +181,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
         }
     }
     
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        guard let sideMenuController = sideMenuController else {
-            return
-        }
-        sideMenuController.showMenu()
-    }
-
-    // MARK: - 
+    // MARK: -
     
     @objc internal func done() {
         view.endEditing(true)

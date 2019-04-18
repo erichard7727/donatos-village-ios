@@ -161,6 +161,10 @@ final class PersonProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
         if !Constants.Settings.kudosEnabled {
             kudoTab?.isHidden = true
             achievementTab?.isHidden = true
@@ -247,16 +251,7 @@ final class PersonProfileViewController: UIViewController {
             }
         }
     }
-    
-    // MARK: Actions
-    
-    @IBAction func back(_ sender: UIBarButtonItem!) {
-        if let navigationController = self.navigationController {
-            navigationController.popViewController(animated: true)
-        }
-    }
-    
-    
+        
 }
 
 // MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate

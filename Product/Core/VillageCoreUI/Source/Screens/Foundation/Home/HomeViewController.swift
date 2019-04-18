@@ -21,6 +21,10 @@ extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
 //        firstly {
 //            return People.getDirectory().then { $0.first! }
 //        }.then { person in

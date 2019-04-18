@@ -82,7 +82,9 @@ extension SendEmailTokenViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureBackButton()
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .back)
+        ])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,19 +123,6 @@ private extension SendEmailTokenViewController {
 // MARK: - Private Methods
 
 private extension SendEmailTokenViewController {
-    
-    func configureBackButton() {
-        // Hide the actual back button text
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        // Modify the back indicator image
-        let backImage = UIImage.named("back-button")
-        navigationController?.navigationBar.backIndicatorImage = backImage
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
-        
-        // Maintain swipe-to-go-back gesture behavior
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-    }
     
     func setLoading(_ isLoading: Bool) {
         view.isUserInteractionEnabled = !isLoading

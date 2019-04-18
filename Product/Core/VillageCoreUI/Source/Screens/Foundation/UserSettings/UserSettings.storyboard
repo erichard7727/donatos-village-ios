@@ -47,14 +47,7 @@
                             <constraint firstItem="C7V-dr-ajP" firstAttribute="leading" secondItem="oos-1M-dRs" secondAttribute="leading" id="VzC-IK-vAJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Settings" id="CKU-ln-vsS">
-                        <barButtonItem key="leftBarButtonItem" image="menu-icon" id="aXd-yw-DWB">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="menuItemPressed:" destination="LEg-3E-hZZ" id="v02-uQ-k4S"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Edit Settings" id="CKU-ln-vsS"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSP-HF-G9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -165,7 +158,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFP-A1-EvD">
-                                                    <rect key="frame" x="40" y="23" width="110" height="19"/>
+                                                    <rect key="frame" x="36" y="23" width="110" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="O9n-AP-74j"/>
                                                     </constraints>
@@ -174,7 +167,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="np8-r8-fp8">
-                                                    <rect key="frame" x="158" y="22" width="402" height="21"/>
+                                                    <rect key="frame" x="154" y="22" width="185" height="21"/>
                                                     <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
@@ -200,7 +193,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EE-ee-OYd">
-                                                    <rect key="frame" x="158" y="22" width="402" height="21"/>
+                                                    <rect key="frame" x="154" y="22" width="185" height="21"/>
                                                     <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
@@ -209,7 +202,7 @@
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3D-8i-u4P">
-                                                    <rect key="frame" x="40" y="23" width="110" height="19"/>
+                                                    <rect key="frame" x="36" y="23" width="110" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="Wkd-g3-4ih"/>
                                                     </constraints>
@@ -235,7 +228,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsv-kO-1z6">
-                                                    <rect key="frame" x="40" y="23" width="110" height="19"/>
+                                                    <rect key="frame" x="36" y="23" width="110" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="kQR-fn-Iry"/>
                                                     </constraints>
@@ -244,7 +237,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Job Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CI5-8p-Byo">
-                                                    <rect key="frame" x="158" y="22" width="402" height="21"/>
+                                                    <rect key="frame" x="154" y="22" width="185" height="21"/>
                                                     <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
@@ -270,7 +263,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nd-hV-sqe">
-                                                    <rect key="frame" x="40" y="23" width="110" height="19"/>
+                                                    <rect key="frame" x="36" y="23" width="110" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="emi-eI-TDM"/>
                                                     </constraints>
@@ -279,7 +272,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="chG-CN-2V4">
-                                                    <rect key="frame" x="158" y="22" width="402" height="21"/>
+                                                    <rect key="frame" x="154" y="22" width="185" height="21"/>
                                                     <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
@@ -305,7 +298,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Clo-bv-GHA">
-                                                    <rect key="frame" x="158" y="22" width="402" height="21"/>
+                                                    <rect key="frame" x="154" y="22" width="185" height="21"/>
                                                     <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
@@ -314,7 +307,7 @@
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbI-f0-N8e">
-                                                    <rect key="frame" x="40" y="23" width="110" height="19"/>
+                                                    <rect key="frame" x="36" y="23" width="110" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="5Xk-9A-SdY"/>
                                                     </constraints>
@@ -340,7 +333,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZZ-sk-Tsk">
-                                                    <rect key="frame" x="40" y="23" width="110" height="19"/>
+                                                    <rect key="frame" x="36" y="23" width="110" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="580-If-9EQ"/>
                                                     </constraints>
@@ -349,7 +342,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Twitter Account Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="24G-mM-6V0">
-                                                    <rect key="frame" x="158" y="22" width="402" height="21"/>
+                                                    <rect key="frame" x="154" y="22" width="185" height="21"/>
                                                     <color key="textColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="twitter" returnKeyType="next"/>
@@ -375,10 +368,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fta-Jf-dKo">
-                                                    <rect key="frame" x="0.0" y="10.5" width="600" height="120"/>
+                                                    <rect key="frame" x="0.0" y="10.5" width="375" height="120"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="978-Lg-jN8">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                             <color key="backgroundColor" red="0.94117647059999998" green="0.94509803920000002" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
                                                             <state key="normal" title="Save">
@@ -389,7 +382,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqJ-1z-4K3" userLabel="Logout">
-                                                            <rect key="frame" x="0.0" y="70" width="600" height="50"/>
+                                                            <rect key="frame" x="0.0" y="70" width="375" height="50"/>
                                                             <color key="backgroundColor" red="0.94117647059999998" green="0.94509803920000002" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
                                                             <state key="normal" title="Logout">
@@ -430,7 +423,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Version Text Goes Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibV-nc-guU">
-                                                    <rect key="frame" x="8" y="8" width="584" height="23.5"/>
+                                                    <rect key="frame" x="8" y="8" width="359" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -474,9 +467,8 @@
     </scenes>
     <resources>
         <image name="CameraIcon" width="53" height="53"/>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
         <image name="camera-icon" width="53" height="53"/>
         <image name="client-logo" width="130" height="130"/>
-        <image name="menu-icon" width="47" height="28"/>
     </resources>
 </document>

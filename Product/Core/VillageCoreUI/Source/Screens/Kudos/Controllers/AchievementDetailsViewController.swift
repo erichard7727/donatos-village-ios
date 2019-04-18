@@ -31,6 +31,10 @@ class AchievementDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
         kudosEmptyLabel.alpha = 0
         if let otherReceiver = otherUser {
             kudosEmptyLabel.text = otherReceiver.displayName
@@ -77,12 +81,6 @@ class AchievementDetailsViewController: UIViewController {
             self?.present(alert, animated: true, completion: nil)
         }.always { [weak self] in
             self?.progressIndicator.stopAnimating()
-        }
-    }
-    
-    @IBAction override func backButtonPressed(_ sender: UIBarButtonItem) {
-        if let navController = navigationController {
-            navController.popViewController(animated: true)
         }
     }
     

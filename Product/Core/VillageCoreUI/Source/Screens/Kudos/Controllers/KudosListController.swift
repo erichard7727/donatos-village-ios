@@ -102,6 +102,10 @@ class KudosListController: UIViewController, StatefulUserInterface {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
         self.loadData() { [weak self] in
             guard let strongSelf = self else {
                 return
@@ -127,10 +131,6 @@ class KudosListController: UIViewController, StatefulUserInterface {
     }
     
     // MARK: - Target/Action
-    
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        sideMenuController?.showMenu()
-    }
     
     @objc internal func onRefresh(_ sender: AnyObject? = nil) {
         loadData() {

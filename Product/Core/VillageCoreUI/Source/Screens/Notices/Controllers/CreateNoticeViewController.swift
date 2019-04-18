@@ -26,6 +26,10 @@ class CreateNoticeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
 //        let pickerView = UIPickerView()
 //        pickerView.delegate = self
 //        
@@ -87,12 +91,6 @@ class CreateNoticeViewController: UIViewController {
 //                }
 //            }
 //        }
-    }
-    
-    @IBAction func back(_ sender: UIBarButtonItem!) {
-        if let navigationController = self.navigationController {
-            navigationController.popViewController(animated: true)
-        }
     }
     
 }
