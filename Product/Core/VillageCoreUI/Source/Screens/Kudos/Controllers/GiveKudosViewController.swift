@@ -258,7 +258,7 @@ extension GiveKudosViewController: UITextViewDelegate {
             placeholderText.isHidden = !newValue.isEmpty
         }
         
-        return true
+        return textView.text.count + (text.count - range.length) <= 280
     }
     
     func textViewDidChange(_ textView: UITextView) {
