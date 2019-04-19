@@ -526,7 +526,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A21354782F5AAF5295BF86C /* Pods-DonatosVillage.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PH47MC4D6A;
@@ -553,7 +552,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 43565619D7EDB88B2A852C60 /* Pods-DonatosVillage.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
