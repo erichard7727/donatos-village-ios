@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16107B190BA50D2B2CC0D8C4 /* Pods_VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CA969EBAEF01C869F0AEDC /* Pods_VillageCoreUI.framework */; };
 		D411BC3B2247B3EE003D2F08 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC332247B3EE003D2F08 /* SettingsController.swift */; };
 		D411BC3C2247B3EE003D2F08 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC342247B3EE003D2F08 /* EditSettingsController.swift */; };
 		D411BC3D2247B3EE003D2F08 /* UserSettingsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC352247B3EE003D2F08 /* UserSettingsHeaderController.swift */; };
@@ -113,13 +114,10 @@
 		D4F8A5982210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A5902210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf */; };
 		D4F8A5992210B6DE005FDB6A /* proximanova-sbold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A5912210B6DE005FDB6A /* proximanova-sbold-webfont.ttf */; };
 		D4F8A59C2210D556005FDB6A /* KeyboardAwareScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A59B2210D556005FDB6A /* KeyboardAwareScrollView.swift */; };
-		DD1E9DA3A42F2D7E1A6783D4 /* Pods_VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C04355281BA1F6AD929B6B6 /* Pods_VillageCoreUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09211B1EE7FB79BF0961EF47 /* Pods-VillageCoreUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.release.xcconfig"; sourceTree = "<group>"; };
-		5C04355281BA1F6AD929B6B6 /* Pods_VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B61F17A4EF4656C09B68F0A /* Pods-VillageCoreUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.debug.xcconfig"; sourceTree = "<group>"; };
+		08CA969EBAEF01C869F0AEDC /* Pods_VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D411BC332247B3EE003D2F08 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D411BC342247B3EE003D2F08 /* EditSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
 		D411BC352247B3EE003D2F08 /* UserSettingsHeaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsHeaderController.swift; sourceTree = "<group>"; };
@@ -228,6 +226,8 @@
 		D4F8A5902210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-regitalic-webfont.ttf"; sourceTree = "<group>"; };
 		D4F8A5912210B6DE005FDB6A /* proximanova-sbold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-sbold-webfont.ttf"; sourceTree = "<group>"; };
 		D4F8A59B2210D556005FDB6A /* KeyboardAwareScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareScrollView.swift; sourceTree = "<group>"; };
+		E65A6BC3DE469A31F8B34075 /* Pods-VillageCoreUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.debug.xcconfig"; sourceTree = "<group>"; };
+		E791F78DD5D7216E0781012C /* Pods-VillageCoreUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,18 +236,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4AE68792242A5F200A3FB25 /* VillageCore.framework in Frameworks */,
-				DD1E9DA3A42F2D7E1A6783D4 /* Pods_VillageCoreUI.framework in Frameworks */,
+				16107B190BA50D2B2CC0D8C4 /* Pods_VillageCoreUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8CED15F8DCB7F6316500A3FD /* Pods */ = {
+		4C58A5A7FC0B38B7106A2BF9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9B61F17A4EF4656C09B68F0A /* Pods-VillageCoreUI.debug.xcconfig */,
-				09211B1EE7FB79BF0961EF47 /* Pods-VillageCoreUI.release.xcconfig */,
+				E65A6BC3DE469A31F8B34075 /* Pods-VillageCoreUI.debug.xcconfig */,
+				E791F78DD5D7216E0781012C /* Pods-VillageCoreUI.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -483,7 +483,7 @@
 				D4CC29AE220756D60091BEFB /* Source */,
 				D4CC29AD220756D60091BEFB /* Products */,
 				D4CC2A61220866AE0091BEFB /* Frameworks */,
-				8CED15F8DCB7F6316500A3FD /* Pods */,
+				4C58A5A7FC0B38B7106A2BF9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -528,7 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				D4AE68782242A5F200A3FB25 /* VillageCore.framework */,
-				5C04355281BA1F6AD929B6B6 /* Pods_VillageCoreUI.framework */,
+				08CA969EBAEF01C869F0AEDC /* Pods_VillageCoreUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -674,7 +674,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4CC29B4220756D60091BEFB /* Build configuration list for PBXNativeTarget "VillageCoreUI" */;
 			buildPhases = (
-				A71528A22BF97F24772DF990 /* [CP] Check Pods Manifest.lock */,
+				07A8813F7C3A9C52D3EE51CC /* [CP] Check Pods Manifest.lock */,
 				D4CC29A7220756D60091BEFB /* Headers */,
 				D4CC29A8220756D60091BEFB /* Sources */,
 				D4CC29A9220756D60091BEFB /* Frameworks */,
@@ -762,7 +762,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A71528A22BF97F24772DF990 /* [CP] Check Pods Manifest.lock */ = {
+		07A8813F7C3A9C52D3EE51CC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -995,7 +995,7 @@
 		};
 		D4CC29B5220756D60091BEFB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B61F17A4EF4656C09B68F0A /* Pods-VillageCoreUI.debug.xcconfig */;
+			baseConfigurationReference = E65A6BC3DE469A31F8B34075 /* Pods-VillageCoreUI.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1033,7 +1033,7 @@
 		};
 		D4CC29B6220756D60091BEFB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09211B1EE7FB79BF0961EF47 /* Pods-VillageCoreUI.release.xcconfig */;
+			baseConfigurationReference = E791F78DD5D7216E0781012C /* Pods-VillageCoreUI.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";

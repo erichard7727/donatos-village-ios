@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		29B3F24EB594D04C3C2D8936 /* Pods_VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D8B1C81BB2D36985F1F084E /* Pods_VillageCore.framework */; };
+		3FBE6F649692497E75047822 /* Pods_VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43384E5AB24FEB508C7677CB /* Pods_VillageCore.framework */; };
 		D4164B6B2267EF3E0025E6E9 /* Achievements+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */; };
 		D417388A220C4FD500F5B1F6 /* URL+StaticString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */; };
 		D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417388C220C501F00F5B1F6 /* VillageCoreAPI.swift */; };
@@ -60,9 +60,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		45DCC8839FF8438852BB242E /* Pods-VillageCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCore.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCore/Pods-VillageCore.debug.xcconfig"; sourceTree = "<group>"; };
-		5D8B1C81BB2D36985F1F084E /* Pods_VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC68224E87A5F7E81695ABC5 /* Pods-VillageCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCore.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCore/Pods-VillageCore.release.xcconfig"; sourceTree = "<group>"; };
+		06523E04ACAFB3675437B123 /* Pods-VillageCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCore.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCore/Pods-VillageCore.debug.xcconfig"; sourceTree = "<group>"; };
+		426873FB890FA03829A3F0B9 /* Pods-VillageCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCore.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCore/Pods-VillageCore.release.xcconfig"; sourceTree = "<group>"; };
+		43384E5AB24FEB508C7677CB /* Pods_VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Achievements+Services.swift"; sourceTree = "<group>"; };
 		D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+StaticString.swift"; sourceTree = "<group>"; };
 		D417388C220C501F00F5B1F6 /* VillageCoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillageCoreAPI.swift; sourceTree = "<group>"; };
@@ -120,20 +120,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29B3F24EB594D04C3C2D8936 /* Pods_VillageCore.framework in Frameworks */,
+				3FBE6F649692497E75047822 /* Pods_VillageCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		57934EC1ACDBA18A5B56E579 /* Pods */ = {
+		AEC06D69DAC0E92EAD5A886E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				45DCC8839FF8438852BB242E /* Pods-VillageCore.debug.xcconfig */,
-				CC68224E87A5F7E81695ABC5 /* Pods-VillageCore.release.xcconfig */,
+				06523E04ACAFB3675437B123 /* Pods-VillageCore.debug.xcconfig */,
+				426873FB890FA03829A3F0B9 /* Pods-VillageCore.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B420B1BA302AC2786FCC034C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43384E5AB24FEB508C7677CB /* Pods_VillageCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D4173888220C4FC200F5B1F6 /* Extensions */ = {
@@ -203,8 +211,8 @@
 				D4CC2988220754850091BEFB /* Source */,
 				D4CC2993220754850091BEFB /* Tests */,
 				D4CC2987220754850091BEFB /* Products */,
-				D4CC2A682209B51C0091BEFB /* Frameworks */,
-				57934EC1ACDBA18A5B56E579 /* Pods */,
+				AEC06D69DAC0E92EAD5A886E /* Pods */,
+				B420B1BA302AC2786FCC034C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,14 +267,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D4CC2A682209B51C0091BEFB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5D8B1C81BB2D36985F1F084E /* Pods_VillageCore.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -285,7 +285,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4CC299A220754850091BEFB /* Build configuration list for PBXNativeTarget "VillageCore" */;
 			buildPhases = (
-				B9301503C44715FBA4717104 /* [CP] Check Pods Manifest.lock */,
+				8E65DE3243D046E1A67F3112 /* [CP] Check Pods Manifest.lock */,
 				D4CC2981220754850091BEFB /* Headers */,
 				D4CC2982220754850091BEFB /* Sources */,
 				D4CC2983220754850091BEFB /* Frameworks */,
@@ -374,7 +374,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B9301503C44715FBA4717104 /* [CP] Check Pods Manifest.lock */ = {
+		8E65DE3243D046E1A67F3112 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -583,7 +583,7 @@
 		};
 		D4CC299B220754850091BEFB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45DCC8839FF8438852BB242E /* Pods-VillageCore.debug.xcconfig */;
+			baseConfigurationReference = 06523E04ACAFB3675437B123 /* Pods-VillageCore.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -615,7 +615,7 @@
 		};
 		D4CC299C220754850091BEFB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC68224E87A5F7E81695ABC5 /* Pods-VillageCore.release.xcconfig */;
+			baseConfigurationReference = 426873FB890FA03829A3F0B9 /* Pods-VillageCore.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = YES;
