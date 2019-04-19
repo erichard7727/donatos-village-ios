@@ -130,11 +130,11 @@
 		D411BC422247E687003D2F08 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		D411BC442247F807003D2F08 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
 		D411BC462247F844003D2F08 /* UIImage+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
-		D4164B702268011A0025E6E9 /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
-		D4164B712268011A0025E6E9 /* PersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
-		D4164B732268011A0025E6E9 /* SelectPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPeopleViewController.swift; sourceTree = "<group>"; };
-		D4164B79226801660025E6E9 /* PersonLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonLabel.swift; path = "../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Common/Views/PersonLabel.swift"; sourceTree = "<group>"; };
-		D4164B7B226802570025E6E9 /* PersonSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchViewController.swift; sourceTree = "<group>"; };
+		D4164B702268011A0025E6E9 /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonCell.swift; path = ../../../../../../../../village/Product/Core/VillageCoreUI/Source/Screens/Common/Cells/PersonCell.swift; sourceTree = "<group>"; };
+		D4164B712268011A0025E6E9 /* PersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonCell.xib; path = ../../../../../../../../village/Product/Core/VillageCoreUI/Source/Screens/Common/Cells/PersonCell.xib; sourceTree = "<group>"; };
+		D4164B732268011A0025E6E9 /* SelectPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectPeopleViewController.swift; path = ../../../../../../../../village/Product/Core/VillageCoreUI/Source/Screens/Common/Controllers/SelectPeopleViewController.swift; sourceTree = "<group>"; };
+		D4164B79226801660025E6E9 /* PersonLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonLabel.swift; sourceTree = "<group>"; };
+		D4164B7B226802570025E6E9 /* PersonSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonSearchViewController.swift; path = ../../../../../../../../village/Product/Core/VillageCoreUI/Source/Screens/Common/Controllers/PersonSearchViewController.swift; sourceTree = "<group>"; };
 		D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailTokenViewController.swift; sourceTree = "<group>"; };
 		D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendEmailTokenViewController.storyboard; sourceTree = "<group>"; };
 		D43663C12229ACA9006354F2 /* LoginPasswordViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginPasswordViewController.storyboard; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 		D4CEAE7F225FFCCB00A215E4 /* ContentLibraryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentLibraryCell.swift; sourceTree = "<group>"; };
 		D4CEAE81225FFCCB00A215E4 /* ContentLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentLibraryViewController.swift; sourceTree = "<group>"; };
 		D4CEAE82225FFCCB00A215E4 /* ContentDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentDetailController.swift; sourceTree = "<group>"; };
-		D4CEAE83225FFCCB00A215E4 /* ContentLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContentLibrary.storyboard; path = "../../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Content Library/ContentLibrary.storyboard"; sourceTree = "<group>"; };
+		D4CEAE83225FFCCB00A215E4 /* ContentLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContentLibrary.storyboard; sourceTree = "<group>"; };
 		D4CEAE89226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLifecycleBehavior.swift; sourceTree = "<group>"; };
 		D4CEAE8C2260018200A215E4 /* LeftBarButtonBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftBarButtonBehavior.swift; sourceTree = "<group>"; };
 		D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SimpleTransition.swift"; sourceTree = "<group>"; };
@@ -297,8 +297,7 @@
 				D4164B702268011A0025E6E9 /* PersonCell.swift */,
 				D4164B712268011A0025E6E9 /* PersonCell.xib */,
 			);
-			name = Cells;
-			path = "../../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Common/Cells";
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		D4164B722268011A0025E6E9 /* Controllers */ = {
@@ -307,8 +306,7 @@
 				D4164B7B226802570025E6E9 /* PersonSearchViewController.swift */,
 				D4164B732268011A0025E6E9 /* SelectPeopleViewController.swift */,
 			);
-			name = Controllers;
-			path = "../../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Common/Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		D460B80F224AC41E003DCA2C /* Notices */ = {
@@ -550,8 +548,7 @@
 			children = (
 				D4CEAE7F225FFCCB00A215E4 /* ContentLibraryCell.swift */,
 			);
-			name = Cells;
-			path = "../../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Content Library/Cells";
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		D4CEAE80225FFCCB00A215E4 /* Controllers */ = {
@@ -560,8 +557,7 @@
 				D4CEAE81225FFCCB00A215E4 /* ContentLibraryViewController.swift */,
 				D4CEAE82225FFCCB00A215E4 /* ContentDetailController.swift */,
 			);
-			name = Controllers;
-			path = "../../../../../../../village-legacy/ios-villagemaster/VillageContainerApp/VillageCore/UI/App/Content Library/Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		D4CEAE8B2260016500A215E4 /* ViewControllerBehaviors */ = {
