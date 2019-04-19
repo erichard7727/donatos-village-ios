@@ -5,10 +5,12 @@
       location = "group:Brewfile">
    </FileRef>
    <FileRef
-      location = "group:Podfile">
+      location = "group:Podfile"
+      assignedFileDataType = "public.ruby-script">
    </FileRef>
    <FileRef
-      location = "group:Gemfile">
+      location = "group:Gemfile"
+      assignedFileDataType = "public.ruby-script">
    </FileRef>
    <Group
       location = "container:"
