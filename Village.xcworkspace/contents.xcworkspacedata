@@ -11,9 +11,6 @@
    <FileRef
       location = "group:Gemfile">
    </FileRef>
-   <FileRef
-      location = "group:Cartfile">
-   </FileRef>
    <Group
       location = "container:"
       name = "Clients">
