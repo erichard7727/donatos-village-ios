@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9659F9DB611700F634E32994 /* Pods_DonatosVillage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E943258A11A7B681BE7388D8 /* Pods_DonatosVillage.framework */; };
-		D46724EC22480F6500F4D7E5 /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46724EB22480F6500F4D7E5 /* VillageCore.framework */; };
-		D46724ED22480F6500F4D7E5 /* VillageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46724EB22480F6500F4D7E5 /* VillageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D47FD3F2220FB16300376D31 /* VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47FD3F1220FB15900376D31 /* VillageCoreUI.framework */; };
 		D47FD3F3220FB16300376D31 /* VillageCoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47FD3F1220FB15900376D31 /* VillageCoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4879A40224196B600CBA8FB /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */; };
@@ -44,7 +42,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D46724ED22480F6500F4D7E5 /* VillageCore.framework in Embed Frameworks */,
 				D47FD3F3220FB16300376D31 /* VillageCoreUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -55,12 +52,10 @@
 /* Begin PBXFileReference section */
 		43565619D7EDB88B2A852C60 /* Pods-DonatosVillage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.release.xcconfig"; sourceTree = "<group>"; };
 		6A21354782F5AAF5295BF86C /* Pods-DonatosVillage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.debug.xcconfig"; sourceTree = "<group>"; };
-		D46724EB22480F6500F4D7E5 /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47FD3EC220FB15900376D31 /* VillageCoreUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VillageCoreUI.xcodeproj; path = ../../Product/Core/VillageCoreUI/VillageCoreUI.xcodeproj; sourceTree = "<group>"; };
 		D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		D4879A3E224196B500CBA8FB /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
-		D4AE68862242AD0300A3FB25 /* VillageCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VillageCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Village-aazvioswboigivcjkvcuxwsddwys/Build/Products/Debug-iphoneos/VillageCore.framework"; sourceTree = "<group>"; };
 		D4CC29CB22075D070091BEFB /* DonatosVillage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonatosVillage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CC29CE22075D070091BEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4CC29D522075D080091BEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,7 +74,6 @@
 				D4879A41224196B600CBA8FB /* AppCenter.framework in Frameworks */,
 				D47FD3F2220FB16300376D31 /* VillageCoreUI.framework in Frameworks */,
 				9659F9DB611700F634E32994 /* Pods_DonatosVillage.framework in Frameworks */,
-				D46724EC22480F6500F4D7E5 /* VillageCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +110,6 @@
 		D4CC29C222075D070091BEFB = {
 			isa = PBXGroup;
 			children = (
-				D46724EB22480F6500F4D7E5 /* VillageCore.framework */,
 				D4CC29CD22075D070091BEFB /* DonatosVillage */,
 				D4CC29CC22075D070091BEFB /* Products */,
 				D54C3D91F4C5144E14E60397 /* Frameworks */,
@@ -147,7 +140,6 @@
 		D54C3D91F4C5144E14E60397 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4AE68862242AD0300A3FB25 /* VillageCore.framework */,
 				D47FD3EC220FB15900376D31 /* VillageCoreUI.xcodeproj */,
 				E943258A11A7B681BE7388D8 /* Pods_DonatosVillage.framework */,
 			);
