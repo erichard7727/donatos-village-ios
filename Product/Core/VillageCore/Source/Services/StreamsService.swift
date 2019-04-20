@@ -49,7 +49,7 @@ struct StreamsService {
     
     static func getStreamMembers(streamId: String) -> Promise<People> {
         return firstly {
-            let members = VillageCoreAPI.streamsMembers(streamId: streamId)
+            let members = VillageCoreAPI.streamMembers(streamId: streamId)
             return VillageService.shared.request(target: members)
         }.then { (json: JSON) -> People in
             let people = json["people"].arrayValue.compactMap({ Person(from: $0) })
@@ -58,11 +58,11 @@ struct StreamsService {
     }
     
     static func likeMessage(streamId: String, messageId: String) -> Promise<Void> {
-        return VillageService.shared.request(target: VillageCoreAPI.likeMessage(streamId: streamId, messageId: messageId)).asVoid()
+        return VillageService.shared.request(target: VillageCoreAPI.setMessageLiked(isLiked: true, messageId: messageId, streamId: streamId)).asVoid()
     }
     
     static func dislikeMessage(streamId: String, messageId: String) -> Promise<Void> {
-        return VillageService.shared.request(target: VillageCoreAPI.dislikeMessage(streamId: streamId, messageId: messageId)).asVoid()
+        return VillageService.shared.request(target: VillageCoreAPI.setMessageLiked(isLiked: false, messageId: messageId, streamId: streamId)).asVoid()
     }
     
     static func getOtherStreams(page: Int) -> Promise<Streams> {
@@ -77,7 +77,7 @@ struct StreamsService {
     
     static func getSubscriptions() -> Promise<Streams> {
         return firstly {
-            let subscriptions = VillageCoreAPI.subscriptions
+            let subscriptions = VillageCoreAPI.subscribedStreams
             return VillageService.shared.request(target: subscriptions)
         }.then { (json: JSON) -> Streams in
             let groups = json["streams"].arrayValue.compactMap({ Stream(from: $0) })
@@ -107,11 +107,15 @@ struct StreamsService {
     
     static func sendMessage(message: Message) -> Promise<Message> {
         return firstly  {
-            let msg = VillageCoreAPI.sendMessage(message: message)
-            return VillageService.shared.request(target: msg)
+            let message = VillageCoreAPI.sendMessage(
+                streamId: message.streamId,
+                messageId: message.id,
+                body: message.text ?? ""
+            )
+            return VillageService.shared.request(target: message)
         }.then { (json: JSON) -> Message in
-            let mesg = try Message(from: json).orThrow(StreamsServiceError.sendMessage)
-            return mesg
+            let message = try Message(from: json).orThrow(StreamsServiceError.sendMessage)
+            return message
         }
     }
     
