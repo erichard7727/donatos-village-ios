@@ -7,14 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9659F9DB611700F634E32994 /* Pods_DonatosVillage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E943258A11A7B681BE7388D8 /* Pods_DonatosVillage.framework */; };
-		D46724EC22480F6500F4D7E5 /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46724EB22480F6500F4D7E5 /* VillageCore.framework */; };
-		D46724ED22480F6500F4D7E5 /* VillageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D46724EB22480F6500F4D7E5 /* VillageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F2A276992F28C940243336A /* Pods_DonatosVillage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA45619FC0B538F8726ED14 /* Pods_DonatosVillage.framework */; };
 		D47FD3F2220FB16300376D31 /* VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47FD3F1220FB15900376D31 /* VillageCoreUI.framework */; };
 		D47FD3F3220FB16300376D31 /* VillageCoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47FD3F1220FB15900376D31 /* VillageCoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D4879A40224196B600CBA8FB /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */; };
-		D4879A41224196B600CBA8FB /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3E224196B500CBA8FB /* AppCenter.framework */; };
-		D4879A42224196B600CBA8FB /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */; };
+		D4A983F32269FE8000ACC3F6 /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4A983F02269FE6E00ACC3F6 /* VillageCore.framework */; };
+		D4A983F42269FE8000ACC3F6 /* VillageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4A983F02269FE6E00ACC3F6 /* VillageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4CC29CF22075D070091BEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29CE22075D070091BEFB /* AppDelegate.swift */; };
 		D4CC29D622075D080091BEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D522075D080091BEFB /* Assets.xcassets */; };
 		D4CC29D922075D080091BEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D722075D080091BEFB /* LaunchScreen.storyboard */; };
@@ -35,6 +32,27 @@
 			remoteGlobalIDString = D4CC29AB220756D60091BEFB;
 			remoteInfo = VillageCoreUI;
 		};
+		D4A983EF2269FE6E00ACC3F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4A983EA2269FE6E00ACC3F6 /* VillageCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D4CC2986220754850091BEFB;
+			remoteInfo = VillageCore;
+		};
+		D4A983F12269FE6E00ACC3F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4A983EA2269FE6E00ACC3F6 /* VillageCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D4CC298F220754850091BEFB;
+			remoteInfo = VillageCoreTests;
+		};
+		D4A983F52269FE8000ACC3F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4A983EA2269FE6E00ACC3F6 /* VillageCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D4CC2985220754850091BEFB;
+			remoteInfo = VillageCore;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,7 +62,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D46724ED22480F6500F4D7E5 /* VillageCore.framework in Embed Frameworks */,
+				D4A983F42269FE8000ACC3F6 /* VillageCore.framework in Embed Frameworks */,
 				D47FD3F3220FB16300376D31 /* VillageCoreUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -53,20 +71,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		43565619D7EDB88B2A852C60 /* Pods-DonatosVillage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.release.xcconfig"; sourceTree = "<group>"; };
-		6A21354782F5AAF5295BF86C /* Pods-DonatosVillage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.debug.xcconfig"; sourceTree = "<group>"; };
-		D46724EB22480F6500F4D7E5 /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		897C10B6C9665EF136BFE2D1 /* Pods-DonatosVillage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.debug.xcconfig"; sourceTree = "<group>"; };
+		990F3F5A02743F84B43F2796 /* Pods-DonatosVillage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.release.xcconfig"; sourceTree = "<group>"; };
+		BEA45619FC0B538F8726ED14 /* Pods_DonatosVillage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonatosVillage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47FD3EC220FB15900376D31 /* VillageCoreUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VillageCoreUI.xcodeproj; path = ../../Product/Core/VillageCoreUI/VillageCoreUI.xcodeproj; sourceTree = "<group>"; };
 		D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		D4879A3E224196B500CBA8FB /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
-		D4AE68862242AD0300A3FB25 /* VillageCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VillageCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Village-aazvioswboigivcjkvcuxwsddwys/Build/Products/Debug-iphoneos/VillageCore.framework"; sourceTree = "<group>"; };
+		D4A983EA2269FE6E00ACC3F6 /* VillageCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VillageCore.xcodeproj; path = ../../Product/Core/VillageCore/VillageCore.xcodeproj; sourceTree = "<group>"; };
 		D4CC29CB22075D070091BEFB /* DonatosVillage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonatosVillage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CC29CE22075D070091BEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4CC29D522075D080091BEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4CC29D822075D080091BEFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4CC29DA22075D080091BEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E943258A11A7B681BE7388D8 /* Pods_DonatosVillage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonatosVillage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,23 +91,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4879A40224196B600CBA8FB /* AppCenterAnalytics.framework in Frameworks */,
-				D4879A42224196B600CBA8FB /* AppCenterCrashes.framework in Frameworks */,
-				D4879A41224196B600CBA8FB /* AppCenter.framework in Frameworks */,
 				D47FD3F2220FB16300376D31 /* VillageCoreUI.framework in Frameworks */,
-				9659F9DB611700F634E32994 /* Pods_DonatosVillage.framework in Frameworks */,
-				D46724EC22480F6500F4D7E5 /* VillageCore.framework in Frameworks */,
+				D4A983F32269FE8000ACC3F6 /* VillageCore.framework in Frameworks */,
+				2F2A276992F28C940243336A /* Pods_DonatosVillage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		927FD57648006082C52C798F /* Pods */ = {
+		8E7EE6663F3F2DC8E64E8E09 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6A21354782F5AAF5295BF86C /* Pods-DonatosVillage.debug.xcconfig */,
-				43565619D7EDB88B2A852C60 /* Pods-DonatosVillage.release.xcconfig */,
+				897C10B6C9665EF136BFE2D1 /* Pods-DonatosVillage.debug.xcconfig */,
+				990F3F5A02743F84B43F2796 /* Pods-DonatosVillage.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -113,14 +127,22 @@
 			path = Vendor;
 			sourceTree = "<group>";
 		};
+		D4A983EB2269FE6E00ACC3F6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4A983F02269FE6E00ACC3F6 /* VillageCore.framework */,
+				D4A983F22269FE6E00ACC3F6 /* VillageCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D4CC29C222075D070091BEFB = {
 			isa = PBXGroup;
 			children = (
-				D46724EB22480F6500F4D7E5 /* VillageCore.framework */,
 				D4CC29CD22075D070091BEFB /* DonatosVillage */,
 				D4CC29CC22075D070091BEFB /* Products */,
 				D54C3D91F4C5144E14E60397 /* Frameworks */,
-				927FD57648006082C52C798F /* Pods */,
+				8E7EE6663F3F2DC8E64E8E09 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,9 +169,9 @@
 		D54C3D91F4C5144E14E60397 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4AE68862242AD0300A3FB25 /* VillageCore.framework */,
+				D4A983EA2269FE6E00ACC3F6 /* VillageCore.xcodeproj */,
 				D47FD3EC220FB15900376D31 /* VillageCoreUI.xcodeproj */,
-				E943258A11A7B681BE7388D8 /* Pods_DonatosVillage.framework */,
+				BEA45619FC0B538F8726ED14 /* Pods_DonatosVillage.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -161,17 +183,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4CC29DD22075D080091BEFB /* Build configuration list for PBXNativeTarget "DonatosVillage" */;
 			buildPhases = (
-				DD8833D78D8C99DCAED646F8 /* [CP] Check Pods Manifest.lock */,
+				6295364F06A2C2978ECF1B96 /* [CP] Check Pods Manifest.lock */,
 				D4CC29C722075D070091BEFB /* Sources */,
 				D4CC29C822075D070091BEFB /* Frameworks */,
 				D4CC29C922075D070091BEFB /* Resources */,
+				D4C037F12269482B00BA7D9D /* Set Build Number */,
 				D47FD3EB220FB12200376D31 /* Embed Frameworks */,
-				58EAADC3F5BC3512C52778CD /* [CP] Embed Pods Frameworks */,
+				61D8F54D330E4BAEC8DBFC41 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D47FD3F5220FB16300376D31 /* PBXTargetDependency */,
+				D4A983F62269FE8000ACC3F6 /* PBXTargetDependency */,
 			);
 			name = DonatosVillage;
 			productName = DonatosVillage;
@@ -206,6 +230,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = D4A983EB2269FE6E00ACC3F6 /* Products */;
+					ProjectRef = D4A983EA2269FE6E00ACC3F6 /* VillageCore.xcodeproj */;
+				},
+				{
 					ProductGroup = D47FD3ED220FB15900376D31 /* Products */;
 					ProjectRef = D47FD3EC220FB15900376D31 /* VillageCoreUI.xcodeproj */;
 				},
@@ -225,6 +253,20 @@
 			remoteRef = D47FD3F0220FB15900376D31 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D4A983F02269FE6E00ACC3F6 /* VillageCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VillageCore.framework;
+			remoteRef = D4A983EF2269FE6E00ACC3F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D4A983F22269FE6E00ACC3F6 /* VillageCoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VillageCoreTests.xctest;
+			remoteRef = D4A983F12269FE6E00ACC3F6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -240,7 +282,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		58EAADC3F5BC3512C52778CD /* [CP] Embed Pods Frameworks */ = {
+		61D8F54D330E4BAEC8DBFC41 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -249,8 +291,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
@@ -259,13 +299,13 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Nantes/Nantes.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
@@ -274,13 +314,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nantes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DD8833D78D8C99DCAED646F8 /* [CP] Check Pods Manifest.lock */ = {
+		6295364F06A2C2978ECF1B96 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -302,6 +344,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D4C037F12269482B00BA7D9D /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Source: https://blog.curtisherbert.com/automated-xcode-build-numbers-early-2019-edition/?utm_campaign=iOS%2BDev%2BWeekly&utm_medium=web&utm_source=iOS%2BDev%2BWeekly%2BIssue%2B397\ngit=`sh /etc/profile; which git`\nbundleVersion=`\"$git\" rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersion\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\necho \"Updated build number in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} to $bundleVersion\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -320,6 +380,11 @@
 			isa = PBXTargetDependency;
 			name = VillageCoreUI;
 			targetProxy = D47FD3F4220FB16300376D31 /* PBXContainerItemProxy */;
+		};
+		D4A983F62269FE8000ACC3F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VillageCore;
+			targetProxy = D4A983F52269FE8000ACC3F6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -453,7 +518,7 @@
 		};
 		D4CC29DE22075D080091BEFB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A21354782F5AAF5295BF86C /* Pods-DonatosVillage.debug.xcconfig */;
+			baseConfigurationReference = 897C10B6C9665EF136BFE2D1 /* Pods-DonatosVillage.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -479,7 +544,7 @@
 		};
 		D4CC29DF22075D080091BEFB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43565619D7EDB88B2A852C60 /* Pods-DonatosVillage.release.xcconfig */;
+			baseConfigurationReference = 990F3F5A02743F84B43F2796 /* Pods-DonatosVillage.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";

@@ -118,12 +118,6 @@ class NoticeAcknowledgementsViewController: UIViewController {
         return NSPredicate(format: "personId != %d", User.current.personId)
     }
     
-    @IBAction func back(_ sender: UIBarButtonItem!) {
-        if let navigationController = self.navigationController {
-            navigationController.popViewController(animated: true)
-        }
-    }
-
 }
 
 extension NoticeAcknowledgementsViewController: UITableViewDataSource {

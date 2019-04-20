@@ -53,7 +53,10 @@ target 'DonatosVillage' do
   platform :ios, '11'
   project './Clients/DonatosVillage/DonatosVillage.xcodeproj'
 
+  core_pods
+  core_ui_pods
   client_pods
+  
 end
 
 post_install do |installer|

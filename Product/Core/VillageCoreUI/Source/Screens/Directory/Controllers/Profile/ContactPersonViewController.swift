@@ -69,6 +69,10 @@ final class ContactPersonViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
         tableView.tableFooterView = UIView()
     }
     

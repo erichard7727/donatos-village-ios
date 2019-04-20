@@ -102,6 +102,10 @@ class KudosListController: UIViewController, StatefulUserInterface {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
         self.loadData() { [weak self] in
             guard let strongSelf = self else {
                 return
@@ -128,10 +132,6 @@ class KudosListController: UIViewController, StatefulUserInterface {
     
     // MARK: - Target/Action
     
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        sideMenuController?.showMenu()
-    }
-    
     @objc internal func onRefresh(_ sender: AnyObject? = nil) {
         loadData() {
             [weak self] in
@@ -153,8 +153,7 @@ class KudosListController: UIViewController, StatefulUserInterface {
                 return giver.kudosGiven(page: self.currentPage)
             
             default:
-                assertionFailure()
-                return Promise([])
+                return User.current.getPerson().then { $0.kudosStream(page: self.currentPage) }
             }
         }()
         
@@ -166,7 +165,7 @@ class KudosListController: UIViewController, StatefulUserInterface {
             }
             
             let formatter = DateFormatter()
-            formatter.dateFormat = "MMM dd"
+            formatter.dateFormat = "MMM dd, yyyy"
             
             let groupedKudos = Dictionary(grouping: kudos, by: { kudo in kudo.date })
                 .flatMap({ (key, value) -> [String: Kudos] in
@@ -251,7 +250,7 @@ extension KudosListController: UITableViewDataSource {
         }
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd"
+        formatter.dateFormat = "MMM dd, yyyy"
         var dateString = ""
         dateString = formatter.string(from: kudo.date as Date)
         

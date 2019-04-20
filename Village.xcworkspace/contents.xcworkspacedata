@@ -9,10 +9,8 @@
       assignedFileDataType = "public.ruby-script">
    </FileRef>
    <FileRef
-      location = "group:Gemfile">
-   </FileRef>
-   <FileRef
-      location = "group:Cartfile">
+      location = "group:Gemfile"
+      assignedFileDataType = "public.ruby-script">
    </FileRef>
    <Group
       location = "container:"

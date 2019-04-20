@@ -56,6 +56,7 @@ public enum VillageCoreAPI {
     }
     
     public enum KudoType: String {
+        case all = ""
         case received
         case given
     }
@@ -92,7 +93,11 @@ public enum VillageCoreAPI {
     case contentLibraryDirectory(contentId: String)
     
     // Kudos
-    case kudos(_ kudoType: KudoType, personId: String, page: Int)
+    case kudos(_ kudoType: KudoType, personId: String, achievementId: String?, page: Int)
+    case achievements(personId: String, page: Int)
+    case givableAchievements(page: Int)
+    case giveKudo(receiverId: Int, achievementId: String, points: Int, comment: String)
+    case kudosLeaderboard(page: Int, days: Int?)
     
     // Streams
     case streamsHistory
@@ -111,22 +116,22 @@ extension VillageCoreAPI: TargetType {
         case let .foundationSettings(licenseKey):
             return "foundation/1.0/foundation_settings/\(licenseKey)"
             
-        case .validateIdentity(_):
+        case .validateIdentity:
             return "auth/1.0/auth_validate_identity"
             
         case .initiateDomain:
             return "auth/1.0/auth_initiate_domain_confirmation"
             
-        case .login(_):
+        case .login:
             return "accounts/1.0/login"
             
-        case .initiateResetPassword(_):
+        case .initiateResetPassword:
             return "auth/1.0/auth_initiate_reset_password"
             
         case .logout:
             return "accounts/1.0/logout"
             
-        case .inviteUser(_):
+        case .inviteUser:
             return "auth/1.0/invitation"
             
         case .me:
@@ -158,14 +163,20 @@ extension VillageCoreAPI: TargetType {
              let .acknowledgeNotice(noticeId):
             return "notice/1.0/\(noticeId)/acknowledge"
             
-        case .contentLibraryRoot(_):
+        case .contentLibraryRoot:
             return "content/1.0"
             
         case let .contentLibraryDirectory(contentId):
             return "content/1.0/@\(contentId)"
             
-        case .kudos(_):
+        case .kudos, .giveKudo:
             return "kudos/1.0/kudos"
+            
+        case .achievements, .givableAchievements:
+            return "kudos/1.0/achievements/"
+            
+        case .kudosLeaderboard:
+            return "kudos/1.0/leaders"
             
         case .streamsHistory:
             return "streams/1.0/history"
@@ -181,28 +192,32 @@ extension VillageCoreAPI: TargetType {
 
     public var method: Moya.Method {
         switch self {
-        case .foundationSettings(_),
+        case .foundationSettings,
              .me,
-             .securityPolicies(_),
-             .directory(_),
-             .getPersonDetails(_),
+             .securityPolicies,
+             .directory,
+             .getPersonDetails,
              .notices,
              .noticeDetail,
              .noticeAcknowledgedList,
              .contentLibraryRoot,
              .contentLibraryDirectory,
-             .kudos(_),
-             .searchDirectory(_),
+             .kudos,
+             .achievements,
+             .givableAchievements,
+             .kudosLeaderboard,
+             .searchDirectory,
              .streamsHistory:
             return .get
             
-        case .validateIdentity(_),
+        case .validateIdentity,
              .initiateDomain,
-             .login(_),
-             .initiateResetPassword(_),
+             .login,
+             .initiateResetPassword,
              .logout,
-             .inviteUser(_),
-             .acknowledgeNotice:
+             .inviteUser,
+             .acknowledgeNotice,
+             .giveKudo:
             return .post
             
         case .updatePerson:
@@ -212,26 +227,30 @@ extension VillageCoreAPI: TargetType {
 
     public var sampleData: Data {
         switch self {
-        case .foundationSettings(_),
-             .validateIdentity(_),
+        case .foundationSettings,
+             .validateIdentity,
              .initiateDomain,
-             .login(_),
-             .initiateResetPassword(_),
+             .login,
+             .initiateResetPassword,
              .logout,
-             .inviteUser(_),
+             .inviteUser,
              .me,
-             .securityPolicies(_),
+             .securityPolicies,
              .updatePerson,
-             .directory(_),
-             .getPersonDetails(_),
+             .directory,
+             .getPersonDetails,
              .notices,
              .noticeDetail,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
              .contentLibraryRoot,
              .contentLibraryDirectory,
-             .kudos(_),
-             .searchDirectory(_),
+             .kudos,
+             .giveKudo,
+             .achievements,
+             .givableAchievements,
+             .kudosLeaderboard,
+             .searchDirectory,
              .streamsHistory:
             return Data()
         }
@@ -239,11 +258,11 @@ extension VillageCoreAPI: TargetType {
 
     public var task: Task {
         switch self {
-        case .foundationSettings(_),
+        case .foundationSettings,
              .logout,
              .me,
-             .securityPolicies(_),
-             .getPersonDetails(_),
+             .securityPolicies,
+             .getPersonDetails,
              .noticeDetail,
              .acknowledgeNotice,
              .contentLibraryDirectory,
@@ -354,7 +373,7 @@ extension VillageCoreAPI: TargetType {
                 ]
             )
             
-        case .directory(_):
+        case .directory:
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId,
@@ -388,13 +407,67 @@ extension VillageCoreAPI: TargetType {
                 )
             }
             
-        case let .kudos(kudoType, personId, page):
+        case let .kudos(kudoType, personId, achievementId, page):
+            let filters: [String?] = [
+                (kudoType == .all) ? nil : kudoType.rawValue,
+                "personId:\(personId)",
+                achievementId.flatMap({ "achievementId:\($0)" })
+            ]
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId,
                     "paging": "\(page)-\(defaultPageSize)",
-                    "filter": "\(kudoType.rawValue),personId:\(personId)",
+                    "filter": filters.compactMap({ $0 }).joined(separator: ","),
                 ],
+                encoding: URLEncoding.default
+            )
+            
+        case let .giveKudo(receiverId, achievementId, points, comment):
+            return Task.requestCompositeParameters(
+                bodyParameters: [
+                    "achievementId": achievementId,
+                    "receiverId": receiverId,
+                    "points": points,
+                    "comment": comment,
+                ],
+                bodyEncoding: JSONEncoding.default,
+                urlParameters: [
+                    "diagId": User.current.diagnosticId,
+                ]
+            )
+            
+        case let .achievements(personId, page):
+            return Task.requestParameters(
+                parameters: [
+                    "diagId": User.current.diagnosticId,
+                    "paging": "\(page)-\(defaultPageSize)",
+                    "filter": "enabled:true,personId:\(personId)",
+                ],
+                encoding: URLEncoding.default
+            )
+            
+        case let .givableAchievements(page):
+            return Task.requestParameters(
+                parameters: [
+                    "diagId": User.current.diagnosticId,
+                    "paging": "\(page)-\(defaultPageSize)",
+                    "filter": "enabled:true,currentUserCanGiveKudos:true",
+                ],
+                encoding: URLEncoding.default
+            )
+            
+        case let .kudosLeaderboard(page, days):
+            return Task.requestParameters(
+                parameters: {
+                    var params: [String: Any] = [
+                        "diagId": User.current.diagnosticId,
+                        "paging": "\(page)-\(defaultPageSize)",
+                    ]
+                    if let days = days {
+                        params["days"] = days
+                    }
+                    return params
+                }(),
                 encoding: URLEncoding.default
             )
             
@@ -418,28 +491,32 @@ extension VillageCoreAPI: AuthorizedTargetType {
     
     public var isAuthorized: Bool {
         switch self {
-        case .foundationSettings(_),
-             .validateIdentity(_),
+        case .foundationSettings,
+             .validateIdentity,
              .initiateDomain,
-             .login(_),
+             .login,
              .logout,
-             .initiateResetPassword(_):
+             .initiateResetPassword:
             return false
             
         case .me,
-             .securityPolicies(_),
+             .securityPolicies,
              .updatePerson,
-             .inviteUser(_),
-             .directory(_),
-             .getPersonDetails(_),
+             .inviteUser,
+             .directory,
+             .getPersonDetails,
              .notices,
              .noticeDetail,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
              .contentLibraryRoot,
              .contentLibraryDirectory,
-             .kudos(_),
-             .searchDirectory(_),
+             .kudos,
+             .giveKudo,
+             .achievements,
+             .givableAchievements,
+             .kudosLeaderboard,
+             .searchDirectory,
              .streamsHistory:
             return true
         }

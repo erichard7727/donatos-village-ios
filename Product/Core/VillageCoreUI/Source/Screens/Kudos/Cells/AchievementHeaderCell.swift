@@ -31,7 +31,7 @@ class AchievementHeaderCell: UITableViewCell {
         UIView.transition(with: achievementImageView.imageView, duration: 0.35, options: .transitionCrossDissolve, animations: {
             self.achievementImageView.imageView.image = attachmentImage
             self.achievementImageView.imageView.clipsToBounds = true
-            self.achievementImageView.imageView.backgroundColor = UIColor.appGray()
+            self.achievementImageView.imageView.backgroundColor = UIColor.vlgGray
             if let points = self.points, let cap = self.pointsCap, points/cap < 1 {
                 self.achievementImageView.imageView.alpha = 0.6
             } else {

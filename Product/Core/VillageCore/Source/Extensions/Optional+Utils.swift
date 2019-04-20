@@ -8,9 +8,17 @@
 
 import Foundation
 
-extension Optional {
+public extension Optional {
+
+    /// Returns the wrapped value or the expression in case it contains nil
+    ///
+    /// - Parameter expression: The expression to evaluate if nil
+    /// - Returns: The wrapped value if not nil, else the expression's value
+    func or<T>(_ expression: @autoclosure () -> T) -> T {
+        return self as? T ?? expression()
+    }
     
-    /// Returns the wrapped value or throws an error in case it containes nil
+    /// Returns the wrapped value or throws an error in case it containe nil
     ///
     /// Example usage:
     ///

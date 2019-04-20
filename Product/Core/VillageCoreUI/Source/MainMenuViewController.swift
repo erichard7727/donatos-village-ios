@@ -17,13 +17,59 @@ final class MainMenuViewController: UIViewController {
     @IBOutlet private weak var menuOptionGroups: UIView!
     @IBOutlet private weak var menuOptionOtherGroups: UIView!
     @IBOutlet private weak var menuOptionPeople: UIView!
+    
+    @IBOutlet private weak var menuOptionKudosContainer: UIView! {
+        didSet {
+            menuOptionKudosContainer.isHidden = !Constants.Settings.kudosEnabled
+        }
+    }
     @IBOutlet private weak var menuOptionKudos: UIView!
+    @IBOutlet private weak var menuOptionsKudosExpandButton: UIButton!
+    @IBOutlet private weak var menuOptionKudosChildrenContainer: UIStackView! {
+        didSet {
+            menuOptionKudosChildrenContainer.arrangedSubviews.forEach { (view) in
+                view.alpha = self.areKudosCollapsed ? 0 : 1
+                view.isHidden = areKudosCollapsed
+            }
+        }
+    }
+    @IBOutlet private weak var menuOptionKudosStream: UIView!
+    @IBOutlet private weak var menuOptionKudosMyKudos: UIView!
+    @IBOutlet private weak var menuOptionKudosAchievements: UIView! {
+        didSet {
+            if !Constants.Settings.achievementsEnabled {
+//                menuOptionKudosAchievements.removeFromSuperview()
+            }
+        }
+    }
+    @IBOutlet private weak var menuOptionKudosGiveKudos: UIView!
+    @IBOutlet private weak var menuOptionKudosLeaderboard: UIView! {
+        didSet {
+            if !Constants.Settings.achievementsEnabled {
+                menuOptionKudosLeaderboard.removeFromSuperview()
+            }
+        }
+    }
+    
     @IBOutlet private weak var menuOptionContentLibrary: UIView!
     
     @IBOutlet private weak var noticesUnreadBadge: UILabel! {
         didSet {
             noticesUnreadBadge.layer.masksToBounds = true
             noticesUnreadBadge.isHidden = true
+        }
+    }
+    
+    private var areKudosCollapsed = true {
+        didSet {
+            UIView.animate(withDuration: 0.25) {
+                self.menuOptionsKudosExpandButton.transform = self.menuOptionsKudosExpandButton.transform.rotated(by: .pi / 1) // 180 degrees
+                self.menuOptionKudosChildrenContainer.arrangedSubviews.forEach { (view) in
+                    view.alpha = self.areKudosCollapsed ? 0 : 1
+                    view.isHidden = self.areKudosCollapsed
+                }
+                self.menuOptionKudosChildrenContainer.layoutIfNeeded()
+            }
         }
     }
     
@@ -118,10 +164,38 @@ private extension MainMenuViewController {
         self.sideMenuController?.hideMenu()
     }
     
-    @IBAction func onGoToKudos(_ sender: Any? = nil) {
-        //        let vc = ...
-        //        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show Kudos")
+    @IBAction func onToggleKudos(_ sender: Any? = nil) {
+        areKudosCollapsed.toggle()
+    }
+    
+    @IBAction func onGoToKudosStream(_ sender: Any? = nil) {
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "KudosListController") as! KudosListController
+        vc.list = .allStream
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToKudosMine(_ sender: Any? = nil) {
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "MyKudosViewController") as! MyKudosViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToKudosAchievements(_ sender: Any? = nil) {
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "MyAchievementsViewController") as! MyAchievementsViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToKudosGive(_ sender: Any? = nil) {
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GiveKudosViewController") as! GiveKudosViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToKudosLeaderboard(_ sender: Any? = nil) {
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "LeaderboardViewController") as! LeaderboardViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     

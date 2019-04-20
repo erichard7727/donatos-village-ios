@@ -7,11 +7,9 @@
 //
 
 import UIKit
-import DynamitCoreDataKit
+import VillageCore
 
-class GiveKudosViewController: UIViewController, KeyboardExpandable, KudosServiceInjected {
-    
-    var context: AppContext!
+class GiveKudosViewController: UIViewController, KeyboardExpandable {
     
     lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -66,25 +64,24 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable, KudosServic
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
         toolBar.barStyle = UIBarStyle.default
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(done))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(done))
         toolBar.items = [flexSpace, doneButton]
         toolBar.sizeToFit()
         return toolBar
     }()
     
     fileprivate var selectPeopleVC: SelectPeopleViewController {
-        let storyboard = UIStoryboard(name: "Kudos", bundle: .main)
+        let storyboard = UIStoryboard(name: "Kudos", bundle: Constants.bundle)
         let vc = storyboard.instantiateViewController(withIdentifier: "SelectPeopleViewController") as! SelectPeopleViewController
-        vc.context = self.context
         vc.groupMembers = []
         vc.delegate = self
         vc.limit = 1
         return vc
     }
     
-    fileprivate var achievements: [Achievementss]!
+    fileprivate var achievements: Achievements!
     
-    fileprivate var selectedPerson: Persons? {
+    fileprivate var selectedPerson: Person? {
         didSet {
             recipientTextView.text = selectedPerson?.displayName
         }
@@ -93,7 +90,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable, KudosServic
     fileprivate var selectedAchievementIndex: Int? {
         didSet {
             guard let selectedAchievementIndex = selectedAchievementIndex,
-                  selectedAchievementIndex < achievements.count else {
+                  selectedAchievementIndex <= achievements.count else {
                 categoryTextField.text = nil
                 return
             }
@@ -110,38 +107,27 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable, KudosServic
         super.viewDidLoad()
         
         addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack),
             AccommodatesKeyboardBehavior(),
         ])
         
         categoryTextField.inputAccessoryView = inputAccessory
         reasonTextView.inputAccessoryView = inputAccessory
         
-//        context.fetchAchievements(personId: nil, canUserGiveKudos: true) { result in
-//            switch result {
-//            case .success(let achievementList):
-//                if let achievements = achievementList {
-//                    self.achievements = achievements
-//                    self.pickerView.reloadAllComponents()
-//                }
-//                break
-//            case .error(let error):
-//                print(error)
-//            }
-//            
-//        }
-        
-        kudosService.getAchievements(personId: nil, canGiveKudos: true) {
-            result in
-            switch result {
-            case .success(let achievementList):
-                if let achievements = achievementList {
-                    self.achievements = achievements
-                    self.pickerView.reloadAllComponents()
+        firstly {
+            Achievements.givable()
+        }.then { [weak self] achievements in
+            self?.achievements = achievements
+            self?.pickerView.reloadAllComponents()
+            if achievements.count == 1 {
+                self?.selectedAchievementIndex = 0
+                DispatchQueue.main.async {
+                    self?.pickerView.selectRow(0, inComponent: 0, animated: false)
                 }
-                break
-            case .error(let error):
-                print(error)
             }
+        }.catch { [weak self] error in
+            let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem fetching eligible Achievements to give Kudos for.")
+            self?.present(alert, animated: true, completion: nil)
         }
         
         resetForm()
@@ -157,77 +143,53 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable, KudosServic
         guard validateForm() else { return }
         
         guard let comment = reasonTextView.text,
-              let receiverName = selectedPerson?.displayName,
-              let receiverId = selectedPerson?.id else {
+              let receiver = selectedPerson,
+              let selectedAchievementIndex = self.selectedAchievementIndex else {
             assertionFailure("Missing required values. Is validateForm() up-to-date?")
             return
         }
         
         self.progressIndicator.show()
         
-        kudosService.giveKudosService(
-            achievementId: achievements[selectedAchievementIndex!].achievementId,
-            comment: comment,
-            points: 1,
-            receiverId: receiverId) {
-                result in
-                self.progressIndicator.hide()
-                
-                switch result {
-                case .success(_):
-                    let alert = UIAlertController(
-                        title: "Success",
-                        message: "Your kudos to \(receiverName) has been sent.",
-                        preferredStyle: .alert
-                    )
-                    let giveAnother = UIAlertAction(title: "Give Another", style: .default, handler: {
-                        _ in
-                        self.resetForm()
-                    })
-                    alert.addAction(giveAnother)
-                    
-                    let myKudos = UIAlertAction(title: "My Kudos", style: .default, handler: {
-                        _ in
-                        self.transitionToMyKudos()
-                    })
-                    alert.addAction(myKudos)
-                    
-                    self.present(alert, animated: true, completion: nil)
-                    
-                case .error(let error):
-                    
-                    let alert = UIAlertController(
-                        title: "Error",
-                        message: "E" + error.code.description + " - " + error.localizedDescription,
-                        preferredStyle: .alert
-                    )
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
+        firstly {
+            selectedPerson!.giveKudo(for: achievements[selectedAchievementIndex], reason: comment)
+        }.then { [weak self] in
+            let alert = UIAlertController(
+                title: "Success",
+                message: "Your \(receiver.displayName.flatMap({ "kudos to " + $0 }).or("kudo")) has been sent.",
+                preferredStyle: .alert
+            )
+            let giveAnother = UIAlertAction(title: "Give Another", style: .default, handler: { [weak self] _ in
+                self?.resetForm()
+            })
+            alert.addAction(giveAnother)
+            
+            let myKudos = UIAlertAction(title: "My Kudos", style: .default, handler: { [weak self] _ in
+                self?.transitionToMyKudos()
+            })
+            alert.addAction(myKudos)
+            
+            self?.present(alert, animated: true, completion: nil)
+        }.catch { [weak self] error in
+            let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
+            self?.present(alert, animated: true, completion: nil)
+        }.always {
+            self.progressIndicator.hide()
         }
-        
     }
     
     fileprivate func transitionToMyKudos() {
         if let menuController = self.sideMenuController {
             let controller = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "MyKudosViewController") as! MyKudosViewController
-            controller.context = self.context
             controller.selectedFilter = MyKudosViewController.filter.given
-            let nav = VillageNavigationController(rootViewController: controller)
-            menuController.swapOutCenterViewController(nav, animated: true)
+            let nav = UINavigationController(rootViewController: controller)
+            menuController.setContentViewController(nav, fadeAnimation: true)
         }
     }
     
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        guard let sideMenuController = sideMenuController else {
-            return
-        }
-        sideMenuController.showLeftMenuController(true)
-    }
-
-    // MARK: - 
+    // MARK: -
     
-    internal func done() {
+    @objc internal func done() {
         view.endEditing(true)
     }
     
@@ -296,7 +258,7 @@ extension GiveKudosViewController: UITextViewDelegate {
             placeholderText.isHidden = !newValue.isEmpty
         }
         
-        return true
+        return textView.text.count + (text.count - range.length) <= 280
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -310,6 +272,15 @@ extension GiveKudosViewController: UITextViewDelegate {
 // MARK: - UITextFieldDelegate
 
 extension GiveKudosViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == categoryTextField {
+            // Only allow selecting an achievement if there are more than one
+            return achievements.count > 1
+        } else {
+            return true
+        }
+    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == categoryTextField, textField.text?.isEmpty == true, achievements != nil && !achievements.isEmpty {
@@ -352,7 +323,9 @@ extension GiveKudosViewController: UIPickerViewDelegate {
 // MARK: - SelectPeopleViewControllerDelegate
 
 extension GiveKudosViewController: SelectPeopleViewControllerDelegate {
-    func didSelectPersons(_ persons: [Persons]) {
-        self.selectedPerson = persons.first
+    
+    func didSelectPeople(_ people: People) {
+        self.selectedPerson = people.first
     }
+
 }

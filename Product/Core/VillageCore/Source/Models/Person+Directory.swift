@@ -50,12 +50,24 @@ public extension Sequence where Element == Person {
 
 extension Person {
     
-    public func kudosReceived(page: Int = 1) -> Promise<Kudos> {
-        return KudosService.getKudosReceived(for: self, page: page)
+    public func kudosStream(page: Int = 1) -> Promise<Kudos> {
+        return KudosService.getKudosStream(for: self, page: page)
     }
     
-    public func kudosGiven(page: Int = 1) -> Promise<Kudos> {
-        return KudosService.getKudosGiven(for: self, page: page)
+    public func kudosReceived(achievement: Achievement? = nil, page: Int = 1) -> Promise<Kudos> {
+        return KudosService.getKudosReceived(for: self, achievement: achievement, page: page)
+    }
+    
+    public func kudosGiven(achievement: Achievement? = nil, page: Int = 1) -> Promise<Kudos> {
+        return KudosService.getKudosGiven(for: self, achievement: achievement, page: page)
+    }
+    
+    public func achievements(page: Int = 1) -> Promise<Achievements> {
+        return KudosService.getAchievements(for: self, page: page)
+    }
+    
+    public func giveKudo(for achievement: Achievement, points: Int = 1, reason: String) -> Promise<Void> {
+        return KudosService.giveKudo(to: self, for: achievement, points: points, comment: reason)
     }
     
 }

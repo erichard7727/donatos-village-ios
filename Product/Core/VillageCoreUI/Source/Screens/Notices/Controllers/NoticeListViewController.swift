@@ -100,6 +100,10 @@ extension NoticeListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+        
         NotificationCenter.default.addObserver(forName: Notification.Name.Notice.WasAcknowledged, object: nil, queue: nil) { [weak self] (_) in
             self?.needsRefresh = true
         }
@@ -220,10 +224,6 @@ private extension NoticeListViewController {
                 self?.loadingIndicator.stopAnimating()
             }
         }
-    }
-    
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        sideMenuController?.showMenu()
     }
     
     @objc func refreshData() {

@@ -11,7 +11,7 @@ import Promises
 import VillageCore
 import Nantes
 
-final class LoginPasswordViewController: UIViewController, UIGestureRecognizerDelegate {
+final class LoginPasswordViewController: UIViewController {
     
     @IBOutlet private weak var scrollView: UIScrollView!
     
@@ -70,7 +70,9 @@ extension LoginPasswordViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureBackButton()
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .back)
+        ])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,19 +145,6 @@ private extension LoginPasswordViewController {
 
 private extension LoginPasswordViewController {
     
-    func configureBackButton() {
-        // Hide the actual back button text
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        // Modify the back indicator image
-        let backImage = UIImage.named("back-button")
-        navigationController?.navigationBar.backIndicatorImage = backImage
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
-        
-        // Maintain swipe-to-go-back gesture behavior
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-    }
-
     @discardableResult func validateForm() -> Bool {
         if let password = passwordField.text, !password.isEmpty {
             invalidPasswordLabel.isHidden = true

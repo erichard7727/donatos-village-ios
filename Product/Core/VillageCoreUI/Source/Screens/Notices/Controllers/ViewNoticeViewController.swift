@@ -20,6 +20,14 @@ class ViewNoticeViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     weak var webView: WKWebView?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -82,21 +90,7 @@ class ViewNoticeViewController: UIViewController {
         present(acknowledgeAlertController, animated: true, completion: nil)
     }
     
-    @IBAction func back(_ sender: UIBarButtonItem!) {
-        if let navigationController = self.navigationController {
-            navigationController.popViewController(animated: true)
-        }
-    }
-    
 }
-
-//extension ViewNoticeViewController {
-//    @IBAction override func backButtonPressed(_ sender: UIBarButtonItem) {
-//        if let navigationController = self.navigationController {
-//            navigationController.popViewController(animated: true)
-//        }
-//    }
-//}
 
 extension ViewNoticeViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

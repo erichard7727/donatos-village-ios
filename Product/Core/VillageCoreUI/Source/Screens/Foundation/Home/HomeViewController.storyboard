@@ -40,13 +40,7 @@
                         <viewLayoutGuide key="safeArea" id="gW2-Rz-qtZ"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Home Stream" id="i9q-7Y-Xh1">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="mfw-TK-A4T">
-                            <connections>
-                                <action selector="showSideMenu" destination="CJI-Pd-Pwy" id="pIh-MA-Gdg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Home Stream" id="i9q-7Y-Xh1"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -56,6 +50,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
     </resources>
 </document>

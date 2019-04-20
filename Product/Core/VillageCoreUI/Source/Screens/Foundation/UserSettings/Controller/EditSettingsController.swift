@@ -28,6 +28,10 @@ final class EditSettingsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
     
         progressIndicator = ProgressIndicator.progressIndicatorInView(self.view)
         
@@ -70,9 +74,6 @@ final class EditSettingsController: UIViewController {
         }
     }
     
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        sideMenuController?.showMenu()
-    }
 }
 
 extension EditSettingsController: SettingsControllerDelegate {

@@ -8,10 +8,8 @@
 
 import UIKit
 
-class LeaderboardViewController: UIViewController, KudosServiceInjected {
-    var context: AppContext!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+class LeaderboardViewController: UIViewController {
+
     @IBOutlet fileprivate weak var thisWeekTab: TabItemView? {
         didSet {
             // Configure tab
@@ -32,7 +30,7 @@ class LeaderboardViewController: UIViewController, KudosServiceInjected {
     
     fileprivate var selectedTab: TabItemView!
     
-    internal func onTabClick(_ sender: UIButton) {
+    @objc internal func onTabClick(_ sender: UIButton) {
         if sender == thisWeekTab?.tabButton && selectedTab != thisWeekTab {
             selectThisWeekTab()
         } else if sender == allTimeTab?.tabButton && selectedTab != allTimeTab {
@@ -68,7 +66,9 @@ class LeaderboardViewController: UIViewController, KudosServiceInjected {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityIndicator.startAnimating()
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack)
+        ])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +84,7 @@ class LeaderboardViewController: UIViewController, KudosServiceInjected {
         super.viewDidAppear(animated)
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pageController = segue.destination as? UIPageViewController {
             self.pageController = pageController
@@ -94,71 +95,20 @@ class LeaderboardViewController: UIViewController, KudosServiceInjected {
         
         pages.removeAll()
         
-        let storyboard = UIStoryboard(name: "Kudos", bundle: Constants.bundle)
-        let leaderboardTableviewControllerId = "LeaderboardTableViewController"
+        pages = [
+            LeaderboardTableViewController.make(for: .week),
+            LeaderboardTableViewController.make(for: .all),
+        ]
         
-        kudosService.getLeaderboard(filter: FetchLeaderboardFilter.week, page: 1) {  weekResult in
-            switch weekResult {
-            case .success(let people):
-                
-                // Week
-                let weekly = storyboard.instantiateViewController(withIdentifier: leaderboardTableviewControllerId) as! LeaderboardTableViewController
-                weekly.list = people
-                weekly.context = self.context
-                weekly.filter = FetchLeaderboardFilter.week
-                self.thisWeekTab?.tabButton.isEnabled = true
-                self.pages.append(weekly)
-                
-                self.kudosService.getLeaderboard(filter: FetchLeaderboardFilter.all, page: 1) {
-                    allResult in
-                    switch allResult {
-                    case .success(let allPeople):
-                        
-                        // All Time
-                        let allTime = storyboard.instantiateViewController(withIdentifier: leaderboardTableviewControllerId) as! LeaderboardTableViewController
-                        allTime.list = allPeople
-                        allTime.context = self.context
-                        allTime.filter = FetchLeaderboardFilter.all
-                        self.allTimeTab?.tabButton.isEnabled = true
-                        self.pages.append(allTime)
-                        
-                        self.pageController?.setViewControllers([self.pages.first!], direction: .forward, animated: false, completion: nil)
-                        self.activityIndicator.stopAnimating()
-                        self.activityIndicator.alpha = 0
-                        self.selectThisWeekTab()
-                    case .error(let error):
-                        var errorMessage: String
-                        if let localizedFailure = error.userInfo[NSLocalizedFailureReasonErrorKey] as? [String: AnyObject], let error = localizedFailure["error"] as? [String: AnyObject], let code = error["code"], let errorDescription = error["description"] as? String {
-                            errorMessage = "E" + String(describing: code) + " - " + String(describing: errorDescription)
-                        } else {
-                            errorMessage = "Could not update Leaderboard data."
-                        }
-                        let alert = UIAlertController.dismissableAlert("Error", message: errorMessage)
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }
-                
-            case .error(let error):
-                var errorMessage: String
-                if let localizedFailure = error.userInfo[NSLocalizedFailureReasonErrorKey] as? [String: AnyObject], let error = localizedFailure["error"] as? [String: AnyObject], let code = error["code"], let errorDescription = error["description"] as? String {
-                    errorMessage = "E" + String(describing: code) + " - " + String(describing: errorDescription)
-                } else {
-                    errorMessage = "Could not update Leaderboard data."
-                }
-                let alert = UIAlertController.dismissableAlert("Error", message: errorMessage)
-                self.present(alert, animated: true, completion: nil)
-            }
-            
-        }
+        self.thisWeekTab?.tabButton.isEnabled = true
+        self.allTimeTab?.tabButton.isEnabled = true
         
+        
+        self.pageController?.setViewControllers([self.pages.first!], direction: .forward, animated: false, completion: nil)
+
+        self.selectThisWeekTab()
     }
     
-    @IBAction func menuItemPressed(_ sender: UIBarButtonItem!) {
-        guard let sideMenuController = sideMenuController else {
-            return
-        }
-        sideMenuController.showLeftMenuController(true)
-    }
 }
 
 // MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate

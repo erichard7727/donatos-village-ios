@@ -10,6 +10,7 @@ import Foundation
 //import FirebaseAnalytics
 
 public let AnalyticsEventViewItem: String = "AnalyticsEventViewItem"
+public let AnalyticsEventViewItemList: String = "AnalyticsEventViewItemList"
 public let AnalyticsParameterItemLocationID: String = "AnalyticsParameterItemLocationID"
 public let AnalyticsParameterItemCategory: String = "AnalyticsParameterItemCategory"
 public let AnalyticsParameterItemName: String = "AnalyticsParameterItemName"
