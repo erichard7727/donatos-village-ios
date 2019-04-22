@@ -111,14 +111,14 @@ public enum VillageCoreAPI {
     case homeStream(page: Int)
     case subscribedStreams
     case otherStreams(page: Int)
-    case searchOtherStreams(term: String, Page: Int)
+    case searchOtherStreams(term: String, page: Int)
     case streamDetails(streamId: String)
     case streamMembers(streamId: String)
     case streamMessages(streamId: String, page: Int)
     case streamMessagesStartingAfter(messageId: String, streamId: String, page: Int)
     case createOrUpdateStream(streamId: String, type: StreamType, name: String, description: String, ownerId: String)
     case inviteToStream(streamId: String, userIds: [String])
-    case subscribeToStream(streamId: String)
+    case setSubscribed(subscribed: Bool, streamId: String)
     case sendMessage(streamId: String, messageId: String, body: String)
     case setMessageLiked(isLiked: Bool, messageId: String, streamId: String)
 }
@@ -225,7 +225,7 @@ extension VillageCoreAPI: TargetType {
         case .otherStreams, .searchOtherStreams:
             return "streams/1.0/streams"
             
-        case .subscribedStreams, .subscribeToStream:
+        case .subscribedStreams, .setSubscribed:
             return "streams/1.0/subscriptions"
 
         case let .sendMessage(streamId, messageId, _):
@@ -286,7 +286,7 @@ extension VillageCoreAPI: TargetType {
              .createOrUpdateStream,
              .inviteToStream,
              .setMessageLiked,
-             .subscribeToStream,
+             .setSubscribed,
              .sendMessage:
             return .put
         }
@@ -329,7 +329,7 @@ extension VillageCoreAPI: TargetType {
              .otherStreams,
              .searchOtherStreams,
              .subscribedStreams,
-             .subscribeToStream,
+             .setSubscribed,
              .streamDetails,
              .sendMessage:
             return Data()
@@ -590,11 +590,11 @@ extension VillageCoreAPI: TargetType {
                 encoding: URLEncoding.default
             )
             
-        case let .subscribeToStream(streamId):
+        case let .setSubscribed(subscribed, streamId):
             return Task.requestCompositeParameters(
                 bodyParameters: [
                     "streamId": streamId,
-                    "subscribed": true,
+                    "subscribed": subscribed,
                 ],
                 bodyEncoding: JSONEncoding.default,
                 urlParameters: [
@@ -684,7 +684,7 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .otherStreams,
              .searchOtherStreams,
              .subscribedStreams,
-             .subscribeToStream(_),
+             .setSubscribed,
              .streamDetails,
              .sendMessage:
             return true
