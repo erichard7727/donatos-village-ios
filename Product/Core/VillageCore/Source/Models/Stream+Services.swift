@@ -12,53 +12,69 @@ import Promises
 // Mark: - StreamService
 
 extension Stream {
-    //    public static func inviteUsersToStream(streamInvite: StreamInvite) -> Promise<StreamInvite> {
-    //        return StreamsService.inviteUsersToStream(streamInvite: streamInvite)
-    //    }
     
-    public static func getMembers(streamId: String) -> Promise<People> {
-        return StreamsService.getStreamMembers(streamId: streamId)
+    public func getDetails() -> Promise<Stream> {
+        return StreamsService.getDetails(of: self)
     }
     
-    public static func likeMessage(streamId: String, messageId: String) -> Promise<Void> {
-        return StreamsService.likeMessage(streamId: streamId, messageId: messageId)
+    public func getMembers() -> Promise<People> {
+        return StreamsService.getMembers(of: self)
     }
     
-    public static func dislikeMessage(streamId: String, messageId: String) -> Promise<Void> {
-        return StreamsService.dislikeMessage(streamId: streamId, messageId: messageId)
+    public func getMessages(page: Int = 1) -> Promise<Messages> {
+        return StreamsService.getMessages(of: self, page: page)
     }
     
-    public static func getOtherStreams(page: Int) -> Promise<Streams> {
-        return StreamsService.getOtherStreams(page: page)
+    public static func new(type: StreamType, name: String, description: String, owner: Person) -> Promise<Stream> {
+        return StreamsService.createStream(type: type, name: name, description: description, owner: owner)
     }
     
-    public static func getSubsciptions() -> Promise<Streams> {
-        return StreamsService.getSubscriptions()
+    public func invite(_ people: People) -> Promise<Void> {
+        return StreamsService.invitePeople(people, to: self)
     }
     
-    public static func subscribeToStream(streamId: String) -> Promise<Stream> {
-        return StreamsService.subscribeToStream(streamId: streamId)
+    public func subscribe() -> Promise<Void> {
+        return StreamsService.subscribeTo(self)
     }
     
-    public static func getStreamDetails(streamId: String) -> Promise<Stream> {
-        return StreamsService.getStreamDetails(streamId: streamId)
+    public func unsubscribe() -> Promise<Void> {
+        return StreamsService.unsubscribeFrom(self)
     }
     
-    //TODO: Create / Update Stream
-    
-    
-    
-    //TODO: send message
-    public static func sendMessage(message: Message) -> Promise<Message> {
-        return StreamsService.sendMessage(message: message)
+    public func send(message: String, from author: Person) -> Promise<Message> {
+        return StreamsService.sendMessage(body: message, from: author, to: self)
     }
+
     
-    //TODO: get stream messages (with history)
-    //TODO: get stream messages (without history)
 }
 
 public extension Sequence where Element == Stream {
     
-    /// Extends typealias `Stream` to
+    /// Extends typealias `Streams` to fetch a list of subscribed streams.
+    ///
+    /// - Returns: A list of `Streams`
+    public static func subscribed() -> Promise<Streams> {
+        return StreamsService.subscribedStreams()
+    }
+    
+    /// Extends typealias `Streams` to fetch a list of available streams
+    /// that the user is not already subscribed to.
+    ///
+    /// - Parameter page: The page of results to fetch. Default == first.
+    /// - Returns: A list of `Streams`
+    public static func other(page: Int = 1) -> Promise<Streams> {
+        return StreamsService.getOtherStreams(page: page)
+    }
+    
+    /// Extends typealias `Streams` to search for a stream.
+    ///
+    /// - Parameters:
+    ///   - term: The user's search term
+    ///   - page: The page of results to fetch. Default == first.
+    /// - Returns: A list of `Streams`
+    public static func searchOthers(for term: String, page: Int = 1) -> Promise<Streams> {
+        return StreamsService.searchOtherStreams(term: term, page: page)
+    }
+    
 }
 

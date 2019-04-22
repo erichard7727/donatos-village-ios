@@ -71,3 +71,13 @@ extension Person {
     }
     
 }
+
+// MARK: - Sreams Service
+
+extension Person {
+    
+    public func send(message: String, to stream: Stream) -> Promise<Message> {
+        return StreamsService.sendMessage(body: message, from: self, to: stream)
+    }
+    
+}

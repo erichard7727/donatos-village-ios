@@ -48,6 +48,7 @@
 		D4CC2995220754850091BEFB /* VillageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC2994220754850091BEFB /* VillageProviderTests.swift */; };
 		D4CC2997220754850091BEFB /* VillageCore.h in Headers */ = {isa = PBXBuildFile; fileRef = D4CC2989220754850091BEFB /* VillageCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4CC29BD220759410091BEFB /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29BC220759410091BEFB /* ClientConfiguration.swift */; };
+		D4E462F2226CF00F00E23363 /* Message+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E462F1226CF00F00E23363 /* Message+Services.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		D4CC2994220754850091BEFB /* VillageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillageProviderTests.swift; sourceTree = "<group>"; };
 		D4CC2996220754850091BEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4CC29BC220759410091BEFB /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
+		D4E462F1226CF00F00E23363 /* Message+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+Services.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,8 @@
 				D4B4E865223B0016002DED70 /* Stream.swift */,
 				D4A6976B22622BA100ECC0A8 /* Kudo+Services.swift */,
 				23F4651A2268C2AE00032A63 /* Stream+Services.swift */,
+				2317A1E122679593002240D4 /* Message.swift */,
+				D4E462F1226CF00F00E23363 /* Message+Services.swift */,
 				D4B4E894223B3C47002DED70 /* Achievements.swift */,
 				D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */,
 				D4B4E865223B0016002DED70 /* Group.swift */,
@@ -192,7 +196,6 @@
 				D48A6A202251393F00411518 /* Unread+Services.swift */,
 				D48A6A2322514E6500411518 /* ContentLibrary.swift */,
 				D48A6A272252230B00411518 /* ContentLibrary+Services.swift */,
-				2317A1E122679593002240D4 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				D4A6976C22622BA100ECC0A8 /* Kudo+Services.swift in Sources */,
 				D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */,
 				D48A6A1F2251373700411518 /* Unread.swift in Sources */,
+				D4E462F2226CF00F00E23363 /* Message+Services.swift in Sources */,
 				D4B4E83E223AA7BC002DED70 /* KudosService.swift in Sources */,
 				D417388F220C502700F5B1F6 /* VillageProvider.swift in Sources */,
 				D48A6A2422514E6500411518 /* ContentLibrary.swift in Sources */,
