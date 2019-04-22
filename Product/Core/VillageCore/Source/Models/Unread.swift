@@ -10,11 +10,11 @@ import Foundation
 
 public struct Unread {
     
-    public struct StreamCount {
+    public struct Stream {
         public let id: String
         public let count: Int
     }
     
-    public let streams: [StreamCount]
+    public let streams: [Stream]
     public let notices: Int
 }

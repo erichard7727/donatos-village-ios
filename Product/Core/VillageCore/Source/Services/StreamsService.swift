@@ -127,20 +127,20 @@ internal extension Unread {
     
     init(from response: JSON) {
         self.init(
-            streams: response["unreadCounts"].arrayValue.compactMap(Unread.StreamCount.init),
+            streams: response["unreadCounts"].arrayValue.compactMap(Unread.Stream.init),
             notices: response["noticeUnreadCount"].intValue
         )
     }
 }
 
-internal extension Unread.StreamCount {
+internal extension Unread.Stream {
     
     init?(from response: JSON) {
         guard let streamId = response["streamId"].string else {
             return nil
         }
         
-        self = Unread.StreamCount.init(
+        self = Unread.Stream(
             id: streamId,
             count: response["unreadCount"].intValue
         )
