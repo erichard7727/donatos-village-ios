@@ -11,30 +11,29 @@ import Foundation
 public typealias Streams = [Stream]
 
 public struct Stream {
-    public let deactivated: Bool?
-    public let description: String?
-    public let id: String
-    public let memberCount: Int?
-    public let messageCount: Int?
-    public let name: String?
-    public let ownerId: Int?
-    public let streamType: StreamType?
-    public let closedParties: People
     
     public enum StreamType {
         case open
-        case openInvite
+        case memberInvites
         case closed
         case global
-        
-        init?(apiValue: String) {
-            switch apiValue.lowercased() {
-            case "open": self = .open
-            case "open_invite": self = .openInvite
-            case "closed": self = .closed
-            case "global": self = .global
-            default: return nil
-            }
-        }
     }
+    
+    public struct Details {
+        // Available + Create
+        public let streamType: StreamType
+        public let description: String
+        public let ownerId: String
+        public let messageCount: Int
+        public let memberCount: Int
+        public let closedParties: People
+        public let peopleIds: [String]
+        public let deactivated: Bool
+
+    }
+    
+    public let id: String
+    public let name: String
+    public var details: Details?
+    
 }

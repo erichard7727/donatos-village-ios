@@ -8,16 +8,21 @@
 
 import Foundation
 
+public typealias Messages = [Message]
+
 public struct Message {
     public let id: String
-    public let person: Person?
-    public let text: String?
-    public let ownderDisplayName: String?
-    public let lastUpdated: String?
-    public let createdDate: String?
-    //    public let attachment: MediaAttachment? TODO: Not the same as MediaAttachment, also maybe not needed...?
+    
+    public let author: Person
+    public let authorId: String
+    public let authorDisplayName: String
+
     public let streamId: String
-    public let likesCount: Int?
-    public let hasUserLikedMessage: Bool?
-    public let isSystem: Bool?
+    public let body: String
+    public var isLiked: Bool
+    public let likesCount: Int
+
+    public let created: String
+    public let updated: String
+    public let isSystem: Bool
 }
