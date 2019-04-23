@@ -43,8 +43,8 @@ public struct Notice {
 
 extension Notice: Hashable {
     
-    public var hashValue: Int {
-        return id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
     public static func == (lhs: Notice, rhs: Notice) -> Bool {
