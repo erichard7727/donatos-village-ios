@@ -157,10 +157,6 @@ final class PeopleViewController: UIViewController {
                     fatalError("Type mismatch")
                 }
                 
-                guard let indexPath = tableView.indexPathForSelectedRow else {
-                    return
-                }
-                
                 controller.person = person
                 controller.delegate = self
             
