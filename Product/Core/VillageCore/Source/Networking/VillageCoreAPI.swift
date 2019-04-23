@@ -265,7 +265,6 @@ extension VillageCoreAPI: TargetType {
              .streamMembers,
              .streamMessages,
              .streamMessagesStartingAfter,
-             .streamMembers,
              .otherStreams,
              .searchOtherStreams,
              .subscribedStreams,
