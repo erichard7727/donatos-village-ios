@@ -38,7 +38,7 @@ final class MainMenuViewController: UIViewController {
     @IBOutlet private weak var menuOptionKudosAchievements: UIView! {
         didSet {
             if !Constants.Settings.achievementsEnabled {
-//                menuOptionKudosAchievements.removeFromSuperview()
+                menuOptionKudosAchievements.removeFromSuperview()
             }
         }
     }
