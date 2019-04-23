@@ -46,7 +46,7 @@ public struct SecurityPolicies: OptionSet {
         manageSettings
     ]
     
-    public init(rawValue: SecurityPolicies.RawValue) {
+    public init(rawValue: Int64) {
         self.rawValue = rawValue
     }
 }
