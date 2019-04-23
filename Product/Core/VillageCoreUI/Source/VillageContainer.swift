@@ -17,7 +17,7 @@ public class VillageContainer: SideMenuController {
 //        return storyboard.instantiateInitialViewController() as! VillageContainer
     }
     
-    private var window: UIWindow? = UIWindow()
+    public var window: UIWindow? = UIWindow()
     
     @IBOutlet private weak var backgroundImageView: UIImageView! {
         didSet {

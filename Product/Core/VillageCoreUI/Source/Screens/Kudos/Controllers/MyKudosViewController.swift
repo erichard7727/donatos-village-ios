@@ -146,7 +146,7 @@ class MyKudosViewController: UIViewController {
 extension MyKudosViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let index = pages.index(of: viewController as! KudosListController) {
+        if let index = pages.firstIndex(of: viewController as! KudosListController) {
             if index > 0 && index < pages.count {
                 let newIndex = index - 1
                 return pages[newIndex]
@@ -156,7 +156,7 @@ extension MyKudosViewController: UIPageViewControllerDataSource, UIPageViewContr
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if let index = pages.index(of: viewController as! KudosListController) {
+        if let index = pages.firstIndex(of: viewController as! KudosListController) {
             if index < pages.count - 1 {
                 let newIndex = index + 1
                 return pages[newIndex]
@@ -172,7 +172,7 @@ extension MyKudosViewController: UIPageViewControllerDataSource, UIPageViewContr
         
         guard completed,
               let currentVC = pageViewController.viewControllers?.first as? KudosListController,
-              let currentIndex = pages.index(of: currentVC) else {
+              let currentIndex = pages.firstIndex(of: currentVC) else {
             return
         }
         

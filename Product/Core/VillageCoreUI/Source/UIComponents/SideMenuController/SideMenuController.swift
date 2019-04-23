@@ -211,7 +211,7 @@ public class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
 //MARK: - Pan Gesture Delegate
 extension SideMenuController {
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if gestureRecognizer == self.panGesture {
             if !menuIsVisible {
                 return touch.location(in: gestureRecognizer.view).x < leftEdgeGestureTolerance

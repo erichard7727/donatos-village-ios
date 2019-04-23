@@ -52,6 +52,9 @@ extension UIImage {
             transform = transform.translatedBy(x: size.width, y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
             break
+        @unknown default:
+            assertionFailure("Implement missing case!")
+            break
         }
         
         if let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: self.cgImage!.bitsPerComponent, bytesPerRow: 0, space: self.cgImage!.colorSpace!, bitmapInfo: self.cgImage!.bitmapInfo.rawValue) {

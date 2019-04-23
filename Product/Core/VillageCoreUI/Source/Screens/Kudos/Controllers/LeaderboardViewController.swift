@@ -116,7 +116,7 @@ class LeaderboardViewController: UIViewController {
 extension LeaderboardViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let vc = viewController as? LeaderboardTableViewController, let index = pages.index(of: vc) {
+        if let vc = viewController as? LeaderboardTableViewController, let index = pages.firstIndex(of: vc) {
             if index > 0 && index < pages.count {
                 let newIndex = index - 1
                 return pages[newIndex]
@@ -126,7 +126,7 @@ extension LeaderboardViewController: UIPageViewControllerDataSource, UIPageViewC
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if let vc = viewController as? LeaderboardTableViewController, let index = pages.index(of: vc) {
+        if let vc = viewController as? LeaderboardTableViewController, let index = pages.firstIndex(of: vc) {
             if index < pages.count - 1 {
                 let newIndex = index + 1
                 return pages[newIndex]
@@ -142,7 +142,7 @@ extension LeaderboardViewController: UIPageViewControllerDataSource, UIPageViewC
         
         guard completed,
             let currentVC = pageViewController.viewControllers?.first as? LeaderboardTableViewController,
-            let currentIndex = pages.index(of: currentVC) else {
+            let currentIndex = pages.firstIndex(of: currentVC) else {
                 return
         }
         

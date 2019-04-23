@@ -55,7 +55,7 @@ class SelectPeopleViewController: UIViewController {
                 label.selected = false
             }
             
-            if let person = selectedPerson, let index = peopleSelected.index(of: person) {
+            if let person = selectedPerson, let index = peopleSelected.firstIndex(of: person) {
                 labels[index].selected = true
             }
         }
@@ -187,7 +187,7 @@ class SelectPeopleViewController: UIViewController {
     
     
     func clickPersonLabel(_ label: PersonLabel) {
-        if let index = peopleLabels.index(of: label) {
+        if let index = peopleLabels.firstIndex(of: label) {
             selectedPerson = peopleSelected[index]
         }
     }
@@ -334,7 +334,7 @@ extension SelectPeopleViewController: UITextViewDelegate {
         if textView.text.count < 1 &&
             peopleSelected.count > 0 {
             if let person = selectedPerson {
-                let index = peopleSelected.index(of: person)
+                let index = peopleSelected.firstIndex(of: person)
                 self.updatePeople(.delete(index!))
                 self.searchViewController.peopleSelected = self.peopleSelected
                 self.searchViewController.clearSearch()
