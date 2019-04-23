@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Notification.Name {
-    public struct User {
+    struct User {
         
         /// Posted whenever User.current changes.
         public static let CurrentUserDidChange = Notification.Name(rawValue: "com.dynamit.villageCore.notification.name.user.currentUserDidChange")
@@ -43,7 +43,7 @@ public class User {
 }
 
 public extension User {
-    public func update(from person: Person) {
+    func update(from person: Person) {
         self.identity = person.emailAddress
         self.emailAddress = person.emailAddress
         person.displayName.flatMap({ self.displayName = $0 })

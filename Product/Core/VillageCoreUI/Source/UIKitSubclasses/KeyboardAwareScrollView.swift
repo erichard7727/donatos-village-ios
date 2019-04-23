@@ -137,7 +137,7 @@ private extension UIView {
 }
 
 public extension UIView {
-    @objc public func activateSuperviewHuggingConstraints(insets: UIEdgeInsets = UIEdgeInsets.zero) -> [NSLayoutConstraint] {
+    @objc func activateSuperviewHuggingConstraints(insets: UIEdgeInsets = UIEdgeInsets.zero) -> [NSLayoutConstraint] {
         translatesAutoresizingMaskIntoConstraints = false
         let views = ["view": self]
         let metrics = ["top": insets.top, "left": insets.left, "bottom": insets.bottom, "right": insets.right]

@@ -11,7 +11,7 @@ import Foundation
 fileprivate class DummyClassForFindingFrameworkBundle { }
 
 public extension Notification.Name {
-    public struct ClientConfiguration {
+    struct ClientConfiguration {
 
         /// Posted whenever ClientConfiguration.current changes.
         public static let ConfigurationDidChange = Notification.Name(rawValue: "com.dynamit.villageCore.notification.name.clientConfiguration.configurationDidChange")

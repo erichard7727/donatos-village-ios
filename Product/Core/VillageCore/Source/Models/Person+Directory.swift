@@ -30,7 +30,7 @@ public extension Sequence where Element == Person {
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `People`
-    public static func getDirectory(page: Int = 1) -> Promise<People> {
+    static func getDirectory(page: Int = 1) -> Promise<People> {
         return DirectoryService.getDirectory(page: page)
     }
     
@@ -40,7 +40,7 @@ public extension Sequence where Element == Person {
     ///   - term: The user's search term
     ///   - page: The page of results to fetch. Default == first.
     /// - Returns: A list of `People`
-    public static func search(for term: String, page: Int = 1) -> Promise<People> {
+    static func search(for term: String, page: Int = 1) -> Promise<People> {
         return DirectoryService.search(for: term, page: page)
     }
     

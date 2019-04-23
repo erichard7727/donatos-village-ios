@@ -55,7 +55,7 @@ public struct ContentLibraryItem {
 
 public extension ContentLibraryItem {
     
-    public var isDirectory: Bool {
+    var isDirectory: Bool {
         return type == .directory
     }
     

@@ -53,7 +53,7 @@ public extension Sequence where Element == Stream {
     /// Extends typealias `Streams` to fetch a list of subscribed streams.
     ///
     /// - Returns: A list of `Streams`
-    public static func subscribed() -> Promise<Streams> {
+    static func subscribed() -> Promise<Streams> {
         return StreamsService.subscribedStreams()
     }
     
@@ -62,7 +62,7 @@ public extension Sequence where Element == Stream {
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Streams`
-    public static func other(page: Int = 1) -> Promise<Streams> {
+    static func other(page: Int = 1) -> Promise<Streams> {
         return StreamsService.getOtherStreams(page: page)
     }
     
@@ -72,7 +72,7 @@ public extension Sequence where Element == Stream {
     ///   - term: The user's search term
     ///   - page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Streams`
-    public static func searchOthers(for term: String, page: Int = 1) -> Promise<Streams> {
+    static func searchOthers(for term: String, page: Int = 1) -> Promise<Streams> {
         return StreamsService.searchOtherStreams(term: term, page: page)
     }
     

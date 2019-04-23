@@ -11,7 +11,7 @@ import Promises
 import SwiftyJSON
 
 public extension Notification.Name {
-    public struct Notice {
+    struct Notice {
         /// Posted whenever User.current changes.
         public static let WasAcknowledged = Notification.Name(rawValue: "com.dynamit.villageCore.notification.name.notice.wasAcknowledged")
     }
@@ -45,7 +45,7 @@ public extension Sequence where Element == Notice {
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Notices` (Notice and News types)
-    public static func allNoticesAndNews(page: Int = 1) -> Promise<Notices> {
+    static func allNoticesAndNews(page: Int = 1) -> Promise<Notices> {
         return NoticeService.getNoticesAndNews(page: page)
     }
     
@@ -53,7 +53,7 @@ public extension Sequence where Element == Notice {
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Notices` (only Notice types)
-    public static func allNotices(page: Int = 1) -> Promise<Notices> {
+    static func allNotices(page: Int = 1) -> Promise<Notices> {
         return NoticeService.getNotices(page: page)
     }
     
@@ -61,7 +61,7 @@ public extension Sequence where Element == Notice {
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Notices` (only News types)
-    public static func allNews(page: Int = 1) -> Promise<Notices> {
+    static func allNews(page: Int = 1) -> Promise<Notices> {
         return NoticeService.getNews(page: page)
     }
     

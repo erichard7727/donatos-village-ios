@@ -17,7 +17,7 @@ public extension UIAlertController {
     ///   - message: the message text of the alert.
     ///   - dismissText: the dismiss button text. "Dismiss" by default.
     /// - Returns: a fully configured `UIAlertController`.
-    public static func dismissable(title: String, message: String, dismissText: String = "Dismiss") -> UIAlertController {
+    static func dismissable(title: String, message: String, dismissText: String = "Dismiss") -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: dismissText, style: .default, handler: nil))
         return alert
