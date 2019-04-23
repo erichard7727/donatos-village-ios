@@ -291,7 +291,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
@@ -320,7 +320,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6295364F06A2C2978ECF1B96 /* [CP] Check Pods Manifest.lock */ = {
