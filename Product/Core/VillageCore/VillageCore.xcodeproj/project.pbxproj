@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2317A1E222679593002240D4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317A1E122679593002240D4 /* Message.swift */; };
+		23F4651B2268C2AE00032A63 /* Stream+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F4651A2268C2AE00032A63 /* Stream+Services.swift */; };
 		3FBE6F649692497E75047822 /* Pods_VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43384E5AB24FEB508C7677CB /* Pods_VillageCore.framework */; };
 		D4164B6B2267EF3E0025E6E9 /* Achievements+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */; };
-		2317A1E222679593002240D4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317A1E122679593002240D4 /* Message.swift */; };
-		23F4651B2268C2AE00032A63 /* Stream+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F4651A2268C2AE00032A63 /* Stream+Services.swift */; };		D417388A220C4FD500F5B1F6 /* URL+StaticString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */; };
+		D417388A220C4FD500F5B1F6 /* URL+StaticString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */; };
 		D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417388C220C501F00F5B1F6 /* VillageCoreAPI.swift */; };
 		D417388F220C502700F5B1F6 /* VillageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417388E220C502700F5B1F6 /* VillageProvider.swift */; };
 		D4173893220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4173892220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift */; };
@@ -181,14 +182,13 @@
 				D4B4E83722395928002DED70 /* Person.swift */,
 				D4B4E83B223A9509002DED70 /* Person+Directory.swift */,
 				D4B4E83F223AA7F4002DED70 /* Kudo.swift */,
-				D4B4E865223B0016002DED70 /* Stream.swift */,
 				D4A6976B22622BA100ECC0A8 /* Kudo+Services.swift */,
 				23F4651A2268C2AE00032A63 /* Stream+Services.swift */,
 				2317A1E122679593002240D4 /* Message.swift */,
 				D4E462F1226CF00F00E23363 /* Message+Services.swift */,
 				D4B4E894223B3C47002DED70 /* Achievements.swift */,
 				D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */,
-				D4B4E865223B0016002DED70 /* Group.swift */,
+				D4B4E865223B0016002DED70 /* Stream.swift */,
 				D46724F3224828C300F4D7E5 /* Notice.swift */,
 				D479D2FA224AD78800AFB3DA /* Notice+Services.swift */,
 				D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */,
@@ -352,6 +352,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = D4CC297C220754850091BEFB;
 			productRefGroup = D4CC2987220754850091BEFB /* Products */;
