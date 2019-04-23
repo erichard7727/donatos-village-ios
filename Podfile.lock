@@ -73,6 +73,7 @@ PODS:
   - PromisesSwift (1.2.7):
     - PromisesObjC (= 1.2.7)
   - Result (4.1.0)
+  - SlackTextViewController (1.9.6)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - Moya
   - Nantes
   - PromisesSwift
+  - SlackTextViewController
   - SwiftyJSON
 
 SPEC REPOS:
@@ -105,6 +107,7 @@ SPEC REPOS:
     - PromisesObjC
     - PromisesSwift
     - Result
+    - SlackTextViewController
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -125,8 +128,9 @@ SPEC CHECKSUMS:
   PromisesObjC: 7b28ddd1e78cce8f80f1ada927d2217663a9c672
   PromisesSwift: b27f410f9ea693753cfd4cfd8ac1c60a471f137b
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SlackTextViewController: b854e62c1c156336bc4fd409c6ca79b5773e8f9d
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 6499b83db6ba210ee0fcb15875c0d55e88088d89
+PODFILE CHECKSUM: 0d3fac2a8876eef2eca4df5fd527978ec7481267
 
 COCOAPODS: 1.6.1
