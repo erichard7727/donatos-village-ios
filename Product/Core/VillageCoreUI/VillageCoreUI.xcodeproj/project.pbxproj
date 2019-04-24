@@ -95,6 +95,8 @@
 		D4CEAE87225FFCCB00A215E4 /* ContentLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CEAE83225FFCCB00A215E4 /* ContentLibrary.storyboard */; };
 		D4CEAE8A226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE89226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift */; };
 		D4D31169226F5243006C3C3F /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D31168226F5243006C3C3F /* NibView.swift */; };
+		D4D3116C226F53BE006C3C3F /* GroupMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D3116B226F53BE006C3C3F /* GroupMenuItem.swift */; };
+		D4D3116E226F53C8006C3C3F /* GroupMenuItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D3116D226F53C8006C3C3F /* GroupMenuItem.xib */; };
 		D4D688CD22600BE800DF90D4 /* ContentLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEAE81225FFCCB00A215E4 /* ContentLibraryViewController.swift */; };
 		D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */; };
 		D4F8A57522109E31005FDB6A /* LoginIdentityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */; };
@@ -209,6 +211,8 @@
 		D4CEAE89226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLifecycleBehavior.swift; sourceTree = "<group>"; };
 		D4CEAE8C2260018200A215E4 /* LeftBarButtonBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftBarButtonBehavior.swift; sourceTree = "<group>"; };
 		D4D31168226F5243006C3C3F /* NibView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		D4D3116B226F53BE006C3C3F /* GroupMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMenuItem.swift; sourceTree = "<group>"; };
+		D4D3116D226F53C8006C3C3F /* GroupMenuItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupMenuItem.xib; sourceTree = "<group>"; };
 		D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SimpleTransition.swift"; sourceTree = "<group>"; };
 		D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIdentityViewController.swift; sourceTree = "<group>"; };
 		D4F8A57622109E55005FDB6A /* LoginIdentityViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginIdentityViewController.storyboard; sourceTree = "<group>"; };
@@ -571,6 +575,15 @@
 			path = ViewControllerBehaviors;
 			sourceTree = "<group>";
 		};
+		D4D3116A226F5392006C3C3F /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D4D3116B226F53BE006C3C3F /* GroupMenuItem.swift */,
+				D4D3116D226F53C8006C3C3F /* GroupMenuItem.xib */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
 		D4F8A57222109BDE005FDB6A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,6 +592,7 @@
 				D4B4E844223AE7CE002DED70 /* Directory */,
 				D460B80F224AC41E003DCA2C /* Notices */,
 				D4B4E86F223B370B002DED70 /* Kudos */,
+				D4D3116A226F5392006C3C3F /* Groups */,
 				D4CEAE7D225FFC9800A215E4 /* Content Library */,
 				D4164B6E226800BD0025E6E9 /* Common */,
 			);
@@ -732,6 +746,7 @@
 			files = (
 				D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */,
 				D4A697782264010C00ECC0A8 /* ItemRedeemedModal.xib in Resources */,
+				D4D3116E226F53C8006C3C3F /* GroupMenuItem.xib in Resources */,
 				D4F8A5952210B6DE005FDB6A /* proximanova-reg-webfont.ttf in Resources */,
 				D4A69775226400F200ECC0A8 /* ProgressBar.xib in Resources */,
 				D4F8A5842210A1F8005FDB6A /* HomeViewController.storyboard in Resources */,
@@ -846,6 +861,7 @@
 				D4F8A5822210A1DC005FDB6A /* HomeViewController.swift in Sources */,
 				D411BC402247B3EE003D2F08 /* UserSettingsGenericCell.swift in Sources */,
 				D411BC3D2247B3EE003D2F08 /* UserSettingsHeaderController.swift in Sources */,
+				D4D3116C226F53BE006C3C3F /* GroupMenuItem.swift in Sources */,
 				D4F8A5862210A267005FDB6A /* MainMenuViewController.swift in Sources */,
 				D4B4E861223AFEF7002DED70 /* PersonProfileViewController.swift in Sources */,
 				D411BC472247F844003D2F08 /* UIImage+Scaling.swift in Sources */,

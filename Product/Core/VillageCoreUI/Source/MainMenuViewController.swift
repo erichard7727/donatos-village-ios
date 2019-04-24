@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Promises
 import VillageCore
 
 final class MainMenuViewController: UIViewController {
@@ -14,7 +15,17 @@ final class MainMenuViewController: UIViewController {
     @IBOutlet private weak var menuOptionHome: UIView!
     @IBOutlet private weak var menuOptionNotices: UIView!
     @IBOutlet private weak var menuOptionDirectMessages: UIView!
+
+    @IBOutlet private weak var menuOptionGroupsContainer: UIView!
     @IBOutlet private weak var menuOptionGroups: UIView!
+    @IBOutlet private weak var menuOptionGroupsExpandButton: UIButton!
+    @IBOutlet private weak var menuOptionGroupsChildrenContainer: UIStackView! {
+        didSet {
+            menuOptionGroupsChildrenContainer.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+        }
+    }
+
+    
     @IBOutlet private weak var menuOptionOtherGroups: UIView!
     @IBOutlet private weak var menuOptionPeople: UIView!
     
@@ -29,7 +40,7 @@ final class MainMenuViewController: UIViewController {
         didSet {
             menuOptionKudosChildrenContainer.arrangedSubviews.forEach { (view) in
                 view.alpha = self.areKudosCollapsed ? 0 : 1
-                view.isHidden = areKudosCollapsed
+                view.isHidden = self.areKudosCollapsed
             }
         }
     }
@@ -60,6 +71,19 @@ final class MainMenuViewController: UIViewController {
         }
     }
     
+    private var areGroupsCollapsed = false {
+        didSet {
+            UIView.animate(withDuration: 0.25) {
+                self.menuOptionGroupsExpandButton.transform = self.menuOptionGroupsExpandButton.transform.rotated(by: .pi / 1) // 180 degrees
+                self.menuOptionGroupsChildrenContainer.arrangedSubviews.forEach { (view) in
+                    view.alpha = self.areGroupsCollapsed == true ? 0 : 1
+                    view.isHidden = self.areGroupsCollapsed
+                }
+                self.menuOptionGroupsChildrenContainer.layoutIfNeeded()
+            }
+        }
+    }
+    
     private var areKudosCollapsed = true {
         didSet {
             UIView.animate(withDuration: 0.25) {
@@ -79,6 +103,12 @@ final class MainMenuViewController: UIViewController {
         didSet {
             noticesUnreadBadge.text = unread?.notices.description
             noticesUnreadBadge.isHidden = (unread?.notices ?? 0) == 0
+            
+            menuOptionGroupsChildrenContainer.arrangedSubviews
+                .compactMap({ $0 as? GroupMenuItem})
+                .forEach { (item) in
+                    item.unread = unread?.streams.first(where: { $0.id == item.stream?.id })
+                }
         }
     }
     
@@ -93,7 +123,7 @@ extension MainMenuViewController {
         
         subscribeToNotifications()
         
-        updateUnreadCounts()
+        self.updateSubscribedGroups()
     }
     
     override func viewDidLayoutSubviews() {
@@ -111,6 +141,8 @@ extension MainMenuViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print("RLF view will appear")
         
         currentUserViewController.configure(with: User.current)
     }
@@ -142,16 +174,20 @@ private extension MainMenuViewController {
         self.sideMenuController?.hideMenu()
     }
     
-    @IBAction func onGoToGroups(_ sender: Any? = nil) {
-        //        let vc = ...
-        //        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show Groups")
+    @IBAction func onToggleGroups(_ sender: Any? = nil) {
+        areGroupsCollapsed.toggle()
+    }
+    
+    @IBAction func onCreateGroup(_ sender: Any? = nil) {
+//        let vc = ...
+//        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
+        print("TODO - show create group")
         self.sideMenuController?.hideMenu()
     }
     
     @IBAction func onGoToOtherGroups(_ sender: Any? = nil) {
-        //        let vc = ...
-        //        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
+//        let vc = ...
+//        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
         print("TODO - show Other Groups")
         self.sideMenuController?.hideMenu()
     }
@@ -212,18 +248,50 @@ private extension MainMenuViewController {
     
     func subscribeToNotifications() {
         
+        NotificationCenter.default.addObserver(forName: Notification.Name.sideMenuDidShow, object: nil, queue: nil) { [weak self] (_) in
+            guard let `self` = self else { return }
+            firstly {
+                return self.updateSubscribedGroups()
+            }.then {
+                self.updateUnreadCounts()
+            }
+        }
+        
         NotificationCenter.default.addObserver(forName: Notification.Name.Notice.WasAcknowledged, object: nil, queue: nil) { [weak self] (_) in
             self?.updateUnreadCounts()
         }
         
     }
     
-    func updateUnreadCounts() {
-        firstly {
+    @discardableResult
+    func updateSubscribedGroups() -> Promise<Void> {
+        return firstly {
+            Streams.subscribed()
+        }.then { [weak self] streams in
+            guard let `self` = self else { return }
+            
+            self.menuOptionGroupsChildrenContainer.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+            
+            streams
+                .map { stream -> GroupMenuItem in
+                    let view = GroupMenuItem()
+                    view.delegate = self
+                    view.stream = stream
+                    view.alpha = self.areGroupsCollapsed == true ? 0 : 1
+                    view.isHidden = self.areGroupsCollapsed
+                    return view
+                }
+                .forEach { self.menuOptionGroupsChildrenContainer.addArrangedSubview($0) }
+        }.asVoid()
+    }
+    
+    @discardableResult
+    func updateUnreadCounts() -> Promise<Void> {
+        return firstly {
             Unread.getCounts()
         }.then { (unread) in
             self.unread = unread
-        }
+        }.asVoid()
     }
     
 }
@@ -235,6 +303,19 @@ extension MainMenuViewController: PeopleViewControllerDelegate {
     func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: PeopleViewController) {
         #warning("TODO - Implmenent PeopleViewControllerDelegate")
         assertionFailure()
+    }
+    
+}
+
+// MARK: - GroupMenuItemDelegate
+
+extension MainMenuViewController: GroupMenuItemDelegate {
+    
+    func groupMenuItem(_ item: GroupMenuItem, didSelectGroup group: VillageCore.Stream) {
+//        let vc = ...
+//        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
+        print("TODO - show group details for \(group.name)")
+        self.sideMenuController?.hideMenu()
     }
     
 }
