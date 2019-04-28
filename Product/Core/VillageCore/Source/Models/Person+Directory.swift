@@ -76,8 +76,9 @@ extension Person {
 
 extension Person {
     
-    public func send(message: String, to stream: Stream) -> Promise<Message> {
-        return StreamsService.sendMessage(body: message, from: self, to: stream)
+    public func send(message: String, attachment: (data: Data, mimeType: String)? = nil, to stream: Stream, progress progressBlock: ((Double) -> Void)?) -> Promise<Message> {
+        let attachment = attachment.map({ StreamsService.MessageAttachment(data: $0, mimeType: $1) })
+        return StreamsService.sendMessage(body: message, attachment: attachment, from: self, to: stream, progress: progressBlock)
     }
     
 }

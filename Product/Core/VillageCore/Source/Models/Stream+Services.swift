@@ -25,6 +25,10 @@ extension Stream {
         return StreamsService.getMessages(of: self, page: page)
     }
     
+    public func edit(type: Stream.StreamType?, name: String?, description: String?) -> Promise<Stream> {
+        return StreamsService.editStream(self, type: type, name: name, description: description)
+    }
+    
     public static func new(type: StreamType, name: String, description: String, owner: Person) -> Promise<Stream> {
         return StreamsService.createStream(type: type, name: name, description: description, owner: owner)
     }
@@ -41,8 +45,9 @@ extension Stream {
         return StreamsService.unsubscribeFrom(self)
     }
     
-    public func send(message: String, from author: Person) -> Promise<Message> {
-        return StreamsService.sendMessage(body: message, from: author, to: self)
+    public func send(message: String, attachment: (data: Data, mimeType: String)? = nil, from author: Person, progress progressBlock: ((Double) -> Void)? = nil) -> Promise<Message> {
+        let attachment = attachment.map({ StreamsService.MessageAttachment(data: $0, mimeType: $1) })
+        return StreamsService.sendMessage(body: message, attachment: attachment, from: author, to: self, progress: progressBlock)
     }
 
     

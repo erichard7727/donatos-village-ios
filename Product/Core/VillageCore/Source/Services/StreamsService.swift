@@ -12,6 +12,7 @@ import SwiftyJSON
 
 enum StreamsServiceError: Error {
     case unknown
+    case streamWithMissingDetails
 }
 
 fileprivate extension Stream.StreamType {
@@ -46,6 +47,15 @@ struct StreamsService {
     struct Invite {
         public let streamId: String
         public let userIds: [Int]
+    }
+    
+    public struct MessageAttachment {
+        let data: Data
+        let mimeType: String
+        
+        fileprivate var apiMessageAttachment: VillageCoreAPI.MessageAttachment {
+            return VillageCoreAPI.MessageAttachment(data: self.data, mimeType: self.mimeType)
+        }
     }
     
     private init() { }
@@ -135,6 +145,26 @@ struct StreamsService {
         }
     }
     
+    static func editStream(_ stream: Stream, type: Stream.StreamType?, name: String?, description: String?) -> Promise<Stream> {
+        guard let details = stream.details else {
+            return Promise(StreamsServiceError.streamWithMissingDetails)
+        }
+        
+        return firstly {
+            let endpoint = VillageCoreAPI.createOrUpdateStream(
+                streamId: stream.id,
+                type: type?.apiType ?? details.streamType.apiType,
+                name: name ?? stream.name,
+                description: description ?? details.description,
+                ownerId: details.ownerId
+            )
+            return VillageService.shared.request(target: endpoint)
+        }.then { (json: JSON) -> Stream in
+            let stream = try Stream(from: json).orThrow(StreamsServiceError.unknown)
+            return stream
+        }
+    }
+    
     static func createStream(type: Stream.StreamType, name: String, description: String, owner: Person) -> Promise<Stream> {
         return firstly {
             let endpoint = VillageCoreAPI.createOrUpdateStream(
@@ -169,14 +199,17 @@ struct StreamsService {
         return VillageService.shared.request(target: unsubscribe).asVoid()
     }
     
-    static func sendMessage(body: String, from person: Person, to stream: Stream) -> Promise<Message> {
+    static func sendMessage(body: String, attachment: MessageAttachment?, from person: Person, to stream: Stream, progress progressBlock: ((Double) -> Void)?) -> Promise<Message> {
         return firstly  {
             let newMessage = VillageCoreAPI.sendMessage(
                 streamId: stream.id,
                 messageId: "message-\(person.id)-\(UUID().uuidString)",
-                body: body
+                body: body,
+                attachment: attachment?.apiMessageAttachment
             )
-            return VillageService.shared.request(target: newMessage)
+            return VillageService.shared.request(target: newMessage, progress: { (progressResponse) in
+                progressBlock?(progressResponse.progress)
+            })
         }.then { (json: JSON) -> Message in
             let message = try Message(from: json).orThrow(StreamsServiceError.unknown)
             return message
@@ -190,6 +223,7 @@ struct StreamsService {
         }.then {
             var likedMessage = message
             likedMessage.isLiked = true
+            likedMessage.likesCount = likedMessage.likesCount + 1
             return Promise(likedMessage)
         }
         
@@ -202,6 +236,7 @@ struct StreamsService {
         }.then {
             var dislikedMessage = message
             dislikedMessage.isLiked = false
+            dislikedMessage.likesCount = max(0, dislikedMessage.likesCount - 1)
             return Promise(dislikedMessage)
         }
     }
@@ -302,8 +337,30 @@ internal extension Message {
             likesCount: response["likesCount"].intValue,
             created: response["createdDate"].stringValue,
             updated: response["lastUpdated"].stringValue,
-            isSystem: response["isSystem"].boolValue
+            isSystem: response["isSystem"].boolValue,
+            attachment: Attachment(from: response["attachment"])
         )
     }
     
+}
+
+internal extension Message.Attachment {
+    init?(from response: JSON) {
+        guard
+            let content = response["content"].string,
+            let type = response["type"].string,
+            let url = response["url"].url
+        else {
+            return nil
+        }
+        
+        self = Message.Attachment(
+            content: content,
+            type: type,
+            title: response["title"].stringValue,
+            width: response["dimension"]["width"].doubleValue,
+            height: response["dimension"]["height"].doubleValue,
+            url: url
+        )
+    }
 }

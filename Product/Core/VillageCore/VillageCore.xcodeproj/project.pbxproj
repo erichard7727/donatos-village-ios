@@ -15,6 +15,7 @@
 		D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417388C220C501F00F5B1F6 /* VillageCoreAPI.swift */; };
 		D417388F220C502700F5B1F6 /* VillageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417388E220C502700F5B1F6 /* VillageProvider.swift */; };
 		D4173893220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4173892220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift */; };
+		D434D415227133E8002C5EA0 /* NSDate+TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D414227133E8002C5EA0 /* NSDate+TimeAgo.swift */; };
 		D43663D5222AD23D006354F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43663D4222AD23D006354F2 /* Assets.xcassets */; };
 		D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B5F082229875300941CCE /* Optional+Utils.swift */; };
 		D4615844220F19880072D224 /* VillageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4615843220F19880072D224 /* VillageService.swift */; };
@@ -73,6 +74,7 @@
 		D417388C220C501F00F5B1F6 /* VillageCoreAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillageCoreAPI.swift; sourceTree = "<group>"; };
 		D417388E220C502700F5B1F6 /* VillageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillageProvider.swift; sourceTree = "<group>"; };
 		D4173892220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+CaseInsensitive.swift"; sourceTree = "<group>"; };
+		D434D414227133E8002C5EA0 /* NSDate+TimeAgo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+TimeAgo.swift"; sourceTree = "<group>"; };
 		D43663D4222AD23D006354F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D44B5F082229875300941CCE /* Optional+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Utils.swift"; sourceTree = "<group>"; };
 		D4615843220F19880072D224 /* VillageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillageService.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				D4615849220F24450072D224 /* Promises+Utilities.swift */,
 				D44B5F082229875300941CCE /* Optional+Utils.swift */,
 				D46724F12248163D00F4D7E5 /* Bundle+Version.swift */,
+				D434D414227133E8002C5EA0 /* NSDate+TimeAgo.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */,
 				D48A6A1F2251373700411518 /* Unread.swift in Sources */,
 				D4E462F2226CF00F00E23363 /* Message+Services.swift in Sources */,
+				D434D415227133E8002C5EA0 /* NSDate+TimeAgo.swift in Sources */,
 				D4B4E83E223AA7BC002DED70 /* KudosService.swift in Sources */,
 				D417388F220C502700F5B1F6 /* VillageProvider.swift in Sources */,
 				D48A6A2422514E6500411518 /* ContentLibrary.swift in Sources */,

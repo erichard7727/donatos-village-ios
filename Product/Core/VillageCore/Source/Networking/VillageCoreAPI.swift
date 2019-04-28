@@ -68,6 +68,11 @@ public enum VillageCoreAPI {
         case global
     }
     
+    public struct MessageAttachment {
+        let data: Data
+        let mimeType: String
+    }
+    
     // Foundation Settings
     case foundationSettings(licenseKey: String)
     
@@ -119,7 +124,7 @@ public enum VillageCoreAPI {
     case createOrUpdateStream(streamId: String, type: StreamType, name: String, description: String, ownerId: String)
     case inviteToStream(streamId: String, userIds: [String])
     case setSubscribed(subscribed: Bool, streamId: String)
-    case sendMessage(streamId: String, messageId: String, body: String)
+    case sendMessage(streamId: String, messageId: String, body: String, attachment: MessageAttachment?)
     case setMessageLiked(isLiked: Bool, messageId: String, streamId: String)
 }
 
@@ -228,7 +233,7 @@ extension VillageCoreAPI: TargetType {
         case .subscribedStreams, .setSubscribed:
             return "streams/1.0/subscriptions"
 
-        case let .sendMessage(streamId, messageId, _):
+        case let .sendMessage(streamId, messageId, _, _):
             return "streams/1.0/messages/\(streamId)/@\(messageId)"
 
         case let .streamDetails(streamId):
@@ -601,18 +606,34 @@ extension VillageCoreAPI: TargetType {
                 ]
             )
             
-        case let .sendMessage(_, messageId, body):
-            return Task.requestCompositeParameters(
-                bodyParameters: [
-                    "id": messageId,
-                    "text": body,
-                ],
-                bodyEncoding: JSONEncoding.default,
-                urlParameters: [
-                    "diagId": User.current.diagnosticId
-                ]
-            )
-           
+        case let .sendMessage(_, messageId, body, attachment):
+            let urlParams: [String: Any] = [
+                "diagId": User.current.diagnosticId
+            ]
+            
+            if let attachment = attachment {
+                let content = MultipartFormData(
+                    provider: .data(attachment.data),
+                    name: "content",
+                    fileName: "Image",
+                    mimeType: attachment.mimeType
+                )
+                let id = MultipartFormData(provider: .data(messageId.data(using: .utf8)!), name: "id")
+                let body = MultipartFormData(provider: .data(body.data(using: .utf8)!), name: "text")
+                let title = MultipartFormData(provider: .data("Image".data(using: .utf8)!), name: "title")
+                let type = MultipartFormData(provider: .data(attachment.mimeType.data(using: .utf8)!), name: "type")
+                return Task.uploadCompositeMultipart([content, id, body, title, type], urlParameters: urlParams)
+            } else {
+                return Task.requestCompositeParameters(
+                    bodyParameters: [
+                        "id": messageId,
+                        "text": body,
+                    ],
+                    bodyEncoding: JSONEncoding.default,
+                    urlParameters: urlParams
+                )
+            }
+
         case let .createOrUpdateStream(streamId, type, name, description, _):
             return Task.requestCompositeParameters(
                 bodyParameters: [

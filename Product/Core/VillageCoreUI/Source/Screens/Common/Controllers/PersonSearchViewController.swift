@@ -24,7 +24,7 @@ class PersonSearchViewController: UITableViewController {
     var currentPage: Int = 1
     var loadingMorePeople: Bool = false
     
-    var groupMembers: [String]?
+    var groupMembers: People = []
     
     let progressIndicator = UIActivityIndicatorView(style: .gray)
     
@@ -58,15 +58,17 @@ class PersonSearchViewController: UITableViewController {
                 self.currentPage = self.currentPage + 1
                 for person in people {
                     if person.id != User.current.personId {
-                        if let members = self.groupMembers, !members.contains(String(person.id)) {
+                        if !self.groupMembers.contains(person) {
                             self.originalPeople.insert(person)
                         }
                     }
                 }
                 self.filteredpeople = Array(self.originalPeople)
                 self.sortPeopleList()
-            } else {
-                self.displayEmptyLabel!()
+            }
+            
+            if self.filteredpeople.isEmpty {
+                self.displayEmptyLabel?()
             }
         }.catch { [weak self] error in
             let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
@@ -193,15 +195,17 @@ extension PersonSearchViewController {
                 self.currentPage = self.currentPage + 1
                 for person in people {
                     if person.id != User.current.personId {
-                        if let members = self.groupMembers, !members.contains(String(person.id)) {
+                        if !self.groupMembers.contains(person) {
                             self.originalPeople.insert(person)
                         }
                     }
                 }
                 self.filteredpeople = Array(self.originalPeople)
                 self.sortPeopleList()
-            } else {
-                self.displayEmptyLabel!()
+            }
+            
+            if self.filteredpeople.isEmpty {
+                self.displayEmptyLabel?()
             }
         }.catch { [weak self] error in
             let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)

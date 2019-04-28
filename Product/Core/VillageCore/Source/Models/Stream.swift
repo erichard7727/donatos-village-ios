@@ -10,8 +10,8 @@ import Foundation
 
 public typealias Streams = [Stream]
 
-public struct Stream {
-    
+public struct Stream: Hashable {
+
     public enum StreamType {
         case open
         case memberInvites
@@ -21,7 +21,7 @@ public struct Stream {
     
     public struct Details {
         // Available + Create
-        public let streamType: StreamType
+        public var streamType: StreamType
         public let description: String
         public let ownerId: String
         public let messageCount: Int
@@ -35,5 +35,13 @@ public struct Stream {
     public let id: String
     public let name: String
     public var details: Details?
+    
+    public static func == (lhs: Stream, rhs: Stream) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
     
 }

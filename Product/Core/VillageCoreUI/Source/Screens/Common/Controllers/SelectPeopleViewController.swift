@@ -34,7 +34,7 @@ class SelectPeopleViewController: UIViewController {
     
     var searchText: String = ""
     var searchCurrentPage: Int = 1
-    var groupMembers: [String]?
+    var groupMembers: People = []
     
     var peopleSelected: People = [] {
         didSet {
@@ -75,13 +75,9 @@ class SelectPeopleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let completionBarButtonItem = self.completionBarButtonItem,
-               let font = UIFont(name: "ProximaNova-Extrabld", size: 12.0) {
-            let enabledColor = UIColor(red:116.0/255.0, green:195.0/255.0, blue: 184.0/255.0, alpha: 1.0)
-            let disabledColor = UIColor(red:116.0/255.0, green:195.0/255.0, blue: 184.0/255.0, alpha: 0.5)
-            completionBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: enabledColor], for: UIControl.State())
-            completionBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: disabledColor], for: .disabled)
-        }
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .back)
+        ])
         
         searchTextView.text = ""
         searchTextView.delegate = self
@@ -106,7 +102,7 @@ class SelectPeopleViewController: UIViewController {
         searchViewController.searchAPI = nil
         searchViewController.stopAnimating = nil
         searchViewController.displayEmptyLabel = nil
-        self.groupMembers = nil
+        self.groupMembers = []
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -297,7 +293,7 @@ extension SelectPeopleViewController: UITextViewDelegate {
                 self.searchCurrentPage = self.searchCurrentPage + 1
                 for person in people {
                     if person.id != User.current.personId {
-                        if let members = self.groupMembers, !members.contains(String(person.id)) {
+                        if !self.groupMembers.contains(person) {
                             self.searchViewController.originalPeople.insert(person)
                         }
                     }

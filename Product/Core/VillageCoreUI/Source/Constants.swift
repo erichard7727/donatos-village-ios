@@ -23,5 +23,6 @@ extension Constants {
         static let kudosEnabled = true
         static let achievementsEnabled = false
         static let manageNoticesEnabled = false
+        static let createGroupsEnabled = true
     }
 }

@@ -142,8 +142,6 @@ extension MainMenuViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("RLF view will appear")
-        
         currentUserViewController.configure(with: User.current)
     }
     
@@ -179,16 +177,14 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onCreateGroup(_ sender: Any? = nil) {
-//        let vc = ...
-//        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show create group")
+        let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     
     @IBAction func onGoToOtherGroups(_ sender: Any? = nil) {
-//        let vc = ...
-//        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show Other Groups")
+        let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "OtherGroupsViewController") as! OtherGroupsViewController
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     
@@ -312,10 +308,21 @@ extension MainMenuViewController: PeopleViewControllerDelegate {
 extension MainMenuViewController: GroupMenuItemDelegate {
     
     func groupMenuItem(_ item: GroupMenuItem, didSelectGroup group: VillageCore.Stream) {
-//        let vc = ...
-//        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show group details for \(group.name)")
+        let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
+        vc.group = group
+        vc.delegate = self
+        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
+    }
+    
+}
+
+// MARK: - GroupViewControllerDelegate
+
+extension MainMenuViewController: GroupViewControllerDelegate {
+    
+    func didLeaveGroup(_ group: VillageCore.Stream, controller: GroupViewController) {
+        self.onGoToOtherGroups()
     }
     
 }
