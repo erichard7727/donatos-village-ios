@@ -50,6 +50,7 @@
 		D4CC2995220754850091BEFB /* VillageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC2994220754850091BEFB /* VillageProviderTests.swift */; };
 		D4CC2997220754850091BEFB /* VillageCore.h in Headers */ = {isa = PBXBuildFile; fileRef = D4CC2989220754850091BEFB /* VillageCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4CC29BD220759410091BEFB /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29BC220759410091BEFB /* ClientConfiguration.swift */; };
+		D4CEB2D92276521B00C656DA /* DirectMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEB2D82276521B00C656DA /* DirectMessageService.swift */; };
 		D4E462F2226CF00F00E23363 /* Message+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E462F1226CF00F00E23363 /* Message+Services.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		D4CC2994220754850091BEFB /* VillageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillageProviderTests.swift; sourceTree = "<group>"; };
 		D4CC2996220754850091BEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4CC29BC220759410091BEFB /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
+		D4CEB2D82276521B00C656DA /* DirectMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageService.swift; sourceTree = "<group>"; };
 		D4E462F1226CF00F00E23363 /* Message+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+Services.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,12 +157,12 @@
 		D4173888220C4FC200F5B1F6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */,
-				D4173892220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift */,
-				D4615849220F24450072D224 /* Promises+Utilities.swift */,
-				D44B5F082229875300941CCE /* Optional+Utils.swift */,
 				D46724F12248163D00F4D7E5 /* Bundle+Version.swift */,
+				D4173892220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift */,
 				D434D414227133E8002C5EA0 /* NSDate+TimeAgo.swift */,
+				D44B5F082229875300941CCE /* Optional+Utils.swift */,
+				D4615849220F24450072D224 /* Promises+Utilities.swift */,
+				D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -178,27 +180,27 @@
 		D4615845220F1AD30072D224 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D4615846220F1AE50072D224 /* User.swift */,
-				D4615853220F44100072D224 /* User+Keychain.swift */,
-				D4615855220F44250072D224 /* User+Authentication.swift */,
-				D4B4E83422391D06002DED70 /* SecurityPolicies.swift */,
-				D4B4E83722395928002DED70 /* Person.swift */,
-				D4B4E83B223A9509002DED70 /* Person+Directory.swift */,
-				D4B4E83F223AA7F4002DED70 /* Kudo.swift */,
-				D4A6976B22622BA100ECC0A8 /* Kudo+Services.swift */,
-				23F4651A2268C2AE00032A63 /* Stream+Services.swift */,
-				2317A1E122679593002240D4 /* Message.swift */,
-				D4E462F1226CF00F00E23363 /* Message+Services.swift */,
 				D4B4E894223B3C47002DED70 /* Achievements.swift */,
 				D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */,
-				D4B4E865223B0016002DED70 /* Stream.swift */,
-				D46724F3224828C300F4D7E5 /* Notice.swift */,
-				D479D2FA224AD78800AFB3DA /* Notice+Services.swift */,
-				D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */,
-				D48A6A1E2251373700411518 /* Unread.swift */,
-				D48A6A202251393F00411518 /* Unread+Services.swift */,
 				D48A6A2322514E6500411518 /* ContentLibrary.swift */,
 				D48A6A272252230B00411518 /* ContentLibrary+Services.swift */,
+				D4B4E83F223AA7F4002DED70 /* Kudo.swift */,
+				D4A6976B22622BA100ECC0A8 /* Kudo+Services.swift */,
+				D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */,
+				2317A1E122679593002240D4 /* Message.swift */,
+				D4E462F1226CF00F00E23363 /* Message+Services.swift */,
+				D46724F3224828C300F4D7E5 /* Notice.swift */,
+				D479D2FA224AD78800AFB3DA /* Notice+Services.swift */,
+				D4B4E83722395928002DED70 /* Person.swift */,
+				D4B4E83B223A9509002DED70 /* Person+Directory.swift */,
+				D4B4E83422391D06002DED70 /* SecurityPolicies.swift */,
+				D4B4E865223B0016002DED70 /* Stream.swift */,
+				23F4651A2268C2AE00032A63 /* Stream+Services.swift */,
+				D48A6A1E2251373700411518 /* Unread.swift */,
+				D48A6A202251393F00411518 /* Unread+Services.swift */,
+				D4615846220F1AE50072D224 /* User.swift */,
+				D4615855220F44250072D224 /* User+Authentication.swift */,
+				D4615853220F44100072D224 /* User+Keychain.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,13 +208,14 @@
 		D4615850220F30160072D224 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D4B4E85F223AFA51002DED70 /* AnalyticsService.swift */,
 				D4615851220F30570072D224 /* AuthenticationService.swift */,
+				D48A6A252251531D00411518 /* ContentLibraryService.swift */,
+				D4CEB2D82276521B00C656DA /* DirectMessageService.swift */,
 				D4B4E83922399BE7002DED70 /* DirectoryService.swift */,
 				D4B4E83D223AA7BC002DED70 /* KudosService.swift */,
-				D4B4E85F223AFA51002DED70 /* AnalyticsService.swift */,
 				D46724F72248E7DF00F4D7E5 /* NoticeService.swift */,
 				D48A6A1C225133A000411518 /* StreamsService.swift */,
-				D48A6A252251531D00411518 /* ContentLibraryService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */,
 				D461584A220F24450072D224 /* Promises+Utilities.swift in Sources */,
 				D48A6A262251531D00411518 /* ContentLibraryService.swift in Sources */,
+				D4CEB2D92276521B00C656DA /* DirectMessageService.swift in Sources */,
 				D46724F82248E7DF00F4D7E5 /* NoticeService.swift in Sources */,
 				23F4651B2268C2AE00032A63 /* Stream+Services.swift in Sources */,
 				D48A6A1D225133A000411518 /* StreamsService.swift in Sources */,

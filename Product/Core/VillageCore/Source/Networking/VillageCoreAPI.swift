@@ -126,6 +126,11 @@ public enum VillageCoreAPI {
     case setSubscribed(subscribed: Bool, streamId: String)
     case sendMessage(streamId: String, messageId: String, body: String, attachment: MessageAttachment?)
     case setMessageLiked(isLiked: Bool, messageId: String, streamId: String)
+    
+    // Direct Messages
+    case directMessageStreams
+    case inviteToDirectMessage(userIds: [String])
+
 }
 
 // MARK: - TargetType
@@ -238,6 +243,12 @@ extension VillageCoreAPI: TargetType {
 
         case let .streamDetails(streamId):
             return "streams/1.0/stream/\(streamId)"
+            
+        case .directMessageStreams:
+            return "dm/1.0/streams"
+            
+        case .inviteToDirectMessage:
+            return "dm/1.0"
         }
     }
 
@@ -273,7 +284,8 @@ extension VillageCoreAPI: TargetType {
              .otherStreams,
              .searchOtherStreams,
              .subscribedStreams,
-             .streamDetails:
+             .streamDetails,
+             .directMessageStreams:
             return .get
             
         case .validateIdentity,
@@ -283,7 +295,8 @@ extension VillageCoreAPI: TargetType {
              .logout,
              .inviteUser,
              .acknowledgeNotice,
-             .giveKudo:
+             .giveKudo,
+             .inviteToDirectMessage:
             return .post
             
         case .updatePerson,
@@ -335,7 +348,9 @@ extension VillageCoreAPI: TargetType {
              .subscribedStreams,
              .setSubscribed,
              .streamDetails,
-             .sendMessage:
+             .sendMessage,
+             .directMessageStreams,
+             .inviteToDirectMessage:
             return Data()
         }
     }
@@ -354,7 +369,8 @@ extension VillageCoreAPI: TargetType {
              .streamMembers,
              .setMessageLiked,
              .subscribedStreams,
-             .streamDetails:
+             .streamDetails,
+             .directMessageStreams:
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId
@@ -659,6 +675,17 @@ extension VillageCoreAPI: TargetType {
                     "diagId": User.current.diagnosticId
                 ]
             )
+            
+        case let .inviteToDirectMessage(userIds):
+            return Task.requestCompositeParameters(
+                bodyParameters: [
+                    "parties": userIds,
+                ],
+                bodyEncoding: JSONEncoding.default,
+                urlParameters: [
+                    "diagId": User.current.diagnosticId
+                ]
+            )
         }
     }
 }
@@ -706,7 +733,9 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .subscribedStreams,
              .setSubscribed,
              .streamDetails,
-             .sendMessage:
+             .sendMessage,
+             .directMessageStreams,
+             .inviteToDirectMessage:
             return true
         }
     }

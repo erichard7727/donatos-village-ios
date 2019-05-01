@@ -11,45 +11,48 @@ import Promises
 
 // Mark: - StreamService
 
-extension Stream {
+public extension Stream {
     
-    public func getDetails() -> Promise<Stream> {
+    func getDetails() -> Promise<Stream> {
         return StreamsService.getDetails(of: self)
     }
     
-    public func getMembers() -> Promise<People> {
+    func getMembers() -> Promise<People> {
         return StreamsService.getMembers(of: self)
     }
     
-    public func getMessages(page: Int = 1) -> Promise<Messages> {
+    func getMessages(page: Int = 1) -> Promise<Messages> {
         return StreamsService.getMessages(of: self, page: page)
     }
     
-    public func edit(type: Stream.StreamType?, name: String?, description: String?) -> Promise<Stream> {
+    func edit(type: Stream.StreamType?, name: String?, description: String?) -> Promise<Stream> {
         return StreamsService.editStream(self, type: type, name: name, description: description)
     }
     
-    public static func new(type: StreamType, name: String, description: String, owner: Person) -> Promise<Stream> {
+    static func new(type: StreamType, name: String, description: String, owner: Person) -> Promise<Stream> {
         return StreamsService.createStream(type: type, name: name, description: description, owner: owner)
     }
     
-    public func invite(_ people: People) -> Promise<Void> {
+    func invite(_ people: People) -> Promise<Void> {
         return StreamsService.invitePeople(people, to: self)
     }
     
-    public func subscribe() -> Promise<Void> {
+    func subscribe() -> Promise<Void> {
         return StreamsService.subscribeTo(self)
     }
     
-    public func unsubscribe() -> Promise<Void> {
+    func unsubscribe() -> Promise<Void> {
         return StreamsService.unsubscribeFrom(self)
     }
     
-    public func send(message: String, attachment: (data: Data, mimeType: String)? = nil, from author: Person, progress progressBlock: ((Double) -> Void)? = nil) -> Promise<Message> {
+    func send(message: String, attachment: (data: Data, mimeType: String)? = nil, from author: Person, progress progressBlock: ((Double) -> Void)? = nil) -> Promise<Message> {
         let attachment = attachment.map({ StreamsService.MessageAttachment(data: $0, mimeType: $1) })
         return StreamsService.sendMessage(body: message, attachment: attachment, from: author, to: self, progress: progressBlock)
     }
 
+    static func startDirectMessage(with people: People) -> Promise<Stream> {
+        return DirectMessageService.invitePeople(people)
+    }
     
 }
 
@@ -81,5 +84,12 @@ public extension Sequence where Element == Stream {
         return StreamsService.searchOtherStreams(term: term, page: page)
     }
     
+    /// Extends typealias `Streams` to fetch a list of direct messages.
+    ///
+    /// - Returns: A list of `Streams`
+    static func directMessages() -> Promise<Streams> {
+        return DirectMessageService.directMessages()
+    }
+
 }
 
