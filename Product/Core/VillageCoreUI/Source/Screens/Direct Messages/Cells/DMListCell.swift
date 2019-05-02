@@ -12,6 +12,14 @@ import UIKit
 final class DMListCell: UITableViewCell {
     
     @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var unreadBadge: UIView! {
+        didSet {
+            unreadBadge.layer.masksToBounds = true
+            unreadBadge.layer.cornerRadius = unreadBadge.bounds.size.height / 2
+        }
+    }
+    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -61,9 +69,9 @@ final class DMListCell: UITableViewCell {
     var messageState: MessageState = .unread {
         didSet {
             if messageState == .read {
-                containerView?.alpha = 0.5
+                unreadBadge.isHidden = true
             } else {
-                containerView?.alpha = 1.0
+                unreadBadge.isHidden = false
             }
         }
     }

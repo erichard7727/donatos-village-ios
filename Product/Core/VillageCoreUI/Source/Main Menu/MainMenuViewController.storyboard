@@ -155,7 +155,7 @@
                                                                 <rect key="frame" x="0.0" y="11" width="28" height="28"/>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Zrp-kZ-VF7">
-                                                                <rect key="frame" x="42.999999999999986" y="0.0" width="243.66666666666663" height="50"/>
+                                                                <rect key="frame" x="42.999999999999986" y="0.0" width="200.66666666666663" height="50"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Direct Messages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOd-bh-UCU">
                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="131" height="20.333333333333329"/>
@@ -164,20 +164,33 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="998" verticalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNY-e4-qaK">
-                                                                        <rect key="frame" x="137" y="0.0" width="106.66666666666669" height="50"/>
+                                                                        <rect key="frame" x="137" y="0.0" width="63.666666666666657" height="50"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1b-4e-Hei">
-                                                                <rect key="frame" x="286.66666666666669" y="11" width="28" height="28"/>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1b-4e-Hei">
+                                                                <rect key="frame" x="251.33333333333331" y="11" width="28" height="28"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" image="menu-expand"/>
                                                                 <state key="selected" image="menu-collapse"/>
                                                             </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFa-Ds-wdf">
+                                                                <rect key="frame" x="258.66666666666669" y="11" width="28" height="28"/>
+                                                                <color key="backgroundColor" name="vlgBlue"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="bFa-Ds-wdf" secondAttribute="height" multiplier="1:1" id="2FT-uF-Pbd"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="bFa-Ds-wdf" firstAttribute="height" secondItem="o1b-4e-Hei" secondAttribute="height" id="vzM-S3-os0"/>
+                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -828,6 +841,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
+                        <outlet property="directMessagesUnreadBadge" destination="bFa-Ds-wdf" id="4Bd-QB-JW2"/>
                         <outlet property="menuOptionContentLibrary" destination="Nxw-0a-noc" id="tUr-eQ-kK5"/>
                         <outlet property="menuOptionDirectMessages" destination="geS-hn-X3d" id="DXL-li-lkf"/>
                         <outlet property="menuOptionGroups" destination="Da8-fY-5ab" id="3IX-bX-FR8"/>
@@ -1024,7 +1038,7 @@
     </scenes>
     <resources>
         <image name="add-icon" width="24" height="24"/>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
         <image name="menu-collapse" width="28" height="28"/>
         <image name="menu-content-library" width="29" height="24"/>
         <image name="menu-direct-messages" width="28" height="28"/>

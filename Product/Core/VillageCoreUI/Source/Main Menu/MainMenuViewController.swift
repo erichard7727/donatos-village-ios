@@ -71,6 +71,13 @@ final class MainMenuViewController: UIViewController {
         }
     }
     
+    @IBOutlet private weak var directMessagesUnreadBadge: UILabel! {
+        didSet {
+            directMessagesUnreadBadge.layer.masksToBounds = true
+            directMessagesUnreadBadge.isHidden = true
+        }
+    }
+    
     private var areGroupsCollapsed = false {
         didSet {
             UIView.animate(withDuration: 0.25) {
@@ -109,6 +116,13 @@ final class MainMenuViewController: UIViewController {
                 .forEach { (item) in
                     item.unread = unread?.streams.first(where: { $0.id == item.stream?.id })
                 }
+            
+            let unreadDMs = unread?.streams
+                .filter({ $0.id.lowercased().starts(with: "dm") })
+                .map({ $0.count })
+                .reduce(0, +) ?? 0
+            directMessagesUnreadBadge.text = unreadDMs.description
+            directMessagesUnreadBadge.isHidden = unreadDMs == 0
         }
     }
     
@@ -130,6 +144,7 @@ extension MainMenuViewController {
         super.viewDidLayoutSubviews()
         
         noticesUnreadBadge.layer.cornerRadius = noticesUnreadBadge.bounds.size.height / 2
+        directMessagesUnreadBadge.layer.cornerRadius = noticesUnreadBadge.bounds.size.height / 2
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

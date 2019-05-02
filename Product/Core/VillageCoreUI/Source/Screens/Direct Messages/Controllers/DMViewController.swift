@@ -56,6 +56,8 @@ final class DMViewController: UIViewController {
     
     @IBOutlet fileprivate weak var tableView: UITableView! {
         didSet {
+            tableView.rowHeight = UITableView.automaticDimension
+            tableView.estimatedRowHeight = 90.0
             tableView.addSubview(refreshControl)
             tableView.separatorStyle = .none
             displayProgressFooterView()
@@ -79,7 +81,48 @@ final class DMViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        activityIndicator.startAnimating()
+        refreshTableView()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "PushNewMessagesSegue" {
+                guard let controller = segue.destination as? SelectPeopleViewController else {
+                    fatalError("SelectPeopleViewController not set")
+                }
+                controller.delegate = self
+            } else if identifier == "ShowDMConversation" {
+                guard let controller = segue.destination as? DMConversationViewController else {
+                    fatalError("DMConversationViewController not set")
+                }
+                
+                guard let selectedDirectMessage = self.selectedDirectMessage else {
+                    fatalError("selectedDirectMessage not set")
+                }
+                
+                controller.directMessageThread = selectedDirectMessage
+            }
+        }
+    }
+
+    /// Unwind segue point.
+    @IBAction func unwindToSegue(_ segue: UIStoryboardSegue) {}
+    
+    // MARK: Refreshing
+    
+    @objc internal func onRefresh(_ sender: Any? = nil) {
+        refreshControl.beginRefreshing()
+        refreshTableView() { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
+    }
+    
+    fileprivate func refreshTableView(completionHandler: (() -> Void)? = nil) {
+        
+        if directMessages.isEmpty {
+            activityIndicator.startAnimating()
+        }
+        
         progressIndicator.startAnimating()
         
         firstly {
@@ -122,76 +165,9 @@ final class DMViewController: UIViewController {
         }.always { [weak self] in
             self?.activityIndicator.stopAnimating()
             self?.progressIndicator.stopAnimating()
+            completionHandler?()
             AnalyticsService.logEvent(name: "view_message", parameters: ["message_type": "direct_message_inbox"])
         }
-
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            if identifier == "PushNewMessagesSegue" {
-                guard let navController = segue.destination as? UINavigationController, let controller = navController.viewControllers.first as? SelectPeopleViewController else {
-                    fatalError("SelectPeopleViewController not found")
-                }
-                controller.delegate = self
-            } else if identifier == "ShowDMConversation" {
-                guard let controller = segue.destination as? DMConversationViewController else {
-                    fatalError("DMConversationViewController not set")
-                }
-                
-                guard let selectedDirectMessage = self.selectedDirectMessage else {
-                    fatalError("selectedDirectMessage not set")
-                }
-                
-                controller.directMessageThread = selectedDirectMessage
-            }
-        }
-    }
-
-    /// Unwind segue point.
-    @IBAction func unwindToSegue(_ segue: UIStoryboardSegue) {}
-    
-    // MARK: Refreshing
-    
-    func showRefreshControl(show: Bool) {
-        if show {
-            refreshControl.beginRefreshing()
-            tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
-        } else {
-            refreshControl.endRefreshing()
-        }
-    }
-    
-    @objc internal func onRefresh(_ sender: AnyObject? = nil) {
-        refreshTableView() { [weak self] in
-            self?.refreshControl.endRefreshing()
-        }
-    }
-    
-    fileprivate func refreshTableView(completionHandler: (() -> Void)? = nil) {
-        // Perform animations for refreshing if we're not initiated by the user.
-        // This is needed for the initial fetch case to show activity to the user.
-        if !refreshControl.isRefreshing {
-            refreshControl.beginRefreshing()
-        }
-        
-//        context.fetchDirectMessages() { result in
-//            self.refreshControl?.endRefreshing()
-//            self.progressIndicator.alpha = 0
-//            switch result {
-//                case .success:
-//                    break
-//                case .error(let error):
-//                    var errorMessage: String
-//                    if let localizedFailure = error.userInfo[NSLocalizedFailureReasonErrorKey] as? [String: AnyObject], let error = localizedFailure["error"] as? [String: AnyObject], let code = error["code"], let errorDescription = error["description"] as? String {
-//                        errorMessage = "E" + String(describing: code) + " - " + String(describing: errorDescription)
-//                    } else {
-//                        errorMessage = "Could not fetch direct message threads."
-//                    }
-//                    let alert = UIAlertController.dismissableAlert("Error", message: errorMessage)
-//                    self.present(alert, animated: true, completion: nil)
-//            }
-//        }
     }
 }
 
@@ -217,9 +193,6 @@ extension DMViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
 }
 
 // MARK: DYTFetchedResultsDataSourceDelegate
@@ -276,25 +249,29 @@ extension DMViewController: SelectPeopleViewControllerDelegate {
     
     func didSelectPeople(_ people: People) {
         if let directMessage = existingDirectMessage(people) {
-            self.dismiss(animated: true, completion: nil)
             selectedDirectMessage = directMessage
-            performSegue(withIdentifier: "ShowDMConversation", sender: nil)
+            self.navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "ShowDMConversation", sender: nil)
+            }
         } else {
-            
-            activityIndicator.startAnimating()
-            
-            firstly {
-                User.current.getPerson().then { people + [$0] }
-            }.then { participants in
-                Stream.startDirectMessage(with: participants)
-            }.then { [weak self] directMessage in
-                self?.selectedDirectMessage = directMessage
-                self?.performSegue(withIdentifier: "ShowDMConversation", sender: nil)
-            }.catch { [weak self] error in
-                let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
-                self?.present(alert, animated: true, completion: nil)
-            }.always { [weak self] in
-                self?.activityIndicator.stopAnimating()
+            self.navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async {
+                self.activityIndicator.startAnimating()
+                
+                firstly {
+                    User.current.getPerson().then { people + [$0] }
+                }.then { participants in
+                    Stream.startDirectMessage(with: participants)
+                }.then { [weak self] directMessage in
+                    self?.selectedDirectMessage = directMessage
+                    self?.performSegue(withIdentifier: "ShowDMConversation", sender: nil)
+                }.catch { [weak self] error in
+                    let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
+                    self?.present(alert, animated: true, completion: nil)
+                }.always { [weak self] in
+                    self?.activityIndicator.stopAnimating()
+                }
             }
         }
     }
