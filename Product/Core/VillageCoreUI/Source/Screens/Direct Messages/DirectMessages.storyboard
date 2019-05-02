@@ -215,7 +215,7 @@
         <!--Conversation View Controller-->
         <scene sceneID="BhZ-pK-2Ds">
             <objects>
-                <viewController storyboardIdentifier="DMConversationViewController" id="mva-jJ-zuA" customClass="DMConversationViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DMConversationViewController" automaticallyAdjustsScrollViewInsets="NO" id="mva-jJ-zuA" customClass="DMConversationViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c5Q-3N-4HR"/>
                         <viewControllerLayoutGuide type="bottom" id="ql9-zh-OLG"/>

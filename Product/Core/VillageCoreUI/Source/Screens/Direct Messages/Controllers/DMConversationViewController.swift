@@ -120,7 +120,21 @@ final class DMConversationViewController: SLKTextViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         scrollForPreviousMessagesEnabled = true
+    }
+    
+    var isLayingOutSubviews = false
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        defer {
+            isLayingOutSubviews = false
+        }
+        
+        isLayingOutSubviews = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -218,7 +232,7 @@ final class DMConversationViewController: SLKTextViewController {
         
         if y > h + reloadDistance {
             
-            if !loadingMoreMessages && !firstLoad {
+            if !isLayingOutSubviews && !loadingMoreMessages && !firstLoad {
                 loadingMoreMessages = true
                 reloadData = true
                 self.loadMoreMessages()
