@@ -159,30 +159,14 @@ extension ContactPersonViewController {
         }.then { me in
             return [otherPerson, me]
         }.then { conversationParticipants in
-            #warning("TODO - Implement initiate direct messages")
-            assertionFailure()
-//            self.directMessageService.publishGroupRequest(people: conversationParticipants) {
-//                result in
-//
-//                switch result {
-//                case .success(let directMessage):
-//                    if let message = directMessage {
-//                        self.delegate?.shouldShowAndStartDirectMessage(message, controller: self)
-//                    }
-//
-//                case .error(let error):
-//                    var errorMessage: String
-//                    if let localizedFailure = error.userInfo[NSLocalizedFailureReasonErrorKey] as? [String: AnyObject], let error = localizedFailure["error"] as? [String: AnyObject], let code = error["code"], let errorDescription = error["description"] as? String {
-//                        errorMessage = "E" + String(describing: code) + " - " + String(describing: errorDescription)
-//                    } else {
-//                        errorMessage = "Could not start direct message."
-//                    }
-//                    let alert = UIAlertController.dismissableAlert("Error", message: errorMessage)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//            }
-        }.catch { error in
-            assertionFailure(error.localizedDescription)
+            Stream.startDirectMessage(with: conversationParticipants)
+        }.then { [weak self] directMessage in
+            guard let `self` = self else { return }
+            
+            self.delegate?.shouldShowAndStartDirectMessage(directMessage, controller: self)
+        }.catch { [weak self] error in
+            let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
+            self?.present(alert, animated: true, completion: nil)
         }
     }
     

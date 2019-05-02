@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="proximanova-reg-webfont.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DMConversationSelfMessageCell" id="y2P-Lg-aFM" customClass="DMConversationSelfMessageCell" customModule="VillageCoreUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y2P-Lg-aFM" id="dDf-ho-Vhr">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="88.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yzy-dR-tMJ" userLabel="Message Container View">
+                        <rect key="frame" x="239" y="15" width="66" height="58.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1D-Gl-bQz" userLabel="Message Label" customClass="NantesLabel" customModule="Nantes">
+                                <rect key="frame" x="14" y="10" width="38" height="38.5"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.099481038749217987" green="0.38778042793273926" blue="0.87188428640365601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="V1D-Gl-bQz" secondAttribute="bottom" constant="10" id="47c-TP-Ouz"/>
+                            <constraint firstItem="V1D-Gl-bQz" firstAttribute="leading" secondItem="Yzy-dR-tMJ" secondAttribute="leading" constant="14" id="L33-Eh-qnv"/>
+                            <constraint firstAttribute="trailing" secondItem="V1D-Gl-bQz" secondAttribute="trailing" constant="14" id="gd9-Pe-kL0"/>
+                            <constraint firstItem="V1D-Gl-bQz" firstAttribute="top" secondItem="Yzy-dR-tMJ" secondAttribute="top" constant="10" id="jT8-gz-CAP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Yzy-dR-tMJ" secondAttribute="bottom" constant="15" id="EWI-FL-qYR"/>
+                    <constraint firstItem="Yzy-dR-tMJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dDf-ho-Vhr" secondAttribute="leading" constant="20" id="OCO-ou-lFK"/>
+                    <constraint firstAttribute="trailing" secondItem="Yzy-dR-tMJ" secondAttribute="trailing" constant="15" id="ijw-Ja-ca6"/>
+                    <constraint firstItem="Yzy-dR-tMJ" firstAttribute="top" secondItem="dDf-ho-Vhr" secondAttribute="top" constant="15" id="sNX-eA-qZy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="messageContainerView" destination="Yzy-dR-tMJ" id="3Rr-7u-nSY"/>
+                <outlet property="messageLabel" destination="V1D-Gl-bQz" id="yUY-Dm-o4d"/>
+            </connections>
+            <point key="canvasLocation" x="219" y="434"/>
+        </tableViewCell>
+    </objects>
+</document>

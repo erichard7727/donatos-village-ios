@@ -166,9 +166,8 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToDirectMessages(_ sender: Any? = nil) {
-        //        let vc = ...
-        //        self.sideMenuController?.setContentViewController(vc, fadeAnimation: true)
-        print("TODO - show DirectMessages")
+        let vc = UIStoryboard(name: "DirectMessages", bundle: Constants.bundle).instantiateViewController(withIdentifier: "DMViewController") as! DMViewController
+        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
     
@@ -297,8 +296,9 @@ private extension MainMenuViewController {
 extension MainMenuViewController: PeopleViewControllerDelegate {
     
     func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: PeopleViewController) {
-        #warning("TODO - Implmenent PeopleViewControllerDelegate")
-        assertionFailure()
+        let vc = DMConversationViewController()
+        vc.directMessageThread = directMessage
+        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
     }
     
 }

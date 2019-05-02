@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="proximanova-reg-webfont.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+        <array key="proximanova-sbold-webfont.ttf">
+            <string>ProximaNova-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DMConversationSelfAttachmentCell" rowHeight="289" id="013-bM-Qhc" customClass="DMConversationSelfAttachmentCell" customModule="VillageCoreUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="562" height="289"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="013-bM-Qhc" id="wr2-pt-TsX">
+                <rect key="frame" x="0.0" y="0.0" width="562" height="288.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNB-9h-Le1" userLabel="Message Container View">
+                        <rect key="frame" x="481" y="15" width="66" height="38"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7c-hC-baE" userLabel="Message Label" customClass="NantesLabel" customModule="Nantes">
+                                <rect key="frame" x="14" y="10" width="38" height="18"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.099481038749217987" green="0.38778042793273926" blue="0.87188428640365601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="C7c-hC-baE" secondAttribute="trailing" constant="14" id="I9r-9S-YgZ"/>
+                            <constraint firstItem="C7c-hC-baE" firstAttribute="top" secondItem="uNB-9h-Le1" secondAttribute="top" constant="10" id="XvD-Cc-bI5"/>
+                            <constraint firstItem="C7c-hC-baE" firstAttribute="leading" secondItem="uNB-9h-Le1" secondAttribute="leading" constant="14" id="YjT-Wp-H0Y"/>
+                            <constraint firstAttribute="bottom" secondItem="C7c-hC-baE" secondAttribute="bottom" constant="10" id="bdW-SM-j68"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKr-Y4-JE5" userLabel="Attachment Image / Progress Indicator Container">
+                        <rect key="frame" x="48" y="61" width="499" height="207.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="650" translatesAutoresizingMaskIntoConstraints="NO" id="2Nt-1I-drJ" userLabel="Attachment Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="499" height="207.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="i7k-RE-HAB">
+                                <rect key="frame" x="239.5" y="94" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ds-26-4i1">
+                                <rect key="frame" x="238.5" y="122" width="22" height="18"/>
+                                <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="16"/>
+                                <color key="textColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="i7k-RE-HAB" firstAttribute="centerY" secondItem="jKr-Y4-JE5" secondAttribute="centerY" id="BAe-n3-QnK"/>
+                            <constraint firstItem="2Nt-1I-drJ" firstAttribute="top" secondItem="jKr-Y4-JE5" secondAttribute="top" id="MsP-bB-89j"/>
+                            <constraint firstAttribute="trailing" secondItem="2Nt-1I-drJ" secondAttribute="trailing" id="NPU-Jp-ZiT"/>
+                            <constraint firstItem="i7k-RE-HAB" firstAttribute="centerX" secondItem="jKr-Y4-JE5" secondAttribute="centerX" id="Uun-ge-ch9"/>
+                            <constraint firstItem="6ds-26-4i1" firstAttribute="centerX" secondItem="jKr-Y4-JE5" secondAttribute="centerX" id="YES-gi-m24"/>
+                            <constraint firstItem="2Nt-1I-drJ" firstAttribute="leading" secondItem="jKr-Y4-JE5" secondAttribute="leading" id="qMQ-2I-upx"/>
+                            <constraint firstItem="6ds-26-4i1" firstAttribute="top" secondItem="i7k-RE-HAB" secondAttribute="bottom" constant="8" id="t56-r5-f7X"/>
+                            <constraint firstAttribute="bottom" secondItem="2Nt-1I-drJ" secondAttribute="bottom" id="ufe-9H-WXD"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uNB-9h-Le1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wr2-pt-TsX" secondAttribute="leading" constant="20" id="5Ok-Ov-tw2"/>
+                    <constraint firstItem="jKr-Y4-JE5" firstAttribute="top" secondItem="uNB-9h-Le1" secondAttribute="bottom" constant="8" id="Bt7-Kt-ogk"/>
+                    <constraint firstItem="uNB-9h-Le1" firstAttribute="top" secondItem="wr2-pt-TsX" secondAttribute="top" constant="15" id="Cpq-iQ-psM"/>
+                    <constraint firstAttribute="bottom" secondItem="jKr-Y4-JE5" secondAttribute="bottom" constant="20" id="Ia3-5m-cgW"/>
+                    <constraint firstAttribute="trailing" secondItem="uNB-9h-Le1" secondAttribute="trailing" constant="15" id="keR-Xa-UeU"/>
+                    <constraint firstItem="jKr-Y4-JE5" firstAttribute="leading" secondItem="wr2-pt-TsX" secondAttribute="leading" constant="48" id="mj3-nE-B3G"/>
+                    <constraint firstAttribute="trailing" secondItem="jKr-Y4-JE5" secondAttribute="trailing" constant="15" id="uty-VX-UUg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activityIndicatorView" destination="i7k-RE-HAB" id="rXQ-ff-YNX"/>
+                <outlet property="attachmentImageView" destination="2Nt-1I-drJ" id="wUM-kp-eIx"/>
+                <outlet property="messageContainerView" destination="uNB-9h-Le1" id="jIq-b8-PLm"/>
+                <outlet property="messageLabel" destination="C7c-hC-baE" id="5oU-t1-JEp"/>
+                <outlet property="percentageLabel" destination="6ds-26-4i1" id="0GR-sZ-qYd"/>
+            </connections>
+            <point key="canvasLocation" x="322" y="279.5"/>
+        </tableViewCell>
+    </objects>
+</document>

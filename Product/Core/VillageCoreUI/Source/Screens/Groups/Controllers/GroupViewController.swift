@@ -554,7 +554,7 @@ extension GroupViewController: UIImagePickerControllerDelegate, UINavigationCont
                             }
                         }
 
-                        let attachmentMessageText = (author.displayName ?? "user") + " uploaded a photo."
+                        let attachmentMessageText = (author.displayName ?? "User") + " uploaded a photo."
 
                         var mimeType: String
 
@@ -801,7 +801,7 @@ extension GroupViewController {
                         progress: {
                             progress in
                             cell.percentageLabel.text = String(Int(progress.fractionCompleted * 100)) + "%"
-                    },
+                        },
                         progressQueue: DispatchQueue.main,
                         imageTransition: UIImageView.ImageTransition.crossDissolve(0.35),
                         runImageTransitionIfCached: false, completion: {

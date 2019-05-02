@@ -20,6 +20,20 @@ public struct Stream: Hashable {
     }
     
     public struct Details {
+        
+        public struct DirectMessage {
+            public let isRead: Bool
+            public let unreadCount: Int
+            public let mostRecentMessage: Message?
+            public let lastMessageReadId: String?
+            public let lastMessageText: String?
+            public let lastMessageDate: String?
+            
+            public var isUnread: Bool {
+                return !self.isRead
+            }
+        }
+        
         // Available + Create
         public var streamType: StreamType
         public let description: String
@@ -29,6 +43,7 @@ public struct Stream: Hashable {
         public let closedParties: People
         public let peopleIds: [String]
         public let deactivated: Bool
+        public let directMessage: DirectMessage?
 
     }
     

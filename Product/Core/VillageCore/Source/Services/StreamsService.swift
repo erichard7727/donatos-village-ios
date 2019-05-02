@@ -307,10 +307,32 @@ internal extension Stream.Details {
             memberCount: response["memberCount"].intValue,
             closedParties: response["closedParties"].arrayValue.compactMap({ Person(from: $0) }),
             peopleIds: response["peopleIds"].arrayValue.compactMap({ $0.string }),
-            deactivated: response["deactivated"].boolValue
+            deactivated: response["deactivated"].boolValue,
+            directMessage: Stream.Details.DirectMessage(from: response)
         )
     }
 
+}
+
+internal extension Stream.Details.DirectMessage {
+    
+    init?(from response: JSON) {
+        guard
+            let isRead = response["isRead"].bool,
+            let unreadCount = response["unreadCount"].int
+        else {
+            return nil
+        }
+        self = Stream.Details.DirectMessage(
+            isRead: isRead,
+            unreadCount: unreadCount,
+            mostRecentMessage: Message(from: response[""]),
+            lastMessageReadId: response["lastMessageRead"].string,
+            lastMessageText: response["lastMessageText"].string,
+            lastMessageDate: response["lastMessageDate"].string
+        )
+    }
+    
 }
 
 internal extension Message {
