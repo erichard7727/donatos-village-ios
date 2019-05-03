@@ -24,17 +24,17 @@
             <objects>
                 <viewController storyboardIdentifier="MainMenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aKE-cR-QVD" customClass="MainMenuViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vao-1S-5Lc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app-background" translatesAutoresizingMaskIntoConstraints="NO" id="njc-QR-Vit">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="2000"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lu4-pK-fOt">
-                                <rect key="frame" x="0.0" y="44" width="375" height="1356"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="1856"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="2Me-lt-6tb">
-                                        <rect key="frame" x="0.0" y="0.0" width="318.66666666666669" height="1634"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="318.66666666666669" height="1718"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xz0-AL-ce4">
                                                 <rect key="frame" x="0.0" y="0.0" width="318.66666666666669" height="82"/>
@@ -756,8 +756,57 @@
                                                 </constraints>
                                                 <viewLayoutGuide key="safeArea" id="eX8-v4-Z9d"/>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxw-0a-noc">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4Y-dU-obg">
                                                 <rect key="frame" x="0.0" y="1552" width="318.66666666666669" height="82"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="sjr-yu-7th">
+                                                        <rect key="frame" x="16" y="16" width="286.66666666666669" height="50"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="menu-scheduler" translatesAutoresizingMaskIntoConstraints="NO" id="sSO-a7-3zy">
+                                                                <rect key="frame" x="0.0" y="10" width="29" height="30"/>
+                                                            </imageView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="1Vv-Ld-a93">
+                                                                <rect key="frame" x="43.999999999999986" y="0.0" width="242.66666666666663" height="50"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Scheduler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxQ-2l-AR0">
+                                                                        <rect key="frame" x="0.0" y="14.999999999999998" width="79.666666666666671" height="20.333333333333329"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="998" verticalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiA-Zm-TMI">
+                                                                        <rect key="frame" x="85.666666666666657" y="0.0" width="157" height="50"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N70-Nu-cF5">
+                                                                <rect key="frame" x="286.66666666666669" y="11" width="28" height="28"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" image="menu-expand"/>
+                                                                <state key="selected" image="menu-collapse"/>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="sjr-yu-7th" secondAttribute="trailing" constant="8" id="2jy-IH-Fp1"/>
+                                                    <constraint firstItem="sjr-yu-7th" firstAttribute="leading" secondItem="X4Y-dU-obg" secondAttribute="leadingMargin" constant="8" id="Agi-hY-8QN"/>
+                                                    <constraint firstAttribute="bottomMargin" secondItem="sjr-yu-7th" secondAttribute="bottom" constant="8" id="Lje-dK-Tg2"/>
+                                                    <constraint firstItem="sjr-yu-7th" firstAttribute="top" secondItem="X4Y-dU-obg" secondAttribute="topMargin" constant="8" id="Ywe-bc-pnx"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="pER-uO-eiu"/>
+                                                </constraints>
+                                                <viewLayoutGuide key="safeArea" id="k58-Zc-aYd"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="mhK-9N-cEO" appends="YES" id="wti-JK-0hx"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxw-0a-noc">
+                                                <rect key="frame" x="0.0" y="1636" width="318.66666666666669" height="82"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zjC-Pq-MQC">
                                                         <rect key="frame" x="16" y="16" width="286.66666666666669" height="50"/>
@@ -817,7 +866,7 @@
                                 </constraints>
                             </scrollView>
                             <containerView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="8Z9-31-aBb">
-                                <rect key="frame" x="0.0" y="1400" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="1900" width="375" height="100"/>
                                 <connections>
                                     <segue destination="2ju-FU-A0v" kind="embed" identifier="LoggedInUserContainer" id="TNq-GH-ye5"/>
                                 </connections>
@@ -839,7 +888,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qgZ-gN-TcE"/>
                     </view>
-                    <size key="freeformSize" width="375" height="1500"/>
+                    <size key="freeformSize" width="375" height="2000"/>
                     <connections>
                         <outlet property="directMessagesUnreadBadge" destination="bFa-Ds-wdf" id="4Bd-QB-JW2"/>
                         <outlet property="menuOptionContentLibrary" destination="Nxw-0a-noc" id="tUr-eQ-kK5"/>
@@ -934,6 +983,11 @@
                 <tapGestureRecognizer id="EtQ-Ma-7lK" userLabel="Create New Group Tap Gesture">
                     <connections>
                         <action selector="onCreateGroup:" destination="aKE-cR-QVD" id="IZM-1d-qS1"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="mhK-9N-cEO" userLabel="Schedular Tap Gesture">
+                    <connections>
+                        <action selector="onGoToSchedular:" destination="aKE-cR-QVD" id="Iab-RR-caX"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1038,7 +1092,7 @@
     </scenes>
     <resources>
         <image name="add-icon" width="24" height="24"/>
-        <image name="app-background" width="375" height="812"/>
+        <image name="app-background" width="375" height="667"/>
         <image name="menu-collapse" width="28" height="28"/>
         <image name="menu-content-library" width="29" height="24"/>
         <image name="menu-direct-messages" width="28" height="28"/>
@@ -1049,6 +1103,7 @@
         <image name="menu-kudos" width="27" height="27"/>
         <image name="menu-notices" width="24" height="28"/>
         <image name="menu-people" width="24" height="28"/>
+        <image name="menu-scheduler" width="29" height="30"/>
         <image name="settings" width="28" height="28"/>
         <namedColor name="vlgBlue">
             <color red="0.11372549019607843" green="0.4823529411764706" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

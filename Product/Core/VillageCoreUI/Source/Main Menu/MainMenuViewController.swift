@@ -9,6 +9,7 @@
 import UIKit
 import Promises
 import VillageCore
+import SafariServices
 
 final class MainMenuViewController: UIViewController {
     
@@ -245,6 +246,16 @@ private extension MainMenuViewController {
         self.sideMenuController?.hideMenu()
     }
     
+    @IBAction func onGoToSchedular(_ sender: Any? = nil) {
+        let url = URL(string: "https://dptfs-donatos365.msappproxy.net/launchpages/LaborScheduling/IndexSecure.aspx")!
+        let sfvc = SFSafariViewController(url: url)
+        sfvc.preferredBarTintColor = UINavigationBar.appearance().barTintColor
+        sfvc.preferredControlTintColor = UINavigationBar.appearance().tintColor
+        sfvc.delegate = self
+        sfvc.modalTransitionStyle = .coverVertical
+        self.present(sfvc, animated: true, completion: nil)
+    }
+    
     @IBAction func onGoToContentLibrary(_ sender: Any? = nil) {
         let vc = UIStoryboard(name: "ContentLibrary", bundle: Constants.bundle).instantiateViewController(withIdentifier: "ContentLibraryViewController") as! ContentLibraryViewController
         sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
@@ -338,6 +349,16 @@ extension MainMenuViewController: GroupViewControllerDelegate {
     
     func didLeaveGroup(_ group: VillageCore.Stream, controller: GroupViewController) {
         self.onGoToOtherGroups()
+    }
+    
+}
+
+// MARK: - SFSafariViewControllerDelegate
+
+extension MainMenuViewController: SFSafariViewControllerDelegate {
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
