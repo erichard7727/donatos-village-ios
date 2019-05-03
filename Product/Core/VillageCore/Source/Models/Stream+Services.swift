@@ -11,6 +11,14 @@ import Promises
 
 // Mark: - StreamService
 
+public extension HomeStream {
+    
+    static func fetch(page: Int = 1) -> Promise<HomeStream> {
+        return StreamsService.getHomeStream(page: page)
+    }
+    
+}
+
 public extension Stream {
     
     func getDetails() -> Promise<Stream> {

@@ -70,9 +70,19 @@ struct StreamsService {
         }
     }
     
-    static func getHomeStream(page: Int) -> Promise<Void> {
-        #warning("TODO - Implement home stream")
-        return Promise(Void())
+    static func getHomeStream(page: Int) -> Promise<HomeStream> {
+        return firstly {
+            let home = VillageCoreAPI.homeStream(page: page)
+            return VillageService.shared.request(target: home)
+        }.then { (json: JSON) -> HomeStream in
+            let homeStream = HomeStream(
+                streams: json["streams"].arrayValue.compactMap({ Stream(from: $0) }),
+                notice: Notice(from: json["notice"]),
+                news: Notice(from: json["news"]),
+                kudos: json["kudos"].arrayValue.compactMap({ Kudo(from: $0) })
+            )
+            return homeStream
+        }
     }
     
     static func subscribedStreams() -> Promise<Streams> {
@@ -151,9 +161,12 @@ struct StreamsService {
         }
         
         return firstly {
+            guard let streamAPIType = type?.apiType ?? details.streamType?.apiType else {
+                return Promise(StreamsServiceError.streamWithMissingDetails)
+            }
             let endpoint = VillageCoreAPI.createOrUpdateStream(
                 streamId: stream.id,
-                type: type?.apiType ?? details.streamType.apiType,
+                type: streamAPIType,
                 name: name ?? stream.name,
                 description: description ?? details.description,
                 ownerId: details.ownerId
@@ -273,8 +286,8 @@ internal extension Stream {
     
     init?(from response: JSON) {
         guard
-            let id = response["id"].string,
-            let name = response["name"].string
+            let id = response["id"].string ?? response["streamId"].string,
+            let name = response["name"].string ?? response["streamName"].string
         else {
             return nil
         }
@@ -293,14 +306,13 @@ internal extension Stream.Details {
     init?(from response: JSON) {
         let responseType = response["type"].string ?? response["streamType"].string
         guard
-            let streamType = Stream.StreamType(apiValue: responseType),
             let ownerId = response["ownerId"].int
         else {
             return nil
         }
         
         self = Stream.Details(
-            streamType: streamType,
+            streamType: Stream.StreamType(apiValue: responseType),
             description: response["description"].stringValue,
             ownerId: String(ownerId),
             messageCount: response["messageCount"].intValue,

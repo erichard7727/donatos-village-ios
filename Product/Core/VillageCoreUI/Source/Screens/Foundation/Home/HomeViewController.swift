@@ -25,6 +25,12 @@ extension HomeViewController {
             LeftBarButtonBehavior(showing: .menuOrBack)
         ])
         
+        firstly {
+            return HomeStream.fetch()
+        }.then { homeStream in
+            print(homeStream)
+        }
+        
     }
     
 }

@@ -35,7 +35,7 @@ public struct Stream: Hashable {
         }
         
         // Available + Create
-        public var streamType: StreamType
+        public var streamType: StreamType?
         public let description: String
         public let ownerId: String
         public let messageCount: Int
