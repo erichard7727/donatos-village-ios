@@ -178,6 +178,19 @@ private extension VillageContainer {
             .font: UIFont(name: "ProximaNova-Semibold", size: 15.0)!,
             .foregroundColor: UIColor.white
         ]
+        
+        UISearchBar.appearance().tintColor = .white
+        UISearchBar.appearance().barTintColor = .white
+        UISearchBar.appearance().searchBarStyle = .minimal
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [
+            .foregroundColor: UIColor.white
+        ]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = NSAttributedString(string: "Search", attributes: [
+            .foregroundColor: UIColor.vlgLightGray
+            ])
+        
+        
+        
     }
     
     @objc func runAppStartupFlow() {

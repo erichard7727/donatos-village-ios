@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -55,7 +55,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="sf8-7o-Wdc" firstAttribute="leading" secondItem="9iV-K8-3ln" secondAttribute="leading" constant="16" id="09u-bf-MoO"/>
                             <constraint firstItem="mXB-DF-G9F" firstAttribute="leading" secondItem="9iV-K8-3ln" secondAttribute="leading" constant="16" id="16F-gL-xSm"/>
@@ -80,7 +80,7 @@
         <!--People-->
         <scene sceneID="R8d-Gw-dtE">
             <objects>
-                <viewController storyboardIdentifier="PeopleViewController" title="People" automaticallyAdjustsScrollViewInsets="NO" id="PwX-cc-zmB" customClass="PeopleViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PeopleViewController" title="People" id="PwX-cc-zmB" customClass="PeopleViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j0h-Ly-BsN"/>
                         <viewControllerLayoutGuide type="bottom" id="qWC-tE-ShT"/>
@@ -167,7 +167,7 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WBy-y3-9Co" firstAttribute="trailing" secondItem="j1V-TF-wDK" secondAttribute="trailingMargin" id="CFV-Wf-wT7"/>
                             <constraint firstItem="qWC-tE-ShT" firstAttribute="top" secondItem="vpe-KF-e7p" secondAttribute="bottom" id="JUA-p3-nZe"/>
@@ -182,7 +182,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="People" id="JuX-p5-soA">
                         <barButtonItem key="rightBarButtonItem" image="add-icon" id="RIK-fT-AuH">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="HEZ-cc-7sH" kind="show" identifier="InvitePersonSegue" id="tL7-mr-9v9"/>
                             </connections>
@@ -569,7 +568,7 @@
     </scenes>
     <resources>
         <image name="add-icon" width="24" height="24"/>
-        <image name="app-background" width="375" height="812"/>
+        <image name="app-background" width="375" height="667"/>
         <image name="default-avatar" width="130" height="130"/>
         <image name="profile-email-icon" width="25" height="18"/>
     </resources>

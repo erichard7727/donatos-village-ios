@@ -16,13 +16,38 @@ protocol PeopleViewControllerDelegate {
     func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: PeopleViewController)
 }
 
+fileprivate class TintedSearchController: UISearchController {
+    override var searchBar: UISearchBar {
+        if _searchBar == nil {
+            let searchBar = TintedSearchBar()
+            searchBar.translatesAutoresizingMaskIntoConstraints = false
+            searchBar.searchBarStyle = .minimal
+            searchBar.barStyle = .default
+            searchBar.isTranslucent = true
+            searchBar.barTintColor = navigationController?.navigationBar.barTintColor ?? UINavigationBar.appearance().barTintColor
+            searchBar.tintColor = UISearchBar.appearance().tintColor
+            _searchBar = searchBar
+        }
+        return _searchBar!
+    }
+    private var _searchBar: UISearchBar?
+}
+
 final class PeopleViewController: UIViewController {
     
     @IBOutlet weak var addBarButtonItem: UIBarButtonItem!
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.alwaysBounceVertical = false
+        }
+    }
     
-    @IBOutlet weak var emptyStateLabel: UILabel!
+    @IBOutlet weak var emptyStateLabel: UILabel! {
+        didSet {
+            emptyStateLabel.text = "There are no people to display."
+        }
+    }
     
     /// Searching controller.
     var searchController: UISearchController!
@@ -70,10 +95,7 @@ final class PeopleViewController: UIViewController {
             AnalyticsParameterItemCategory: "list"
         ])
         
-        searchController.searchBar.sizeToFit()
-        tableView.tableHeaderView = searchController.searchBar
-        
-        emptyStateLabel.alpha = 0
+        emptyStateLabel.isHidden = true
         
         activityIndicator.startAnimating()
     }
@@ -88,16 +110,18 @@ final class PeopleViewController: UIViewController {
     
     func setupTableView() {
         // Setup search controller.
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.delegate = self
+        searchController = TintedSearchController(searchResultsController: nil)
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        definesPresentationContext = true
-        
-        searchController.searchBar.searchBarStyle = .prominent
-        searchController.searchBar.tintColor = UIColor(red: 233/255.0, green: 94/255.0, blue: 63/255.0, alpha: 1.0)
         searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
+        self.definesPresentationContext = true
+
         displayProgressFooterView()
     }
     
@@ -129,18 +153,17 @@ final class PeopleViewController: UIViewController {
             guard let `self` = self else { return }
             
             if !people.isEmpty {
-                self.emptyStateLabel.alpha = 0
                 self.filteredpeople.append(contentsOf: people)
                 self.originalPeople = self.originalPeople.union(people)
                 self.sortPeopleList()
                 self.currentPage = self.currentPage + 1
-            } else if self.filteredpeople.count == 0 {
-                self.emptyStateLabel.alpha = 1
-                self.emptyStateLabel.text = "There are no people to display."
             }
+            
+            self.emptyStateLabel.isHidden = !self.filteredpeople.isEmpty
         }.always { [weak self] in
             self?.refreshControl?.endRefreshing()
             self?.activityIndicator.stopAnimating()
+            self?.progressIndicator.alpha = 0
         }.catch { (error) in
             assertionFailure(error.localizedDescription)
         }
@@ -253,12 +276,7 @@ extension PeopleViewController: UISearchControllerDelegate, UISearchResultsUpdat
         
         filteredpeople = Array(originalPeople)
         activityIndicator.stopAnimating()
-        if filteredpeople.count == 0 {
-            emptyStateLabel.alpha = 1
-            self.emptyStateLabel.text = "There are no people to display."
-        } else {
-            emptyStateLabel.alpha = 0
-        }
+        self.emptyStateLabel.isHidden = !self.filteredpeople.isEmpty
         sortPeopleList()
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.searchAPI), object: nil)
     }
@@ -282,7 +300,6 @@ extension PeopleViewController: UISearchControllerDelegate, UISearchResultsUpdat
             guard let `self` = self else { return }
             
             if !people.isEmpty {
-                self.emptyStateLabel.alpha = 0
                 self.searchCurrentPage = self.searchCurrentPage + 1
                 
                 // Remove the current user from search results
@@ -295,19 +312,14 @@ extension PeopleViewController: UISearchControllerDelegate, UISearchResultsUpdat
                         || ($0.jobTitle ?? "").localizedCaseInsensitiveContains(self.searchText)
                 }
                 
-                if self.filteredpeople.isEmpty {
-                    self.emptyStateLabel.alpha = 1
-                    self.emptyStateLabel.text = "There are no people to display."
-                }
-                
                 self.sortPeopleList()
-            } else {
-                self.emptyStateLabel.alpha = 1
-                self.emptyStateLabel.text = "There are no people to display."
             }
+            
+            self.emptyStateLabel.isHidden = !self.filteredpeople.isEmpty
         }.always { [weak self] in
             self?.loadingMorePeople = false
             self?.activityIndicator.stopAnimating()
+            self?.progressIndicator.alpha = 0
         }.catch { (error) in
             assertionFailure(error.localizedDescription)
         }
@@ -394,10 +406,10 @@ extension PeopleViewController {
                 
                 self.filteredpeople.append(contentsOf: people)
                 self.sortPeopleList()
-            } else if self.filteredpeople.count == 0 {
-                self.emptyStateLabel.alpha = 1
-                self.emptyStateLabel.text = "There are no people to display."
             }
+            
+            self.emptyStateLabel.isHidden = !self.filteredpeople.isEmpty
+            
         }.always { [weak self] in
             self?.loadingMorePeople = false
             self?.progressIndicator.alpha = 0

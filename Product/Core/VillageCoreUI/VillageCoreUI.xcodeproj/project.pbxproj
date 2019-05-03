@@ -136,6 +136,7 @@
 		D4EA50882279CEBE00BE7E52 /* DMConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA507B2279CEBE00BE7E52 /* DMConversationViewController.swift */; };
 		D4EA50892279CEBE00BE7E52 /* DMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */; };
 		D4EA508A2279CEBE00BE7E52 /* DirectMessages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EA507D2279CEBE00BE7E52 /* DirectMessages.storyboard */; };
+		D4EA5090227BC03900BE7E52 /* TintedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */; };
 		D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */; };
 		D4F8A57522109E31005FDB6A /* LoginIdentityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */; };
 		D4F8A57722109E55005FDB6A /* LoginIdentityViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A57622109E55005FDB6A /* LoginIdentityViewController.storyboard */; };
@@ -289,6 +290,7 @@
 		D4EA507B2279CEBE00BE7E52 /* DMConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMConversationViewController.swift; sourceTree = "<group>"; };
 		D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMViewController.swift; sourceTree = "<group>"; };
 		D4EA507D2279CEBE00BE7E52 /* DirectMessages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DirectMessages.storyboard; sourceTree = "<group>"; };
+		D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedSearchBar.swift; sourceTree = "<group>"; };
 		D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SimpleTransition.swift"; sourceTree = "<group>"; };
 		D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIdentityViewController.swift; sourceTree = "<group>"; };
 		D4F8A57622109E55005FDB6A /* LoginIdentityViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginIdentityViewController.storyboard; sourceTree = "<group>"; };
@@ -839,6 +841,7 @@
 				D44B5F06222970BB00941CCE /* TintedTextField.swift */,
 				D479D2FC224AE87000AFB3DA /* IndentedTextField.swift */,
 				D4CEAE89226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift */,
+				D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */,
 			);
 			path = UIKitSubclasses;
 			sourceTree = "<group>";
@@ -995,6 +998,7 @@
 				D47FD3F6220FB23700376D31 /* VillageContainer.swift in Sources */,
 				D4B4E862223AFF22002DED70 /* InvitePersonController.swift in Sources */,
 				D460B81E224AC434003DCA2C /* NoticeAcknowledgementsViewController.swift in Sources */,
+				D4EA5090227BC03900BE7E52 /* TintedSearchBar.swift in Sources */,
 				D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */,
 				D4EA50832279CEBE00BE7E52 /* DMSearchCell.swift in Sources */,
 				D434D4042270ED09002C5EA0 /* GroupViewController.swift in Sources */,
