@@ -26,8 +26,8 @@ public class VillageContainer: SideMenuController {
     }
     
     private lazy var homeVC: UIViewController = {
-        let storyboard = UIStoryboard(name: "HomeViewController", bundle: Constants.bundle)
-        let homeVC = storyboard.instantiateInitialViewController() as! HomeViewController
+        let storyboard = UIStoryboard(name: "Home", bundle: Constants.bundle)
+        let homeVC = storyboard.instantiateInitialViewController() as! HomeController
         return UINavigationController(rootViewController: homeVC)
     }()
 

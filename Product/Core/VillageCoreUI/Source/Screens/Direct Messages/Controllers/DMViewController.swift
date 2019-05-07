@@ -113,8 +113,8 @@ final class DMViewController: UIViewController {
             self.emptyTableViewLabel.isHidden = !streams.isEmpty
             
             self.directMessages = streams.sorted{
-                let firstLastMessageDate = villageCoreAPIDateFormatter.date(from: $0.details?.directMessage?.lastMessageDate ?? "") ?? Date.distantPast
-                let secondLastMessageDate = villageCoreAPIDateFormatter.date(from: $1.details?.directMessage?.lastMessageDate ?? "") ?? Date.distantPast
+                let firstLastMessageDate = villageCoreAPIDateFormatter.date(from: $0.details?.lastMessageDate ?? "") ?? Date.distantPast
+                let secondLastMessageDate = villageCoreAPIDateFormatter.date(from: $1.details?.lastMessageDate ?? "") ?? Date.distantPast
                 
                 if self.preloadGroupId != nil && $0.id == self.preloadGroupId {
                     self.selectedDirectMessage = $0
@@ -193,7 +193,7 @@ extension DMViewController: UITableViewDataSource {
         
         let otherParticipants = thread.details?.closedParties.filter({ $0.id != currentUser.personId }) ?? []
         
-        let threadIsRead = thread.details?.directMessage?.isRead ?? true
+        let threadIsRead = thread.details?.isRead ?? true
         
         if threadIsRead {
             threadCell.messageState = .read
@@ -216,8 +216,8 @@ extension DMViewController: UITableViewDataSource {
         
         threadCell.username = otherParticipants.compactMap({ $0.displayName }).joined(separator: ", ")
         
-        threadCell.time = villageCoreAPIDateFormatter.date(from: thread.details?.directMessage?.lastMessageDate ?? "")
-        threadCell.message = thread.details?.directMessage?.lastMessageText ?? ""
+        threadCell.time = villageCoreAPIDateFormatter.date(from: thread.details?.lastMessageDate ?? "")
+        threadCell.message = thread.details?.lastMessageText ?? ""
         threadCell.messageState = threadIsRead ? .read : .unread
         
         return threadCell

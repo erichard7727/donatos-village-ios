@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="proximanova-light-webfont.ttf">
+            <string>ProximaNova-Light</string>
+        </array>
+        <array key="proximanova-reg-webfont.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+        <array key="proximanova-sbold-webfont.ttf">
+            <string>ProximaNova-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="JoinGroupCell" id="9eO-6z-Ues" customClass="JoinGroupCell" customModule="VillageCoreUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="113"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="340" height="113"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu-groups-other" translatesAutoresizingMaskIntoConstraints="NO" id="85i-pG-pCQ">
+                        <rect key="frame" x="18" y="16" width="54" height="40"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="54" id="HOW-3f-mZJ"/>
+                            <constraint firstAttribute="height" constant="40" id="cD3-zt-U0O"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join a group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHz-mK-ixN">
+                        <rect key="frame" x="86" y="10" width="246" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="zC0-ab-rCV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join a group and we'll post all recent activity right here on your Home Stream" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCA-5f-Y3S">
+                        <rect key="frame" x="86" y="33" width="246" height="29"/>
+                        <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Raw-5B-bl8">
+                        <rect key="frame" x="86" y="73" width="103" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="sFG-0S-koK"/>
+                            <constraint firstAttribute="width" constant="103" id="ubM-m8-u9O"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="10"/>
+                        <state key="normal" title="EXPLORE GROUPS">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="KCA-5f-Y3S" firstAttribute="leading" secondItem="85i-pG-pCQ" secondAttribute="trailing" constant="14" id="0X1-hn-CQ1"/>
+                <constraint firstItem="FHz-mK-ixN" firstAttribute="top" secondItem="9eO-6z-Ues" secondAttribute="top" constant="10" id="2Te-jv-DHH"/>
+                <constraint firstAttribute="bottom" secondItem="Raw-5B-bl8" secondAttribute="bottom" constant="8" id="5M3-qb-bfu"/>
+                <constraint firstItem="Raw-5B-bl8" firstAttribute="top" secondItem="KCA-5f-Y3S" secondAttribute="bottom" constant="11" id="Dgd-I2-DS2"/>
+                <constraint firstItem="FHz-mK-ixN" firstAttribute="leading" secondItem="85i-pG-pCQ" secondAttribute="trailing" constant="14" id="PM8-uP-XNC"/>
+                <constraint firstItem="85i-pG-pCQ" firstAttribute="leading" secondItem="9eO-6z-Ues" secondAttribute="leading" constant="18" id="RQf-vq-4sP"/>
+                <constraint firstItem="KCA-5f-Y3S" firstAttribute="top" secondItem="FHz-mK-ixN" secondAttribute="bottom" constant="2" id="SnV-9j-DEg"/>
+                <constraint firstItem="Raw-5B-bl8" firstAttribute="leading" secondItem="KCA-5f-Y3S" secondAttribute="leading" id="eZm-vE-sIw"/>
+                <constraint firstAttribute="trailing" secondItem="KCA-5f-Y3S" secondAttribute="trailing" constant="8" id="f51-NK-bHi"/>
+                <constraint firstAttribute="trailing" secondItem="FHz-mK-ixN" secondAttribute="trailing" constant="8" id="g0j-gA-xVZ"/>
+                <constraint firstItem="85i-pG-pCQ" firstAttribute="top" secondItem="9eO-6z-Ues" secondAttribute="top" constant="16" id="t9d-lq-5pu"/>
+            </constraints>
+            <connections>
+                <outlet property="exploreButtonHeight" destination="sFG-0S-koK" id="DnR-ut-Reg"/>
+                <outlet property="exploreGroupsButton" destination="Raw-5B-bl8" id="zsU-b4-6hM"/>
+            </connections>
+            <point key="canvasLocation" x="37" y="-148.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="menu-groups-other" width="28" height="28"/>
+    </resources>
+</document>

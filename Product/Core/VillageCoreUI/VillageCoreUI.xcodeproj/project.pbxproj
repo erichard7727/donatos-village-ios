@@ -23,6 +23,23 @@
 		D4164B772268011A0025E6E9 /* SelectPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B732268011A0025E6E9 /* SelectPeopleViewController.swift */; };
 		D4164B7A226801670025E6E9 /* PersonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B79226801660025E6E9 /* PersonLabel.swift */; };
 		D4164B7C226802570025E6E9 /* PersonSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B7B226802570025E6E9 /* PersonSearchViewController.swift */; };
+		D42CF733227BDABA003D8CF4 /* JoinGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF71F227BDAB9003D8CF4 /* JoinGroupCell.swift */; };
+		D42CF734227BDABA003D8CF4 /* HomeNoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF720227BDAB9003D8CF4 /* HomeNoticeCell.swift */; };
+		D42CF735227BDABA003D8CF4 /* JoinGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42CF721227BDAB9003D8CF4 /* JoinGroupCell.xib */; };
+		D42CF736227BDABA003D8CF4 /* GiveKudosCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42CF722227BDAB9003D8CF4 /* GiveKudosCell.xib */; };
+		D42CF737227BDABA003D8CF4 /* HomeStreamGroupMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF723227BDAB9003D8CF4 /* HomeStreamGroupMessageCell.swift */; };
+		D42CF738227BDABA003D8CF4 /* KudosHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF724227BDAB9003D8CF4 /* KudosHomeCell.swift */; };
+		D42CF739227BDABA003D8CF4 /* PublishedContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF725227BDAB9003D8CF4 /* PublishedContentCell.swift */; };
+		D42CF73A227BDABA003D8CF4 /* KudosHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42CF726227BDAB9003D8CF4 /* KudosHomeCell.xib */; };
+		D42CF73B227BDABA003D8CF4 /* RecentActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF727227BDAB9003D8CF4 /* RecentActivityCell.swift */; };
+		D42CF73C227BDABA003D8CF4 /* RecentActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42CF728227BDAB9003D8CF4 /* RecentActivityCell.xib */; };
+		D42CF73D227BDABA003D8CF4 /* HomeStreamGroupMessageAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF729227BDAB9003D8CF4 /* HomeStreamGroupMessageAttachmentCell.swift */; };
+		D42CF73E227BDABA003D8CF4 /* GiveKudosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF72A227BDAB9003D8CF4 /* GiveKudosCell.swift */; };
+		D42CF73F227BDABA003D8CF4 /* RecentActivityCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF72C227BDAB9003D8CF4 /* RecentActivityCollectionViewLayout.swift */; };
+		D42CF740227BDABA003D8CF4 /* KudosModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42CF72E227BDAB9003D8CF4 /* KudosModalView.xib */; };
+		D42CF741227BDABA003D8CF4 /* KudosModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF72F227BDAB9003D8CF4 /* KudosModalView.swift */; };
+		D42CF742227BDABA003D8CF4 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF731227BDAB9003D8CF4 /* HomeController.swift */; };
+		D42CF743227BDABA003D8CF4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42CF732227BDAB9003D8CF4 /* Home.storyboard */; };
 		D42FE5C222411E1700B46C8F /* SendEmailTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */; };
 		D42FE5C422411E2000B46C8F /* SendEmailTokenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */; };
 		D434D3FD2270ED09002C5EA0 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D434D3E42270ED09002C5EA0 /* Groups.storyboard */; };
@@ -175,6 +192,23 @@
 		D4164B732268011A0025E6E9 /* SelectPeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPeopleViewController.swift; sourceTree = "<group>"; };
 		D4164B79226801660025E6E9 /* PersonLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonLabel.swift; sourceTree = "<group>"; };
 		D4164B7B226802570025E6E9 /* PersonSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSearchViewController.swift; sourceTree = "<group>"; };
+		D42CF71F227BDAB9003D8CF4 /* JoinGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupCell.swift; sourceTree = "<group>"; };
+		D42CF720227BDAB9003D8CF4 /* HomeNoticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoticeCell.swift; sourceTree = "<group>"; };
+		D42CF721227BDAB9003D8CF4 /* JoinGroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinGroupCell.xib; sourceTree = "<group>"; };
+		D42CF722227BDAB9003D8CF4 /* GiveKudosCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GiveKudosCell.xib; sourceTree = "<group>"; };
+		D42CF723227BDAB9003D8CF4 /* HomeStreamGroupMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeStreamGroupMessageCell.swift; sourceTree = "<group>"; };
+		D42CF724227BDAB9003D8CF4 /* KudosHomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KudosHomeCell.swift; sourceTree = "<group>"; };
+		D42CF725227BDAB9003D8CF4 /* PublishedContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishedContentCell.swift; sourceTree = "<group>"; };
+		D42CF726227BDAB9003D8CF4 /* KudosHomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KudosHomeCell.xib; sourceTree = "<group>"; };
+		D42CF727227BDAB9003D8CF4 /* RecentActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentActivityCell.swift; sourceTree = "<group>"; };
+		D42CF728227BDAB9003D8CF4 /* RecentActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentActivityCell.xib; sourceTree = "<group>"; };
+		D42CF729227BDAB9003D8CF4 /* HomeStreamGroupMessageAttachmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeStreamGroupMessageAttachmentCell.swift; sourceTree = "<group>"; };
+		D42CF72A227BDAB9003D8CF4 /* GiveKudosCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiveKudosCell.swift; sourceTree = "<group>"; };
+		D42CF72C227BDAB9003D8CF4 /* RecentActivityCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentActivityCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D42CF72E227BDAB9003D8CF4 /* KudosModalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KudosModalView.xib; sourceTree = "<group>"; };
+		D42CF72F227BDAB9003D8CF4 /* KudosModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KudosModalView.swift; sourceTree = "<group>"; };
+		D42CF731227BDAB9003D8CF4 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		D42CF732227BDAB9003D8CF4 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailTokenViewController.swift; sourceTree = "<group>"; };
 		D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendEmailTokenViewController.storyboard; sourceTree = "<group>"; };
 		D434D3E42270ED09002C5EA0 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
@@ -389,6 +423,62 @@
 			children = (
 				D4164B7B226802570025E6E9 /* PersonSearchViewController.swift */,
 				D4164B732268011A0025E6E9 /* SelectPeopleViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D42CF71D227BDA8E003D8CF4 /* Home Stream */ = {
+			isa = PBXGroup;
+			children = (
+				D42CF71E227BDAB9003D8CF4 /* Cells */,
+				D42CF730227BDAB9003D8CF4 /* Controllers */,
+				D42CF72B227BDAB9003D8CF4 /* Layouts */,
+				D42CF72D227BDAB9003D8CF4 /* Views */,
+				D42CF732227BDAB9003D8CF4 /* Home.storyboard */,
+			);
+			path = "Home Stream";
+			sourceTree = "<group>";
+		};
+		D42CF71E227BDAB9003D8CF4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D42CF71F227BDAB9003D8CF4 /* JoinGroupCell.swift */,
+				D42CF720227BDAB9003D8CF4 /* HomeNoticeCell.swift */,
+				D42CF721227BDAB9003D8CF4 /* JoinGroupCell.xib */,
+				D42CF722227BDAB9003D8CF4 /* GiveKudosCell.xib */,
+				D42CF723227BDAB9003D8CF4 /* HomeStreamGroupMessageCell.swift */,
+				D42CF724227BDAB9003D8CF4 /* KudosHomeCell.swift */,
+				D42CF725227BDAB9003D8CF4 /* PublishedContentCell.swift */,
+				D42CF726227BDAB9003D8CF4 /* KudosHomeCell.xib */,
+				D42CF727227BDAB9003D8CF4 /* RecentActivityCell.swift */,
+				D42CF728227BDAB9003D8CF4 /* RecentActivityCell.xib */,
+				D42CF729227BDAB9003D8CF4 /* HomeStreamGroupMessageAttachmentCell.swift */,
+				D42CF72A227BDAB9003D8CF4 /* GiveKudosCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D42CF72B227BDAB9003D8CF4 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				D42CF72C227BDAB9003D8CF4 /* RecentActivityCollectionViewLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		D42CF72D227BDAB9003D8CF4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D42CF72E227BDAB9003D8CF4 /* KudosModalView.xib */,
+				D42CF72F227BDAB9003D8CF4 /* KudosModalView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D42CF730227BDAB9003D8CF4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D42CF731227BDAB9003D8CF4 /* HomeController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -765,6 +855,7 @@
 				D4B4E844223AE7CE002DED70 /* Directory */,
 				D4B4E843223AE7BE002DED70 /* Foundation */,
 				D4D3116A226F5392006C3C3F /* Groups */,
+				D42CF71D227BDA8E003D8CF4 /* Home Stream */,
 				D4B4E86F223B370B002DED70 /* Kudos */,
 				D460B80F224AC41E003DCA2C /* Notices */,
 			);
@@ -918,6 +1009,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4EA50802279CEBE00BE7E52 /* DMConversationOtherMessageCell.xib in Resources */,
+				D42CF736227BDABA003D8CF4 /* GiveKudosCell.xib in Resources */,
 				D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */,
 				D4A697782264010C00ECC0A8 /* ItemRedeemedModal.xib in Resources */,
 				D434D4122270ED09002C5EA0 /* GroupMessageAttachmentCell.xib in Resources */,
@@ -943,21 +1035,26 @@
 				D4F8A5982210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf in Resources */,
 				D4F8A5922210B6DE005FDB6A /* proximanova-sbolditalic-webfont.ttf in Resources */,
 				D4EA508A2279CEBE00BE7E52 /* DirectMessages.storyboard in Resources */,
+				D42CF740227BDABA003D8CF4 /* KudosModalView.xib in Resources */,
 				D4B4E897223B3D0E002DED70 /* AchievementCollectionViewCell.xib in Resources */,
 				D4F8A5972210B6DE005FDB6A /* proximanova-lightitalic-webfont.ttf in Resources */,
 				D43663C32229ACA9006354F2 /* LoginPasswordViewController.storyboard in Resources */,
 				D411BC412247B3EE003D2F08 /* UserSettings.storyboard in Resources */,
 				D4B4E858223AE980002DED70 /* Directory.storyboard in Resources */,
+				D42CF743227BDABA003D8CF4 /* Home.storyboard in Resources */,
 				D47FD3F7220FB23C00376D31 /* VillageContainer.storyboard in Resources */,
 				D42FE5C422411E2000B46C8F /* SendEmailTokenViewController.storyboard in Resources */,
 				D4F8A5882210A274005FDB6A /* MainMenuViewController.storyboard in Resources */,
+				D42CF73C227BDABA003D8CF4 /* RecentActivityCell.xib in Resources */,
 				D4CEAE87225FFCCB00A215E4 /* ContentLibrary.storyboard in Resources */,
 				D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */,
+				D42CF73A227BDABA003D8CF4 /* KudosHomeCell.xib in Resources */,
 				D4F8A5962210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf in Resources */,
 				D4F8A57722109E55005FDB6A /* LoginIdentityViewController.storyboard in Resources */,
 				D4F8A5932210B6DE005FDB6A /* proximanova-light-webfont.ttf in Resources */,
 				D434D40E2270ED09002C5EA0 /* GroupPublishedContentCell.xib in Resources */,
 				D4EA507F2279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.xib in Resources */,
+				D42CF735227BDABA003D8CF4 /* JoinGroupCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,7 +1093,9 @@
 				D4B4E86E223B355B002DED70 /* TabItemView.swift in Sources */,
 				D4B4E896223B3D0E002DED70 /* AchievementCollectionViewCell.swift in Sources */,
 				D47FD3F6220FB23700376D31 /* VillageContainer.swift in Sources */,
+				D42CF733227BDABA003D8CF4 /* JoinGroupCell.swift in Sources */,
 				D4B4E862223AFF22002DED70 /* InvitePersonController.swift in Sources */,
+				D42CF73D227BDABA003D8CF4 /* HomeStreamGroupMessageAttachmentCell.swift in Sources */,
 				D460B81E224AC434003DCA2C /* NoticeAcknowledgementsViewController.swift in Sources */,
 				D4EA5090227BC03900BE7E52 /* TintedSearchBar.swift in Sources */,
 				D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */,
@@ -1006,9 +1105,11 @@
 				D4F8A57B22109FAF005FDB6A /* SideMenuController.swift in Sources */,
 				D434D4032270ED09002C5EA0 /* MediaPreviewViewController.swift in Sources */,
 				D460B820224AC434003DCA2C /* NoticeListViewController.swift in Sources */,
+				D42CF739227BDABA003D8CF4 /* PublishedContentCell.swift in Sources */,
 				D4B4E893223B3971002DED70 /* ParentScrollView.swift in Sources */,
 				D4A697762264010000ECC0A8 /* ItemRedeemedModal.swift in Sources */,
 				D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */,
+				D42CF738227BDABA003D8CF4 /* KudosHomeCell.swift in Sources */,
 				D434D4092270ED09002C5EA0 /* GroupSettingsTypeCell.swift in Sources */,
 				D4EA50882279CEBE00BE7E52 /* DMConversationViewController.swift in Sources */,
 				D4B4E891223B37B0002DED70 /* MyAchievementsViewController.swift in Sources */,
@@ -1021,6 +1122,7 @@
 				D411BC3F2247B3EE003D2F08 /* UserSettingsSwitchCell.swift in Sources */,
 				D4A6976522600D7700ECC0A8 /* ContentDetailController.swift in Sources */,
 				D434D4072270ED09002C5EA0 /* GroupMessageCell.swift in Sources */,
+				D42CF742227BDABA003D8CF4 /* HomeController.swift in Sources */,
 				D4164B7A226801670025E6E9 /* PersonLabel.swift in Sources */,
 				D4984EA0223E83E700793CFE /* StatefulUserInterface.swift in Sources */,
 				D460B81F224AC434003DCA2C /* CreateNoticeViewController.swift in Sources */,
@@ -1040,11 +1142,13 @@
 				D4B4E863223AFFD6002DED70 /* PersonProfileHeaderViewController.swift in Sources */,
 				D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */,
 				D4D688CD22600BE800DF90D4 /* ContentLibraryViewController.swift in Sources */,
+				D42CF737227BDABA003D8CF4 /* HomeStreamGroupMessageCell.swift in Sources */,
 				D434D4002270ED09002C5EA0 /* GroupSettingsController.swift in Sources */,
 				D44D3F6622723CA0007ECBF1 /* StreamViewControllerBehaviors.swift in Sources */,
 				D434D4112270ED09002C5EA0 /* GroupPublishedContentCell.swift in Sources */,
 				D411BC3C2247B3EE003D2F08 /* EditSettingsController.swift in Sources */,
 				D4B4E899223B3E5E002DED70 /* AchievementImageView.swift in Sources */,
+				D42CF73B227BDABA003D8CF4 /* RecentActivityCell.swift in Sources */,
 				D4B4E864223AFFF6002DED70 /* ContactPersonViewController.swift in Sources */,
 				D434D4102270ED09002C5EA0 /* PreviewImageCell.swift in Sources */,
 				D4A69771226400E800ECC0A8 /* AchievementHeaderCell.swift in Sources */,
@@ -1062,7 +1166,9 @@
 				D4EA50892279CEBE00BE7E52 /* DMViewController.swift in Sources */,
 				D4F8A5822210A1DC005FDB6A /* HomeViewController.swift in Sources */,
 				D411BC402247B3EE003D2F08 /* UserSettingsGenericCell.swift in Sources */,
+				D42CF734227BDABA003D8CF4 /* HomeNoticeCell.swift in Sources */,
 				D411BC3D2247B3EE003D2F08 /* UserSettingsHeaderController.swift in Sources */,
+				D42CF73E227BDABA003D8CF4 /* GiveKudosCell.swift in Sources */,
 				D4D3116C226F53BE006C3C3F /* GroupMenuItem.swift in Sources */,
 				D4F8A5862210A267005FDB6A /* MainMenuViewController.swift in Sources */,
 				D434D41722713F92002C5EA0 /* UIImageView+AnimatedImageView.swift in Sources */,
@@ -1073,6 +1179,7 @@
 				D4B4E869223B281E002DED70 /* ProfileBottomContainerViewController.swift in Sources */,
 				D460B81A224AC434003DCA2C /* NewsCell.swift in Sources */,
 				D42FE5C222411E1700B46C8F /* SendEmailTokenViewController.swift in Sources */,
+				D42CF73F227BDABA003D8CF4 /* RecentActivityCollectionViewLayout.swift in Sources */,
 				D434D40D2270ED09002C5EA0 /* GroupSettingsSwitchCell.swift in Sources */,
 				D4EA50872279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.swift in Sources */,
 				D4A697772264010800ECC0A8 /* ProgessBarView.swift in Sources */,
@@ -1094,6 +1201,7 @@
 				D460B81B224AC434003DCA2C /* NoticeCell.swift in Sources */,
 				D4F8A59C2210D556005FDB6A /* KeyboardAwareScrollView.swift in Sources */,
 				D4164B7C226802570025E6E9 /* PersonSearchViewController.swift in Sources */,
+				D42CF741227BDABA003D8CF4 /* KudosModalView.swift in Sources */,
 				D411BC3E2247B3EE003D2F08 /* UserSettingsInfoCell.swift in Sources */,
 				D434D4052270ED09002C5EA0 /* CreateGroupViewController.swift in Sources */,
 				D4EA507E2279CEBE00BE7E52 /* DMConversationSelfMessageCell.swift in Sources */,

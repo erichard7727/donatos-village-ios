@@ -319,32 +319,16 @@ internal extension Stream.Details {
             memberCount: response["memberCount"].intValue,
             closedParties: response["closedParties"].arrayValue.compactMap({ Person(from: $0) }),
             peopleIds: response["peopleIds"].arrayValue.compactMap({ $0.string }),
-            deactivated: response["deactivated"].boolValue,
-            directMessage: Stream.Details.DirectMessage(from: response)
-        )
-    }
-
-}
-
-internal extension Stream.Details.DirectMessage {
-    
-    init?(from response: JSON) {
-        guard
-            let isRead = response["isRead"].bool,
-            let unreadCount = response["unreadCount"].int
-        else {
-            return nil
-        }
-        self = Stream.Details.DirectMessage(
-            isRead: isRead,
-            unreadCount: unreadCount,
-            mostRecentMessage: Message(from: response[""]),
+            mostRecentMessage: Message(from: response["mostRecentMessage"]),
+            isRead: response["isRead"].bool ?? true,
+            unreadCount: response["unreadCount"].intValue,
             lastMessageReadId: response["lastMessageRead"].string,
             lastMessageText: response["lastMessageText"].string,
-            lastMessageDate: response["lastMessageDate"].string
+            lastMessageDate: response["lastMessageDate"].string,
+            deactivated: response["deactivated"].boolValue
         )
     }
-    
+
 }
 
 internal extension Message {
@@ -353,7 +337,7 @@ internal extension Message {
         guard
             let id = response["id"].string,
             let author = Person(from: response["person"]),
-            let authorId = response["ownerId"].string,
+            let authorId = response["ownerId"].int ?? Int(response["ownerId"].stringValue),
             let authorDisplayName = response["ownerDisplayName"].string,
             let streamId = response["streamId"].string
         else {

@@ -575,7 +575,7 @@ extension GroupViewController: UIImagePickerControllerDelegate, UINavigationCont
                         let placeholder = Message(
                             id: "",
                             author: author,
-                            authorId: String(author.id),
+                            authorId: author.id,
                             authorDisplayName: author.displayName ?? "",
                             streamId: "",
                             body: attachmentMessageText,
@@ -653,7 +653,7 @@ extension GroupViewController: UIImagePickerControllerDelegate, UINavigationCont
                 let placeholder = Message(
                     id: "",
                     author: author,
-                    authorId: String(author.id),
+                    authorId: author.id,
                     authorDisplayName: author.displayName ?? "",
                     streamId: "",
                     body: attachmentMessageText,

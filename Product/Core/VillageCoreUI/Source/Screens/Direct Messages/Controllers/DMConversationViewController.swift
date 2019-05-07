@@ -418,7 +418,7 @@ extension DMConversationViewController: UIImagePickerControllerDelegate, UINavig
                         let placeholder = Message(
                             id: "",
                             author: author,
-                            authorId: String(author.id),
+                            authorId: author.id,
                             authorDisplayName: author.displayName ?? "",
                             streamId: "",
                             body: attachmentMessageText,
@@ -496,7 +496,7 @@ extension DMConversationViewController: UIImagePickerControllerDelegate, UINavig
                 let placeholder = Message(
                     id: "",
                     author: author,
-                    authorId: String(author.id),
+                    authorId: author.id,
                     authorDisplayName: author.displayName ?? "",
                     streamId: "",
                     body: attachmentMessageText,
@@ -595,7 +595,7 @@ extension DMConversationViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messageList[indexPath.row]
         
-        if message.authorId == String(User.current.personId) {
+        if message.authorId == User.current.personId {
             if let attachment = message.attachment {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DMConversationSelfAttachmentCell") as! DMConversationSelfAttachmentCell
                 

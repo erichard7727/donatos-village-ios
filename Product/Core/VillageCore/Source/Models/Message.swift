@@ -14,7 +14,7 @@ public struct Message {
     public let id: String
     
     public let author: Person
-    public let authorId: String
+    public let authorId: Int
     public let authorDisplayName: String
 
     public let streamId: String
@@ -31,7 +31,7 @@ public struct Message {
     public init(
         id: String,
         author: Person,
-        authorId: String,
+        authorId: Int,
         authorDisplayName: String,
         streamId: String,
         body: String,
