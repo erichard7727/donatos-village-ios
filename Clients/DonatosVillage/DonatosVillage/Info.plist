@@ -22,6 +22,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to update user profile photo and for posting content.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to update user profile photo and for posting content.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>proximanova-black-webfont.ttf</string>

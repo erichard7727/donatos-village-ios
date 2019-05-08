@@ -20,7 +20,6 @@ final class EditSettingsController: UIViewController {
     
     lazy var imagePicker: UIImagePickerController = {
         let ip = UIImagePickerController()
-        ip.allowsEditing = true
         return ip
     }()
 
@@ -93,7 +92,8 @@ extension EditSettingsController: SettingsControllerDelegate {
         if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera)) {
             let takePictureAction: UIAlertAction = UIAlertAction(title: "Camera", style: .default) { action -> Void in
                 self.imagePicker.delegate = self
-                self.imagePicker.sourceType = .camera;
+                self.imagePicker.sourceType = .camera
+                self.imagePicker.cameraCaptureMode = .photo
                 self.imagePicker.allowsEditing = false
                 self.present(self.imagePicker, animated: true, completion: nil)
             }
@@ -182,4 +182,9 @@ extension EditSettingsController: UIImagePickerControllerDelegate, UINavigationC
         
         settingsController.populateAvatarImage(adjustedImage)
     }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
