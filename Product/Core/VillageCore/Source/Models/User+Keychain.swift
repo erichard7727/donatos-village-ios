@@ -130,6 +130,15 @@ extension User {
         }
     }
     
+    public var pushToken: String? {
+        get {
+            return keychain.string(forKey: "pushToken")
+        }
+        set {
+            keychain.set(newValue, forKey: "pushToken")
+        }
+    }
+    
     public func removeAll() {
         let keys: [String] = [
             "diagnosticId",
@@ -142,6 +151,8 @@ extension User {
             "deactivated",
             "lastLoginDate",
             "lastUpdatedDate",
+            "securityPolicies",
+            "pushToken",
         ]
         keys.forEach({ keychain.removeObject(forKey: $0) })
     }
