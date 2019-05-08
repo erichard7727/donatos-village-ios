@@ -13,9 +13,6 @@
         <array key="proximanova-extrabold-webfont.ttf">
             <string>ProximaNova-Extrabld</string>
         </array>
-        <array key="proximanova-reg-webfont.ttf">
-            <string>ProximaNova-Regular</string>
-        </array>
         <array key="proximanova-sbold-webfont.ttf">
             <string>ProximaNova-Semibold</string>
         </array>
@@ -24,7 +21,7 @@
         <!--Home Stream-->
         <scene sceneID="R0C-EG-JXE">
             <objects>
-                <viewController storyboardIdentifier="HomeController" automaticallyAdjustsScrollViewInsets="NO" id="Kzo-bZ-z0i" customClass="HomeController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeController" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="Kzo-bZ-z0i" customClass="HomeController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="szr-sh-0uY"/>
                         <viewControllerLayoutGuide type="bottom" id="DQE-xH-lqq"/>
@@ -37,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCn-HU-Y7k">
-                                <rect key="frame" x="0.0" y="24" width="375" height="788"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yfo-em-hg2" userLabel="ContainerView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="620"/>
@@ -77,25 +74,6 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-notice-header" translatesAutoresizingMaskIntoConstraints="NO" id="yTA-fk-V30">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="257"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uca-9s-Ouu">
-                                                        <rect key="frame" x="169.66666666666666" y="135.66666666666666" width="13" height="18"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="18" id="WTB-Ub-jGg"/>
-                                                            <constraint firstAttribute="width" constant="13" id="tDO-I7-az3"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAM-mU-R85">
-                                                        <rect key="frame" x="187.66666666666666" y="136.66666666666666" width="0.0" height="16"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="Awg-4N-QNM"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="ProximaNova-Extrabld" family="Proxima Nova" pointSize="14"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGB-9B-H4g">
                                                         <rect key="frame" x="114" y="197" width="147" height="35"/>
                                                         <color key="backgroundColor" name="vlgGreen"/>
@@ -111,7 +89,7 @@
                                                             <action selector="contentButtonClick:" destination="Kzo-bZ-z0i" eventType="touchUpInside" id="dAu-8c-m5j"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="23" translatesAutoresizingMaskIntoConstraints="NO" id="dO2-9x-mok" userLabel="Published Content Title Label">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="23" translatesAutoresizingMaskIntoConstraints="NO" id="dO2-9x-mok">
                                                         <rect key="frame" x="16" y="128.66666666666666" width="343" height="0.0"/>
                                                         <attributedString key="attributedText"/>
                                                         <nil key="highlightedColor"/>
@@ -120,15 +98,11 @@
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="yTA-fk-V30" secondAttribute="trailing" id="1jY-zZ-Fex"/>
                                                     <constraint firstAttribute="height" constant="257" id="GrZ-3B-1f8"/>
-                                                    <constraint firstItem="vAM-mU-R85" firstAttribute="leading" secondItem="uca-9s-Ouu" secondAttribute="trailing" constant="5" id="KyZ-0U-vnU"/>
                                                     <constraint firstItem="dO2-9x-mok" firstAttribute="leading" secondItem="bDF-qd-8WT" secondAttribute="leading" constant="16" id="MDg-Jg-ZNK"/>
                                                     <constraint firstAttribute="bottom" secondItem="yTA-fk-V30" secondAttribute="bottom" id="THG-i3-Jbc"/>
-                                                    <constraint firstItem="uca-9s-Ouu" firstAttribute="top" secondItem="dO2-9x-mok" secondAttribute="bottom" constant="7" id="WEr-cP-FAZ"/>
-                                                    <constraint firstItem="vAM-mU-R85" firstAttribute="centerX" secondItem="bDF-qd-8WT" secondAttribute="centerX" id="WaZ-V4-Y0b"/>
                                                     <constraint firstItem="yTA-fk-V30" firstAttribute="leading" secondItem="bDF-qd-8WT" secondAttribute="leading" id="YjW-XJ-SGC"/>
                                                     <constraint firstItem="dO2-9x-mok" firstAttribute="centerY" secondItem="yTA-fk-V30" secondAttribute="centerY" id="bHE-f7-S29"/>
                                                     <constraint firstItem="oGB-9B-H4g" firstAttribute="centerX" secondItem="bDF-qd-8WT" secondAttribute="centerX" id="e1C-2Y-dCT"/>
-                                                    <constraint firstItem="vAM-mU-R85" firstAttribute="centerY" secondItem="uca-9s-Ouu" secondAttribute="centerY" id="kCc-qc-Mfg"/>
                                                     <constraint firstAttribute="trailing" secondItem="dO2-9x-mok" secondAttribute="trailing" constant="16" id="odH-WN-Spg"/>
                                                     <constraint firstAttribute="bottom" secondItem="oGB-9B-H4g" secondAttribute="bottom" constant="25" id="tL4-sB-zmP"/>
                                                     <constraint firstItem="yTA-fk-V30" firstAttribute="top" secondItem="bDF-qd-8WT" secondAttribute="top" id="x67-Mq-BqM"/>
@@ -273,7 +247,7 @@
                             <constraint firstAttribute="bottom" secondItem="l87-Za-MON" secondAttribute="bottom" id="bnp-LU-wEP"/>
                             <constraint firstAttribute="trailing" secondItem="SCn-HU-Y7k" secondAttribute="trailing" id="cSE-9d-93E"/>
                             <constraint firstItem="l87-Za-MON" firstAttribute="top" secondItem="qVM-0A-Uer" secondAttribute="top" id="cke-fh-HTN"/>
-                            <constraint firstItem="SCn-HU-Y7k" firstAttribute="top" secondItem="szr-sh-0uY" secondAttribute="bottom" constant="-64" id="fjJ-PE-F7a"/>
+                            <constraint firstItem="SCn-HU-Y7k" firstAttribute="top" secondItem="qVM-0A-Uer" secondAttribute="top" id="fjJ-PE-F7a"/>
                             <constraint firstAttribute="bottom" secondItem="SCn-HU-Y7k" secondAttribute="bottom" id="grR-t1-6nU"/>
                             <constraint firstItem="Yfo-em-hg2" firstAttribute="width" secondItem="qVM-0A-Uer" secondAttribute="width" id="lMd-io-e7h"/>
                         </constraints>
@@ -296,10 +270,8 @@
                         <outlet property="constraintToView" destination="Mkg-Fc-YTM" id="xWR-H9-ENH"/>
                         <outlet property="containerView" destination="Yfo-em-hg2" id="CD8-nS-193"/>
                         <outlet property="containerViewHeightConstraint" destination="ege-Jl-MIW" id="Ilr-WJ-tZu"/>
-                        <outlet property="contentCategoryLabel" destination="vAM-mU-R85" id="tgh-hy-Z48"/>
                         <outlet property="contentImageView" destination="yTA-fk-V30" id="f16-Rx-krh"/>
                         <outlet property="contentTitleLabel" destination="dO2-9x-mok" id="p57-6N-czk"/>
-                        <outlet property="inLabel" destination="uca-9s-Ouu" id="fAP-PJ-foi"/>
                         <outlet property="kudosContainerHeight" destination="Kt8-my-sBr" id="owc-yg-ZTA"/>
                         <outlet property="learnMoreButton" destination="oGB-9B-H4g" id="b3B-rU-Dyl"/>
                         <outlet property="recentActivityCollectionView" destination="Jlm-VD-seG" id="Mps-Dc-iam"/>

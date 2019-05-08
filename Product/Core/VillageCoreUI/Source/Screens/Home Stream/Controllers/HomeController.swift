@@ -59,8 +59,6 @@ class HomeController: UIViewController {
         }
     }
     @IBOutlet weak var contentTitleLabel: UILabel!
-    @IBOutlet weak var contentCategoryLabel: UILabel!
-    @IBOutlet weak var inLabel: UILabel!
     
     // Variables for child scrollable views
     @IBOutlet weak var recentActivityCollectionView: UICollectionView!
@@ -162,7 +160,9 @@ class HomeController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        hideNavigationBar()
+        if !isRecentActivityOpen {
+            hideNavigationBar()
+        }
         
         // Deactivate this constraint since it serves no purpose other than it's constant value
         NSLayoutConstraint.deactivate([constraintToView])
@@ -182,36 +182,6 @@ class HomeController: UIViewController {
         }
         self.learnMoreButton.alpha = 1
         self.learnMoreButton.isEnabled = true
-//        if id.count != 0 {
-//            if id != self.contentId {
-//                UIView.animate(withDuration: 0.15, animations: {
-//                    self.learnMoreButton.alpha = 0
-//                    self.contentImageView.alpha = 0
-//                    self.contentTitleLabel.alpha = 0
-//                    if image != nil {
-//                        self.contentImageView.alpha = 0
-//                    }
-//                }, completion: { result in
-//                    self.contentId = id
-//                    self.contentTitleLabel.textAlignment = .center
-//                    self.contentTitleLabel.attributedText = NSAttributedString.shaddowedAttributedString(string: title, fontSize: 24, variant: "ExtraBld")
-//                    if let i = image {
-//                        self.contentImageView.image = i
-//                    }
-//                    UIView.animate(withDuration: 0.35, animations: {
-//                        self.learnMoreButton.alpha = 1
-//                        self.contentImageView.alpha = 1
-//                        self.contentTitleLabel.alpha = 1
-//                        if image != nil {
-//                            self.contentImageView.alpha = 1
-//                        }
-//                    })
-//                })
-//            }
-//        } else {
-//            self.contentId = "-1"
-//            self.learnMoreButton.isEnabled = false
-//        }
     }
     
     func saveImageToDirectory(image: UIImage) {
@@ -247,7 +217,9 @@ class HomeController: UIViewController {
     
     func getHomeStream() {
         
-        progressIndicator.show()
+        if homeStream == nil {
+            progressIndicator.show()
+        }
         
         firstly {
             HomeStream.fetch()
@@ -265,23 +237,10 @@ class HomeController: UIViewController {
     }
     
     func displayUI(homeStream: HomeStream) {
-        var updateNotice = true
-        var updateStream = true
-        var updateKudos = true
-        
-//        if self.homeStream?.streams.first?.details?.mostRecentMessage?.id == homeStream.streams.first?.details?.mostRecentMessage?.id {
-//            updateStream = false
-//        }
-//
-//        if self.homeStream?.kudos.first?.id == homeStream.kudos.first?.id {
-//            updateKudos = false
-//        }
-        
         if let notice = homeStream.notice,
            !notice.isAcknowledged
             && notice.acknowledgeRequired {
             self.isAlert = true
-//            updateNotice = notice.id == self.homeStream?.notice?.id
         } else {
             self.alertHeightConstraint.constant = 0
             self.alertImage.alpha = 0
@@ -290,7 +249,7 @@ class HomeController: UIViewController {
         
         if let news = homeStream.news {
             if !news.mediaAttachments.isEmpty {
-                if /*news.id != self.homeStream?.news?.id,*/ let attachment = news.mediaAttachments.first(where: { $0.isThumbnailImage }) {
+                if let attachment = news.mediaAttachments.first(where: { $0.isThumbnailImage }) {
                     let filter = AspectScaledToFillSizeFilter(size: self.contentImageView.frame.size)
                     self.contentImageView.af_setImage(
                         withURL: attachment.url,
@@ -305,77 +264,37 @@ class HomeController: UIViewController {
                             }
                         }
                     )
-                    UIView.animate(withDuration: 0.35, animations: {
-                        self.contentTitleLabel.alpha = 0
-                    }, completion: { result in
-                        self.updateNewsItemVisual(title: news.title, id: attachment.id, image: nil)
-                        UIView.animate(withDuration: 0.35, animations: {
-                            self.contentTitleLabel.alpha = 1
-                        })
-                    })
+                    self.updateNewsItemVisual(title: news.title, id: attachment.id, image: nil)
                 }
             } else {
                 self.updateNewsItemVisual(title: news.title, id: news.id, image: UIImage.named("default-notice-header")!)
                 
             }
             self.contentTitleLabel.textAlignment = .center
-            if !(self.contentCategoryLabel.text?.isEmpty ?? true) {
-                self.inLabel.alpha = 1
-            }
         }
             
-        UIView.animate(
-            withDuration: 0.2,
-            animations: {
-                if updateStream {
-                    self.recentActivityCollectionView.alpha = 0
-                }
-                
-                if updateKudos {
-                    self.recentKudosCollectionView.alpha = 0
-                }
-                
-                if updateNotice {
-                    self.alertTitle.alpha = 0
-                }
-            },
-            completion: { result in
-                if updateStream {
-                    self.recentActivityCollectionView.reloadData()
-                }
-                
-                if updateKudos {
-                    self.recentKudosCollectionView.reloadData()
-                }
-                
-                if updateNotice, let title = self.homeStream?.notice?.title {
-                    self.alertTitle.text = "Action Required: " + title
-                    self.alertHeightConstraint.constant = self.alertHeight
-                }
-                
-                UIView.animate(withDuration: 0.2, animations: {
-                    if self.recentActivityCollectionView.alpha == 0 {
-                        self.recentActivityCollectionView.alpha = 1
-                        self.recentActivityLabel.alpha = 1
-                    }
-                    
-                    if updateKudos {
-                        self.recentKudosCollectionView.alpha = 1
-                        self.recentKudosLabel.alpha = 1
-                    }
-                    
-                    if updateNotice == true {
-                        self.alertTitle.alpha = 1
-                        let image = UIImage.named("notice-needs-action")
-                        let tintedImage = image?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-                        self.alertImage.image = tintedImage
-                        self.alertImage.tintColor = .white
-                        self.view.updateConstraints()
-                        self.view.layoutIfNeeded()
-                    }
-                })
-            }
-        )
+
+        self.recentActivityCollectionView.reloadData()
+        
+        self.recentKudosCollectionView.reloadData()
+        
+        if let title = self.homeStream?.notice?.title {
+            self.alertTitle.text = "Action Required: " + title
+            self.alertHeightConstraint.constant = self.alertHeight
+        }
+        
+        self.recentActivityCollectionView.alpha = 1
+        self.recentActivityLabel.alpha = 1
+        self.recentKudosCollectionView.alpha = 1
+        self.recentKudosLabel.alpha = 1
+
+        self.alertTitle.alpha = 1
+        let image = UIImage.named("notice-needs-action")
+        let tintedImage = image?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        self.alertImage.image = tintedImage
+        self.alertImage.tintColor = .white
+        self.view.updateConstraints()
+        self.view.layoutIfNeeded()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -390,72 +309,45 @@ class HomeController: UIViewController {
         self.recentKudosCollectionView.backgroundColor = UIColor.clear
     }
     
-    //MARK: Helper methods
-    
-    func reloadCollectionView(collectionView: UICollectionView) {
-        let cells = collectionView.visibleCells
-        UIView.animate(withDuration: 0.25, animations: {
-            for cell in  cells {
-                cell.alpha = 0
-            }
-        }, completion: { result in
-            collectionView.reloadData()
-            UIView.animate(withDuration: 0.25, animations: {
-                for cell in  cells {
-                    cell.alpha = 1
-                }
-            })
-        })
-    }
-    
     //MARK: Actions
     
     func showNavigationBar() {
-//        let animation = CATransition()
-//        animation.duration = 0.35
-//        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-//        animation.type = CATransitionType.fade
-//
-//        self.navigationController?.navigationBar.layer.add(animation, forKey: nil)
-//        self.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
-//
-//        UIView.animate(withDuration: 0.35, animations: {
-//            self.navigationController?.navigationBar.isTranslucent = false
-//            self.navigationController?.navigationBar.titleTextAttributes = [
-//                .foregroundColor : UIColor.black,
-//                .font: UIFont(name: "ProximaNova-SemiBold", size: 15.0)!
-//            ]
-//            self.navigationController?.navigationBar.shadowImage = nil
-//        })
+        let animation = CATransition()
+        animation.duration = 0.35
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.fade
+
+        self.navigationController?.navigationBar.layer.add(animation, forKey: nil)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+
+        UIView.animate(withDuration: 0.35, animations: {
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = nil
+        })
     }
     
     func hideNavigationBar() {
         
-//        let animation = CATransition()
-//        animation.duration = 0.35
-//        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-//        animation.type = CATransitionType.fade
-//
-//        let shaddow = NSShadow()
-//        shaddow.shadowColor = UIColor.black
-//        shaddow.shadowOffset = CGSize(width: 1, height: 1)
-//        shaddow.shadowBlurRadius = 10
-//
-//        if let navController = self.navigationController {
-//            navController.navigationBar.layer.add(animation, forKey: nil)
-//            navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//
-//            UIView.animate(withDuration: 0.35, animations: {
-//
-//                navController.navigationBar.isTranslucent = true
-//                navController.navigationBar.titleTextAttributes = [
-//                    .foregroundColor : UIColor.white,
-//                    .font: UIFont(name: "ProximaNova-SemiBold", size: 15.0)!,
-//                    .shadow: shaddow
-//                ]
-//                navController.navigationBar.shadowImage = UIImage()
-//            })
-//        }
+        let animation = CATransition()
+        animation.duration = 0.35
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.fade
+
+        let shaddow = NSShadow()
+        shaddow.shadowColor = UIColor.black
+        shaddow.shadowOffset = CGSize(width: 1, height: 1)
+        shaddow.shadowBlurRadius = 10
+
+        if let navController = self.navigationController {
+            navController.navigationBar.layer.add(animation, forKey: nil)
+            navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+
+            UIView.animate(withDuration: 0.35, animations: {
+
+                navController.navigationBar.isTranslucent = true
+                navController.navigationBar.shadowImage = UIImage()
+            })
+        }
     }
     
     @IBAction func closeRecentActivityClick(_ sender: UIBarButtonItem) {
