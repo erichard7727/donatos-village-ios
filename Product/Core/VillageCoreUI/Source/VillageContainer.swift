@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import VillageCore
 
 public class VillageContainer: SideMenuController {
@@ -93,7 +94,32 @@ extension VillageContainer: UIApplicationDelegate {
         
         runAppStartupFlow()
         
+        UNUserNotificationCenter.current().delegate = self
+        registerForPushNotifications(shouldRequestAuthorization: false)
+        
         return true
+    }
+    
+    public func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let previousValue: String? = User.current.pushToken
+        
+        let hexString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("📲 \(hexString)")
+        
+        if !User.current.isGuest && (previousValue != hexString) {
+            User.current.pushToken = hexString
+            firstly {
+                User.current.login()
+            }.catch { error in
+                // Undo saving of new pushToken
+                User.current.pushToken = previousValue
+                print("📲🛑 Failed to register new device token: \(error)")
+            }
+        }
+    }
+    
+    public func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("📲🛑 \(error)")
     }
     
 }
@@ -103,7 +129,9 @@ private extension VillageContainer {
     @IBAction func unwindToVillageContainer(segue: UIStoryboardSegue) {
         switch segue.source {
         case is LoginPasswordViewController:
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: { [weak self] in
+                self?.registerForPushNotifications(shouldRequestAuthorization: true)
+            })
             
         default:
             assertionFailure("Unable to handle unwind from \(String(describing: segue.source))")
@@ -210,6 +238,7 @@ private extension VillageContainer {
                 User.current.loginWithDetails()
             }.then { [weak self] _ in
                 self?.showHome()
+                self?.registerForPushNotifications(shouldRequestAuthorization: true)
             }.catch { [weak self] error in
                 if case ServiceError.connectionFailed(_) = error {
                     // if the error is a connection failure, alert the user and offer to retry
@@ -229,4 +258,68 @@ private extension VillageContainer {
         
     }
     
+    
+    
+    func registerForPushNotifications(shouldRequestAuthorization: Bool) {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings(completionHandler: {
+            notificationSettings in
+            switch notificationSettings.authorizationStatus {
+            case .notDetermined where shouldRequestAuthorization:
+                center.requestAuthorization(options: [.badge, .alert, .sound], completionHandler: {
+                    (granted, error) in
+                    
+                    if error == nil {
+                        DispatchQueue.main.async {
+                            UIApplication.shared.registerForRemoteNotifications()
+                        }
+                    }
+                })
+                
+            case .authorized:
+                // We've already primed the user, but we need to register for remote notifications anyway
+                // This is how we'll always make sure we have the latest deviceToken
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+                
+            default:
+                break
+            }
+        })
+    }
+    
+}
+
+extension VillageContainer: UNUserNotificationCenterDelegate {
+    
+    // Launch or open app from push
+    // User may not have been authenticated or finished app startup flow yet
+    //
+    //  <UNNotificationResponse: 0x283f34e60; actionIdentifier: com.apple.UNNotificationDefaultActionIdentifier, notification: <UNNotification: 0x283f350c0; date: 2019-05-08 19:53:13 +0000, request: <UNNotificationRequest: 0x283131da0; identifier: 6A24FA14-A411-4512-9A5F-AD20BC7BFE3F, content: <UNNotificationContent: 0x280a05c80; title: (null), subtitle: (null), body: Test, summaryArgument: , summaryArgumentCount: 0, categoryIdentifier: , launchImageName: , threadIdentifier: , attachments: (
+    //    ), badge: 1, sound: <UNNotificationSound: 0x281b208a0>,, trigger: <UNPushNotificationTrigger: 0x283d16040; contentAvailable: NO, mutableContent: NO>>>>
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        switch response.actionIdentifier {
+        case UNNotificationDefaultActionIdentifier:
+            // User tapped on notification
+            print("📲👆 User tapped on notification: \(response)")
+            
+        case UNNotificationDismissActionIdentifier:
+            // User dismissed notification
+            break
+            
+        default:
+            assertionFailure()
+            break
+        }
+        
+        completionHandler()
+    }
+
+    // While app is running
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("📲⚡️ Incoming notification: \(notification)")
+        completionHandler([.alert, .badge, .sound])
+//        completionHandler([])
+    }
 }
