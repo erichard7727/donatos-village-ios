@@ -18,6 +18,7 @@
 		D42CF71C227BD34A003D8CF4 /* HomeStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF71B227BD34A003D8CF4 /* HomeStream.swift */; };
 		D434D415227133E8002C5EA0 /* NSDate+TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D414227133E8002C5EA0 /* NSDate+TimeAgo.swift */; };
 		D43663D5222AD23D006354F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43663D4222AD23D006354F2 /* Assets.xcassets */; };
+		D4445545228397CC004BDE0F /* StreamSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4445544228397CC004BDE0F /* StreamSocket.swift */; };
 		D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B5F082229875300941CCE /* Optional+Utils.swift */; };
 		D4615844220F19880072D224 /* VillageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4615843220F19880072D224 /* VillageService.swift */; };
 		D4615847220F1AE50072D224 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4615846220F1AE50072D224 /* User.swift */; };
@@ -79,6 +80,7 @@
 		D42CF71B227BD34A003D8CF4 /* HomeStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStream.swift; sourceTree = "<group>"; };
 		D434D414227133E8002C5EA0 /* NSDate+TimeAgo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+TimeAgo.swift"; sourceTree = "<group>"; };
 		D43663D4222AD23D006354F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4445544228397CC004BDE0F /* StreamSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSocket.swift; sourceTree = "<group>"; };
 		D44B5F082229875300941CCE /* Optional+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Utils.swift"; sourceTree = "<group>"; };
 		D4615843220F19880072D224 /* VillageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillageService.swift; sourceTree = "<group>"; };
 		D4615846220F1AE50072D224 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				D417388C220C501F00F5B1F6 /* VillageCoreAPI.swift */,
 				D417388E220C502700F5B1F6 /* VillageProvider.swift */,
 				D4615843220F19880072D224 /* VillageService.swift */,
+				D4445544228397CC004BDE0F /* StreamSocket.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				D46724F82248E7DF00F4D7E5 /* NoticeService.swift in Sources */,
 				23F4651B2268C2AE00032A63 /* Stream+Services.swift in Sources */,
 				D48A6A1D225133A000411518 /* StreamsService.swift in Sources */,
+				D4445545228397CC004BDE0F /* StreamSocket.swift in Sources */,
 				D48A6A212251393F00411518 /* Unread+Services.swift in Sources */,
 				D4CC29BD220759410091BEFB /* ClientConfiguration.swift in Sources */,
 				D48A6A282252230B00411518 /* ContentLibrary+Services.swift in Sources */,
