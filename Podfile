@@ -19,6 +19,7 @@ def core_pods
   pod 'PromisesSwift'
   pod 'Moya'
   pod 'SwiftyJSON'
+  pod 'SwiftWebSocket', :git => 'https://github.com/tidwall/SwiftWebSocket', :branch => 'master'
 end
 
 def core_ui_pods
