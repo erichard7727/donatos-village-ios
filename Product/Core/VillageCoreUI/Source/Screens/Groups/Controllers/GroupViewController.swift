@@ -30,7 +30,16 @@ final class GroupViewController: SLKTextViewController {
     
     weak var delegate: GroupViewControllerDelegate?
     
-    var group: VillageCore.Stream!
+    var group: VillageCore.Stream! {
+        didSet {
+            if group.id != groupSocket?.stream.id {
+                groupSocket = try? StreamSocket(stream: group, delegate: self)
+            }
+            
+        }
+    }
+    
+    var groupSocket: StreamSocket?
 
     fileprivate var isScrolling = false
 
@@ -117,7 +126,6 @@ final class GroupViewController: SLKTextViewController {
         self.view.bringSubviewToFront(emptyStateLabel)
         
         NotificationCenter.default.addObserver(self, selector: #selector(returnFromBackground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(stopWebsocket), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
@@ -204,48 +212,6 @@ final class GroupViewController: SLKTextViewController {
         }
     }
     
-    func loadMoreMessages() {
-        loadingMoreMessages = true
-        
-        firstly { () -> Promise<Messages> in
-            return group.getMessages(page: currentPage)
-        }.then { [weak self] messages in
-            guard let `self` = self else { return }
-            
-//            if self.context.currentMessageStream != self.group {
-//                self.startWebsocket()
-//            }
-            
-            if !messages.isEmpty {
-                if messages.count < 50  {
-                    self.displayWelcomeBannerUI()
-                }
-                self.messageList.append(contentsOf: messages)
-                if self.firstLoad || self.reloadData {
-                    self.tableView?.reloadData()
-                    self.tableView?.reloadSections([0], with: .automatic)
-                    self.firstLoad = false
-                    self.reloadData = false
-                } else {
-                    var indexPaths = [IndexPath]()
-                    for i in (self.currentPage * 50 + 1)...(self.messageList.count + (self.currentPage * 50)) {
-                        indexPaths.append(IndexPath(row: i, section: 0))
-                    }
-                    
-                    self.tableView?.insertRows(at: indexPaths, with: .none)
-                    
-                    self.tableView?.scrollToRow(at: indexPaths[3], at: .bottom, animated: true)
-                }
-                
-                self.currentPage = self.currentPage + 1
-            }
-        }.always { [weak self] in
-            self?.getGroup()
-            self?.loadingMoreMessages = false
-            self?.activityIndicator.stopAnimating()
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     
@@ -253,10 +219,8 @@ final class GroupViewController: SLKTextViewController {
         self.textInputbar.textView.keyboardType = .default
         
         if !mediaSelection {
-            loadMoreMessages()
-            
-            #warning("TODO - This might be useful for sockets? context.currentMessageStream")
-//            context.currentMessageStream = group
+            // Reload the current page to see if there is new data
+            returnFromBackground()
             
             displayFooterView()
         }
@@ -266,50 +230,8 @@ final class GroupViewController: SLKTextViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        scrollForPreviousMessagesEnabled = true
         
-//        context.sendMessage = { [weak self] message in
-//            guard let strongSelf = self else {
-//                return
-//            }
-//
-//            if Int(message.ownerId) != strongSelf.context.session?.person?.id {
-//                strongSelf.messageList.insert(message, at: 0)
-//                let indexPath = NSIndexPath(row: 0, section: 0)
-//                strongSelf.tableView?.insertRows(at: [indexPath as IndexPath], with: .automatic)
-//            }
-//        }
-//
-//        context.likeMessage = { [weak self] messageId, liked, changedBy in
-//            guard let strongSelf = self else {
-//                return
-//            }
-//
-//            if let index = strongSelf.messageList.index(where: { $0.id == messageId }) {
-//                var message = strongSelf.messageList[index]
-//
-//                if changedBy == strongSelf.context.session?.person?.id {
-//                    if liked {
-//                        message.hasUserLikedMessage = true
-//                    } else {
-//                        message.hasUserLikedMessage = false
-//                    }
-//                }
-//
-//                if liked {
-//                    message.likesCount += 1
-//                } else {
-//                    message.likesCount -= 1
-//                }
-//
-//                strongSelf.messageList[index] = message
-//
-//                let indexPath = IndexPath(row: index, section: 0)
-//                if let tableView = strongSelf.tableView, indexPath.row < tableView.numberOfRows(inSection: 0) {
-//                    strongSelf.tableView?.reloadRows(at: [indexPath], with: .none)
-//                }
-//            }
-//        }
+        scrollForPreviousMessagesEnabled = true
     }
     
     var isLayingOutSubviews = false
@@ -347,15 +269,12 @@ final class GroupViewController: SLKTextViewController {
         super.viewWillDisappear(animated)
         
         if !mediaSelection {
-            self.stopWebsocket()
+            groupSocket?.closeConnection()
             
             NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.willTerminateNotification, object: nil)
-            
-//            context.sendMessage = nil
-//            context.likeMessage = nil
         }
     }
     
@@ -485,40 +404,80 @@ final class GroupViewController: SLKTextViewController {
     }
     
     @objc func returnFromBackground() {
+        self.loadingMoreMessages = true
+        
         firstly { () -> Promise<Messages> in
             if let message = messageList.first {
                 return message.getMessagesAfter()
             } else {
-                return group.getMessages()
+                return group.getMessages(page: currentPage)
             }
         }.then { [weak self] messages in
-            guard let `self` = self else { return }
+            guard let `self` = self, !messages.isEmpty else { return }
             
-            self.messageList.insert(contentsOf: messages.reversed(), at: 0)
-            self.tableView?.insertRows(
-                at: Array(repeating: IndexPath(row: 0, section: 0), count: messages.count),
-                with: .none
-            )
+            if messages.count < 50  {
+                self.displayWelcomeBannerUI()
+            }
+            self.messageList.insert(contentsOf: messages, at: 0)
             
-            self.loadingMoreMessages = false
-            self.firstLoad = false
-            self.startWebsocket()
-            self.getGroup()
+            if self.firstLoad || self.reloadData {
+                self.tableView?.reloadData()
+                self.tableView?.reloadSections([0], with: .automatic)
+            } else {
+                let numberToInsert = self.messageList.count - (self.messageList.count - messages.count)
+                var indexPaths = [IndexPath]()
+                (0 ..< numberToInsert).enumerated().forEach({ (_, index) in
+                    indexPaths.append(IndexPath(row: index, section: 0))
+                })
+                
+                self.tableView?.insertRows(at: indexPaths, with: .automatic)
+            }
+            
+            self.currentPage = self.currentPage + 1
+        }.always { [weak self] in
+            self?.loadingMoreMessages = false
+            self?.firstLoad = false
+            self?.reloadData = false
+            self?.groupSocket?.establishConnection()
+            self?.getGroup()
         }
     }
     
-    func startWebsocket() {
-        #warning("TODO - how to start websocket?")
-//        context.currentMessageStream = group
-//        context.startMessageWebsocket(streamID: group.id, messageFilter: .all)
-    }
-    
-    @objc func stopWebsocket() {
-        #warning("TODO - how to stop websocket?")
-//        context.currentMessageStream = nil
-//        context.stopMessageWebsocket()
+    deinit {
+        print("deinit")
     }
 }
+
+// MARK: - StreamSocketDelegate
+
+extension GroupViewController: StreamSocketDelegate {
+    
+    func streamSocket(_ streamSocket: StreamSocket, didReceiveMessage message: Message) {
+        if message.author.id != User.current.personId {
+            messageList.insert(message, at: 0)
+            tableView?.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        }
+    }
+    
+    func streamSocket(_ streamSocket: StreamSocket, message messageId: String, wasLiked isLiked: Bool, by personId: Int) {
+        if let row = messageList.firstIndex(where: { $0.id == messageId }) {
+            var mutableMessage = messageList[row]
+            if personId == User.current.personId {
+                mutableMessage.isLiked = isLiked
+            }
+            if isLiked {
+                mutableMessage.likesCount = mutableMessage.likesCount + 1
+            } else {
+                mutableMessage.likesCount = max(mutableMessage.likesCount - 1, 0)
+            }
+            
+            messageList[row] = mutableMessage
+            tableView?.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+        }
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
 
 extension GroupViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -953,7 +912,8 @@ extension GroupViewController {
             if !isLayingOutSubviews && !loadingMoreMessages && !firstLoad {
                 loadingMoreMessages = true
                 reloadData = true
-                self.loadMoreMessages()
+                
+                returnFromBackground()
             }
         }
     }

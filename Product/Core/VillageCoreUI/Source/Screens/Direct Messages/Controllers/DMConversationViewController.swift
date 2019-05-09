@@ -20,7 +20,15 @@ import Promises
 final class DMConversationViewController: SLKTextViewController {
     let MAX_UPLOAD_SIZE = 2097152
 
-    var directMessageThread: VillageCore.Stream!
+    var directMessageThread: VillageCore.Stream! {
+        didSet {
+            if directMessageThread.id != threadSocket?.stream.id {
+                threadSocket = try? StreamSocket(stream: directMessageThread, delegate: self)
+            }
+        }
+    }
+    
+    var threadSocket: StreamSocket?
 
     let fetchNewThreshold: Int = 1
 
@@ -92,7 +100,6 @@ final class DMConversationViewController: SLKTextViewController {
         tableView.register(otherAttachmentNib, forCellReuseIdentifier: "DMConversationOtherAttachmentCell")
         
         NotificationCenter.default.addObserver(self, selector: #selector(returnFromBackground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(stopWebsocket), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -106,16 +113,10 @@ final class DMConversationViewController: SLKTextViewController {
             
             AnalyticsService.logEvent(name: "view_message", parameters: ["message_type": "direct_message_thread"])
             
-            loadMoreMessages()
-
-//            context.sendMessage = { message in
-//                if Int(message.ownerId) != self.context.session?.person?.id {
-//                    self.messageList.insert(message, at: 0)
-//                    let indexPath = NSIndexPath(row: 0, section: 0)
-//                    self.tableView?.insertRows(at: [indexPath as IndexPath], with: .automatic)
-//                }
-//            }
+            // Reload the current page to see if there is new data
+            returnFromBackground()
         }
+        
         self.mediaSelection = false
     }
     
@@ -141,84 +142,53 @@ final class DMConversationViewController: SLKTextViewController {
         super.viewWillDisappear(animated)
         
         if !mediaSelection {
+            threadSocket?.closeConnection()
+            
             NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.willTerminateNotification, object: nil)
-            
-            stopWebsocket()
-            
-//            context.sendMessage = nil
-        }
-    }
-    
-    func loadMoreMessages() {
-        loadingMoreMessages = true
-        
-        firstly { () -> Promise<Messages> in
-            return directMessageThread.getMessages(page: currentPage)
-        }.then { [weak self] messages in
-            guard let `self` = self else { return }
-            
-//            if self.context.currentMessageStream != self.group {
-//                self.startWebsocket()
-//            }
-            
-            if !messages.isEmpty {
-                self.messageList.append(contentsOf: messages)
-                if self.firstLoad || self.reloadData {
-                    self.tableView?.reloadData()
-                    self.firstLoad = false
-                    self.reloadData = false
-                } else {
-                    var indexPaths = [IndexPath]()
-                    for i in (self.currentPage * 50 + 1)...(self.messageList.count + (self.currentPage * 50)) {
-                        indexPaths.append(IndexPath(row: i, section: 0))
-                    }
-                    
-                    self.tableView?.insertRows(at: indexPaths, with: .none)
-                    
-                    self.tableView?.scrollToRow(at: indexPaths[3], at: .bottom, animated: true)
-                }
-                
-                self.currentPage = self.currentPage + 1
-            }
-        }.always { [weak self] in
-            self?.loadingMoreMessages = false
-            self?.progressIndicator.stopAnimating()
         }
     }
     
     @objc func returnFromBackground() {
+        self.loadingMoreMessages = true
+        
         firstly { () -> Promise<Messages> in
             if let message = messageList.first {
                 return message.getMessagesAfter()
             } else {
-                return directMessageThread.getMessages()
+                return directMessageThread.getMessages(page: currentPage)
             }
         }.then { [weak self] messages in
-            guard let `self` = self else { return }
+            guard let `self` = self, !messages.isEmpty else { return }
             
-            self.messageList.insert(contentsOf: messages.reversed(), at: 0)
-            self.tableView?.insertRows(
-                at: Array(repeating: IndexPath(row: 0, section: 0), count: messages.count),
-                with: .none
-            )
+            self.messageList.insert(contentsOf: messages, at: 0)
             
-            self.loadingMoreMessages = false
-            self.firstLoad = false
-            self.startWebsocket()
+            if self.firstLoad || self.reloadData {
+                self.tableView?.reloadData()
+                self.tableView?.reloadSections([0], with: .automatic)
+            } else {
+                let numberToInsert = self.messageList.count - (self.messageList.count - messages.count)
+                var indexPaths = [IndexPath]()
+                (0 ..< numberToInsert).enumerated().forEach({ (_, index) in
+                    indexPaths.append(IndexPath(row: index, section: 0))
+                })
+                
+                self.tableView?.insertRows(at: indexPaths, with: .automatic)
+            }
+            
+            self.currentPage = self.currentPage + 1
+        }.always { [weak self] in
+            self?.loadingMoreMessages = false
+            self?.firstLoad = false
+            self?.reloadData = false
+            self?.threadSocket?.establishConnection()
         }
     }
     
-    func startWebsocket() {
-//        context.currentMessageStream = directMessageThread
-//        context.startMessageWebsocket(streamID: directMessageThread.id, messageFilter: .all)
-    }
-    
-    @objc func stopWebsocket() {
-//        context.currentMessageStream = nil
-//        context.stopMessageWebsocket()
+    deinit {
+        print("deinit")
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -235,7 +205,7 @@ final class DMConversationViewController: SLKTextViewController {
             if !isLayingOutSubviews && !loadingMoreMessages && !firstLoad {
                 loadingMoreMessages = true
                 reloadData = true
-                self.loadMoreMessages()
+                self.returnFromBackground()
             }
         }
     }
@@ -252,36 +222,6 @@ final class DMConversationViewController: SLKTextViewController {
         tableView?.tableFooterView = headerView
         tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -headerView.frame.height, right: 0)
     }
-    
-    // MARK: UITableViewDelegate
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let row = (indexPath as NSIndexPath).row
-//        let threshold = tableView.numberOfRows(inSection: (indexPath as NSIndexPath).section) - fetchNewThreshold
-//        
-//        if row >= threshold && scrollForPreviousMessagesEnabled {
-//            // Fetch last message and proxy the fetch.
-//            let timeBasedOrdering = [NSSortDescriptor(key: "created", ascending: true)]
-//            let messages = messageContainer.messages.sortedArray(using: timeBasedOrdering)
-//            
-//            guard let message = messages.first as? Message, let messageId = message.messageId else { return }
-//            context.getDirectMessages(directMessageThread, messageFilter: .olderPage(messageId, 50), completion: nil)
-//        }
-//        
-//        for cell in tableView.visibleCells {
-//            if let attachmentcell = cell as? DMConversationOtherAttachmentCell {
-//                let indexPath = tableView.indexPath(for: attachmentcell)
-//                if let indexP = indexPath {
-//                    //For some reason there is an off by one error here. Not sure about the cause, maybe lack of TVHeader?
-//                    attachmentcell.attachmentImageView.tag = indexP.row
-//                }
-//            } else if let attachmentcell = cell as? DMConversationSelfAttachmentCell {
-//                let indexPath = tableView.indexPath(for: attachmentcell)
-//                if let indexP = indexPath {
-//                    attachmentcell.attachmentImageView.tag = indexP.row
-//                }
-//            }
-//        }
-//    }
     
     // MARK: SLKTextViewController methods
     override func didPressLeftButton(_ sender: Any!) {
@@ -363,6 +303,37 @@ final class DMConversationViewController: SLKTextViewController {
         }
     }
 }
+
+// MARK: - StreamSocketDelegate
+
+extension DMConversationViewController: StreamSocketDelegate {
+    
+    func streamSocket(_ streamSocket: StreamSocket, didReceiveMessage message: Message) {
+        if message.author.id != User.current.personId {
+            messageList.insert(message, at: 0)
+            tableView?.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        }
+    }
+    
+    func streamSocket(_ streamSocket: StreamSocket, message messageId: String, wasLiked isLiked: Bool, by personId: Int) {
+//        if let row = messageList.firstIndex(where: { $0.id == messageId }) {
+//            var mutableMessage = messageList[row]
+//            if personId == User.current.personId {
+//                mutableMessage.isLiked = isLiked
+//            }
+//            if isLiked {
+//                mutableMessage.likesCount = mutableMessage.likesCount + 1
+//            } else {
+//                mutableMessage.likesCount = max(mutableMessage.likesCount - 1, 0)
+//            }
+//
+//            messageList[row] = mutableMessage
+//            tableView?.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+//        }
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
 
 extension DMConversationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
