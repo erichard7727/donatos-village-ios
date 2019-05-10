@@ -36,6 +36,11 @@ final class MainMenuViewController: UIViewController {
         }
     }
     @IBOutlet private weak var menuOptionKudos: UIView!
+    @IBOutlet private weak var menuOptionKudosLabel: UILabel! {
+        didSet {
+            menuOptionKudosLabel.text = Constants.Settings.kudosPluralLong
+        }
+    }
     @IBOutlet private weak var menuOptionsKudosExpandButton: UIButton!
     @IBOutlet private weak var menuOptionKudosChildrenContainer: UIStackView! {
         didSet {
@@ -46,7 +51,17 @@ final class MainMenuViewController: UIViewController {
         }
     }
     @IBOutlet private weak var menuOptionKudosStream: UIView!
+    @IBOutlet private weak var menuOptionKudosStreamLabel: UILabel! {
+        didSet {
+            menuOptionKudosStreamLabel.text = Constants.Settings.kudosSingularLong + " Stream"
+        }
+    }
     @IBOutlet private weak var menuOptionKudosMyKudos: UIView!
+    @IBOutlet private weak var menuOptionKudosMyKudosLabel: UILabel! {
+        didSet {
+            menuOptionKudosMyKudosLabel.text = "My " + Constants.Settings.kudosPluralLong
+        }
+    }
     @IBOutlet private weak var menuOptionKudosAchievements: UIView! {
         didSet {
             if !Constants.Settings.achievementsEnabled {
@@ -55,6 +70,11 @@ final class MainMenuViewController: UIViewController {
         }
     }
     @IBOutlet private weak var menuOptionKudosGiveKudos: UIView!
+    @IBOutlet private weak var menuOptionKudosGiveKudosLabel: UILabel! {
+        didSet {
+            menuOptionKudosGiveKudosLabel.text = "Give " + Constants.Settings.kudosSingularLong
+        }
+    }
     @IBOutlet private weak var menuOptionKudosLeaderboard: UIView! {
         didSet {
             if !Constants.Settings.achievementsEnabled {

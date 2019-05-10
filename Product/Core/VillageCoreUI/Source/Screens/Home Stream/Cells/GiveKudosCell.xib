@@ -75,6 +75,7 @@
             </constraints>
             <connections>
                 <outlet property="containerView" destination="5t9-31-uRC" id="gsU-pz-7Oc"/>
+                <outlet property="giveLabel" destination="zdu-tZ-VjS" id="60w-9b-RzP"/>
             </connections>
             <point key="canvasLocation" x="-6" y="-286"/>
         </collectionViewCell>

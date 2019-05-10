@@ -903,9 +903,13 @@
                         <outlet property="menuOptionKudosChildrenContainer" destination="ISQ-g8-s5e" id="b71-6V-17t"/>
                         <outlet property="menuOptionKudosContainer" destination="neF-Iz-sFA" id="Tgh-ka-Myo"/>
                         <outlet property="menuOptionKudosGiveKudos" destination="kxM-hd-nTg" id="5nU-ND-OeF"/>
+                        <outlet property="menuOptionKudosGiveKudosLabel" destination="9S9-63-PaA" id="x00-aN-Bjl"/>
+                        <outlet property="menuOptionKudosLabel" destination="i6s-mY-8Sc" id="kxa-m5-Onp"/>
                         <outlet property="menuOptionKudosLeaderboard" destination="aqR-YT-yrA" id="C40-cW-aqt"/>
                         <outlet property="menuOptionKudosMyKudos" destination="kWi-bP-jRh" id="Nty-EC-K0y"/>
+                        <outlet property="menuOptionKudosMyKudosLabel" destination="MLM-av-Wib" id="fW9-8X-hRc"/>
                         <outlet property="menuOptionKudosStream" destination="RZk-ki-1lJ" id="t6Z-mm-l1f"/>
+                        <outlet property="menuOptionKudosStreamLabel" destination="PZK-CE-Xsu" id="eWw-48-EKH"/>
                         <outlet property="menuOptionNotices" destination="RJk-LN-ufd" id="Oqy-Fn-CBG"/>
                         <outlet property="menuOptionOtherGroups" destination="3B9-T6-UvX" id="Y5i-Eg-FCn"/>
                         <outlet property="menuOptionPeople" destination="7D1-Os-hFb" id="5wx-eG-CwT"/>
@@ -1092,7 +1096,7 @@
     </scenes>
     <resources>
         <image name="add-icon" width="24" height="24"/>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
         <image name="menu-collapse" width="28" height="28"/>
         <image name="menu-content-library" width="29" height="24"/>
         <image name="menu-direct-messages" width="28" height="28"/>

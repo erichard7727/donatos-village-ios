@@ -20,7 +20,13 @@ extension Constants {
     struct Settings {
         static let invitationsEnabled = true
         static let directMessagesEnabled = true
+
         static let kudosEnabled = true
+        static let kudosPluralLong = "Promise in Actions" // Kudos
+        static let kudosPluralShort = "PIAs" // Kudos
+        static let kudosSingularLong = "Promise in Action" // Kudo
+        static let kudosSingularShort = "PIA" // Kudo
+        
         static let achievementsEnabled = false
         static let manageNoticesEnabled = false
         static let createGroupsEnabled = true

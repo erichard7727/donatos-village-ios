@@ -75,7 +75,11 @@ class HomeController: UIViewController {
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var recentActivityLabel: UILabel!
-    @IBOutlet weak var recentKudosLabel: UILabel!
+    @IBOutlet weak var recentKudosLabel: UILabel! {
+        didSet {
+            recentKudosLabel.text = "Recent \(Constants.Settings.kudosPluralLong)".uppercased()
+        }
+    }
     
     // Constraint to remove alertfrom the superview if no alert is present
     @IBOutlet weak var alertHeightConstraint: NSLayoutConstraint!
@@ -287,6 +291,7 @@ class HomeController: UIViewController {
         self.recentActivityLabel.alpha = 1
         self.recentKudosCollectionView.alpha = 1
         self.recentKudosLabel.alpha = 1
+        self.recentKudosLabel.sizeToFit()
 
         self.alertTitle.alpha = 1
         let image = UIImage.named("notice-needs-action")
@@ -467,7 +472,7 @@ extension HomeController: UICollectionViewDelegate {
         
         let title = NSMutableAttributedString()
         title.append(receiver)
-        title.append(NSAttributedString(string: " received kudos for \(singleKudos.achievementTitle) from ", attributes: regAttributes))
+        title.append(NSAttributedString(string: " received a \(Constants.Settings.kudosSingularShort) for \(singleKudos.achievementTitle) from ", attributes: regAttributes))
         title.append(sender)
         
         let vc = KudosModalView(nibName: "KudosModalView", bundle: Constants.bundle)

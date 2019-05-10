@@ -12,6 +12,12 @@ class GiveKudosCell: UICollectionViewCell {
     
     @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet weak var giveLabel: UILabel! {
+        didSet {
+            giveLabel.text = "Give a \(Constants.Settings.kudosSingularShort)"
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
