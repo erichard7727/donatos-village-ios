@@ -116,8 +116,12 @@ struct StreamsService {
     }
     
     static func getDetails(of stream: Stream) -> Promise<Stream> {
+        return getStream(from: stream.id)
+    }
+    
+    static func getStream(from streamId: String) -> Promise<Stream> {
         return firstly {
-            let details = VillageCoreAPI.streamDetails(streamId: stream.id)
+            let details = VillageCoreAPI.streamDetails(streamId: streamId)
             return VillageService.shared.request(target: details)
         }.then { (json: JSON) -> Stream in
             let stream = try Stream(from: json).orThrow(StreamsServiceError.unknown)

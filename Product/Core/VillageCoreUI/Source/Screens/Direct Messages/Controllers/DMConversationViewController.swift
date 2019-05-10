@@ -118,6 +118,10 @@ final class DMConversationViewController: SLKTextViewController {
         }
         
         self.mediaSelection = false
+        
+        NotificationCenter.default.post(name: Notification.Name.Stream.IsViewingDirectMessageConversation, object: self, userInfo: [
+            Notification.Name.Stream.directMessageConversationKey: directMessageThread!,
+        ])
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -149,6 +153,8 @@ final class DMConversationViewController: SLKTextViewController {
             NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.willTerminateNotification, object: nil)
         }
+        
+        NotificationCenter.default.post(name: Notification.Name.Stream.IsViewingDirectMessageConversation, object: self, userInfo: [:])
     }
     
     @objc func returnFromBackground() {

@@ -189,6 +189,7 @@
 				D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */,
 				D48A6A2322514E6500411518 /* ContentLibrary.swift */,
 				D48A6A272252230B00411518 /* ContentLibrary+Services.swift */,
+				D42CF71B227BD34A003D8CF4 /* HomeStream.swift */,
 				D4B4E83F223AA7F4002DED70 /* Kudo.swift */,
 				D4A6976B22622BA100ECC0A8 /* Kudo+Services.swift */,
 				D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */,
@@ -206,7 +207,6 @@
 				D4615846220F1AE50072D224 /* User.swift */,
 				D4615855220F44250072D224 /* User+Authentication.swift */,
 				D4615853220F44100072D224 /* User+Keychain.swift */,
-				D42CF71B227BD34A003D8CF4 /* HomeStream.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

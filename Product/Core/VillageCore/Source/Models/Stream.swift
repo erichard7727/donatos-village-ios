@@ -8,6 +8,14 @@
 
 import Foundation
 
+public extension Notification.Name {
+    struct Stream {
+        /// Posted whenever a DM stream is on screen.
+        public static let directMessageConversationKey = "directMessageConversationKey"
+        public static let IsViewingDirectMessageConversation = Notification.Name(rawValue: "com.dynamit.villagecore.notification.name.stream.isviewingdirectmessageconversation")
+    }
+}
+
 public typealias Streams = [Stream]
 
 public struct Stream: Hashable {

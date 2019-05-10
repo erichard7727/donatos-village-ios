@@ -358,7 +358,6 @@ extension VillageCoreAPI: TargetType {
     public var task: Task {
         switch self {
         case .foundationSettings,
-             .logout,
              .me,
              .securityPolicies,
              .getPersonDetails,
@@ -414,6 +413,22 @@ extension VillageCoreAPI: TargetType {
                     "diagId": User.current.diagnosticId
                 ]
             )
+            
+        case .logout:
+            return Task.requestCompositeParameters(
+                bodyParameters: {
+                    var params: [String: Any] = [:]
+                    if let pushToken = User.current.pushToken {
+                        params["pushToken"] = pushToken
+                    }
+                    return params
+                }(),
+                bodyEncoding: JSONEncoding.default,
+                urlParameters: [
+                    "diagId": User.current.diagnosticId
+                ]
+            )
+            
             
         case let .login(identity, password, prefetch, pushType, pushToken, appPlatform, appVersion):
             return Task.requestCompositeParameters(

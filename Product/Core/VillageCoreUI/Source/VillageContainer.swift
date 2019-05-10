@@ -14,8 +14,6 @@ public class VillageContainer: SideMenuController {
     
     public static func make() -> VillageContainer {
         return VillageContainer()
-//        let storyboard = UIStoryboard(name: "VillageContainer", bundle: Constants.bundle)
-//        return storyboard.instantiateInitialViewController() as! VillageContainer
     }
     
     public var window: UIWindow? = UIWindow()
@@ -31,6 +29,31 @@ public class VillageContainer: SideMenuController {
         let homeVC = storyboard.instantiateInitialViewController() as! HomeController
         return UINavigationController(rootViewController: homeVC)
     }()
+    
+    // Notification & Route Handling
+    
+    private enum Route {
+        case directMessage(streamId: String)
+        case notices
+        case myReceivedKudos
+        case group(streamId: String)
+    }
+    
+    private var pendingRoute: Route?
+    
+    private var isReadyToPerformPendingRoute: Bool {
+        guard let contentViewController = self.contentViewController else {
+            return false
+        }
+        return  !User.current.isGuest
+            && contentViewController.restorationIdentifier != VillageContainer.loadingContentViewControllerIdentifier
+    }
+    
+    private var openDirectMessageStream: VillageCore.Stream?
+    
+    private static let loadingContentViewControllerIdentifier = "VillageContainerLoadingContentViewController"
+    
+    // Init
 
     convenience init() {
         let mainMenuVC: UIViewController = {
@@ -40,9 +63,9 @@ public class VillageContainer: SideMenuController {
         }()
         
         let storyboard = UIStoryboard(name: "VillageContainer", bundle: Constants.bundle)
-        let whileLoadingVC = storyboard.instantiateViewController(withIdentifier: "VillageContainerLoadingContentViewController")
+        let whileLoadingVC = storyboard.instantiateViewController(withIdentifier: VillageContainer.loadingContentViewControllerIdentifier)
 
-        self.init(menuViewController: mainMenuVC, contentViewController: UINavigationController(rootViewController: whileLoadingVC))
+        self.init(menuViewController: mainMenuVC, contentViewController: whileLoadingVC)
     }
     
     // MARK: - UIViewController Overrides
@@ -58,6 +81,12 @@ public class VillageContainer: SideMenuController {
                 self?.runAppStartupFlow()
             }
         }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.Stream.IsViewingDirectMessageConversation, object: nil, queue: .main) {
+            [weak self] notification in
+            
+            self?.openDirectMessageStream = notification.userInfo?[Notification.Name.Stream.directMessageConversationKey] as? VillageCore.Stream
+        }
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -65,10 +94,35 @@ public class VillageContainer: SideMenuController {
     }
     
     func showHome() {
-        if self.contentViewController != self.homeVC {
-            self.setContentViewController(homeVC, fadeAnimation: true)
+        func setHomeVC(animated: Bool) {
+            if self.contentViewController != self.homeVC {
+                self.setContentViewController(homeVC, fadeAnimation: animated)
+            }
+            self.hideMenu()
         }
-        self.hideMenu()
+        
+        func performPendingRoute(_ route: Route) {
+            self.performRoute(route)
+            self.pendingRoute = nil
+        }
+        
+        if let route = self.pendingRoute {
+            if isReadyToPerformPendingRoute {
+                performPendingRoute(route)
+            } else {
+                setHomeVC(animated: false)
+                DispatchQueue.main.async {
+                    if self.isReadyToPerformPendingRoute {
+                        performPendingRoute(route)
+                    } else {
+                        assertionFailure("Unable to perform the route for some unknown reason!")
+                        self.pendingRoute = nil
+                    }
+                }
+            }
+        } else {
+            setHomeVC(animated: true)
+        }
     }
 
 }
@@ -130,7 +184,13 @@ private extension VillageContainer {
         switch segue.source {
         case is LoginPasswordViewController:
             self.dismiss(animated: true, completion: { [weak self] in
-                self?.registerForPushNotifications(shouldRequestAuthorization: true)
+                guard let `self` = self else { return }
+                
+                self.registerForPushNotifications(shouldRequestAuthorization: true)
+                if self.isReadyToPerformPendingRoute, let route = self.pendingRoute {
+                    self.performRoute(route)
+                    self.pendingRoute = nil
+                }
             })
             
         default:
@@ -291,6 +351,128 @@ private extension VillageContainer {
     
 }
 
+// MARK: - Routing
+
+private extension VillageContainer {
+    
+    private func route(for notification: UNNotification) -> Route? {
+        let payload = notification.request.content.userInfo
+        
+        guard let notificationType = payload["type"] as? String else {
+            return nil
+        }
+        
+        switch notificationType.lowercased() {
+        case "deeplink":
+            let linkComponents = payload["link"]
+                .flatMap({ $0 as? String })
+                .flatMap({ URLComponents(string: $0) })
+            
+            switch linkComponents?.host {
+            case "dm"?:
+                guard let streamId = linkComponents?.queryItems?.filter({ $0.name == "streamId" }).first?.value else {
+                    break
+                }
+                return Route.directMessage(streamId: streamId)
+                
+            case "notice"?:
+                return Route.notices
+                
+            case "kudos"?:
+                return Route.myReceivedKudos
+                
+            default:
+                break
+            }
+            
+        case "invite":
+            let linkComponents = payload["link"]
+                .flatMap({ $0 as? String })
+                .flatMap({ URLComponents(string: $0) })
+            guard let streamId = linkComponents?.queryItems?.filter({ $0.name == "streamId" }).first?.value else {
+                break
+            }
+            return Route.group(streamId: streamId)
+            
+        case "unread":
+            // We have chosen to ignore unread notifications but they do exist
+            // in the backend so I am leaving this case in here for documentation
+            // purposes. -rlf
+            break
+            
+        default:
+            break
+        }
+        
+        return nil
+    }
+    
+    private func performRoute(_ route: Route) {
+        guard isReadyToPerformPendingRoute else {
+            assertionFailure()
+            return
+        }
+        
+        switch route {
+        case let .directMessage(streamId):
+            goToDirectMessage(id: streamId)
+            
+        case let .group(streamId):
+            goToGroup(id: streamId)
+            
+        case .notices:
+            goToNotices()
+            
+        case .myReceivedKudos:
+            goToMyReceivedKudos()
+        }
+    }
+    
+    func goToDirectMessage(id: String) {
+        firstly {
+            return VillageCore.Stream.getBy(id)
+        }.then { [weak self] stream in
+            let vc = UIStoryboard(name: "DirectMessages", bundle: Constants.bundle).instantiateViewController(withIdentifier: "DMConversationViewController") as! DMConversationViewController
+            vc.directMessageThread = stream
+            self?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+            self?.hideMenu()
+        }.catch { _ in
+            // Silently ignore errors here as we will just not honor the user's tap on the notification
+        }
+    }
+    
+    func goToGroup(id: String) {
+        guard let groupDelegate = self.menuViewController as? GroupViewControllerDelegate else {
+            assertionFailure("Expecting menuViewController to be a GroupViewControllerDelegate!")
+            return
+        }
+
+        firstly {
+            return VillageCore.Stream.getBy(id)
+        }.then { [weak self] stream in
+            let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
+            vc.group = stream
+            vc.delegate = groupDelegate
+            self?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+            self?.hideMenu()
+        }.catch { _ in
+            // Silently ignore errors here as we will just not honor the user's tap on the notification
+        }
+    }
+    
+    func goToNotices() {
+        let vc = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as! NoticeListViewController
+        self.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        self.hideMenu()
+    }
+    
+    func goToMyReceivedKudos() {
+        let vc = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "MyKudosViewController") as! MyKudosViewController
+        self.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        self.hideMenu()
+    }
+}
+
 extension VillageContainer: UNUserNotificationCenterDelegate {
     
     // Launch or open app from push
@@ -301,15 +483,24 @@ extension VillageContainer: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         switch response.actionIdentifier {
         case UNNotificationDefaultActionIdentifier:
-            // User tapped on notification
             print("📲👆 User tapped on notification: \(response)")
+            
+            guard let route = route(for: response.notification) else {
+                print("📲⚠️ Unable to parse a route for incoming notification: \(response.notification)")
+                break
+            }
+            
+            if isReadyToPerformPendingRoute {
+                performRoute(route)
+            } else {
+                pendingRoute = route
+            }
             
         case UNNotificationDismissActionIdentifier:
             // User dismissed notification
             break
             
         default:
-            assertionFailure()
             break
         }
         
@@ -319,7 +510,16 @@ extension VillageContainer: UNUserNotificationCenterDelegate {
     // While app is running
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("📲⚡️ Incoming notification: \(notification)")
-        completionHandler([.alert, .badge, .sound])
-//        completionHandler([])
+        
+        switch route(for: notification) {
+        case let Route.directMessage(streamId)? where streamId == openDirectMessageStream?.id:
+            // Suppress displaying notifications for a direct message the user is currently viewing
+            return completionHandler([])
+            
+        default:
+            // Allow all other notifications to be displayed in-app
+            // We do not currently support application icon badgeing
+            return completionHandler([.alert, .sound])
+        }
     }
 }

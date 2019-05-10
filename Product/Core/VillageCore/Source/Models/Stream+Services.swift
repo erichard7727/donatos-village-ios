@@ -21,6 +21,10 @@ public extension HomeStream {
 
 public extension Stream {
     
+    static func getBy(_ streamId: String) -> Promise<Stream> {
+        return StreamsService.getStream(from: streamId)
+    }
+    
     func getDetails() -> Promise<Stream> {
         return StreamsService.getDetails(of: self)
     }
