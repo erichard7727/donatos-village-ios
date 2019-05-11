@@ -16,23 +16,6 @@ protocol PeopleViewControllerDelegate {
     func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: PeopleViewController)
 }
 
-fileprivate class TintedSearchController: UISearchController {
-    override var searchBar: UISearchBar {
-        if _searchBar == nil {
-            let searchBar = TintedSearchBar()
-            searchBar.translatesAutoresizingMaskIntoConstraints = false
-            searchBar.searchBarStyle = .minimal
-            searchBar.barStyle = .default
-            searchBar.isTranslucent = true
-            searchBar.barTintColor = navigationController?.navigationBar.barTintColor ?? UINavigationBar.appearance().barTintColor
-            searchBar.tintColor = UISearchBar.appearance().tintColor
-            _searchBar = searchBar
-        }
-        return _searchBar!
-    }
-    private var _searchBar: UISearchBar?
-}
-
 final class PeopleViewController: UIViewController {
     
     @IBOutlet weak var addBarButtonItem: UIBarButtonItem!

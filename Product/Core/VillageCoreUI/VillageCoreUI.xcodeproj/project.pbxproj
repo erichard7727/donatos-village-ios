@@ -90,6 +90,7 @@
 		D47FD3F9220FB74B00376D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D47FD3F8220FB74B00376D31 /* Assets.xcassets */; };
 		D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD3FE220FBD4700376D31 /* Constants.swift */; };
 		D47FD402220FC08700376D31 /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD401220FC08700376D31 /* Image+Named.swift */; };
+		D49467872286F81C00C7F4D6 /* TintedSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49467862286F81C00C7F4D6 /* TintedSearchController.swift */; };
 		D4984EA0223E83E700793CFE /* StatefulUserInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */; };
 		D4984EA1223FAF9600793CFE /* KudoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E880223B3753002DED70 /* KudoCell.swift */; };
 		D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E87B223B3752002DED70 /* Kudos.storyboard */; };
@@ -257,6 +258,7 @@
 		D47FD3F8220FB74B00376D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D47FD3FE220FBD4700376D31 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D47FD401220FC08700376D31 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
+		D49467862286F81C00C7F4D6 /* TintedSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedSearchController.swift; sourceTree = "<group>"; };
 		D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulUserInterface.swift; sourceTree = "<group>"; };
 		D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodatesKeyboardBehavior.swift; sourceTree = "<group>"; };
 		D4AE68782242A5F200A3FB25 /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -933,6 +935,7 @@
 				D479D2FC224AE87000AFB3DA /* IndentedTextField.swift */,
 				D4CEAE89226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift */,
 				D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */,
+				D49467862286F81C00C7F4D6 /* TintedSearchController.swift */,
 			);
 			path = UIKitSubclasses;
 			sourceTree = "<group>";
@@ -1174,6 +1177,7 @@
 				D434D41722713F92002C5EA0 /* UIImageView+AnimatedImageView.swift in Sources */,
 				D4B4E861223AFEF7002DED70 /* PersonProfileViewController.swift in Sources */,
 				D434D40B2270ED09002C5EA0 /* GroupSettingsNameCell.swift in Sources */,
+				D49467872286F81C00C7F4D6 /* TintedSearchController.swift in Sources */,
 				D411BC472247F844003D2F08 /* UIImage+Scaling.swift in Sources */,
 				D4B4E890223B3763002DED70 /* KudosListController.swift in Sources */,
 				D4B4E869223B281E002DED70 /* ProfileBottomContainerViewController.swift in Sources */,
