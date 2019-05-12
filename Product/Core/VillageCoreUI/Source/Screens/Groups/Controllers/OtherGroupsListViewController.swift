@@ -255,7 +255,7 @@ extension OtherGroupsListViewController: UITableViewDelegate {
         }.then { [weak self] in
             let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
             vc.group = group
-            self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+            self?.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         }.catch { [weak self] error in
             let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
             self?.present(alert, animated: true, completion: nil)
