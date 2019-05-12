@@ -55,6 +55,7 @@
 		D4CC29BD220759410091BEFB /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29BC220759410091BEFB /* ClientConfiguration.swift */; };
 		D4CEB2D92276521B00C656DA /* DirectMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEB2D82276521B00C656DA /* DirectMessageService.swift */; };
 		D4E462F2226CF00F00E23363 /* Message+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E462F1226CF00F00E23363 /* Message+Services.swift */; };
+		D4F465992288852C00732317 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F465982288852C00732317 /* Debouncer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		D4CC29BC220759410091BEFB /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
 		D4CEB2D82276521B00C656DA /* DirectMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageService.swift; sourceTree = "<group>"; };
 		D4E462F1226CF00F00E23363 /* Message+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+Services.swift"; sourceTree = "<group>"; };
+		D4F465982288852C00732317 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,11 +254,11 @@
 			isa = PBXGroup;
 			children = (
 				D4CC29BC220759410091BEFB /* ClientConfiguration.swift */,
-				D4464BA92287B1A500618FDE /* Pagination.swift */,
 				D4615845220F1AD30072D224 /* Models */,
 				D4615850220F30160072D224 /* Services */,
 				D4173888220C4FC200F5B1F6 /* Extensions */,
 				D417388B220C4FF800F5B1F6 /* Networking */,
+				D4F465972288850F00732317 /* Utilities */,
 				D4CC29A0220755D40091BEFB /* Supporting Files */,
 			);
 			path = Source;
@@ -289,6 +291,15 @@
 				D4CC2996220754850091BEFB /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D4F465972288850F00732317 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D4F465982288852C00732317 /* Debouncer.swift */,
+				D4464BA92287B1A500618FDE /* Pagination.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +459,7 @@
 				D4B4E83C223A9509002DED70 /* Person+Directory.swift in Sources */,
 				D4615856220F44250072D224 /* User+Authentication.swift in Sources */,
 				D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */,
+				D4F465992288852C00732317 /* Debouncer.swift in Sources */,
 				D461584A220F24450072D224 /* Promises+Utilities.swift in Sources */,
 				D48A6A262251531D00411518 /* ContentLibraryService.swift in Sources */,
 				D4CEB2D92276521B00C656DA /* DirectMessageService.swift in Sources */,
