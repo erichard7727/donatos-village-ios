@@ -80,6 +80,15 @@ public extension Sequence where Element == Stream {
     /// Extends typealias `Streams` to fetch a list of available streams
     /// that the user is not already subscribed to.
     ///
+    /// - Returns: A `Paginated` collection of `Streams` that can be fetched
+    ///            one page at a time as necessary.
+    static func otherPaginated() -> Paginated<Stream> {
+        return StreamsService.getOtherStreamsPaginated()
+    }
+    
+    /// Extends typealias `Streams` to fetch a list of available streams
+    /// that the user is not already subscribed to.
+    ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Streams`
     static func other(page: Int = 1) -> Promise<Streams> {
