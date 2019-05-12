@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BfB-Aj-RDc">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="proximanova-reg-webfont.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+        <array key="proximanova-sbold-webfont.ttf">
+            <string>ProximaNova-Semibold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Other Groups-->
+        <scene sceneID="kIx-eo-ofp">
+            <objects>
+                <viewController storyboardIdentifier="OtherGroupsListViewController" id="BfB-Aj-RDc" customClass="OtherGroupsListViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g6S-fM-iRW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j4i-BN-Hue">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupCell" rowHeight="66" id="bTW-Ku-Mwe" customClass="GroupTableViewCell" customModule="VillageCoreUI" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bTW-Ku-Mwe" id="UHk-GW-KNA">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="65.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MqC-y1-sCN">
+                                                    <rect key="frame" x="20" y="11" width="348" height="44"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcG-NK-bP6">
+                                                            <rect key="frame" x="0.0" y="0.0" width="348" height="19"/>
+                                                            <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Members" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKZ-7g-OZN">
+                                                            <rect key="frame" x="0.0" y="27" width="348" height="17"/>
+                                                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zav-5k-vOJ">
+                                                    <rect key="frame" x="197" y="23" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MqC-y1-sCN" firstAttribute="leading" secondItem="UHk-GW-KNA" secondAttribute="leadingMargin" id="8Eo-W6-CSe"/>
+                                                <constraint firstItem="zav-5k-vOJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UHk-GW-KNA" secondAttribute="topMargin" constant="12" id="YJ1-iu-T8b"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="MqC-y1-sCN" secondAttribute="trailing" id="bAu-y8-QNG"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="zav-5k-vOJ" secondAttribute="bottom" constant="12" id="eU7-GY-6We"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="MqC-y1-sCN" secondAttribute="bottom" id="pMO-iI-nkw"/>
+                                                <constraint firstItem="MqC-y1-sCN" firstAttribute="top" secondItem="UHk-GW-KNA" secondAttribute="topMargin" id="ww2-9T-k1M"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="zav-5k-vOJ" firstAttribute="centerX" secondItem="bTW-Ku-Mwe" secondAttribute="centerX" id="Twj-lg-zM9"/>
+                                            <constraint firstItem="zav-5k-vOJ" firstAttribute="centerY" secondItem="bTW-Ku-Mwe" secondAttribute="centerY" id="yF2-Cc-nkW"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="loadingIndicator" destination="zav-5k-vOJ" id="ZJD-1M-voy"/>
+                                            <outlet property="membersLabel" destination="uKZ-7g-OZN" id="uwV-Xp-hQp"/>
+                                            <outlet property="nameLabel" destination="PcG-NK-bP6" id="5O8-wW-gdW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BfB-Aj-RDc" id="AAM-TA-8Ie"/>
+                                    <outlet property="delegate" destination="BfB-Aj-RDc" id="E7k-BE-caN"/>
+                                    <outlet property="prefetchDataSource" destination="BfB-Aj-RDc" id="j9E-Pt-dhv"/>
+                                </connections>
+                            </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faM-GF-30a">
+                                <rect key="frame" x="148" y="416" width="118.5" height="64"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="seS-Mb-bYW">
+                                        <rect key="frame" x="0.0" y="0.0" width="118.5" height="64"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="zeb-4I-UNI">
+                                                <rect key="frame" x="40.5" y="0.0" width="37" height="37"/>
+                                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Groups" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXk-pV-woC">
+                                                <rect key="frame" x="0.0" y="45" width="118.5" height="19"/>
+                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <accessibility key="accessibilityConfiguration" label="Loading Groups">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="seS-Mb-bYW" secondAttribute="bottom" id="2Ad-gB-IbZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="seS-Mb-bYW" secondAttribute="trailing" id="KDQ-2z-d9H"/>
+                                    <constraint firstItem="seS-Mb-bYW" firstAttribute="leading" secondItem="faM-GF-30a" secondAttribute="leading" id="Yri-V6-7kq"/>
+                                    <constraint firstItem="seS-Mb-bYW" firstAttribute="top" secondItem="faM-GF-30a" secondAttribute="top" id="tOB-MB-d7o"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1S5-nO-PxG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="faM-GF-30a" secondAttribute="trailing" id="1t0-S7-rsH"/>
+                            <constraint firstItem="j4i-BN-Hue" firstAttribute="trailing" secondItem="1S5-nO-PxG" secondAttribute="trailing" id="DDq-AU-9c0"/>
+                            <constraint firstItem="faM-GF-30a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1S5-nO-PxG" secondAttribute="leading" id="DQc-dl-FZ8"/>
+                            <constraint firstItem="faM-GF-30a" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1S5-nO-PxG" secondAttribute="top" id="ai3-v1-qyM"/>
+                            <constraint firstItem="j4i-BN-Hue" firstAttribute="leading" secondItem="1S5-nO-PxG" secondAttribute="leading" id="e5p-cq-pH3"/>
+                            <constraint firstItem="faM-GF-30a" firstAttribute="centerY" secondItem="g6S-fM-iRW" secondAttribute="centerY" id="en0-Zl-mYS"/>
+                            <constraint firstItem="1S5-nO-PxG" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="faM-GF-30a" secondAttribute="bottom" id="faz-tR-Kto"/>
+                            <constraint firstItem="faM-GF-30a" firstAttribute="centerX" secondItem="g6S-fM-iRW" secondAttribute="centerX" id="kHg-yL-Z1q"/>
+                            <constraint firstItem="j4i-BN-Hue" firstAttribute="top" secondItem="1S5-nO-PxG" secondAttribute="top" id="vFJ-Uz-tve"/>
+                            <constraint firstItem="1S5-nO-PxG" firstAttribute="bottom" secondItem="j4i-BN-Hue" secondAttribute="bottom" id="vPG-dB-q7z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1S5-nO-PxG"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Other Groups" id="Ruu-xm-Vfu">
+                        <barButtonItem key="rightBarButtonItem" title="Create" image="add-icon" id="hQl-RP-5uv">
+                            <connections>
+                                <segue destination="SfD-Kj-O0R" kind="show" identifier="CreateGroup" id="m25-7H-qjf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="createGroupButton" destination="hQl-RP-5uv" id="W7w-eL-GOZ"/>
+                        <outlet property="loadingGroupsContainer" destination="faM-GF-30a" id="2JI-fs-7CR"/>
+                        <outlet property="tableView" destination="j4i-BN-Hue" id="Ith-uJ-woW"/>
+                        <segue destination="5Ya-jo-wNj" kind="show" identifier="GroupDetail" id="1nx-ur-eV5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cdt-10-wyk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-279.71014492753625" y="-106.47321428571428"/>
+        </scene>
+        <!--CreateGroupViewController-->
+        <scene sceneID="GPJ-8t-ImJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Groups" referencedIdentifier="CreateGroupViewController" id="SfD-Kj-O0R" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dHa-JN-Gpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="336" y="-362"/>
+        </scene>
+        <!--GroupViewController-->
+        <scene sceneID="5QO-Gb-LUX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Groups" referencedIdentifier="GroupViewController" id="5Ya-jo-wNj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o3y-DP-jBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="307" y="-92"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="add-icon" width="24" height="24"/>
+    </resources>
+</document>

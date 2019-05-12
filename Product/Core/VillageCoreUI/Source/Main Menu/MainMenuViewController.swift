@@ -218,7 +218,7 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToOtherGroups(_ sender: Any? = nil) {
-        let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "OtherGroupsViewController") as! OtherGroupsViewController
+        let vc = UIStoryboard(name: "OtherGroupsListViewController", bundle: Constants.bundle).instantiateInitialViewController() as! OtherGroupsListViewController
         sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }

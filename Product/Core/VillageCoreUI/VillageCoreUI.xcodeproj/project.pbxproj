@@ -91,6 +91,8 @@
 		D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD3FE220FBD4700376D31 /* Constants.swift */; };
 		D47FD402220FC08700376D31 /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD401220FC08700376D31 /* Image+Named.swift */; };
 		D49467872286F81C00C7F4D6 /* TintedSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49467862286F81C00C7F4D6 /* TintedSearchController.swift */; };
+		D49467892286F9FC00C7F4D6 /* OtherGroupsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49467882286F9FC00C7F4D6 /* OtherGroupsListViewController.swift */; };
+		D494678B2286FCC900C7F4D6 /* OtherGroupsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D494678A2286FCC900C7F4D6 /* OtherGroupsListViewController.storyboard */; };
 		D4984EA0223E83E700793CFE /* StatefulUserInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */; };
 		D4984EA1223FAF9600793CFE /* KudoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E880223B3753002DED70 /* KudoCell.swift */; };
 		D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E87B223B3752002DED70 /* Kudos.storyboard */; };
@@ -259,6 +261,8 @@
 		D47FD3FE220FBD4700376D31 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D47FD401220FC08700376D31 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
 		D49467862286F81C00C7F4D6 /* TintedSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedSearchController.swift; sourceTree = "<group>"; };
+		D49467882286F9FC00C7F4D6 /* OtherGroupsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGroupsListViewController.swift; sourceTree = "<group>"; };
+		D494678A2286FCC900C7F4D6 /* OtherGroupsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OtherGroupsListViewController.storyboard; sourceTree = "<group>"; };
 		D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulUserInterface.swift; sourceTree = "<group>"; };
 		D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodatesKeyboardBehavior.swift; sourceTree = "<group>"; };
 		D4AE68782242A5F200A3FB25 /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -504,6 +508,8 @@
 				D434D3ED2270ED09002C5EA0 /* GroupViewController.swift */,
 				D434D3EE2270ED09002C5EA0 /* CreateGroupViewController.swift */,
 				D434D3EF2270ED09002C5EA0 /* MemberSelectionController.swift */,
+				D49467882286F9FC00C7F4D6 /* OtherGroupsListViewController.swift */,
+				D494678A2286FCC900C7F4D6 /* OtherGroupsListViewController.storyboard */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1052,6 +1058,7 @@
 				D4CEAE87225FFCCB00A215E4 /* ContentLibrary.storyboard in Resources */,
 				D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */,
 				D42CF73A227BDABA003D8CF4 /* KudosHomeCell.xib in Resources */,
+				D494678B2286FCC900C7F4D6 /* OtherGroupsListViewController.storyboard in Resources */,
 				D4F8A5962210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf in Resources */,
 				D4F8A57722109E55005FDB6A /* LoginIdentityViewController.storyboard in Resources */,
 				D4F8A5932210B6DE005FDB6A /* proximanova-light-webfont.ttf in Resources */,
@@ -1156,6 +1163,7 @@
 				D434D4102270ED09002C5EA0 /* PreviewImageCell.swift in Sources */,
 				D4A69771226400E800ECC0A8 /* AchievementHeaderCell.swift in Sources */,
 				D4A6977B226411D100ECC0A8 /* GiveKudosViewController.swift in Sources */,
+				D49467892286F9FC00C7F4D6 /* OtherGroupsListViewController.swift in Sources */,
 				D4EA50862279CEBE00BE7E52 /* DMListCell.swift in Sources */,
 				D43663C42229ACA9006354F2 /* LoginPasswordViewController.swift in Sources */,
 				D4CEAE8A226000AB00A215E4 /* ViewControllerLifecycleBehavior.swift in Sources */,
