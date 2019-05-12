@@ -38,7 +38,8 @@ class GroupTableViewCell: UITableViewCell {
             accessoryType = .disclosureIndicator
         }
         if oldValue != isLoading {
-            UIAccessibility.post(notification: .layoutChanged, argument: self)
+            _accessibilityElements = nil
+            UIAccessibility.post(notification: .layoutChanged, argument: self.contentView)
         }
     }
     
@@ -49,12 +50,14 @@ class GroupTableViewCell: UITableViewCell {
         membersLabel.text = nil
         loadingIndicator.stopAnimating()
         selectionStyle = .gray
+        _accessibilityElements = nil
     }
     
     override var accessibilityElements: [Any]? {
         get {
             if _accessibilityElements == nil {
-                let element = UIAccessibilityElement(accessibilityContainer: self.contentView)
+                let element = UIAccessibilityElement(accessibilityContainer: self)
+                element.accessibilityFrameInContainerSpace = self.bounds
                 
                 if loadingIndicator.isAnimating {
                     element.accessibilityLabel = "Loading Group"
@@ -102,11 +105,42 @@ final class OtherGroupsListViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private lazy var groups: Paginated<VillageCore.Stream> = {
+    /// Returns the appropriate paginated streams based on whether
+    /// the user is performing a search or browsing available streams
+    /// from the entire organization
+    private var groups: Paginated<VillageCore.Stream> {
+        return searchedGroups ?? allGroups
+    }
+    
+    /// All paginated streams available to the user
+    private lazy var allGroups: Paginated<VillageCore.Stream> = {
         let paginated = Streams.otherPaginated()
         paginated.delegate = self
         return paginated
     }()
+    
+    /// Paginated streams represented the user's search. This will be `nil`
+    /// if the user is not currently searching
+    private var searchedGroups: Paginated<VillageCore.Stream>? {
+        didSet {
+            searchedGroups?.delegate = self
+            checkForEmptyState()
+            guard searchedGroups != nil else { return }
+            tableView.reloadData()
+        }
+    }
+    
+    private lazy var searchController: UISearchController = {
+        let searchController = TintedSearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
+        return searchController
+    }()
+    
+    /// Allows the user's search to be "debounced" as the user is typing
+    /// their query so that we don't query the API too frequently
+    private let searchDebouncer = Debouncer()
     
     // MARK: Outlets
     
@@ -148,6 +182,8 @@ extension OtherGroupsListViewController {
             LeftBarButtonBehavior(showing: .menuOrBack),
         ])
         
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -199,7 +235,32 @@ extension OtherGroupsListViewController { }
 
 // MARK: - Private Methods
 
-private extension OtherGroupsListViewController { }
+private extension OtherGroupsListViewController {
+    
+    func setSearchBarEnabled(_ isEnabled: Bool) {
+        searchController.searchBar.isUserInteractionEnabled = isEnabled
+        searchController.searchBar.alpha = isEnabled ? 1.0 : 0.75
+    }
+    
+    func checkForEmptyState() {
+        if !searchController.isActive && groups.totalCount == 0 {
+            setSearchBarEnabled(false)
+            // TODO: Set empty state label of some kind?
+        } else {
+            setSearchBarEnabled(true)
+            
+            if let searchedGroups = self.searchedGroups,
+                let searchText = searchController.searchBar.text,
+                !searchText.isEmpty, // the user is searching
+                searchedGroups.totalCount == 0 { // the search results are empty
+                // TODO: Set empty state label of some kind?
+            } else {
+                // TODO: Remove empty state label
+            }
+        }
+    }
+    
+}
 
 // MARK: - UITableViewDataSource
 
@@ -264,6 +325,8 @@ extension OtherGroupsListViewController: UITableViewDelegate {
     
 }
 
+// MARK: - PaginationDelegate
+
 extension OtherGroupsListViewController: PaginationDelegate {
 
     func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
@@ -278,11 +341,40 @@ extension OtherGroupsListViewController: PaginationDelegate {
         let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows ?? []
         let indexPathsToReload = groups.visibleIndexPathsToReload(indexPathsForVisibleRows, intersecting: newIndexPathsToReload)
         tableView.reloadRows(at: indexPathsToReload, with: .automatic)
+        
+        checkForEmptyState()
     }
     
     func onFetchFailed(with error: Error) {
         let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
         self.present(alert, animated: true, completion: nil)
+        
+        checkForEmptyState()
+    }
+    
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension OtherGroupsListViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchText = searchController.searchBar.text ?? ""
+
+        guard !searchText.isEmpty else {
+            self.loadingGroupsContainer.isHidden = true
+            searchedGroups = nil
+            tableView.reloadData()
+            checkForEmptyState()
+            
+            return
+        }
+        
+        searchedGroups = Streams.searchOthersPaginated(for: searchText)
+        self.loadingGroupsContainer.isHidden = false
+        searchDebouncer.debounce(afterTimeInterval: 1) { [weak self] in
+            self?.groups.fetchValues()
+        }
     }
     
 }

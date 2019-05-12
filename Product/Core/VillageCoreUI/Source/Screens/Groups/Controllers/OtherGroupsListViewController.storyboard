@@ -22,7 +22,7 @@
         <!--Other Groups-->
         <scene sceneID="kIx-eo-ofp">
             <objects>
-                <viewController storyboardIdentifier="OtherGroupsListViewController" id="BfB-Aj-RDc" customClass="OtherGroupsListViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OtherGroupsListViewController" extendedLayoutIncludesOpaqueBars="YES" definesPresentationContext="YES" id="BfB-Aj-RDc" customClass="OtherGroupsListViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g6S-fM-iRW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -143,7 +143,6 @@
                         <outlet property="createGroupButton" destination="hQl-RP-5uv" id="W7w-eL-GOZ"/>
                         <outlet property="loadingGroupsContainer" destination="faM-GF-30a" id="2JI-fs-7CR"/>
                         <outlet property="tableView" destination="j4i-BN-Hue" id="Ith-uJ-woW"/>
-                        <segue destination="5Ya-jo-wNj" kind="show" identifier="GroupDetail" id="1nx-ur-eV5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdt-10-wyk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -157,14 +156,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHa-JN-Gpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="336" y="-362"/>
-        </scene>
-        <!--GroupViewController-->
-        <scene sceneID="5QO-Gb-LUX">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Groups" referencedIdentifier="GroupViewController" id="5Ya-jo-wNj" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o3y-DP-jBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="307" y="-92"/>
         </scene>
     </scenes>
     <resources>

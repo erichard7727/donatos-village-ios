@@ -94,7 +94,17 @@ public extension Sequence where Element == Stream {
     static func other(page: Int = 1) -> Promise<Streams> {
         return StreamsService.getOtherStreams(page: page)
     }
-    
+
+    /// Extends typealias `Streams` to search for a stream.
+    ///
+    /// - Parameters:
+    ///   - term: The user's search term
+    /// - Returns: A `Paginated` collection of `Streams` that can be fetched
+    ///            one page at a time as necessary.
+    static func searchOthersPaginated(for term: String) -> Paginated<Stream> {
+        return StreamsService.searchOtherStreamsPaginated(term: term)
+    }
+
     /// Extends typealias `Streams` to search for a stream.
     ///
     /// - Parameters:
