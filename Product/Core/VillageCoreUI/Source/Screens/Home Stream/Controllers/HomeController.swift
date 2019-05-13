@@ -442,8 +442,8 @@ extension HomeController: UICollectionViewDelegate {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else {
-                let controller = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "OtherGroupsViewController") as! OtherGroupsViewController
-                self.navigationController?.pushViewController(controller, animated: true)
+                let vc = UIStoryboard(name: "OtherGroupsListViewController", bundle: Constants.bundle).instantiateInitialViewController() as! OtherGroupsListViewController
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             
         case recentKudosCollectionView:

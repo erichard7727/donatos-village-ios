@@ -46,7 +46,6 @@
 		D434D3FE2270ED09002C5EA0 /* GroupHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D434D3E62270ED09002C5EA0 /* GroupHeaderView.xib */; };
 		D434D3FF2270ED09002C5EA0 /* GroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3E72270ED09002C5EA0 /* GroupHeaderView.swift */; };
 		D434D4002270ED09002C5EA0 /* GroupSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3E92270ED09002C5EA0 /* GroupSettingsController.swift */; };
-		D434D4012270ED09002C5EA0 /* OtherGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3EA2270ED09002C5EA0 /* OtherGroupsViewController.swift */; };
 		D434D4022270ED09002C5EA0 /* CreateGroupTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3EB2270ED09002C5EA0 /* CreateGroupTypeViewController.swift */; };
 		D434D4032270ED09002C5EA0 /* MediaPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3EC2270ED09002C5EA0 /* MediaPreviewViewController.swift */; };
 		D434D4042270ED09002C5EA0 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3ED2270ED09002C5EA0 /* GroupViewController.swift */; };
@@ -157,6 +156,7 @@
 		D4EA50892279CEBE00BE7E52 /* DMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */; };
 		D4EA508A2279CEBE00BE7E52 /* DirectMessages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EA507D2279CEBE00BE7E52 /* DirectMessages.storyboard */; };
 		D4EA5090227BC03900BE7E52 /* TintedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */; };
+		D4F4659E2289A63B00732317 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F4659D2289A63B00732317 /* GroupTableViewCell.swift */; };
 		D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */; };
 		D4F8A57522109E31005FDB6A /* LoginIdentityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */; };
 		D4F8A57722109E55005FDB6A /* LoginIdentityViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A57622109E55005FDB6A /* LoginIdentityViewController.storyboard */; };
@@ -218,7 +218,6 @@
 		D434D3E62270ED09002C5EA0 /* GroupHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupHeaderView.xib; sourceTree = "<group>"; };
 		D434D3E72270ED09002C5EA0 /* GroupHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupHeaderView.swift; sourceTree = "<group>"; };
 		D434D3E92270ED09002C5EA0 /* GroupSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSettingsController.swift; sourceTree = "<group>"; };
-		D434D3EA2270ED09002C5EA0 /* OtherGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherGroupsViewController.swift; sourceTree = "<group>"; };
 		D434D3EB2270ED09002C5EA0 /* CreateGroupTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupTypeViewController.swift; sourceTree = "<group>"; };
 		D434D3EC2270ED09002C5EA0 /* MediaPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPreviewViewController.swift; sourceTree = "<group>"; };
 		D434D3ED2270ED09002C5EA0 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
@@ -331,6 +330,7 @@
 		D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMViewController.swift; sourceTree = "<group>"; };
 		D4EA507D2279CEBE00BE7E52 /* DirectMessages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DirectMessages.storyboard; sourceTree = "<group>"; };
 		D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedSearchBar.swift; sourceTree = "<group>"; };
+		D4F4659D2289A63B00732317 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SimpleTransition.swift"; sourceTree = "<group>"; };
 		D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIdentityViewController.swift; sourceTree = "<group>"; };
 		D4F8A57622109E55005FDB6A /* LoginIdentityViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginIdentityViewController.storyboard; sourceTree = "<group>"; };
@@ -502,7 +502,6 @@
 			isa = PBXGroup;
 			children = (
 				D434D3E92270ED09002C5EA0 /* GroupSettingsController.swift */,
-				D434D3EA2270ED09002C5EA0 /* OtherGroupsViewController.swift */,
 				D434D3EB2270ED09002C5EA0 /* CreateGroupTypeViewController.swift */,
 				D434D3EC2270ED09002C5EA0 /* MediaPreviewViewController.swift */,
 				D434D3ED2270ED09002C5EA0 /* GroupViewController.swift */,
@@ -517,6 +516,7 @@
 		D434D3F02270ED09002C5EA0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				D4F4659D2289A63B00732317 /* GroupTableViewCell.swift */,
 				D434D3F12270ED09002C5EA0 /* GroupMessageCell.swift */,
 				D434D3F22270ED09002C5EA0 /* GroupMessageCell.xib */,
 				D434D3F32270ED09002C5EA0 /* GroupSettingsTypeCell.swift */,
@@ -1133,6 +1133,7 @@
 				D4A6976522600D7700ECC0A8 /* ContentDetailController.swift in Sources */,
 				D434D4072270ED09002C5EA0 /* GroupMessageCell.swift in Sources */,
 				D42CF742227BDABA003D8CF4 /* HomeController.swift in Sources */,
+				D4F4659E2289A63B00732317 /* GroupTableViewCell.swift in Sources */,
 				D4164B7A226801670025E6E9 /* PersonLabel.swift in Sources */,
 				D4984EA0223E83E700793CFE /* StatefulUserInterface.swift in Sources */,
 				D460B81F224AC434003DCA2C /* CreateNoticeViewController.swift in Sources */,
@@ -1209,7 +1210,6 @@
 				D4C037F0226942D200BA7D9D /* UINavigationController+BarStyle.swift in Sources */,
 				D46724F02248160B00F4D7E5 /* Bundle+Version.swift in Sources */,
 				D4F8A57D22109FDA005FDB6A /* SideMenuControllerDelegate.swift in Sources */,
-				D434D4012270ED09002C5EA0 /* OtherGroupsViewController.swift in Sources */,
 				D460B81B224AC434003DCA2C /* NoticeCell.swift in Sources */,
 				D4F8A59C2210D556005FDB6A /* KeyboardAwareScrollView.swift in Sources */,
 				D4164B7C226802570025E6E9 /* PersonSearchViewController.swift in Sources */,
