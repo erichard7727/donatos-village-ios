@@ -37,7 +37,11 @@ final class DMConversationViewController: SLKTextViewController {
     var contentIDsLoading = Set<String>()
     
     var scrollForPreviousMessagesEnabled = false
-    let progressIndicator = UIActivityIndicatorView(style: .gray)
+    lazy var progressIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     var messageList: Messages = []
     
@@ -128,6 +132,10 @@ final class DMConversationViewController: SLKTextViewController {
         super.viewDidAppear(animated)
         
         scrollForPreviousMessagesEnabled = true
+        
+        if messageList.isEmpty {
+            self.textView.becomeFirstResponder()
+        }
     }
     
     var isLayingOutSubviews = false
@@ -159,6 +167,7 @@ final class DMConversationViewController: SLKTextViewController {
     
     @objc func returnFromBackground() {
         self.loadingMoreMessages = true
+        self.progressIndicator.startAnimating()
         
         firstly { () -> Promise<Messages> in
             if let message = messageList.first {
@@ -187,6 +196,7 @@ final class DMConversationViewController: SLKTextViewController {
             self.currentPage = self.currentPage + 1
         }.always { [weak self] in
             self?.loadingMoreMessages = false
+            self?.progressIndicator.stopAnimating()
             self?.firstLoad = false
             self?.reloadData = false
             self?.threadSocket?.establishConnection()
@@ -222,8 +232,6 @@ final class DMConversationViewController: SLKTextViewController {
         progressIndicator.center = headerView.center
         headerView.addSubview(progressIndicator)
         progressIndicator.bringSubviewToFront(headerView)
-        progressIndicator.startAnimating()
-        progressIndicator.alpha = 1
         headerView.backgroundColor = UIColor.white
         tableView?.tableFooterView = headerView
         tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -headerView.frame.height, right: 0)
