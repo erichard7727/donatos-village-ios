@@ -266,6 +266,11 @@ private extension VillageContainer {
             .font: UIFont(name: "ProximaNova-Semibold", size: 15.0)!,
             .foregroundColor: UIColor.white
         ]
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .font: UIFont(name: "ProximaNova-Extrabld", size: 30.0)!,
+            .foregroundColor: UIColor.white
+        ]
         
         UISearchBar.appearance().tintColor = .white
         UISearchBar.appearance().barTintColor = .white

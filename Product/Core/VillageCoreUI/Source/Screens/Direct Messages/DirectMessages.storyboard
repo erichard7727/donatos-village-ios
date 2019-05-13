@@ -212,7 +212,7 @@
             </objects>
             <point key="canvasLocation" x="1928.8" y="96.7016491754123"/>
         </scene>
-        <!--Conversation View Controller-->
+        <!--Conversation-->
         <scene sceneID="BhZ-pK-2Ds">
             <objects>
                 <viewController storyboardIdentifier="DMConversationViewController" automaticallyAdjustsScrollViewInsets="NO" id="mva-jJ-zuA" customClass="DMConversationViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
@@ -225,6 +225,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Conversation" largeTitleDisplayMode="never" id="aAj-Vo-gJt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpN-hj-vA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -309,7 +310,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="New Message" id="ThZ-LB-7pe">
+                    <navigationItem key="navigationItem" title="New Message" largeTitleDisplayMode="never" id="ThZ-LB-7pe">
                         <barButtonItem key="rightBarButtonItem" image="forward-arrow" id="I4F-a5-obV">
                             <connections>
                                 <action selector="completionButtonPressed:" destination="Ktp-Gg-VGw" id="i7i-UD-4XD"/>

@@ -252,7 +252,7 @@
                             <constraint firstItem="Yfo-em-hg2" firstAttribute="width" secondItem="qVM-0A-Uer" secondAttribute="width" id="lMd-io-e7h"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home Stream" id="iwT-Za-vAv">
+                    <navigationItem key="navigationItem" title="Home Stream" largeTitleDisplayMode="never" id="iwT-Za-vAv">
                         <barButtonItem key="rightBarButtonItem" image="down-arrow" id="meG-qh-dgq">
                             <connections>
                                 <action selector="closeRecentActivityClick:" destination="Kzo-bZ-z0i" id="OmO-KV-YpB"/>
@@ -288,7 +288,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
         <image name="default-notice-header" width="750" height="592"/>
         <image name="down-arrow" width="28" height="28"/>
         <namedColor name="vlgGreen">

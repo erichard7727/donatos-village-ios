@@ -70,7 +70,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Add New User" id="Poj-wB-R13"/>
+                    <navigationItem key="navigationItem" title="Add New User" largeTitleDisplayMode="never" id="Poj-wB-R13"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="60m-RN-5Q8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -316,7 +316,7 @@
                             <constraint firstItem="CA2-ie-rPq" firstAttribute="leading" secondItem="FZh-T0-KEe" secondAttribute="leading" id="jIh-Qe-peN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="deC-Xu-iF7"/>
+                    <navigationItem key="navigationItem" title="Profile" largeTitleDisplayMode="never" id="deC-Xu-iF7"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -563,7 +563,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGy-BU-z7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3439" y="600"/>
+            <point key="canvasLocation" x="3546" y="618"/>
         </scene>
     </scenes>
     <resources>

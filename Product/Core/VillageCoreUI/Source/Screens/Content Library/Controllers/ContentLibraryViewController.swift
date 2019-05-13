@@ -95,6 +95,8 @@ final class ContentLibraryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationItem.largeTitleDisplayMode = baseContentItem == nil ? .always : .never
+        
         if baseContentItem == nil && contentItems.isEmpty {
             title = "Content Library"
             

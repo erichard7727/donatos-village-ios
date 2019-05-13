@@ -177,7 +177,7 @@
                             <constraint firstItem="9tZ-aJ-Egf" firstAttribute="leading" secondItem="rlF-uQ-R9D" secondAttribute="leading" constant="16" id="rZu-dT-cTh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create a New Group" id="lOd-vF-lGH"/>
+                    <navigationItem key="navigationItem" title="Create a New Group" largeTitleDisplayMode="never" id="lOd-vF-lGH"/>
                     <connections>
                         <outlet property="groupNameTextField" destination="XbY-YN-ch8" id="Xhw-sB-6YY"/>
                     </connections>
@@ -308,7 +308,7 @@
             </objects>
             <point key="canvasLocation" x="1012" y="841.97901049475274"/>
         </scene>
-        <!--Group View Controller-->
+        <!--Group-->
         <scene sceneID="bm0-7i-K2Y">
             <objects>
                 <viewController storyboardIdentifier="GroupViewController" automaticallyAdjustsScrollViewInsets="NO" id="8PE-bf-A8f" customClass="GroupViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
@@ -340,7 +340,7 @@
                             <constraint firstItem="ZEV-dY-JWX" firstAttribute="leading" secondItem="RF0-Yo-fxB" secondAttribute="leadingMargin" constant="12" id="q9E-0g-vRF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Imn-xq-jrZ">
+                    <navigationItem key="navigationItem" title="Group" largeTitleDisplayMode="never" id="Imn-xq-jrZ">
                         <barButtonItem key="rightBarButtonItem" image="settings" id="ssw-t0-w5S" userLabel="Settings">
                             <connections>
                                 <segue destination="8lR-Wj-AJq" kind="show" identifier="GroupSettings" id="NcK-Tm-lND"/>
@@ -574,7 +574,7 @@
                             <constraint firstAttribute="trailing" secondItem="3DJ-4r-2Qr" secondAttribute="trailing" id="rXv-0x-Xv2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Group Settings" id="5aP-6t-1AJ"/>
+                    <navigationItem key="navigationItem" title="Group Settings" largeTitleDisplayMode="never" id="5aP-6t-1AJ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="leaveGroupButton" destination="dvc-vF-EX8" id="Lfd-1L-fea"/>
@@ -598,7 +598,7 @@
                             <outlet property="delegate" destination="uWI-Sm-lSi" id="vJ9-cs-nU1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Members" id="pbM-Wl-YDO">
+                    <navigationItem key="navigationItem" title="Members" largeTitleDisplayMode="never" id="pbM-Wl-YDO">
                         <barButtonItem key="rightBarButtonItem" image="add-icon" id="2Vk-7g-2hD">
                             <connections>
                                 <segue destination="MGV-mM-7Tz" kind="show" identifier="InvitePeople" id="YFT-bT-Xpk"/>
@@ -803,7 +803,7 @@
                             <constraint firstAttribute="trailing" secondItem="3dC-IA-1uu" secondAttribute="trailing" id="xAY-eY-UMu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Select People" id="Hkj-eU-wGm">
+                    <navigationItem key="navigationItem" title="Select People" largeTitleDisplayMode="never" id="Hkj-eU-wGm">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Send" style="done" id="IH1-Oz-YV8">
                             <connections>
                                 <action selector="completionButtonPressed:" destination="MGV-mM-7Tz" id="8Vt-0e-F2T"/>
@@ -852,6 +852,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZTI-xo-wiy"/>
+        <segue reference="YFT-bT-Xpk"/>
     </inferredMetricsTieBreakers>
 </document>
