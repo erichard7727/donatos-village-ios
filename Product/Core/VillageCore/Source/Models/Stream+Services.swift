@@ -86,15 +86,6 @@ public extension Sequence where Element == Stream {
         return StreamsService.getOtherStreamsPaginated()
     }
     
-    /// Extends typealias `Streams` to fetch a list of available streams
-    /// that the user is not already subscribed to.
-    ///
-    /// - Parameter page: The page of results to fetch. Default == first.
-    /// - Returns: A list of `Streams`
-    static func other(page: Int = 1) -> Promise<Streams> {
-        return StreamsService.getOtherStreams(page: page)
-    }
-
     /// Extends typealias `Streams` to search for a stream.
     ///
     /// - Parameters:
@@ -103,16 +94,6 @@ public extension Sequence where Element == Stream {
     ///            one page at a time as necessary.
     static func searchOthersPaginated(for term: String) -> Paginated<Stream> {
         return StreamsService.searchOtherStreamsPaginated(term: term)
-    }
-
-    /// Extends typealias `Streams` to search for a stream.
-    ///
-    /// - Parameters:
-    ///   - term: The user's search term
-    ///   - page: The page of results to fetch. Default == first.
-    /// - Returns: A list of `Streams`
-    static func searchOthers(for term: String, page: Int = 1) -> Promise<Streams> {
-        return StreamsService.searchOtherStreams(term: term, page: page)
     }
     
     /// Extends typealias `Streams` to fetch a list of direct messages.

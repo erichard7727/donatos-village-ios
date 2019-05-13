@@ -108,16 +108,6 @@ struct StreamsService {
         })
     }
     
-    static func getOtherStreams(page: Int) -> Promise<Streams> {
-        return firstly {
-            let streams = VillageCoreAPI.otherStreams(page: page)
-            return VillageService.shared.request(target: streams)
-        }.then { (json: JSON) -> Streams in
-            let streams = json["streams"].arrayValue.compactMap({ Stream(from: $0) })
-            return streams
-        }
-    }
-
     static func searchOtherStreamsPaginated(term: String) -> Paginated<Stream> {
         return Paginated<Stream>(fetchValues: { (page) -> Promise<PaginatedResults<Stream>> in
             return firstly {
@@ -129,16 +119,6 @@ struct StreamsService {
                 return PaginatedResults(values: streams, counts: paginatedCounts)
             }
         })
-    }
-    
-    static func searchOtherStreams(term: String, page: Int)-> Promise<Streams> {
-        return firstly {
-            let streams = VillageCoreAPI.searchOtherStreams(term: term, page: page)
-            return VillageService.shared.request(target: streams)
-        }.then { (json: JSON) -> Streams in
-            let streams = json["streams"].arrayValue.compactMap({ Stream(from: $0) })
-            return streams
-        }
     }
     
     static func getDetails(of stream: Stream) -> Promise<Stream> {
