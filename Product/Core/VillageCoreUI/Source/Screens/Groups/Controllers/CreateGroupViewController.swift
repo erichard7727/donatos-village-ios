@@ -61,6 +61,8 @@ final class CreateGroupViewController: UIViewController {
             return
         }
         
+        view.endEditing(true)
+        
         progressIndicator.show()
         
         let groupType = groupTypeViewController.selectedGroupType
@@ -70,7 +72,11 @@ final class CreateGroupViewController: UIViewController {
         }.then { owner in
             VillageCore.Stream.new(type: groupType, name: groupName, description: "", owner: owner)
         }.then { group in
-            group.subscribe()
+            group.subscribe().then { group }
+        }.then { [weak self] group in
+            let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
+            vc.group = group
+            self?.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         }.catch { [weak self] _ in
             let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem creating this group. Please try again.")
             self?.present(alert, animated: true, completion: nil)
