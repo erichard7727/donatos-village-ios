@@ -9,6 +9,7 @@
 import UIKit
 import VillageCore
 import Promises
+import DZNEmptyDataSet
 
 class GroupTableViewCell: UITableViewCell {
     
@@ -124,7 +125,6 @@ final class OtherGroupsListViewController: UIViewController {
     private var searchedGroups: Paginated<VillageCore.Stream>? {
         didSet {
             searchedGroups?.delegate = self
-            checkForEmptyState()
             guard searchedGroups != nil else { return }
             tableView.reloadData()
         }
@@ -150,6 +150,8 @@ final class OtherGroupsListViewController: UIViewController {
             tableView.estimatedRowHeight = 64
             tableView.alwaysBounceVertical = false
             tableView.tableFooterView = UIView()
+            tableView.emptyDataSetSource = self
+            tableView.emptyDataSetDelegate = self
         }
     }
     
@@ -242,24 +244,6 @@ private extension OtherGroupsListViewController {
         searchController.searchBar.alpha = isEnabled ? 1.0 : 0.75
     }
     
-    func checkForEmptyState() {
-        if !searchController.isActive && groups.totalCount == 0 {
-            setSearchBarEnabled(false)
-            // TODO: Set empty state label of some kind?
-        } else {
-            setSearchBarEnabled(true)
-            
-            if let searchedGroups = self.searchedGroups,
-                let searchText = searchController.searchBar.text,
-                !searchText.isEmpty, // the user is searching
-                searchedGroups.totalCount == 0 { // the search results are empty
-                // TODO: Set empty state label of some kind?
-            } else {
-                // TODO: Remove empty state label
-            }
-        }
-    }
-    
 }
 
 // MARK: - UITableViewDataSource
@@ -325,6 +309,51 @@ extension OtherGroupsListViewController: UITableViewDelegate {
     
 }
 
+// MARK: - DZNEmptyDataSetSource
+
+extension OtherGroupsListViewController: DZNEmptyDataSetSource {
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        if searchController.isActive {
+            let title = NSMutableAttributedString(string: "No group found", attributes: nil) // reg
+            if let searchTerm = searchController.searchBar.text {
+                let term = NSMutableAttributedString(string: " matching \"", attributes: nil) // reg
+                term.append(NSAttributedString(string: searchTerm, attributes: [
+                    .foregroundColor: UIColor.darkText,
+                ]))
+                term.append(NSAttributedString(string: "\"", attributes: nil)) // reg
+                title.append(term)
+            }
+            title.append(NSAttributedString(string: ".", attributes: nil)) // reg
+            return title
+        } else {
+            return NSAttributedString(string: "There are no groups to display.", attributes: nil) // reg
+        }
+    }
+    
+}
+
+// MARK: - DZNEmptyDataSetDelegate
+
+extension OtherGroupsListViewController: DZNEmptyDataSetDelegate {
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        // Only show an empty data set if loading is not in-progress
+        return loadingGroupsContainer.isHidden
+    }
+    
+    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        // Disable search if the main dataset is empty
+        // Always leave search enabled if the user is searching
+        setSearchBarEnabled(searchController.isActive)
+    }
+    
+    func emptyDataSetWillDisappear(_ scrollView: UIScrollView!) {
+        setSearchBarEnabled(true)
+    }
+    
+}
+
 // MARK: - PaginationDelegate
 
 extension OtherGroupsListViewController: PaginationDelegate {
@@ -341,15 +370,11 @@ extension OtherGroupsListViewController: PaginationDelegate {
         let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows ?? []
         let indexPathsToReload = groups.visibleIndexPathsToReload(indexPathsForVisibleRows, intersecting: newIndexPathsToReload)
         tableView.reloadRows(at: indexPathsToReload, with: .automatic)
-        
-        checkForEmptyState()
     }
     
     func onFetchFailed(with error: Error) {
         let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
         self.present(alert, animated: true, completion: nil)
-        
-        checkForEmptyState()
     }
     
 }
@@ -365,8 +390,6 @@ extension OtherGroupsListViewController: UISearchResultsUpdating {
             self.loadingGroupsContainer.isHidden = true
             searchedGroups = nil
             tableView.reloadData()
-            checkForEmptyState()
-            
             return
         }
         
