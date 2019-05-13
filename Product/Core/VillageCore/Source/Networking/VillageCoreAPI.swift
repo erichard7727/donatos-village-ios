@@ -227,7 +227,7 @@ extension VillageCoreAPI: TargetType {
             return "streams/1.0/stream/\(streamId)"
             
         case .inviteToStream:
-            return "pi/streams/1.0/invite/\(UUID().uuidString)"
+            return "streams/1.0/invite/\(UUID().uuidString)"
             
         case let .setMessageLiked(isLiked, messageId, streamId):
             return "streams/1.0/messages/\(streamId)/\(messageId)/\(isLiked ? "like" : "dislike")"
