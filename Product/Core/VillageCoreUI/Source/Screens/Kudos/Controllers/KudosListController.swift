@@ -172,8 +172,11 @@ class KudosListController: UIViewController, StatefulUserInterface {
                     return [formatter.string(from: key) : value]
                 })
             
-            self.kudosList.merge(groupedKudos, uniquingKeysWith: { (_, new) in new })
-
+            groupedKudos.forEach({ (date, kudos) in
+                let mergedKudos = self.kudosList[date, default: []] + kudos
+                self.kudosList[date] = mergedKudos
+            })
+            
             self.tupleArray = self.kudosList
                 .sorted { formatter.date(from: $0.0)!.compare(formatter.date(from: $1.0)!) == .orderedDescending }
             

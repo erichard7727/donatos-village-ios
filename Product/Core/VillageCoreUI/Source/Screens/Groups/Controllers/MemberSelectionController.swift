@@ -74,8 +74,11 @@ final class MemberSelectionController: UITableViewController {
                     return [key.uppercased() : value]
                 })
             
-            self.peopleList.merge(groupedMembers, uniquingKeysWith: { (_, new) in new })
-            
+            groupedMembers.forEach({ (prefix, people) in
+                let mergedPeople = self.peopleList[prefix, default: []] + people
+                self.peopleList[prefix] = mergedPeople
+            })
+                        
             self.tupleArray = self.peopleList
                 .sorted { $0.0 < $1.0 }
             
