@@ -110,7 +110,7 @@ public protocol PaginatedType: class {
     /// Informs the `PaginatedType` to fetch a new set of values; either the
     /// first page, or the next page. It is safe to call this method repeatedly
     /// in quick succession.
-    func fetchValues()
+    func fetchValues(at indexPaths: [IndexPath])
     
 }
 
@@ -125,9 +125,27 @@ public class Paginated<T>: PaginatedType {
     
     private var values: [T] = []
     
+    /// Holds the page numbers that have been fetched or are in-progress
+    ///
+    /// *Note*: Please use the `.addQueued(_:)` and `.removeQueued(_:)`
+    /// methods to modify this value instead of accessing directly.
+    private var fetched: Set<Int> = []
+    
+    /// Holds the page numbers that need to be fetched (because we only allow
+    /// fetching one page at a time)
+    ///
+    /// *Note*: Please use the `.addQueued(_:)` and `.removeQueued(_:)`
+    /// methods to modify this value instead of accessing directly.
+    private var fetchQueue: Set<Int> = []
+    
     private var paginatedCounts: PaginatedCounts = PaginatedCounts(totalCount: 0, totalPages: 0, currentPage: 0, perPage: 0)
+    
+    enum FetchStatus {
+        case idle
+        case fetching(page: Int)
+    }
 
-    private var isFetchInProgress = false
+    private var fetchStatus: FetchStatus = .idle
     
     private var performFetch: FetchValuesClosure
     
@@ -167,23 +185,55 @@ public class Paginated<T>: PaginatedType {
         return Array(indexPathsIntersection)
     }
     
-    public func fetchValues() {
-        guard !isFetchInProgress else {
+    public func fetchValues(at indexPaths: [IndexPath]) {
+        let firstPage: Int
+        let lastPage: Int
+        
+        if indexPaths.isEmpty {
+            // Fetch the first page
+            firstPage = 1
+            lastPage = firstPage
+        } else {
+            firstPage = (indexPaths.first!.item / paginatedCounts.perPage) + 1
+            lastPage = ((indexPaths.last ?? indexPaths.first!).item / paginatedCounts.perPage) + 1
+        }
+        
+        let rangeOfPages = (firstPage...max(firstPage, lastPage))
+        addQueued(rangeOfPages)
+        
+        guard let nextPage = fetchQueue.sorted().first, !fetched.contains(nextPage) else {
+            // This page was already fetched or is in-progress
+            rangeOfPages.forEach(removeQueued)
             return
         }
         
-        let nextPage = paginatedCounts.currentPage + 1
+        switch fetchStatus {
+        case .idle:
+            // First, remove the page we're about to fetch from the queue
+            removeQueued(nextPage)
+            // Then, allow the fetch to proceed
+            break
+            
+        case .fetching:
+            // Wait for the in-progress fetch to finish
+            return
+        }
         
-        if !needsFetching {
+        if !self.needsFetching {
             guard paginatedCounts.totalPages > 0 && nextPage <= paginatedCounts.totalPages else {
                 return
             }
         }
         
-        isFetchInProgress = true
+        fetchStatus = .fetching(page: nextPage)
         
+        fetchPage(nextPage)
+        
+    }
+    
+    private func fetchPage(_ page: Int) {
         firstly {
-            performFetch(nextPage)
+            performFetch(page)
         }.then { [weak self] result in
             guard let `self` = self else { return }
             
@@ -199,9 +249,32 @@ public class Paginated<T>: PaginatedType {
         }.catch { [weak self] error in
             self?.delegate?.onFetchFailed(with: error)
         }.always { [weak self] in
-            self?.isFetchInProgress = false
-            self?.needsFetching = false
+            guard let `self` = self else { return }
+            
+            func finalize() {
+                self.fetchStatus = .idle
+                self.needsFetching = false
+            }
+            
+            if !self.fetchQueue.isEmpty {
+                let nextPage = self.fetchQueue.sorted().first!
+                self.removeQueued(nextPage)
+                finalize()
+                self.fetchPage(nextPage)
+            } else {
+                finalize()
+            }
+            
         }
+    }
+    
+    private func addQueued(_ pages: ClosedRange<Int>) {
+        fetchQueue = fetchQueue.union(pages).subtracting(fetched)
+    }
+    
+    private func removeQueued(_ page: Int) {
+        fetchQueue.remove(page)
+        fetched.insert(page)
     }
     
     /// Calculates the index paths for the last page of values received from

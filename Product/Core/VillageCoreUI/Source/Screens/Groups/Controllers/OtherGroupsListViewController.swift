@@ -191,7 +191,7 @@ extension OtherGroupsListViewController {
         
         if groups.needsFetching {
             loadingGroupsContainer.isHidden = false
-            groups.fetchValues()
+            groups.fetchValues(at: [])
         } else {
             loadingGroupsContainer.isHidden = true
         }
@@ -285,7 +285,7 @@ extension OtherGroupsListViewController: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if indexPaths.contains(where: groups.isLoadingValue) {
-            groups.fetchValues()
+            groups.fetchValues(at: indexPaths)
         }
     }
     
@@ -373,7 +373,7 @@ extension OtherGroupsListViewController: UISearchResultsUpdating {
         searchedGroups = Streams.searchOthersPaginated(for: searchText)
         self.loadingGroupsContainer.isHidden = false
         searchDebouncer.debounce(afterTimeInterval: 1) { [weak self] in
-            self?.groups.fetchValues()
+            self?.groups.fetchValues(at: [])
         }
     }
     
