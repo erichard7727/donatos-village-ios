@@ -159,6 +159,10 @@ class HomeController: UIViewController {
         
         recentActivityLabel.alpha = 0
         recentKudosLabel.alpha = 0
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.User.CurrentUserDidChange, object: nil, queue: .main) { [weak self] (_) in
+            self?.closeRecentActivityClick()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -355,7 +359,7 @@ class HomeController: UIViewController {
         }
     }
     
-    @IBAction func closeRecentActivityClick(_ sender: UIBarButtonItem) {
+    @IBAction func closeRecentActivityClick(_ sender: Any? = nil) {
         if isRecentActivityOpen {
             hideNavigationBar()
             // Animate constraint updates to collapse the recent activity collection view
