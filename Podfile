@@ -26,6 +26,7 @@ def core_ui_pods
   pod 'Nantes'
   pod 'AlamofireImage'
   pod 'SlackTextViewController'
+  pod 'DZNEmptyDataSet'
 end
 
 def client_pods

@@ -12,6 +12,7 @@ PODS:
     - AppCenter/Core
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
+  - DZNEmptyDataSet (1.8.1)
   - Fabric (1.9.0)
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
@@ -81,6 +82,7 @@ DEPENDENCIES:
   - AlamofireImage
   - AppCenter
   - Crashlytics
+  - DZNEmptyDataSet
   - Fabric
   - Firebase/Core
   - Moya
@@ -96,6 +98,7 @@ SPEC REPOS:
     - AlamofireImage
     - AppCenter
     - Crashlytics
+    - DZNEmptyDataSet
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -127,6 +130,7 @@ SPEC CHECKSUMS:
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
   FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
@@ -144,6 +148,6 @@ SPEC CHECKSUMS:
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 26e646f2daa3decf77a4a38cd1e9dc40ee8bf8d1
+PODFILE CHECKSUM: bc89c6e56a28da5f71480be46ce595da6e5ae6e0
 
 COCOAPODS: 1.6.1
