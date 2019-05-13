@@ -415,6 +415,7 @@
                     <connections>
                         <outlet property="categoryTextField" destination="DY5-LY-yg5" id="Vvr-8T-KIf"/>
                         <outlet property="contentView" destination="FnO-UZ-dJ5" id="cbv-0x-LOM"/>
+                        <outlet property="giveKudosTitleLabel" destination="aLV-XD-avg" id="vMf-FW-GCG"/>
                         <outlet property="reasonTextView" destination="AOa-p0-V26" id="gs9-jC-qRv"/>
                         <outlet property="recipientTextView" destination="3ws-sL-7Bt" id="mwF-9g-LGH"/>
                         <outlet property="scrollView" destination="Dxd-Ip-V7b" id="1N4-x9-57d"/>

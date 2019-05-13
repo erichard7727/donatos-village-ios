@@ -68,7 +68,7 @@ class MyKudosViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.title = "My Kudos"
+        self.title = "My " + Constants.Settings.kudosPluralShort
         
         loadPages()
     }

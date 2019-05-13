@@ -123,9 +123,9 @@ class KudosListController: UIViewController, StatefulUserInterface {
         
         switch self.list! {
         case .allStream:
-            self.title = "Kudos Stream"
+            self.title = Constants.Settings.kudosSingularShort + " Stream"
         case .received(_), .given(_):
-            self.title = "My Kudos"
+            self.title = "My " + Constants.Settings.kudosPluralShort
         }
         displayProgressFooterView()
     }

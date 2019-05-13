@@ -22,6 +22,12 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
         return ProgressIndicator.progressIndicatorInView(self.view)
     }()
     
+    @IBOutlet private var giveKudosTitleLabel: UILabel! {
+        didSet {
+            giveKudosTitleLabel.text = "Give " + Constants.Settings.kudosSingularShort
+        }
+    }
+    
     @IBOutlet fileprivate weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView?
     
@@ -105,6 +111,8 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.accessibilityLabel = "Give " + Constants.Settings.kudosSingularShort
         
         addBehaviors([
             LeftBarButtonBehavior(showing: .menuOrBack),
