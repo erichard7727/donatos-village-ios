@@ -342,8 +342,8 @@ private extension MainMenuViewController {
 extension MainMenuViewController: PeopleViewControllerDelegate {
     
     func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: PeopleViewController) {
-        let vc = DMConversationViewController()
-        vc.directMessageThread = directMessage
+        let dataSource = DirectMessageStreamDataSource(stream: directMessage)
+        let vc = StreamViewController(dataSource: dataSource)
         self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
     }
     

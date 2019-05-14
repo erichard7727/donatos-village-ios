@@ -205,31 +205,11 @@
                         <outlet property="activityIndicator" destination="49f-mo-0Hd" id="KhC-kB-5LB"/>
                         <outlet property="emptyTableViewLabel" destination="pXC-wB-Bx7" id="ZEh-HI-bST"/>
                         <outlet property="tableView" destination="GJN-0X-9aC" id="Kqx-r9-Ht2"/>
-                        <segue destination="mva-jJ-zuA" kind="show" identifier="ShowDMConversation" id="SAy-NH-zLo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uRy-kO-los" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1928.8" y="96.7016491754123"/>
-        </scene>
-        <!--Conversation-->
-        <scene sceneID="BhZ-pK-2Ds">
-            <objects>
-                <viewController storyboardIdentifier="DMConversationViewController" automaticallyAdjustsScrollViewInsets="NO" id="mva-jJ-zuA" customClass="DMConversationViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="c5Q-3N-4HR"/>
-                        <viewControllerLayoutGuide type="bottom" id="ql9-zh-OLG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SWv-Om-hId">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Conversation" largeTitleDisplayMode="never" id="aAj-Vo-gJt"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LpN-hj-vA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1929" y="859"/>
         </scene>
         <!--New Message-->
         <scene sceneID="wiF-Ej-GvI">

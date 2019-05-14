@@ -437,8 +437,8 @@ private extension VillageContainer {
         firstly {
             return VillageCore.Stream.getBy(id)
         }.then { [weak self] stream in
-            let vc = UIStoryboard(name: "DirectMessages", bundle: Constants.bundle).instantiateViewController(withIdentifier: "DMConversationViewController") as! DMConversationViewController
-            vc.directMessageThread = stream
+            let dataSource = DirectMessageStreamDataSource(stream: stream)
+            let vc = StreamViewController(dataSource: dataSource)
             self?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
             self?.hideMenu()
         }.catch { _ in

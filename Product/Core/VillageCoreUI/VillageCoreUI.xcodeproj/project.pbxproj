@@ -83,6 +83,10 @@
 		D460B820224AC434003DCA2C /* NoticeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B818224AC433003DCA2C /* NoticeListViewController.swift */; };
 		D460B821224AC434003DCA2C /* Notices.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D460B819224AC434003DCA2C /* Notices.storyboard */; };
 		D46724F02248160B00F4D7E5 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46724EF2248160B00F4D7E5 /* Bundle+Version.swift */; };
+		D4702EB9228A2D2F00D3DB46 /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4702EB8228A2D2F00D3DB46 /* StreamViewController.swift */; };
+		D4702EBF228A3E8A00D3DB46 /* DirectMessageStreamDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4702EBE228A3E8A00D3DB46 /* DirectMessageStreamDataSource.swift */; };
+		D4702EC2228A3EA600D3DB46 /* GroupStreamDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4702EC1228A3EA600D3DB46 /* GroupStreamDataSource.swift */; };
+		D4702EC4228A440600D3DB46 /* StreamDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4702EC3228A440600D3DB46 /* StreamDataSource.swift */; };
 		D479D2FD224AE87000AFB3DA /* IndentedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479D2FC224AE87000AFB3DA /* IndentedTextField.swift */; };
 		D47FD3F6220FB23700376D31 /* VillageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29B8220757CC0091BEFB /* VillageContainer.swift */; };
 		D47FD3F7220FB23C00376D31 /* VillageContainer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29BA220757DE0091BEFB /* VillageContainer.storyboard */; };
@@ -147,12 +151,10 @@
 		D4EA50802279CEBE00BE7E52 /* DMConversationOtherMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EA50722279CEBE00BE7E52 /* DMConversationOtherMessageCell.xib */; };
 		D4EA50812279CEBE00BE7E52 /* DMConversationSelfMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EA50732279CEBE00BE7E52 /* DMConversationSelfMessageCell.xib */; };
 		D4EA50822279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA50742279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.swift */; };
-		D4EA50832279CEBE00BE7E52 /* DMSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA50752279CEBE00BE7E52 /* DMSearchCell.swift */; };
 		D4EA50842279CEBE00BE7E52 /* DMConversationOtherMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA50762279CEBE00BE7E52 /* DMConversationOtherMessageCell.swift */; };
 		D4EA50852279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4EA50772279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.xib */; };
 		D4EA50862279CEBE00BE7E52 /* DMListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA50782279CEBE00BE7E52 /* DMListCell.swift */; };
 		D4EA50872279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA50792279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.swift */; };
-		D4EA50882279CEBE00BE7E52 /* DMConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA507B2279CEBE00BE7E52 /* DMConversationViewController.swift */; };
 		D4EA50892279CEBE00BE7E52 /* DMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */; };
 		D4EA508A2279CEBE00BE7E52 /* DirectMessages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EA507D2279CEBE00BE7E52 /* DirectMessages.storyboard */; };
 		D4EA5090227BC03900BE7E52 /* TintedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */; };
@@ -255,6 +257,10 @@
 		D460B818224AC433003DCA2C /* NoticeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeListViewController.swift; sourceTree = "<group>"; };
 		D460B819224AC434003DCA2C /* Notices.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notices.storyboard; sourceTree = "<group>"; };
 		D46724EF2248160B00F4D7E5 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Bundle+Version.swift"; path = "../../../VillageCore/Source/Extensions/Bundle+Version.swift"; sourceTree = "<group>"; };
+		D4702EB8228A2D2F00D3DB46 /* StreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
+		D4702EBE228A3E8A00D3DB46 /* DirectMessageStreamDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageStreamDataSource.swift; sourceTree = "<group>"; };
+		D4702EC1228A3EA600D3DB46 /* GroupStreamDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupStreamDataSource.swift; sourceTree = "<group>"; };
+		D4702EC3228A440600D3DB46 /* StreamDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamDataSource.swift; sourceTree = "<group>"; };
 		D479D2FC224AE87000AFB3DA /* IndentedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentedTextField.swift; sourceTree = "<group>"; };
 		D47FD3F8220FB74B00376D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D47FD3FE220FBD4700376D31 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -321,12 +327,10 @@
 		D4EA50722279CEBE00BE7E52 /* DMConversationOtherMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMConversationOtherMessageCell.xib; sourceTree = "<group>"; };
 		D4EA50732279CEBE00BE7E52 /* DMConversationSelfMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMConversationSelfMessageCell.xib; sourceTree = "<group>"; };
 		D4EA50742279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMConversationOtherAttachmentCell.swift; sourceTree = "<group>"; };
-		D4EA50752279CEBE00BE7E52 /* DMSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMSearchCell.swift; sourceTree = "<group>"; };
 		D4EA50762279CEBE00BE7E52 /* DMConversationOtherMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMConversationOtherMessageCell.swift; sourceTree = "<group>"; };
 		D4EA50772279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMConversationOtherAttachmentCell.xib; sourceTree = "<group>"; };
 		D4EA50782279CEBE00BE7E52 /* DMListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMListCell.swift; sourceTree = "<group>"; };
 		D4EA50792279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMConversationSelfAttachmentCell.swift; sourceTree = "<group>"; };
-		D4EA507B2279CEBE00BE7E52 /* DMConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMConversationViewController.swift; sourceTree = "<group>"; };
 		D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMViewController.swift; sourceTree = "<group>"; };
 		D4EA507D2279CEBE00BE7E52 /* DirectMessages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DirectMessages.storyboard; sourceTree = "<group>"; };
 		D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedSearchBar.swift; sourceTree = "<group>"; };
@@ -576,6 +580,57 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		D4702EBA228A3E0700D3DB46 /* Streams */ = {
+			isa = PBXGroup;
+			children = (
+				D4702EB8228A2D2F00D3DB46 /* StreamViewController.swift */,
+				D4702EC3228A440600D3DB46 /* StreamDataSource.swift */,
+				D4702EBB228A3E1F00D3DB46 /* Direct Messages */,
+				D4702EBC228A3E2A00D3DB46 /* Groups */,
+			);
+			path = Streams;
+			sourceTree = "<group>";
+		};
+		D4702EBB228A3E1F00D3DB46 /* Direct Messages */ = {
+			isa = PBXGroup;
+			children = (
+				D4702EBE228A3E8A00D3DB46 /* DirectMessageStreamDataSource.swift */,
+				D4702EBD228A3E4B00D3DB46 /* Cells */,
+			);
+			path = "Direct Messages";
+			sourceTree = "<group>";
+		};
+		D4702EBC228A3E2A00D3DB46 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D4702EC1228A3EA600D3DB46 /* GroupStreamDataSource.swift */,
+				D4702EC0228A3E9200D3DB46 /* Cells */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		D4702EBD228A3E4B00D3DB46 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D4EA50742279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.swift */,
+				D4EA50772279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.xib */,
+				D4EA50762279CEBE00BE7E52 /* DMConversationOtherMessageCell.swift */,
+				D4EA50722279CEBE00BE7E52 /* DMConversationOtherMessageCell.xib */,
+				D4EA50792279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.swift */,
+				D4EA50712279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.xib */,
+				D4EA50702279CEBE00BE7E52 /* DMConversationSelfMessageCell.swift */,
+				D4EA50732279CEBE00BE7E52 /* DMConversationSelfMessageCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D4702EC0228A3E9200D3DB46 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		D47FD400220FC05500376D31 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -820,42 +875,17 @@
 		D4EA506E2279CE8300BE7E52 /* Direct Messages */ = {
 			isa = PBXGroup;
 			children = (
-				D4EA506F2279CEBE00BE7E52 /* Cells */,
-				D4EA507A2279CEBE00BE7E52 /* Controllers */,
 				D4EA507D2279CEBE00BE7E52 /* DirectMessages.storyboard */,
+				D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */,
+				D4EA50782279CEBE00BE7E52 /* DMListCell.swift */,
 			);
 			path = "Direct Messages";
-			sourceTree = "<group>";
-		};
-		D4EA506F2279CEBE00BE7E52 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				D4EA50702279CEBE00BE7E52 /* DMConversationSelfMessageCell.swift */,
-				D4EA50712279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.xib */,
-				D4EA50722279CEBE00BE7E52 /* DMConversationOtherMessageCell.xib */,
-				D4EA50732279CEBE00BE7E52 /* DMConversationSelfMessageCell.xib */,
-				D4EA50742279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.swift */,
-				D4EA50752279CEBE00BE7E52 /* DMSearchCell.swift */,
-				D4EA50762279CEBE00BE7E52 /* DMConversationOtherMessageCell.swift */,
-				D4EA50772279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.xib */,
-				D4EA50782279CEBE00BE7E52 /* DMListCell.swift */,
-				D4EA50792279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		D4EA507A2279CEBE00BE7E52 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				D4EA507B2279CEBE00BE7E52 /* DMConversationViewController.swift */,
-				D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		D4F8A57222109BDE005FDB6A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D4702EBA228A3E0700D3DB46 /* Streams */,
 				D4CEAE8B2260016500A215E4 /* ViewControllerBehaviors */,
 				D4164B6E226800BD0025E6E9 /* Common */,
 				D4CEAE7D225FFC9800A215E4 /* Content Library */,
@@ -1109,7 +1139,6 @@
 				D460B81E224AC434003DCA2C /* NoticeAcknowledgementsViewController.swift in Sources */,
 				D4EA5090227BC03900BE7E52 /* TintedSearchBar.swift in Sources */,
 				D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */,
-				D4EA50832279CEBE00BE7E52 /* DMSearchCell.swift in Sources */,
 				D434D4042270ED09002C5EA0 /* GroupViewController.swift in Sources */,
 				D4164B752268011A0025E6E9 /* PersonCell.swift in Sources */,
 				D4F8A57B22109FAF005FDB6A /* SideMenuController.swift in Sources */,
@@ -1121,7 +1150,6 @@
 				D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */,
 				D42CF738227BDABA003D8CF4 /* KudosHomeCell.swift in Sources */,
 				D434D4092270ED09002C5EA0 /* GroupSettingsTypeCell.swift in Sources */,
-				D4EA50882279CEBE00BE7E52 /* DMConversationViewController.swift in Sources */,
 				D4B4E891223B37B0002DED70 /* MyAchievementsViewController.swift in Sources */,
 				D4A6976622600DF600ECC0A8 /* LeftBarButtonBehavior.swift in Sources */,
 				D4A69770226400DA00ECC0A8 /* LeaderboardCell.swift in Sources */,
@@ -1141,6 +1169,8 @@
 				D4CEAE84225FFCCB00A215E4 /* ContentLibraryCell.swift in Sources */,
 				D4A6977F226411DF00ECC0A8 /* LeaderboardViewController.swift in Sources */,
 				D434D40F2270ED09002C5EA0 /* PreviewActionCell.swift in Sources */,
+				D4702EB9228A2D2F00D3DB46 /* StreamViewController.swift in Sources */,
+				D4702EBF228A3E8A00D3DB46 /* DirectMessageStreamDataSource.swift in Sources */,
 				D411BC432247E687003D2F08 /* ProgressIndicator.swift in Sources */,
 				D4B4E853223AE980002DED70 /* PeopleViewController.swift in Sources */,
 				D47FD402220FC08700376D31 /* Image+Named.swift in Sources */,
@@ -1162,6 +1192,7 @@
 				D42CF73B227BDABA003D8CF4 /* RecentActivityCell.swift in Sources */,
 				D4B4E864223AFFF6002DED70 /* ContactPersonViewController.swift in Sources */,
 				D434D4102270ED09002C5EA0 /* PreviewImageCell.swift in Sources */,
+				D4702EC4228A440600D3DB46 /* StreamDataSource.swift in Sources */,
 				D4A69771226400E800ECC0A8 /* AchievementHeaderCell.swift in Sources */,
 				D4A6977B226411D100ECC0A8 /* GiveKudosViewController.swift in Sources */,
 				D49467892286F9FC00C7F4D6 /* OtherGroupsListViewController.swift in Sources */,
@@ -1197,6 +1228,7 @@
 				D4EA50872279CEBE00BE7E52 /* DMConversationSelfAttachmentCell.swift in Sources */,
 				D4A697772264010800ECC0A8 /* ProgessBarView.swift in Sources */,
 				D434D40A2270ED09002C5EA0 /* GroupMessageAttachmentCell.swift in Sources */,
+				D4702EC2228A3EA600D3DB46 /* GroupStreamDataSource.swift in Sources */,
 				D4984EA1223FAF9600793CFE /* KudoCell.swift in Sources */,
 				D4A6977D226411DF00ECC0A8 /* MyKudosViewController.swift in Sources */,
 				D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */,

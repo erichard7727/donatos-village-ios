@@ -16,7 +16,7 @@ final class DMConversationSelfMessageCell: UITableViewCell {
     @IBOutlet weak var messageContainerView: UIView!
     @IBOutlet weak var messageLabel: NantesLabel!
     
-    private var didSelectLink: ((URL) -> Void)?
+    var didSelectLink: ((URL) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()

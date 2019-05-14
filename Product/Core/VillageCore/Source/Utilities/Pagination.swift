@@ -41,6 +41,9 @@ struct PaginatedResults<T> {
 
 public protocol PaginationDelegate: class {
     
+    /// The tableView section for the paginated data. Default == 0.
+    func tableViewSection() -> Int
+    
     /// A new page of data was retreived from the server.
     ///
     /// - Parameter newIndexPathsToReload: The new indexPaths, if any, that
@@ -52,6 +55,14 @@ public protocol PaginationDelegate: class {
     ///
     /// - Parameter error: The error returned from the server.
     func onFetchFailed(with error: Error)
+    
+}
+
+public extension PaginationDelegate {
+    
+    func tableViewSection() -> Int {
+        return 0
+    }
     
 }
 
@@ -236,7 +247,7 @@ public class Paginated<T>: PaginatedType {
             performFetch(page)
         }.then { [weak self] result in
             guard let `self` = self else { return }
-            
+
             self.paginatedCounts = result.counts
             self.values.append(contentsOf: result.values)
             let indexPathsToReload: [IndexPath]?
@@ -286,7 +297,8 @@ public class Paginated<T>: PaginatedType {
     private func calculateIndexPathsToReload(from newValues: [T]) -> [IndexPath] {
         let startIndex = values.count - newValues.count
         let endIndex = startIndex + newValues.count
-        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+        let section = delegate?.tableViewSection() ?? 0
+        return (startIndex..<endIndex).map { IndexPath(row: $0, section: section) }
     }
     
 }

@@ -63,6 +63,17 @@ final class DMViewController: UIViewController {
         refreshTableView()
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "ShowDMConversation" {
+            let dataSource = DirectMessageStreamDataSource(stream: selectedDirectMessage!)
+            let vc = StreamViewController(dataSource: dataSource)
+            self.show(vc, sender: self)
+            return false
+        } else {
+            return true
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "PushNewMessagesSegue" {
@@ -70,16 +81,6 @@ final class DMViewController: UIViewController {
                     fatalError("SelectPeopleViewController not set")
                 }
                 controller.delegate = self
-            } else if identifier == "ShowDMConversation" {
-                guard let controller = segue.destination as? DMConversationViewController else {
-                    fatalError("DMConversationViewController not set")
-                }
-                
-                guard let selectedDirectMessage = self.selectedDirectMessage else {
-                    fatalError("selectedDirectMessage not set")
-                }
-                
-                controller.directMessageThread = selectedDirectMessage
             }
         }
     }
@@ -154,16 +155,14 @@ extension DMViewController: UITableViewDelegate {
     // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let directMessage = directMessages[indexPath.row]
-        
-        guard let threadCell = tableView.cellForRow(at: indexPath) as? DMListCell else {
-            return
-        }
-        
-        threadCell.messageState = .read
-        
-        
         selectedDirectMessage = directMessage
-        self.performSegue(withIdentifier: "ShowDMConversation", sender: nil)
+        
+        let threadCell = tableView.cellForRow(at: indexPath) as? DMListCell
+        threadCell?.messageState = .read
+        
+        let dataSource = DirectMessageStreamDataSource(stream: directMessage)
+        let vc = StreamViewController(dataSource: dataSource)
+        self.show(vc, sender: self)
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
