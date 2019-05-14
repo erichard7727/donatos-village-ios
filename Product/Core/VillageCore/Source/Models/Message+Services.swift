@@ -11,6 +11,10 @@ import Promises
 
 extension Message {
     
+    public func getMessagesAfterPaginated() -> Paginated<Message> {
+        return StreamsService.getMessagesPaginated(after: self)
+    }
+    
     public func getMessagesAfter(page: Int = 1) -> Promise<Messages> {
         return StreamsService.getMessages(after: self, page: page)
     }

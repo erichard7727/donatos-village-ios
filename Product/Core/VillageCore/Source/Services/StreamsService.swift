@@ -145,6 +145,19 @@ struct StreamsService {
         }
     }
     
+    static func getMessagesPaginated(of stream: Stream) -> Paginated<Message> {
+        return Paginated<Message>(fetchValues: { (page) -> Promise<PaginatedResults<Message>> in
+            return firstly {
+                let endpoint = VillageCoreAPI.streamMessages(streamId: stream.id, page: page)
+                return VillageService.shared.request(target: endpoint)
+            }.then { (json: JSON) -> PaginatedResults<Message> in
+                let messages = json["messages"].arrayValue.compactMap({ Message(from: $0) })
+                let paginatedCounts = PaginatedCounts(from: json["meta"])
+                return PaginatedResults(values: messages, counts: paginatedCounts)
+            }
+        })
+    }
+    
     static func getMessages(of stream: Stream, page: Int) -> Promise<Messages> {
         return firstly { () -> Promise<JSON> in
             let endpoint = VillageCoreAPI.streamMessages(streamId: stream.id, page: page)
@@ -153,6 +166,19 @@ struct StreamsService {
             let messages = json["messages"].arrayValue.compactMap({ Message(from: $0) })
             return messages
         }
+    }
+    
+    static func getMessagesPaginated(after message: Message) -> Paginated<Message> {
+        return Paginated<Message>(fetchValues: { (page) -> Promise<PaginatedResults<Message>> in
+            return firstly {
+                let endpoint = VillageCoreAPI.streamMessagesStartingAfter(messageId: message.id, streamId: message.streamId, page: page)
+                return VillageService.shared.request(target: endpoint)
+            }.then { (json: JSON) -> PaginatedResults<Message> in
+                let messages = json["messages"].arrayValue.compactMap({ Message(from: $0) })
+                let paginatedCounts = PaginatedCounts(from: json["meta"])
+                return PaginatedResults(values: messages, counts: paginatedCounts)
+            }
+        })
     }
     
     static func getMessages(after message: Message, page: Int) -> Promise<Messages> {

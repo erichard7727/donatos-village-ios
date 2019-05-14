@@ -33,6 +33,10 @@ public extension Stream {
         return StreamsService.getMembers(of: self)
     }
     
+    func getMessagesPaginated() -> Paginated<Message> {
+        return StreamsService.getMessagesPaginated(of: self)
+    }
+    
     func getMessages(page: Int = 1) -> Promise<Messages> {
         return StreamsService.getMessages(of: self, page: page)
     }
