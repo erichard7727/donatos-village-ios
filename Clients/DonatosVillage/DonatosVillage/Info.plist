@@ -26,6 +26,8 @@
 	<string>Used to update user profile photo and for posting content.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Used to update user profile photo and for posting content.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Used to save images to your device.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>proximanova-black-webfont.ttf</string>
