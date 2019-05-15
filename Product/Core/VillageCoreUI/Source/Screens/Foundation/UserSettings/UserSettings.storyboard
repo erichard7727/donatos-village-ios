@@ -415,25 +415,36 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="uBV-Ed-bxe" userLabel="App Version Cell">
-                                        <rect key="frame" x="0.0" y="846" width="375" height="40"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="62" id="uBV-Ed-bxe" userLabel="App Version Cell">
+                                        <rect key="frame" x="0.0" y="846" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uBV-Ed-bxe" id="6ZD-nh-QAS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Version Text Goes Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibV-nc-guU">
-                                                    <rect key="frame" x="8" y="8" width="359" height="23.5"/>
-                                                    <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nXf-Q8-Ar7">
+                                                    <rect key="frame" x="16" y="11" width="343" height="40"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="App Version Text Goes Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibV-nc-guU">
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="19"/>
+                                                            <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text="Device Push Token" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGE-sM-x6x">
+                                                            <rect key="frame" x="0.0" y="27" width="343" height="13"/>
+                                                            <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="14"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="ibV-nc-guU" secondAttribute="trailing" constant="8" id="355-kj-zQi"/>
-                                                <constraint firstItem="ibV-nc-guU" firstAttribute="leading" secondItem="6ZD-nh-QAS" secondAttribute="leading" constant="8" id="Gse-vN-Nva"/>
-                                                <constraint firstItem="ibV-nc-guU" firstAttribute="top" secondItem="6ZD-nh-QAS" secondAttribute="top" constant="8" id="Kx1-1W-0Ll"/>
-                                                <constraint firstAttribute="bottom" secondItem="ibV-nc-guU" secondAttribute="bottom" constant="8" id="gO2-AV-kdf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="nXf-Q8-Ar7" secondAttribute="trailing" id="G00-N2-Wdj"/>
+                                                <constraint firstItem="nXf-Q8-Ar7" firstAttribute="top" secondItem="6ZD-nh-QAS" secondAttribute="topMargin" id="khu-7z-49I"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nXf-Q8-Ar7" secondAttribute="bottom" id="ler-iN-GvS"/>
+                                                <constraint firstItem="nXf-Q8-Ar7" firstAttribute="leading" secondItem="6ZD-nh-QAS" secondAttribute="leadingMargin" id="qQI-Wj-aSn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -454,6 +465,7 @@
                         <outlet property="firstNameTextField" destination="np8-r8-fp8" id="6YC-tz-pRp"/>
                         <outlet property="lastNameTextField" destination="0EE-ee-OYd" id="0lR-0w-pl6"/>
                         <outlet property="phoneTextField" destination="Clo-bv-GHA" id="gVs-zv-9go"/>
+                        <outlet property="pushTokenLabel" destination="EGE-sM-x6x" id="zOj-8y-fJC"/>
                         <outlet property="titleLabel" destination="PJ2-cp-O9A" id="Xqd-2f-xP9"/>
                         <outlet property="titleTextField" destination="CI5-8p-Byo" id="cxb-1E-8Ke"/>
                         <outlet property="twitterTextField" destination="24G-mM-6V0" id="d89-Dx-BvA"/>
@@ -462,12 +474,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Py4-qr-VEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="430" y="427"/>
+            <point key="canvasLocation" x="429.60000000000002" y="426.38680659670166"/>
         </scene>
     </scenes>
     <resources>
         <image name="CameraIcon" width="53" height="53"/>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
         <image name="camera-icon" width="53" height="53"/>
         <image name="client-logo" width="130" height="130"/>
     </resources>

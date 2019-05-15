@@ -36,6 +36,12 @@ class SettingsController: UITableViewController {
             appVersionLabel.text = "\(ClientConfiguration.current.applicationName) - \(Bundle.main.vlg_markingVersion) #(\(Bundle.main.vlg_buildVersion))"
         }
     }
+    
+    @IBOutlet weak var pushTokenLabel: UILabel! {
+        didSet {
+            pushTokenLabel.text = User.current.pushToken ?? "Not Registered"
+        }
+    }
 
     weak var delegate: SettingsControllerDelegate?
     
