@@ -14,23 +14,6 @@ import Alamofire
 import AlamofireImage
 import Promises
 
-/// Int <=> NSIndexPath conversion specific to tableview.
-/// Used to tag textfields to find place in form.
-/// Formula is: (section * 100) + row  --  simple division/modulo can pull apart later.
-fileprivate extension Int {
-    var indexPathRepresentation: IndexPath {
-        let section = self / 100
-        let row = self % 100
-        return IndexPath(row: row, section: section)
-    }
-}
-
-fileprivate extension IndexPath {
-    var integerRepresentation: Int {
-        return (section * 100) + row
-    }
-}
-
 class DirectMessageStreamDataSource: StreamDataSource {
     
     override func configure(delegate: StreamDataSourceDelegate, viewController: StreamViewController, tableView: UITableView) {
