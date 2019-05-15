@@ -230,25 +230,25 @@ extension KudosListController: UITableViewDataSource {
         case .allStream:
             // Ex: Jane Smith received kudos for Teamwork from John Doe
             title.append(receiver)
-            title.append(NSAttributedString(string: " received kudos for \(kudo.achievementTitle) from ", attributes: regAttributes))
+            title.append(NSAttributedString(string: " received a \(Constants.Settings.kudosSingularShort) for \(kudo.achievementTitle) from ", attributes: regAttributes))
             title.append(sender)
             
         case .received(_):
             // Ex: John Doe gave you kudos for Teamwork
             title.append(sender)
             if currentUserId == kudo.receiver.id {
-                title.append(NSAttributedString(string: " gave you kudos for \(kudo.achievementTitle)", attributes: regAttributes))
+                title.append(NSAttributedString(string: " gave you a \(Constants.Settings.kudosSingularShort) for \(kudo.achievementTitle)", attributes: regAttributes))
             } else {
                 title.append(NSAttributedString(string: " gave ", attributes: regAttributes))
                 title.append(receiver)
-                title.append(NSAttributedString(string:  " kudos for \(kudo.achievementTitle)", attributes: regAttributes))
+                title.append(NSAttributedString(string:  " a \(Constants.Settings.kudosSingularShort) for \(kudo.achievementTitle)", attributes: regAttributes))
             }
             
         case .given(_):
             // Ex: You gave Jane Smith kudos for Teamwork
             title.append(NSAttributedString(string: "You gave ", attributes: regAttributes))
             title.append(receiver)
-            title.append(NSAttributedString(string: " kudos for \(kudo.achievementTitle)", attributes: regAttributes))
+            title.append(NSAttributedString(string: " a \(Constants.Settings.kudosSingularShort) for \(kudo.achievementTitle)", attributes: regAttributes))
             
         }
         
@@ -329,7 +329,7 @@ extension KudosListController {
             tableView?.isHidden = true
             
             if case .allStream = list! {
-                emptyLabel?.text = "There aren't any Kudos to show yet."
+                emptyLabel?.text = "There aren't any \(Constants.Settings.kudosPluralShort) to show yet."
             } else {
                 let verb: String
                 switch list! {
@@ -339,7 +339,7 @@ extension KudosListController {
                 case .given(_):
                     verb = "given"
                 }
-                emptyLabel?.text = "You have not \(verb) any Kudos yet."
+                emptyLabel?.text = "You have not \(verb) any \(Constants.Settings.kudosPluralShort) yet."
             }
             
             emptyLabel?.isHidden = false

@@ -134,7 +134,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
                 }
             }
         }.catch { [weak self] error in
-            let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem fetching eligible Achievements to give Kudos for.")
+            let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem fetching eligible Achievements to give a \(Constants.Settings.kudosSingularShort) for.")
             self?.present(alert, animated: true, completion: nil)
         }
         
@@ -164,7 +164,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
         }.then { [weak self] in
             let alert = UIAlertController(
                 title: "Success",
-                message: "Your \(receiver.displayName.flatMap({ "kudos to " + $0 }).or("kudo")) has been sent.",
+                message: "Your \(receiver.displayName.flatMap({ "\(Constants.Settings.kudosSingularShort) to " + $0 }).or(Constants.Settings.kudosSingularShort)) has been sent.",
                 preferredStyle: .alert
             )
             let giveAnother = UIAlertAction(title: "Give Another", style: .default, handler: { [weak self] _ in
@@ -172,7 +172,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
             })
             alert.addAction(giveAnother)
             
-            let myKudos = UIAlertAction(title: "My Kudos", style: .default, handler: { [weak self] _ in
+            let myKudos = UIAlertAction(title: "My \(Constants.Settings.kudosPluralShort)", style: .default, handler: { [weak self] _ in
                 self?.transitionToMyKudos()
             })
             alert.addAction(myKudos)
