@@ -74,8 +74,8 @@ final class CreateGroupViewController: UIViewController {
         }.then { group in
             group.subscribe().then { group }
         }.then { [weak self] group in
-            let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
-            vc.group = group
+            let dataSource = GroupStreamDataSource(stream: group)
+            let vc = StreamViewController(dataSource: dataSource)
             self?.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         }.catch { [weak self] _ in
             let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem creating this group. Please try again.")

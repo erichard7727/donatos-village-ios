@@ -24,6 +24,8 @@ class StreamViewController: SLKTextViewController {
     
     private var imagePicker = UIImagePickerController()
     
+    private var background: UIImageView?
+    
     // MARK: - Init
     
     init(dataSource: StreamDataSource) {
@@ -51,15 +53,25 @@ class StreamViewController: SLKTextViewController {
             LeftBarButtonBehavior(showing: .menuOrBack),
             StandardStreamEditingUIBehavior()
         ])
+        
+        if dataSource.stream.id.lowercased().starts(with: "stream") {
+            background = UIImageView(image: UIImage.named("app-background"))
+            tableView.backgroundView = background
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Update title.
-        let currentUser = User.current
-        let otherParticipants = dataSource.stream.details?.closedParties.filter({ $0.id != currentUser.personId }).compactMap({ $0.displayName })
-        self.title = otherParticipants?.joined(separator: ", ") ?? "Conversation"
+        if dataSource.stream.id.lowercased().starts(with: "dm") {
+            let currentUser = User.current
+            let otherParticipants = dataSource.stream.details?.closedParties.filter({ $0.id != currentUser.personId }).compactMap({ $0.displayName })
+            self.title = otherParticipants?.joined(separator: ", ") ?? "Conversation"
+        } else {
+            self.title = dataSource.stream.name
+        }
         
         self.textInputbar.textView.keyboardType = .default
         
@@ -86,6 +98,12 @@ class StreamViewController: SLKTextViewController {
         dataSource.streamSocket?.establishConnection()
         
         self.mediaSelection = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        background?.frame = tableView.frame
     }
     
     override func viewDidAppear(_ animated: Bool) {

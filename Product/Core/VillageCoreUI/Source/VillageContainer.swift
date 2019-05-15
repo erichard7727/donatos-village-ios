@@ -447,17 +447,11 @@ private extension VillageContainer {
     }
     
     func goToGroup(id: String) {
-        guard let groupDelegate = self.menuViewController as? GroupViewControllerDelegate else {
-            assertionFailure("Expecting menuViewController to be a GroupViewControllerDelegate!")
-            return
-        }
-
         firstly {
             return VillageCore.Stream.getBy(id)
         }.then { [weak self] stream in
-            let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
-            vc.group = stream
-            vc.delegate = groupDelegate
+            let dataSource = GroupStreamDataSource(stream: stream)
+            let vc = StreamViewController(dataSource: dataSource)
             self?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
             self?.hideMenu()
         }.catch { _ in

@@ -354,21 +354,10 @@ extension MainMenuViewController: PeopleViewControllerDelegate {
 extension MainMenuViewController: GroupMenuItemDelegate {
     
     func groupMenuItem(_ item: GroupMenuItem, didSelectGroup group: VillageCore.Stream) {
-        let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
-        vc.group = group
-        vc.delegate = self
-        sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        let dataSource = GroupStreamDataSource(stream: group)
+        let vc = StreamViewController(dataSource: dataSource)
+        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
-    }
-    
-}
-
-// MARK: - GroupViewControllerDelegate
-
-extension MainMenuViewController: GroupViewControllerDelegate {
-    
-    func didLeaveGroup(_ group: VillageCore.Stream, controller: GroupViewController) {
-        self.onGoToOtherGroups()
     }
     
 }

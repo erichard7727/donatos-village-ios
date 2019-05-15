@@ -395,7 +395,7 @@ extension DirectMessageStreamDataSource {
                     data, name, orientation, info in
                         
                     guard let imageData = data else {
-                        let alert = UIAlertController.dismissable(title: "Error", message: "Could not publish message.")
+                        let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
                         self.viewController.present(alert, animated: true, completion: nil)
                         return
                     }
@@ -416,21 +416,20 @@ extension DirectMessageStreamDataSource {
                 })
             } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 guard let imageData = image.pngData() else {
-                    let alert = UIAlertController.dismissable(title: "Error", message: "Could not publish message!")
+                    let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
                     self.viewController.present(alert, animated: true, completion: nil)
                     return
                 }
                 
                 self.send(attachment: (imageData, "image/png"))
             } else {
-                let alert = UIAlertController.dismissable(title: "Error", message: "Could not publish message!")
+                let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
                 self.viewController.present(alert, animated: true, completion: nil)
             }
         }
     }
     
 }
-
 
 class DMConversationCellConfiguartor {
     

@@ -225,8 +225,8 @@ extension OtherGroupsListViewController: UITableViewDelegate {
         firstly {
             group.subscribe()
         }.then { [weak self] in
-            let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
-            vc.group = group
+            let dataSource = GroupStreamDataSource(stream: group)
+            let vc = StreamViewController(dataSource: dataSource)
             self?.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         }.catch { [weak self] error in
             let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)

@@ -219,61 +219,10 @@
             </objects>
             <point key="canvasLocation" x="1012" y="841.97901049475274"/>
         </scene>
-        <!--Group-->
-        <scene sceneID="bm0-7i-K2Y">
-            <objects>
-                <viewController storyboardIdentifier="GroupViewController" automaticallyAdjustsScrollViewInsets="NO" id="8PE-bf-A8f" customClass="GroupViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6IQ-yR-BSc"/>
-                        <viewControllerLayoutGuide type="bottom" id="vYP-4A-q8V"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RF0-Yo-fxB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Empty State Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEV-dY-JWX">
-                                <rect key="frame" x="28" y="292" width="319" height="19"/>
-                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="0D9-Az-fEl">
-                                <rect key="frame" x="169" y="283" width="37" height="37"/>
-                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="ZEV-dY-JWX" firstAttribute="centerY" secondItem="RF0-Yo-fxB" secondAttribute="centerY" id="CYe-qj-QPT"/>
-                            <constraint firstItem="0D9-Az-fEl" firstAttribute="centerX" secondItem="RF0-Yo-fxB" secondAttribute="centerX" id="JOI-81-aVc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZEV-dY-JWX" secondAttribute="trailing" constant="12" id="X0b-Mv-MI5"/>
-                            <constraint firstItem="0D9-Az-fEl" firstAttribute="centerY" secondItem="RF0-Yo-fxB" secondAttribute="centerY" id="n82-C7-DQu"/>
-                            <constraint firstItem="ZEV-dY-JWX" firstAttribute="leading" secondItem="RF0-Yo-fxB" secondAttribute="leadingMargin" constant="12" id="q9E-0g-vRF"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Group" largeTitleDisplayMode="never" id="Imn-xq-jrZ">
-                        <barButtonItem key="rightBarButtonItem" image="settings" id="ssw-t0-w5S" userLabel="Settings">
-                            <connections>
-                                <segue destination="8lR-Wj-AJq" kind="show" identifier="GroupSettings" id="NcK-Tm-lND"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="activityIndicator" destination="0D9-Az-fEl" id="PX2-xW-Exs"/>
-                        <outlet property="emptyStateLabel" destination="ZEV-dY-JWX" id="rGa-7b-SdL"/>
-                        <outlet property="settingsBarButtonItem" destination="ssw-t0-w5S" id="3da-fF-tYL"/>
-                        <segue destination="MGV-mM-7Tz" kind="show" identifier="InviteToGroup" id="ZTI-xo-wiy"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ngc-sz-KWL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1889" y="178"/>
-        </scene>
         <!--Group Settings-->
         <scene sceneID="4kZ-aW-fCH">
             <objects>
-                <viewController id="8lR-Wj-AJq" customClass="GroupSettingsController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupSettingsController" id="8lR-Wj-AJq" customClass="GroupSettingsController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PJp-CW-FJA"/>
                         <viewControllerLayoutGuide type="bottom" id="fDd-r3-1mi"/>
@@ -757,12 +706,8 @@
         <image name="add-icon" width="24" height="24"/>
         <image name="checkmark-off" width="25" height="25"/>
         <image name="checkmark-on" width="25" height="25"/>
-        <image name="settings" width="28" height="28"/>
         <namedColor name="vlgGreen">
             <color red="0.54509803921568623" green="0.60392156862745094" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="YFT-bT-Xpk"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -43,12 +43,9 @@
 		D42FE5C222411E1700B46C8F /* SendEmailTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */; };
 		D42FE5C422411E2000B46C8F /* SendEmailTokenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */; };
 		D434D3FD2270ED09002C5EA0 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D434D3E42270ED09002C5EA0 /* Groups.storyboard */; };
-		D434D3FE2270ED09002C5EA0 /* GroupHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D434D3E62270ED09002C5EA0 /* GroupHeaderView.xib */; };
-		D434D3FF2270ED09002C5EA0 /* GroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3E72270ED09002C5EA0 /* GroupHeaderView.swift */; };
 		D434D4002270ED09002C5EA0 /* GroupSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3E92270ED09002C5EA0 /* GroupSettingsController.swift */; };
 		D434D4022270ED09002C5EA0 /* CreateGroupTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3EB2270ED09002C5EA0 /* CreateGroupTypeViewController.swift */; };
 		D434D4032270ED09002C5EA0 /* MediaPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3EC2270ED09002C5EA0 /* MediaPreviewViewController.swift */; };
-		D434D4042270ED09002C5EA0 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3ED2270ED09002C5EA0 /* GroupViewController.swift */; };
 		D434D4052270ED09002C5EA0 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3EE2270ED09002C5EA0 /* CreateGroupViewController.swift */; };
 		D434D4062270ED09002C5EA0 /* MemberSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3EF2270ED09002C5EA0 /* MemberSelectionController.swift */; };
 		D434D4072270ED09002C5EA0 /* GroupMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D3F12270ED09002C5EA0 /* GroupMessageCell.swift */; };
@@ -87,6 +84,8 @@
 		D4702EBF228A3E8A00D3DB46 /* DirectMessageStreamDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4702EBE228A3E8A00D3DB46 /* DirectMessageStreamDataSource.swift */; };
 		D4702EC2228A3EA600D3DB46 /* GroupStreamDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4702EC1228A3EA600D3DB46 /* GroupStreamDataSource.swift */; };
 		D4702EC4228A440600D3DB46 /* StreamDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4702EC3228A440600D3DB46 /* StreamDataSource.swift */; };
+		D4702ECB228C648E00D3DB46 /* GroupHeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4702ECA228C648E00D3DB46 /* GroupHeaderViewCell.xib */; };
+		D4702ECD228C658900D3DB46 /* GroupHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4702ECC228C658900D3DB46 /* GroupHeaderViewCell.swift */; };
 		D479D2FD224AE87000AFB3DA /* IndentedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D479D2FC224AE87000AFB3DA /* IndentedTextField.swift */; };
 		D47FD3F6220FB23700376D31 /* VillageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29B8220757CC0091BEFB /* VillageContainer.swift */; };
 		D47FD3F7220FB23C00376D31 /* VillageContainer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29BA220757DE0091BEFB /* VillageContainer.storyboard */; };
@@ -217,12 +216,9 @@
 		D42FE5C122411E1700B46C8F /* SendEmailTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailTokenViewController.swift; sourceTree = "<group>"; };
 		D42FE5C322411E2000B46C8F /* SendEmailTokenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendEmailTokenViewController.storyboard; sourceTree = "<group>"; };
 		D434D3E42270ED09002C5EA0 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
-		D434D3E62270ED09002C5EA0 /* GroupHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupHeaderView.xib; sourceTree = "<group>"; };
-		D434D3E72270ED09002C5EA0 /* GroupHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupHeaderView.swift; sourceTree = "<group>"; };
 		D434D3E92270ED09002C5EA0 /* GroupSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSettingsController.swift; sourceTree = "<group>"; };
 		D434D3EB2270ED09002C5EA0 /* CreateGroupTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupTypeViewController.swift; sourceTree = "<group>"; };
 		D434D3EC2270ED09002C5EA0 /* MediaPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPreviewViewController.swift; sourceTree = "<group>"; };
-		D434D3ED2270ED09002C5EA0 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		D434D3EE2270ED09002C5EA0 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		D434D3EF2270ED09002C5EA0 /* MemberSelectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberSelectionController.swift; sourceTree = "<group>"; };
 		D434D3F12270ED09002C5EA0 /* GroupMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMessageCell.swift; sourceTree = "<group>"; };
@@ -261,6 +257,8 @@
 		D4702EBE228A3E8A00D3DB46 /* DirectMessageStreamDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageStreamDataSource.swift; sourceTree = "<group>"; };
 		D4702EC1228A3EA600D3DB46 /* GroupStreamDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupStreamDataSource.swift; sourceTree = "<group>"; };
 		D4702EC3228A440600D3DB46 /* StreamDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamDataSource.swift; sourceTree = "<group>"; };
+		D4702ECA228C648E00D3DB46 /* GroupHeaderViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupHeaderViewCell.xib; sourceTree = "<group>"; };
+		D4702ECC228C658900D3DB46 /* GroupHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHeaderViewCell.swift; sourceTree = "<group>"; };
 		D479D2FC224AE87000AFB3DA /* IndentedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentedTextField.swift; sourceTree = "<group>"; };
 		D47FD3F8220FB74B00376D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D47FD3FE220FBD4700376D31 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -496,8 +494,6 @@
 		D434D3E52270ED09002C5EA0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D434D3E62270ED09002C5EA0 /* GroupHeaderView.xib */,
-				D434D3E72270ED09002C5EA0 /* GroupHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -508,7 +504,6 @@
 				D434D3E92270ED09002C5EA0 /* GroupSettingsController.swift */,
 				D434D3EB2270ED09002C5EA0 /* CreateGroupTypeViewController.swift */,
 				D434D3EC2270ED09002C5EA0 /* MediaPreviewViewController.swift */,
-				D434D3ED2270ED09002C5EA0 /* GroupViewController.swift */,
 				D434D3EE2270ED09002C5EA0 /* CreateGroupViewController.swift */,
 				D434D3EF2270ED09002C5EA0 /* MemberSelectionController.swift */,
 				D49467882286F9FC00C7F4D6 /* OtherGroupsListViewController.swift */,
@@ -521,10 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				D4F4659D2289A63B00732317 /* GroupTableViewCell.swift */,
-				D434D3F12270ED09002C5EA0 /* GroupMessageCell.swift */,
-				D434D3F22270ED09002C5EA0 /* GroupMessageCell.xib */,
 				D434D3F32270ED09002C5EA0 /* GroupSettingsTypeCell.swift */,
-				D434D3F42270ED09002C5EA0 /* GroupMessageAttachmentCell.swift */,
 				D434D3F52270ED09002C5EA0 /* GroupSettingsNameCell.swift */,
 				D434D3F62270ED09002C5EA0 /* GroupSettingsMembersCell.swift */,
 				D434D3F72270ED09002C5EA0 /* GroupSettingsSwitchCell.swift */,
@@ -532,7 +524,6 @@
 				D434D3F92270ED09002C5EA0 /* PreviewActionCell.swift */,
 				D434D3FA2270ED09002C5EA0 /* PreviewImageCell.swift */,
 				D434D3FB2270ED09002C5EA0 /* GroupPublishedContentCell.swift */,
-				D434D3FC2270ED09002C5EA0 /* GroupMessageAttachmentCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -627,6 +618,12 @@
 		D4702EC0228A3E9200D3DB46 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				D4702ECA228C648E00D3DB46 /* GroupHeaderViewCell.xib */,
+				D4702ECC228C658900D3DB46 /* GroupHeaderViewCell.swift */,
+				D434D3F12270ED09002C5EA0 /* GroupMessageCell.swift */,
+				D434D3F22270ED09002C5EA0 /* GroupMessageCell.xib */,
+				D434D3F42270ED09002C5EA0 /* GroupMessageAttachmentCell.swift */,
+				D434D3FC2270ED09002C5EA0 /* GroupMessageAttachmentCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1052,6 +1049,7 @@
 				D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */,
 				D4A697782264010C00ECC0A8 /* ItemRedeemedModal.xib in Resources */,
 				D434D4122270ED09002C5EA0 /* GroupMessageAttachmentCell.xib in Resources */,
+				D4702ECB228C648E00D3DB46 /* GroupHeaderViewCell.xib in Resources */,
 				D4D3116E226F53C8006C3C3F /* GroupMenuItem.xib in Resources */,
 				D434D4082270ED09002C5EA0 /* GroupMessageCell.xib in Resources */,
 				D4F8A5952210B6DE005FDB6A /* proximanova-reg-webfont.ttf in Resources */,
@@ -1064,7 +1062,6 @@
 				D4EA50852279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.xib in Resources */,
 				D43663CE222A13F2006354F2 /* ForgotPasswordViewController.storyboard in Resources */,
 				D4164B762268011A0025E6E9 /* PersonCell.xib in Resources */,
-				D434D3FE2270ED09002C5EA0 /* GroupHeaderView.xib in Resources */,
 				D4F8A5992210B6DE005FDB6A /* proximanova-sbold-webfont.ttf in Resources */,
 				D4B4E86D223B355B002DED70 /* TabItem.xib in Resources */,
 				D460B821224AC434003DCA2C /* Notices.storyboard in Resources */,
@@ -1139,12 +1136,12 @@
 				D460B81E224AC434003DCA2C /* NoticeAcknowledgementsViewController.swift in Sources */,
 				D4EA5090227BC03900BE7E52 /* TintedSearchBar.swift in Sources */,
 				D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */,
-				D434D4042270ED09002C5EA0 /* GroupViewController.swift in Sources */,
 				D4164B752268011A0025E6E9 /* PersonCell.swift in Sources */,
 				D4F8A57B22109FAF005FDB6A /* SideMenuController.swift in Sources */,
 				D434D4032270ED09002C5EA0 /* MediaPreviewViewController.swift in Sources */,
 				D460B820224AC434003DCA2C /* NoticeListViewController.swift in Sources */,
 				D42CF739227BDABA003D8CF4 /* PublishedContentCell.swift in Sources */,
+				D4702ECD228C658900D3DB46 /* GroupHeaderViewCell.swift in Sources */,
 				D4B4E893223B3971002DED70 /* ParentScrollView.swift in Sources */,
 				D4A697762264010000ECC0A8 /* ItemRedeemedModal.swift in Sources */,
 				D4F8A57F22109FE8005FDB6A /* UIViewController+SideMenuController.swift in Sources */,
@@ -1177,7 +1174,6 @@
 				D43663D2222A24BE006354F2 /* UIButton+Loading.swift in Sources */,
 				D460B81D224AC434003DCA2C /* ViewNoticeViewController.swift in Sources */,
 				D4D31169226F5243006C3C3F /* NibView.swift in Sources */,
-				D434D3FF2270ED09002C5EA0 /* GroupHeaderView.swift in Sources */,
 				D4B4E859223AE980002DED70 /* ContactPersonTableViewCell.swift in Sources */,
 				D460B81C224AC434003DCA2C /* NoticeAcknowledgementCell.swift in Sources */,
 				D4B4E863223AFFD6002DED70 /* PersonProfileHeaderViewController.swift in Sources */,

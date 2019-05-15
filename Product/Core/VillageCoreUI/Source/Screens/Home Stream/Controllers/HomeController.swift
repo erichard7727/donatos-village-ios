@@ -436,9 +436,8 @@ extension HomeController: UICollectionViewDelegate {
                         assertionFailure()
                         return
                     }
-                    let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
-                    vc.group = selectedGroup
-                    vc.delegate = self
+                    let dataSource = GroupStreamDataSource(stream: selectedGroup)
+                    let vc = StreamViewController(dataSource: dataSource)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else {
@@ -728,17 +727,6 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
         return 0
     }
 }
-
-// MARK: - GroupViewControllerDelegate
-
-extension HomeController: GroupViewControllerDelegate {
-    
-    func didLeaveGroup(_ group: VillageCore.Stream, controller: GroupViewController) {
-        self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-}
-
 
 extension String {
     //get height of a label
