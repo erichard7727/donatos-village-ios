@@ -242,7 +242,7 @@
                                                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uff-NS-cLD">
                                                                                 <rect key="frame" x="258.66666666666669" y="11" width="28" height="28"/>
                                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <state key="normal" image="menu-expand"/>
+                                                                                <state key="normal" image="menu-collapse"/>
                                                                                 <state key="selected" image="menu-collapse"/>
                                                                             </button>
                                                                         </subviews>
