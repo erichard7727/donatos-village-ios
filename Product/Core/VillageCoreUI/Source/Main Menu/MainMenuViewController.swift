@@ -267,7 +267,7 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToSchedular(_ sender: Any? = nil) {
-        let url = URL(string: "https://dptfs-donatos365.msappproxy.net/launchpages/LaborScheduling/IndexSecure.aspx")!
+        let url = Constants.URL.schedulerLink
         let sfvc = SFSafariViewController(url: url)
         sfvc.preferredBarTintColor = UINavigationBar.appearance().barTintColor
         sfvc.preferredControlTintColor = UINavigationBar.appearance().tintColor

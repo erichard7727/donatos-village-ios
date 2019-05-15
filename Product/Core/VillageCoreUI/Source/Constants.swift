@@ -31,4 +31,8 @@ extension Constants {
         static let manageNoticesEnabled = false
         static let createGroupsEnabled = true
     }
+    
+    struct URL {
+        static let schedulerLink = Foundation.URL(string: "https://schedule.donatos.com/schedule/index")!
+    }
 }
