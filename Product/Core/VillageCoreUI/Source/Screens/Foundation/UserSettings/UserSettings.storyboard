@@ -425,14 +425,8 @@
                                                     <rect key="frame" x="16" y="11" width="343" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="App Version Text Goes Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibV-nc-guU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="19"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
                                                             <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text="Device Push Token" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGE-sM-x6x">
-                                                            <rect key="frame" x="0.0" y="27" width="343" height="13"/>
-                                                            <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="14"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -464,7 +458,6 @@
                         <outlet property="firstNameTextField" destination="np8-r8-fp8" id="6YC-tz-pRp"/>
                         <outlet property="lastNameTextField" destination="0EE-ee-OYd" id="0lR-0w-pl6"/>
                         <outlet property="phoneTextField" destination="Clo-bv-GHA" id="gVs-zv-9go"/>
-                        <outlet property="pushTokenLabel" destination="EGE-sM-x6x" id="zOj-8y-fJC"/>
                         <outlet property="titleLabel" destination="PJ2-cp-O9A" id="Xqd-2f-xP9"/>
                         <outlet property="titleTextField" destination="CI5-8p-Byo" id="cxb-1E-8Ke"/>
                         <outlet property="twitterTextField" destination="24G-mM-6V0" id="d89-Dx-BvA"/>

@@ -36,12 +36,6 @@ class SettingsController: UITableViewController {
         }
     }
     
-    @IBOutlet weak var pushTokenLabel: UILabel! {
-        didSet {
-            pushTokenLabel.text = User.current.pushToken ?? "Not Registered"
-        }
-    }
-
     weak var delegate: SettingsControllerDelegate?
     
     var person: Person!
