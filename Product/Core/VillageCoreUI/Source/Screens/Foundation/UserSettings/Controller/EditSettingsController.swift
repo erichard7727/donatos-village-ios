@@ -114,8 +114,11 @@ extension EditSettingsController: SettingsControllerDelegate {
         present(actionSheetController, animated: true, completion: nil)
     }
     
-    func savePressed(person: Person) {
-        var mutablePerson = person
+    @IBAction func savePressed(_ sender: Any? = nil) {
+        guard var mutablePerson = settingsController.person else {
+            assertionFailure()
+            return
+        }
         
         if let firstName = settingsController.firstNameTextField.text, !firstName.isEmpty {
             mutablePerson.firstName = firstName
