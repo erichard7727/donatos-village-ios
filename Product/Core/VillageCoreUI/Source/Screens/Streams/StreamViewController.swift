@@ -85,17 +85,18 @@ class StreamViewController: SLKTextViewController {
                 dataSource.oldMessages.fetchValues(at: [])
             } else {
 //                loadingGroupsContainer.isHidden = true
-                NotificationCenter.default.post(
-                    name: Notification.Name.Stream.IsViewingDirectMessageConversation,
-                    object: self,
-                    userInfo: [
-                        Notification.Name.Stream.directMessageConversationKey: dataSource.stream,
-                    ]
-                )
             }
         }
         
         dataSource.streamSocket?.establishConnection()
+        
+        NotificationCenter.default.post(
+            name: Notification.Name.Stream.IsViewingDirectMessageConversation,
+            object: self,
+            userInfo: [
+                Notification.Name.Stream.directMessageConversationKey: dataSource.stream,
+            ]
+        )
         
         self.mediaSelection = false
     }
