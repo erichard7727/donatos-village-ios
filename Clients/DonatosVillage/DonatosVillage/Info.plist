@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Donatos Village</string>
+	<string>Pepp Talk</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,10 +24,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to update user profile photo and for posting content.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Used to update user profile photo and for posting content.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Used to save images to your device.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to update user profile photo and for posting content.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>proximanova-black-webfont.ttf</string>
