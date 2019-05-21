@@ -354,10 +354,12 @@ extension MainMenuViewController: PeopleViewControllerDelegate {
 extension MainMenuViewController: GroupMenuItemDelegate {
     
     func groupMenuItem(_ item: GroupMenuItem, didSelectGroup group: VillageCore.Stream) {
-        let dataSource = GroupStreamDataSource(stream: group)
-        let vc = StreamViewController(dataSource: dataSource)
-        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
-        self.sideMenuController?.hideMenu()
+        group.ensureHasDetails { (group) in
+            let dataSource = GroupStreamDataSource(stream: group)
+            let vc = StreamViewController(dataSource: dataSource)
+            self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+            self.sideMenuController?.hideMenu()
+        }
     }
     
 }

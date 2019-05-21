@@ -109,3 +109,20 @@ public extension Sequence where Element == Stream {
 
 }
 
+public extension Stream {
+    
+    func ensureHasDetails(then perform: @escaping (VillageCore.Stream) -> Void) {
+        if self.hasDetails {
+            perform(self)
+        } else {
+            firstly {
+                self.getDetails()
+            }.then { groupWithDetails in
+                perform(groupWithDetails)
+            }.catch { (error) in
+                perform(self)
+            }
+        }
+    }
+    
+}

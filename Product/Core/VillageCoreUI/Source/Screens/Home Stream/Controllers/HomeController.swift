@@ -436,9 +436,20 @@ extension HomeController: UICollectionViewDelegate {
                         assertionFailure()
                         return
                     }
-                    let dataSource = GroupStreamDataSource(stream: selectedGroup)
-                    let vc = StreamViewController(dataSource: dataSource)
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                    func transition(to group: VillageCore.Stream) {
+                        let dataSource = GroupStreamDataSource(stream: group)
+                        let vc = StreamViewController(dataSource: dataSource)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                    firstly {
+                        selectedGroup.getDetails()
+                    }.then { groupWithDetails in
+                        transition(to: groupWithDetails)
+                    }.catch { (error) in
+                        transition(to: selectedGroup)
+                    }
                 }
             } else {
                 let vc = UIStoryboard(name: "OtherGroupsListViewController", bundle: Constants.bundle).instantiateInitialViewController() as! OtherGroupsListViewController

@@ -54,6 +54,10 @@ public struct Stream: Hashable {
     public let name: String
     public var details: Details?
     
+    public var hasDetails: Bool {
+        return details != nil
+    }
+    
     public static func == (lhs: Stream, rhs: Stream) -> Bool {
         return lhs.id == rhs.id
     }
