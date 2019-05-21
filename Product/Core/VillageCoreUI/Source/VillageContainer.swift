@@ -151,6 +151,8 @@ extension VillageContainer: UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         registerForPushNotifications(shouldRequestAuthorization: false)
         
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         return true
     }
     
