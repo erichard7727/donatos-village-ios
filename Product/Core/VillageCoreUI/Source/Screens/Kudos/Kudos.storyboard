@@ -142,7 +142,7 @@
                         <viewControllerLayoutGuide type="bottom" id="X6y-L7-NVj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eq2-l4-Sdv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GC-Yg-BSp" userLabel="Tab Container">
@@ -419,6 +419,7 @@
                         <outlet property="reasonTextView" destination="AOa-p0-V26" id="gs9-jC-qRv"/>
                         <outlet property="recipientTextView" destination="3ws-sL-7Bt" id="mwF-9g-LGH"/>
                         <outlet property="scrollView" destination="Dxd-Ip-V7b" id="1N4-x9-57d"/>
+                        <outlet property="submitButton" destination="dGu-Fi-3bU" id="jja-nl-Fdt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEi-F8-7Gv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -535,7 +536,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cbc-1I-IVi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dsV-zt-fSk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xW0-05-IHg" customClass="TabItemView" customModule="VillageCoreUI" customModuleProvider="target">

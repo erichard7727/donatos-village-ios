@@ -52,7 +52,11 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
         }
     }
     
-    @IBOutlet fileprivate weak var submitButton: UIButton!
+    @IBOutlet fileprivate weak var submitButton: UIButton! {
+        didSet {
+            submitButton.setTitle("Give " + Constants.Settings.kudosSingularShort, for: .normal)
+        }
+    }
     
     internal var keyboardObservers: [NSObjectProtocol]?
     
