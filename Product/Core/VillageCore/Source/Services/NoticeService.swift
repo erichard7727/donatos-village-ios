@@ -23,12 +23,24 @@ struct NoticeService {
         return self.getNotices(.all, page: page)
     }
     
+    static func getNoticesAndNewsPaginated() -> Paginated<Notice> {
+        return self.getNoticesPaginated(.all)
+    }
+    
     static func getNotices(page: Int = 1) -> Promise<Notices> {
         return self.getNotices(.notice, page: page)
     }
     
+    static func getNoticesPaginated(page: Int = 1) -> Paginated<Notice> {
+        return self.getNoticesPaginated(.notice)
+    }
+    
     static func getNews(page: Int = 1) -> Promise<Notices> {
         return self.getNotices(.news, page: page)
+    }
+    
+    static func getNewsPaginated() -> Paginated<Notice> {
+        return self.getNoticesPaginated(.news)
     }
     
     private static func getNotices(_ noticeType: VillageCoreAPI.NoticeType, page: Int = 1) -> Promise<Notices> {
@@ -39,6 +51,19 @@ struct NoticeService {
             let notices = json["content"].arrayValue.compactMap({ Notice(from: $0) })
             return notices
         }
+    }
+    
+    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType) -> Paginated<Notice> {
+        return Paginated<Notice>(fetchValues: { (page) -> Promise<PaginatedResults<Notice>> in
+            return firstly {
+                let notices = VillageCoreAPI.notices(noticeType, page: page)
+                return VillageService.shared.request(target: notices)
+            }.then { (json: JSON) -> PaginatedResults<Notice> in
+                let notices = json["content"].arrayValue.compactMap({ Notice(from: $0) })
+                let paginatedCounts = PaginatedCounts(from: json["meta"])
+                return PaginatedResults(values: notices, counts: paginatedCounts)
+            }
+        })
     }
     
     public static func detailRequest(notice: Notice) throws -> URLRequest {

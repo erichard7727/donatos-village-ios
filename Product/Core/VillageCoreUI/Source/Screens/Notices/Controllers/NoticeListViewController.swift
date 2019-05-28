@@ -298,8 +298,6 @@ extension NoticeListViewController: UITableViewDataSource {
             cell.newsAuthorLabel.text = notice.person.displayName
             //cell.newsDescriptionLabel.text = notice.body
             cell.newsId = notice.id
-            cell.activityIndicator.startAnimating()
-            cell.activityIndicator.alpha = 1
             cell.thumbnailImageURL = notice.mediaAttachments
                 .first(where: { $0.isThumbnailImage })
                 .flatMap({ $0.url })

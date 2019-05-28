@@ -49,6 +49,10 @@ public extension Sequence where Element == Notice {
         return NoticeService.getNoticesAndNews(page: page)
     }
     
+    static func allNoticesAndNewsPaginated() -> Paginated<Notice> {
+        return NoticeService.getNoticesAndNewsPaginated()
+    }
+    
     /// Extends typealias `Notices` to fetch just notice items.
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
@@ -57,12 +61,20 @@ public extension Sequence where Element == Notice {
         return NoticeService.getNotices(page: page)
     }
     
+    static func allNoticesPaginated() -> Paginated<Notice> {
+        return NoticeService.getNoticesPaginated()
+    }
+    
     /// Extends typealias `Notices` to fetch just news items.
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Notices` (only News types)
     static func allNews(page: Int = 1) -> Promise<Notices> {
         return NoticeService.getNews(page: page)
+    }
+    
+    static func allNewsPaginated() -> Paginated<Notice> {
+        return NoticeService.getNewsPaginated()
     }
     
 }

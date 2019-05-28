@@ -22,7 +22,7 @@ public var villageCoreAPIDateFormatter: DateFormatter = {
     return formatter
 }()
 
-fileprivate let defaultPageSize = 50
+fileprivate let defaultPageSize = 25 //50
 
 /// Describes all of the Village Core API Endpoints
 ///
