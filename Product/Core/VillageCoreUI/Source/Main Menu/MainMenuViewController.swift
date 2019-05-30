@@ -196,7 +196,7 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToNotices(_ sender: Any? = nil) {
-        let vc = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as! Notice2ListViewController
+        let vc = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as! NoticeListViewController
         self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }

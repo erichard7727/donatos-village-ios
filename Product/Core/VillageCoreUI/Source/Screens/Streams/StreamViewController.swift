@@ -186,10 +186,6 @@ class StreamViewController: SLKTextViewController {
         
         super.didPressRightButton(sender)
     }
-    
-    deinit {
-        print("deinit")
-    }
 }
 
 // MARK: - Private Methods

@@ -12,7 +12,7 @@ import SwiftyJSON
 
 public extension Notification.Name {
     struct Notice {
-        /// Posted whenever User.current changes.
+        /// Posted whenever a notice is acknowledged.
         public static let WasAcknowledged = Notification.Name(rawValue: "com.dynamit.villageCore.notification.name.notice.wasAcknowledged")
     }
 }
@@ -43,37 +43,22 @@ public extension Sequence where Element == Notice {
     
     /// Extends typealias `Notices` to fetch all notices and news items.
     ///
-    /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Notices` (Notice and News types)
-    static func allNoticesAndNews(page: Int = 1) -> Promise<Notices> {
-        return NoticeService.getNoticesAndNews(page: page)
-    }
-    
-    static func allNoticesAndNewsPaginated() -> Paginated<Notice> {
+    static func allNoticesAndNewsPaginated() -> SectionedPaginated<Notice> {
         return NoticeService.getNoticesAndNewsPaginated()
     }
     
     /// Extends typealias `Notices` to fetch just notice items.
     ///
-    /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Notices` (only Notice types)
-    static func allNotices(page: Int = 1) -> Promise<Notices> {
-        return NoticeService.getNotices(page: page)
-    }
-    
-    static func allNoticesPaginated() -> Paginated<Notice> {
+    static func allNoticesPaginated() -> SectionedPaginated<Notice> {
         return NoticeService.getNoticesPaginated()
     }
     
     /// Extends typealias `Notices` to fetch just news items.
     ///
-    /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Notices` (only News types)
-    static func allNews(page: Int = 1) -> Promise<Notices> {
-        return NoticeService.getNews(page: page)
-    }
-    
-    static func allNewsPaginated() -> Paginated<Notice> {
+    static func allNewsPaginated() -> SectionedPaginated<Notice> {
         return NoticeService.getNewsPaginated()
     }
     

@@ -462,7 +462,7 @@ private extension VillageContainer {
     }
     
     func goToNotices() {
-        let vc = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as! Notice2ListViewController
+        let vc = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as! NoticeListViewController
         self.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.hideMenu()
     }
