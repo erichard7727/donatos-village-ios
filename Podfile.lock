@@ -60,6 +60,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.7.0):
     - GoogleUtilities/Logger
+  - KeychainAccess (3.2.0)
   - Moya (13.0.0):
     - Moya/Core (= 13.0.0)
   - Moya/Core (13.0.0):
@@ -87,6 +88,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - Fabric
   - Firebase/Core
+  - KeychainAccess
   - Moya
   - Nantes
   - PromisesSwift
@@ -109,6 +111,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - GoogleAppMeasurement
     - GoogleUtilities
+    - KeychainAccess
     - Moya
     - nanopb
     - Nantes
@@ -142,6 +145,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
   GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
+  KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
   Moya: 161263550064ff8a4948e8ff63137fd72a876292
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Nantes: 85db7af961c30e5116ffa6ac3f74f790b5f23d90
@@ -152,6 +156,6 @@ SPEC CHECKSUMS:
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 0839e7e6a44a8b127d64df5d3a1b7f4d216aadfc
+PODFILE CHECKSUM: 5aa14465d98b97018233f4df242fca1117887521
 
 COCOAPODS: 1.6.1

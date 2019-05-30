@@ -21,6 +21,7 @@ def core_pods
   pod 'SwiftyJSON'
   pod 'SwiftWebSocket', :git => 'https://github.com/tidwall/SwiftWebSocket', :branch => 'master'
   pod 'Differ'
+  pod 'KeychainAccess'
 end
 
 def core_ui_pods
