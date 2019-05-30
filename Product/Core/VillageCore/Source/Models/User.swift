@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import KeychainAccess
 
 public extension Notification.Name {
     struct User {
@@ -32,6 +33,8 @@ public class User {
     
     public init(identity: String) {
         self.identity = identity
+        let bundleIdentifier = Bundle.main.bundleIdentifier!
+        self.keychain = Keychain(service: "\(bundleIdentifier).\(identity)").accessibility(.afterFirstUnlock)
     }
     
     public static var guest: User = { return User() }()
@@ -39,6 +42,8 @@ public class User {
     public var isGuest: Bool {
         return self === User.guest
     }
+    
+    internal var keychain: Keychain?
     
 }
 
@@ -62,7 +67,16 @@ fileprivate extension User {
         }
         // create a User object with the stored identity (if one exists),
         // the corresponding keychain will be automatically populated
-        return User(identity: loggedInIdentity)
+        let savedUser = User(identity: loggedInIdentity)
+        
+        guard !(savedUser.keychain?.allKeys() ?? []).isEmpty else {
+            // the user was logged in to a previous version of the app without
+            // this keychain or the keychain data is not valid
+            UserDefaults.standard.removeObject(forKey: "loggedInIdentity")
+            return User.guest
+        }
+        
+        return savedUser
     }
     
     private static func save(_ user: User) {

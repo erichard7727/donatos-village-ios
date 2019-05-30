@@ -7,22 +7,17 @@
 //
 
 import Foundation
+import KeychainAccess
 
 // MARK: - Keychain-Backed Properties
 
 extension User {
     
-    private var keychain: UserDefaults {
-        #warning("TODO - replace user defaults for keychain")
-        return UserDefaults.standard
-    }
-    
     public var diagnosticId: String {
         get {
-            guard let diagnosticId = keychain.string(forKey: "diagnosticId") else {
+            guard let diagnosticId = keychain?["diagnosticId"] else {
                 let uuid = UUID().uuidString
-                keychain.setValue(uuid, forKey: "diagnosticId")
-                keychain.synchronize()
+                keychain?["diagnosticId"] = uuid
                 return uuid
             }
             return diagnosticId
@@ -30,131 +25,117 @@ extension User {
     }
     
     public var password: String? {
-        get { return keychain.string(forKey: "password") }
-        set { keychain.setValue(newValue, forKey: "password") }
+        get { return keychain?["password"] }
+        set { keychain?["password"] = newValue }
     }
     
     public var xsrfToken: String? {
-        get { return keychain.string(forKey: "xsrfToken") }
-        set { keychain.setValue(newValue, forKey: "xsrfToken") }
+        get { return keychain?["xsrfToken"] }
+        set { keychain?["xsrfToken"] = newValue }
     }
     
     public var personId: Int64 {
         get {
-            guard let personId = keychain.object(forKey: "personId") as? Int64 else {
+            let personIdString = keychain?["personId"] ?? ""
+            guard let personId = Int64(personIdString) else {
                 assertionFailure("Programmer error! Property not available until login is called for the first time.")
                 return -1
             }
             return personId
         }
         set {
-            keychain.set(newValue, forKey: "personId")
+            keychain?["personId"] = String(newValue)
         }
     }
     
     public var emailAddress: String {
         get {
-            guard let emailAddress = keychain.string(forKey: "emailAddress") else {
+            guard let emailAddress = keychain?["emailAddress"] else {
                 assertionFailure("Programmer error! Property not available until login is called for the first time.")
                 return ""
             }
             return emailAddress
         }
         set {
-            keychain.set(newValue, forKey: "emailAddress")
+            keychain?["emailAddress"] = newValue
         }
     }
     
     public var displayName: String {
         get {
-            guard let displayName = keychain.string(forKey: "displayName") else {
+            guard let displayName = keychain?["displayName"] else {
                 return "Guest"
             }
             return displayName
         }
         set {
-            keychain.set(newValue, forKey: "displayName")
+            keychain?["displayName"] = newValue
         }
     }
     
     public var avatarURL: URL? {
         get {
-            guard let avatarURL = keychain.url(forKey: "avatarURL") else {
+            let avatarURLString = keychain?["avatarURL"] ?? ""
+            guard let avatarURL = URL(string: avatarURLString) else {
                 return nil
             }
             return avatarURL
         }
         set {
-            keychain.set(newValue, forKey: "avatarURL")
+            keychain?["avatarURL"] = newValue?.absoluteString
         }
     }
     
     public var deactivated: Bool {
         get {
-            guard keychain.object(forKey: "deactivated") != nil else {
+            let stringValue = keychain?["deactivated"] ?? ""
+            guard let isDeactivated = Bool(stringValue) else {
                 // default value
                 return false
             }
-            return keychain.bool(forKey: "deactivated")
+            return isDeactivated
         }
         set {
-            keychain.set(newValue, forKey: "deactivated")
+            keychain?["deactivated"] = String(newValue)
         }
     }
     
     public var lastLoginDate: String? {
         get {
-            return keychain.string(forKey: "lastLoginDate")
+            return keychain?["lastLoginDate"]
         }
         set {
-            keychain.set(newValue, forKey: "lastLoginDate")
+            keychain?["lastLoginDate"] = newValue
         }
     }
     
     public var lastUpdatedDate: String? {
         get {
-            return keychain.string(forKey: "lastUpdatedDate")
+            return keychain?["lastUpdatedDate"]
         }
         set {
-            keychain.set(newValue, forKey: "lastUpdatedDate")
+            keychain?["lastUpdatedDate"] = newValue
         }
     }
     
     public var securityPolicies: SecurityPolicies {
         get {
-            let rawValue = (keychain.object(forKey: "securityPolicies") as? NSNumber)?.int64Value ?? 0
+            let securityPoliciesString = keychain?["securityPolicies"] ?? ""
+            let rawValue = Int64(securityPoliciesString) ?? 0
             return SecurityPolicies(rawValue: rawValue)
         }
         set {
-            keychain.set(NSNumber(value: newValue.rawValue), forKey: "securityPolicies")
+            keychain?["securityPolicies"] = String(newValue.rawValue)
         }
     }
     
     public var pushToken: String? {
         get {
-            return keychain.string(forKey: "pushToken")
+            return keychain?["pushToken"]
         }
         set {
-            keychain.set(newValue, forKey: "pushToken")
+            keychain?["pushToken"] = newValue
         }
-    }
-    
-    public func removeAll() {
-        let keys: [String] = [
-            "diagnosticId",
-            "password",
-            "xsrfToken",
-            "personId",
-            "emailAddress",
-            "displayName",
-            "avatarURL",
-            "deactivated",
-            "lastLoginDate",
-            "lastUpdatedDate",
-            "securityPolicies",
-            "pushToken",
-        ]
-        keys.forEach({ keychain.removeObject(forKey: $0) })
     }
     
 }

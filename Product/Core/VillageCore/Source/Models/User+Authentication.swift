@@ -83,8 +83,8 @@ extension User {
     }
     
     @discardableResult public func logout() -> Promise<User> {
-        func resetUserToGuest() -> User {
-            self.removeAll()
+        func resetUserToGuest() throws -> User {
+            try self.keychain?.removeAll()
             User.current = User.guest
             return User.current
         }
@@ -92,9 +92,9 @@ extension User {
         return firstly {
             AuthenticationService.logout(user: self)
         }.then {
-            return resetUserToGuest()
+            return try resetUserToGuest()
         }.recover { _ in
-            return resetUserToGuest()
+            return try resetUserToGuest()
         }
     }
     
