@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16107B190BA50D2B2CC0D8C4 /* Pods_VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CA969EBAEF01C869F0AEDC /* Pods_VillageCoreUI.framework */; };
 		D411BC3B2247B3EE003D2F08 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC332247B3EE003D2F08 /* SettingsController.swift */; };
 		D411BC3C2247B3EE003D2F08 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC342247B3EE003D2F08 /* EditSettingsController.swift */; };
 		D411BC3D2247B3EE003D2F08 /* UserSettingsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC352247B3EE003D2F08 /* UserSettingsHeaderController.swift */; };
@@ -91,6 +90,7 @@
 		D47FD3F9220FB74B00376D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D47FD3F8220FB74B00376D31 /* Assets.xcassets */; };
 		D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD3FE220FBD4700376D31 /* Constants.swift */; };
 		D47FD402220FC08700376D31 /* Image+Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47FD401220FC08700376D31 /* Image+Named.swift */; };
+		D492E77F22A31A5C004DAA2F /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492E77A22A3197E004DAA2F /* VillageCore.framework */; };
 		D49467872286F81C00C7F4D6 /* TintedSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49467862286F81C00C7F4D6 /* TintedSearchController.swift */; };
 		D49467892286F9FC00C7F4D6 /* OtherGroupsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49467882286F9FC00C7F4D6 /* OtherGroupsListViewController.swift */; };
 		D494678B2286FCC900C7F4D6 /* OtherGroupsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D494678A2286FCC900C7F4D6 /* OtherGroupsListViewController.storyboard */; };
@@ -115,7 +115,6 @@
 		D4A6977E226411DF00ECC0A8 /* LeaderboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E877223B3751002DED70 /* LeaderboardTableViewController.swift */; };
 		D4A6977F226411DF00ECC0A8 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E878223B3751002DED70 /* LeaderboardViewController.swift */; };
 		D4A697822264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */; };
-		D4AE68792242A5F200A3FB25 /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AE68782242A5F200A3FB25 /* VillageCore.framework */; };
 		D4B4E853223AE980002DED70 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E848223AE980002DED70 /* PeopleViewController.swift */; };
 		D4B4E858223AE980002DED70 /* Directory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E84E223AE980002DED70 /* Directory.storyboard */; };
 		D4B4E859223AE980002DED70 /* ContactPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E850223AE980002DED70 /* ContactPersonTableViewCell.swift */; };
@@ -177,10 +176,37 @@
 		D4F8A5982210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A5902210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf */; };
 		D4F8A5992210B6DE005FDB6A /* proximanova-sbold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4F8A5912210B6DE005FDB6A /* proximanova-sbold-webfont.ttf */; };
 		D4F8A59C2210D556005FDB6A /* KeyboardAwareScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A59B2210D556005FDB6A /* KeyboardAwareScrollView.swift */; };
+		F31181246D70E565DF16BFE1 /* Pods_VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3675990274C31446868CE64C /* Pods_VillageCoreUI.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D492E77922A3197E004DAA2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D492E77422A3197E004DAA2F /* VillageCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D4CC2986220754850091BEFB;
+			remoteInfo = VillageCore;
+		};
+		D492E77B22A3197E004DAA2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D492E77422A3197E004DAA2F /* VillageCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D4CC298F220754850091BEFB;
+			remoteInfo = VillageCoreTests;
+		};
+		D492E77D22A3198D004DAA2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D492E77422A3197E004DAA2F /* VillageCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D4CC2985220754850091BEFB;
+			remoteInfo = VillageCore;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		08CA969EBAEF01C869F0AEDC /* Pods_VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		296AE51F8D70009B1EB7FC93 /* Pods-VillageCoreUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.debug.xcconfig"; path = "Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.debug.xcconfig"; sourceTree = "<group>"; };
+		3675990274C31446868CE64C /* Pods_VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92C9A6D1A4C71EB1F82DBA61 /* Pods-VillageCoreUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.release.xcconfig"; path = "Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.release.xcconfig"; sourceTree = "<group>"; };
 		D411BC332247B3EE003D2F08 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D411BC342247B3EE003D2F08 /* EditSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
 		D411BC352247B3EE003D2F08 /* UserSettingsHeaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsHeaderController.swift; sourceTree = "<group>"; };
@@ -262,13 +288,13 @@
 		D47FD3F8220FB74B00376D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D47FD3FE220FBD4700376D31 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D47FD401220FC08700376D31 /* Image+Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Named.swift"; sourceTree = "<group>"; };
+		D492E77422A3197E004DAA2F /* VillageCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VillageCore.xcodeproj; path = ../VillageCore/VillageCore.xcodeproj; sourceTree = "<group>"; };
 		D49467862286F81C00C7F4D6 /* TintedSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedSearchController.swift; sourceTree = "<group>"; };
 		D49467882286F9FC00C7F4D6 /* OtherGroupsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGroupsListViewController.swift; sourceTree = "<group>"; };
 		D494678A2286FCC900C7F4D6 /* OtherGroupsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OtherGroupsListViewController.storyboard; sourceTree = "<group>"; };
 		D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulUserInterface.swift; sourceTree = "<group>"; };
 		D4990FFC229C63A800DE2E73 /* NoticeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeListViewController.swift; sourceTree = "<group>"; };
 		D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodatesKeyboardBehavior.swift; sourceTree = "<group>"; };
-		D4AE68782242A5F200A3FB25 /* VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B4E847223AE980002DED70 /* InvitePersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitePersonController.swift; sourceTree = "<group>"; };
 		D4B4E848223AE980002DED70 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		D4B4E84A223AE980002DED70 /* ContactPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPersonViewController.swift; sourceTree = "<group>"; };
@@ -352,8 +378,6 @@
 		D4F8A5902210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-regitalic-webfont.ttf"; sourceTree = "<group>"; };
 		D4F8A5912210B6DE005FDB6A /* proximanova-sbold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proximanova-sbold-webfont.ttf"; sourceTree = "<group>"; };
 		D4F8A59B2210D556005FDB6A /* KeyboardAwareScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareScrollView.swift; sourceTree = "<group>"; };
-		E65A6BC3DE469A31F8B34075 /* Pods-VillageCoreUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.debug.xcconfig"; sourceTree = "<group>"; };
-		E791F78DD5D7216E0781012C /* Pods-VillageCoreUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,21 +385,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4AE68792242A5F200A3FB25 /* VillageCore.framework in Frameworks */,
-				16107B190BA50D2B2CC0D8C4 /* Pods_VillageCoreUI.framework in Frameworks */,
+				D492E77F22A31A5C004DAA2F /* VillageCore.framework in Frameworks */,
+				F31181246D70E565DF16BFE1 /* Pods_VillageCoreUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C58A5A7FC0B38B7106A2BF9 /* Pods */ = {
+		A250009B28DE177DE27511AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E65A6BC3DE469A31F8B34075 /* Pods-VillageCoreUI.debug.xcconfig */,
-				E791F78DD5D7216E0781012C /* Pods-VillageCoreUI.release.xcconfig */,
+				296AE51F8D70009B1EB7FC93 /* Pods-VillageCoreUI.debug.xcconfig */,
+				92C9A6D1A4C71EB1F82DBA61 /* Pods-VillageCoreUI.release.xcconfig */,
 			);
 			name = Pods;
+			path = ../../../Pods;
 			sourceTree = "<group>";
 		};
 		D411BC312247B37B003D2F08 /* UserSettings */ = {
@@ -647,6 +672,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D492E77522A3197E004DAA2F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D492E77A22A3197E004DAA2F /* VillageCore.framework */,
+				D492E77C22A3197E004DAA2F /* VillageCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D4B4E843223AE7BE002DED70 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -773,7 +807,7 @@
 				D4CC29AE220756D60091BEFB /* Source */,
 				D4CC29AD220756D60091BEFB /* Products */,
 				D4CC2A61220866AE0091BEFB /* Frameworks */,
-				4C58A5A7FC0B38B7106A2BF9 /* Pods */,
+				A250009B28DE177DE27511AF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -815,8 +849,8 @@
 		D4CC2A61220866AE0091BEFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4AE68782242A5F200A3FB25 /* VillageCore.framework */,
-				08CA969EBAEF01C869F0AEDC /* Pods_VillageCoreUI.framework */,
+				D492E77422A3197E004DAA2F /* VillageCore.xcodeproj */,
+				3675990274C31446868CE64C /* Pods_VillageCoreUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -991,7 +1025,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4CC29B4220756D60091BEFB /* Build configuration list for PBXNativeTarget "VillageCoreUI" */;
 			buildPhases = (
-				07A8813F7C3A9C52D3EE51CC /* [CP] Check Pods Manifest.lock */,
+				28F3DF98067E6FBB3DF1E945 /* [CP] Check Pods Manifest.lock */,
 				D4CC29A7220756D60091BEFB /* Headers */,
 				D4CC29A8220756D60091BEFB /* Sources */,
 				D4CC29A9220756D60091BEFB /* Frameworks */,
@@ -1000,6 +1034,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D492E77E22A3198D004DAA2F /* PBXTargetDependency */,
 			);
 			name = VillageCoreUI;
 			productName = VillageCoreUI;
@@ -1032,12 +1067,35 @@
 			mainGroup = D4CC29A2220756D60091BEFB;
 			productRefGroup = D4CC29AD220756D60091BEFB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D492E77522A3197E004DAA2F /* Products */;
+					ProjectRef = D492E77422A3197E004DAA2F /* VillageCore.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D4CC29AB220756D60091BEFB /* VillageCoreUI */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D492E77A22A3197E004DAA2F /* VillageCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VillageCore.framework;
+			remoteRef = D492E77922A3197E004DAA2F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D492E77C22A3197E004DAA2F /* VillageCoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VillageCoreTests.xctest;
+			remoteRef = D492E77B22A3197E004DAA2F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D4CC29AA220756D60091BEFB /* Resources */ = {
@@ -1098,7 +1156,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07A8813F7C3A9C52D3EE51CC /* [CP] Check Pods Manifest.lock */ = {
+		28F3DF98067E6FBB3DF1E945 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1251,6 +1309,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D492E77E22A3198D004DAA2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VillageCore;
+			targetProxy = D492E77D22A3198D004DAA2F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		D4CC29B2220756D60091BEFB /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1376,7 +1442,7 @@
 		};
 		D4CC29B5220756D60091BEFB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E65A6BC3DE469A31F8B34075 /* Pods-VillageCoreUI.debug.xcconfig */;
+			baseConfigurationReference = 296AE51F8D70009B1EB7FC93 /* Pods-VillageCoreUI.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1414,7 +1480,7 @@
 		};
 		D4CC29B6220756D60091BEFB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E791F78DD5D7216E0781012C /* Pods-VillageCoreUI.release.xcconfig */;
+			baseConfigurationReference = 92C9A6D1A4C71EB1F82DBA61 /* Pods-VillageCoreUI.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";

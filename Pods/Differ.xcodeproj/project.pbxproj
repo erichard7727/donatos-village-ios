@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		097F2258F98B39E25A825EBF720E795E /* NestedBatchUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0761B4CAABA2629E86C91FEC1242524 /* NestedBatchUpdate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		17D57580AE39660E3341670721641E5B /* Diff+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37728F43584D31E5337670837DE3F14 /* Diff+UIKit.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		5241EC7D3DA1DDF3B641B5E70E30DDE9 /* Differ-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C3E7348A6371BD93FD12BA99B2F2D1 /* Differ-dummy.m */; };
+		59A20BD1E0F0FBE1F2DCB0E4B0AD9820 /* NestedExtendedDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991F90ADE889C041F19F26A4993504E /* NestedExtendedDiff.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		66595B1AC74DFC978E97C0DF622C42D9 /* ExtendedPatch+Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0E349149D74350352CCED723DA5A98 /* ExtendedPatch+Apply.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7FE38FE31D252ECC9A171BC060F9BEA6 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8278EF4523B34C7714DA86DD678E3C9F /* LinkedList.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9A80F6B4CDC7D978FD19D9EEDA9FFD6E /* Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = E884378F652BC6043A20C07BF212A6DE /* Diff.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A16FC29A1A6C58F05447BAAF73AEFBED /* Patch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17867844094D00300D0B8B6FC8CC66 /* Patch.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B935424BFB1686E4DBBBBF007AD68BE6 /* Differ-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B1E668B59A884BA1A6A37AE7959D0761 /* Differ-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C5E9E94EA76D9699503D0442669243F1 /* GenericPatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3424A5F75B365E062153542E6D376175 /* GenericPatch.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DF42A025AE404A5116BD86BE82856C66 /* NestedDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD08C288F1C4829B80F61781E8FC748 /* NestedDiff.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E55A0AD3C98AFAB69785958E3B6EDE0C /* Patch+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C4A05C09C54B9CD953A039A0824E5 /* Patch+Sort.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E70274AFBB5AB699000AD3DEF024B662 /* BatchUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE651F34FF2CC0C2D5C12627265432 /* BatchUpdate.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		EA2BBB5C1CB748BE1A9B3D93CD8400F3 /* Patch+Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFE9587B5DB736D0457C3E5FBA108BA /* Patch+Apply.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		EB7097E1D5A09BD0E336E7B360DBD1D1 /* ExtendedPatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7A65C7C1AA123A0757C0DC1F9E7F5 /* ExtendedPatch.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		ECC336C1BE36640A94A3431DF6AA26E9 /* ExtendedDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D4BDECACCFD409214CE47D74320EC /* ExtendedDiff.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1067DA1A25001A0775CE50553ADE5A18 /* Differ.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Differ.xcconfig; sourceTree = "<group>"; };
+		11706D24974529F6575A9DFB15E252C2 /* Differ.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Differ.modulemap; sourceTree = "<group>"; };
+		23DA6B9156D7637295B8E63147602525 /* libDiffer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libDiffer.a; path = libDiffer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2991F90ADE889C041F19F26A4993504E /* NestedExtendedDiff.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NestedExtendedDiff.swift; path = Sources/Differ/NestedExtendedDiff.swift; sourceTree = "<group>"; };
+		2DB7A65C7C1AA123A0757C0DC1F9E7F5 /* ExtendedPatch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtendedPatch.swift; path = Sources/Differ/ExtendedPatch.swift; sourceTree = "<group>"; };
+		3424A5F75B365E062153542E6D376175 /* GenericPatch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericPatch.swift; path = Sources/Differ/GenericPatch.swift; sourceTree = "<group>"; };
+		3B9D4BDECACCFD409214CE47D74320EC /* ExtendedDiff.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtendedDiff.swift; path = Sources/Differ/ExtendedDiff.swift; sourceTree = "<group>"; };
+		3CD08C288F1C4829B80F61781E8FC748 /* NestedDiff.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NestedDiff.swift; path = Sources/Differ/NestedDiff.swift; sourceTree = "<group>"; };
+		60E2CBB337EC53F8E7E2B4F5CA8C9EC7 /* Differ-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Differ-prefix.pch"; sourceTree = "<group>"; };
+		6F17867844094D00300D0B8B6FC8CC66 /* Patch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Patch.swift; path = Sources/Differ/Patch.swift; sourceTree = "<group>"; };
+		73C3E7348A6371BD93FD12BA99B2F2D1 /* Differ-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Differ-dummy.m"; sourceTree = "<group>"; };
+		8278EF4523B34C7714DA86DD678E3C9F /* LinkedList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LinkedList.swift; path = Sources/Differ/LinkedList.swift; sourceTree = "<group>"; };
+		8D0E349149D74350352CCED723DA5A98 /* ExtendedPatch+Apply.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ExtendedPatch+Apply.swift"; path = "Sources/Differ/ExtendedPatch+Apply.swift"; sourceTree = "<group>"; };
+		AEFE9587B5DB736D0457C3E5FBA108BA /* Patch+Apply.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Patch+Apply.swift"; path = "Sources/Differ/Patch+Apply.swift"; sourceTree = "<group>"; };
+		B1E668B59A884BA1A6A37AE7959D0761 /* Differ-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Differ-umbrella.h"; sourceTree = "<group>"; };
+		B68C4A05C09C54B9CD953A039A0824E5 /* Patch+Sort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Patch+Sort.swift"; path = "Sources/Differ/Patch+Sort.swift"; sourceTree = "<group>"; };
+		CFCE651F34FF2CC0C2D5C12627265432 /* BatchUpdate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BatchUpdate.swift; path = Sources/Differ/BatchUpdate.swift; sourceTree = "<group>"; };
+		D0761B4CAABA2629E86C91FEC1242524 /* NestedBatchUpdate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NestedBatchUpdate.swift; path = Sources/Differ/NestedBatchUpdate.swift; sourceTree = "<group>"; };
+		D37728F43584D31E5337670837DE3F14 /* Diff+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Diff+UIKit.swift"; path = "Sources/Differ/Diff+UIKit.swift"; sourceTree = "<group>"; };
+		E884378F652BC6043A20C07BF212A6DE /* Diff.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Diff.swift; path = Sources/Differ/Diff.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3BA91E2C8BA7AAE9A8B817D98FF19B0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30C4613D835F9D5D177520EDB26065F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23DA6B9156D7637295B8E63147602525 /* libDiffer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		410D99BC3A8F54485C73F39978F69BC3 /* Differ */ = {
+			isa = PBXGroup;
+			children = (
+				CFCE651F34FF2CC0C2D5C12627265432 /* BatchUpdate.swift */,
+				E884378F652BC6043A20C07BF212A6DE /* Diff.swift */,
+				D37728F43584D31E5337670837DE3F14 /* Diff+UIKit.swift */,
+				3B9D4BDECACCFD409214CE47D74320EC /* ExtendedDiff.swift */,
+				2DB7A65C7C1AA123A0757C0DC1F9E7F5 /* ExtendedPatch.swift */,
+				8D0E349149D74350352CCED723DA5A98 /* ExtendedPatch+Apply.swift */,
+				3424A5F75B365E062153542E6D376175 /* GenericPatch.swift */,
+				8278EF4523B34C7714DA86DD678E3C9F /* LinkedList.swift */,
+				D0761B4CAABA2629E86C91FEC1242524 /* NestedBatchUpdate.swift */,
+				3CD08C288F1C4829B80F61781E8FC748 /* NestedDiff.swift */,
+				2991F90ADE889C041F19F26A4993504E /* NestedExtendedDiff.swift */,
+				6F17867844094D00300D0B8B6FC8CC66 /* Patch.swift */,
+				AEFE9587B5DB736D0457C3E5FBA108BA /* Patch+Apply.swift */,
+				B68C4A05C09C54B9CD953A039A0824E5 /* Patch+Sort.swift */,
+				5F90ED91E3006A0440B7B9961332770E /* Support Files */,
+			);
+			name = Differ;
+			path = Differ;
+			sourceTree = "<group>";
+		};
+		5F90ED91E3006A0440B7B9961332770E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				11706D24974529F6575A9DFB15E252C2 /* Differ.modulemap */,
+				1067DA1A25001A0775CE50553ADE5A18 /* Differ.xcconfig */,
+				73C3E7348A6371BD93FD12BA99B2F2D1 /* Differ-dummy.m */,
+				60E2CBB337EC53F8E7E2B4F5CA8C9EC7 /* Differ-prefix.pch */,
+				B1E668B59A884BA1A6A37AE7959D0761 /* Differ-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Differ";
+			sourceTree = "<group>";
+		};
+		A13F3736DDE6D56A46BA56D1CD5E0FBF = {
+			isa = PBXGroup;
+			children = (
+				410D99BC3A8F54485C73F39978F69BC3 /* Differ */,
+				F71B74302C85F722EC4D70B57B16C988 /* Frameworks */,
+				30C4613D835F9D5D177520EDB26065F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F71B74302C85F722EC4D70B57B16C988 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7D98ABB426998D4D48F7A75CD11B7B94 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B935424BFB1686E4DBBBBF007AD68BE6 /* Differ-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EA3AC7B325A72F89BAC55E1BE016FE2A /* Differ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B679DFEEE096C1066F4F7E15FE8F9D5 /* Build configuration list for PBXNativeTarget "Differ" */;
+			buildPhases = (
+				7D98ABB426998D4D48F7A75CD11B7B94 /* Headers */,
+				21BD0ADE2ED6C24A98CAE0285943702C /* Sources */,
+				3BA91E2C8BA7AAE9A8B817D98FF19B0B /* Frameworks */,
+				8B171AB3FE3CA86B156165291BCCE9A8 /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Differ;
+			productName = Differ;
+			productReference = 23DA6B9156D7637295B8E63147602525 /* libDiffer.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		793EE656009D24CCA2BF937433BBE91A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = 22883A4DA097DE2C64CC365E3B6E3254 /* Build configuration list for PBXProject "Differ" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A13F3736DDE6D56A46BA56D1CD5E0FBF;
+			productRefGroup = 30C4613D835F9D5D177520EDB26065F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA3AC7B325A72F89BAC55E1BE016FE2A /* Differ */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8B171AB3FE3CA86B156165291BCCE9A8 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/Differ/Differ.modulemap",
+				"${PODS_ROOT}/Headers/Public/Differ/Differ-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/Differ-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/Differ/Differ.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/Differ/Differ-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21BD0ADE2ED6C24A98CAE0285943702C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E70274AFBB5AB699000AD3DEF024B662 /* BatchUpdate.swift in Sources */,
+				17D57580AE39660E3341670721641E5B /* Diff+UIKit.swift in Sources */,
+				9A80F6B4CDC7D978FD19D9EEDA9FFD6E /* Diff.swift in Sources */,
+				5241EC7D3DA1DDF3B641B5E70E30DDE9 /* Differ-dummy.m in Sources */,
+				ECC336C1BE36640A94A3431DF6AA26E9 /* ExtendedDiff.swift in Sources */,
+				66595B1AC74DFC978E97C0DF622C42D9 /* ExtendedPatch+Apply.swift in Sources */,
+				EB7097E1D5A09BD0E336E7B360DBD1D1 /* ExtendedPatch.swift in Sources */,
+				C5E9E94EA76D9699503D0442669243F1 /* GenericPatch.swift in Sources */,
+				7FE38FE31D252ECC9A171BC060F9BEA6 /* LinkedList.swift in Sources */,
+				097F2258F98B39E25A825EBF720E795E /* NestedBatchUpdate.swift in Sources */,
+				DF42A025AE404A5116BD86BE82856C66 /* NestedDiff.swift in Sources */,
+				59A20BD1E0F0FBE1F2DCB0E4B0AD9820 /* NestedExtendedDiff.swift in Sources */,
+				EA2BBB5C1CB748BE1A9B3D93CD8400F3 /* Patch+Apply.swift in Sources */,
+				E55A0AD3C98AFAB69785958E3B6EDE0C /* Patch+Sort.swift in Sources */,
+				A16FC29A1A6C58F05447BAAF73AEFBED /* Patch.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		413FC1735BCE10360E9B12B44B530A6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1067DA1A25001A0775CE50553ADE5A18 /* Differ.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/Differ/Differ-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/Differ/Differ.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Differ;
+				PRODUCT_NAME = Differ;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		67C5BD1B1C77F03F25A61C414002EA91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		7C82435918E07FE7D6A6995DDD106B52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		8E6D8E8E07AC0F4336F4D0D7DE7431FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1067DA1A25001A0775CE50553ADE5A18 /* Differ.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/Differ/Differ-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/Differ/Differ.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Differ;
+				PRODUCT_NAME = Differ;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		22883A4DA097DE2C64CC365E3B6E3254 /* Build configuration list for PBXProject "Differ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67C5BD1B1C77F03F25A61C414002EA91 /* Debug */,
+				7C82435918E07FE7D6A6995DDD106B52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B679DFEEE096C1066F4F7E15FE8F9D5 /* Build configuration list for PBXNativeTarget "Differ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				413FC1735BCE10360E9B12B44B530A6F /* Debug */,
+				8E6D8E8E07AC0F4336F4D0D7DE7431FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 793EE656009D24CCA2BF937433BBE91A /* Project object */;
+}

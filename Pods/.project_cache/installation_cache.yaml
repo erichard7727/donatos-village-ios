@@ -1,0 +1,172 @@
+BUILD_CONFIGURATIONS:
+  Debug: :debug
+  Release: :release
+CACHE_KEYS:
+  Alamofire:
+    BUILD_SETTINGS_CHECKSUM:
+      Alamofire: 3416d9f73f075576e6b454c83ae72f8e
+    CHECKSUM: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+    SPECS:
+      - Alamofire (4.8.2)
+  AlamofireImage:
+    BUILD_SETTINGS_CHECKSUM:
+      AlamofireImage: ca111414b259dc4a0500b5c089547f83
+    CHECKSUM: 63cfe3baf1370be6c498149687cf6db3e3b00999
+    SPECS:
+      - AlamofireImage (3.5.2)
+  AppCenter:
+    BUILD_SETTINGS_CHECKSUM:
+      AppCenter: d04719319e88fa881b03297f62983020
+    CHECKSUM: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
+    SPECS:
+      - AppCenter (1.14.0)
+      - AppCenter/Analytics (1.14.0)
+      - AppCenter/Core (1.14.0)
+      - AppCenter/Crashes (1.14.0)
+  Crashlytics:
+    BUILD_SETTINGS_CHECKSUM:
+      Crashlytics: b579a7fd1b8f2d344e19bf660f736bd2
+    CHECKSUM: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+    SPECS:
+      - Crashlytics (3.12.0)
+  Differ:
+    BUILD_SETTINGS_CHECKSUM:
+      Differ: 38326b1847bfd5221eb072e29be8a630
+    CHECKSUM: ca4350872e32a1aeedf3d9e2d9e47127833bfa9c
+    SPECS:
+      - Differ (1.4.1)
+  DZNEmptyDataSet:
+    BUILD_SETTINGS_CHECKSUM:
+      DZNEmptyDataSet: be48396d0a4128103e7d235b535ab39d
+    CHECKSUM: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+    SPECS:
+      - DZNEmptyDataSet (1.8.1)
+  Fabric:
+    BUILD_SETTINGS_CHECKSUM:
+      Fabric: 19535f98611a12f2233e414f8db87ff3
+    CHECKSUM: f988e33c97f08930a413e08123064d2e5f68d655
+    SPECS:
+      - Fabric (1.9.0)
+  Firebase:
+    BUILD_SETTINGS_CHECKSUM:
+      Firebase: 9630448ee837377c58ad421fce34de24
+    CHECKSUM: 0c8cf33f266410c61ab3e2265cfa412200351d9c
+    SPECS:
+      - Firebase/Core (5.20.2)
+      - Firebase/CoreOnly (5.20.2)
+  FirebaseAnalytics:
+    BUILD_SETTINGS_CHECKSUM:
+      FirebaseAnalytics: dc1beb56f9a7eedc010b81654e124dc7
+    CHECKSUM: ece1aa57a4f43c64d53a648b5a5e05151aae947b
+    SPECS:
+      - FirebaseAnalytics (5.8.1)
+  FirebaseCore:
+    BUILD_SETTINGS_CHECKSUM:
+      FirebaseCore: cc4d0238b8b1692acb4b8275111a0603
+    CHECKSUM: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
+    SPECS:
+      - FirebaseCore (5.4.1)
+  FirebaseInstanceID:
+    BUILD_SETTINGS_CHECKSUM:
+      FirebaseInstanceID: f25374a68257bb59dc59b084f2366535
+    CHECKSUM: a122b0c258720cf250551bb2bedf48c699f80d90
+    SPECS:
+      - FirebaseInstanceID (3.8.1)
+  GoogleAppMeasurement:
+    BUILD_SETTINGS_CHECKSUM:
+      GoogleAppMeasurement: f2d8f81814afe1dc407ce095cebd6d01
+    CHECKSUM: ffe513e90551844a739e7bcbb1d2aca1c28a4338
+    SPECS:
+      - GoogleAppMeasurement (5.8.1)
+  GoogleUtilities:
+    BUILD_SETTINGS_CHECKSUM:
+      GoogleUtilities: 931fb5872f0a144063b9e8f3d18e26d4
+    CHECKSUM: 273e67030e0de313e7304f6dcfa96fc5214f6c23
+    SPECS:
+      - GoogleUtilities/AppDelegateSwizzler (5.7.0)
+      - GoogleUtilities/Environment (5.7.0)
+      - GoogleUtilities/Logger (5.7.0)
+      - GoogleUtilities/MethodSwizzler (5.7.0)
+      - GoogleUtilities/Network (5.7.0)
+      - "GoogleUtilities/NSData+zlib (5.7.0)"
+      - GoogleUtilities/Reachability (5.7.0)
+      - GoogleUtilities/UserDefaults (5.7.0)
+  KeychainAccess:
+    BUILD_SETTINGS_CHECKSUM:
+      KeychainAccess: b6a25f35133b3523e7bccdefba55c087
+    CHECKSUM: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
+    SPECS:
+      - KeychainAccess (3.2.0)
+  Moya:
+    BUILD_SETTINGS_CHECKSUM:
+      Moya: a8a53f76f00d45b4648973c31df5f770
+    CHECKSUM: 161263550064ff8a4948e8ff63137fd72a876292
+    SPECS:
+      - Moya (13.0.0)
+      - Moya/Core (13.0.0)
+  nanopb:
+    BUILD_SETTINGS_CHECKSUM:
+      nanopb: 7aba9601b1365e2015382385f80aeba4
+    CHECKSUM: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+    SPECS:
+      - nanopb (0.3.901)
+      - nanopb/decode (0.3.901)
+      - nanopb/encode (0.3.901)
+  Nantes:
+    BUILD_SETTINGS_CHECKSUM:
+      Nantes: 90199bc7a5bfe4c173ddabbd958cd743
+    CHECKSUM: 85db7af961c30e5116ffa6ac3f74f790b5f23d90
+    SPECS:
+      - Nantes (0.0.7)
+  Pods-DonatosVillage:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 93afb57139e0e09c27338caff37d310a
+      Release: 93afb57139e0e09c27338caff37d310a
+  Pods-VillageCore:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 7427eefed866c21020c3ad65f8d34676
+      Release: 7427eefed866c21020c3ad65f8d34676
+  Pods-VillageCoreUI:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: e871e10c93b3ed06d16c3afee61f840b
+      Release: e871e10c93b3ed06d16c3afee61f840b
+  PromisesObjC:
+    BUILD_SETTINGS_CHECKSUM:
+      PromisesObjC: 9b54f8b8e57e74fbb97c134079c17327
+    CHECKSUM: 7b28ddd1e78cce8f80f1ada927d2217663a9c672
+    SPECS:
+      - PromisesObjC (1.2.7)
+  PromisesSwift:
+    BUILD_SETTINGS_CHECKSUM:
+      PromisesSwift: 266b30d43e561c81888d2cd0d10b1948
+    CHECKSUM: b27f410f9ea693753cfd4cfd8ac1c60a471f137b
+    SPECS:
+      - PromisesSwift (1.2.7)
+  Result:
+    BUILD_SETTINGS_CHECKSUM:
+      Result: 40d0c1d26626efa62442880cdd90ee88
+    CHECKSUM: bd966fac789cc6c1563440b348ab2598cc24d5c7
+    SPECS:
+      - Result (4.1.0)
+  SlackTextViewController:
+    BUILD_SETTINGS_CHECKSUM:
+      SlackTextViewController: 4d822d66438d302ebd86b87b151eff41
+    CHECKSUM: b854e62c1c156336bc4fd409c6ca79b5773e8f9d
+    SPECS:
+      - SlackTextViewController (1.9.6)
+  SwiftWebSocket:
+    BUILD_SETTINGS_CHECKSUM:
+      SwiftWebSocket: 12ca9652dacc76252cdc346fce682e15
+    CHECKOUT_OPTIONS:
+      :commit: 684e06f3cca6be8e280a26004222829779999f7c
+      :git: https://github.com/tidwall/SwiftWebSocket
+    CHECKSUM: 612c9729fd503cb6b0b8b45390c788686dac306f
+    SPECS:
+      - SwiftWebSocket (2.7.0)
+  SwiftyJSON:
+    BUILD_SETTINGS_CHECKSUM:
+      SwiftyJSON: 5a5e09eed5c19030f47413282ba2107c
+    CHECKSUM: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+    SPECS:
+      - SwiftyJSON (5.0.0)
+OBJECT_VERSION: 50

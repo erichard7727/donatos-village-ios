@@ -5,9 +5,16 @@ unless using_bundler
   exit(1)
 end
 
-source 'https://github.com/CocoaPods/Specs.git'
+#source 'https://github.com/CocoaPods/Specs.git'
+source 'https://cdn.jsdelivr.net/cocoa/'
 
+#install! 'cocoapods',
+#    :generate_multiple_pod_projects => true,
+#    :incremental_installation => true
+
+platform :ios, '11'
 use_frameworks!
+#use_modular_headers!
 inhibit_all_warnings!
 
 workspace 'Village'
@@ -17,6 +24,7 @@ project './Clients/DonatosVillage/DonatosVillage.xcodeproj'
 
 def core_pods
   pod 'PromisesSwift'
+  pod 'PromisesObjC', :modular_headers => true
   pod 'Moya'
   pod 'SwiftyJSON'
   pod 'SwiftWebSocket', :git => 'https://github.com/tidwall/SwiftWebSocket', :branch => 'master'
@@ -27,8 +35,8 @@ end
 def core_ui_pods
   pod 'Nantes'
   pod 'AlamofireImage'
-  pod 'SlackTextViewController'
-  pod 'DZNEmptyDataSet'
+  pod 'SlackTextViewController', :modular_headers => true
+  pod 'DZNEmptyDataSet', :modular_headers => true
 end
 
 def client_pods
@@ -39,29 +47,19 @@ def client_pods
 end
 
 target 'VillageCore' do
-  platform :ios, '11'
   project './Product/Core/VillageCore/VillageCore.xcodeproj'
-
   core_pods
 end
 
 target 'VillageCoreUI' do
-  platform :ios, '11'
   project './Product/Core/VillageCoreUI/VillageCoreUI.xcodeproj'
-
   core_pods
   core_ui_pods
-  
 end
 
 target 'DonatosVillage' do
-  platform :ios, '11'
   project './Clients/DonatosVillage/DonatosVillage.xcodeproj'
-
-  core_pods
-  core_ui_pods
   client_pods
-  
 end
 
 post_install do |installer|

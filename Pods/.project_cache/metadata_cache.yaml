@@ -1,0 +1,104 @@
+Alamofire:
+  LABEL: Alamofire
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Alamofire.xcodeproj"
+  UUID: 81B7E9B7CD0CADA087A4BB042FBA92E7
+AlamofireImage:
+  LABEL: AlamofireImage
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/AlamofireImage.xcodeproj"
+  UUID: 7208F07B279B66BF4C4DB05795103195
+AppCenter:
+  LABEL: AppCenter
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/AppCenter.xcodeproj"
+  UUID: 74D9B37793CAF89586DB464F87F5D691
+Crashlytics:
+  LABEL: Crashlytics
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Crashlytics.xcodeproj"
+  UUID: D2F01BBEFE801C94DF4ECE1438E00388
+Differ:
+  LABEL: Differ
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Differ.xcodeproj"
+  UUID: EA3AC7B325A72F89BAC55E1BE016FE2A
+DZNEmptyDataSet:
+  LABEL: DZNEmptyDataSet
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/DZNEmptyDataSet.xcodeproj"
+  UUID: 5390A4813CA895AB17A02E741571EB33
+Fabric:
+  LABEL: Fabric
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Fabric.xcodeproj"
+  UUID: 033C78D4EF039D72394D82A45D46E8D1
+Firebase:
+  LABEL: Firebase
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Firebase.xcodeproj"
+  UUID: 15B99218A87324F316F0E937B3DAAC8B
+FirebaseAnalytics:
+  LABEL: FirebaseAnalytics
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/FirebaseAnalytics.xcodeproj"
+  UUID: 3DC59710253F562E6B3BE135BABFBA19
+FirebaseCore:
+  LABEL: FirebaseCore
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/FirebaseCore.xcodeproj"
+  UUID: 4BD5DE1E00ED67A59118DB4A3CD5F288
+FirebaseInstanceID:
+  LABEL: FirebaseInstanceID
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/FirebaseInstanceID.xcodeproj"
+  UUID: 828A845A4F63A824ED62A82D61941B85
+GoogleAppMeasurement:
+  LABEL: GoogleAppMeasurement
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/GoogleAppMeasurement.xcodeproj"
+  UUID: 9677266E0E3834B96EA12E3394F9063D
+GoogleUtilities:
+  LABEL: GoogleUtilities
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/GoogleUtilities.xcodeproj"
+  UUID: 80B861CBFC18436AFD9A3703F00CEEC4
+KeychainAccess:
+  LABEL: KeychainAccess
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/KeychainAccess.xcodeproj"
+  UUID: BC484E8C0358E7E37631DD65459F2A17
+Moya:
+  LABEL: Moya
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Moya.xcodeproj"
+  UUID: 42D4D39F3084C8EA060DE1C283323B37
+nanopb:
+  LABEL: nanopb
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/nanopb.xcodeproj"
+  UUID: 052B66B57BF269A4B160A5659F7D46D4
+Nantes:
+  LABEL: Nantes
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Nantes.xcodeproj"
+  UUID: AC2E7F2C5E420DFF64A0F34ECAD38787
+Pods-DonatosVillage:
+  LABEL: Pods-DonatosVillage
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Pods.xcodeproj"
+  UUID: 36C762C8A1E075FEA5520F633FA5E219
+Pods-VillageCore:
+  LABEL: Pods-VillageCore
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Pods.xcodeproj"
+  UUID: 4768F10E79EC152F627C7A55504B9B4B
+Pods-VillageCoreUI:
+  LABEL: Pods-VillageCoreUI
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Pods.xcodeproj"
+  UUID: 37E9B91D584C088752690C6A0DD858C1
+PromisesObjC:
+  LABEL: PromisesObjC
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/PromisesObjC.xcodeproj"
+  UUID: 615BB6D15EC37D16C898941802F0D251
+PromisesSwift:
+  LABEL: PromisesSwift
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/PromisesSwift.xcodeproj"
+  UUID: CD5857E2EED13CA5EA1662727DE09222
+Result:
+  LABEL: Result
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/Result.xcodeproj"
+  UUID: 14FD2892649E25A8183AB54A9C55C445
+SlackTextViewController:
+  LABEL: SlackTextViewController
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/SlackTextViewController.xcodeproj"
+  UUID: AD1028C1F851A900433E8D520246B64A
+SwiftWebSocket:
+  LABEL: SwiftWebSocket
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/SwiftWebSocket.xcodeproj"
+  UUID: 6B7A28646BDFB5BA51D9EE56E42F647A
+SwiftyJSON:
+  LABEL: SwiftyJSON
+  PROJECT_PATH: "/Users/rob/dev/dt/village/Pods/SwiftyJSON.xcodeproj"
+  UUID: AD1A79042DA54FF6DCBF6C015B0E27B5

@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D4CC2985220754850091BEFB"
+               BuildableName = "VillageCore.framework"
+               BlueprintName = "VillageCore"
+               ReferencedContainer = "container:../VillageCore/VillageCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4CC29AB220756D60091BEFB"
                BuildableName = "VillageCoreUI.framework"
                BlueprintName = "VillageCoreUI"
@@ -29,6 +43,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D4CC29AB220756D60091BEFB"
+            BuildableName = "VillageCoreUI.framework"
+            BlueprintName = "VillageCoreUI"
+            ReferencedContainer = "container:VillageCoreUI.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
