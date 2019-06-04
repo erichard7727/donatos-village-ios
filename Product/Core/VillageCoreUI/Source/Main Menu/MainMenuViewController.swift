@@ -25,7 +25,12 @@ final class MainMenuViewController: UIViewController {
             menuOptionGroupsChildrenContainer.arrangedSubviews.forEach({ $0.removeFromSuperview() })
         }
     }
-
+    @IBOutlet private weak var groupsUnreadBadge: UILabel! {
+        didSet {
+            groupsUnreadBadge.layer.masksToBounds = true
+            groupsUnreadBadge.isHidden = true
+        }
+    }
     
     @IBOutlet private weak var menuOptionOtherGroups: UIView!
     @IBOutlet private weak var menuOptionPeople: UIView!
@@ -102,6 +107,9 @@ final class MainMenuViewController: UIViewController {
     private var areGroupsCollapsed = false {
         didSet {
             UIView.animate(withDuration: 0.25) {
+                let groupsUnreadCount = Int(self.groupsUnreadBadge.text ?? "") ?? 0
+                self.groupsUnreadBadge.isHidden = !self.areGroupsCollapsed || groupsUnreadCount == 0
+
                 self.menuOptionGroupsExpandButton.transform = self.menuOptionGroupsExpandButton.transform.rotated(by: .pi / 1) // 180 degrees
                 self.menuOptionGroupsChildrenContainer.arrangedSubviews.forEach { (view) in
                     view.alpha = self.areGroupsCollapsed == true ? 0 : 1
@@ -132,11 +140,16 @@ final class MainMenuViewController: UIViewController {
             noticesUnreadBadge.text = unread?.notices.description
             noticesUnreadBadge.isHidden = (unread?.notices ?? 0) == 0
             
-            menuOptionGroupsChildrenContainer.arrangedSubviews
+            let groupMenuItems = menuOptionGroupsChildrenContainer.arrangedSubviews
                 .compactMap({ $0 as? GroupMenuItem})
-                .forEach { (item) in
-                    item.unread = unread?.streams.first(where: { $0.id == item.stream?.id })
-                }
+            var allGroupsUnreadCount = 0
+            groupMenuItems.forEach { (item) in
+                item.unread = unread?.streams.first(where: { $0.id == item.stream?.id })
+                allGroupsUnreadCount += item.unread?.count ?? 0
+            }
+            
+            groupsUnreadBadge.text = allGroupsUnreadCount.description
+            groupsUnreadBadge.isHidden = !areGroupsCollapsed || allGroupsUnreadCount == 0
             
             let unreadDMs = unread?.streams
                 .filter({ $0.id.lowercased().starts(with: "dm") })
@@ -165,7 +178,8 @@ extension MainMenuViewController {
         super.viewDidLayoutSubviews()
         
         noticesUnreadBadge.layer.cornerRadius = noticesUnreadBadge.bounds.size.height / 2
-        directMessagesUnreadBadge.layer.cornerRadius = noticesUnreadBadge.bounds.size.height / 2
+        directMessagesUnreadBadge.layer.cornerRadius = directMessagesUnreadBadge.bounds.size.height / 2
+        groupsUnreadBadge.layer.cornerRadius = groupsUnreadBadge.bounds.size.height / 2
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

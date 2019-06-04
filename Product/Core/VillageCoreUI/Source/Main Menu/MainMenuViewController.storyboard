@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -608,7 +609,7 @@
                                                                                 <rect key="frame" x="0.0" y="11" width="28" height="28"/>
                                                                             </imageView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ARV-9t-R7v">
-                                                                                <rect key="frame" x="42.999999999999986" y="0.0" width="200.66666666666663" height="50"/>
+                                                                                <rect key="frame" x="43" y="0.0" width="164.66666666666666" height="50"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="My Groups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joa-oQ-EW2">
                                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="85.666666666666671" height="20.333333333333329"/>
@@ -617,19 +618,37 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="998" verticalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hx4-lM-txs">
-                                                                                        <rect key="frame" x="91.666666666666657" y="0.0" width="109" height="50"/>
+                                                                                        <rect key="frame" x="91.666666666666657" y="0.0" width="73" height="50"/>
                                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
                                                                             </stackView>
-                                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uff-NS-cLD">
-                                                                                <rect key="frame" x="258.66666666666669" y="11" width="28" height="28"/>
-                                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <state key="normal" image="menu-collapse"/>
-                                                                                <state key="selected" image="menu-collapse"/>
-                                                                            </button>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ale-6N-2Wl">
+                                                                                <rect key="frame" x="222.66666666666666" y="11" width="63.999999999999972" height="28"/>
+                                                                                <subviews>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rS-bL-bMI">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                                        <color key="backgroundColor" name="vlgBlue"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" secondItem="0rS-bL-bMI" secondAttribute="height" multiplier="1:1" id="y0N-t3-5n9"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uff-NS-cLD">
+                                                                                        <rect key="frame" x="36.000000000000028" y="0.0" width="28" height="28"/>
+                                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <state key="normal" image="menu-collapse"/>
+                                                                                        <state key="selected" image="menu-collapse"/>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="0rS-bL-bMI" firstAttribute="height" secondItem="Uff-NS-cLD" secondAttribute="height" id="Yzx-U4-oYK"/>
+                                                                                </constraints>
+                                                                            </stackView>
                                                                         </subviews>
                                                                     </stackView>
                                                                 </subviews>
@@ -891,6 +910,7 @@
                     <size key="freeformSize" width="375" height="2000"/>
                     <connections>
                         <outlet property="directMessagesUnreadBadge" destination="bFa-Ds-wdf" id="4Bd-QB-JW2"/>
+                        <outlet property="groupsUnreadBadge" destination="0rS-bL-bMI" id="LDq-wY-iGK"/>
                         <outlet property="menuOptionContentLibrary" destination="Nxw-0a-noc" id="tUr-eQ-kK5"/>
                         <outlet property="menuOptionDirectMessages" destination="geS-hn-X3d" id="DXL-li-lkf"/>
                         <outlet property="menuOptionGroups" destination="Da8-fY-5ab" id="3IX-bX-FR8"/>
