@@ -79,6 +79,8 @@ extension LoginPasswordViewController {
         super.viewWillAppear(animated)
         
         self.vlg_setNavigationBarBackgroundVisible(false, animated: animated)
+        
+        passwordField.becomeFirstResponder()
     }
     
 }

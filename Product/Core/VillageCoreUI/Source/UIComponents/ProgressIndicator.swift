@@ -68,6 +68,10 @@ class ProgressIndicator: UIView {
     }
     
     func show() {
+        guard alpha != 1.0 else {
+            return
+        }
+        
         alpha = 0.0
         
         UIView.animate(withDuration: 0.3, animations: {
@@ -76,6 +80,10 @@ class ProgressIndicator: UIView {
     }
     
     func hide() {
+        guard alpha != 0.0 else {
+            return
+        }
+        
         alpha = 1.0
         
         UIView.animate(withDuration: 0.3, animations: {

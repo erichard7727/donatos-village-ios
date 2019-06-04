@@ -94,7 +94,7 @@ struct KudosService {
 
 // MARK: - SwiftyJSON Extensions
 
-fileprivate extension Kudo {
+internal extension Kudo {
     
     init?(from response: JSON) {
         guard

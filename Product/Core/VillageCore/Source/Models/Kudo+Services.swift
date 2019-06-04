@@ -15,7 +15,7 @@ public extension Sequence where Element == Kudo {
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `People`
-    public static func leaderboard(page: Int = 1) -> Promise<People> {
+    static func leaderboard(page: Int = 1) -> Promise<People> {
         return KudosService.getLeaderboard(page: page)
     }
     
@@ -24,7 +24,7 @@ public extension Sequence where Element == Kudo {
     /// - Parameters:
     ///   - page: The page of results to fetch. Default == first.
     /// - Returns: A list of `People`
-    public static func weeklyLeaderboard(page: Int = 1) -> Promise<People> {
+    static func weeklyLeaderboard(page: Int = 1) -> Promise<People> {
         return KudosService.getWeeklyLeaderboard(page: page)
     }
     

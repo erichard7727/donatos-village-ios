@@ -36,16 +36,15 @@ final class ContentLibraryViewController: UIViewController {
             firstly {
                 baseContentItem.getDirectory()
             }.then { (library) in
-                self.currentPage = self.currentPage + 1
-                self.contentItems = library
-                if self.contentItems.count == 0 {
-                    self.emptyStateLabel.text = "There are no content items to display"
-                    self.emptyStateLabel.alpha = 1
-                } else {
-                    self.emptyStateLabel.alpha = 0
+                if !library.isEmpty {
+                    self.currentPage = self.currentPage + 1
+                    self.contentItems = self.contentItems + library
+                    self.tableview.reloadData()
+                    self.tableview.reloadSections([0], with: .automatic)
                 }
-                self.tableview.reloadData()
-                self.tableview.reloadSections([0], with: .automatic)
+                
+                self.emptyStateLabel.text = "There are no content items to display"
+                self.emptyStateLabel.isHidden = self.contentItems.isEmpty ? false : true
             }.catch { (error) in
                 let alert = UIAlertController.dismissable(title: "Error", message: error.localizedDescription)
                 self.present(alert, animated: true, completion: nil)
@@ -90,11 +89,13 @@ final class ContentLibraryViewController: UIViewController {
         self.tableview.tableFooterView = UIView(frame: CGRect.zero)
         displayProgressFooterView()
         self.activityIndicator.startAnimating()
-        self.emptyStateLabel.alpha = 0
+        self.emptyStateLabel.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navigationItem.largeTitleDisplayMode = baseContentItem == nil ? .always : .never
         
         if baseContentItem == nil && contentItems.isEmpty {
             title = "Content Library"
@@ -105,14 +106,15 @@ final class ContentLibraryViewController: UIViewController {
             firstly {
                 ContentLibrary.getRootDirectory(page: currentPage)
             }.then { (library) in
-                self.currentPage = self.currentPage + 1
-                self.contentItems = library
-                if self.contentItems.count == 0 {
-                    self.emptyStateLabel.text = "There are no content items to display"
-                    self.emptyStateLabel.alpha = 1
+                if !library.isEmpty {
+                    self.currentPage = self.currentPage + 1
+                    self.contentItems = self.contentItems + library
+                    self.tableview.reloadData()
+                    self.tableview.reloadSections([0], with: .automatic)
                 }
-                self.tableview.reloadData()
-                self.tableview.reloadSections([0], with: .automatic)
+                
+                self.emptyStateLabel.text = "There are no content items to display"
+                self.emptyStateLabel.isHidden = self.contentItems.isEmpty ? false : true
             }.catch { (error) in
                 let alert = UIAlertController.dismissable(title: "Error", message: error.localizedDescription)
                 self.present(alert, animated: true, completion: nil)
@@ -180,14 +182,15 @@ extension ContentLibraryViewController: UITableViewDataSource {
             firstly {
                 ContentLibrary.getRootDirectory(page: currentPage)
             }.then { (library) in
-                self.currentPage = self.currentPage + 1
-                self.contentItems = library
-                if self.contentItems.count == 0 {
-                    self.emptyStateLabel.text = "There are no content items to display"
-                    self.emptyStateLabel.alpha = 1
+                if !library.isEmpty {
+                    self.currentPage = self.currentPage + 1
+                    self.contentItems = self.contentItems + library
+                    self.tableview.reloadData()
+                    self.tableview.reloadSections([0], with: .automatic)
                 }
-                self.tableview.reloadData()
-                self.tableview.reloadSections([0], with: .automatic)
+                
+                self.emptyStateLabel.text = "There are no content items to display"
+                self.emptyStateLabel.isHidden = self.contentItems.isEmpty ? false : true
             }.catch { (error) in
                 let alert = UIAlertController.dismissable(title: "Error", message: error.localizedDescription)
                 self.present(alert, animated: true, completion: nil)

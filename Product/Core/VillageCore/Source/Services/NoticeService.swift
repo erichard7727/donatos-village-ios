@@ -19,26 +19,46 @@ struct NoticeService {
     
     private init() { }
     
-    static func getNoticesAndNews(page: Int = 1) -> Promise<Notices> {
-        return self.getNotices(.all, page: page)
+    static func getNoticesAndNewsPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.all)
     }
     
-    static func getNotices(page: Int = 1) -> Promise<Notices> {
-        return self.getNotices(.notice, page: page)
+    static func getNoticesPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.notice)
     }
     
-    static func getNews(page: Int = 1) -> Promise<Notices> {
-        return self.getNotices(.news, page: page)
+    static func getNewsPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.news)
     }
     
-    private static func getNotices(_ noticeType: VillageCoreAPI.NoticeType, page: Int = 1) -> Promise<Notices> {
-        return firstly {
-            let notices = VillageCoreAPI.notices(noticeType, page: page)
-            return VillageService.shared.request(target: notices)
-        }.then { (json: JSON) -> Notices in
-            let notices = json["content"].arrayValue.compactMap({ Notice(from: $0) })
-            return notices
-        }
+    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType) -> SectionedPaginated<Notice> {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        
+        return SectionedPaginated<Notice>.init(
+            fetchValues: { (page) -> Promise<PaginatedResults<Notice>> in
+                return firstly {
+                    let notices = VillageCoreAPI.notices(noticeType, page: page)
+                    return VillageService.shared.request(target: notices)
+                }.then { (json: JSON) -> PaginatedResults<Notice> in
+                    let notices = json["content"].arrayValue.compactMap({ Notice(from: $0) })
+                    let paginatedCounts = PaginatedCounts(from: json["meta"])
+                    return PaginatedResults(values: notices, counts: paginatedCounts)
+                }
+            },
+            sectionTitle: { (notice) -> String in
+                return formatter.string(from: notice.publishDate)
+            },
+            sectionSorting: { (notice1, notice2) -> Bool in
+                guard let n1 = notice1, let n2 = notice2 else {
+                    return false
+                }
+                let lhs = formatter.date(from: n1)!
+                let rhs = formatter.date(from: n2)!
+                return Calendar.current.compare(lhs, to: rhs, toGranularity: .day) == .orderedDescending
+            }
+        )
     }
     
     public static func detailRequest(notice: Notice) throws -> URLRequest {

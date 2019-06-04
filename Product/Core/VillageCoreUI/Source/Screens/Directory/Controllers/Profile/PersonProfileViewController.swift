@@ -30,7 +30,7 @@ final class PersonProfileViewController: UIViewController {
     @IBOutlet fileprivate weak var kudoTab: TabItemView? {
         didSet {
             // Configure tab
-            kudoTab?.tabButton.setTitle("Kudos", for: .normal)
+            kudoTab?.tabButton.setTitle(Constants.Settings.kudosPluralShort, for: .normal)
             kudoTab?.tabButton.addTarget(self, action: #selector(onTabClick(_:)), for: .touchUpInside)
         }
     }

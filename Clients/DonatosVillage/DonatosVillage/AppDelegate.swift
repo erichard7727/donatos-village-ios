@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VillageCore
 import VillageCoreUI
 import AppCenter
 import AppCenterAnalytics
@@ -50,6 +51,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        villageContainer.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        villageContainer.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+    }
 
 }
 

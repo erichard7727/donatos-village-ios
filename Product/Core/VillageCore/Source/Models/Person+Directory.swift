@@ -30,7 +30,7 @@ public extension Sequence where Element == Person {
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `People`
-    public static func getDirectory(page: Int = 1) -> Promise<People> {
+    static func getDirectory(page: Int = 1) -> Promise<People> {
         return DirectoryService.getDirectory(page: page)
     }
     
@@ -40,7 +40,7 @@ public extension Sequence where Element == Person {
     ///   - term: The user's search term
     ///   - page: The page of results to fetch. Default == first.
     /// - Returns: A list of `People`
-    public static func search(for term: String, page: Int = 1) -> Promise<People> {
+    static func search(for term: String, page: Int = 1) -> Promise<People> {
         return DirectoryService.search(for: term, page: page)
     }
     
@@ -68,6 +68,17 @@ extension Person {
     
     public func giveKudo(for achievement: Achievement, points: Int = 1, reason: String) -> Promise<Void> {
         return KudosService.giveKudo(to: self, for: achievement, points: points, comment: reason)
+    }
+    
+}
+
+// MARK: - Sreams Service
+
+extension Person {
+    
+    public func send(message: String, attachment: (data: Data, mimeType: String)? = nil, to stream: Stream, progress progressBlock: ((Double) -> Void)?) -> Promise<Message> {
+        let attachment = attachment.map({ StreamsService.MessageAttachment(data: $0, mimeType: $1) })
+        return StreamsService.sendMessage(body: message, attachment: attachment, from: self, to: stream, progress: progressBlock)
     }
     
 }

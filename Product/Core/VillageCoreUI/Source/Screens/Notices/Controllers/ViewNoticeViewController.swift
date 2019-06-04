@@ -59,7 +59,7 @@ class ViewNoticeViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-        
+    
     @IBAction func acknowledgeButtonPressed(_ sender: UIButton) {
         let acknowledgeAlertController = UIAlertController(
             title: "Do you Acknowledge?",
@@ -90,6 +90,58 @@ class ViewNoticeViewController: UIViewController {
         present(acknowledgeAlertController, animated: true, completion: nil)
     }
     
+    private var isRootViewController: Bool {
+        return (navigationController?.viewControllers ?? []).count <= 1
+    }
+    
+    private func installBackButton() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage.named("back-button")?.withRenderingMode(.alwaysTemplate),
+            style: .plain,
+            target: self,
+            action: #selector(navigateBack(_:))
+        )
+    }
+    
+    private func installMenuButton() {
+        guard isRootViewController else {
+            return
+        }
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage.named("menu-icon")?.withRenderingMode(.alwaysTemplate),
+            style: .plain,
+            target: self,
+            action: #selector(showMenu(_:))
+        )
+    }
+    
+    @objc private func navigateBack(_ sender: Any? = nil) {
+        guard
+            let webView = self.webView,
+            webView.canGoBack,
+            let backURL = webView.backForwardList.backList.last?.url,
+            webView.backForwardList.currentItem?.url != backURL
+        else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        
+        var backRequest = URLRequest(url: backURL)
+        let cookieHeaders = HTTPCookieStorage.shared.cookies.map({ HTTPCookie.requestHeaderFields(with: $0) }) ?? [:]
+        let combinedHeaders = (backRequest.allHTTPHeaderFields ?? [:])?.merging(cookieHeaders, uniquingKeysWith: {(_, new) in return new })
+        backRequest.allHTTPHeaderFields = combinedHeaders
+        
+        webView.goBack()
+        DispatchQueue.main.async {
+            webView.load(backRequest)
+        }
+
+        self.installMenuButton()
+    }
+    
+    @objc private func showMenu(_ sender: Any? = nil) {
+        showSideMenu()
+    }
 }
 
 extension ViewNoticeViewController: WKNavigationDelegate {
@@ -109,6 +161,7 @@ extension ViewNoticeViewController: WKUIDelegate {
                  windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame == nil {
             webView.load(navigationAction.request)
+            installBackButton()
         }
         return nil
     }

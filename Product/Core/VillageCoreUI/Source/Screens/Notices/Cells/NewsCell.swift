@@ -13,8 +13,23 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var newsImageView: UIImageView!
     @IBOutlet weak var newsTitleLabel: UILabel!
     @IBOutlet weak var newsAuthorLabel: UILabel!
-    @IBOutlet weak var newsDescriptionLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
+    
+    func setLoading(_ isLoading: Bool) {
+        let oldValue = loadingIndicator.isAnimating
+        if isLoading {
+            newsImageView.isHidden = true
+            loadingIndicator.startAnimating()
+        } else {
+            newsImageView.isHidden = false
+            loadingIndicator.stopAnimating()
+        }
+        if oldValue != isLoading {
+            _accessibilityElements = nil
+            UIAccessibility.post(notification: .layoutChanged, argument: self.contentView)
+        }
+    }
     
     var newsId: String = "-1"
     
@@ -26,16 +41,10 @@ class NewsCell: UITableViewCell {
                     placeholderImage: UIImage.named("default-notice-header")!,
                     filter: AspectScaledToFillSizeFilter(
                         size: self.newsImageView.frame.size
-                    ),
-                    completion: { [weak self] result in
-                        self?.activityIndicator.stopAnimating()
-                        self?.activityIndicator.alpha = 0
-                    }
+                    )
                 )
             } else {
                 self.configureCellAttachment(UIImage.named("default-notice-header")!)
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.alpha = 0
             }
         }
     }
@@ -45,7 +54,6 @@ class NewsCell: UITableViewCell {
         // Initialization code
         newsImageView.backgroundColor = UIColor.vlgGray
         newsImageView.image = nil
-        self.activityIndicator.alpha = 0
     }
     
     func configureCellAttachment(_ attachmentImage: UIImage) {
@@ -53,9 +61,38 @@ class NewsCell: UITableViewCell {
             self.newsImageView.image = attachmentImage
             self.newsImageView.clipsToBounds = true
             self.newsImageView.backgroundColor = UIColor.vlgGray
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.alpha = 0
             self.setNeedsLayout()
         }, completion: nil)
     }
+    
+    override var accessibilityElements: [Any]? {
+        get {
+            if _accessibilityElements == nil {
+                let element = UIAccessibilityElement(accessibilityContainer: self)
+                element.accessibilityFrameInContainerSpace = self.bounds
+                
+                if loadingIndicator.isAnimating {
+                    element.accessibilityLabel = "Loading News"
+                    element.accessibilityTraits = [.staticText]
+                } else {
+                    var author: String?
+                    if let name = newsAuthorLabel.text, !name.isEmpty {
+                        author = "By \(name)"
+                    }
+                    element.accessibilityLabel = [newsTitleLabel.text, author]
+                        .compactMap({ $0 })
+                        .joined(separator: ", ")
+                    if isSelected {
+                        element.accessibilityTraits.formUnion([.selected])
+                    }
+                }
+                _accessibilityElements = [element]
+            }
+            return _accessibilityElements!
+        }
+        set { }
+    }
+    
+    private var _accessibilityElements: [Any]?
+    
 }

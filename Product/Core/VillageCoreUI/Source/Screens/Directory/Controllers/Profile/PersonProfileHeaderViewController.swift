@@ -33,6 +33,10 @@ final class PersonProfileHeaderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = profileImageWidthConstraint.constant / 2.0
@@ -40,7 +44,7 @@ final class PersonProfileHeaderViewController: UIViewController {
         
         fullNameLabel.text = person.displayName
         titleLabel.text = person.jobTitle
-        kudosLabel.text = (person.kudos.points > 0) ? "- \(person.kudos.points) Kudos -" : ""
+        kudosLabel.text = (person.kudos.points > 0) ? "- \(person.kudos.points) \(Constants.Settings.kudosPluralShort) Received -" : ""
         
         if let url = person.avatarURL {
             profileImageView.af_setImage(
@@ -50,10 +54,6 @@ final class PersonProfileHeaderViewController: UIViewController {
                     radius: profileImageView.frame.size.height / 2
             ))
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         kudosButton.layer.cornerRadius = 32/2
     }

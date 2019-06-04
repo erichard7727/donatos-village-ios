@@ -491,7 +491,9 @@ public extension NSAttributedString.Key {
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first,
             let activeLink = link(at: touch.location(in: self)) else {
-                super.touchesBegan(touches, with: event)
+                if labelTappedBlock == nil {
+                    super.touchesBegan(touches, with: event)
+                }
                 return
         }
 
@@ -713,8 +715,10 @@ public extension NSAttributedString.Key {
             guard let dataDetector = self.dataDetector else {
                 return
             }
+            let detectorResult = attributedText.findCheckingResults(usingDetector: dataDetector)
+            let existingLinks = attributedText.findExistingLinks()
+            let results = detectorResult.union(existingLinks)
 
-            let results = dataDetector.matches(in: attributedText.string, options: .withTransparentBounds, range: NSRange(location: 0, length: attributedText.length))
             guard !results.isEmpty else {
                 return
             }
@@ -724,8 +728,7 @@ public extension NSAttributedString.Key {
                     // The string changed, these results aren't useful
                     return
                 }
-
-                self?.addLinks(with: results, withAttributes: self?.linkAttributes)
+                self?.addLinks(with: Array(results), withAttributes: self?.linkAttributes)
             }
         }
     }
@@ -1310,5 +1313,24 @@ extension NSAttributedString {
         }
 
         return copy
+    }
+
+    func findCheckingResults(usingDetector dataDetector: NSDataDetector) -> Set<NSTextCheckingResult> {
+        return Set(dataDetector.matches(in: string,
+                                    options: .withTransparentBounds,
+                                    range: NSRange(location: 0,
+                                                   length: length)))
+    }
+
+    func findExistingLinks() -> Set<NSTextCheckingResult> {
+        var relinks: Set<NSTextCheckingResult> = []
+        enumerateAttribute(.link,
+                           in: NSRange(location: 0, length: length),
+                           options: []) { attribute, linkRange, _ in
+                            if let url = attribute as? URL {
+                                relinks.insert(NSTextCheckingResult.linkCheckingResult(range: linkRange, url: url))
+                            }
+        }
+        return relinks
     }
 }

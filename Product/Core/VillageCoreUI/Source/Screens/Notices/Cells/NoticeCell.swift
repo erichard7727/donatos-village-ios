@@ -18,6 +18,23 @@ class NoticeCell: UITableViewCell {
     @IBOutlet weak var content: UIView!
     @IBOutlet weak var actionLabel: UILabel!
     
+    @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
+    
+    func setLoading(_ isLoading: Bool) {
+        let oldValue = loadingIndicator.isAnimating
+        if isLoading {
+            content.isHidden = true
+            loadingIndicator.startAnimating()
+        } else {
+            content.isHidden = false
+            loadingIndicator.stopAnimating()
+        }
+        if oldValue != isLoading {
+            _accessibilityElements = nil
+            UIAccessibility.post(notification: .layoutChanged, argument: self.contentView)
+        }
+    }
+    
     var noticeId: String = "-1"
     var noticeBody: String = ""
     var acknowledgementRequired: Bool = false
@@ -30,7 +47,6 @@ class NoticeCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func markAccepted(_ accepted: Bool) {
@@ -45,7 +61,7 @@ class NoticeCell: UITableViewCell {
             content.backgroundColor = fadedGreenColor
         } else {
             actionLabel.textColor = orangeColor
-            actionLabel.text = "Action Required"
+            actionLabel.text = "Action Needed"
             let image = UIImage.named("notice-needs-action")
             let tintedImage = image?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             leftSquareImageView.image = tintedImage
@@ -74,6 +90,36 @@ class NoticeCell: UITableViewCell {
     @objc func percentageButtonTapped(_ button: UIButton) {
         percentageButtonPressed?()
     }
+    
+    override var accessibilityElements: [Any]? {
+        get {
+            if _accessibilityElements == nil {
+                let element = UIAccessibilityElement(accessibilityContainer: self)
+                element.accessibilityFrameInContainerSpace = self.bounds
+                
+                if loadingIndicator.isAnimating {
+                    element.accessibilityLabel = "Loading Notice"
+                    element.accessibilityTraits = [.staticText]
+                } else {
+                    var percentAcknowledged: String?
+                    if let percentButton = accessoryView as? UIButton,
+                       let percent = percentButton.title(for: .normal) {
+                        percentAcknowledged = "\(percent) Acknowledged"
+                    }
+                    element.accessibilityLabel = [noticeTitleLabel.text, actionLabel.text, percentAcknowledged]
+                        .compactMap({ $0 })
+                        .joined(separator: ", ")
+                    if isSelected {
+                        element.accessibilityTraits.formUnion([.selected])
+                    }
+                }                
+                _accessibilityElements = [element]
+            }
+            return _accessibilityElements!
+        }
+        set { }
+    }
+    private var _accessibilityElements: [Any]?
 }
 
 

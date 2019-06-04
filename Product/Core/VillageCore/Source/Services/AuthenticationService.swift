@@ -77,7 +77,7 @@ struct AuthenticationService {
                 password: password,
                 prefetch: nil,
                 pushType: "apns",
-                pushToken: nil,
+                pushToken: user.pushToken,
                 appPlatform: "iOS",
                 appVersion: "1.0"
             )

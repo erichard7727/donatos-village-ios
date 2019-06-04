@@ -39,7 +39,7 @@ public extension Sequence where Element == ContentLibraryItem {
     /// or root, of the library.
     ///
     /// - Returns: A ContentLibrary or `[ContentLibraryItem]`
-    public static func getRootDirectory(page: Int = 1) -> Promise<ContentLibrary> {
+    static func getRootDirectory(page: Int = 1) -> Promise<ContentLibrary> {
         return ContentLibraryService.getRootDirectory(page: page)
     }
     

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Donatos Village</string>
+	<string>Pepp Talk</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,12 +22,31 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to update user profile photo and for posting content.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Used to save images to your device.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to update user profile photo and for posting content.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>proximanova-black-webfont.ttf</string>
+		<string>proximanova-extrabold-webfont.ttf</string>
+		<string>proximanova-light-webfont.ttf</string>
+		<string>proximanova-lightitalic-webfont.ttf</string>
+		<string>proximanova-reg-webfont.ttf</string>
+		<string>proximanova-regitalic-webfont.ttf</string>
+		<string>proximanova-sbold-webfont.ttf</string>
+		<string>proximanova-sbolditalic-webfont.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -40,16 +59,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIAppFonts</key>
-    <array>
-        <string>proximanova-black-webfont.ttf</string>
-        <string>proximanova-extrabold-webfont.ttf</string>
-        <string>proximanova-light-webfont.ttf</string>
-        <string>proximanova-lightitalic-webfont.ttf</string>
-        <string>proximanova-reg-webfont.ttf</string>
-        <string>proximanova-regitalic-webfont.ttf</string>
-        <string>proximanova-sbold-webfont.ttf</string>
-        <string>proximanova-sbolditalic-webfont.ttf</string>
-    </array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

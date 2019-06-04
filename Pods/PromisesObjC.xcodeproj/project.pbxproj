@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		196951F851239F8CB2342DB714B681BE /* FBLPromise+Timeout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BBBB4A14E256ABD466580D096F2C5C2 /* FBLPromise+Timeout.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1E9F242D14EDE686E60124BDB4120FF3 /* FBLPromise+Async.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD44A3E1FD4E1B6CD5C22757D93A3E5 /* FBLPromise+Async.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		20B2BD9F8DE6C75BDF12665349E7268F /* FBLPromise+Validate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E7A3DE17ABED04CE4C162718B66067 /* FBLPromise+Validate.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2B722A3CB48E11031470FD063FEA5E1F /* FBLPromise+All.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F4812EA97DD43DB025DF86F468D70DC /* FBLPromise+All.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2B7630A6446740C1FA995F1CE16819B9 /* FBLPromise+Wrap.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D0BD85D98044301E55E4460C654219 /* FBLPromise+Wrap.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2E719C79D1DEFD529EE67CF61728DE5F /* FBLPromise+Catch.h in Headers */ = {isa = PBXBuildFile; fileRef = 04FFDB8121B9DC95AFFCDA35CA697D65 /* FBLPromise+Catch.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3226DDF274601A698C0D3E5B91850F48 /* PromisesObjC-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A69735E29B6A5C5990A3E2A3FA106F3 /* PromisesObjC-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		331080C2A5CD4EE684F51EA0FBD1272E /* FBLPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 04660D9B03BE2A3D7F0688443ABB8738 /* FBLPromise.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		35320648EA7D64469B26FD81FC6280AC /* FBLPromise+Any.h in Headers */ = {isa = PBXBuildFile; fileRef = 94EF712764D391219B24EC533FABD9C5 /* FBLPromise+Any.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		36774D9CC0CC1FD5323960CFA8512257 /* FBLPromise+Wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C28EB07F5056CE097B73F4DC717D3CB /* FBLPromise+Wrap.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		37C2985F388D4AAD561C8DC26F15F887 /* FBLPromise+Do.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C545D5290FAFAF7BB6C65E26EBA5CD /* FBLPromise+Do.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		41669DD2776656E52F33B8D977199FB7 /* FBLPromise+Race.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1E98E37154120393ADE57A6ECE2EA6 /* FBLPromise+Race.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		419B1DD6336F7C0F0C808E3A0E67058F /* FBLPromiseError.m in Sources */ = {isa = PBXBuildFile; fileRef = C360BC629A53F81EDCCA1AFD78B0F7FB /* FBLPromiseError.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		53948BCB26FC3DE7D58A29CDD6C08A57 /* FBLPromise+Retry.h in Headers */ = {isa = PBXBuildFile; fileRef = 137EE13885015B0DE6A38100CB770130 /* FBLPromise+Retry.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		55FEA326F1FFEBD5EAE7ADF0515453C4 /* FBLPromise+Catch.m in Sources */ = {isa = PBXBuildFile; fileRef = 76568F3DAC8A3465FA97BFEA16601BDA /* FBLPromise+Catch.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		60F6BE73A83C937D9EE3F7EE54D5E63C /* FBLPromise+All.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEAA87D3A04F369302DA6F60AE0A870 /* FBLPromise+All.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		6443C937F96BB28E3FC9AEA8467E6BE8 /* FBLPromise+Any.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB94A7ED05B8BC4E813826A0E77C9C /* FBLPromise+Any.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		6CE5D829767A0CFAD7D6E521A5080537 /* FBLPromise+Always.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE28D6EC263A731BEBD015F3586724 /* FBLPromise+Always.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		750733CE4C7C2684680AC6ADAB44FB06 /* FBLPromise+Recover.m in Sources */ = {isa = PBXBuildFile; fileRef = 67317193C38E7981E608DF0F6DAE3D87 /* FBLPromise+Recover.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		76209FFA0514B2252535516250C6590C /* FBLPromise+Then.h in Headers */ = {isa = PBXBuildFile; fileRef = 22D88CED805DBEEEC065F61F7FA082B1 /* FBLPromise+Then.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7855AC4A329391A9B2E6B3C0F7D260D5 /* FBLPromise+Testing.h in Headers */ = {isa = PBXBuildFile; fileRef = BA3AB00DE981363700E1051A129E01B8 /* FBLPromise+Testing.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7EC59116BFFF6F934C8147E30907D44B /* FBLPromise+Validate.h in Headers */ = {isa = PBXBuildFile; fileRef = DED641B15D2E1727A8129A2D8B326F9D /* FBLPromise+Validate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		806DB70FECD17272F0ED2252BE82663F /* PromisesObjC-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8177C8BCE593D22A1A0DC8A9A0423E11 /* PromisesObjC-dummy.m */; };
+		84BFEEABB525E8A85DEFFEA0CF083C29 /* FBLPromiseError.h in Headers */ = {isa = PBXBuildFile; fileRef = AC027B5B91D0241D761FCA450F498072 /* FBLPromiseError.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		88AA75A8B42F784F010CAB8334B4C8BD /* FBLPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = AF96DD262DF9E2CE9C165671E01A3036 /* FBLPromise.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8C0A756D45AF9C438AF2240513881C61 /* FBLPromise+Timeout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0827DF717962908C4490322CA4E11BFD /* FBLPromise+Timeout.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8C11C91FFFFAE037BD1C27F22AB7CF03 /* FBLPromise+Reduce.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD6AE9E673766E6003CD0EDCE8690CF /* FBLPromise+Reduce.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		91382C0DD97DB9C9BA2FE3B252CA6336 /* FBLPromises.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F81DB025AFC7D4FD8EA7406B9E279D5 /* FBLPromises.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		91A42AC03A8BEDFA1A8E018AEFD2773C /* FBLPromise+Retry.m in Sources */ = {isa = PBXBuildFile; fileRef = 364857E2D71C2AA3381AC9A43E249483 /* FBLPromise+Retry.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		938F94E95106B9E52A60BA8A79F952D9 /* FBLPromise+Then.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE71F3C59D479911729303BFC066923 /* FBLPromise+Then.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9423593327B5EE94335B33D481B260BA /* FBLPromise+Recover.h in Headers */ = {isa = PBXBuildFile; fileRef = FBC2456017BB057F4B5E0AAE9AED1059 /* FBLPromise+Recover.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9C6F6BE860A5722DAC2CCC58756AED9A /* FBLPromise+Await.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A6D352DC8F27C72825F500442124E /* FBLPromise+Await.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A3A218E51DBD001C5C86D9EC1E7A1471 /* FBLPromise+Await.h in Headers */ = {isa = PBXBuildFile; fileRef = DAC7240274DAB24E1F46ECA92A4332BE /* FBLPromise+Await.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A934EF0C46D28C7FB2EA74E8F33B9967 /* FBLPromise+Delay.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DFEC153434512A094339BD67C67F013 /* FBLPromise+Delay.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B07997BDFA5B771183734EDBBDB5A888 /* FBLPromise+Async.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAB2D9A933CE9D108DFE81782C828B3 /* FBLPromise+Async.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B1765465EF68735F118101B2DF8875E5 /* FBLPromise+Do.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E83738566995F41C9D7A52F4E7AC4E1 /* FBLPromise+Do.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B36DE0CD7E100128C935F4BE4DC3BF34 /* FBLPromise+Race.h in Headers */ = {isa = PBXBuildFile; fileRef = D52F72AF6AAD5A8AC8AF4A72459F9CD0 /* FBLPromise+Race.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BF915E8471E42E4BC3A72FAE6EF47593 /* FBLPromise+Delay.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C6941EC1C45897D1A3F645CE457B6A /* FBLPromise+Delay.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E8FFF94B14A69F15283A2C9AE53AC0A7 /* FBLPromisePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 414292DCF19279B05CAF3A6806BF367D /* FBLPromisePrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EB3BE4745E4A7859335DD67CEF9405D1 /* FBLPromise+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = 690740EE18C0568DBFAE06A2DDB4CD89 /* FBLPromise+Testing.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F6AEC2DF72A40E0CE55999FA3EC1C2A6 /* FBLPromise+Reduce.h in Headers */ = {isa = PBXBuildFile; fileRef = A3E3CA9C41637E265A6E3DDB34ACFEB1 /* FBLPromise+Reduce.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FB5884062CA2A471D7020A37E619102A /* FBLPromise+Always.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F33A6E3C9CF7996F05DDD067CE29 /* FBLPromise+Always.h */; settings = {ATTRIBUTES = (Project, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		04660D9B03BE2A3D7F0688443ABB8738 /* FBLPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBLPromise.m; path = Sources/FBLPromises/FBLPromise.m; sourceTree = "<group>"; };
+		04FFDB8121B9DC95AFFCDA35CA697D65 /* FBLPromise+Catch.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Catch.h"; path = "Sources/FBLPromises/include/FBLPromise+Catch.h"; sourceTree = "<group>"; };
+		0827DF717962908C4490322CA4E11BFD /* FBLPromise+Timeout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Timeout.m"; path = "Sources/FBLPromises/FBLPromise+Timeout.m"; sourceTree = "<group>"; };
+		137EE13885015B0DE6A38100CB770130 /* FBLPromise+Retry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Retry.h"; path = "Sources/FBLPromises/include/FBLPromise+Retry.h"; sourceTree = "<group>"; };
+		1CD44A3E1FD4E1B6CD5C22757D93A3E5 /* FBLPromise+Async.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Async.h"; path = "Sources/FBLPromises/include/FBLPromise+Async.h"; sourceTree = "<group>"; };
+		1DFEC153434512A094339BD67C67F013 /* FBLPromise+Delay.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Delay.h"; path = "Sources/FBLPromises/include/FBLPromise+Delay.h"; sourceTree = "<group>"; };
+		22D88CED805DBEEEC065F61F7FA082B1 /* FBLPromise+Then.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Then.h"; path = "Sources/FBLPromises/include/FBLPromise+Then.h"; sourceTree = "<group>"; };
+		23C545D5290FAFAF7BB6C65E26EBA5CD /* FBLPromise+Do.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Do.m"; path = "Sources/FBLPromises/FBLPromise+Do.m"; sourceTree = "<group>"; };
+		2BEAA87D3A04F369302DA6F60AE0A870 /* FBLPromise+All.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+All.m"; path = "Sources/FBLPromises/FBLPromise+All.m"; sourceTree = "<group>"; };
+		2CE71F3C59D479911729303BFC066923 /* FBLPromise+Then.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Then.m"; path = "Sources/FBLPromises/FBLPromise+Then.m"; sourceTree = "<group>"; };
+		2EDB94A7ED05B8BC4E813826A0E77C9C /* FBLPromise+Any.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Any.m"; path = "Sources/FBLPromises/FBLPromise+Any.m"; sourceTree = "<group>"; };
+		364857E2D71C2AA3381AC9A43E249483 /* FBLPromise+Retry.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Retry.m"; path = "Sources/FBLPromises/FBLPromise+Retry.m"; sourceTree = "<group>"; };
+		3D3A6D352DC8F27C72825F500442124E /* FBLPromise+Await.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Await.m"; path = "Sources/FBLPromises/FBLPromise+Await.m"; sourceTree = "<group>"; };
+		40E7A3DE17ABED04CE4C162718B66067 /* FBLPromise+Validate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Validate.m"; path = "Sources/FBLPromises/FBLPromise+Validate.m"; sourceTree = "<group>"; };
+		414292DCF19279B05CAF3A6806BF367D /* FBLPromisePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBLPromisePrivate.h; path = Sources/FBLPromises/include/FBLPromisePrivate.h; sourceTree = "<group>"; };
+		4E83738566995F41C9D7A52F4E7AC4E1 /* FBLPromise+Do.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Do.h"; path = "Sources/FBLPromises/include/FBLPromise+Do.h"; sourceTree = "<group>"; };
+		4F4812EA97DD43DB025DF86F468D70DC /* FBLPromise+All.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+All.h"; path = "Sources/FBLPromises/include/FBLPromise+All.h"; sourceTree = "<group>"; };
+		4F81DB025AFC7D4FD8EA7406B9E279D5 /* FBLPromises.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBLPromises.h; path = Sources/FBLPromises/include/FBLPromises.h; sourceTree = "<group>"; };
+		5C28EB07F5056CE097B73F4DC717D3CB /* FBLPromise+Wrap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Wrap.h"; path = "Sources/FBLPromises/include/FBLPromise+Wrap.h"; sourceTree = "<group>"; };
+		67317193C38E7981E608DF0F6DAE3D87 /* FBLPromise+Recover.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Recover.m"; path = "Sources/FBLPromises/FBLPromise+Recover.m"; sourceTree = "<group>"; };
+		690740EE18C0568DBFAE06A2DDB4CD89 /* FBLPromise+Testing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Testing.m"; path = "Sources/FBLPromises/FBLPromise+Testing.m"; sourceTree = "<group>"; };
+		6BBBB4A14E256ABD466580D096F2C5C2 /* FBLPromise+Timeout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Timeout.h"; path = "Sources/FBLPromises/include/FBLPromise+Timeout.h"; sourceTree = "<group>"; };
+		76568F3DAC8A3465FA97BFEA16601BDA /* FBLPromise+Catch.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Catch.m"; path = "Sources/FBLPromises/FBLPromise+Catch.m"; sourceTree = "<group>"; };
+		7FBE28D6EC263A731BEBD015F3586724 /* FBLPromise+Always.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Always.m"; path = "Sources/FBLPromises/FBLPromise+Always.m"; sourceTree = "<group>"; };
+		8177C8BCE593D22A1A0DC8A9A0423E11 /* PromisesObjC-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PromisesObjC-dummy.m"; sourceTree = "<group>"; };
+		88C5D5E9EC382AF8227BE0FFDFE8EAD6 /* libPromisesObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPromisesObjC.a; path = libPromisesObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		94EF712764D391219B24EC533FABD9C5 /* FBLPromise+Any.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Any.h"; path = "Sources/FBLPromises/include/FBLPromise+Any.h"; sourceTree = "<group>"; };
+		9A69735E29B6A5C5990A3E2A3FA106F3 /* PromisesObjC-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromisesObjC-umbrella.h"; sourceTree = "<group>"; };
+		A3E3CA9C41637E265A6E3DDB34ACFEB1 /* FBLPromise+Reduce.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Reduce.h"; path = "Sources/FBLPromises/include/FBLPromise+Reduce.h"; sourceTree = "<group>"; };
+		AC027B5B91D0241D761FCA450F498072 /* FBLPromiseError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBLPromiseError.h; path = Sources/FBLPromises/include/FBLPromiseError.h; sourceTree = "<group>"; };
+		AF96DD262DF9E2CE9C165671E01A3036 /* FBLPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBLPromise.h; path = Sources/FBLPromises/include/FBLPromise.h; sourceTree = "<group>"; };
+		B5D0BD85D98044301E55E4460C654219 /* FBLPromise+Wrap.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Wrap.m"; path = "Sources/FBLPromises/FBLPromise+Wrap.m"; sourceTree = "<group>"; };
+		BA3AB00DE981363700E1051A129E01B8 /* FBLPromise+Testing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Testing.h"; path = "Sources/FBLPromises/include/FBLPromise+Testing.h"; sourceTree = "<group>"; };
+		BE1E98E37154120393ADE57A6ECE2EA6 /* FBLPromise+Race.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Race.m"; path = "Sources/FBLPromises/FBLPromise+Race.m"; sourceTree = "<group>"; };
+		C127F33A6E3C9CF7996F05DDD067CE29 /* FBLPromise+Always.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Always.h"; path = "Sources/FBLPromises/include/FBLPromise+Always.h"; sourceTree = "<group>"; };
+		C360BC629A53F81EDCCA1AFD78B0F7FB /* FBLPromiseError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBLPromiseError.m; path = Sources/FBLPromises/FBLPromiseError.m; sourceTree = "<group>"; };
+		C80239B6EF0B9EC33A53AA43EC6F990A /* PromisesObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PromisesObjC.modulemap; sourceTree = "<group>"; };
+		D4C6941EC1C45897D1A3F645CE457B6A /* FBLPromise+Delay.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Delay.m"; path = "Sources/FBLPromises/FBLPromise+Delay.m"; sourceTree = "<group>"; };
+		D52F72AF6AAD5A8AC8AF4A72459F9CD0 /* FBLPromise+Race.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Race.h"; path = "Sources/FBLPromises/include/FBLPromise+Race.h"; sourceTree = "<group>"; };
+		D8E313ED16CEC283BFE13F94B2431396 /* PromisesObjC.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PromisesObjC.xcconfig; sourceTree = "<group>"; };
+		DAAB2D9A933CE9D108DFE81782C828B3 /* FBLPromise+Async.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Async.m"; path = "Sources/FBLPromises/FBLPromise+Async.m"; sourceTree = "<group>"; };
+		DAC7240274DAB24E1F46ECA92A4332BE /* FBLPromise+Await.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Await.h"; path = "Sources/FBLPromises/include/FBLPromise+Await.h"; sourceTree = "<group>"; };
+		DED641B15D2E1727A8129A2D8B326F9D /* FBLPromise+Validate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Validate.h"; path = "Sources/FBLPromises/include/FBLPromise+Validate.h"; sourceTree = "<group>"; };
+		FAD6AE9E673766E6003CD0EDCE8690CF /* FBLPromise+Reduce.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Reduce.m"; path = "Sources/FBLPromises/FBLPromise+Reduce.m"; sourceTree = "<group>"; };
+		FBC2456017BB057F4B5E0AAE9AED1059 /* FBLPromise+Recover.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Recover.h"; path = "Sources/FBLPromises/include/FBLPromise+Recover.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D24E60BA48C56669746E91F3543014B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F10B4EACF942CD9B9C0CB8FDB1F62F2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C80239B6EF0B9EC33A53AA43EC6F990A /* PromisesObjC.modulemap */,
+				D8E313ED16CEC283BFE13F94B2431396 /* PromisesObjC.xcconfig */,
+				8177C8BCE593D22A1A0DC8A9A0423E11 /* PromisesObjC-dummy.m */,
+				9A69735E29B6A5C5990A3E2A3FA106F3 /* PromisesObjC-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PromisesObjC";
+			sourceTree = "<group>";
+		};
+		3B37B9EF77208AA0B48B20E8289C3F49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE6B134874BD8A8867AC9712B2949195 = {
+			isa = PBXGroup;
+			children = (
+				3B37B9EF77208AA0B48B20E8289C3F49 /* Frameworks */,
+				D093E36479D017D55659699D9C1FAD29 /* Products */,
+				D5F7FC852295F2E94E975B5D8820471F /* PromisesObjC */,
+			);
+			sourceTree = "<group>";
+		};
+		D093E36479D017D55659699D9C1FAD29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88C5D5E9EC382AF8227BE0FFDFE8EAD6 /* libPromisesObjC.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5F7FC852295F2E94E975B5D8820471F /* PromisesObjC */ = {
+			isa = PBXGroup;
+			children = (
+				AF96DD262DF9E2CE9C165671E01A3036 /* FBLPromise.h */,
+				04660D9B03BE2A3D7F0688443ABB8738 /* FBLPromise.m */,
+				4F4812EA97DD43DB025DF86F468D70DC /* FBLPromise+All.h */,
+				2BEAA87D3A04F369302DA6F60AE0A870 /* FBLPromise+All.m */,
+				C127F33A6E3C9CF7996F05DDD067CE29 /* FBLPromise+Always.h */,
+				7FBE28D6EC263A731BEBD015F3586724 /* FBLPromise+Always.m */,
+				94EF712764D391219B24EC533FABD9C5 /* FBLPromise+Any.h */,
+				2EDB94A7ED05B8BC4E813826A0E77C9C /* FBLPromise+Any.m */,
+				1CD44A3E1FD4E1B6CD5C22757D93A3E5 /* FBLPromise+Async.h */,
+				DAAB2D9A933CE9D108DFE81782C828B3 /* FBLPromise+Async.m */,
+				DAC7240274DAB24E1F46ECA92A4332BE /* FBLPromise+Await.h */,
+				3D3A6D352DC8F27C72825F500442124E /* FBLPromise+Await.m */,
+				04FFDB8121B9DC95AFFCDA35CA697D65 /* FBLPromise+Catch.h */,
+				76568F3DAC8A3465FA97BFEA16601BDA /* FBLPromise+Catch.m */,
+				1DFEC153434512A094339BD67C67F013 /* FBLPromise+Delay.h */,
+				D4C6941EC1C45897D1A3F645CE457B6A /* FBLPromise+Delay.m */,
+				4E83738566995F41C9D7A52F4E7AC4E1 /* FBLPromise+Do.h */,
+				23C545D5290FAFAF7BB6C65E26EBA5CD /* FBLPromise+Do.m */,
+				D52F72AF6AAD5A8AC8AF4A72459F9CD0 /* FBLPromise+Race.h */,
+				BE1E98E37154120393ADE57A6ECE2EA6 /* FBLPromise+Race.m */,
+				FBC2456017BB057F4B5E0AAE9AED1059 /* FBLPromise+Recover.h */,
+				67317193C38E7981E608DF0F6DAE3D87 /* FBLPromise+Recover.m */,
+				A3E3CA9C41637E265A6E3DDB34ACFEB1 /* FBLPromise+Reduce.h */,
+				FAD6AE9E673766E6003CD0EDCE8690CF /* FBLPromise+Reduce.m */,
+				137EE13885015B0DE6A38100CB770130 /* FBLPromise+Retry.h */,
+				364857E2D71C2AA3381AC9A43E249483 /* FBLPromise+Retry.m */,
+				BA3AB00DE981363700E1051A129E01B8 /* FBLPromise+Testing.h */,
+				690740EE18C0568DBFAE06A2DDB4CD89 /* FBLPromise+Testing.m */,
+				22D88CED805DBEEEC065F61F7FA082B1 /* FBLPromise+Then.h */,
+				2CE71F3C59D479911729303BFC066923 /* FBLPromise+Then.m */,
+				6BBBB4A14E256ABD466580D096F2C5C2 /* FBLPromise+Timeout.h */,
+				0827DF717962908C4490322CA4E11BFD /* FBLPromise+Timeout.m */,
+				DED641B15D2E1727A8129A2D8B326F9D /* FBLPromise+Validate.h */,
+				40E7A3DE17ABED04CE4C162718B66067 /* FBLPromise+Validate.m */,
+				5C28EB07F5056CE097B73F4DC717D3CB /* FBLPromise+Wrap.h */,
+				B5D0BD85D98044301E55E4460C654219 /* FBLPromise+Wrap.m */,
+				AC027B5B91D0241D761FCA450F498072 /* FBLPromiseError.h */,
+				C360BC629A53F81EDCCA1AFD78B0F7FB /* FBLPromiseError.m */,
+				414292DCF19279B05CAF3A6806BF367D /* FBLPromisePrivate.h */,
+				4F81DB025AFC7D4FD8EA7406B9E279D5 /* FBLPromises.h */,
+				1F10B4EACF942CD9B9C0CB8FDB1F62F2 /* Support Files */,
+			);
+			name = PromisesObjC;
+			path = PromisesObjC;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		220968D7218D073B6642E730B6040044 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B722A3CB48E11031470FD063FEA5E1F /* FBLPromise+All.h in Headers */,
+				FB5884062CA2A471D7020A37E619102A /* FBLPromise+Always.h in Headers */,
+				35320648EA7D64469B26FD81FC6280AC /* FBLPromise+Any.h in Headers */,
+				1E9F242D14EDE686E60124BDB4120FF3 /* FBLPromise+Async.h in Headers */,
+				A3A218E51DBD001C5C86D9EC1E7A1471 /* FBLPromise+Await.h in Headers */,
+				2E719C79D1DEFD529EE67CF61728DE5F /* FBLPromise+Catch.h in Headers */,
+				A934EF0C46D28C7FB2EA74E8F33B9967 /* FBLPromise+Delay.h in Headers */,
+				B1765465EF68735F118101B2DF8875E5 /* FBLPromise+Do.h in Headers */,
+				B36DE0CD7E100128C935F4BE4DC3BF34 /* FBLPromise+Race.h in Headers */,
+				9423593327B5EE94335B33D481B260BA /* FBLPromise+Recover.h in Headers */,
+				F6AEC2DF72A40E0CE55999FA3EC1C2A6 /* FBLPromise+Reduce.h in Headers */,
+				53948BCB26FC3DE7D58A29CDD6C08A57 /* FBLPromise+Retry.h in Headers */,
+				7855AC4A329391A9B2E6B3C0F7D260D5 /* FBLPromise+Testing.h in Headers */,
+				76209FFA0514B2252535516250C6590C /* FBLPromise+Then.h in Headers */,
+				196951F851239F8CB2342DB714B681BE /* FBLPromise+Timeout.h in Headers */,
+				7EC59116BFFF6F934C8147E30907D44B /* FBLPromise+Validate.h in Headers */,
+				36774D9CC0CC1FD5323960CFA8512257 /* FBLPromise+Wrap.h in Headers */,
+				88AA75A8B42F784F010CAB8334B4C8BD /* FBLPromise.h in Headers */,
+				84BFEEABB525E8A85DEFFEA0CF083C29 /* FBLPromiseError.h in Headers */,
+				E8FFF94B14A69F15283A2C9AE53AC0A7 /* FBLPromisePrivate.h in Headers */,
+				91382C0DD97DB9C9BA2FE3B252CA6336 /* FBLPromises.h in Headers */,
+				3226DDF274601A698C0D3E5B91850F48 /* PromisesObjC-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		615BB6D15EC37D16C898941802F0D251 /* PromisesObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDCA2A92604E980DB53F85F16677BC1F /* Build configuration list for PBXNativeTarget "PromisesObjC" */;
+			buildPhases = (
+				220968D7218D073B6642E730B6040044 /* Headers */,
+				A45B88095D3F6A06C8C7E3C292846628 /* Sources */,
+				D24E60BA48C56669746E91F3543014B8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PromisesObjC;
+			productName = PromisesObjC;
+			productReference = 88C5D5E9EC382AF8227BE0FFDFE8EAD6 /* libPromisesObjC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0FFEA0A5A810D84BA172F48B6DF97BFE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = 20DCB7389990541B9CBE27FD8A8B14FE /* Build configuration list for PBXProject "PromisesObjC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BE6B134874BD8A8867AC9712B2949195;
+			productRefGroup = D093E36479D017D55659699D9C1FAD29 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				615BB6D15EC37D16C898941802F0D251 /* PromisesObjC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A45B88095D3F6A06C8C7E3C292846628 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60F6BE73A83C937D9EE3F7EE54D5E63C /* FBLPromise+All.m in Sources */,
+				6CE5D829767A0CFAD7D6E521A5080537 /* FBLPromise+Always.m in Sources */,
+				6443C937F96BB28E3FC9AEA8467E6BE8 /* FBLPromise+Any.m in Sources */,
+				B07997BDFA5B771183734EDBBDB5A888 /* FBLPromise+Async.m in Sources */,
+				9C6F6BE860A5722DAC2CCC58756AED9A /* FBLPromise+Await.m in Sources */,
+				55FEA326F1FFEBD5EAE7ADF0515453C4 /* FBLPromise+Catch.m in Sources */,
+				BF915E8471E42E4BC3A72FAE6EF47593 /* FBLPromise+Delay.m in Sources */,
+				37C2985F388D4AAD561C8DC26F15F887 /* FBLPromise+Do.m in Sources */,
+				41669DD2776656E52F33B8D977199FB7 /* FBLPromise+Race.m in Sources */,
+				750733CE4C7C2684680AC6ADAB44FB06 /* FBLPromise+Recover.m in Sources */,
+				8C11C91FFFFAE037BD1C27F22AB7CF03 /* FBLPromise+Reduce.m in Sources */,
+				91A42AC03A8BEDFA1A8E018AEFD2773C /* FBLPromise+Retry.m in Sources */,
+				EB3BE4745E4A7859335DD67CEF9405D1 /* FBLPromise+Testing.m in Sources */,
+				938F94E95106B9E52A60BA8A79F952D9 /* FBLPromise+Then.m in Sources */,
+				8C0A756D45AF9C438AF2240513881C61 /* FBLPromise+Timeout.m in Sources */,
+				20B2BD9F8DE6C75BDF12665349E7268F /* FBLPromise+Validate.m in Sources */,
+				2B7630A6446740C1FA995F1CE16819B9 /* FBLPromise+Wrap.m in Sources */,
+				331080C2A5CD4EE684F51EA0FBD1272E /* FBLPromise.m in Sources */,
+				419B1DD6336F7C0F0C808E3A0E67058F /* FBLPromiseError.m in Sources */,
+				806DB70FECD17272F0ED2252BE82663F /* PromisesObjC-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		23709D71C8D290B5D9E5F8AACFBA2B74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		C71AABE1F7B2F5406DC64B0BE306C0A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		D0E24647D341D72274D9318BBAAB2DB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8E313ED16CEC283BFE13F94B2431396 /* PromisesObjC.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/FBLPromises/PromisesObjC.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FBLPromises;
+				PRODUCT_NAME = PromisesObjC;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EDD769D983336EB3E07A49E96C4B4A02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8E313ED16CEC283BFE13F94B2431396 /* PromisesObjC.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/FBLPromises/PromisesObjC.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = FBLPromises;
+				PRODUCT_NAME = PromisesObjC;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20DCB7389990541B9CBE27FD8A8B14FE /* Build configuration list for PBXProject "PromisesObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23709D71C8D290B5D9E5F8AACFBA2B74 /* Debug */,
+				C71AABE1F7B2F5406DC64B0BE306C0A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDCA2A92604E980DB53F85F16677BC1F /* Build configuration list for PBXNativeTarget "PromisesObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0E24647D341D72274D9318BBAAB2DB2 /* Debug */,
+				EDD769D983336EB3E07A49E96C4B4A02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0FFEA0A5A810D84BA172F48B6DF97BFE /* Project object */;
+}

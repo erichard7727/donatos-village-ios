@@ -16,7 +16,7 @@ public extension Sequence where Element == Achievement {
     ///
     /// - Parameter page: The page of results to fetch. Default == first.
     /// - Returns: A list of `Achievements`
-    public static func givable(page: Int = 1) -> Promise<Achievements> {
+    static func givable(page: Int = 1) -> Promise<Achievements> {
         return KudosService.givableAchievements(page: page)
     }
     

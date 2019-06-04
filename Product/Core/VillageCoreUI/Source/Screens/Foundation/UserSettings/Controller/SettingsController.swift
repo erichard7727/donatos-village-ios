@@ -11,7 +11,6 @@ import AlamofireImage
 import VillageCore
 
 protocol SettingsControllerDelegate: class {
-    func savePressed(person: Person)
     func logoutPressed()
     func selectAvatarPressed()
 }
@@ -36,7 +35,7 @@ class SettingsController: UITableViewController {
             appVersionLabel.text = "\(ClientConfiguration.current.applicationName) - \(Bundle.main.vlg_markingVersion) #(\(Bundle.main.vlg_buildVersion))"
         }
     }
-
+    
     weak var delegate: SettingsControllerDelegate?
     
     var person: Person!
@@ -94,16 +93,11 @@ class SettingsController: UITableViewController {
     func populateAvatarImage(_ image: UIImage) {
         UIView.transition(with: avatarImageView, duration: 0.25, options: .transitionCrossDissolve, animations: {
             self.avatarImageView.image = image
-            }, completion: nil)        
+        }, completion: nil)        
     }
     
     @IBAction func selectAvatarButtonPressed(_ sender: UIButton) {
         delegate?.selectAvatarPressed()
-    }
-    
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
-        guard let person = self.person else { return }
-        delegate?.savePressed(person: person)
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {

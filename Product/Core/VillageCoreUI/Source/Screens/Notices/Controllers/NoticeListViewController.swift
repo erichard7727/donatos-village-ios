@@ -1,19 +1,211 @@
 //
 //  NoticeListViewController.swift
-//  VillageContainerApp
+//  VillageCoreUI
 //
-//  Created by Rob Feldmann on 3/31/19.
+//  Created by Rob Feldmann on 5/27/19.
 //  Copyright © 2019 Dynamit. All rights reserved.
 //
 
 import UIKit
-import AlamofireImage
 import VillageCore
+import Promises
+import DZNEmptyDataSet
+
+class NoticeTableViewCellConfiguartor {
+    
+    let displayAcknowledgements: () -> Void
+    
+    init(displayAcknowledgements: @escaping () -> Void) {
+        self.displayAcknowledgements = displayAcknowledgements
+    }
+    
+    func configure(_ cell: NoticeCell, forDisplaying notice: Notice?) {
+        cell.selectionStyle = .none
+        cell.setLoading(notice == nil)
+        
+        if let notice = notice {
+            if notice.isAcknowledged || !notice.acknowledgeRequired {
+                cell.markAccepted(true)
+            } else {
+                cell.markAccepted(false)
+            }
+            
+            if Constants.Settings.manageNoticesEnabled && User.current.securityPolicies.contains(.manageNotices) {
+                if notice.acknowledgeRequired {
+                    if notice.isAcknowledged {
+                        let greenColor = UIColor.init(red: 68/255.0, green: 176/255.0, blue: 49/255.0, alpha: 1.0)
+                        cell.displayPercentage(notice.acceptedPercent.description, color: greenColor)
+                    } else {
+                        let orangeColor = UIColor.init(red: 251/255.0, green: 149/255.0, blue: 50/255.0, alpha: 1.0)
+                        cell.displayPercentage(notice.acceptedPercent.description, color: orangeColor)
+                    }
+                } else {
+                    cell.removePercentage()
+                }
+            }
+            
+            cell.noticeTitleLabel.text = notice.title
+            cell.noticeId = notice.id
+            cell.noticeBody = notice.body
+            cell.acknowledged = notice.isAcknowledged
+            cell.acknowledgementRequired = notice.acknowledgeRequired
+            
+            cell.percentageButtonPressed = { [weak self] in
+                self?.displayAcknowledgements()
+            }
+        } else {
+            cell.markAccepted(false)
+            cell.removePercentage()
+            cell.noticeTitleLabel.text = nil
+            cell.noticeId = ""
+            cell.noticeBody = ""
+            cell.acknowledged = false
+            cell.acknowledgementRequired = false
+            cell.percentageButtonPressed = nil
+        }
+    }
+    
+}
+
+class NewsTableViewCellConfiguartor {
+    
+    func configure(_ cell: NewsCell, forDisplaying news: Notice?) {
+        cell.selectionStyle = .none
+        cell.setLoading(news == nil)
+        
+        if let news = news {
+            cell.newsTitleLabel.text = news.title
+            cell.newsAuthorLabel.text = news.person.displayName
+                .flatMap({ "Posted By \($0)" })
+            cell.newsId = news.id
+            cell.thumbnailImageURL = news.mediaAttachments
+                .first(where: { $0.isThumbnailImage })
+                .flatMap({ $0.url })
+        } else {
+            cell.newsTitleLabel.text = nil
+            cell.newsAuthorLabel.text = nil
+            cell.newsId = ""
+            cell.thumbnailImageURL = nil
+        }
+    }
+    
+}
 
 final class NoticeListViewController: UIViewController {
     
-    private class Section: Comparable {
+    // MARK: - Public Properties
+    
+    // MARK: - Private Properties
+    
+    /// All paginated notices available to the user
+    private lazy var notices: SectionedPaginated<Notice> = {
+        let paginated = Notices.allNoticesAndNewsPaginated()
+        paginated.delegate = self
+        return paginated
+    }()
+        
+    // MARK: Outlets
+    
+    @IBOutlet private var tableView: UITableView! {
+        didSet {
+            tableView.rowHeight = UITableView.automaticDimension
+            tableView.estimatedRowHeight = 100
+            tableView.alwaysBounceVertical = false
+            tableView.tableFooterView = UIView()
+            tableView.emptyDataSetSource = self
+            tableView.emptyDataSetDelegate = self
+        }
+    }
+    
+    @IBOutlet private var addButton: UIBarButtonItem! {
+        didSet {
+            if !Constants.Settings.manageNoticesEnabled ||
+                !User.current.securityPolicies.contains(.manageNotices) {
+                addButton.tintColor = UIColor.clear
+                addButton.isEnabled = false
+            }
+        }
+    }
+    
+    @IBOutlet private var loadingNoticesContainer: UIView!
+    
+}
 
+// MARK: - UIViewController Overrides
+
+extension NoticeListViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addBehaviors([
+            LeftBarButtonBehavior(showing: .menuOrBack),
+        ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if notices.needsFetching {
+            loadingNoticesContainer.isHidden = false
+            notices.fetchValues(at: [])
+        } else {
+            loadingNoticesContainer.isHidden = true
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: animated)
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch identifier {
+        case "CreateNotice" where !Constants.Settings.manageNoticesEnabled || !User.current.securityPolicies.contains(.manageNotices):
+            assertionFailure("Programmer Error: Invalid segue when user does not have permission to create notices!")
+            return false
+            
+        default:
+            return true
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewNotice", let notice = sender as? Notice {
+            guard let controller = segue.destination as? ViewNoticeViewController else {
+                fatalError("ViewNoticeViewController not found")
+            }
+            controller.notice = notice
+        } else if segue.identifier == "NoticeAcknowledgements", let notice = sender as? Notice {
+            guard let controller = segue.destination as? NoticeAcknowledgementsViewController else {
+                fatalError("ViewNoticeViewController not found")
+            }
+            controller.notice = notice
+        } else if segue.identifier == "CreateNotice" {
+            // Nothing to configure
+        } else {
+            assertionFailure()
+        }
+    }
+}
+
+// MARK: - Public Methods
+
+extension NoticeListViewController { }
+
+// MARK: - Target/Action
+
+@objc private extension NoticeListViewController { }
+
+// MARK: - Private Methods
+
+private extension NoticeListViewController {
+    
+    class Section: Comparable {
+        
         let title: String
         var notices: [Notice]
         
@@ -43,286 +235,74 @@ final class NoticeListViewController: UIViewController {
         }
     }
     
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            tableView.estimatedRowHeight = 100.0
-            
-            tableView.refreshControl = self.refreshControl
-            
-            if let footerHeight = tableView.tableFooterView?.bounds.height {
-                tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -footerHeight, right: 0)
-            }
-        }
-    }
-    
-    @IBOutlet private weak var addButton: UIBarButtonItem! {
-        didSet {
-            if !Constants.Settings.manageNoticesEnabled || !User.current.securityPolicies.contains(.manageNotices) {
-                addButton.tintColor = UIColor.clear
-                addButton.isEnabled = false
-            }
-        }
-    }
-    
-    @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
-    
-    @IBOutlet private weak var emptyStateLabel: UILabel! {
-        didSet {
-            emptyStateLabel.text = "There are no notices."
-        }
-    }
-    
-    @IBOutlet private var footerProgressIndicator: UIActivityIndicatorView!
-    
-    private lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        return refreshControl
-    }()
-    
-    private var sections: [Section] = []
-    private var isLoadingMoreData = false
-    private var currentPage = 0
-    
-    private var isAllDataLoaded = false {
-        didSet {
-            self.emptyStateLabel.isHidden = !sections.isEmpty
-        }
-    }
-    
-    private var needsRefresh = false
 }
 
-// MARK: - UIViewController Overrides
-
-extension NoticeListViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        addBehaviors([
-            LeftBarButtonBehavior(showing: .menuOrBack)
-        ])
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name.Notice.WasAcknowledged, object: nil, queue: nil) { [weak self] (_) in
-            self?.needsRefresh = true
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if needsRefresh || currentPage == 0 {
-            loadNotices(page: 1, isRefreshing: needsRefresh)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewNotice", let notice = sender as? Notice {
-            guard let controller = segue.destination as? ViewNoticeViewController else {
-                fatalError("ViewNoticeViewController not found")
-            }
-            controller.notice = notice
-        } else if segue.identifier == "NoticeAcknowledgements", let notice = sender as? Notice {
-            guard let controller = segue.destination as? NoticeAcknowledgementsViewController else {
-                fatalError("ViewNoticeViewController not found")
-            }
-            controller.notice = notice
-        } else if segue.identifier == "CreateNotice" {
-            // Nothing to configure
-        } else {
-            assertionFailure()
-        }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "CreateNotice",
-           (Constants.Settings.manageNoticesEnabled && User.current.securityPolicies.contains(.manageNotices)) {
-            return true
-        }
-        return false
-    }
-    
-}
-
-// MARK: - Private Methods
-
-private extension NoticeListViewController {
-    
-    func loadNotices(page: Int, isRefreshing: Bool = false) {
-        guard isRefreshing || (!isLoadingMoreData && !isAllDataLoaded) else {
-            return
-        }
-        
-        if isRefreshing {
-            isAllDataLoaded = false
-        }
-        
-        defer {
-            isLoadingMoreData = true
-        }
-        
-        if isRefreshing {
-            // The the refreshControl indicate loading
-        } else if page > 1 {
-            footerProgressIndicator.startAnimating()
-        } else {
-            loadingIndicator.startAnimating()
-        }
-        
-        firstly {
-            Notices.allNoticesAndNews(page: page)
-        }.then { [weak self] (notices) in
-            guard let `self` = self else { return }
-            
-            if isRefreshing {
-                self.sections = []
-            }
-            
-            guard !notices.isEmpty else {
-                self.isAllDataLoaded = true
-                return
-            }
-            
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .none
-            
-            let groupedNotices = Dictionary(grouping: notices, by: {
-                notice in formatter.string(from: notice.publishDate)
-            })
-            
-            var sections = self.sections
-            
-            groupedNotices.forEach({ (title, notices) in
-                if let section = sections.first(where: { $0.title == title }) {
-                    section.notices += notices
-                } else {
-                    sections += [Section(title: title, notices: notices)]
-                }
-            })
-            
-            self.sections = sections.sorted(by: >)
-            
-            self.currentPage = page
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }.catch { error in
-            let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
-            self.present(alert, animated: true, completion: nil)
-        }.always { [weak self] in
-            self?.isLoadingMoreData = false
-            self?.needsRefresh = false
-            
-            if isRefreshing {
-                self?.refreshControl.endRefreshing()
-            } else if page > 1 {
-                self?.footerProgressIndicator.stopAnimating()
-            } else {
-                self?.loadingIndicator.stopAnimating()
-            }
-        }
-    }
-    
-    @objc func refreshData() {
-        guard !isLoadingMoreData else {
-            refreshControl.endRefreshing()
-            return
-        }
-        
-        loadNotices(page: 1, isRefreshing: true)
-    }
-}
+// MARK: - UITableViewDataSource
 
 extension NoticeListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].notices.count
+        return notices.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].title
+        return notices.title(for: section)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return notices.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let notice = sections[indexPath.section].notices[indexPath.row]
-        
-        switch notice.type {
-        case .notice:
+        let notice = notices.value(at: indexPath)
+        switch notice?.type {
+        case .notice?, .none:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeCell", for: indexPath) as! NoticeCell
-            
-            cell.selectionStyle = .none
-            if notice.isAcknowledged || !notice.acknowledgeRequired {
-                cell.markAccepted(true)
-            } else {
-                cell.markAccepted(false)
-            }
-            
-            if Constants.Settings.manageNoticesEnabled && User.current.securityPolicies.contains(.manageNotices) {
-                if notice.acknowledgeRequired {
-                    if notice.isAcknowledged {
-                        let greenColor = UIColor.init(red: 68/255.0, green: 176/255.0, blue: 49/255.0, alpha: 1.0)
-                        cell.displayPercentage(notice.acceptedPercent.description, color: greenColor)
-                    } else {
-                        let orangeColor = UIColor.init(red: 251/255.0, green: 149/255.0, blue: 50/255.0, alpha: 1.0)
-                        cell.displayPercentage(notice.acceptedPercent.description, color: orangeColor)
-                    }
-                } else {
-                    cell.removePercentage()
-                }
-            }
-            
-            cell.noticeTitleLabel.text = notice.title
-            cell.noticeId = notice.id
-            cell.noticeBody = notice.body
-            cell.acknowledged = notice.isAcknowledged
-            cell.acknowledgementRequired = notice.acknowledgeRequired
-            
-            cell.percentageButtonPressed = { [weak self] in
+            let configurator = NoticeTableViewCellConfiguartor(displayAcknowledgements: { [weak self] in
                 self?.performSegue(withIdentifier: "NoticeAcknowledgements", sender: notice)
-            }
-            
+            })
+            configurator.configure(cell, forDisplaying: notice)
             return cell
-            
-        case .news:
+        case .news?:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-            
-            cell.selectionStyle = .none
-            cell.newsTitleLabel.text = notice.title
-            cell.newsAuthorLabel.text = notice.person.displayName
-            //cell.newsDescriptionLabel.text = notice.body
-            cell.newsId = notice.id
-            cell.activityIndicator.startAnimating()
-            cell.activityIndicator.alpha = 1
-            cell.thumbnailImageURL = notice.mediaAttachments
-                .first(where: { $0.isThumbnailImage })
-                .flatMap({ $0.url })
-            
+            NewsTableViewCellConfiguartor().configure(cell, forDisplaying: notice)
             return cell
         }
-        
     }
+    
 }
+
+// MARK: - UITableViewDataSourcePrefetching
+
+extension NoticeListViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: notices.isLoadingValue) {
+            notices.fetchValues(at: indexPaths)
+        }
+    }
+    
+}
+
+// MARK: - UITableViewDelegate
 
 extension NoticeListViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastSection = sections.count - 1
-        let lastRow = sections[indexPath.section].notices.count - 1
-        
-        if indexPath.section == lastSection && indexPath.row == lastRow {
-            loadNotices(page: currentPage + 1)
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if notices.isLoadingValue(at: indexPath) {
+            // can't select a cell that is loading
+            return nil
+        } else {
+            return indexPath
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedNotice = sections[indexPath.section].notices[indexPath.row]
+        guard let selectedNotice = notices.value(at: indexPath) else {
+            assertionFailure("User should not be able to select a cell that is loading!")
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
         
         AnalyticsService.logEvent(
             name: AnalyticsEventViewItem,
@@ -339,6 +319,59 @@ extension NoticeListViewController: UITableViewDelegate {
         )
         
         performSegue(withIdentifier: "ViewNotice", sender: selectedNotice)
+    }
+    
+}
+
+// MARK: - DZNEmptyDataSetSource
+
+extension NoticeListViewController: DZNEmptyDataSetSource {
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "There are no notices to display.", attributes: nil)
+    }
+    
+}
+
+// MARK: - DZNEmptyDataSetDelegate
+
+extension NoticeListViewController: DZNEmptyDataSetDelegate {
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        // Only show an empty data set if loading is not in-progress
+        return loadingNoticesContainer.isHidden
+    }
+    
+}
+
+// MARK: - PaginationDelegate
+
+extension NoticeListViewController: SectionedPaginationDelegate {
+    
+    func onFetchCompleted(deleteRows: [IndexPath],
+                          insertRows: [IndexPath],
+                          deleteSections: IndexSet,
+                          insertSections: IndexSet) {
+//        guard let _newIndexPathsToReload = newIndexPathsToReload else {
+//            // Show the first page of results
+//            loadingNoticesContainer.isHidden = true
+//            tableView.reloadData()
+//            return
+//        }
+        
+        loadingNoticesContainer.isHidden = true
+        
+        tableView.performBatchUpdates({
+            tableView.deleteRows(at: deleteRows, with: .automatic)
+            tableView.insertRows(at: insertRows, with: .automatic)
+            tableView.deleteSections(deleteSections, with: .automatic)
+            tableView.insertSections(insertSections, with: .automatic)
+        }, completion: nil)
+    }
+    
+    func onFetchFailed(with error: Error) {
+        let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

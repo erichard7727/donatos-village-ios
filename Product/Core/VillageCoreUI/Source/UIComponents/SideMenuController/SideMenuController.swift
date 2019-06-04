@@ -51,7 +51,11 @@ public class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     private(set) var contentViewController: UIViewController?
     
     private var menuContainerView: UIView = UIView()
-    private var contentContainerView: UIView = UIView()
+    private var contentContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
     
     private var closeMenuTapOverlay: UIButton = UIButton()
     private var panGesture: UIPanGestureRecognizer = UIPanGestureRecognizer()
@@ -211,7 +215,7 @@ public class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
 //MARK: - Pan Gesture Delegate
 extension SideMenuController {
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if gestureRecognizer == self.panGesture {
             if !menuIsVisible {
                 return touch.location(in: gestureRecognizer.view).x < leftEdgeGestureTolerance
