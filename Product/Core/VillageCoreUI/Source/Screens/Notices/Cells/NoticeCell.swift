@@ -61,7 +61,7 @@ class NoticeCell: UITableViewCell {
             content.backgroundColor = fadedGreenColor
         } else {
             actionLabel.textColor = orangeColor
-            actionLabel.text = "Action Required"
+            actionLabel.text = "Action Needed"
             let image = UIImage.named("notice-needs-action")
             let tintedImage = image?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             leftSquareImageView.image = tintedImage

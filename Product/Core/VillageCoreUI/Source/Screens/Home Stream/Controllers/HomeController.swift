@@ -287,7 +287,7 @@ class HomeController: UIViewController {
         self.recentKudosCollectionView.reloadData()
         
         if let title = self.homeStream?.notice?.title {
-            self.alertTitle.text = "Action Required: " + title
+            self.alertTitle.text = "Action Needed: " + title
             self.alertHeightConstraint.constant = self.alertHeight
         }
         
