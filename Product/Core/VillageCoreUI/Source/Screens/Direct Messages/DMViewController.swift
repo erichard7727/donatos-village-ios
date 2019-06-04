@@ -63,17 +63,6 @@ final class DMViewController: UIViewController {
         refreshTableView()
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "ShowDMConversation" {
-            let dataSource = DirectMessageStreamDataSource(stream: selectedDirectMessage!)
-            let vc = StreamViewController(dataSource: dataSource)
-            self.show(vc, sender: self)
-            return false
-        } else {
-            return true
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "PushNewMessagesSegue" {
@@ -136,7 +125,7 @@ final class DMViewController: UIViewController {
             self.tableView.reloadSections([0], with: .automatic)
             
             if self.preloadGroupId != nil && self.selectedDirectMessage != nil {
-                self.performSegue(withIdentifier: "ShowDMConversation", sender: nil)
+                self.showDMConversation()
             }
             
         }.catch { [weak self] error in
@@ -149,6 +138,13 @@ final class DMViewController: UIViewController {
             AnalyticsService.logEvent(name: "view_message", parameters: ["message_type": "direct_message_inbox"])
         }
     }
+    
+    private func showDMConversation() {
+        let dataSource = DirectMessageStreamDataSource(stream: self.selectedDirectMessage!)
+        let vc = StreamViewController(dataSource: dataSource)
+        self.show(vc, sender: self)
+    }
+    
 }
 
 extension DMViewController: UITableViewDelegate {
@@ -160,9 +156,7 @@ extension DMViewController: UITableViewDelegate {
         let threadCell = tableView.cellForRow(at: indexPath) as? DMListCell
         threadCell?.messageState = .read
         
-        let dataSource = DirectMessageStreamDataSource(stream: directMessage)
-        let vc = StreamViewController(dataSource: dataSource)
-        self.show(vc, sender: self)
+        showDMConversation()
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -230,7 +224,7 @@ extension DMViewController: SelectPeopleViewControllerDelegate {
             selectedDirectMessage = directMessage
             self.navigationController?.popViewController(animated: true)
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "ShowDMConversation", sender: nil)
+                self.showDMConversation()
             }
         } else {
             self.navigationController?.popViewController(animated: true)
@@ -243,7 +237,7 @@ extension DMViewController: SelectPeopleViewControllerDelegate {
                     Stream.startDirectMessage(with: participants)
                 }.then { [weak self] directMessage in
                     self?.selectedDirectMessage = directMessage
-                    self?.performSegue(withIdentifier: "ShowDMConversation", sender: nil)
+                    self?.showDMConversation()
                 }.catch { [weak self] error in
                     let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
                     self?.present(alert, animated: true, completion: nil)
