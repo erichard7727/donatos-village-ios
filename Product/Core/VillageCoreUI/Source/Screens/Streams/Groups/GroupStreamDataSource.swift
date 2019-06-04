@@ -105,6 +105,17 @@ class GroupStreamDataSource: StreamDataSource {
             
             cell.configureCellMessage(message)
             
+            cell.didSelectPerson = { [weak self] person in
+                firstly {
+                    person.getDetails()
+                }.then { [weak self] (personWithDetails) in
+                    let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
+                    vc.person = person
+                    vc.delegate = self
+                    self?.viewController.show(vc, sender: self)
+                }
+            }
+            
             if let url = message.author.avatarURL {
                 let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
                     size: cell.avatarImageView.frame.size,
@@ -191,7 +202,9 @@ class GroupStreamDataSource: StreamDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupMessageCell") as! GroupMessageCell
             cell.transform = tableView.transform
+            cell.selectionStyle = .none
             cell.stream = stream
+            
             cell.didSelectLink = { link in
                 UIApplication.shared.open(link, options: [.universalLinksOnly: true], completionHandler: { (success) in
                     if !success {
@@ -201,7 +214,17 @@ class GroupStreamDataSource: StreamDataSource {
                     }
                 })
             }
-            cell.selectionStyle = .none
+            
+            cell.didSelectPerson = { [weak self] person in
+                firstly {
+                    person.getDetails()
+                }.then { [weak self] (personWithDetails) in
+                    let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
+                    vc.person = person
+                    vc.delegate = self
+                    self?.viewController.show(vc, sender: self)
+                }
+            }
             
             if let message = msg {
                 cell.configureCell(message)
@@ -397,6 +420,16 @@ extension GroupStreamDataSource: SelectPeopleViewControllerDelegate {
             alert.addAction(action)
             self?.viewController.present(alert, animated: true, completion: nil)
         }
+    }
+    
+}
+
+extension GroupStreamDataSource: PersonProfileViewControllerDelegate {
+    
+    func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: ContactPersonViewController) {
+        let dataSource = DirectMessageStreamDataSource(stream: directMessage)
+        let vc = StreamViewController(dataSource: dataSource)
+        viewController.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
     }
     
 }

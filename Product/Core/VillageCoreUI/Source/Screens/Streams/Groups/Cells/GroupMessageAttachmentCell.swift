@@ -16,11 +16,27 @@ class GroupMessageAttachmentCell: UITableViewCell {
     var message: Message?
     var stream: VillageCore.Stream?
     var didSelectLink: ((URL) -> Void)?
+    var didSelectPerson:((Person) -> Void)?
     
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer(target: self, action: #selector(viewAuthor))
+            avatarImageView.addGestureRecognizer(tap)
+        }
+    }
+    
     @IBOutlet weak var avatarImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageLabel: NantesLabel!
-    @IBOutlet weak var authorLabel: UILabel!
+    
+    @IBOutlet weak var authorLabel: UILabel! {
+        didSet {
+            authorLabel.isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer(target: self, action: #selector(viewAuthor))
+            authorLabel.addGestureRecognizer(tap)
+        }
+    }
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var attachmentView: UIImageView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -261,6 +277,11 @@ class GroupMessageAttachmentCell: UITableViewCell {
                 )
             }
         }
+    }
+    
+    @objc private func viewAuthor() {
+        guard let author = message?.author else { return }
+        didSelectPerson?(author)
     }
 
     deinit {

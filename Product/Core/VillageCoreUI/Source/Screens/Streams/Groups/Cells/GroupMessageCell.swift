@@ -31,12 +31,28 @@ final class GroupMessageCell: UITableViewCell {
         }
     }
     var didSelectLink: ((URL) -> Void)?
+    var didSelectPerson:((Person) -> Void)?
     
     
-    @IBOutlet private var avatarImageView: UIImageView!
+    @IBOutlet private var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer(target: self, action: #selector(viewAuthor))
+            avatarImageView.addGestureRecognizer(tap)
+        }
+    }
+    
     @IBOutlet private var avatarImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private var messageLabel: NantesLabel!
-    @IBOutlet private var authorLabel: UILabel!
+    
+    @IBOutlet private var authorLabel: UILabel! {
+        didSet {
+            authorLabel.isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer(target: self, action: #selector(viewAuthor))
+            authorLabel.addGestureRecognizer(tap)
+        }
+    }
+    
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private weak var starCountLabel: UILabel!
     @IBOutlet private weak var starButton: UIButton!
@@ -217,6 +233,12 @@ final class GroupMessageCell: UITableViewCell {
             }
         }
     }
+    
+    @objc private func viewAuthor() {
+        guard let author = message?.author else { return }
+        didSelectPerson?(author)
+    }
+    
 }
 
 extension GroupMessageCell: NantesLabelDelegate {
