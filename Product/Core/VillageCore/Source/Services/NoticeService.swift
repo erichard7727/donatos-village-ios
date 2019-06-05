@@ -31,6 +31,10 @@ struct NoticeService {
         return self.getNoticesPaginated(.news)
     }
     
+    static func getEventsPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.events)
+    }
+    
     private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType) -> SectionedPaginated<Notice> {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

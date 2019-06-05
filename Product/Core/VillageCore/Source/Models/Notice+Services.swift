@@ -62,4 +62,11 @@ public extension Sequence where Element == Notice {
         return NoticeService.getNewsPaginated()
     }
     
+    /// Extends typealias `Notices` to fetch just event items.
+    ///
+    /// - Returns: A list of `Notices` (only Event types)
+    static func allEventsPaginated() -> SectionedPaginated<Notice> {
+        return NoticeService.getEventsPaginated()
+    }
+    
 }

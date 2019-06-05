@@ -15,6 +15,8 @@ final class MainMenuViewController: UIViewController {
     
     @IBOutlet private weak var menuOptionHome: UIView!
     @IBOutlet private weak var menuOptionNotices: UIView!
+    @IBOutlet private weak var menuOptionEvents: UIView!
+    @IBOutlet private weak var menuOptionNews: UIView!
     @IBOutlet private weak var menuOptionDirectMessages: UIView!
 
     @IBOutlet private weak var menuOptionGroupsContainer: UIView!
@@ -97,6 +99,20 @@ final class MainMenuViewController: UIViewController {
         }
     }
     
+    @IBOutlet private weak var eventsUnreadBadge: UILabel! {
+        didSet {
+            eventsUnreadBadge.layer.masksToBounds = true
+            eventsUnreadBadge.isHidden = true
+        }
+    }
+    
+    @IBOutlet private weak var newsUnreadBadge: UILabel! {
+        didSet {
+            newsUnreadBadge.layer.masksToBounds = true
+            newsUnreadBadge.isHidden = true
+        }
+    }
+    
     @IBOutlet private weak var directMessagesUnreadBadge: UILabel! {
         didSet {
             directMessagesUnreadBadge.layer.masksToBounds = true
@@ -140,6 +156,10 @@ final class MainMenuViewController: UIViewController {
             noticesUnreadBadge.text = unread?.notices.description
             noticesUnreadBadge.isHidden = (unread?.notices ?? 0) == 0
             
+            // These aren't available in the API yet
+            eventsUnreadBadge.isHidden = true
+            newsUnreadBadge.isHidden = true
+            
             let groupMenuItems = menuOptionGroupsChildrenContainer.arrangedSubviews
                 .compactMap({ $0 as? GroupMenuItem})
             var allGroupsUnreadCount = 0
@@ -178,6 +198,8 @@ extension MainMenuViewController {
         super.viewDidLayoutSubviews()
         
         noticesUnreadBadge.layer.cornerRadius = noticesUnreadBadge.bounds.size.height / 2
+        eventsUnreadBadge.layer.cornerRadius = eventsUnreadBadge.bounds.size.height / 2
+        newsUnreadBadge.layer.cornerRadius = newsUnreadBadge.bounds.size.height / 2
         directMessagesUnreadBadge.layer.cornerRadius = directMessagesUnreadBadge.bounds.size.height / 2
         groupsUnreadBadge.layer.cornerRadius = groupsUnreadBadge.bounds.size.height / 2
     }
@@ -211,6 +233,21 @@ private extension MainMenuViewController {
     
     @IBAction func onGoToNotices(_ sender: Any? = nil) {
         let vc = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as! NoticeListViewController
+        vc.displayType = .notices
+        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToEvents(_ sender: Any? = nil) {
+        let vc = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as! NoticeListViewController
+        vc.displayType = .events
+        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        self.sideMenuController?.hideMenu()
+    }
+    
+    @IBAction func onGoToNews(_ sender: Any? = nil) {
+        let vc = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as! NoticeListViewController
+        vc.displayType = .news
         self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }

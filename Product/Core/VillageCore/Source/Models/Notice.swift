@@ -15,11 +15,13 @@ public struct Notice {
     public enum NoticeType {
         case news
         case notice
+        case events
         
         init?(apiValue: String) {
             switch apiValue.lowercased() {
             case "news": self = .news
             case "notice": self = .notice
+            case "events": self = .events
             default: return nil
             }
         }

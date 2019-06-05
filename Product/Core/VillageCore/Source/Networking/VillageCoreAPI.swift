@@ -39,6 +39,7 @@ public enum VillageCoreAPI {
         case all
         case notice
         case news
+        case events
         
         fileprivate var apiValue: String {
             switch self {
@@ -47,6 +48,9 @@ public enum VillageCoreAPI {
                 
             case .news:
                 return "news"
+                
+            case .events:
+                return "events"
                 
             case .all:
                 assertionFailure()
@@ -506,7 +510,7 @@ extension VillageCoreAPI: TargetType {
             let paging = "\(page)-\(defaultPageSize)"
             
             switch noticeType {
-            case .news, .notice:
+            case .news, .notice, .events:
                 return Task.requestParameters(
                     parameters: [
                         "diagId": diagId,

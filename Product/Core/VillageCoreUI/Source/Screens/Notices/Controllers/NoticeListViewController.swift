@@ -95,14 +95,76 @@ final class NoticeListViewController: UIViewController {
     
     // MARK: - Public Properties
     
+    enum DisplayType {
+        case all
+        case notices
+        case news
+        case events
+        
+        fileprivate var title: String {
+            switch self {
+            case .all:
+                return "News / Notices"
+                
+            case .notices:
+                return "Notices"
+                
+            case.news:
+                return "News"
+                
+            case .events:
+                return "Events"
+            }
+        }
+        
+        fileprivate func paginated() -> SectionedPaginated<Notice> {
+            switch self {
+            case .all:
+                return Notices.allNoticesAndNewsPaginated()
+                
+            case .notices:
+                return Notices.allNoticesPaginated()
+                
+            case.news:
+                return Notices.allNewsPaginated()
+                
+            case .events:
+                return Notices.allEventsPaginated()
+            }
+        }
+        
+        fileprivate var emptyMessage: String {
+            switch self {
+            case .all, .notices:
+                return "There are no notices to display."
+                
+            case.news:
+                return "There is no news to display."
+                
+            case .events:
+                return "There are no events to display."
+            }
+        }
+    }
+    
+    var displayType: DisplayType = .all {
+        didSet {
+            self.title = displayType.title
+            notices = displayType.paginated()
+        }
+    }
+    
     // MARK: - Private Properties
     
     /// All paginated notices available to the user
-    private lazy var notices: SectionedPaginated<Notice> = {
-        let paginated = Notices.allNoticesAndNewsPaginated()
-        paginated.delegate = self
-        return paginated
-    }()
+    private var notices: SectionedPaginated<Notice>! {
+        didSet {
+            notices.delegate = self
+            if isViewLoaded {
+                tableView.reloadData()
+            }
+        }
+    }
         
     // MARK: Outlets
     
@@ -141,6 +203,12 @@ extension NoticeListViewController {
         addBehaviors([
             LeftBarButtonBehavior(showing: .menuOrBack),
         ])
+        
+        title = displayType.title
+        
+        if notices == nil {
+            notices = displayType.paginated()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -267,6 +335,11 @@ extension NoticeListViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             NewsTableViewCellConfiguartor().configure(cell, forDisplaying: notice)
             return cell
+        case .events?:
+            #warning("TODO - Create separate events cell?")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
+            NewsTableViewCellConfiguartor().configure(cell, forDisplaying: notice)
+            return cell
         }
     }
     
@@ -312,6 +385,7 @@ extension NoticeListViewController: UITableViewDelegate {
                     switch selectedNotice.type {
                     case .notice: return "notice"
                     case .news: return "news"
+                    case .events: return "events"
                     }
                 }(),
                 AnalyticsParameterItemName: selectedNotice.title
@@ -328,7 +402,7 @@ extension NoticeListViewController: UITableViewDelegate {
 extension NoticeListViewController: DZNEmptyDataSetSource {
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "There are no notices to display.", attributes: nil)
+        return NSAttributedString(string: displayType.emptyMessage, attributes: nil)
     }
     
 }
@@ -352,13 +426,6 @@ extension NoticeListViewController: SectionedPaginationDelegate {
                           insertRows: [IndexPath],
                           deleteSections: IndexSet,
                           insertSections: IndexSet) {
-//        guard let _newIndexPathsToReload = newIndexPathsToReload else {
-//            // Show the first page of results
-//            loadingNoticesContainer.isHidden = true
-//            tableView.reloadData()
-//            return
-//        }
-        
         loadingNoticesContainer.isHidden = true
         
         tableView.performBatchUpdates({
@@ -370,6 +437,8 @@ extension NoticeListViewController: SectionedPaginationDelegate {
     }
     
     func onFetchFailed(with error: Error) {
+        loadingNoticesContainer.isHidden = true
+        tableView.reloadEmptyDataSet()
         let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
         self.present(alert, animated: true, completion: nil)
     }
