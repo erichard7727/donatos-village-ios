@@ -360,7 +360,7 @@ extension GroupStreamDataSource {
                     self.send(attachment: (imageData, mimeType))
                 })
             } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                guard let imageData = image.pngData() else {
+                guard let imageData = image.vlg_orientedUp().pngData() else {
                     let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
                     self.viewController.present(alert, animated: true, completion: nil)
                     return

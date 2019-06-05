@@ -167,7 +167,7 @@ extension EditSettingsController: UIImagePickerControllerDelegate, UINavigationC
         self.dismiss(animated: true, completion: nil)
         
         guard
-            let adjustedImage = (info[.editedImage] as? UIImage) ?? (info[.originalImage] as? UIImage),
+            let adjustedImage = ((info[.editedImage] as? UIImage) ?? (info[.originalImage] as? UIImage))?.vlg_orientedUp(),
             let imageData = adjustedImage.pngData()
         else {
             let alert = UIAlertController.dismissable(title: "Error", message: "Could not get avatar image!")
