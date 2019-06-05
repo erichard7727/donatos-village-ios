@@ -58,19 +58,28 @@ public class VillageService {
     private init() { }
     
     /// The VillageService class uses a User object for authentication context.
-    /// By default, the `Shared` model class will set this to the Shared.user
-    /// instance (for the shared VillageService instance), but any User could
-    /// be substituted during testing
-    private var user: User? = User.current
+    /// By default, the `shared` instance will always return the User.current
+    /// instance, but any User could be substituted during testing
+    private var user: User {
+        get {
+            if let user = _user {
+                return user
+            } else {
+                return User.current
+            }
+        }
+        set {
+            _user = newValue
+        }
+    }
+    private var _user: User?
     
     private lazy var provider: VillageProvider<VillageCoreAPI> = {
         
-        let getTokens: VillageProvider.GetTokenClosure = { self.user?.xsrfToken }
+        let getTokens: VillageProvider.GetTokenClosure = { self.user.xsrfToken }
         
         let setTokens: VillageProvider.SetTokenClosure = { xsrfToken in
-//            if let xsrfToken = xsrfToken {
-                self.user?.xsrfToken = xsrfToken
-//            }
+            self.user.xsrfToken = xsrfToken
         }
         
         let reAuthentication: VillageProvider<VillageCoreAPI>.ReAuthenticationClosure = { (reason, completion) in
@@ -83,22 +92,6 @@ public class VillageService {
                 }.catch { _ in
                     completion(false)
                 }
-                
-//                let login = VillageCoreAPI.login(identity: "rob@dynamit.com", password: "Testing1", prefetch: nil, pushType: "apns", pushToken: nil, appPlatform: "", appVersion: "")
-//                self.provider.request(login) { result in
-//                    switch result {
-//                    case .success(let response):
-//                        do {
-//                            _ = try response.filterSuccessfulStatusCodes()
-//                            completion(true)
-//                        } catch {
-//                            completion(false)
-//                        }
-//
-//                    case .failure(let error):
-//                        completion(false)
-//                    }
-//                }
                 
             case .xsrfToken:
                 self.provider.request(.me, ignoreReAuthentication: true) { result in
