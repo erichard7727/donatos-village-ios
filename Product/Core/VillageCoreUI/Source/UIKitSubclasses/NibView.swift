@@ -35,16 +35,16 @@ class NibControl: UIControl {
         view.frame = bounds
         // Adding custom subview on top of our view
         addSubview(view)
-        
+
         view.translatesAutoresizingMaskIntoConstraints = false
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|",
                                                       options: [],
                                                       metrics: nil,
-                                                      views: ["childView": view]))
+                                                      views: ["childView": view!]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|",
                                                       options: [],
                                                       metrics: nil,
-                                                      views: ["childView": view]))
+                                                      views: ["childView": view!]))
         
         DispatchQueue.main.async {
             self.setupViews()
@@ -87,11 +87,11 @@ class NibView: UIView {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[childView]|",
                                                       options: [],
                                                       metrics: nil,
-                                                      views: ["childView": view]))
+                                                      views: ["childView": view!]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[childView]|",
                                                       options: [],
                                                       metrics: nil,
-                                                      views: ["childView": view]))
+                                                      views: ["childView": view!]))
         
         DispatchQueue.main.async {
             self.setupViews()
