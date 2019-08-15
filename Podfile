@@ -6,7 +6,8 @@ unless using_bundler
 end
 
 #source 'https://github.com/CocoaPods/Specs.git'
-source 'https://cdn.jsdelivr.net/cocoa/'
+#source 'https://cdn.jsdelivr.net/cocoa/'
+source 'https://cdn.cocoapods.org/'
 
 #install! 'cocoapods',
 #    :generate_multiple_pod_projects => true,

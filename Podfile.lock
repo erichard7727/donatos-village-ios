@@ -98,7 +98,7 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC REPOS:
-  https://cdn.jsdelivr.net/cocoa/:
+  https://cdn.cocoapods.org/:
     - Alamofire
     - AlamofireImage
     - AppCenter
@@ -157,6 +157,6 @@ SPEC CHECKSUMS:
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: d2d0636ee1b3821cccaa32457b91c37a0e15c12d
+PODFILE CHECKSUM: e2988758b670c69da73d021f0820895adc4f8dbf
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.7.5
