@@ -58,13 +58,6 @@ extension CurrentUserViewController {
 
 extension CurrentUserViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let tap = UIGestureRecognizer(target: self, action: #selector(onViewSettings(_:)))
-        view.addGestureRecognizer(tap)
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -79,7 +72,7 @@ extension CurrentUserViewController {
 
 private extension CurrentUserViewController {
     
-    @objc func onViewSettings(_ sender: Any? = nil) {
+    @IBAction func onViewSettings(_ sender: Any? = nil) {
         let settingsVC = UIStoryboard(name: "UserSettings", bundle: Constants.bundle).instantiateViewController(withIdentifier: "EditSettingsController") as! EditSettingsController
         sideMenuController?.setContentViewController(UINavigationController(rootViewController: settingsVC), fadeAnimation: true)
         sideMenuController?.hideMenu()
