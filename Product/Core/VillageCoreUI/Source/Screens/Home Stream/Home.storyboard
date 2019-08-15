@@ -89,7 +89,7 @@
                                                             <action selector="contentButtonClick:" destination="Kzo-bZ-z0i" eventType="touchUpInside" id="dAu-8c-m5j"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="23" translatesAutoresizingMaskIntoConstraints="NO" id="dO2-9x-mok">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dO2-9x-mok">
                                                         <rect key="frame" x="16" y="128.66666666666666" width="343" height="0.0"/>
                                                         <attributedString key="attributedText"/>
                                                         <nil key="highlightedColor"/>
@@ -288,7 +288,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app-background" width="375" height="812"/>
+        <image name="app-background" width="375" height="667"/>
         <image name="default-notice-header" width="750" height="592"/>
         <image name="down-arrow" width="28" height="28"/>
         <namedColor name="vlgGreen">
