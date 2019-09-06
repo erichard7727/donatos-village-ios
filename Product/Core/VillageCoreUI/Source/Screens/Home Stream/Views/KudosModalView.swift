@@ -7,32 +7,95 @@
 //
 
 import UIKit
+import VillageCore
 
 class KudosModalView: UIViewController {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var pointsLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel?
+    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var pointsLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel?
     @IBOutlet private var avatarImageWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var cardView: UIView!
+    @IBOutlet private weak var cardView: UIView!
+    @IBOutlet private var moreButton: UIButton!
     
     var dismissModal : (() -> ())?
-    var avatar: UIImage!
-    var kudosTitle: NSAttributedString!
-    var kudosDescription: String!
-    var points: Int!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if avatar != nil {
-            configureAvatarImage(avatar)
+
+    private var kudo: Kudo?
+    private var showMoreOptions: () -> Void = { }
+
+    func configure(with kudo: Kudo, avatar: UIImage?) {
+        self.kudo = kudo
+
+        loadViewIfNeeded()
+
+        if let image = avatar, let avatarImageView = self.avatarImageView {
+            UIView.transition(
+                with: avatarImageView,
+                duration: 0.25,
+                options: .transitionCrossDissolve,
+                animations: {
+                    [weak avatarImageView] in
+                    avatarImageView?.image = image
+                }, completion: nil
+            )
         }
+
+        let regAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "ProximaNova-Regular", size: 15.0)!]
+        let boldAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "ProximaNova-SemiBold", size: 15.0)!]
+        let receiver = NSAttributedString(string: kudo.receiver.displayName ?? "Recipient", attributes: boldAttributes)
+        let sender = NSAttributedString(string: kudo.sender.displayName ?? "Sender", attributes: boldAttributes)
+
+        let title = NSMutableAttributedString()
+        title.append(receiver)
+        title.append(NSAttributedString(string: " received a \(Constants.Settings.kudosSingularShort) for \(kudo.achievementTitle) from ", attributes: regAttributes))
+        title.append(sender)
+
+        configure(
+            title: title,
+            comment: kudo.comment,
+            points: kudo.points,
+            showMoreOptions: { [weak self] in
+                guard let kudo = self?.kudo else { return }
+
+                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(
+                    title: "Report as Inappropriate",
+                    style: .destructive,
+                    handler: { [weak self] (_) in
+                        let confirm = UIAlertController(
+                            title: "Confirm Report as Inappropriate",
+                            message: "Are you sure you want to report this \(Constants.Settings.kudosSingularShort) as inappropriate? It will be removed immedaitely and your name will be recorded as the reporter.",
+                            preferredStyle: .alert
+                        )
+                        confirm.addAction(UIAlertAction(
+                            title: "Report as Inappropriate",
+                            style: .destructive,
+                            handler: { (_) in
+                                kudo.flag().then({ [weak self] (flaggedKudo) in
+                                    self?.dismiss(animated: true, completion: {
+                                        self?.dismissModal?()
+                                    })
+                                })
+                            }
+                        ))
+                        confirm.addAction(UIAlertAction(
+                            title: "Cancel",
+                            style: .cancel,
+                            handler: nil
+                        ))
+                        self?.present(confirm, animated: true, completion: nil)
+                    }
+                ))
+                alert.addAction(UIAlertAction(
+                    title: "Cancel",
+                    style: .cancel,
+                    handler: nil
+                ))
+                self?.present(alert, animated: true, completion: nil)
+            }
+        )
         
-        if kudosTitle != nil && kudosDescription != nil && points != nil {
-            configure(title: kudosTitle, comment: kudosDescription, points: points)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,10 +128,11 @@ class KudosModalView: UIViewController {
         })
     }
     
-    func configure(title: NSAttributedString, comment: String, points: Int) {
+    func configure(title: NSAttributedString, comment: String, points: Int, showMoreOptions: @escaping () -> Void) {
         titleLabel?.attributedText = title
         descriptionLabel?.text = comment
         pointsLabel?.text = "+\(points.description)\(points == 1 ? "pt" : "pts")"
+        self.showMoreOptions = showMoreOptions
     }
     
     func configureAvatarImage(_ image: UIImage) {
@@ -83,5 +147,9 @@ class KudosModalView: UIViewController {
                 avatarImageView?.image = image
             }, completion: nil
         )
+    }
+
+    @IBAction private func moreOptions(_ sender: Any? = nil) {
+        showMoreOptions()
     }
 }

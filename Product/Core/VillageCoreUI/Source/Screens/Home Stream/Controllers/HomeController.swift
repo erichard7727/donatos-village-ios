@@ -479,25 +479,13 @@ extension HomeController: UICollectionViewDelegate {
         let singleKudos = homeStream!.kudos[indexPath.item]
         let kudosCell = recentKudosCollectionView.cellForItem(at: indexPath) as! KudosHomeCell
         
-        let regAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "ProximaNova-Regular", size: 15.0)!]
-        let boldAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "ProximaNova-SemiBold", size: 15.0)!]
-        let receiver = NSAttributedString(string: singleKudos.receiver.displayName ?? "Recipient", attributes: boldAttributes)
-        let sender = NSAttributedString(string: singleKudos.sender.displayName ?? "Sender", attributes: boldAttributes)
-        
-        let title = NSMutableAttributedString()
-        title.append(receiver)
-        title.append(NSAttributedString(string: " received a \(Constants.Settings.kudosSingularShort) for \(singleKudos.achievementTitle) from ", attributes: regAttributes))
-        title.append(sender)
-        
         let vc = KudosModalView(nibName: "KudosModalView", bundle: Constants.bundle)
         vc.modalTransitionStyle = .crossDissolve
-        vc.kudosTitle = title
-        vc.kudosDescription = singleKudos.comment
-        vc.points = singleKudos.points
-        vc.avatar = kudosCell.avatarImageView.image
+        vc.configure(with: singleKudos, avatar: kudosCell.avatarImageView.image)
         vc.modalPresentationStyle = .overCurrentContext
         vc.dismissModal = { [weak self] in
             self?.removeDim()
+            self?.getHomeStream()
         }
         self.animateDim()
         self.present(vc, animated: true, completion: nil)

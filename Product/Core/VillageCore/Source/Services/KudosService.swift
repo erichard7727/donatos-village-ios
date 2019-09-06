@@ -89,6 +89,15 @@ struct KudosService {
             return people
         }
     }
+
+    static func flag(_ kudo: Kudo) -> Promise<Kudo> {
+        return firstly {
+            let flag = VillageCoreAPI.flagKudo(kudoId: kudo.id)
+            return VillageService.shared.request(target: flag).then { (json: JSON) -> Kudo in
+                return kudo
+            }
+        }
+    }
     
 }
 

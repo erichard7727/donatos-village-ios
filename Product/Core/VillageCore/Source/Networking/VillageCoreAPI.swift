@@ -114,6 +114,7 @@ public enum VillageCoreAPI {
     case givableAchievements(page: Int)
     case giveKudo(receiverId: Int, achievementId: String, points: Int, comment: String)
     case kudosLeaderboard(page: Int, days: Int?)
+    case flagKudo(kudoId: Int)
     
     // Streams
     case streamsHistory
@@ -253,6 +254,9 @@ extension VillageCoreAPI: TargetType {
             
         case .inviteToDirectMessage:
             return "dm/1.0"
+
+        case let .flagKudo(kudoId):
+            return "kudos/1.0/kudos/\(kudoId)/flag"
         }
     }
 
@@ -308,7 +312,8 @@ extension VillageCoreAPI: TargetType {
              .inviteToStream,
              .setMessageLiked,
              .setSubscribed,
-             .sendMessage:
+             .sendMessage,
+             .flagKudo:
             return .put
         }
     }
@@ -354,7 +359,8 @@ extension VillageCoreAPI: TargetType {
              .streamDetails,
              .sendMessage,
              .directMessageStreams,
-             .inviteToDirectMessage:
+             .inviteToDirectMessage,
+             .flagKudo:
             return Data()
         }
     }
@@ -373,7 +379,8 @@ extension VillageCoreAPI: TargetType {
              .setMessageLiked,
              .subscribedStreams,
              .streamDetails,
-             .directMessageStreams:
+             .directMessageStreams,
+             .flagKudo:
             return Task.requestParameters(
                 parameters: [
                     "diagId": User.current.diagnosticId
@@ -754,7 +761,8 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .streamDetails,
              .sendMessage,
              .directMessageStreams,
-             .inviteToDirectMessage:
+             .inviteToDirectMessage,
+             .flagKudo:
             return true
         }
     }

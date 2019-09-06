@@ -143,6 +143,11 @@ class KudosListController: UIViewController, StatefulUserInterface {
     
     fileprivate func loadData(completionHandler: (() -> Void)? = nil) {
         self.loadingMoreKudos = true
+
+        if currentPage == 1 && !kudosList.isEmpty {
+            // Clear out existing data so we can reload it
+            kudosList = [:]
+        }
         
         let kudosPromise: Promise<Kudos> = {
             switch self.list {
@@ -261,7 +266,43 @@ extension KudosListController: UITableViewDataSource {
             title: title,
             comment: kudo.comment,
             points: kudo.points,
-            date: dateString
+            date: dateString,
+            showMoreOptions: { [weak self] in
+                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    alert.addAction(UIAlertAction(
+                        title: "Report as Inappropriate",
+                        style: .destructive,
+                        handler: { [weak self] (_) in
+                            let confirm = UIAlertController(
+                                title: "Confirm Report as Inappropriate",
+                                message: "Are you sure you want to report this \(Constants.Settings.kudosSingularShort) as inappropriate? It will be removed immedaitely and your name will be recorded as the reporter.",
+                                preferredStyle: .alert
+                            )
+                            confirm.addAction(UIAlertAction(
+                                title: "Report as Inappropriate",
+                                style: .destructive,
+                                handler: { (_) in
+                                    kudo.flag().then({ [weak self] (flaggedKudo) in
+                                        self?.currentPage = 1
+                                        self?.loadData()
+                                    })
+                                }
+                            ))
+                            confirm.addAction(UIAlertAction(
+                                title: "Cancel",
+                                style: .cancel,
+                                handler: nil
+                            ))
+                            self?.present(confirm, animated: true, completion: nil)
+                        }
+                    ))
+                    alert.addAction(UIAlertAction(
+                        title: "Cancel",
+                        style: .cancel,
+                        handler: nil
+                    ))
+                    self?.present(alert, animated: true, completion: nil)
+            }
         )
         
         

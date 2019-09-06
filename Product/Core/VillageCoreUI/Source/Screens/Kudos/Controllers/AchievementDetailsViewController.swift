@@ -191,7 +191,10 @@ extension AchievementDetailsViewController: UITableViewDataSource {
                 title: title,
                 comment: kudo.comment,
                 points: kudo.points,
-                date: formatter.string(from: kudo.date)
+                date: formatter.string(from: kudo.date),
+                showMoreOptions: {
+                    assertionFailure("Showing more options has not been implemented!")
+                }
             )
 
             if let url = kudo.sender.avatarURL, let avatarImageView = cell.avatarImageView {

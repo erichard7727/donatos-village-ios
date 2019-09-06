@@ -23,6 +23,7 @@
                 <outlet property="avatarImageWidthConstraint" destination="7kd-Pl-lAe" id="0Rd-dA-fcl"/>
                 <outlet property="cardView" destination="8yX-9E-DNm" id="Fo8-Wx-b6Y"/>
                 <outlet property="descriptionLabel" destination="Tqa-vj-zr2" id="Bmi-bN-uRu"/>
+                <outlet property="moreButton" destination="uv2-49-zHg" id="sEJ-Nj-KPH"/>
                 <outlet property="pointsLabel" destination="xY6-b4-5hU" id="3JR-Yo-laS"/>
                 <outlet property="titleLabel" destination="xwL-KR-9nH" id="R8W-uH-gSY"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Lft-67-1fl"/>
@@ -34,10 +35,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8yX-9E-DNm">
-                    <rect key="frame" x="20" y="237.5" width="335" height="192"/>
+                    <rect key="frame" x="20" y="229.5" width="335" height="208.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sara Hallstead gave kudos for team lead to John Hartley" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="xwL-KR-9nH">
-                            <rect key="frame" x="62" y="23" width="258" height="32"/>
+                            <rect key="frame" x="62" y="23" width="208" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="Ovu-pa-7uR"/>
                             </constraints>
@@ -53,29 +54,38 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqa-vj-zr2" customClass="TTTAttributedLabel">
-                            <rect key="frame" x="62" y="85" width="258" height="83.5"/>
+                            <rect key="frame" x="62" y="85" width="208" height="100"/>
                             <string key="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                             <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nO-v0-2wf" userLabel="Comment Line">
-                            <rect key="frame" x="46" y="85" width="1" height="83.5"/>
+                            <rect key="frame" x="46" y="85" width="1" height="100"/>
                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="KuA-Wa-n0S"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="+3pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xY6-b4-5hU">
-                            <rect key="frame" x="62" y="63" width="258" height="14"/>
+                            <rect key="frame" x="62" y="63" width="208" height="14"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="12"/>
                             <color key="textColor" red="0.4549019608" green="0.76470588240000004" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uv2-49-zHg">
+                            <rect key="frame" x="285" y="119" width="34" height="32"/>
+                            <state key="normal" image="more-icon"/>
+                            <connections>
+                                <action selector="moreOptions:" destination="-1" eventType="touchUpInside" id="4yq-kt-lb2"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="trailingMargin" secondItem="uv2-49-zHg" secondAttribute="trailing" constant="8" id="1wc-fN-vkV"/>
                         <constraint firstItem="xY6-b4-5hU" firstAttribute="trailing" secondItem="xwL-KR-9nH" secondAttribute="trailing" id="42R-iz-H6B"/>
+                        <constraint firstItem="uv2-49-zHg" firstAttribute="leading" secondItem="xwL-KR-9nH" secondAttribute="trailing" constant="15" id="5qd-Hh-Y6O"/>
                         <constraint firstItem="Tqa-vj-zr2" firstAttribute="top" secondItem="xY6-b4-5hU" secondAttribute="bottom" constant="8" id="BcK-4B-zV5"/>
                         <constraint firstItem="xY6-b4-5hU" firstAttribute="leading" secondItem="xwL-KR-9nH" secondAttribute="leading" id="CR4-LT-z0D"/>
                         <constraint firstItem="xwL-KR-9nH" firstAttribute="top" secondItem="6fO-A1-ep5" secondAttribute="top" id="CTq-Oc-LSi"/>
@@ -85,10 +95,10 @@
                         <constraint firstAttribute="bottom" secondItem="Tqa-vj-zr2" secondAttribute="bottom" constant="23.5" id="M2O-wY-QLv"/>
                         <constraint firstItem="6nO-v0-2wf" firstAttribute="bottom" secondItem="Tqa-vj-zr2" secondAttribute="bottom" id="OoM-SN-Pc5"/>
                         <constraint firstAttribute="width" constant="360" id="Opa-yz-XGS"/>
+                        <constraint firstItem="uv2-49-zHg" firstAttribute="centerY" secondItem="Tqa-vj-zr2" secondAttribute="centerY" id="PUl-ux-AB7"/>
                         <constraint firstItem="Tqa-vj-zr2" firstAttribute="leading" secondItem="xY6-b4-5hU" secondAttribute="leading" id="SG5-mV-CPo"/>
                         <constraint firstItem="xY6-b4-5hU" firstAttribute="top" secondItem="xwL-KR-9nH" secondAttribute="bottom" constant="8" id="Xfa-gd-qEM"/>
                         <constraint firstItem="6nO-v0-2wf" firstAttribute="top" secondItem="Tqa-vj-zr2" secondAttribute="top" id="c9O-LT-9Vj"/>
-                        <constraint firstAttribute="trailing" secondItem="xwL-KR-9nH" secondAttribute="trailing" constant="15" id="coW-06-yUR"/>
                         <constraint firstItem="6fO-A1-ep5" firstAttribute="top" secondItem="8yX-9E-DNm" secondAttribute="top" constant="23" id="cuH-4H-wts"/>
                         <constraint firstItem="6fO-A1-ep5" firstAttribute="leading" secondItem="8yX-9E-DNm" secondAttribute="leading" constant="15" id="sk1-Ph-h7l"/>
                         <constraint firstItem="xwL-KR-9nH" firstAttribute="leading" secondItem="6fO-A1-ep5" secondAttribute="trailing" constant="15" id="yol-Wv-LVs"/>
@@ -114,5 +124,6 @@
     </objects>
     <resources>
         <image name="default-avatar" width="130" height="130"/>
+        <image name="more-icon" width="32" height="32"/>
     </resources>
 </document>

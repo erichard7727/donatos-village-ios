@@ -9,6 +9,14 @@
 import Foundation
 import Promises
 
+public extension Kudo {
+
+    func flag() -> Promise<Kudo> {
+        return KudosService.flag(self)
+    }
+
+}
+
 public extension Sequence where Element == Kudo {
     
     /// Extends typealias `Kudos` to fetch the leaderboard.

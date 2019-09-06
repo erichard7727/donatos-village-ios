@@ -14,7 +14,7 @@ class KudoCell: UITableViewCell {
     var personID: String?
     var displayDateLabel: Bool = false
     
-    func configure(title: NSAttributedString, comment: String, points: Int, date: String) {
+    func configure(title: NSAttributedString, comment: String, points: Int, date: String, showMoreOptions: @escaping () -> Void) {
         titleLabel?.attributedText = title
         commentLabel?.text = comment
         pointsLabel?.text = "+\(points.description)\(points == 1 ? "pt" : "pts")"
@@ -23,6 +23,8 @@ class KudoCell: UITableViewCell {
         if !displayDateLabel {
             dateLabelConstraint.constant = 0
         }
+
+        self.showMoreOptions = showMoreOptions
     }
     
     func configureAvatarImage(_ image: UIImage) {
@@ -76,6 +78,10 @@ class KudoCell: UITableViewCell {
     @IBOutlet private weak var dateLabel: UILabel?
     @IBOutlet weak var dateLabelConstraint: NSLayoutConstraint!
 
+    @IBOutlet private var moreButton: UIButton!
+
+    private var showMoreOptions: () -> Void = { }
+
     // MARK: - UITableViewCell
     
     override func awakeFromNib() {
@@ -95,6 +101,10 @@ class KudoCell: UITableViewCell {
         titleLabel?.text = nil
         commentLabel?.text = nil
         pointsLabel?.text = nil
+    }
+
+    @IBAction private func moreOptions(_ sender: Any? = nil) {
+        showMoreOptions()
     }
     
 }

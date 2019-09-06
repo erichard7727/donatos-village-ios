@@ -39,7 +39,7 @@
                         <color key="textColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jun 30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQh-v1-IOW">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Jun 30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQh-v1-IOW">
                         <rect key="frame" x="319" y="15" width="40" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="AME-73-0mJ"/>
@@ -76,6 +76,13 @@
                             <constraint firstAttribute="width" constant="1" id="hpC-Dh-ExR"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Fy-mq-xLB">
+                        <rect key="frame" x="327" y="91" width="32" height="32"/>
+                        <state key="normal" image="more-icon"/>
+                        <connections>
+                            <action selector="moreOptions:" destination="11j-ZG-evc" eventType="touchUpInside" id="dOo-jd-g7J"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="aqs-9z-BdC" firstAttribute="top" secondItem="30R-QS-pyf" secondAttribute="top" id="0KQ-ko-K2e"/>
@@ -83,17 +90,20 @@
                     <constraint firstItem="Lbs-kU-HDh" firstAttribute="trailing" secondItem="xfd-cM-msr" secondAttribute="trailing" id="3e4-yL-TuY"/>
                     <constraint firstItem="xfd-cM-msr" firstAttribute="leading" secondItem="TbG-WS-eOa" secondAttribute="leading" id="4bD-Oz-FVq"/>
                     <constraint firstItem="ulG-aI-NpZ" firstAttribute="leading" secondItem="30R-QS-pyf" secondAttribute="leading" constant="15" id="6ix-jj-gt0"/>
-                    <constraint firstItem="xQh-v1-IOW" firstAttribute="leading" secondItem="TbG-WS-eOa" secondAttribute="trailing" constant="8" id="H2K-Uh-FpL"/>
+                    <constraint firstItem="xQh-v1-IOW" firstAttribute="leading" secondItem="TbG-WS-eOa" secondAttribute="trailing" priority="999" constant="8" id="H2K-Uh-FpL"/>
+                    <constraint firstItem="3Fy-mq-xLB" firstAttribute="trailing" secondItem="30R-QS-pyf" secondAttribute="trailingMargin" id="Hgg-ad-MDZ"/>
                     <constraint firstItem="ulG-aI-NpZ" firstAttribute="top" secondItem="30R-QS-pyf" secondAttribute="top" constant="15" id="IbE-hT-Y39"/>
                     <constraint firstItem="Lbs-kU-HDh" firstAttribute="leading" secondItem="xfd-cM-msr" secondAttribute="leading" id="J2C-SI-9Md"/>
                     <constraint firstItem="xfd-cM-msr" firstAttribute="trailing" secondItem="TbG-WS-eOa" secondAttribute="trailing" id="MDz-X5-5t6"/>
                     <constraint firstItem="aqs-9z-BdC" firstAttribute="leading" secondItem="30R-QS-pyf" secondAttribute="leading" id="Px5-YT-f8r"/>
+                    <constraint firstItem="3Fy-mq-xLB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TbG-WS-eOa" secondAttribute="trailing" constant="16" id="RMf-Sc-26w"/>
                     <constraint firstAttribute="bottom" secondItem="aqs-9z-BdC" secondAttribute="bottom" constant="15" id="RNa-Er-QmA"/>
                     <constraint firstItem="TbG-WS-eOa" firstAttribute="leading" secondItem="ulG-aI-NpZ" secondAttribute="trailing" constant="15" id="coi-Xl-G1h"/>
                     <constraint firstItem="z8x-JP-ks8" firstAttribute="top" secondItem="Lbs-kU-HDh" secondAttribute="top" id="cow-bM-CgU"/>
                     <constraint firstItem="z8x-JP-ks8" firstAttribute="bottom" secondItem="Lbs-kU-HDh" secondAttribute="bottom" id="jpl-si-F3o"/>
                     <constraint firstItem="TbG-WS-eOa" firstAttribute="top" secondItem="ulG-aI-NpZ" secondAttribute="top" id="kai-S5-qCh"/>
                     <constraint firstAttribute="trailing" secondItem="aqs-9z-BdC" secondAttribute="trailing" id="mDN-Ab-8qL"/>
+                    <constraint firstItem="3Fy-mq-xLB" firstAttribute="centerY" secondItem="Lbs-kU-HDh" secondAttribute="centerY" id="oRH-mE-7Pf"/>
                     <constraint firstItem="xfd-cM-msr" firstAttribute="top" secondItem="TbG-WS-eOa" secondAttribute="bottom" constant="8" id="p5d-R3-sFj"/>
                     <constraint firstAttribute="bottom" secondItem="Lbs-kU-HDh" secondAttribute="bottom" constant="30" id="uB4-l5-GTX"/>
                     <constraint firstItem="xQh-v1-IOW" firstAttribute="top" secondItem="TbG-WS-eOa" secondAttribute="top" id="uQf-uu-wnp"/>
@@ -108,6 +118,7 @@
                 <outlet property="commentLabel" destination="Lbs-kU-HDh" id="zUd-xv-RIH"/>
                 <outlet property="dateLabel" destination="xQh-v1-IOW" id="hFa-Nn-Ubo"/>
                 <outlet property="dateLabelConstraint" destination="AME-73-0mJ" id="VxV-HQ-DgB"/>
+                <outlet property="moreButton" destination="3Fy-mq-xLB" id="qwl-AX-mOd"/>
                 <outlet property="pointsLabel" destination="xfd-cM-msr" id="0nK-lg-ZHK"/>
                 <outlet property="titleLabel" destination="TbG-WS-eOa" id="XSh-gu-TSd"/>
             </connections>
@@ -116,5 +127,6 @@
     </objects>
     <resources>
         <image name="AvatarPlaceholder" width="130" height="130"/>
+        <image name="more-icon" width="32" height="32"/>
     </resources>
 </document>
