@@ -69,7 +69,8 @@ struct StreamsService {
             return unread
         }
     }
-    
+
+    #warning("JACK - Remove old getHomeStream(page:) once DONV-345 is complete")
     static func getHomeStream(page: Int) -> Promise<HomeStream> {
         return firstly {
             let home = VillageCoreAPI.homeStream(page: page)
@@ -82,6 +83,21 @@ struct StreamsService {
                 kudos: json["kudos"].arrayValue.compactMap({ Kudo(from: $0) })
             )
             return homeStream
+        }
+    }
+
+    static func getNewHomeStream(page: Int) -> Promise<NewHomeStream> {
+        return firstly {
+            let home = VillageCoreAPI.newHomeStream(page: page)
+            return VillageService.shared.request(target: home)
+        }.then { (json: JSON) -> NewHomeStream in
+            let newHomeStream = NewHomeStream(
+                notice: Notice(from: json["notice"]),
+                events: json["events"].arrayValue.compactMap({ Notice(from: $0) }),
+                news: json["news"].arrayValue.compactMap({ Notice(from: $0) }),
+                kudos: json["kudos"].arrayValue.compactMap({ Kudo(from: $0) })
+            )
+            return newHomeStream
         }
     }
     

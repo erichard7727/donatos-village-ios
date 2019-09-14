@@ -8,6 +8,7 @@
 
 import Foundation
 
+#warning("JACK - Remove old HomeStream once DONV-345 is complete")
 public struct HomeStream {
     
     public let streams: Streams
@@ -15,4 +16,11 @@ public struct HomeStream {
     public var news: Notice?
     public var kudos: Kudos
         
+}
+
+public struct NewHomeStream {
+    public let notice: Notice?
+    public let events: Notices
+    public var news: Notices
+    public var kudos: Kudos
 }

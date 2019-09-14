@@ -11,12 +11,21 @@ import Promises
 
 // Mark: - StreamService
 
+#warning("JACK - Remove old HomeStream extension once DONV-345 is complete")
 public extension HomeStream {
     
     static func fetch(page: Int = 1) -> Promise<HomeStream> {
         return StreamsService.getHomeStream(page: page)
     }
     
+}
+
+public extension NewHomeStream {
+
+    static func fetch(page: Int = 1) -> Promise<NewHomeStream> {
+        return StreamsService.getNewHomeStream(page: page)
+    }
+
 }
 
 public extension Stream {

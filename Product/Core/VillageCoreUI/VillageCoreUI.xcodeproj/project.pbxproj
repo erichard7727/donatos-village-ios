@@ -117,6 +117,8 @@
 		D4A6977E226411DF00ECC0A8 /* LeaderboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E877223B3751002DED70 /* LeaderboardTableViewController.swift */; };
 		D4A6977F226411DF00ECC0A8 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E878223B3751002DED70 /* LeaderboardViewController.swift */; };
 		D4A697822264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */; };
+		D4AEFB9B232D7D0F00986A1F /* NewHomeStream.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4AEFB9A232D7D0F00986A1F /* NewHomeStream.storyboard */; };
+		D4AEFB9D232D7D1C00986A1F /* NewHomeStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AEFB9C232D7D1C00986A1F /* NewHomeStreamViewController.swift */; };
 		D4B4E853223AE980002DED70 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E848223AE980002DED70 /* PeopleViewController.swift */; };
 		D4B4E858223AE980002DED70 /* Directory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B4E84E223AE980002DED70 /* Directory.storyboard */; };
 		D4B4E859223AE980002DED70 /* ContactPersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E850223AE980002DED70 /* ContactPersonTableViewCell.swift */; };
@@ -297,6 +299,8 @@
 		D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulUserInterface.swift; sourceTree = "<group>"; };
 		D4990FFC229C63A800DE2E73 /* NoticeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeListViewController.swift; sourceTree = "<group>"; };
 		D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodatesKeyboardBehavior.swift; sourceTree = "<group>"; };
+		D4AEFB9A232D7D0F00986A1F /* NewHomeStream.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewHomeStream.storyboard; sourceTree = "<group>"; };
+		D4AEFB9C232D7D1C00986A1F /* NewHomeStreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeStreamViewController.swift; sourceTree = "<group>"; };
 		D4B4E847223AE980002DED70 /* InvitePersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitePersonController.swift; sourceTree = "<group>"; };
 		D4B4E848223AE980002DED70 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		D4B4E84A223AE980002DED70 /* ContactPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPersonViewController.swift; sourceTree = "<group>"; };
@@ -684,6 +688,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D4AEFB98232D7C6100986A1F /* NewHomeStream */ = {
+			isa = PBXGroup;
+			children = (
+				D4AEFB9C232D7D1C00986A1F /* NewHomeStreamViewController.swift */,
+				D4AEFB9A232D7D0F00986A1F /* NewHomeStream.storyboard */,
+			);
+			path = NewHomeStream;
+			sourceTree = "<group>";
+		};
 		D4B4E843223AE7BE002DED70 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -928,6 +941,7 @@
 				D4B4E844223AE7CE002DED70 /* Directory */,
 				D4B4E843223AE7BE002DED70 /* Foundation */,
 				D4D3116A226F5392006C3C3F /* Groups */,
+				D4AEFB98232D7C6100986A1F /* NewHomeStream */,
 				D42CF71D227BDA8E003D8CF4 /* Home Stream */,
 				D4B4E86F223B370B002DED70 /* Kudos */,
 				D460B80F224AC41E003DCA2C /* Notices */,
@@ -1120,6 +1134,7 @@
 				D4A6976D226400CD00ECC0A8 /* LeaderboardCell.xib in Resources */,
 				D4A69772226400E800ECC0A8 /* AchievementHeaderCell.xib in Resources */,
 				D434D3FD2270ED09002C5EA0 /* Groups.storyboard in Resources */,
+				D4AEFB9B232D7D0F00986A1F /* NewHomeStream.storyboard in Resources */,
 				D4EA50812279CEBE00BE7E52 /* DMConversationSelfMessageCell.xib in Resources */,
 				D4EA50852279CEBE00BE7E52 /* DMConversationOtherAttachmentCell.xib in Resources */,
 				D43663CE222A13F2006354F2 /* ForgotPasswordViewController.storyboard in Resources */,
@@ -1267,6 +1282,7 @@
 				D4EA50892279CEBE00BE7E52 /* DMViewController.swift in Sources */,
 				D4F8A5822210A1DC005FDB6A /* HomeViewController.swift in Sources */,
 				D411BC402247B3EE003D2F08 /* UserSettingsGenericCell.swift in Sources */,
+				D4AEFB9D232D7D1C00986A1F /* NewHomeStreamViewController.swift in Sources */,
 				D42CF734227BDABA003D8CF4 /* HomeNoticeCell.swift in Sources */,
 				D411BC3D2247B3EE003D2F08 /* UserSettingsHeaderController.swift in Sources */,
 				D42CF73E227BDABA003D8CF4 /* GiveKudosCell.swift in Sources */,
