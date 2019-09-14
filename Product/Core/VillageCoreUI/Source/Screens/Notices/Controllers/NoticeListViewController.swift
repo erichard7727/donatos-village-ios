@@ -91,6 +91,112 @@ class NewsTableViewCellConfiguartor {
     
 }
 
+class EventTableViewCellConfiguartor {
+
+    func configure(_ cell: NoticeCell, forDisplaying event: Notice?) {
+        cell.selectionStyle = .none
+        cell.setLoading(event == nil)
+
+        if let event = event {
+
+            cell.states = [
+                NoticeCell.State(
+                    primaryColor: UIColor(red: 0.68, green: 0.84, blue: 0.51, alpha: 1.00),
+                    secondaryColor: UIColor(red: 0.95, green: 0.97, blue: 0.91, alpha: 1.00),
+                    actionLabel: "GOING",
+                    actionImage: UIImage.named("notice-needs-action")!
+                ),
+                NoticeCell.State(
+                    primaryColor: UIColor(red: 0.70, green: 0.62, blue: 0.86, alpha: 1.00),
+                    secondaryColor: UIColor(red: 0.93, green: 0.91, blue: 0.96, alpha: 1.00),
+                    actionLabel: "INTERESTED",
+                    actionImage: UIImage.named("notice-interested")!
+                ),
+                NoticeCell.State(
+                    primaryColor: UIColor(red: 0.90, green: 0.45, blue: 0.45, alpha: 1.00),
+                    secondaryColor: UIColor(red: 1.00, green: 0.92, blue: 0.93, alpha: 1.00),
+                    actionLabel: "NOT GOING",
+                    actionImage: UIImage.named("notice-not-going")!
+                ),
+                NoticeCell.State(
+                    primaryColor: UIColor(red: 1.00, green: 0.72, blue: 0.30, alpha: 1.00),
+                    secondaryColor: UIColor(red: 1.00, green: 0.95, blue: 0.88, alpha: 1.00),
+                    actionLabel: "RSVP NEEDED",
+                    actionImage: UIImage.named("notice-rsvp-needed")!
+                ),
+                NoticeCell.State(
+                    primaryColor: UIColor(red: 0.51, green: 0.83, blue: 0.98, alpha: 1.00),
+                    secondaryColor: UIColor(red: 0.88, green: 0.96, blue: 1.00, alpha: 1.00),
+                    actionLabel: "NO RSVP NEEDED",
+                    actionImage: UIImage.named("notice-no-rsvp-needed")!
+                ),
+            ]
+
+            switch (event.eventRsvpStatus, event.acknowledgeRequired) {
+            case (.yes, _):
+                cell.setState(index: 0)
+            case (.maybe, _):
+                cell.setState(index: 1)
+            case (.no, _):
+                cell.setState(index: 2)
+            case (.none, true):
+                cell.setState(index: 3)
+            case (.none, false):
+                cell.setState(index: 4)
+            }
+
+            cell.removePercentage()
+
+            let mutableTitle = NSMutableAttributedString(
+                string: event.title,
+                attributes: [
+                    .font: UIFont(name: "ProximaNova-Semibold", size: 15.0)!,
+                    .foregroundColor: #colorLiteral(red: 0.349019587, green: 0.3490196168, blue: 0.3490196168, alpha: 1)
+                ]
+            )
+
+
+
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+
+            let dateTimes = [
+                event.eventStartDateTime.flatMap(formatter.string(from:)).flatMap({ "Starts: \($0)" }),
+                event.eventEndDateTime.flatMap(formatter.string(from:)).flatMap({ "Ends: \($0)" }),
+            ]
+                .compactMap({ $0 })
+                .joined(separator: "\n")
+
+            if !dateTimes.isEmpty {
+                mutableTitle.append(NSAttributedString(
+                    string: "\n\(dateTimes)",
+                    attributes: [
+                        .font: UIFont(name: "ProximaNova-Regular", size: 14.0)!,
+                        .foregroundColor: #colorLiteral(red: 0.349019587, green: 0.3490196168, blue: 0.3490196168, alpha: 1)
+                    ])
+                )
+            }
+
+            cell.noticeTitleLabel.attributedText = mutableTitle
+            cell.noticeId = event.id
+            cell.noticeBody = event.body
+            cell.acknowledged = event.isAcknowledged
+            cell.acknowledgementRequired = event.acknowledgeRequired
+        } else {
+            cell.markAccepted(false)
+            cell.removePercentage()
+            cell.noticeTitleLabel.text = nil
+            cell.noticeId = ""
+            cell.noticeBody = ""
+            cell.acknowledged = false
+            cell.acknowledgementRequired = false
+            cell.percentageButtonPressed = nil
+        }
+    }
+
+}
+
 final class NoticeListViewController: UIViewController {
     
     // MARK: - Public Properties
@@ -242,11 +348,25 @@ extension NoticeListViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewNotice", let notice = sender as? Notice {
+        if segue.identifier == "ViewNotice", let indexPath = sender as? IndexPath {
+            guard let notice = notices.value(at: indexPath) else {
+                assertionFailure()
+                return
+            }
             guard let controller = segue.destination as? ViewNoticeViewController else {
                 fatalError("ViewNoticeViewController not found")
             }
             controller.notice = notice
+            controller.didUpdateNotice = { [weak self] updatedNotice in
+                guard let `self` = self else { return }
+                let currentNotice = self.notices.value(at: indexPath)
+                guard currentNotice == updatedNotice else {
+                    assertionFailure("The items seem to have gotten out of sync.")
+                    return
+                }
+                self.notices.update(item: updatedNotice, at: indexPath)
+                self.tableView.reloadRows(at: [indexPath], with: .none)
+            }
         } else if segue.identifier == "NoticeAcknowledgements", let notice = sender as? Notice {
             guard let controller = segue.destination as? NoticeAcknowledgementsViewController else {
                 fatalError("ViewNoticeViewController not found")
@@ -335,10 +455,9 @@ extension NoticeListViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             NewsTableViewCellConfiguartor().configure(cell, forDisplaying: notice)
             return cell
-        case .events?:
-            #warning("TODO - Create separate events cell?")
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
-            NewsTableViewCellConfiguartor().configure(cell, forDisplaying: notice)
+        case .event?:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeCell", for: indexPath) as! NoticeCell
+            EventTableViewCellConfiguartor().configure(cell, forDisplaying: notice)
             return cell
         }
     }
@@ -376,7 +495,7 @@ extension NoticeListViewController: UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-        
+
         AnalyticsService.logEvent(
             name: AnalyticsEventViewItem,
             parameters: [
@@ -385,14 +504,14 @@ extension NoticeListViewController: UITableViewDelegate {
                     switch selectedNotice.type {
                     case .notice: return "notice"
                     case .news: return "news"
-                    case .events: return "events"
+                    case .event: return "event"
                     }
                 }(),
                 AnalyticsParameterItemName: selectedNotice.title
             ]
         )
         
-        performSegue(withIdentifier: "ViewNotice", sender: selectedNotice)
+        performSegue(withIdentifier: "ViewNotice", sender: indexPath)
     }
     
 }

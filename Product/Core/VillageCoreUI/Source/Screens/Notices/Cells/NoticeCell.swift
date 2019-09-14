@@ -9,7 +9,14 @@
 import UIKit
 
 class NoticeCell: UITableViewCell {
-    
+
+    struct State {
+        let primaryColor: UIColor
+        let secondaryColor: UIColor
+        let actionLabel: String
+        let actionImage: UIImage
+    }
+
     var percentageButtonPressed: (() -> Void)?
 
     @IBOutlet weak var noticeTitleLabel: UILabel!
@@ -39,36 +46,49 @@ class NoticeCell: UITableViewCell {
     var noticeBody: String = ""
     var acknowledgementRequired: Bool = false
     var acknowledged: Bool = false
-    
-    let greenColor = UIColor.init(red: 68/255.0, green: 176/255.0, blue: 49/255.0, alpha: 1.0)
-    let fadedGreenColor = UIColor.init(red: 68/255.0, green: 176/255.0, blue: 49/255.0, alpha: 0.16)
-    let orangeColor = UIColor.init(red: 251/255.0, green: 149/255.0, blue: 50/255.0, alpha: 1.0)
-    let fadedOrangeColor = UIColor.init(red: 251/255.0, green: 149/255.0, blue: 50/255.0, alpha: 0.16)
-    
+    var states: [State] = [
+        State(
+            primaryColor: UIColor.init(red: 251/255.0, green: 149/255.0, blue: 50/255.0, alpha: 1.0),
+            secondaryColor: UIColor.init(red: 251/255.0, green: 149/255.0, blue: 50/255.0, alpha: 0.16),
+            actionLabel: "Action Needed",
+            actionImage: UIImage.named("notice-needs-action")!
+        ),
+        State(
+            primaryColor: UIColor.init(red: 68/255.0, green: 176/255.0, blue: 49/255.0, alpha: 1.0),
+            secondaryColor: UIColor.init(red: 68/255.0, green: 176/255.0, blue: 49/255.0, alpha: 0.16),
+            actionLabel: "Action Accepted",
+            actionImage: UIImage.named("notice-actioned")!
+        ),
+    ]
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func markAccepted(_ accepted: Bool) {
         if accepted {
-            actionLabel.textColor = greenColor
-            actionLabel.text = "Action Accepted"
-            let image = UIImage.named("notice-actioned")
-            let tintedImage = image?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            leftSquareImageView.image = tintedImage
-            leftSquareImageView.tintColor = UIColor.white
-            leftSquareView.backgroundColor = greenColor
-            content.backgroundColor = fadedGreenColor
+            setState(index: 1)
         } else {
-            actionLabel.textColor = orangeColor
-            actionLabel.text = "Action Needed"
-            let image = UIImage.named("notice-needs-action")
-            let tintedImage = image?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            leftSquareImageView.image = tintedImage
-            leftSquareImageView.tintColor = UIColor.white
-            leftSquareView.backgroundColor = orangeColor
-            content.backgroundColor = fadedOrangeColor
+            setState(index: 0)
         }
+    }
+
+    func setState(index: Int) {
+        guard index >= 0 && index < states.count else {
+            assertionFailure("Index is out of bounds!")
+            return
+        }
+
+        let selectedState = states[index]
+
+        actionLabel.textColor = selectedState.primaryColor
+        actionLabel.text = selectedState.actionLabel
+        let image = selectedState.actionImage
+        let tintedImage = image.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        leftSquareImageView.image = tintedImage
+        leftSquareImageView.tintColor = UIColor.white
+        leftSquareView.backgroundColor = selectedState.primaryColor
+        content.backgroundColor = selectedState.secondaryColor
     }
     
     func displayPercentage(_ percentage: String, color: UIColor) {

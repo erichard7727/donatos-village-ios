@@ -263,7 +263,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Cras Sem Mattis Ultricies Pellen " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="RkL-pE-9v9">
                                                                     <rect key="frame" x="0.0" y="25" width="227" height="18"/>
                                                                     <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="16"/>
-                                                                    <color key="textColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" red="0.34901958703994751" green="0.3490196168422699" blue="0.3490196168422699" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -632,31 +632,63 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UT6-pk-ggl">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="495"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Uo-lc-MNA" userLabel="Acknowledge Button">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <color key="backgroundColor" red="0.4549019608" green="0.76470588240000004" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="YDc-pG-Vui"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
-                                <state key="normal" title="Acknowledge"/>
-                                <connections>
-                                    <action selector="acknowledgeButtonPressed:" destination="6zU-Oh-HkH" eventType="touchUpInside" id="8tg-zr-gys"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kho-N5-M4n">
+                                <rect key="frame" x="0.0" y="559" width="375" height="108"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Uo-lc-MNA" userLabel="Acknowledge Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <color key="backgroundColor" red="0.4549019608" green="0.76470588240000004" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="YDc-pG-Vui"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
+                                        <state key="normal" title="Acknowledge"/>
+                                        <connections>
+                                            <action selector="acknowledgeButtonPressed:" destination="6zU-Oh-HkH" eventType="touchUpInside" id="8tg-zr-gys"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZz-hA-tsF">
+                                        <rect key="frame" x="0.0" y="50" width="375" height="58"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="dqm-4g-A2s">
+                                                <rect key="frame" x="8" y="0.0" width="359" height="51"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="6ep-k1-Us8"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Going"/>
+                                                    <segment title="Interested"/>
+                                                    <segment title="Not Going"/>
+                                                </segments>
+                                                <color key="tintColor" red="0.4549019608" green="0.76470588240000004" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="rsvpChanged:" destination="6zU-Oh-HkH" eventType="valueChanged" id="wdZ-hQ-iog"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="dqm-4g-A2s" firstAttribute="top" secondItem="BZz-hA-tsF" secondAttribute="top" id="1EU-zs-yjj"/>
+                                            <constraint firstAttribute="bottom" secondItem="dqm-4g-A2s" secondAttribute="bottom" constant="8" id="Kzd-1W-7wn"/>
+                                            <constraint firstAttribute="trailing" secondItem="dqm-4g-A2s" secondAttribute="trailing" constant="8" id="X8I-Af-oi9"/>
+                                            <constraint firstItem="dqm-4g-A2s" firstAttribute="leading" secondItem="BZz-hA-tsF" secondAttribute="leading" constant="8" id="bsa-Lt-P86"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="UT6-pk-ggl" firstAttribute="top" secondItem="0Fx-MT-J7I" secondAttribute="top" id="1TH-xl-wd9"/>
-                            <constraint firstItem="3Uo-lc-MNA" firstAttribute="top" secondItem="UT6-pk-ggl" secondAttribute="bottom" id="3H3-FY-GpV"/>
-                            <constraint firstItem="0Fx-MT-J7I" firstAttribute="trailing" secondItem="3Uo-lc-MNA" secondAttribute="trailing" id="9OJ-ZB-c5f"/>
-                            <constraint firstItem="0Fx-MT-J7I" firstAttribute="bottom" secondItem="3Uo-lc-MNA" secondAttribute="bottom" id="GLJ-Fx-tiU"/>
-                            <constraint firstItem="3Uo-lc-MNA" firstAttribute="leading" secondItem="0Fx-MT-J7I" secondAttribute="leading" id="dGu-nJ-G1m"/>
+                            <constraint firstItem="kho-N5-M4n" firstAttribute="leading" secondItem="0Fx-MT-J7I" secondAttribute="leading" id="Nrf-oo-l1H"/>
+                            <constraint firstItem="0Fx-MT-J7I" firstAttribute="trailing" secondItem="kho-N5-M4n" secondAttribute="trailing" id="Qeo-cJ-AEO"/>
                             <constraint firstItem="UT6-pk-ggl" firstAttribute="leading" secondItem="0Fx-MT-J7I" secondAttribute="leading" id="ef2-nu-udS"/>
                             <constraint firstItem="0Fx-MT-J7I" firstAttribute="trailing" secondItem="UT6-pk-ggl" secondAttribute="trailing" id="fPV-AW-pTW"/>
+                            <constraint firstItem="kho-N5-M4n" firstAttribute="bottom" secondItem="0Fx-MT-J7I" secondAttribute="bottom" id="kHC-Wm-05H"/>
+                            <constraint firstItem="kho-N5-M4n" firstAttribute="top" secondItem="UT6-pk-ggl" secondAttribute="bottom" id="y17-2N-QTU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Fx-MT-J7I"/>
                     </view>
@@ -665,6 +697,8 @@
                     <connections>
                         <outlet property="acknowledgeHeightConstraint" destination="YDc-pG-Vui" id="28l-iR-ONj"/>
                         <outlet property="containerView" destination="UT6-pk-ggl" id="PVV-zE-Nru"/>
+                        <outlet property="rsvpContainer" destination="BZz-hA-tsF" id="gjJ-qf-g90"/>
+                        <outlet property="rsvpSegmentedControl" destination="dqm-4g-A2s" id="zoG-rU-xSK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dlz-Af-Aus" userLabel="First Responder" sceneMemberID="firstResponder"/>

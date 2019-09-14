@@ -14,10 +14,16 @@ class ViewNoticeViewController: UIViewController {
     
     var notice: Notice!
 
+    var didUpdateNotice: ((Notice) -> Void)?
+
     var progressIndicator: ProgressIndicator!
     
     @IBOutlet weak var acknowledgeHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerView: UIView!
+
+    @IBOutlet private var rsvpContainer: UIView!
+    @IBOutlet private var rsvpSegmentedControl: UISegmentedControl!
+
     weak var webView: WKWebView?
     
     override func viewDidLoad() {
@@ -27,14 +33,23 @@ class ViewNoticeViewController: UIViewController {
             LeftBarButtonBehavior(showing: .menuOrBack)
         ])
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.progressIndicator = ProgressIndicator.progressIndicatorInView(self.view)
-        
-        if (notice.acknowledgeRequired && notice.isAcknowledged) || !notice.acknowledgeRequired {
+
+        if notice.type == .event {
+            updateRSVP(for: self.notice)
+            rsvpContainer.isHidden = false
             acknowledgeHeightConstraint.constant = 0
+        } else {
+            rsvpContainer.isHidden = true
+
+            if (notice.acknowledgeRequired && notice.isAcknowledged) || !notice.acknowledgeRequired {
+                rsvpContainer.isHidden = true
+                acknowledgeHeightConstraint.constant = 0
+            }
         }
         
         // Configure title, etc.
@@ -89,7 +104,40 @@ class ViewNoticeViewController: UIViewController {
         
         present(acknowledgeAlertController, animated: true, completion: nil)
     }
-    
+
+    @IBAction func rsvpChanged(_ sender: UISegmentedControl) {
+        let rsvp: Notice.RSVPResponse?
+        if sender.selectedSegmentIndex == 0 {
+            rsvp = .yes
+        } else if sender.selectedSegmentIndex == 1 {
+            rsvp = .maybe
+        } else if sender.selectedSegmentIndex == 2 {
+            rsvp = .no
+        } else {
+            rsvp = nil
+        }
+
+        guard let response = rsvp else {
+            assertionFailure()
+            return
+        }
+
+        progressIndicator.show()
+
+        firstly {
+            notice.rsvp(response)
+        }.then { [weak self] (notice) in
+            self?.notice = notice
+            self?.updateRSVP(for: notice)
+            self?.didUpdateNotice?(notice)
+        }.catch { [weak self] _ in
+            let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem updating your RSVP status. Please try again.")
+            self?.present(alert, animated: true, completion: nil)
+        }.always { [weak self] in
+            self?.progressIndicator.hide()
+        }
+    }
+
     private var isRootViewController: Bool {
         return (navigationController?.viewControllers ?? []).count <= 1
     }
@@ -141,6 +189,21 @@ class ViewNoticeViewController: UIViewController {
     
     @objc private func showMenu(_ sender: Any? = nil) {
         showSideMenu()
+    }
+
+    private func updateRSVP(for notice: Notice) {
+        guard notice.type == .event else { return }
+
+        switch notice.eventRsvpStatus {
+        case .yes:
+            rsvpSegmentedControl.selectedSegmentIndex = 0
+        case .maybe:
+            rsvpSegmentedControl.selectedSegmentIndex = 1
+        case .no:
+            rsvpSegmentedControl.selectedSegmentIndex = 2
+        case .none:
+            rsvpSegmentedControl.selectedSegmentIndex = UISegmentedControl.noSegment
+        }
     }
 }
 
