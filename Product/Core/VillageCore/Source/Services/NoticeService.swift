@@ -52,7 +52,21 @@ struct NoticeService {
                 }
             },
             sectionTitle: { (notice) -> String in
-                return formatter.string(from: notice.publishDate)
+                switch notice.type {
+                case .news, .notice:
+                    return formatter.string(from: notice.publishDate)
+                case .event:
+                    let now = Date()
+                    let eventDate = notice.eventStartDateTime ?? notice.publishDate
+                    switch Calendar.current.compare(now, to: eventDate, toGranularity: .day) {
+                    case .orderedDescending:
+                        // If now is greater than the event's start date
+                        // set the section title to today's date
+                        return formatter.string(from: now)
+                    case .orderedAscending, .orderedSame:
+                        return formatter.string(from: eventDate)
+                    }
+                }
             },
             sectionSorting: { (notice1, notice2) -> Bool in
                 guard let n1 = notice1, let n2 = notice2 else {
@@ -60,7 +74,13 @@ struct NoticeService {
                 }
                 let lhs = formatter.date(from: n1)!
                 let rhs = formatter.date(from: n2)!
-                return Calendar.current.compare(lhs, to: rhs, toGranularity: .day) == .orderedDescending
+
+                switch noticeType {
+                case .all, .news, .notice:
+                    return Calendar.current.compare(lhs, to: rhs, toGranularity: .day) == .orderedDescending
+                case .events:
+                    return Calendar.current.compare(lhs, to: rhs, toGranularity: .day) == .orderedAscending
+                }
             }
         )
     }
@@ -94,6 +114,23 @@ struct NoticeService {
             return notice
         }
     }
+
+    static func rsvp(response: VillageCoreAPI.RSVPResponse, notice: Notice) -> Promise<Notice> {
+        return firstly {
+            VillageService.shared.request(target: .rsvpEvent(noticeId: notice.id, response: response))
+        }.then { _ -> Notice in
+            var mutableNotice = notice
+            switch response {
+            case .no:
+                mutableNotice.eventRsvpStatus = .no
+            case .maybe:
+                mutableNotice.eventRsvpStatus = .maybe
+            case .yes:
+                mutableNotice.eventRsvpStatus = .yes
+            }
+            return mutableNotice
+        }
+    }
     
 }
 
@@ -117,12 +154,16 @@ internal extension Notice {
             id: id,
             title: title,
             body: body,
+            bodyContent: response["bodyContent"].stringValue,
             type: type,
             publishDate: publishDate,
             isActive: response["active"].boolValue,
             acknowledgeRequired: response["acknowledgeRequired"].boolValue,
             isAcknowledged: response["acknowledged"].boolValue,
             acceptedPercent: response["acceptedPercent"].floatValue,
+            eventStartDateTime: villageCoreAPIDateFormatter.date(from: response["eventStartDateTime"].stringValue),
+            eventEndDateTime: villageCoreAPIDateFormatter.date(from: response["eventEndDateTime"].stringValue),
+            eventRsvpStatus: RSVPResponse(apiValue: response["eventRsvpStatus"].stringValue),
             mediaAttachments: response["mediaAttachment"].arrayValue.compactMap({ MediaAttachment(from: $0) }),
             person: person
         )

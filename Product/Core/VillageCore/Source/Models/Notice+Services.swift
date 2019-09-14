@@ -36,6 +36,22 @@ extension Notice {
             NotificationCenter.default.post(name: Notification.Name.Notice.WasAcknowledged, object: notice, userInfo: nil)
         }
     }
+
+    public func rsvp(_ response: RSVPResponse) -> Promise<Notice> {
+        guard response != .none else { return Promise(PromiseError.validationFailure) }
+
+        let apiResponse: VillageCoreAPI.RSVPResponse = {
+            switch response {
+            case .no, .none:
+                return .no
+            case .maybe:
+                return .maybe
+            case .yes:
+                return .yes
+            }
+        }()
+        return NoticeService.rsvp(response: apiResponse, notice: self)
+    }
     
 }
 

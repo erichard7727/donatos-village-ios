@@ -352,7 +352,15 @@ public protocol SectionedPaginatedType: class {
     /// - Parameter indexPath: The IndexPath
     /// - Returns: The value if it has been fetched, or `nil`.
     func value(at indexPath: IndexPath) -> T?
-    
+
+
+    /// Updates the value at the specified IndexPath.
+    ///
+    /// - Parameters:
+    ///   - item: The item to update
+    ///   - indexPath: The IndexPath
+    func update(item: T, at indexPath: IndexPath)
+
     /// Determine whether the value at the given indexPath has been fetched.
     ///
     /// - Parameter indexPath: The indexPath to check
@@ -491,6 +499,10 @@ public class SectionedPaginated<T: Equatable>: SectionedPaginatedType {
     
     public func value(at indexPath: IndexPath) -> T? {
         return sections[indexPath.section].items[indexPath.item]
+    }
+
+    public func update(item: T, at indexPath: IndexPath) {
+        sections[indexPath.section].items[indexPath.item] = item
     }
     
     public func isLoadingValue(at indexPath: IndexPath) -> Bool {

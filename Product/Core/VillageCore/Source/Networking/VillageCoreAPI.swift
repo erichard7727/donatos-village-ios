@@ -50,13 +50,19 @@ public enum VillageCoreAPI {
                 return "news"
                 
             case .events:
-                return "events"
+                return "event"
                 
             case .all:
                 assertionFailure()
                 return ""
             }
         }
+    }
+
+    public enum RSVPResponse: String {
+        case no = "NO"
+        case maybe = "MAYBE"
+        case yes = "YES"
     }
     
     public enum KudoType: String {
@@ -103,6 +109,7 @@ public enum VillageCoreAPI {
     case noticeDetail(noticeId: String)
     case noticeAcknowledgedList(noticeId: String, page: Int)
     case acknowledgeNotice(noticeId: String)
+    case rsvpEvent(noticeId: String, response: RSVPResponse)
     
     // Content Library
     case contentLibraryRoot(page: Int)
@@ -197,6 +204,9 @@ extension VillageCoreAPI: TargetType {
         case let .noticeAcknowledgedList(noticeId, _),
              let .acknowledgeNotice(noticeId):
             return "notice/1.0/\(noticeId)/acknowledge"
+
+        case let .rsvpEvent(noticeId, _):
+            return "notice/1.0/\(noticeId)/rsvp"
             
         case .contentLibraryRoot:
             return "content/1.0"
@@ -313,7 +323,8 @@ extension VillageCoreAPI: TargetType {
              .setMessageLiked,
              .setSubscribed,
              .sendMessage,
-             .flagKudo:
+             .flagKudo,
+             .rsvpEvent:
             return .put
         }
     }
@@ -336,6 +347,7 @@ extension VillageCoreAPI: TargetType {
              .noticeDetail,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
+             .rsvpEvent,
              .contentLibraryRoot,
              .contentLibraryDirectory,
              .kudos,
@@ -386,6 +398,17 @@ extension VillageCoreAPI: TargetType {
                     "diagId": User.current.diagnosticId
                 ],
                 encoding: URLEncoding.default
+            )
+
+        case let .rsvpEvent(_, response):
+            return Task.requestCompositeParameters(
+                bodyParameters: [
+                    "eventRsvpStatus": response.rawValue,
+                ],
+                bodyEncoding: JSONEncoding.default,
+                urlParameters: [
+                    "diagId": User.current.diagnosticId
+                ]
             )
             
         case let .validateIdentity(identity):
@@ -738,6 +761,7 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .noticeDetail,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
+             .rsvpEvent,
              .contentLibraryRoot,
              .contentLibraryDirectory,
              .kudos,
