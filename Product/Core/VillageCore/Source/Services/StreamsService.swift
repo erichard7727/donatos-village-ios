@@ -315,7 +315,8 @@ internal extension Unread {
     init(from response: JSON) {
         self.init(
             streams: response["unreadCounts"].arrayValue.compactMap(Unread.Stream.init),
-            notices: response["noticeUnreadCount"].intValue
+            notices: response["noticeUnreadCount"].intValue,
+            events: response["eventUnreadCount"].intValue
         )
     }
 }
