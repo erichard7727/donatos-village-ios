@@ -70,6 +70,13 @@ public extension Sequence where Element == Notice {
     static func allNoticesPaginated() -> SectionedPaginated<Notice> {
         return NoticeService.getNoticesPaginated()
     }
+
+    /// Extends typealias `Notices` to search notice items.
+    ///
+    /// - Returns: A list of `Notices` matching the search term (only Notice types)
+    static func searchNoticesPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return NoticeService.searchNoticesPaginated(for: term)
+    }
     
     /// Extends typealias `Notices` to fetch just news items.
     ///
@@ -77,12 +84,26 @@ public extension Sequence where Element == Notice {
     static func allNewsPaginated() -> SectionedPaginated<Notice> {
         return NoticeService.getNewsPaginated()
     }
+
+    /// Extends typealias `News` to search news items.
+    ///
+    /// - Returns: A list of `Notices` matching the search term (only News types)
+    static func searchNewsPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return NoticeService.searchNewsPaginated(for: term)
+    }
     
     /// Extends typealias `Notices` to fetch just event items.
     ///
     /// - Returns: A list of `Notices` (only Event types)
     static func allEventsPaginated() -> SectionedPaginated<Notice> {
         return NoticeService.getEventsPaginated()
+    }
+
+    /// Extends typealias `Notices` to search event items.
+    ///
+    /// - Returns: A list of `Notices` matching the search term (only Event types)
+    static func searchEventsPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return NoticeService.searchEventsPaginated(for: term)
     }
     
 }

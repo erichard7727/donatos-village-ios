@@ -26,16 +26,28 @@ struct NoticeService {
     static func getNoticesPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.notice)
     }
+
+    static func searchNoticesPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.notice, searchTerm: term)
+    }
     
     static func getNewsPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.news)
+    }
+
+    static func searchNewsPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.news, searchTerm: term)
     }
     
     static func getEventsPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.events)
     }
+
+    static func searchEventsPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.events, searchTerm: term)
+    }
     
-    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType) -> SectionedPaginated<Notice> {
+    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType, searchTerm: String? = nil) -> SectionedPaginated<Notice> {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
@@ -43,7 +55,12 @@ struct NoticeService {
         return SectionedPaginated<Notice>.init(
             fetchValues: { (page) -> Promise<PaginatedResults<Notice>> in
                 return firstly {
-                    let notices = VillageCoreAPI.notices(noticeType, page: page)
+                    let notices: VillageCoreAPI
+                    if let term = searchTerm {
+                        notices = VillageCoreAPI.searchNotices(type: noticeType, term: term, page: page)
+                    } else {
+                        notices = VillageCoreAPI.notices(noticeType, page: page)
+                    }
                     return VillageService.shared.request(target: notices)
                 }.then { (json: JSON) -> PaginatedResults<Notice> in
                     let notices = json["content"].arrayValue.compactMap({ Notice(from: $0) })

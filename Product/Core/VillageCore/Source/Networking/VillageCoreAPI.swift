@@ -107,6 +107,7 @@ public enum VillageCoreAPI {
     // Notices
     case notices(_ noticeType: NoticeType, page: Int)
     case noticeDetail(noticeId: String)
+    case searchNotices(type: NoticeType, term: String, page: Int)
     case noticeAcknowledgedList(noticeId: String, page: Int)
     case acknowledgeNotice(noticeId: String)
     case rsvpEvent(noticeId: String, response: RSVPResponse)
@@ -202,6 +203,10 @@ extension VillageCoreAPI: TargetType {
             
         case let .noticeDetail(noticeId):
             return "notice/1.0/\(noticeId)"
+
+        case let .searchNotices(_, term, _):
+            let escapedTerm = term.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            return "notice/1.0/search/\(escapedTerm)"
             
         case let .noticeAcknowledgedList(noticeId, _),
              let .acknowledgeNotice(noticeId):
@@ -291,6 +296,7 @@ extension VillageCoreAPI: TargetType {
              .getPersonDetails,
              .notices,
              .noticeDetail,
+             .searchNotices,
              .noticeAcknowledgedList,
              .contentLibraryRoot,
              .contentLibraryDirectory,
@@ -351,6 +357,7 @@ extension VillageCoreAPI: TargetType {
              .getPersonDetails,
              .notices,
              .noticeDetail,
+             .searchNotices,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
              .rsvpEvent,
@@ -542,7 +549,8 @@ extension VillageCoreAPI: TargetType {
                 encoding: URLEncoding.default
             )
             
-        case let .notices(noticeType, page):
+        case .notices(let noticeType, let page),
+             .searchNotices(let noticeType, _, let page):
             let diagId = User.current.diagnosticId
             let paging = "\(page)-\(defaultPageSize)"
             
@@ -566,7 +574,7 @@ extension VillageCoreAPI: TargetType {
                     encoding: URLEncoding.default
                 )
             }
-            
+
         case let .kudos(kudoType, personId, achievementId, page):
             let filters: [String?] = [
                 (kudoType == .all) ? nil : kudoType.rawValue,
@@ -767,6 +775,7 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .getPersonDetails,
              .notices,
              .noticeDetail,
+             .searchNotices,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
              .rsvpEvent,
