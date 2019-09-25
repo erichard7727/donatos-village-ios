@@ -105,6 +105,7 @@ internal extension Person {
             avatarURL: response["avatar"]["url"].url,
             firstName: response["firstName"].string,
             lastName: response["lastName"].string,
+            department: response["department"].string,
             jobTitle: response["jobTitle"].string,
             phone: response["phone"].string,
             twitter: response["twitter"].string,
