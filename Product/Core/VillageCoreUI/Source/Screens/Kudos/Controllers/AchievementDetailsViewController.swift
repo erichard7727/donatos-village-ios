@@ -192,6 +192,12 @@ extension AchievementDetailsViewController: UITableViewDataSource {
                 comment: kudo.comment,
                 points: kudo.points,
                 date: formatter.string(from: kudo.date),
+                didSelectAvatar: { [weak self] in
+                    let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
+                    vc.person = kudo.receiver
+                    vc.delegate = self
+                    self?.show(vc, sender: self)
+                },
                 showMoreOptions: {
                     assertionFailure("Showing more options has not been implemented!")
                 }
@@ -209,4 +215,16 @@ extension AchievementDetailsViewController: UITableViewDataSource {
             return cell
         }
     }
+}
+
+// MARK: - PersonProfileViewControllerDelegate
+
+extension AchievementDetailsViewController: PersonProfileViewControllerDelegate {
+
+    func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: ContactPersonViewController) {
+        let dataSource = DirectMessageStreamDataSource(stream: directMessage)
+        let vc = StreamViewController(dataSource: dataSource)
+        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+    }
+
 }

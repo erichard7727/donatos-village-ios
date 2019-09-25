@@ -16,11 +16,17 @@ class DMConversationOtherMessageCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageContainerView: UIView!
     @IBOutlet weak var messageLabel: NantesLabel!
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView! {
+        didSet {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(_didSelectAvatar))
+            avatarImageView?.addGestureRecognizer(tap)
+        }
+    }
     @IBOutlet weak var avatarImageViewWidthConstraint: NSLayoutConstraint!
     
     var personID: String?
     var didSelectLink: ((URL) -> Void)?
+    private var didSelectAvatar: () -> Void = { }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -55,7 +61,7 @@ class DMConversationOtherMessageCell: UITableViewCell {
         didSelectLink = nil
     }
     
-    func configureCell(_ message: Message, didSelectLink: ((URL) -> Void)?) {
+    func configureCell(_ message: Message, didSelectLink: ((URL) -> Void)?, didSelectAvatar: @escaping () -> Void) {
         authorLabel.text = message.authorDisplayName
         messageLabel.text = message.body
 
@@ -68,12 +74,17 @@ class DMConversationOtherMessageCell: UITableViewCell {
         personID = String(message.author.id)
         
         self.didSelectLink = didSelectLink
+        self.didSelectAvatar = didSelectAvatar
     }
     
     func configureAvatar(_ image: UIImage) {
         UIView.transition(with: avatarImageView, duration: 0.25, options: .transitionCrossDissolve, animations: {
             self.avatarImageView.image = image
             }, completion: nil)
+    }
+
+    @objc private func _didSelectAvatar() {
+        didSelectAvatar()
     }
 }
 

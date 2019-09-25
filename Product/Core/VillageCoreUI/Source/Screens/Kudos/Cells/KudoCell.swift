@@ -14,7 +14,7 @@ class KudoCell: UITableViewCell {
     var personID: String?
     var displayDateLabel: Bool = false
     
-    func configure(title: NSAttributedString, comment: String, points: Int, date: String, showMoreOptions: @escaping () -> Void) {
+    func configure(title: NSAttributedString, comment: String, points: Int, date: String, didSelectAvatar: @escaping () -> Void, showMoreOptions: @escaping () -> Void) {
         titleLabel?.attributedText = title
         commentLabel?.text = comment
         pointsLabel?.text = "+\(points.description)\(points == 1 ? "pt" : "pts")"
@@ -25,6 +25,7 @@ class KudoCell: UITableViewCell {
         }
 
         self.showMoreOptions = showMoreOptions
+        self.didSelectAvatar = didSelectAvatar
     }
     
     func configureAvatarImage(_ image: UIImage) {
@@ -61,6 +62,9 @@ class KudoCell: UITableViewCell {
         didSet {
             avatarImageView?.clipsToBounds = true
             avatarImageView?.backgroundColor = UIColor.vlgGray
+
+            let tap = UITapGestureRecognizer(target: self, action: #selector(_didSelectAvatar))
+            avatarImageView?.addGestureRecognizer(tap)
         }
     }
     
@@ -81,6 +85,8 @@ class KudoCell: UITableViewCell {
     @IBOutlet private var moreButton: UIButton!
 
     private var showMoreOptions: () -> Void = { }
+
+    private var didSelectAvatar: () -> Void = { }
 
     // MARK: - UITableViewCell
     
@@ -106,5 +112,8 @@ class KudoCell: UITableViewCell {
     @IBAction private func moreOptions(_ sender: Any? = nil) {
         showMoreOptions()
     }
-    
+
+    @objc private func _didSelectAvatar() {
+        didSelectAvatar()
+    }
 }

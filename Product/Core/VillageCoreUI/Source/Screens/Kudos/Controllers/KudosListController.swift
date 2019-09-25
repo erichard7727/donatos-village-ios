@@ -267,6 +267,12 @@ extension KudosListController: UITableViewDataSource {
             comment: kudo.comment,
             points: kudo.points,
             date: dateString,
+            didSelectAvatar: { [weak self] in
+                let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
+                vc.person = kudo.receiver
+                vc.delegate = self
+                self?.show(vc, sender: self)
+            },
             showMoreOptions: { [weak self] in
                 let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                     alert.addAction(UIAlertAction(
@@ -412,4 +418,16 @@ extension KudosListController: UIScrollViewDelegate {
             }
         }
     }
+}
+
+// MARK: - PersonProfileViewControllerDelegate
+
+extension KudosListController: PersonProfileViewControllerDelegate {
+
+    func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: ContactPersonViewController) {
+        let dataSource = DirectMessageStreamDataSource(stream: directMessage)
+        let vc = StreamViewController(dataSource: dataSource)
+        self.show(UINavigationController(rootViewController: vc), sender: self)
+    }
+
 }

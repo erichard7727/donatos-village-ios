@@ -16,13 +16,22 @@ class DMConversationOtherAttachmentCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageContainerView: UIView!
     @IBOutlet weak var messageLabel: NantesLabel!
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.layer.masksToBounds = true
+            avatarImageView.backgroundColor = UIColor.vlgGray
+
+            let tap = UITapGestureRecognizer(target: self, action: #selector(_didSelectAvatar))
+            avatarImageView?.addGestureRecognizer(tap)
+        }
+    }
     @IBOutlet weak var avatarImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var attachmentImageView: UIImageView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     var message: Message?
     var didSelectLink: ((URL) -> Void)?
+    private var didSelectAvatar: () -> Void = { }
     
     internal var aspectConstraint : NSLayoutConstraint? {
         didSet {
@@ -50,11 +59,9 @@ class DMConversationOtherAttachmentCell: UITableViewCell {
         ]
         self.messageLabel.enabledTextCheckingTypes = .link
         self.messageLabel.delegate = self
-        
-        avatarImageView.layer.masksToBounds = true
+
         avatarImageView.layer.cornerRadius = avatarImageViewWidthConstraint.constant / 2.0
-        avatarImageView.backgroundColor = UIColor.vlgGray
-        
+
         initializeCell()
     }
     
@@ -88,7 +95,7 @@ class DMConversationOtherAttachmentCell: UITableViewCell {
         }
     }
     
-    func configureMessage(_ message: Message, didSelectLink: ((URL) -> Void)?) {
+    func configureMessage(_ message: Message, didSelectLink: ((URL) -> Void)?, didSelectAvatar: @escaping () -> Void) {
         self.message = message
         
         authorLabel.text = message.authorDisplayName
@@ -114,6 +121,7 @@ class DMConversationOtherAttachmentCell: UITableViewCell {
         }
         
         self.didSelectLink = didSelectLink
+        self.didSelectAvatar = didSelectAvatar
     }
     
     func configureAnimatedAttachment(_ attachmentImage: UIImage) {
@@ -135,6 +143,10 @@ class DMConversationOtherAttachmentCell: UITableViewCell {
         UIView.transition(with: avatarImageView, duration: 0.25, options: .transitionCrossDissolve, animations: {
             self.avatarImageView.image = image
             }, completion: nil)
+    }
+
+    @objc private func _didSelectAvatar() {
+        didSelectAvatar()
     }
     
     deinit {
