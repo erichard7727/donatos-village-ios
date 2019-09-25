@@ -409,6 +409,7 @@ private extension VillageContainer {
                 return Route.notices
                 
             case "kudos"?:
+                // This may be legacy code but I'm afraid to remove it?
                 return Route.myReceivedKudos
                 
             default:
@@ -423,6 +424,9 @@ private extension VillageContainer {
                 break
             }
             return Route.group(streamId: streamId)
+
+        case "kudos":
+            return Route.myReceivedKudos
             
         case "unread":
             // We have chosen to ignore unread notifications but they do exist
