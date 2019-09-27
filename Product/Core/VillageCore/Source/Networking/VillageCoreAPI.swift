@@ -142,6 +142,7 @@ public enum VillageCoreAPI {
     case setSubscribed(subscribed: Bool, streamId: String)
     case sendMessage(streamId: String, messageId: String, body: String, attachment: MessageAttachment?)
     case setMessageLiked(isLiked: Bool, messageId: String, streamId: String)
+    case flagMessage(messageId: String, streamId: String)
     
     // Direct Messages
     case directMessageStreams
@@ -262,6 +263,9 @@ extension VillageCoreAPI: TargetType {
         case let .setMessageLiked(isLiked, messageId, streamId):
             return "streams/1.0/messages/\(streamId)/\(messageId)/\(isLiked ? "like" : "dislike")"
 
+        case let .flagMessage(messageId, streamId):
+            return "streams/1.0/messages/\(streamId)/\(messageId)/flag"
+
         case .otherStreams, .searchOtherStreams:
             return "streams/1.0/streams"
             
@@ -339,6 +343,7 @@ extension VillageCoreAPI: TargetType {
              .createOrUpdateStream,
              .inviteToStream,
              .setMessageLiked,
+             .flagMessage,
              .setSubscribed,
              .sendMessage,
              .flagKudo,
@@ -385,6 +390,7 @@ extension VillageCoreAPI: TargetType {
              .createOrUpdateStream,
              .inviteToStream,
              .setMessageLiked,
+             .flagMessage,
              .otherStreams,
              .searchOtherStreams,
              .subscribedStreams,
@@ -409,6 +415,7 @@ extension VillageCoreAPI: TargetType {
              .streamsHistory,
              .streamMembers,
              .setMessageLiked,
+             .flagMessage,
              .subscribedStreams,
              .streamDetails,
              .directMessageStreams,
@@ -805,6 +812,7 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .createOrUpdateStream,
              .inviteToStream,
              .setMessageLiked,
+             .flagMessage,
              .otherStreams,
              .searchOtherStreams,
              .subscribedStreams,

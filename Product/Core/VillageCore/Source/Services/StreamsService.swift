@@ -306,6 +306,13 @@ struct StreamsService {
         }
     }
 
+    static func flag(message: Message) -> Promise<Message> {
+        let flag = VillageCoreAPI.flagMessage(messageId: message.id, streamId: message.streamId)
+        return VillageService.shared.request(target: flag).then({ (json) -> Message in
+            return message
+        })
+    }
+
 }
 
 // MARK: - SwiftyJSON Extensions
