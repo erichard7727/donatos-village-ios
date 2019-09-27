@@ -22,6 +22,10 @@ struct NoticeService {
     static func getNoticesAndNewsPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.all)
     }
+
+    static func searchNoticesAndNewsPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.all, searchTerm: term)
+    }
     
     static func getNoticesPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.notice)

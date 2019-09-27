@@ -63,6 +63,13 @@ public extension Sequence where Element == Notice {
     static func allNoticesAndNewsPaginated() -> SectionedPaginated<Notice> {
         return NoticeService.getNoticesAndNewsPaginated()
     }
+
+    /// Extends typealias `Notices` to search all notices and news items.
+    ///
+    /// - Returns: A list of `Notices` (Notice and News types)
+    static func searchNoticesAndNewsPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return NoticeService.searchNoticesAndNewsPaginated(for: term)
+    }
     
     /// Extends typealias `Notices` to fetch just notice items.
     ///
