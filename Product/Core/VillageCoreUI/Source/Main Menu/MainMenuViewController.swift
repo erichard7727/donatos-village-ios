@@ -14,7 +14,6 @@ import SafariServices
 final class MainMenuViewController: UIViewController {
     
     @IBOutlet private weak var menuOptionHome: UIView!
-    @IBOutlet private weak var menuOptionNewHome: UIView!
     @IBOutlet private weak var menuOptionNotices: UIView!
     @IBOutlet private weak var menuOptionEvents: UIView!
     @IBOutlet private weak var menuOptionNews: UIView!
@@ -229,15 +228,7 @@ private extension MainMenuViewController {
             assertionFailure();
             return
         }
-        villageContainer.showHome(isNew: false)
-    }
-
-    @IBAction func onGoToNewHome(_ sender: Any? = nil) {
-        guard let villageContainer = self.sideMenuController as? VillageContainer else {
-            assertionFailure();
-            return
-        }
-        villageContainer.showHome(isNew: true)
+        villageContainer.showHome()
     }
     
     @IBAction func onGoToNotices(_ sender: Any? = nil) {

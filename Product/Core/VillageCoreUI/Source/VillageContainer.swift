@@ -24,16 +24,9 @@ public class VillageContainer: SideMenuController {
         }
     }
 
-    #warning("JACK - Remove old homeVC once DONV-345 is complete")
     private lazy var homeVC: UIViewController = {
-        let storyboard = UIStoryboard(name: "Home", bundle: Constants.bundle)
-        let homeVC = storyboard.instantiateInitialViewController() as! HomeController
-        return UINavigationController(rootViewController: homeVC)
-    }()
-
-    private lazy var newHomeVC: UIViewController = {
-        let storyboard = UIStoryboard(name: "NewHomeStream", bundle: Constants.bundle)
-        let homeVC = storyboard.instantiateInitialViewController() as! NewHomeStreamViewController
+        let storyboard = UIStoryboard(name: "HomeStream", bundle: Constants.bundle)
+        let homeVC = storyboard.instantiateInitialViewController() as! HomeStreamViewController
         return UINavigationController(rootViewController: homeVC)
     }()
     
@@ -100,8 +93,7 @@ public class VillageContainer: SideMenuController {
         super.viewWillAppear(animated)
     }
 
-    #warning("JACK - Remove isNew param once DONV-345 is complete")
-    func showHome(isNew: Bool) {
+    func showHome() {
         func setHomeVC(animated: Bool) {
             if self.contentViewController != self.homeVC {
                 self.setContentViewController(homeVC, fadeAnimation: animated)
@@ -109,12 +101,6 @@ public class VillageContainer: SideMenuController {
             self.hideMenu()
         }
 
-        func setNewHomeVC(animated: Bool) {
-            if self.contentViewController != self.newHomeVC {
-                self.setContentViewController(newHomeVC, fadeAnimation: animated)
-            }
-            self.hideMenu()
-        }
         
         func performPendingRoute(_ route: Route) {
             self.performRoute(route)
@@ -125,11 +111,7 @@ public class VillageContainer: SideMenuController {
             if isReadyToPerformPendingRoute {
                 performPendingRoute(route)
             } else {
-                if !isNew {
-                    setHomeVC(animated: false)
-                } else {
-                    setNewHomeVC(animated: false)
-                }
+                setHomeVC(animated: false)
                 DispatchQueue.main.async {
                     if self.isReadyToPerformPendingRoute {
                         performPendingRoute(route)
@@ -140,11 +122,7 @@ public class VillageContainer: SideMenuController {
                 }
             }
         } else {
-            if !isNew {
-                setHomeVC(animated: true)
-            } else {
-                setNewHomeVC(animated: true)
-            }
+            setHomeVC(animated: true)
         }
     }
 
@@ -314,7 +292,7 @@ private extension VillageContainer {
     @objc func runAppStartupFlow() {
         
         if User.current.isGuest {
-            showHome(isNew: false)
+            showHome()
             let loginIdentityVC: LoginIdentityViewController = {
                 let storyboard = UIStoryboard(name: "LoginIdentityViewController", bundle: Constants.bundle)
                 let loginIdentityVC = storyboard.instantiateInitialViewController() as! LoginIdentityViewController
@@ -327,7 +305,7 @@ private extension VillageContainer {
             firstly {
                 User.current.loginWithDetails()
             }.then { [weak self] _ in
-                self?.showHome(isNew: false)
+                self?.showHome()
                 self?.registerForPushNotifications(shouldRequestAuthorization: true)
             }.catch { [weak self] error in
                 if case ServiceError.connectionFailed(_) = error {

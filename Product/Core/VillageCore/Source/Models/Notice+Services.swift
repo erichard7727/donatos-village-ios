@@ -85,6 +85,13 @@ public extension Sequence where Element == Notice {
         return NoticeService.searchNoticesPaginated(for: term)
     }
     
+    /// Extends typealias `Notices` to fetch just unackknowledged notice items.
+    ///
+    /// - Returns: A list of `Notices` (only Notice types)
+    static func unacknowledgedNoticesPaginated() -> SectionedPaginated<Notice> {
+        return NoticeService.getUnacknowledgedNoticesPaginated()
+    }
+    
     /// Extends typealias `Notices` to fetch just news items.
     ///
     /// - Returns: A list of `Notices` (only News types)
@@ -111,6 +118,13 @@ public extension Sequence where Element == Notice {
     /// - Returns: A list of `Notices` matching the search term (only Event types)
     static func searchEventsPaginated(for term: String) -> SectionedPaginated<Notice> {
         return NoticeService.searchEventsPaginated(for: term)
+    }
+    
+    /// Extends typealias `Notices` to fetch just event items.
+    ///
+    /// - Returns: A list of `Notices` (only Event types) that still need an RSVP response
+    static func unrespondedEventsPaginated() -> SectionedPaginated<Notice> {
+        return NoticeService.getUnrespondedEventsPaginated()
     }
     
 }

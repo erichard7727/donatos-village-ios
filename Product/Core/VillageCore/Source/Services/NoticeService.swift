@@ -34,6 +34,10 @@ struct NoticeService {
     static func searchNoticesPaginated(for term: String) -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.notice, searchTerm: term)
     }
+
+    static func getUnacknowledgedNoticesPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.notice, acknowledgedFilter: false)
+    }
     
     static func getNewsPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.news)
@@ -50,8 +54,12 @@ struct NoticeService {
     static func searchEventsPaginated(for term: String) -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.events, searchTerm: term)
     }
+
+    static func getUnrespondedEventsPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.events, acknowledgedFilter: false)
+    }
     
-    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType, searchTerm: String? = nil) -> SectionedPaginated<Notice> {
+    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType, acknowledgedFilter: Bool? = nil, searchTerm: String? = nil) -> SectionedPaginated<Notice> {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
@@ -63,7 +71,7 @@ struct NoticeService {
                     if let term = searchTerm {
                         notices = VillageCoreAPI.searchNotices(type: noticeType, term: term, page: page)
                     } else {
-                        notices = VillageCoreAPI.notices(noticeType, page: page)
+                        notices = VillageCoreAPI.notices(noticeType, page: page, acknowledgedFilter: acknowledgedFilter)
                     }
                     return VillageService.shared.request(target: notices)
                 }.then { (json: JSON) -> PaginatedResults<Notice> in

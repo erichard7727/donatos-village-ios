@@ -105,7 +105,7 @@ public enum VillageCoreAPI {
     case getPersonDetails(personId: String)
     
     // Notices
-    case notices(_ noticeType: NoticeType, page: Int)
+    case notices(_ noticeType: NoticeType, page: Int, acknowledgedFilter: Bool?)
     case noticeDetail(noticeId: String)
     case searchNotices(type: NoticeType, term: String, page: Int)
     case noticeAcknowledgedList(noticeId: String, page: Int)
@@ -127,9 +127,7 @@ public enum VillageCoreAPI {
     
     // Streams
     case streamsHistory
-    #warning("JACK - Remove old homeStream call once DONV-345 is complete")
     case homeStream(page: Int)
-    case newHomeStream(page: Int)
     case subscribedStreams
     case otherStreams(page: Int)
     case searchOtherStreams(term: String, page: Int)
@@ -237,9 +235,6 @@ extension VillageCoreAPI: TargetType {
             return "kudos/1.0/leaders"
 
         case .homeStream:
-            return "streams/1.0/home"
-
-        case .newHomeStream:
             return "streams/2.0/home"
             
         case .streamsHistory:
@@ -317,7 +312,6 @@ extension VillageCoreAPI: TargetType {
              .searchDirectory,
              .streamsHistory,
              .homeStream,
-             .newHomeStream,
              .streamMembers,
              .streamMessages,
              .streamMessagesStartingAfter,
@@ -383,7 +377,6 @@ extension VillageCoreAPI: TargetType {
              .searchDirectory,
              .streamsHistory,
              .homeStream,
-             .newHomeStream,
              .streamMembers,
              .streamMessages,
              .streamMessagesStartingAfter,
@@ -561,32 +554,56 @@ extension VillageCoreAPI: TargetType {
                 ],
                 encoding: URLEncoding.default
             )
+
+        case let .notices(noticeType, page, acknowledgedFilter):
+            let diagId = User.current.diagnosticId
+            let paging = "\(page)-\(defaultPageSize)"
+
+            var parameters: [String:Any] = [:]
+
+            switch noticeType {
+            case .news, .notice, .events:
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                    "filter": "type:\(noticeType.apiValue)",
+                ]
+
+            case .all:
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                ]
+            }
+
+            if let acknowledgedFilter = acknowledgedFilter {
+                parameters["filter"] = "type:\(noticeType.apiValue),acknowledged:\(acknowledgedFilter)"
+            }
+
+            return Task.requestParameters(parameters: parameters, encoding: URLEncoding.default)
             
-        case .notices(let noticeType, let page),
-             .searchNotices(let noticeType, _, let page):
+        case .searchNotices(let noticeType, _, let page):
             let diagId = User.current.diagnosticId
             let paging = "\(page)-\(defaultPageSize)"
             
+            var parameters: [String:Any] = [:]
+            
             switch noticeType {
             case .news, .notice, .events:
-                return Task.requestParameters(
-                    parameters: [
-                        "diagId": diagId,
-                        "paging": paging,
-                        "filter": "type:\(noticeType.apiValue)",
-                    ],
-                    encoding: URLEncoding.default
-                )
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                    "filter": "type:\(noticeType.apiValue)",
+                ]
                 
             case .all:
-                return Task.requestParameters(
-                    parameters: [
-                        "diagId": diagId,
-                        "paging": paging,
-                    ],
-                    encoding: URLEncoding.default
-                )
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                ]
             }
+            
+            return Task.requestParameters(parameters: parameters, encoding: URLEncoding.default)
 
         case let .kudos(kudoType, personId, achievementId, page):
             let filters: [String?] = [
@@ -658,7 +675,6 @@ extension VillageCoreAPI: TargetType {
              let .searchContentLibrary(_, page),
              let .contentLibraryDirectory(_, page),
              let .homeStream(page),
-             let .newHomeStream(page),
              let .streamMessages(_, page),
              let .streamMessagesStartingAfter(_, _, page):
             return Task.requestParameters(
@@ -804,7 +820,6 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .kudosLeaderboard,
              .searchDirectory,
              .homeStream,
-             .newHomeStream,
              .streamsHistory,
              .streamMembers,
              .streamMessages,

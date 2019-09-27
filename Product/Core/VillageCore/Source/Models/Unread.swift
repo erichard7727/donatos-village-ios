@@ -17,4 +17,5 @@ public struct Unread {
     
     public let streams: [Stream]
     public let notices: Int
+    public let events: Int
 }
