@@ -533,6 +533,7 @@
                         <outlet property="eventsStackView" destination="l0r-gF-JP5" id="Lsd-mc-Ndp"/>
                         <outlet property="giveKudoLabel" destination="rGe-sP-mD6" id="875-Je-idY"/>
                         <outlet property="giveKudoView" destination="IrS-Aa-HAY" id="0U5-f6-j2p"/>
+                        <outlet property="headerImageView" destination="JVV-jJ-Nxr" id="wuk-Gk-og3"/>
                         <outlet property="kudoHeaderLabel" destination="Mew-lj-2We" id="FiD-P2-K3b"/>
                         <outlet property="kudoHeaderView" destination="T4C-K1-RbH" id="Mze-HZ-KI9"/>
                         <outlet property="kudoStackView" destination="OI2-EI-KUS" id="cs2-Wc-Y0t"/>

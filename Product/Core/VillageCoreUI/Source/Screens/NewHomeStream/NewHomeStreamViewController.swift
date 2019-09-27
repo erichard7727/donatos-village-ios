@@ -16,6 +16,7 @@ final class NewHomeStreamViewController: UIViewController {
     fileprivate var homeStream: NewHomeStream?
     fileprivate var unreads: Unread?
     
+    @IBOutlet private weak var headerImageView: UIImageView!
     @IBOutlet private weak var stackView: UIStackView!
     
     @IBOutlet private weak var noticesHeaderView: UIView!
@@ -57,6 +58,8 @@ extension NewHomeStreamViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        reloadViewData()
 
         getHomeStream()
         
@@ -110,6 +113,9 @@ private extension NewHomeStreamViewController {
     }
     
     func reloadViewData() {
+        
+        // set header image
+        headerImageView.setImage(named: "homestream-header")
         
         // Hide StackView if data is not loaded
         guard let homeStream = self.homeStream else {
