@@ -14,11 +14,12 @@ import SwiftyJSON
 
 extension ContentLibraryItem {
     
-    /// Returns a `ContentLibrary` or directory for the given parent item.
+    /// Returns the root `ContentLibrary`
     ///
-    /// - Returns: The directory or `ContentLibrary`
-    public func getDirectory() -> Promise<ContentLibrary> {
-        return ContentLibraryService.getDirectory(item: self)
+    /// - Returns: A `Paginated` collection of `ContentLibraryItem`s that can be fetched
+    ///            one page at a time as necessary.
+    public func getDirectoryPaginated() -> Paginated<ContentLibraryItem> {
+        return ContentLibraryService.getDirectoryPaginated(item: self)
     }
     
     /// Creates a `URLRequest` for a non-directory content item (page, link, etc.)
@@ -38,9 +39,19 @@ public extension Sequence where Element == ContentLibraryItem {
     /// Extends typealias `ContentLibrary` to fetch the top-level,
     /// or root, of the library.
     ///
-    /// - Returns: A ContentLibrary or `[ContentLibraryItem]`
-    static func getRootDirectory(page: Int = 1) -> Promise<ContentLibrary> {
-        return ContentLibraryService.getRootDirectory(page: page)
+    /// - Returns: A `Paginated` collection of `ContentLibraryItem`s that can be fetched
+    ///            one page at a time as necessary.
+    static func getRootDirectoryPaginated() -> Paginated<ContentLibraryItem> {
+        return ContentLibraryService.getRootDirectoryPaginated()
+    }
+
+    /// Extends typealias `ContentLibrary` to search the entire library.
+    ///
+    /// - Parameter searchTerm: The search to perform.
+    /// - Returns: A `Paginated` collection of `ContentLibraryItem`s that can be fetched
+    ///            one page at a time as necessary.
+    static func searchLibraryPaginated(_ searchTerm: String) -> Paginated<ContentLibraryItem> {
+        return ContentLibraryService.searchLibraryPaginated(searchTerm)
     }
     
 }

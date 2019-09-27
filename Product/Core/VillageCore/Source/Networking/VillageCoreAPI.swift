@@ -114,7 +114,8 @@ public enum VillageCoreAPI {
     
     // Content Library
     case contentLibraryRoot(page: Int)
-    case contentLibraryDirectory(contentId: String)
+    case searchContentLibrary(term: String, page: Int)
+    case contentLibraryDirectory(contentId: String, page: Int)
     
     // Kudos
     case kudos(_ kudoType: KudoType, personId: String, achievementId: String?, page: Int)
@@ -217,8 +218,12 @@ extension VillageCoreAPI: TargetType {
             
         case .contentLibraryRoot:
             return "content/1.0"
+
+        case let .searchContentLibrary(term, _):
+            let escapedTerm = term.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            return "content/1.0/search/\(escapedTerm)"
             
-        case let .contentLibraryDirectory(contentId):
+        case let .contentLibraryDirectory(contentId, _):
             return "content/1.0/@\(contentId)"
             
         case .kudos, .giveKudo:
@@ -299,6 +304,7 @@ extension VillageCoreAPI: TargetType {
              .searchNotices,
              .noticeAcknowledgedList,
              .contentLibraryRoot,
+             .searchContentLibrary,
              .contentLibraryDirectory,
              .kudos,
              .achievements,
@@ -362,6 +368,7 @@ extension VillageCoreAPI: TargetType {
              .acknowledgeNotice,
              .rsvpEvent,
              .contentLibraryRoot,
+             .searchContentLibrary,
              .contentLibraryDirectory,
              .kudos,
              .giveKudo,
@@ -399,7 +406,6 @@ extension VillageCoreAPI: TargetType {
              .getPersonDetails,
              .noticeDetail,
              .acknowledgeNotice,
-             .contentLibraryDirectory,
              .streamsHistory,
              .streamMembers,
              .setMessageLiked,
@@ -642,6 +648,8 @@ extension VillageCoreAPI: TargetType {
         case let .searchDirectory(_, page),
              let .noticeAcknowledgedList(_, page),
              let .contentLibraryRoot(page),
+             let .searchContentLibrary(_, page),
+             let .contentLibraryDirectory(_, page),
              let .homeStream(page),
              let .newHomeStream(page),
              let .streamMessages(_, page),
@@ -780,6 +788,7 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .acknowledgeNotice,
              .rsvpEvent,
              .contentLibraryRoot,
+             .searchContentLibrary,
              .contentLibraryDirectory,
              .kudos,
              .giveKudo,
