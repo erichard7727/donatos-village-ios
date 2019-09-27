@@ -102,7 +102,7 @@ DEPENDENCIES:
   - Firebase/Core
   - KeychainAccess
   - Moya
-  - Nantes
+  - Nantes (from `https://github.com/instacart/Nantes`, branch `master`)
   - PromisesObjC
   - PromisesSwift
   - SlackTextViewController
@@ -131,7 +131,6 @@ SPEC REPOS:
     - KeychainAccess
     - Moya
     - nanopb
-    - Nantes
     - PromisesObjC
     - PromisesSwift
     - Result
@@ -139,11 +138,17 @@ SPEC REPOS:
     - SwiftyJSON
 
 EXTERNAL SOURCES:
+  Nantes:
+    :branch: master
+    :git: https://github.com/instacart/Nantes
   SwiftWebSocket:
     :branch: master
     :git: https://github.com/tidwall/SwiftWebSocket
 
 CHECKOUT OPTIONS:
+  Nantes:
+    :commit: c21b72fd853033e07ce08e79d0f78564a2f37e31
+    :git: https://github.com/instacart/Nantes
   SwiftWebSocket:
     :commit: 4b601c4a3469971d5afa59e38494bc9ef7d956b1
     :git: https://github.com/tidwall/SwiftWebSocket
@@ -177,6 +182,6 @@ SPEC CHECKSUMS:
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: e2988758b670c69da73d021f0820895adc4f8dbf
+PODFILE CHECKSUM: ed9ab95b58f2a6768ca2f1bc2f134f3c8b343f64
 
 COCOAPODS: 1.7.5
