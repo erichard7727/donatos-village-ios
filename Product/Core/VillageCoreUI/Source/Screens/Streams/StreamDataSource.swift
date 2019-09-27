@@ -165,7 +165,11 @@ class StreamDataSource: NSObject {
         tableView.keyboardDismissMode = .interactive
     }
     
-    private(set) var oldMessages: Paginated<Message>
+    private(set) var oldMessages: Paginated<Message> {
+        didSet {
+            oldMessages.delegate = self
+        }
+    }
     
     private(set) var newMessages: Messages = []
 
@@ -330,6 +334,19 @@ extension StreamDataSource: StreamSocketDelegate {
     }
     
     func streamSocket(_ streamSocket: StreamSocket, message messageId: String, wasLiked isLiked: Bool, by personId: Int) { }
+
+    func streamSocket(_ streamSocket: StreamSocket, didDeleteMessage message: Message) {
+        if let index = newMessages.firstIndex(where: { $0.id == message.id }) {
+            newMessages.remove(at: index)
+            tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        } else {
+            streamSocket.closeConnection()
+            newMessages.removeAll()
+            newMessagesCountOffet = 0
+            oldMessages = stream.getMessagesPaginated()
+            oldMessages.fetchValues(at: [])
+        }
+    }
     
 }
 

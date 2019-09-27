@@ -115,6 +115,50 @@ class GroupStreamDataSource: StreamDataSource {
                     self?.viewController.show(vc, sender: self)
                 }
             }
+
+            cell.showMoreOptions = { [weak self] in
+                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(
+                    title: cell.message?.isLiked == true ? "Unstar" : "Star",
+                    style: .default,
+                    handler: { [weak cell] (_) in
+                        guard let cell = cell, let starButton = cell.starButton else { return }
+                        cell.starButtonPressed(starButton)
+                    })
+                )
+                alert.addAction(UIAlertAction(
+                    title: "Report as Inappropriate",
+                    style: .destructive,
+                    handler: { [weak self] (_) in
+                        let confirm = UIAlertController(
+                            title: "Confirm Report as Inappropriate",
+                            message: "Are you sure you want to report this message as inappropriate? It will be removed immedaitely and your name will be recorded as the reporter.",
+                            preferredStyle: .alert
+                        )
+                        confirm.addAction(UIAlertAction(
+                            title: "Report as Inappropriate",
+                            style: .destructive,
+                            handler: { (_) in
+                                // Flagging the message will cause the stream socket to receive
+                                // the deleted message and remove the message in the UI shortly
+                                _ = msg?.flag()
+                        }
+                        ))
+                        confirm.addAction(UIAlertAction(
+                            title: "Cancel",
+                            style: .cancel,
+                            handler: nil
+                        ))
+                        self?.viewController.present(confirm, animated: true, completion: nil)
+                    }
+                ))
+                alert.addAction(UIAlertAction(
+                    title: "Cancel",
+                    style: .cancel,
+                    handler: nil
+                ))
+                self?.viewController.present(alert, animated: true, completion: nil)
+            }
             
             if let url = message.author.avatarURL {
                 let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
@@ -224,6 +268,50 @@ class GroupStreamDataSource: StreamDataSource {
                     vc.delegate = self
                     self?.viewController.show(vc, sender: self)
                 }
+            }
+
+            cell.showMoreOptions = { [weak self] in
+                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(
+                    title: cell.message?.isLiked == true ? "Unstar" : "Star",
+                    style: .default,
+                    handler: { [weak cell] (_) in
+                        guard let cell = cell, let starButton = cell.starButton else { return }
+                        cell.starButtonPressed(starButton)
+                    })
+                )
+                alert.addAction(UIAlertAction(
+                    title: "Report as Inappropriate",
+                    style: .destructive,
+                    handler: { [weak self] (_) in
+                        let confirm = UIAlertController(
+                            title: "Confirm Report as Inappropriate",
+                            message: "Are you sure you want to report this message as inappropriate? It will be removed immedaitely and your name will be recorded as the reporter.",
+                            preferredStyle: .alert
+                        )
+                        confirm.addAction(UIAlertAction(
+                            title: "Report as Inappropriate",
+                            style: .destructive,
+                            handler: { (_) in
+                                // Flagging the message will cause the stream socket to receive
+                                // the deleted message and remove the message in the UI shortly
+                                _ = msg?.flag()
+                            }
+                        ))
+                        confirm.addAction(UIAlertAction(
+                            title: "Cancel",
+                            style: .cancel,
+                            handler: nil
+                        ))
+                        self?.viewController.present(confirm, animated: true, completion: nil)
+                    }
+                ))
+                alert.addAction(UIAlertAction(
+                    title: "Cancel",
+                    style: .cancel,
+                    handler: nil
+                ))
+                self?.viewController.present(alert, animated: true, completion: nil)
             }
             
             if let message = msg {
