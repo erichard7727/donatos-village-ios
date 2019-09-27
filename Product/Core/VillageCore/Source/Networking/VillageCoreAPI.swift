@@ -105,7 +105,7 @@ public enum VillageCoreAPI {
     case getPersonDetails(personId: String)
     
     // Notices
-    case notices(_ noticeType: NoticeType, page: Int)
+    case notices(_ noticeType: NoticeType, page: Int, acknowledgedFilter: Bool?)
     case noticeDetail(noticeId: String)
     case noticeAcknowledgedList(noticeId: String, page: Int)
     case acknowledgeNotice(noticeId: String)
@@ -542,30 +542,32 @@ extension VillageCoreAPI: TargetType {
                 encoding: URLEncoding.default
             )
             
-        case let .notices(noticeType, page):
+        case let .notices(noticeType, page, acknowledgedFilter):
             let diagId = User.current.diagnosticId
             let paging = "\(page)-\(defaultPageSize)"
             
+            var parameters: [String:Any] = [:]
+            
             switch noticeType {
             case .news, .notice, .events:
-                return Task.requestParameters(
-                    parameters: [
-                        "diagId": diagId,
-                        "paging": paging,
-                        "filter": "type:\(noticeType.apiValue)",
-                    ],
-                    encoding: URLEncoding.default
-                )
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                    "filter": "type:\(noticeType.apiValue)",
+                ]
                 
             case .all:
-                return Task.requestParameters(
-                    parameters: [
-                        "diagId": diagId,
-                        "paging": paging,
-                    ],
-                    encoding: URLEncoding.default
-                )
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                ]
             }
+            
+            if let acknowledgedFilter = acknowledgedFilter {
+                parameters["filter"] = "type:\(noticeType.apiValue),acknowledged:\(acknowledgedFilter)"
+            }
+            
+            return Task.requestParameters(parameters: parameters, encoding: URLEncoding.default)
             
         case let .kudos(kudoType, personId, achievementId, page):
             let filters: [String?] = [

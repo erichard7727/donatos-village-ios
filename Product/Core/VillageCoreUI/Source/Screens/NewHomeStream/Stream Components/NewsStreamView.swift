@@ -11,8 +11,19 @@ import VillageCore
 import Alamofire
 import AlamofireImage
 
-class NewsStreamView: NibView {
+protocol NewsStreamViewDelegate: class {
+    func newsStreamView(_ view: NewsStreamView, didSelectNews news: Notice)
+}
 
+class NewsStreamView: NibView {
+    
+    // View Model
+    var news: Notice?
+    
+    // Delegate
+    weak var delegate: NewsStreamViewDelegate?
+
+    // Outlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
@@ -23,8 +34,11 @@ class NewsStreamView: NibView {
         self.applyCardStyle()
     }
     
-    convenience init(news: Notice) {
+    convenience init(news: Notice, delegate: NewsStreamViewDelegate? = nil) {
         self.init()
+        
+        self.news = news
+        self.delegate = delegate
         
         titleLabel.text = news.title
         dateLabel.text = news.publishDate.longformFormat.uppercased()
@@ -36,6 +50,11 @@ class NewsStreamView: NibView {
             Alamofire.DataRequest.addAcceptableImageContentTypes(["binary/octet-stream"])
             imageView.af_setImage(withURL: imageUrl)
         }
+    }
+    
+    @IBAction func seeDetails() {
+        guard let news = news else { assertionFailure(); return }
+        delegate?.newsStreamView(self, didSelectNews: news)
     }
 }
 

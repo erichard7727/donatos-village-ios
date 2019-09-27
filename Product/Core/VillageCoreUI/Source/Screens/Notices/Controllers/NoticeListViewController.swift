@@ -204,8 +204,10 @@ final class NoticeListViewController: UIViewController {
     enum DisplayType {
         case all
         case notices
+        case unacknowledgedNotices
         case news
         case events
+        case unrespondedEvents
         
         fileprivate var title: String {
             switch self {
@@ -215,10 +217,13 @@ final class NoticeListViewController: UIViewController {
             case .notices:
                 return "Notices"
                 
+            case .unacknowledgedNotices:
+                return "Notices Needing Action"
+                
             case.news:
                 return "News"
                 
-            case .events:
+            case .events, .unrespondedEvents:
                 return "Events"
             }
         }
@@ -231,23 +236,29 @@ final class NoticeListViewController: UIViewController {
             case .notices:
                 return Notices.allNoticesPaginated()
                 
+            case .unacknowledgedNotices:
+                return Notices.unacknowledgedNoticesPaginated()
+                
             case.news:
                 return Notices.allNewsPaginated()
                 
             case .events:
                 return Notices.allEventsPaginated()
+                
+            case .unrespondedEvents:
+                return Notices.unrespondedEventsPaginated()
             }
         }
         
         fileprivate var emptyMessage: String {
             switch self {
-            case .all, .notices:
+            case .all, .notices, .unacknowledgedNotices:
                 return "There are no notices to display."
                 
             case.news:
                 return "There is no news to display."
                 
-            case .events:
+            case .events, .unrespondedEvents:
                 return "There are no events to display."
             }
         }

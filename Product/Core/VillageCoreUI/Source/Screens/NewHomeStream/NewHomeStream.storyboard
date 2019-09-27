@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="proximanova-reg-webfont.ttf">
-            <string>ProximaNova-Regular</string>
-        </array>
         <array key="proximanova-sbold-webfont.ttf">
             <string>ProximaNova-Semibold</string>
         </array>
@@ -21,26 +18,100 @@
         <!--Data Source-->
         <scene sceneID="igU-ob-p9D">
             <objects>
-                <viewController storyboardIdentifier="NewHomeStreamViewController" id="g1i-ES-Sfb" customClass="NewHomeStreamViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewHomeStreamViewController" extendedLayoutIncludesOpaqueBars="YES" id="g1i-ES-Sfb" customClass="NewHomeStreamViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bZQ-Ff-Aem">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1912"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homestream-header" translatesAutoresizingMaskIntoConstraints="NO" id="JVV-jJ-Nxr">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUD-ku-7si" customClass="KeyboardAwareScrollView" customModule="VillageCoreUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1912"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="1912"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8N-1l-jfo" userLabel="Fill Color">
+                                        <rect key="frame" x="0.0" y="52" width="414" height="1762"/>
+                                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wPh-Fs-kpY">
-                                        <rect key="frame" x="15" y="0.0" width="384" height="1769.5"/>
+                                        <rect key="frame" x="15" y="0.0" width="384" height="1814"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf9-g1-cG2">
-                                                <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf9-g1-cG2" userLabel="Spacer">
+                                                <rect key="frame" x="0.0" y="0.0" width="384" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                </accessibility>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Pgv-hY-hvV"/>
+                                                    <constraint firstAttribute="height" constant="5" id="Pgv-hY-hvV"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Scn-7N-fvz" customClass="CardStyleView" customModule="VillageCoreUI" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="25" width="384" height="50"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="EIE-Xr-WFs">
+                                                        <rect key="frame" x="25" y="0.0" width="334" height="50"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="schedule-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-6U-bKJ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="50"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="20" id="DsZ-Hd-IZt"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY SCHEDULE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncg-BA-sQR">
+                                                                <rect key="frame" x="32" y="0.0" width="270" height="50"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="12"/>
+                                                                <color key="textColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail-disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="rCU-gL-LU3">
+                                                                <rect key="frame" x="314" y="0.0" width="20" height="50"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                                </accessibility>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="20" id="S8Q-OI-lpa"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXG-vz-HhX" customClass="ShadeEffectButton" customModule="VillageCoreUI" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
+                                                        <accessibility key="accessibilityConfiguration" label="My Schedule"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="showMySchedule" destination="g1i-ES-Sfb" eventType="touchUpInside" id="iFn-bo-uM4"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="lXG-vz-HhX" firstAttribute="leading" secondItem="Scn-7N-fvz" secondAttribute="leading" id="AAn-cI-8CA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lXG-vz-HhX" secondAttribute="trailing" id="AkD-WI-Afb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="EIE-Xr-WFs" secondAttribute="trailing" constant="25" id="GMR-aZ-ANt"/>
+                                                    <constraint firstAttribute="height" constant="50" id="Ko4-uw-eYq"/>
+                                                    <constraint firstItem="EIE-Xr-WFs" firstAttribute="leading" secondItem="Scn-7N-fvz" secondAttribute="leading" constant="25" id="QHo-xa-99c"/>
+                                                    <constraint firstAttribute="bottom" secondItem="lXG-vz-HhX" secondAttribute="bottom" id="crL-Lv-8Sm"/>
+                                                    <constraint firstItem="EIE-Xr-WFs" firstAttribute="top" secondItem="Scn-7N-fvz" secondAttribute="top" id="u9t-83-IpD"/>
+                                                    <constraint firstItem="lXG-vz-HhX" firstAttribute="top" secondItem="Scn-7N-fvz" secondAttribute="top" id="uw7-wo-Zy7"/>
+                                                    <constraint firstAttribute="bottom" secondItem="EIE-Xr-WFs" secondAttribute="bottom" id="zEV-w5-5Xg"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="W5Z-Yl-jzB" customClass="DataSourcedStackView" customModule="VillageCoreUI" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="70" width="384" height="266.5"/>
+                                                <rect key="frame" x="0.0" y="95" width="384" height="286"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1d-I9-w5c">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="16"/>
@@ -57,6 +128,9 @@
                                                                 <state key="normal" title="View All">
                                                                     <color key="titleColor" red="0.41960784309999999" green="0.47843137250000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="viewAllNotices" destination="g1i-ES-Sfb" eventType="touchUpInside" id="03U-Xr-WAM"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -70,90 +144,15 @@
                                                             <constraint firstAttribute="trailing" secondItem="Qke-j0-6fJ" secondAttribute="trailing" id="sqa-1u-rOC"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYJ-1t-IQR" customClass="CardStyleView" customModule="VillageCoreUI" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="26" width="384" height="180.5"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rk5-zP-9Jb">
-                                                                <rect key="frame" x="25" y="20" width="334" height="140.5"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="ACTION NEEDED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWi-ls-oaj">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="334" height="13.5"/>
-                                                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="12"/>
-                                                                        <color key="textColor" red="0.67450980392156867" green="0.10196078431372549" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKf-tt-qhe" userLabel="Spacer">
-                                                                        <rect key="frame" x="0.0" y="13.5" width="334" height="7"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <accessibility key="accessibilityConfiguration">
-                                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                                        </accessibility>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="7" id="el6-tR-0By"/>
-                                                                        </constraints>
-                                                                    </view>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Notice Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvH-Wl-Vla">
-                                                                        <rect key="frame" x="0.0" y="20.5" width="334" height="20.5"/>
-                                                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="18"/>
-                                                                        <color key="textColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="JANUARY 1 0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hia-hY-EMX">
-                                                                        <rect key="frame" x="0.0" y="41" width="334" height="13.5"/>
-                                                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="12"/>
-                                                                        <color key="textColor" red="0.41960784313725491" green="0.47843137254901957" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0H-GM-Omt" userLabel="Spacer">
-                                                                        <rect key="frame" x="0.0" y="54.5" width="334" height="7"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <accessibility key="accessibilityConfiguration">
-                                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                                        </accessibility>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="7" id="BQp-Qu-74U"/>
-                                                                        </constraints>
-                                                                    </view>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEz-qi-1PD">
-                                                                        <rect key="frame" x="0.0" y="61.5" width="334" height="47"/>
-                                                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-                                                                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                                                        <color key="textColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-sT-AIJ" userLabel="Spacer">
-                                                                        <rect key="frame" x="0.0" y="108.5" width="334" height="17"/>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <accessibility key="accessibilityConfiguration">
-                                                                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                                        </accessibility>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="17" id="sQx-bn-jrC"/>
-                                                                        </constraints>
-                                                                    </view>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FA8-76-msN">
-                                                                        <rect key="frame" x="0.0" y="125.5" width="334" height="15"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" priority="900" constant="15" id="FAd-4d-VEw"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="12"/>
-                                                                        <state key="normal" title="SEE DETAILS">
-                                                                            <color key="titleColor" red="0.54509803921568623" green="0.60392156862745094" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        </state>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0dl-M3-zxQ" customClass="CardStyleView" customModule="VillageCoreUI" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="26" width="384" height="200"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="Rk5-zP-9Jb" firstAttribute="leading" secondItem="OYJ-1t-IQR" secondAttribute="leading" constant="25" id="Mxw-zc-Lb3"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Rk5-zP-9Jb" secondAttribute="bottom" constant="20" id="Nue-Us-kDa"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Rk5-zP-9Jb" secondAttribute="trailing" constant="25" id="OcZ-lJ-9sW"/>
-                                                            <constraint firstItem="Rk5-zP-9Jb" firstAttribute="top" secondItem="OYJ-1t-IQR" secondAttribute="top" constant="20" id="wCn-Pa-OlM"/>
+                                                            <constraint firstAttribute="height" constant="200" id="k8q-Cb-kAe"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DaN-C2-nj2" customClass="CardStyleView" customModule="VillageCoreUI" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="216.5" width="384" height="50"/>
+                                                        <rect key="frame" x="0.0" y="236" width="384" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rYJ-az-N82">
                                                                 <rect key="frame" x="25" y="0.0" width="334" height="50"/>
@@ -195,6 +194,9 @@
                                                                         <integer key="value" value="5"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="viewUnacknowledgedNotices" destination="g1i-ES-Sfb" eventType="touchUpInside" id="MFW-PW-r7e"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -216,7 +218,7 @@
                                                 </connections>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="l0r-gF-JP5" customClass="DataSourcedStackView" customModule="VillageCoreUI" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="356.5" width="384" height="461"/>
+                                                <rect key="frame" x="0.0" y="401" width="384" height="461"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkC-59-yn6">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="16"/>
@@ -233,6 +235,9 @@
                                                                 <state key="normal" title="View All">
                                                                     <color key="titleColor" red="0.41960784309999999" green="0.47843137250000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="viewAllEvents" destination="g1i-ES-Sfb" eventType="touchUpInside" id="YmX-1d-n5v"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -296,6 +301,9 @@
                                                                         <integer key="value" value="5"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="viewUnrespondedEvents" destination="g1i-ES-Sfb" eventType="touchUpInside" id="MOA-KI-QrT"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -317,7 +325,7 @@
                                                 </connections>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="40l-uA-48f" customClass="DataSourcedStackView" customModule="VillageCoreUI" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="837.5" width="384" height="436"/>
+                                                <rect key="frame" x="0.0" y="882" width="384" height="436"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sy2-dX-tDB">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="16"/>
@@ -334,6 +342,9 @@
                                                                 <state key="normal" title="View All">
                                                                     <color key="titleColor" red="0.41960784309999999" green="0.47843137250000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="viewAllNews" destination="g1i-ES-Sfb" eventType="touchUpInside" id="txv-Gy-Qla"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -367,7 +378,7 @@
                                                 </connections>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OI2-EI-KUS" customClass="DataSourcedStackView" customModule="VillageCoreUI" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1293.5" width="384" height="476"/>
+                                                <rect key="frame" x="0.0" y="1338" width="384" height="476"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4C-K1-RbH">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="16"/>
@@ -384,6 +395,9 @@
                                                                 <state key="normal" title="View My PIAs">
                                                                     <color key="titleColor" red="0.41960784309999999" green="0.47843137250000001" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="viewMyKudos" destination="g1i-ES-Sfb" eventType="touchUpInside" id="jeu-iS-OHq"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -440,6 +454,9 @@
                                                                         <integer key="value" value="5"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="giveKudo" destination="g1i-ES-Sfb" eventType="touchUpInside" id="VZD-Ip-Q5u"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.54509803921568623" green="0.60392156862745094" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
@@ -478,19 +495,27 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="F8N-1l-jfo" firstAttribute="width" secondItem="nUD-ku-7si" secondAttribute="width" id="1dL-7A-g0r"/>
                                     <constraint firstItem="wPh-Fs-kpY" firstAttribute="leading" secondItem="nUD-ku-7si" secondAttribute="leading" constant="15" id="7sO-M6-wIv"/>
                                     <constraint firstItem="wPh-Fs-kpY" firstAttribute="width" secondItem="nUD-ku-7si" secondAttribute="width" constant="-30" id="BSj-Q2-SMI"/>
+                                    <constraint firstItem="F8N-1l-jfo" firstAttribute="bottom" secondItem="wPh-Fs-kpY" secondAttribute="bottom" id="Dbi-hK-DSa"/>
                                     <constraint firstAttribute="trailing" secondItem="wPh-Fs-kpY" secondAttribute="trailing" constant="-15" id="W5R-5c-OLC"/>
                                     <constraint firstAttribute="bottom" secondItem="wPh-Fs-kpY" secondAttribute="bottom" id="c6E-Vc-OdY"/>
                                     <constraint firstItem="wPh-Fs-kpY" firstAttribute="top" secondItem="nUD-ku-7si" secondAttribute="top" id="cfv-Mr-bt0"/>
+                                    <constraint firstItem="F8N-1l-jfo" firstAttribute="centerX" secondItem="wPh-Fs-kpY" secondAttribute="centerX" id="lwU-hf-MwB"/>
+                                    <constraint firstItem="F8N-1l-jfo" firstAttribute="top" secondItem="wPh-Fs-kpY" secondAttribute="top" constant="52" id="ovG-qY-q02"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="nUD-ku-7si" firstAttribute="trailing" secondItem="9HJ-cL-eKk" secondAttribute="trailing" id="Lva-Ky-4aM"/>
+                            <constraint firstItem="JVV-jJ-Nxr" firstAttribute="leading" secondItem="9HJ-cL-eKk" secondAttribute="leading" id="Mnu-qe-SYs"/>
                             <constraint firstItem="nUD-ku-7si" firstAttribute="top" secondItem="9HJ-cL-eKk" secondAttribute="top" id="OzP-3D-Wjc"/>
+                            <constraint firstItem="9HJ-cL-eKk" firstAttribute="trailing" secondItem="JVV-jJ-Nxr" secondAttribute="trailing" id="dAT-5D-G45"/>
                             <constraint firstItem="wPh-Fs-kpY" firstAttribute="height" secondItem="9HJ-cL-eKk" secondAttribute="height" priority="240" id="iPM-vs-t9R"/>
+                            <constraint firstItem="JVV-jJ-Nxr" firstAttribute="bottom" secondItem="9HJ-cL-eKk" secondAttribute="top" constant="52" id="ifs-SD-gDL"/>
+                            <constraint firstItem="JVV-jJ-Nxr" firstAttribute="top" secondItem="bZQ-Ff-Aem" secondAttribute="top" id="nKu-4M-TTn"/>
                             <constraint firstAttribute="bottom" secondItem="nUD-ku-7si" secondAttribute="bottom" id="qte-OM-kNR"/>
                             <constraint firstItem="nUD-ku-7si" firstAttribute="leading" secondItem="9HJ-cL-eKk" secondAttribute="leading" id="qvf-GG-0cq"/>
                         </constraints>
@@ -506,13 +531,16 @@
                         <outlet property="additionalNoticesView" destination="DaN-C2-nj2" id="0w1-aO-VuB"/>
                         <outlet property="eventsHeaderView" destination="gkC-59-yn6" id="v4o-2v-JtT"/>
                         <outlet property="eventsStackView" destination="l0r-gF-JP5" id="Lsd-mc-Ndp"/>
-                        <outlet property="givePiaView" destination="IrS-Aa-HAY" id="0U5-f6-j2p"/>
+                        <outlet property="giveKudoLabel" destination="rGe-sP-mD6" id="875-Je-idY"/>
+                        <outlet property="giveKudoView" destination="IrS-Aa-HAY" id="0U5-f6-j2p"/>
+                        <outlet property="kudoHeaderLabel" destination="Mew-lj-2We" id="FiD-P2-K3b"/>
+                        <outlet property="kudoHeaderView" destination="T4C-K1-RbH" id="Mze-HZ-KI9"/>
+                        <outlet property="kudoStackView" destination="OI2-EI-KUS" id="cs2-Wc-Y0t"/>
+                        <outlet property="kudoViewAllButton" destination="TC8-xJ-y0d" id="dXL-J8-cUP"/>
                         <outlet property="newsHeaderView" destination="Sy2-dX-tDB" id="Xqe-uV-xJE"/>
                         <outlet property="newsStackView" destination="40l-uA-48f" id="xId-fC-b30"/>
                         <outlet property="noticesHeaderView" destination="P1d-I9-w5c" id="1pT-Tu-dpr"/>
                         <outlet property="noticesStackView" destination="W5Z-Yl-jzB" id="EZK-xW-ihM"/>
-                        <outlet property="piaHeaderView" destination="T4C-K1-RbH" id="Mze-HZ-KI9"/>
-                        <outlet property="piaStackView" destination="OI2-EI-KUS" id="cs2-Wc-Y0t"/>
                         <outlet property="stackView" destination="wPh-Fs-kpY" id="zZR-OK-vkK"/>
                     </connections>
                 </viewController>
@@ -525,7 +553,9 @@
         <image name="calendar" width="21" height="21"/>
         <image name="checkmark" width="18" height="13"/>
         <image name="detail-disclosure" width="8" height="12"/>
+        <image name="homestream-header" width="375" height="140"/>
         <image name="plus-circle" width="21" height="21"/>
+        <image name="schedule-icon" width="22" height="22"/>
         <image name="thumb-up" width="22" height="19"/>
     </resources>
 </document>

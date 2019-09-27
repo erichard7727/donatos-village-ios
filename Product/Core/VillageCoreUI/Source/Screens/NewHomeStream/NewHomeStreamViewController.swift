@@ -8,6 +8,8 @@
 
 import UIKit
 import VillageCore
+import SafariServices
+
 
 final class NewHomeStreamViewController: UIViewController {
 
@@ -29,9 +31,14 @@ final class NewHomeStreamViewController: UIViewController {
     @IBOutlet private weak var newsStackView: DataSourcedStackView!
     @IBOutlet private weak var newsHeaderView: UIView!
     
-    @IBOutlet private weak var piaStackView: DataSourcedStackView!
-    @IBOutlet private weak var piaHeaderView: UIView!
-    @IBOutlet private weak var givePiaView: UIView!
+    @IBOutlet private weak var kudoStackView: DataSourcedStackView!
+    @IBOutlet private weak var kudoHeaderView: UIView!
+    @IBOutlet private weak var kudoHeaderLabel: UILabel!
+    @IBOutlet private weak var kudoViewAllButton: UIButton!
+    @IBOutlet private weak var giveKudoView: UIView!
+    @IBOutlet private weak var giveKudoLabel: UILabel!
+    
+    private let leftBarBehavior = LeftBarButtonBehavior(showing: .menuOrBack)
 }
 
 // MARK: - UIViewController Overrides
@@ -40,9 +47,11 @@ extension NewHomeStreamViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationItem.largeTitleDisplayMode = .never
+        
         addBehaviors([
-            LeftBarButtonBehavior(showing: .menuOrBack)
+            leftBarBehavior
         ])
     }
 
@@ -50,7 +59,25 @@ extension NewHomeStreamViewController {
         super.viewWillAppear(animated)
 
         getHomeStream()
+        
+        if let navController = self.navigationController {
+            navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+            navController.navigationBar.isTranslucent = true
+            navController.navigationBar.shadowImage = UIImage()
+        }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let navController = self.navigationController {
+            navController.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
+            navController.navigationBar.isTranslucent = false
+            navController.navigationBar.shadowImage = nil
+        }
+    }
+    
+    
 
 }
 
@@ -91,14 +118,21 @@ private extension NewHomeStreamViewController {
         }
         self.stackView.isHidden = false
         
+        // Configure badge
+        if let unreads = unreads {
+            let total = unreads.notices + unreads.events
+            leftBarBehavior.badgeText = total > 0 ? "\(total)" : nil
+        }
+        
         
         // Configure Notices Section
         noticesStackView.isHidden = (homeStream.notice?.acknowledgeRequired ?? false) == false
         noticesStackView.reloadData()
         
-        if let unreadNotices = unreads?.notices {
+        if let unreadNotices = unreads?.notices, unreadNotices - 1 > 0 {
+            let additionalNoticeCount = unreadNotices - 1
             additionalNoticesView.isHidden = false
-            additionalNoticesLabel.text = "\(unreadNotices) OTHER NOTICE\(unreadNotices == 1 ? "":"S") NEED\(unreadNotices == 1 ? "S":"") ACTION"
+            additionalNoticesLabel.text = "\(additionalNoticeCount) OTHER NOTICE\(additionalNoticeCount == 1 ? "":"S") NEED\(additionalNoticeCount == 1 ? "S":"") ACTION"
         } else {
             additionalNoticesView.isHidden = true
             additionalNoticesLabel.text = nil
@@ -109,9 +143,10 @@ private extension NewHomeStreamViewController {
         eventsStackView.reloadData()
         eventsStackView.isHidden = homeStream.events.isEmpty
         
-        if let unreadNotices = unreads?.events {
+        if let unreadNotices = unreads?.events, unreadNotices - 1 > 0 {
+            let additionalNoticeCount = unreadNotices - 1
             additionalEventsView.isHidden = false
-            additionalEventsLabel.text = "\(unreadNotices) OTHER EVENT\(unreadNotices == 1 ? "":"S") NEED\(unreadNotices == 1 ? "S":"") ACTION"
+            additionalEventsLabel.text = "\(additionalNoticeCount) OTHER EVENT\(additionalNoticeCount == 1 ? "":"S") NEED\(additionalNoticeCount == 1 ? "S":"") ACTION"
         } else {
             additionalEventsView.isHidden = true
             additionalEventsLabel.text = nil
@@ -123,11 +158,78 @@ private extension NewHomeStreamViewController {
         newsStackView.isHidden = homeStream.news.isEmpty
         
         
-        // Configure PIA section
-        piaStackView.reloadData()
-        piaStackView.isHidden = homeStream.kudos.isEmpty
+        // Configure Kudo section
+        kudoStackView.reloadData()
+        kudoStackView.isHidden = homeStream.kudos.isEmpty
+        kudoHeaderLabel.text = Constants.Settings.kudosSingularLong
+        kudoViewAllButton.setTitle("View My \(Constants.Settings.kudosPluralShort)", for: .normal)
+        giveKudoLabel.text = "GIVE A \(Constants.Settings.kudosSingularLong.uppercased())"
     }
 
+}
+
+//MARK: - Navigation Helpers
+extension NewHomeStreamViewController {
+    
+    @IBAction func showMySchedule() {
+        let url = Constants.URL.schedulerLink
+        let sfvc = SFSafariViewController(url: url)
+        sfvc.preferredBarTintColor = UINavigationBar.appearance().barTintColor
+        sfvc.preferredControlTintColor = UINavigationBar.appearance().tintColor
+        sfvc.delegate = self
+        sfvc.modalTransitionStyle = .coverVertical
+        self.present(sfvc, animated: true, completion: nil)
+    }
+    
+    private func showNoticeDetail(notice: Notice) {
+        guard let noticeViewController = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateViewController(withIdentifier: "ViewNoticeVC") as? ViewNoticeViewController else {
+            assertionFailure()
+            return
+        }
+        
+        noticeViewController.notice = notice
+        self.show(noticeViewController, sender: nil)
+    }
+    
+    @IBAction func viewAllNotices() {
+        guard let noticesViewController = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as? NoticeListViewController else { assertionFailure(); return }
+        noticesViewController.displayType = .notices
+        self.show(noticesViewController, sender: nil)
+    }
+    
+    @IBAction func viewUnacknowledgedNotices() {
+        guard let unacknowledgedNoticesViewController = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as? NoticeListViewController else { assertionFailure(); return }
+        unacknowledgedNoticesViewController.displayType = .unacknowledgedNotices
+        self.show(unacknowledgedNoticesViewController, sender: nil)
+    }
+    
+    @IBAction func viewAllEvents() {
+        guard let eventsViewController = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as? NoticeListViewController else { assertionFailure(); return }
+        eventsViewController.displayType = .events
+        self.show(eventsViewController, sender: nil)
+    }
+    
+    @IBAction func viewUnrespondedEvents() {
+        guard let unrespondedEventsViewController = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as? NoticeListViewController else { assertionFailure(); return }
+        unrespondedEventsViewController.displayType = .unrespondedEvents
+        self.show(unrespondedEventsViewController, sender: nil)
+    }
+    
+    @IBAction func viewAllNews() {
+        guard let newsViewController = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateInitialViewController() as? NoticeListViewController else { assertionFailure(); return }
+        newsViewController.displayType = .news
+        self.show(newsViewController, sender: nil)
+    }
+    
+    @IBAction func viewMyKudos() {
+        guard let kudosVC = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "MyKudosViewController") as? MyKudosViewController else { assertionFailure(); return }
+        self.show(kudosVC, sender: nil)
+    }
+    
+    @IBAction func giveKudo() {
+        guard let giveKudoVC = UIStoryboard(name: "Kudos", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GiveKudosViewController") as? GiveKudosViewController else { assertionFailure(); return }
+        self.show(giveKudoVC, sender: nil)
+    }
 }
 
 //MARK: - StackView Data Source
@@ -136,24 +238,104 @@ extension NewHomeStreamViewController: StackViewDataSource {
     func arrangedSubviewsForStackView(_ stackView: DataSourcedStackView) -> [UIView] {
         
         if stackView == noticesStackView, let notice = homeStream?.notice {
-            return [noticesHeaderView, NoticeStreamView(notice: notice), additionalNoticesView]
+            return [noticesHeaderView, NoticeStreamView(notice: notice, delegate: self), additionalNoticesView]
         }
         
         if stackView == eventsStackView {
-            let eventViews = homeStream?.events.map({ EventStreamView(event: $0) }) ?? []
+            let eventViews = homeStream?.events.map({ EventStreamView(event: $0, delegate: self) }) ?? []
             return [eventsHeaderView] + eventViews + [additionalEventsView]
         }
         
         if stackView == newsStackView {
-            let newsViews = homeStream?.news.map({ NewsStreamView(news: $0) }) ?? []
+            let newsViews = homeStream?.news.map({ NewsStreamView(news: $0, delegate: self) }) ?? []
             return [newsHeaderView] + newsViews
         }
         
-        if stackView == piaStackView {
-            let piaViews = homeStream?.kudos.map({ PIAStreamView(kudo: $0) }) ?? []
-            return [piaHeaderView] + piaViews
+        if stackView == kudoStackView {
+            let piaViews = homeStream?.kudos.map({ KudoStreamView(kudo: $0, delegate: self) }) ?? []
+            return [kudoHeaderView, giveKudoView] + piaViews
         }
         
         return []
+    }
+}
+
+
+//MARK: - SFSafariViewControllerDelegate
+
+extension NewHomeStreamViewController: SFSafariViewControllerDelegate {
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+
+//MARK: - NoticeStreamViewDelegate
+extension NewHomeStreamViewController: NoticeStreamViewDelegate {
+    
+    func noticeStreamView(_ view: NoticeStreamView, didSelectNotice notice: Notice) {
+        self.showNoticeDetail(notice: notice)
+    }
+}
+
+//MARK: - EventStreamViewDelegate
+extension NewHomeStreamViewController: EventStreamViewDelegate {
+    
+    func eventStreamView(_ view: EventStreamView, didSelectEvent event: Notice) {
+        self.showNoticeDetail(notice: event)
+    }
+}
+
+//MARK: - EventStreamViewDelegate
+extension NewHomeStreamViewController: NewsStreamViewDelegate {
+    
+    func newsStreamView(_ view: NewsStreamView, didSelectNews news: Notice) {
+        self.showNoticeDetail(notice: news)
+    }
+}
+
+//MARK: - KudoStreamViewDelegate
+extension NewHomeStreamViewController: KudoStreamViewDelegate {
+    
+    func kudoStreamView(_ view: KudoStreamView, didSelectMoreOptions kudo: Kudo) {
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.modalPresentationStyle = .overFullScreen
+        alert.addAction(UIAlertAction(
+            title: "Report as Inappropriate",
+            style: .destructive,
+            handler: { [weak self] (_) in
+                let confirm = UIAlertController(
+                    title: "Confirm Report as Inappropriate",
+                    message: "Are you sure you want to report this \(Constants.Settings.kudosSingularShort) as inappropriate? It will be removed immedaitely and your name will be recorded as the reporter.",
+                    preferredStyle: .alert
+                )
+                confirm.addAction(UIAlertAction(
+                    title: "Report as Inappropriate",
+                    style: .destructive,
+                    handler: { (_) in
+                        kudo.flag().then({ [weak self] (flaggedKudo) in
+                            self?.getHomeStream()
+                        })
+                }
+                ))
+                confirm.addAction(UIAlertAction(
+                    title: "Cancel",
+                    style: .cancel,
+                    handler: nil
+                ))
+                self?.present(confirm, animated: true, completion: nil)
+            }
+        ))
+        alert.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: nil
+        ))
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
 }

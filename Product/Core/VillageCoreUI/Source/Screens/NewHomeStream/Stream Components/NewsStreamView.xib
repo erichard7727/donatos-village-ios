@@ -112,6 +112,9 @@
                                     <state key="normal" title="READ MORE">
                                         <color key="titleColor" red="0.5450980392" green="0.60392156860000001" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="seeDetails" destination="-1" eventType="touchUpInside" id="cqZ-Jx-VsZ"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -27,6 +27,10 @@ struct NoticeService {
         return self.getNoticesPaginated(.notice)
     }
     
+    static func getUnacknowledgedNoticesPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.notice, acknowledgedFilter: false)
+    }
+    
     static func getNewsPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.news)
     }
@@ -35,7 +39,11 @@ struct NoticeService {
         return self.getNoticesPaginated(.events)
     }
     
-    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType) -> SectionedPaginated<Notice> {
+    static func getUnrespondedEventsPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.events, acknowledgedFilter: false)
+    }
+    
+    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType, acknowledgedFilter: Bool? = nil) -> SectionedPaginated<Notice> {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
@@ -43,7 +51,7 @@ struct NoticeService {
         return SectionedPaginated<Notice>.init(
             fetchValues: { (page) -> Promise<PaginatedResults<Notice>> in
                 return firstly {
-                    let notices = VillageCoreAPI.notices(noticeType, page: page)
+                    let notices = VillageCoreAPI.notices(noticeType, page: page, acknowledgedFilter: acknowledgedFilter)
                     return VillageService.shared.request(target: notices)
                 }.then { (json: JSON) -> PaginatedResults<Notice> in
                     let notices = json["content"].arrayValue.compactMap({ Notice(from: $0) })

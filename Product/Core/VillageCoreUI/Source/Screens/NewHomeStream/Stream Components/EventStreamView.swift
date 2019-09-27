@@ -11,16 +11,23 @@ import VillageCore
 import AlamofireImage
 import Alamofire
 
+protocol EventStreamViewDelegate: class {
+    func eventStreamView(_ view: EventStreamView, didSelectEvent event: Notice)
+}
+
 class EventStreamView: NibView {
     
     // View Model
     var event: Notice?
     
+    // Delegate
+    weak var delegate: EventStreamViewDelegate?
+    
     // Outlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var backgroundImageView: UIImageView!
-    @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var rsvpStatusLabel: UILabel!
     @IBOutlet private weak var yesButton: RSVPButton!
     @IBOutlet private weak var maybeButton: RSVPButton!
     @IBOutlet private weak var noButton: RSVPButton!
@@ -30,9 +37,10 @@ class EventStreamView: NibView {
         self.applyCardStyle()
     }
 
-    convenience init(event: Notice) {
+    convenience init(event: Notice, delegate: EventStreamViewDelegate? = nil) {
         self.init()
         self.event = event
+        self.delegate = delegate
         self.reloadViewData()
     }
     
@@ -44,7 +52,11 @@ class EventStreamView: NibView {
             backgroundImageView.af_setImage(withURL: imageUrl)
         }
         
-        statusLabel.text = event?.eventRsvpDisplayStatus.uppercased()
+        if let rsvpStatus = event?.eventRsvpStatus, rsvpStatus == .none {
+            rsvpStatusLabel.text = "RSVP Needed"
+        } else {
+            rsvpStatusLabel.text = "RSVP"
+        }
         
         if let date = event?.eventStartDateTime {
             let dateString = date.longformFormat.uppercased()
@@ -112,6 +124,11 @@ class EventStreamView: NibView {
             alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in self.submitResponse(response) }))
             alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         }
+    }
+    
+    @IBAction func seeDetails() {
+        guard let event = event else { assertionFailure(); return }
+        delegate?.eventStreamView(self, didSelectEvent: event)
     }
 }
 

@@ -97,6 +97,9 @@
                             <state key="normal" title="SEE DETAILS">
                                 <color key="titleColor" red="0.5450980392" green="0.60392156860000001" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="seeDetails" destination="-1" eventType="touchUpInside" id="36S-lD-E3t"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>
