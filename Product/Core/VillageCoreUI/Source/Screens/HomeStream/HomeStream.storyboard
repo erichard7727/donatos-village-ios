@@ -18,7 +18,7 @@
         <!--Data Source-->
         <scene sceneID="igU-ob-p9D">
             <objects>
-                <viewController storyboardIdentifier="NewHomeStreamViewController" extendedLayoutIncludesOpaqueBars="YES" id="g1i-ES-Sfb" customClass="NewHomeStreamViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeStreamViewController" extendedLayoutIncludesOpaqueBars="YES" id="g1i-ES-Sfb" customClass="HomeStreamViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bZQ-Ff-Aem">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -554,7 +554,7 @@
         <image name="calendar" width="21" height="21"/>
         <image name="checkmark" width="18" height="13"/>
         <image name="detail-disclosure" width="8" height="12"/>
-        <image name="homestream-header" width="375" height="140"/>
+        <image name="homestream-header" width="750" height="592"/>
         <image name="plus-circle" width="21" height="21"/>
         <image name="schedule-icon" width="22" height="22"/>
         <image name="thumb-up" width="22" height="19"/>

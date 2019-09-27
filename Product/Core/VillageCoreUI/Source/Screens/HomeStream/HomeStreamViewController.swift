@@ -1,5 +1,5 @@
 //
-//  NewHomeStreamViewController.swift
+//  HomeStreamViewController.swift
 //  VillageCoreUI
 //
 //  Created by Rob Feldmann on 9/14/19.
@@ -11,9 +11,9 @@ import VillageCore
 import SafariServices
 
 
-final class NewHomeStreamViewController: UIViewController {
+final class HomeStreamViewController: UIViewController {
 
-    fileprivate var homeStream: NewHomeStream?
+    fileprivate var homeStream: HomeStream?
     fileprivate var unreads: Unread?
     
     @IBOutlet private weak var headerImageView: UIImageView!
@@ -44,7 +44,7 @@ final class NewHomeStreamViewController: UIViewController {
 
 // MARK: - UIViewController Overrides
 
-extension NewHomeStreamViewController {
+extension HomeStreamViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,13 +86,13 @@ extension NewHomeStreamViewController {
 
 // MARK: - Private Methods
 
-private extension NewHomeStreamViewController {
+private extension HomeStreamViewController {
 
     func getHomeStream() {
         
         // load stream content
         firstly {
-            NewHomeStream.fetch()
+            HomeStream.fetch()
         }.then { [weak self] homeStream in
             self?.homeStream = homeStream
             self?.reloadViewData()
@@ -120,6 +120,12 @@ private extension NewHomeStreamViewController {
         // Hide StackView if data is not loaded
         guard let homeStream = self.homeStream else {
             self.stackView.isHidden = true
+            
+            noticesStackView.isHidden = true
+            eventsStackView.isHidden = true
+            newsStackView.isHidden = true
+            kudoStackView.isHidden = true
+            
             return
         }
         self.stackView.isHidden = false
@@ -132,8 +138,8 @@ private extension NewHomeStreamViewController {
         
         
         // Configure Notices Section
-        noticesStackView.isHidden = (homeStream.notice?.acknowledgeRequired ?? false) == false
         noticesStackView.reloadData()
+        noticesStackView.isHidden = (homeStream.notice?.acknowledgeRequired ?? false) == false
         
         if let unreadNotices = unreads?.notices, unreadNotices - 1 > 0 {
             let additionalNoticeCount = unreadNotices - 1
@@ -175,7 +181,7 @@ private extension NewHomeStreamViewController {
 }
 
 //MARK: - Navigation Helpers
-extension NewHomeStreamViewController {
+extension HomeStreamViewController {
     
     @IBAction func showMySchedule() {
         let url = Constants.URL.schedulerLink
@@ -239,7 +245,7 @@ extension NewHomeStreamViewController {
 }
 
 //MARK: - StackView Data Source
-extension NewHomeStreamViewController: StackViewDataSource {
+extension HomeStreamViewController: StackViewDataSource {
     
     func arrangedSubviewsForStackView(_ stackView: DataSourcedStackView) -> [UIView] {
         
@@ -269,7 +275,7 @@ extension NewHomeStreamViewController: StackViewDataSource {
 
 //MARK: - SFSafariViewControllerDelegate
 
-extension NewHomeStreamViewController: SFSafariViewControllerDelegate {
+extension HomeStreamViewController: SFSafariViewControllerDelegate {
     
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         self.dismiss(animated: true, completion: nil)
@@ -279,7 +285,7 @@ extension NewHomeStreamViewController: SFSafariViewControllerDelegate {
 
 
 //MARK: - NoticeStreamViewDelegate
-extension NewHomeStreamViewController: NoticeStreamViewDelegate {
+extension HomeStreamViewController: NoticeStreamViewDelegate {
     
     func noticeStreamView(_ view: NoticeStreamView, didSelectNotice notice: Notice) {
         self.showNoticeDetail(notice: notice)
@@ -287,7 +293,7 @@ extension NewHomeStreamViewController: NoticeStreamViewDelegate {
 }
 
 //MARK: - EventStreamViewDelegate
-extension NewHomeStreamViewController: EventStreamViewDelegate {
+extension HomeStreamViewController: EventStreamViewDelegate {
     
     func eventStreamView(_ view: EventStreamView, didSelectEvent event: Notice) {
         self.showNoticeDetail(notice: event)
@@ -295,7 +301,7 @@ extension NewHomeStreamViewController: EventStreamViewDelegate {
 }
 
 //MARK: - EventStreamViewDelegate
-extension NewHomeStreamViewController: NewsStreamViewDelegate {
+extension HomeStreamViewController: NewsStreamViewDelegate {
     
     func newsStreamView(_ view: NewsStreamView, didSelectNews news: Notice) {
         self.showNoticeDetail(notice: news)
@@ -303,7 +309,7 @@ extension NewHomeStreamViewController: NewsStreamViewDelegate {
 }
 
 //MARK: - KudoStreamViewDelegate
-extension NewHomeStreamViewController: KudoStreamViewDelegate {
+extension HomeStreamViewController: KudoStreamViewDelegate {
     
     func kudoStreamView(_ view: KudoStreamView, didSelectMoreOptions kudo: Kudo) {
         

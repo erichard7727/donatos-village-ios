@@ -125,9 +125,7 @@ public enum VillageCoreAPI {
     
     // Streams
     case streamsHistory
-    #warning("JACK - Remove old homeStream call once DONV-345 is complete")
     case homeStream(page: Int)
-    case newHomeStream(page: Int)
     case subscribedStreams
     case otherStreams(page: Int)
     case searchOtherStreams(term: String, page: Int)
@@ -226,9 +224,6 @@ extension VillageCoreAPI: TargetType {
             return "kudos/1.0/leaders"
 
         case .homeStream:
-            return "streams/1.0/home"
-
-        case .newHomeStream:
             return "streams/2.0/home"
             
         case .streamsHistory:
@@ -301,7 +296,6 @@ extension VillageCoreAPI: TargetType {
              .searchDirectory,
              .streamsHistory,
              .homeStream,
-             .newHomeStream,
              .streamMembers,
              .streamMessages,
              .streamMessagesStartingAfter,
@@ -364,7 +358,6 @@ extension VillageCoreAPI: TargetType {
              .searchDirectory,
              .streamsHistory,
              .homeStream,
-             .newHomeStream,
              .streamMembers,
              .streamMessages,
              .streamMessagesStartingAfter,
@@ -637,7 +630,6 @@ extension VillageCoreAPI: TargetType {
              let .noticeAcknowledgedList(_, page),
              let .contentLibraryRoot(page),
              let .homeStream(page),
-             let .newHomeStream(page),
              let .streamMessages(_, page),
              let .streamMessagesStartingAfter(_, _, page):
             return Task.requestParameters(
@@ -781,7 +773,6 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .kudosLeaderboard,
              .searchDirectory,
              .homeStream,
-             .newHomeStream,
              .streamsHistory,
              .streamMembers,
              .streamMessages,
