@@ -91,7 +91,7 @@ final class ContactPersonViewController: UITableViewController {
         
         switch row {
         case .directMessage:
-            cell.buttonTextLabel.text = "Send Direct Message"
+            cell.buttonTextLabel.text = "New Chat"
             cell.iconImageView.image = UIImage.named("profile-email-icon")
             
         case .email(let emailAddress):
