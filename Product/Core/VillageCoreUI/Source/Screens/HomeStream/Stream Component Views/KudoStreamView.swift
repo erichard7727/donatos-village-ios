@@ -11,6 +11,7 @@ import VillageCore
 
 protocol KudoStreamViewDelegate: class {
     func kudoStreamView(_ view: KudoStreamView, didSelectMoreOptions kudo: Kudo)
+    func kudoStreamView(_ view: KudoStreamView, didSelectPerson person: Person)
 }
 
 class KudoStreamView: NibView {
@@ -25,8 +26,23 @@ class KudoStreamView: NibView {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var kudoLabel: UILabel!
-    @IBOutlet private weak var leftImageView: UIImageView!
-    @IBOutlet private weak var rightImageView: UIImageView!
+
+    @IBOutlet private weak var leftImageView: UIImageView! {
+        didSet {
+            leftImageView.isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer(target: self, action: #selector(didSelectAvatar(gesture:)))
+            leftImageView.addGestureRecognizer(tap)
+        }
+    }
+
+    @IBOutlet private weak var rightImageView: UIImageView! {
+        didSet {
+            rightImageView.isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer(target: self, action: #selector(didSelectAvatar(gesture:)))
+            rightImageView.addGestureRecognizer(tap)
+        }
+    }
+
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var detailsButton: UIButton!
     
@@ -59,5 +75,22 @@ class KudoStreamView: NibView {
     @IBAction func moreOptions() {
         guard let kudo = self.kudo else { assertionFailure(); return }
         delegate?.kudoStreamView(self, didSelectMoreOptions: kudo)
+    }
+
+    @objc private func didSelectAvatar(gesture: UITapGestureRecognizer) {
+        guard let kudo = self.kudo else {
+            return
+        }
+
+        switch gesture.view {
+        case leftImageView?:
+            delegate?.kudoStreamView(self, didSelectPerson: kudo.sender)
+
+        case rightImageView?:
+            delegate?.kudoStreamView(self, didSelectPerson: kudo.receiver)
+
+        default:
+            break
+        }
     }
 }

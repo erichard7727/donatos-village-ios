@@ -478,21 +478,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		D42CF71D227BDA8E003D8CF4 /* Home Stream */ = {
-			isa = PBXGroup;
-			children = (
-				D42CF71E227BDAB9003D8CF4 /* Cells */,
-			);
-			path = "Home Stream";
-			sourceTree = "<group>";
-		};
-		D42CF71E227BDAB9003D8CF4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		D434D3E52270ED09002C5EA0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -917,7 +902,6 @@
 				D4B4E843223AE7BE002DED70 /* Foundation */,
 				D4D3116A226F5392006C3C3F /* Groups */,
 				D4AEFB98232D7C6100986A1F /* HomeStream */,
-				D42CF71D227BDA8E003D8CF4 /* Home Stream */,
 				D4B4E86F223B370B002DED70 /* Kudos */,
 				D460B80F224AC41E003DCA2C /* Notices */,
 			);

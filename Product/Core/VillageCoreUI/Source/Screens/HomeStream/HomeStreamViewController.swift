@@ -350,4 +350,23 @@ extension HomeStreamViewController: KudoStreamViewDelegate {
         self.present(alert, animated: true, completion: nil)
         
     }
+
+    func kudoStreamView(_ view: KudoStreamView, didSelectPerson person: Person) {
+        let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
+        vc.person = person
+        vc.delegate = self
+        self.show(vc, sender: self)
+    }
+}
+
+// MARK: - PersonProfileViewControllerDelegate
+
+extension HomeStreamViewController: PersonProfileViewControllerDelegate {
+
+    func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: ContactPersonViewController) {
+        let dataSource = DirectMessageStreamDataSource(stream: directMessage)
+        let vc = StreamViewController(dataSource: dataSource)
+        self.show(UINavigationController(rootViewController: vc), sender: self)
+    }
+
 }
