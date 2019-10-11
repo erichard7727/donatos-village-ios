@@ -33,6 +33,13 @@ public extension Sequence where Element == Person {
     static func getDirectory(page: Int = 1) -> Promise<People> {
         return DirectoryService.getDirectory(page: page)
     }
+
+    /// Extends typealias `People` to fetch a directory.
+    ///
+    /// - Returns: A list of `People`
+    static func getDirectoryPaginated() -> Paginated<Person> {
+        return DirectoryService.getDirectoryPaginated()
+    }
     
     /// Extends typealias `People` to search a directory.
     ///
@@ -42,6 +49,13 @@ public extension Sequence where Element == Person {
     /// - Returns: A list of `People`
     static func search(for term: String, page: Int = 1) -> Promise<People> {
         return DirectoryService.search(for: term, page: page)
+    }
+
+    /// Extends typealias `People` to search a directory.
+    ///
+    /// - Returns: A list of `People`
+    static func searchPaginated(for term: String) -> Paginated<Person> {
+        return DirectoryService.searchPaginated(term)
     }
     
 }

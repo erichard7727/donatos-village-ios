@@ -27,6 +27,23 @@ struct DirectoryService {
             return people
         }
     }
+
+    /// Returns the directory of `People`
+    ///
+    /// - Returns: A `Paginated` collection of `Person`
+    ///            that can be fetched one page at a time as necessary.
+    static func getDirectoryPaginated() -> Paginated<Person> {
+        return Paginated<Person>(fetchValues: { (page) -> Promise<PaginatedResults<Person>> in
+            return firstly {
+                let directory = VillageCoreAPI.directory(page: page)
+                return VillageService.shared.request(target: directory)
+            }.then { (json: JSON) -> PaginatedResults<Person> in
+                let people = json["people"].arrayValue.compactMap({ Person(from: $0) })
+                let paginatedCounts = PaginatedCounts(from: json["meta"])
+                return PaginatedResults(values: people, counts: paginatedCounts)
+            }
+        })
+    }
     
     static func search(for term: String, page: Int = 1) -> Promise<People> {
         return firstly {
@@ -36,6 +53,24 @@ struct DirectoryService {
             let people = json["people"].arrayValue.compactMap({ Person(from: $0) })
             return people
         }
+    }
+
+    /// Searches the entire directory for people matching the given term.
+    ///
+    /// - Parameter searchTerm: The search to perform
+    /// - Returns: A `Paginated` collection of `Person`
+    ///            that can be fetched one page at a time as necessary.
+    static func searchPaginated(_ searchTerm: String) -> Paginated<Person> {
+        return Paginated<Person>(fetchValues: { (page) -> Promise<PaginatedResults<Person>> in
+            return firstly {
+                let search = VillageCoreAPI.searchDirectory(term: searchTerm, page: page)
+                return VillageService.shared.request(target: search)
+            }.then { (json: JSON) -> PaginatedResults<Person> in
+                let people = json["people"].arrayValue.compactMap({ Person(from: $0) })
+                let paginatedCounts = PaginatedCounts(from: json["meta"])
+                return PaginatedResults(values: people, counts: paginatedCounts)
+            }
+        })
     }
     
     static func getDetails(for person: Person) -> Promise<Person> {
