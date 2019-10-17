@@ -51,8 +51,8 @@ class EventStreamView: NibView {
             Alamofire.DataRequest.addAcceptableImageContentTypes(["binary/octet-stream"])
             backgroundImageView.af_setImage(withURL: imageUrl)
         }
-        
-        if let rsvpStatus = event?.eventRsvpStatus, rsvpStatus == .none {
+
+        if (event?.eventRsvpStatus ?? .none) == Notice.RSVPResponse.none && event?.acknowledgeRequired == true {
             rsvpStatusLabel.text = "RSVP Needed"
         } else {
             rsvpStatusLabel.text = "RSVP"
