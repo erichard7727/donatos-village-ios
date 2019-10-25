@@ -131,6 +131,11 @@ public class VillageContainer: SideMenuController {
 // MARK: UIApplicationDelegate
 
 extension VillageContainer: UIApplicationDelegate {
+
+    public func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        UIViewController.doBadSwizzleStuff()
+        return true
+    }
  
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         

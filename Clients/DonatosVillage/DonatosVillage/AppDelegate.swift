@@ -19,13 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var villageContainer = VillageContainer.make()
 
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        return villageContainer.application(application, willFinishLaunchingWithOptions: launchOptions)
+    }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         MSAppCenter.start("fdf9955b-10a9-4468-bce7-6952461c143c", withServices:[
             MSAnalytics.self,
             MSCrashes.self
         ])
-        
+
         return villageContainer.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

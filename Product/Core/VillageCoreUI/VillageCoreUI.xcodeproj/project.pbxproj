@@ -158,6 +158,7 @@
 		D4EA50892279CEBE00BE7E52 /* DMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */; };
 		D4EA508A2279CEBE00BE7E52 /* DirectMessages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EA507D2279CEBE00BE7E52 /* DirectMessages.storyboard */; };
 		D4EA5090227BC03900BE7E52 /* TintedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */; };
+		D4F3C0322363015E0078CBBD /* UIViewController+BadSwizzleStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F3C0312363015E0078CBBD /* UIViewController+BadSwizzleStuff.swift */; };
 		D4F4659E2289A63B00732317 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F4659D2289A63B00732317 /* GroupTableViewCell.swift */; };
 		D4F8A57122109B26005FDB6A /* UIViewController+SimpleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */; };
 		D4F8A57522109E31005FDB6A /* LoginIdentityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */; };
@@ -360,6 +361,7 @@
 		D4EA507C2279CEBE00BE7E52 /* DMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMViewController.swift; sourceTree = "<group>"; };
 		D4EA507D2279CEBE00BE7E52 /* DirectMessages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DirectMessages.storyboard; sourceTree = "<group>"; };
 		D4EA508F227BC03800BE7E52 /* TintedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedSearchBar.swift; sourceTree = "<group>"; };
+		D4F3C0312363015E0078CBBD /* UIViewController+BadSwizzleStuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+BadSwizzleStuff.swift"; sourceTree = "<group>"; };
 		D4F4659D2289A63B00732317 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		D4F8A57022109B26005FDB6A /* UIViewController+SimpleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SimpleTransition.swift"; sourceTree = "<group>"; };
 		D4F8A57422109E31005FDB6A /* LoginIdentityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginIdentityViewController.swift; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 				04819B4F2339072F000C46E0 /* UIView+CardStyle.swift */,
 				04819B5723391422000C46E0 /* UILabel+HTML.swift */,
 				04DA45EB233D2E5D001958A6 /* UIBarButtonItem+Badging.swift */,
+				D4F3C0312363015E0078CBBD /* UIViewController+BadSwizzleStuff.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1243,6 +1246,7 @@
 				D4F8A5822210A1DC005FDB6A /* HomeViewController.swift in Sources */,
 				D411BC402247B3EE003D2F08 /* UserSettingsGenericCell.swift in Sources */,
 				D4AEFB9D232D7D1C00986A1F /* HomeStreamViewController.swift in Sources */,
+				D4F3C0322363015E0078CBBD /* UIViewController+BadSwizzleStuff.swift in Sources */,
 				D411BC3D2247B3EE003D2F08 /* UserSettingsHeaderController.swift in Sources */,
 				D4D3116C226F53BE006C3C3F /* GroupMenuItem.swift in Sources */,
 				D4F8A5862210A267005FDB6A /* MainMenuViewController.swift in Sources */,

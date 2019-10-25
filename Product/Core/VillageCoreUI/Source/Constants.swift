@@ -8,6 +8,10 @@
 
 import Foundation
 
+func VLG_SYSTEM_VERSION_LESS_THAN(_ version: String) -> Bool {
+    return UIDevice.current.systemVersion.compare(version, options: String.CompareOptions.numeric) == .orderedAscending
+}
+
 class Constants {
     
     static let bundle = Bundle(for: Constants.self)
@@ -30,6 +34,17 @@ extension Constants {
         static let achievementsEnabled = false
         static let manageNoticesEnabled = false
         static let createGroupsEnabled = true
+
+        static let disableLargeTitles: Bool = {
+            let isiOS12 = VLG_SYSTEM_VERSION_LESS_THAN("13")
+            if !isiOS12 && VLG_SYSTEM_VERSION_LESS_THAN("13.2") {
+                // Disable large titles
+                return true
+            } else {
+                // Enable large titles
+                return false
+            }
+        }()
     }
     
     struct URL {
