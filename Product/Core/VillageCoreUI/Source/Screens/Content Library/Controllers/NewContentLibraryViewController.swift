@@ -124,6 +124,10 @@ extension ContentLibraryViewController {
             title = "Content Library"
         }
 
+        if Constants.Settings.hidesSearchBarWhenScrolling {
+            navigationItem.searchController = (baseContentItem == nil) ? searchController : nil
+        }
+
         if items.needsFetching {
             loadingItemsContainer.isHidden = false
             items.fetchValues(at: [])
@@ -135,6 +139,10 @@ extension ContentLibraryViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        if Constants.Settings.hidesSearchBarWhenScrolling {
+            navigationItem.searchController = (baseContentItem == nil) ? searchController : nil
+        }
+
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
@@ -145,6 +153,14 @@ extension ContentLibraryViewController {
             // nothing to configure
         } else {
             assertionFailure("Unexpected segue")
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if Constants.Settings.hidesSearchBarWhenScrolling {
+            navigationItem.searchController = nil
         }
     }
 }
