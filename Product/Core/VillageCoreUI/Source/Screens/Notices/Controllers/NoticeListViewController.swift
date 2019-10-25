@@ -319,7 +319,7 @@ final class NoticeListViewController: UIViewController {
         let searchController = TintedSearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
         return searchController
     }()
 
@@ -372,7 +372,6 @@ extension NoticeListViewController {
         }
 
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

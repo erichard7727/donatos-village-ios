@@ -65,7 +65,7 @@ final class ContentLibraryViewController: UIViewController {
         let searchController = TintedSearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
         return searchController
     }()
 
@@ -103,14 +103,23 @@ extension ContentLibraryViewController {
 
         allItems.delegate = self
 
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
+        if baseContentItem == nil {
+            navigationItem.searchController = searchController
+        }
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationItem.largeTitleDisplayMode = baseContentItem == nil ? .always : .never
+        let defaultLargeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode
+        if Constants.Settings.disableLargeTitles {
+            defaultLargeTitleDisplayMode = .never
+        } else {
+            defaultLargeTitleDisplayMode = .always
+        }
+
+        navigationItem.largeTitleDisplayMode = baseContentItem == nil ? defaultLargeTitleDisplayMode : .never
         if baseContentItem == nil {
             title = "Content Library"
         }

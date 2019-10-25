@@ -45,6 +45,17 @@ extension Constants {
                 return false
             }
         }()
+
+        static let hidesSearchBarWhenScrolling: Bool = {
+            let isiOS12 = VLG_SYSTEM_VERSION_LESS_THAN("13")
+            if !isiOS12 && VLG_SYSTEM_VERSION_LESS_THAN("13.2") {
+                // Disable hidibg when scrolling
+                return false
+            } else {
+                // Enable hidibg when scrolling
+                return true
+            }
+        }()
     }
     
     struct URL {

@@ -51,7 +51,7 @@ final class PeopleViewController: UIViewController {
         let searchController = TintedSearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
         return searchController
     }()
 
@@ -90,7 +90,6 @@ extension PeopleViewController {
         ])
 
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -448,13 +447,13 @@ extension PeopleViewController: InvitePersonControllerDelegate {
 //        // Setup search controller.
 //        searchController = TintedSearchController(searchResultsController: nil)
 //        searchController.dimsBackgroundDuringPresentation = false
-//        searchController.hidesNavigationBarDuringPresentation = false
+//        searchController.hidesNavigationBarDuringPresentation = true
 //        searchController.searchBar.delegate = self
 //        searchController.searchResultsUpdater = self
 //        searchController.delegate = self
 //
 //        navigationItem.searchController = searchController
-//        navigationItem.hidesSearchBarWhenScrolling = false
+//        navigationItem.hidesSearchBarWhenScrolling = Constants.Settings.hidesSearchBarWhenScrolling
 //
 //        self.definesPresentationContext = true
 //

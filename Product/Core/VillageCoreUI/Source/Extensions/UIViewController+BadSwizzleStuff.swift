@@ -59,6 +59,8 @@ extension UIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
 
+        navigationItem.hidesSearchBarWhenScrolling = Constants.Settings.hidesSearchBarWhenScrolling
+
         self.vlg_viewDidLoad()
     }
 }
