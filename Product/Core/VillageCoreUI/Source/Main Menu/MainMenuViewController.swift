@@ -155,9 +155,11 @@ final class MainMenuViewController: UIViewController {
         didSet {
             noticesUnreadBadge.text = unread?.notices.description
             noticesUnreadBadge.isHidden = (unread?.notices ?? 0) == 0
+
+            eventsUnreadBadge.text = unread?.events.description
+            eventsUnreadBadge.isHidden = (unread?.events ?? 0) == 0
             
-            // These aren't available in the API yet
-            eventsUnreadBadge.isHidden = true
+            // News isn't available in the API yet
             newsUnreadBadge.isHidden = true
             
             let groupMenuItems = menuOptionGroupsChildrenContainer.arrangedSubviews
