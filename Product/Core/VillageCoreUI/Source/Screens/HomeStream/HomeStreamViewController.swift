@@ -132,11 +132,11 @@ private extension HomeStreamViewController {
         
         // Configure badge
         if let unreads = unreads {
-            let total = unreads.notices + unreads.events
+            let unreadStreamMessages = unreads.streams.map({ $0.count }).reduce(0, +)
+            let total = unreads.notices + unreads.events + unreadStreamMessages
             leftBarBehavior.badgeText = total > 0 ? "\(total)" : nil
         }
-        
-        
+
         // Configure Notices Section
         noticesStackView.reloadData()
         noticesStackView.isHidden = (homeStream.notice?.acknowledgeRequired ?? false) == false
