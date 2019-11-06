@@ -162,59 +162,29 @@ extension AchievementDetailsViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "KudoCell") as! KudoCell
-            cell.displayDateLabel = true
-            
             let kudo = kudos[indexPath.row]
-            let achievementString = "for " + kudo.achievementTitle
-            
-            let regAttributes = [NSAttributedString.Key.font: UIFont(name: "ProximaNova-Regular", size: 15.0)!]
-            let boldAttributes = [NSAttributedString.Key.font: UIFont(name: "ProximaNova-SemiBold", size: 15.0)!]
-            
-            let sender = NSAttributedString(string: kudo.sender.displayName ?? "", attributes: boldAttributes)
-            
-            let title = NSMutableAttributedString()
-            title.append(sender)
-            
-            if let otherReceiver = otherUser {
-                let receiver = NSAttributedString(string: otherReceiver.displayName ?? "", attributes: boldAttributes)
-                
-                title.append(NSAttributedString(string: " gave ", attributes: regAttributes))
-                title.append(receiver)
-                title.append(NSAttributedString(string:  " kudos for \(kudo.achievementTitle)", attributes: regAttributes))
-            } else {
-                title.append(NSAttributedString(string: " gave you kudos \(achievementString)", attributes: regAttributes))
-            }
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMM dd"
-            
-            cell.configure(
-                title: title,
-                comment: kudo.comment,
-                points: kudo.points,
-                date: formatter.string(from: kudo.date),
-                didSelectAvatar: { [weak self] in
-                    let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
-                    vc.person = kudo.receiver
-                    vc.delegate = self
-                    self?.show(vc, sender: self)
-                },
-                showMoreOptions: {
-                    assertionFailure("Showing more options has not been implemented!")
-                }
-            )
-
-            if let url = kudo.sender.avatarURL, let avatarImageView = cell.avatarImageView {
-                let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
-                    size: avatarImageView.frame.size,
-                    radius: avatarImageView.frame.size.height / 2
-                )
-                
-                cell.avatarImageView?.af_setImage(withURL: url, filter: filter)
-            }
-            
+            cell.configure(kudo: kudo, delegate: self)            
             return cell
         }
     }
+}
+
+// MARK: - KudoStreamViewDelegate
+
+extension AchievementDetailsViewController: KudoStreamViewDelegate {
+
+    func kudoStreamView(_ view: KudoStreamView, didSelectMoreOptions kudo: Kudo) {
+        assertionFailure("Showing more options has not been implemented!")
+    }
+
+    func kudoStreamView(_ view: KudoStreamView, didSelectPerson person: Person) {
+        let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
+        vc.person = person
+        vc.delegate = self
+        self.show(vc, sender: self)
+    }
+
+
 }
 
 // MARK: - PersonProfileViewControllerDelegate

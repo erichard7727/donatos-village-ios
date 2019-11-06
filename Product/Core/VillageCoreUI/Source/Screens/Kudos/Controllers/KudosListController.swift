@@ -206,6 +206,7 @@ class KudosListController: UIViewController, StatefulUserInterface {
 }
 
 extension KudosListController: UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return tupleArray.count
     }
@@ -257,72 +258,63 @@ extension KudosListController: UITableViewDataSource {
             
         }
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd, yyyy"
-        var dateString = ""
-        dateString = formatter.string(from: kudo.date as Date)
-        
-        cell.configure(
-            title: title,
-            comment: kudo.comment,
-            points: kudo.points,
-            date: dateString,
-            didSelectAvatar: { [weak self] in
-                let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
-                vc.person = kudo.receiver
-                vc.delegate = self
-                self?.show(vc, sender: self)
-            },
-            showMoreOptions: { [weak self] in
-                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                    alert.addAction(UIAlertAction(
-                        title: "Report as Inappropriate",
-                        style: .destructive,
-                        handler: { [weak self] (_) in
-                            let confirm = UIAlertController(
-                                title: "Confirm Report as Inappropriate",
-                                message: "Are you sure you want to report this \(Constants.Settings.kudosSingularShort) as inappropriate? It will be removed immedaitely and your name will be recorded as the reporter.",
-                                preferredStyle: .alert
-                            )
-                            confirm.addAction(UIAlertAction(
-                                title: "Report as Inappropriate",
-                                style: .destructive,
-                                handler: { (_) in
-                                    kudo.flag().then({ [weak self] (flaggedKudo) in
-                                        self?.currentPage = 1
-                                        self?.loadData()
-                                    })
-                                }
-                            ))
-                            confirm.addAction(UIAlertAction(
-                                title: "Cancel",
-                                style: .cancel,
-                                handler: nil
-                            ))
-                            self?.present(confirm, animated: true, completion: nil)
-                        }
-                    ))
-                    alert.addAction(UIAlertAction(
-                        title: "Cancel",
-                        style: .cancel,
-                        handler: nil
-                    ))
-                    self?.present(alert, animated: true, completion: nil)
-            }
-        )
-        
-        
-        if let url = kudo.receiver.avatarURL,
-           let avatarImageView = cell.avatarImageView {
-            let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
-                size: avatarImageView.frame.size,
-                radius: avatarImageView.frame.size.height / 2
-            )
-            
-            cell.avatarImageView?.af_setImage(withURL: url, filter: filter)
-        }
+        cell.configure(kudo: kudo, delegate: self)
+
         return cell
+        
     }
+
+}
+
+// MARK: - KudoStreamViewDelegate
+
+extension KudosListController: KudoStreamViewDelegate {
+
+    func kudoStreamView(_ view: KudoStreamView, didSelectMoreOptions kudo: Kudo) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(
+            title: "Report as Inappropriate",
+            style: .destructive,
+            handler: { [weak self] (_) in
+                let confirm = UIAlertController(
+                    title: "Confirm Report as Inappropriate",
+                    message: "Are you sure you want to report this \(Constants.Settings.kudosSingularShort) as inappropriate? It will be removed immedaitely and your name will be recorded as the reporter.",
+                    preferredStyle: .alert
+                )
+                confirm.addAction(UIAlertAction(
+                    title: "Report as Inappropriate",
+                    style: .destructive,
+                    handler: { (_) in
+                        kudo.flag().then({ [weak self] (flaggedKudo) in
+                            self?.currentPage = 1
+                            self?.loadData()
+                        })
+                }
+                ))
+                confirm.addAction(UIAlertAction(
+                    title: "Cancel",
+                    style: .cancel,
+                    handler: nil
+                ))
+                self?.present(confirm, animated: true, completion: nil)
+            }
+        ))
+        alert.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: nil
+        ))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func kudoStreamView(_ view: KudoStreamView, didSelectPerson person: Person) {
+        let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
+        vc.person = person
+        vc.delegate = self
+        self.show(vc, sender: self)
+    }
+
+
 }
 
 // MARK: - UITableViewDelegate

@@ -17,7 +17,11 @@ protocol KudoStreamViewDelegate: class {
 class KudoStreamView: NibView {
     
     // View Model
-    var kudo: Kudo?
+    var kudo: Kudo? {
+        didSet {
+            updateViewForKudo()
+        }
+    }
     
     // Delegate
     weak var delegate: KudoStreamViewDelegate?
@@ -25,7 +29,11 @@ class KudoStreamView: NibView {
     // Outlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
-    @IBOutlet private weak var kudoLabel: UILabel!
+    @IBOutlet private weak var kudoLabel: UILabel! {
+        didSet {
+            kudoLabel.text = "My \(Constants.Settings.kudosSingularLong)"
+        }
+    }
 
     @IBOutlet private weak var leftImageView: UIImageView! {
         didSet {
@@ -55,21 +63,8 @@ class KudoStreamView: NibView {
         
         self.kudo = kudo
         self.delegate = delegate
-        
-        titleLabel.text = kudo.achievementTitle
-        dateLabel.text = kudo.date.longformFormat.uppercased()
-        contentLabel.text = kudo.comment
-        
-        kudoLabel.text = "My \(Constants.Settings.kudosSingularLong)"
-        
-        if let senderImage = kudo.sender.avatarURL {
-            leftImageView.af_setImage(withURL: senderImage)
-        }
-        
-        if let receiverImage = kudo.receiver.avatarURL {
-            rightImageView.af_setImage(withURL: receiverImage)
-        }
-        
+
+        updateViewForKudo()
     }
     
     @IBAction func moreOptions() {
@@ -91,6 +86,20 @@ class KudoStreamView: NibView {
 
         default:
             break
+        }
+    }
+
+    private func updateViewForKudo() {
+        guard let kudo = kudo else { return }
+
+        titleLabel.text = kudo.achievementTitle
+        dateLabel.text = kudo.date.longformFormat.uppercased()
+        contentLabel.text = kudo.comment
+        if let senderImage = kudo.sender.avatarURL {
+            leftImageView.af_setImage(withURL: senderImage)
+        }
+        if let receiverImage = kudo.receiver.avatarURL {
+            rightImageView.af_setImage(withURL: receiverImage)
         }
     }
 }
