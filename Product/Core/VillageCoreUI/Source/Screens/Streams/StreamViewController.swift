@@ -12,7 +12,7 @@ import SafariServices
 import VillageCore
 import Promises
 
-class StreamViewController: SLKTextViewController {
+class StreamViewController: UIViewController {
     
     // MARK: - Public Properties
     
@@ -30,22 +30,33 @@ class StreamViewController: SLKTextViewController {
     
     init(dataSource: StreamDataSource) {
         self.dataSource = dataSource
-        super.init(tableViewStyle: .plain)!
+        super.init(nibName: nil, bundle: nil)
         self.dataSource.configure(delegate: self, viewController: self, tableView: tableView)
     }
     
     required init?(coder decoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override var tableView: UITableView {
-        return super.tableView!
-    }
+
+    lazy var tableView: UITableView = {
+        let tv = UITableView()
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.transform = CGAffineTransform(scaleX: 1, y: -1)
+        return tv
+    }()
     
     // MARK: - UIViewController Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(tableView)
+        view.addConstraints([
+            view.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
+            view.topAnchor.constraint(equalTo: tableView.topAnchor),
+            view.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: tableView.bottomAnchor),
+        ])
         
         navigationItem.largeTitleDisplayMode = .never
         
@@ -72,8 +83,6 @@ class StreamViewController: SLKTextViewController {
         } else {
             self.title = dataSource.stream.name
         }
-        
-        self.textInputbar.textView.keyboardType = .default
         
         if dataSource.oldMessages.needsFetching {
 //            loadingGroupsContainer.isHidden = false
@@ -110,9 +119,9 @@ class StreamViewController: SLKTextViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !dataSource.hasMessages {
-            self.textView.becomeFirstResponder()
-        }
+//        if !dataSource.hasMessages {
+//            self.textView.becomeFirstResponder()
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -127,9 +136,9 @@ class StreamViewController: SLKTextViewController {
     
     // MARK: - SLKTextViewController Overrides
     
-    override func didPressLeftButton(_ sender: Any!) {
-        super.didPressLeftButton(sender)
-        
+    /*override*/ func didPressLeftButton(_ sender: Any!) {
+//        super.didPressLeftButton(sender)
+
         let actionSheetController: UIAlertController = UIAlertController(
             title: "Attach Media",
             message: "Choose an image from the following options.",
@@ -179,12 +188,12 @@ class StreamViewController: SLKTextViewController {
         
     }
     
-    override func didPressRightButton(_ sender: Any!) {
-        guard let text = textView.text, !text.isEmpty else { return }
-        
-        dataSource.send(message: text.trimmingCharacters(in: .whitespacesAndNewlines))
-        
-        super.didPressRightButton(sender)
+    /*override*/ func didPressRightButton(_ sender: Any!) {
+//        guard let text = textView.text, !text.isEmpty else { return }
+//
+//        dataSource.send(message: text.trimmingCharacters(in: .whitespacesAndNewlines))
+//
+//        super.didPressRightButton(sender)
     }
 }
 
