@@ -272,30 +272,48 @@ private extension StreamViewController {
     }
 
     func setGroupSubscriptionCTAHidden(_ isHidden: Bool, animated: Bool) {
-        if !isHidden {
-            let groupSubscriptionCTA = makeGroupSubscriptionCTA()
-            groupSubscriptionCTA.alpha = 0
-            self.groupSubscriptionCTA = groupSubscriptionCTA
-            view.addSubview(groupSubscriptionCTA)
-            view.addConstraints([
-                view.leadingAnchor.constraint(equalTo: groupSubscriptionCTA.leadingAnchor),
-                view.bottomAnchor.constraint(equalTo: groupSubscriptionCTA.bottomAnchor),
-                view.trailingAnchor.constraint(equalTo: groupSubscriptionCTA.trailingAnchor),
-            ])
-        }
-        UIView.animate(
-            withDuration: animated ? 0.25 : 0,
-            animations: {
-                self.groupSubscriptionCTA?.alpha = isHidden ? 0 : 1
-            },
-            completion: { _ in
-                if isHidden {
-                    self.groupSubscriptionCTA?.removeFromSuperview()
-                    self.groupSubscriptionCTA = nil
-                }
+        let animationBlock: () -> Void
+        let completionBlock: (Bool) -> Void
+
+        if isHidden {
+            animationBlock = {
+                self.groupSubscriptionCTA?.alpha = 0
             }
-        )
-        setMessageView(hidden: !isHidden, animated: animated)
+            completionBlock = { _ in
+                self.groupSubscriptionCTA = nil
+                self.setMessageView(hidden: !isHidden, animated: animated)
+            }
+        } else {
+            let groupSubscriptionCTA: GroupSubscriptionCTA
+            if let cta = self.groupSubscriptionCTA {
+                // Keep whatever existing alpha is already there
+                groupSubscriptionCTA = cta
+            } else {
+                groupSubscriptionCTA = makeGroupSubscriptionCTA()
+                self.groupSubscriptionCTA = groupSubscriptionCTA
+                view.addSubview(groupSubscriptionCTA)
+                view.addConstraints([
+                    view.leadingAnchor.constraint(equalTo: groupSubscriptionCTA.leadingAnchor),
+                    view.bottomAnchor.constraint(equalTo: groupSubscriptionCTA.bottomAnchor),
+                    view.trailingAnchor.constraint(equalTo: groupSubscriptionCTA.trailingAnchor),
+                ])
+                groupSubscriptionCTA.alpha = 0
+            }
+
+            animationBlock = {
+                self.groupSubscriptionCTA?.alpha = 1
+            }
+            completionBlock = { _ in
+                self.setMessageView(hidden: !isHidden, animated: animated)
+            }
+        }
+
+        if animated {
+            UIView.animate(withDuration: 0.25, animations: animationBlock, completion: completionBlock)
+        } else {
+            animationBlock()
+            completionBlock(true)
+        }
     }
 
     func saveImage(image: UIImage) {
