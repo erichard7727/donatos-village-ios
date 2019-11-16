@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import SlackTextViewController
+import MessageViewController
 import SafariServices
 import VillageCore
 import Promises
 
-class StreamViewController: UIViewController {
+class StreamViewController: MessageViewController {
     
     // MARK: - Public Properties
     
@@ -40,7 +40,6 @@ class StreamViewController: UIViewController {
 
     lazy var tableView: UITableView = {
         let tv = UITableView()
-        tv.translatesAutoresizingMaskIntoConstraints = false
         tv.transform = CGAffineTransform(scaleX: 1, y: -1)
         return tv
     }()
@@ -51,30 +50,45 @@ class StreamViewController: UIViewController {
         super.viewDidLoad()
 
         view.addSubview(tableView)
-        view.addConstraints([
-            view.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
-            view.topAnchor.constraint(equalTo: tableView.topAnchor),
-            view.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: tableView.bottomAnchor),
-        ])
+
+        // Configure MessageView
+        borderColor = .gray
+        messageView.font = UIFont(name: "ProximaNova-Regular", size: 16)!
+        messageView.maxLineCount = 6
+
+        messageView.addButton(target: self, action: #selector(didPressLeftButton), position: .left)
+        messageView.setButton(icon: UIImage.named("add-icon")?.withRenderingMode(.alwaysTemplate), for: .normal, position: .left)
+        messageView.setButton(inset: 10, position: .left)
+        messageView.leftButtonTint = .vlgGray
+        messageView.showLeftButton = true
+
+        messageView.textView.textContainerInset = UIEdgeInsets(top: 9, left: 8, bottom: 9, right: 16)
+        messageView.textView.placeholderText = "Message"
+        messageView.textView.placeholderTextColor = .lightGray
+
+        messageView.addButton(target: self, action: #selector(didPressRightButton), position: .right)
+        messageView.setButton(title: "Send", for: .normal, position: .right)
+        messageView.setButton(font: UIFont(name: "ProximaNova-Semibold", size: 16)!, position: .right)
+        messageView.setButton(inset: 10, position: .right)
+        messageView.rightButtonTint = .vlgRed
+
+        setup(scrollView: tableView)
         
         navigationItem.largeTitleDisplayMode = .never
         
         addBehaviors([
             LeftBarButtonBehavior(showing: .menuOrBack),
-            StandardStreamEditingUIBehavior()
         ])
         
         if dataSource.stream.id.lowercased().starts(with: "stream") {
             background = UIImageView(image: UIImage.named("app-background"))
             tableView.backgroundView = background
         }
-        
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         // Update title.
         if dataSource.stream.id.lowercased().starts(with: "dm") {
             let currentUser = User.current
@@ -134,10 +148,7 @@ class StreamViewController: UIViewController {
         NotificationCenter.default.post(name: Notification.Name.Stream.IsViewingDirectMessageConversation, object: self, userInfo: [:])
     }
     
-    // MARK: - SLKTextViewController Overrides
-    
-    /*override*/ func didPressLeftButton(_ sender: Any!) {
-//        super.didPressLeftButton(sender)
+    @objc func didPressLeftButton() {
 
         let actionSheetController: UIAlertController = UIAlertController(
             title: "Attach Media",
@@ -188,12 +199,18 @@ class StreamViewController: UIViewController {
         
     }
     
-    /*override*/ func didPressRightButton(_ sender: Any!) {
-//        guard let text = textView.text, !text.isEmpty else { return }
-//
-//        dataSource.send(message: text.trimmingCharacters(in: .whitespacesAndNewlines))
-//
-//        super.didPressRightButton(sender)
+    @objc func didPressRightButton() {
+        guard !messageView.text.isEmpty else { return }
+
+        let text = messageView.text
+        messageView.text = ""
+
+        dataSource.send(
+            message: text.trimmingCharacters(in: .whitespacesAndNewlines),
+            errorHandler: { [weak self] in
+                self?.messageView.text = text
+            }
+        )
     }
 }
 

@@ -69,7 +69,6 @@
 		D43663D2222A24BE006354F2 /* UIButton+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663D1222A24BE006354F2 /* UIButton+Loading.swift */; };
 		D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */; };
 		D44B5F07222970BB00941CCE /* TintedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B5F06222970BB00941CCE /* TintedTextField.swift */; };
-		D44D3F6622723CA0007ECBF1 /* StreamViewControllerBehaviors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D3F6522723CA0007ECBF1 /* StreamViewControllerBehaviors.swift */; };
 		D460B81A224AC434003DCA2C /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B811224AC433003DCA2C /* NewsCell.swift */; };
 		D460B81B224AC434003DCA2C /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B812224AC433003DCA2C /* NoticeCell.swift */; };
 		D460B81C224AC434003DCA2C /* NoticeAcknowledgementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B813224AC433003DCA2C /* NoticeAcknowledgementCell.swift */; };
@@ -270,7 +269,6 @@
 		D43663D1222A24BE006354F2 /* UIButton+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Loading.swift"; sourceTree = "<group>"; };
 		D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserViewController.swift; sourceTree = "<group>"; };
 		D44B5F06222970BB00941CCE /* TintedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintedTextField.swift; sourceTree = "<group>"; };
-		D44D3F6522723CA0007ECBF1 /* StreamViewControllerBehaviors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewControllerBehaviors.swift; sourceTree = "<group>"; };
 		D460B811224AC433003DCA2C /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		D460B812224AC433003DCA2C /* NoticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		D460B813224AC433003DCA2C /* NoticeAcknowledgementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeAcknowledgementCell.swift; sourceTree = "<group>"; };
@@ -867,7 +865,6 @@
 			children = (
 				D4CEAE8C2260018200A215E4 /* LeftBarButtonBehavior.swift */,
 				D4A697812264123C00ECC0A8 /* AccommodatesKeyboardBehavior.swift */,
-				D44D3F6522723CA0007ECBF1 /* StreamViewControllerBehaviors.swift */,
 			);
 			path = ViewControllerBehaviors;
 			sourceTree = "<group>";
@@ -1220,7 +1217,6 @@
 				D4B4E863223AFFD6002DED70 /* PersonProfileHeaderViewController.swift in Sources */,
 				D47FD3FF220FBD4700376D31 /* Constants.swift in Sources */,
 				D434D4002270ED09002C5EA0 /* GroupSettingsController.swift in Sources */,
-				D44D3F6622723CA0007ECBF1 /* StreamViewControllerBehaviors.swift in Sources */,
 				D434D4112270ED09002C5EA0 /* GroupPublishedContentCell.swift in Sources */,
 				D411BC3C2247B3EE003D2F08 /* EditSettingsController.swift in Sources */,
 				D4B4E899223B3E5E002DED70 /* AchievementImageView.swift in Sources */,
