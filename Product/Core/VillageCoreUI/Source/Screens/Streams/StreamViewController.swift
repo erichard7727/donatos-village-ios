@@ -119,10 +119,10 @@ class StreamViewController: MessageViewController {
         dataSource.streamSocket?.establishConnection()
         
         NotificationCenter.default.post(
-            name: Notification.Name.Stream.IsViewingDirectMessageConversation,
+            name: Notification.Name.Stream.isViewingDirectMessageConversation,
             object: self,
             userInfo: [
-                Notification.Name.Stream.directMessageConversationKey: dataSource.stream,
+                Notification.Name.Stream.streamKey: dataSource.stream,
             ]
         )
         
@@ -153,7 +153,7 @@ class StreamViewController: MessageViewController {
             dataSource.streamSocket?.closeConnection()
         }
         
-        NotificationCenter.default.post(name: Notification.Name.Stream.IsViewingDirectMessageConversation, object: self, userInfo: [:])
+        NotificationCenter.default.post(name: Notification.Name.Stream.isViewingDirectMessageConversation, object: self, userInfo: [:])
     }
     
     @objc func didPressLeftButton() {

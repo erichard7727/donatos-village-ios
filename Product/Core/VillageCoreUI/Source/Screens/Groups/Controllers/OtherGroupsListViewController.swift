@@ -112,6 +112,14 @@ extension OtherGroupsListViewController {
         ])
         
         navigationItem.searchController = searchController
+
+        NotificationCenter.default.addObserver(forName: Notification.Name.Stream.userDidSubscribe, object: nil, queue: .main) { [weak self] _ in
+            self?.groups.reloadValues()
+        }
+
+        NotificationCenter.default.addObserver(forName: Notification.Name.Stream.userDidUnsubscribe, object: nil, queue: .main) { [weak self] _ in
+            self?.groups.reloadValues()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

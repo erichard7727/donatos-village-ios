@@ -83,10 +83,10 @@ public class VillageContainer: SideMenuController {
             }
         }
         
-        NotificationCenter.default.addObserver(forName: Notification.Name.Stream.IsViewingDirectMessageConversation, object: nil, queue: .main) {
+        NotificationCenter.default.addObserver(forName: Notification.Name.Stream.isViewingDirectMessageConversation, object: nil, queue: .main) {
             [weak self] notification in
             
-            self?.openDirectMessageStream = notification.userInfo?[Notification.Name.Stream.directMessageConversationKey] as? VillageCore.Stream
+            self?.openDirectMessageStream = notification.userInfo?[Notification.Name.Stream.streamKey] as? VillageCore.Stream
         }
     }
     

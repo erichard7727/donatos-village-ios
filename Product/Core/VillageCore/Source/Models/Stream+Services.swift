@@ -55,10 +55,28 @@ public extension Stream {
     
     func subscribe() -> Promise<Void> {
         return StreamsService.subscribeTo(self)
+            .then({
+                NotificationCenter.default.post(
+                    name: Notification.Name.Stream.userDidSubscribe,
+                    object: self,
+                    userInfo: [
+                        Notification.Name.Stream.streamKey: self,
+                    ]
+                )
+            })
     }
     
     func unsubscribe() -> Promise<Void> {
         return StreamsService.unsubscribeFrom(self)
+            .then({
+                NotificationCenter.default.post(
+                    name: Notification.Name.Stream.userDidUnsubscribe,
+                    object: self,
+                    userInfo: [
+                        Notification.Name.Stream.streamKey: self,
+                    ]
+                )
+            })
     }
     
     func send(message: String, attachment: (data: Data, mimeType: String)? = nil, from author: Person, progress progressBlock: ((Double) -> Void)? = nil) -> Promise<Message> {
