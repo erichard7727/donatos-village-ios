@@ -14,4 +14,3 @@ ${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework
 ${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework
 ${BUILT_PRODUCTS_DIR}/MessageViewController/MessageViewController.framework
 ${BUILT_PRODUCTS_DIR}/Nantes/Nantes.framework
-${BUILT_PRODUCTS_DIR}/SlackTextViewController/SlackTextViewController.framework
