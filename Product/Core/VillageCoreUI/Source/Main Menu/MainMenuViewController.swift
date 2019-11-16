@@ -408,7 +408,7 @@ extension MainMenuViewController: GroupMenuItemDelegate {
     
     func groupMenuItem(_ item: GroupMenuItem, didSelectGroup group: VillageCore.Stream) {
         group.ensureHasDetails { (group) in
-            let dataSource = GroupStreamDataSource(stream: group)
+            let dataSource = GroupStreamDataSource(stream: group, isUserSubscribed: true)
             let vc = StreamViewController(dataSource: dataSource)
             self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
             self.sideMenuController?.hideMenu()

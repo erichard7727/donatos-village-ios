@@ -25,6 +25,8 @@ class StreamViewController: MessageViewController {
     private var imagePicker = UIImagePickerController()
     
     private var background: UIImageView?
+
+    private var groupSubscriptionCTA: GroupSubscriptionCTA?
     
     // MARK: - Init
     
@@ -94,8 +96,11 @@ class StreamViewController: MessageViewController {
             let currentUser = User.current
             let otherParticipants = dataSource.stream.details?.closedParties.filter({ $0.id != currentUser.personId }).compactMap({ $0.displayName })
             self.title = otherParticipants?.joined(separator: ", ") ?? "Conversation"
+            self.setMessageView(hidden: false, animated: false)
         } else {
             self.title = dataSource.stream.name
+            let isUserSubscribed = (dataSource as? GroupStreamDataSource)?.isUserSubscribed ?? false
+            setGroupSubscriptionCTAHidden(isUserSubscribed, animated: false)
         }
         
         if dataSource.oldMessages.needsFetching {
@@ -128,14 +133,17 @@ class StreamViewController: MessageViewController {
         super.viewDidLayoutSubviews()
         
         background?.frame = tableView.frame
+
+        let topInset = groupSubscriptionCTA?.bounds.height ?? 0
+        tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        if !dataSource.hasMessages {
-//            self.textView.becomeFirstResponder()
-//        }
+        if !dataSource.hasMessages {
+            messageView.becomeFirstResponder()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -217,6 +225,72 @@ class StreamViewController: MessageViewController {
 // MARK: - Private Methods
 
 private extension StreamViewController {
+
+    func makeGroupSubscriptionCTA() -> GroupSubscriptionCTA {
+        let cta = GroupSubscriptionCTA(
+            stream: self.dataSource.stream,
+            responseHandler: { [weak self] (response) in
+                switch response {
+                case .didSubscribe(let success):
+                    if success {
+                        self?.setGroupSubscriptionCTAHidden(true, animated: false)
+                    } else {
+                        let alert = UIAlertController(
+                            title: "Subscription Error",
+                            message: "There was a problem subscribing to this group. Please try again.",
+                            preferredStyle: .alert
+                        )
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                        self?.present(alert, animated: true, completion: nil)
+                    }
+
+                case .viewDetails(let stream):
+                    let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupSettingsController") as! GroupSettingsController
+                    vc.group = stream
+                    vc.delegate = self?.dataSource as? GroupStreamDataSource
+                    self?.show(vc, sender: self)
+
+                case .fetchDetailsErrored:
+                    let alert = UIAlertController(
+                        title: "Group Error",
+                        message: "There was a problem fetching details for this group. Please try again.",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                }
+            }
+        )
+        cta.translatesAutoresizingMaskIntoConstraints = false
+        return cta
+    }
+
+    func setGroupSubscriptionCTAHidden(_ isHidden: Bool, animated: Bool) {
+        if !isHidden {
+            let groupSubscriptionCTA = makeGroupSubscriptionCTA()
+            groupSubscriptionCTA.alpha = 0
+            self.groupSubscriptionCTA = groupSubscriptionCTA
+            view.addSubview(groupSubscriptionCTA)
+            view.addConstraints([
+                view.leadingAnchor.constraint(equalTo: groupSubscriptionCTA.leadingAnchor),
+                view.bottomAnchor.constraint(equalTo: groupSubscriptionCTA.bottomAnchor),
+                view.trailingAnchor.constraint(equalTo: groupSubscriptionCTA.trailingAnchor),
+            ])
+        }
+        UIView.animate(
+            withDuration: animated ? 0.25 : 0,
+            animations: {
+                self.groupSubscriptionCTA?.alpha = isHidden ? 0 : 1
+            },
+            completion: { _ in
+                if isHidden {
+                    self.groupSubscriptionCTA?.removeFromSuperview()
+                    self.groupSubscriptionCTA = nil
+                }
+            }
+        )
+        setMessageView(hidden: !isHidden, animated: animated)
+    }
 
     func saveImage(image: UIImage) {
         if let pngRepresentation = image.pngData(),

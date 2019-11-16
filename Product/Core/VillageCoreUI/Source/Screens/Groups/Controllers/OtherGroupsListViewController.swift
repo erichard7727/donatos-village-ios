@@ -220,17 +220,10 @@ extension OtherGroupsListViewController: UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-        
-        firstly {
-            group.subscribe()
-        }.then { [weak self] in
-            let dataSource = GroupStreamDataSource(stream: group)
-            let vc = StreamViewController(dataSource: dataSource)
-            self?.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
-        }.catch { [weak self] error in
-            let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
-            self?.present(alert, animated: true, completion: nil)
-        }
+
+        let dataSource = GroupStreamDataSource(stream: group, isUserSubscribed: false)
+        let vc = StreamViewController(dataSource: dataSource)
+        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
     }
     
 }

@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import VillageCore
+import Promises
 
 public class VillageContainer: SideMenuController {
     
@@ -461,8 +462,13 @@ private extension VillageContainer {
     func goToGroup(id: String) {
         firstly {
             return VillageCore.Stream.getBy(id)
-        }.then { [weak self] stream in
-            let dataSource = GroupStreamDataSource(stream: stream)
+        }.then { stream -> Promise<(VillageCore.Stream, Bool)> in
+            return VillageCore.Streams.subscribed().then { streams in
+                let isSubscribed = streams.contains(stream)
+                return Promise((stream, isSubscribed))
+            }
+        }.then { [weak self] (stream, isSubscribed) in
+            let dataSource = GroupStreamDataSource(stream: stream, isUserSubscribed: isSubscribed)
             let vc = StreamViewController(dataSource: dataSource)
             self?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
             self?.hideMenu()

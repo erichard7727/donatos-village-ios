@@ -74,7 +74,7 @@ final class CreateGroupViewController: UIViewController {
         }.then { group in
             group.subscribe().then { group }
         }.then { [weak self] group in
-            let dataSource = GroupStreamDataSource(stream: group)
+            let dataSource = GroupStreamDataSource(stream: group, isUserSubscribed: true)
             let vc = StreamViewController(dataSource: dataSource)
             self?.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         }.catch { [weak self] _ in

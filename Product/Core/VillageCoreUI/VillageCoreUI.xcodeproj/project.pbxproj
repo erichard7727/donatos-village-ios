@@ -68,6 +68,8 @@
 		D43663CF222A13F2006354F2 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663CD222A13F2006354F2 /* ForgotPasswordViewController.swift */; };
 		D43663D2222A24BE006354F2 /* UIButton+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663D1222A24BE006354F2 /* UIButton+Loading.swift */; };
 		D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */; };
+		D4441931237F30DE00758E15 /* GroupSubscriptionCTA.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4441930237F30DE00758E15 /* GroupSubscriptionCTA.swift */; };
+		D4441933237F3C1900758E15 /* GroupSubscriptionCTA.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4441932237F3C1900758E15 /* GroupSubscriptionCTA.xib */; };
 		D44B5F07222970BB00941CCE /* TintedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B5F06222970BB00941CCE /* TintedTextField.swift */; };
 		D460B81A224AC434003DCA2C /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B811224AC433003DCA2C /* NewsCell.swift */; };
 		D460B81B224AC434003DCA2C /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460B812224AC433003DCA2C /* NoticeCell.swift */; };
@@ -268,6 +270,8 @@
 		D43663CD222A13F2006354F2 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D43663D1222A24BE006354F2 /* UIButton+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Loading.swift"; sourceTree = "<group>"; };
 		D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserViewController.swift; sourceTree = "<group>"; };
+		D4441930237F30DE00758E15 /* GroupSubscriptionCTA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSubscriptionCTA.swift; sourceTree = "<group>"; };
+		D4441932237F3C1900758E15 /* GroupSubscriptionCTA.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupSubscriptionCTA.xib; sourceTree = "<group>"; };
 		D44B5F06222970BB00941CCE /* TintedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintedTextField.swift; sourceTree = "<group>"; };
 		D460B811224AC433003DCA2C /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		D460B812224AC433003DCA2C /* NoticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
@@ -583,6 +587,8 @@
 			children = (
 				D4702EC1228A3EA600D3DB46 /* GroupStreamDataSource.swift */,
 				D4702EC0228A3E9200D3DB46 /* Cells */,
+				D4441930237F30DE00758E15 /* GroupSubscriptionCTA.swift */,
+				D4441932237F3C1900758E15 /* GroupSubscriptionCTA.xib */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -1085,6 +1091,7 @@
 				D4EA50802279CEBE00BE7E52 /* DMConversationOtherMessageCell.xib in Resources */,
 				D4984EA2223FCD5B00793CFE /* Kudos.storyboard in Resources */,
 				D4A697782264010C00ECC0A8 /* ItemRedeemedModal.xib in Resources */,
+				D4441933237F3C1900758E15 /* GroupSubscriptionCTA.xib in Resources */,
 				D434D4122270ED09002C5EA0 /* GroupMessageAttachmentCell.xib in Resources */,
 				D4702ECB228C648E00D3DB46 /* GroupHeaderViewCell.xib in Resources */,
 				D4D3116E226F53C8006C3C3F /* GroupMenuItem.xib in Resources */,
@@ -1191,6 +1198,7 @@
 				D4A6977E226411DF00ECC0A8 /* LeaderboardTableViewController.swift in Sources */,
 				D4EA50842279CEBE00BE7E52 /* DMConversationOtherMessageCell.swift in Sources */,
 				D411BC3F2247B3EE003D2F08 /* UserSettingsSwitchCell.swift in Sources */,
+				D4441931237F30DE00758E15 /* GroupSubscriptionCTA.swift in Sources */,
 				D4A6976522600D7700ECC0A8 /* ContentDetailController.swift in Sources */,
 				D434D4072270ED09002C5EA0 /* GroupMessageCell.swift in Sources */,
 				D4F4659E2289A63B00732317 /* GroupTableViewCell.swift in Sources */,

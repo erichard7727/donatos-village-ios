@@ -17,6 +17,13 @@ import Promises
 fileprivate let HEADER_HEIGHT_CONST: CGFloat = 200
 
 class GroupStreamDataSource: StreamDataSource {
+
+    private(set) var isUserSubscribed: Bool
+
+    init(stream: VillageCore.Stream, isUserSubscribed: Bool) {
+        self.isUserSubscribed = isUserSubscribed
+        super.init(stream: stream)
+    }
     
     override func configure(delegate: StreamDataSourceDelegate, viewController: StreamViewController, tableView: UITableView) {
         super.configure(delegate: delegate, viewController: viewController, tableView: tableView)
@@ -399,6 +406,7 @@ private extension GroupStreamDataSource {
     @objc func goToGroupSettings(_ sender: Any? = nil) {
         let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupSettingsController") as! GroupSettingsController
         vc.group = stream
+        vc.isUserSubscribed = isUserSubscribed
         vc.delegate = self
         viewController.show(vc, sender: self)
     }
