@@ -47,7 +47,11 @@ final class PersonProfileHeaderViewController: UIViewController {
         storeLocationLabel.text = person.department
         storeLocationLabel.isHidden = (person.department ?? "").isEmpty
         titleLabel.text = person.jobTitle
-        kudosLabel.text = (person.kudos.points > 0) ? "- \(person.kudos.points) \(Constants.Settings.kudosPluralShort) Received -" : ""
+        if Constants.Settings.kudosPointsEnabled {
+            kudosLabel.text = (person.kudos.points > 0) ? "- \(person.kudos.points) \(Constants.Settings.kudosSingularShort) Points Received -" : ""
+        } else {
+            kudosLabel.isHidden = true
+        }
         
         if let url = person.avatarURL {
             profileImageView.af_setImage(
