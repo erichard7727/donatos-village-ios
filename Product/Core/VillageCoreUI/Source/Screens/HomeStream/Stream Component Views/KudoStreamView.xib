@@ -134,26 +134,11 @@
                                         </label>
                                     </subviews>
                                 </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGE-sA-gGO">
+                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGE-sA-gGO">
                                     <rect key="frame" x="280" y="0.0" width="17" height="55"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahV-zV-oH3">
-                                            <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="ahV-zV-oH3" secondAttribute="height" multiplier="1:1" id="zaD-g3-91m"/>
-                                            </constraints>
-                                            <state key="normal" image="more-icon"/>
-                                            <connections>
-                                                <action selector="moreOptions" destination="-1" eventType="touchUpInside" id="Ooz-Gb-OAp"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="ahV-zV-oH3" firstAttribute="top" secondItem="yGE-sA-gGO" secondAttribute="top" id="0uh-Mt-iFO"/>
                                         <constraint firstAttribute="width" constant="17" id="USH-ME-7XO"/>
-                                        <constraint firstAttribute="trailing" secondItem="ahV-zV-oH3" secondAttribute="trailing" id="koM-9k-QpB"/>
-                                        <constraint firstItem="ahV-zV-oH3" firstAttribute="leading" secondItem="yGE-sA-gGO" secondAttribute="leading" id="ohK-zB-tdZ"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -171,12 +156,26 @@
                         </label>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahV-zV-oH3">
+                    <rect key="frame" x="277" y="22" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="UQK-T0-6Ta"/>
+                        <constraint firstAttribute="width" secondItem="ahV-zV-oH3" secondAttribute="height" multiplier="1:1" id="zaD-g3-91m"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="27" minY="6" maxX="0.0" maxY="21"/>
+                    <state key="normal" image="more-icon"/>
+                    <connections>
+                        <action selector="moreOptions" destination="-1" eventType="touchUpInside" id="Ooz-Gb-OAp"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="R3P-51-dju" secondAttribute="bottom" constant="22" id="0CB-za-TDK"/>
+                <constraint firstAttribute="trailing" secondItem="ahV-zV-oH3" secondAttribute="trailing" constant="24" id="3Fv-6g-Sz0"/>
                 <constraint firstItem="R3P-51-dju" firstAttribute="leading" secondItem="V4Q-rm-eQU" secondAttribute="leading" constant="24" id="6F9-OJ-UQW"/>
                 <constraint firstItem="V4Q-rm-eQU" firstAttribute="trailing" secondItem="R3P-51-dju" secondAttribute="trailing" constant="24" id="FtT-Dj-4SS"/>
+                <constraint firstItem="ahV-zV-oH3" firstAttribute="top" secondItem="MPK-Cd-j0j" secondAttribute="top" constant="22" id="Twg-g0-L0X"/>
                 <constraint firstItem="R3P-51-dju" firstAttribute="top" secondItem="MPK-Cd-j0j" secondAttribute="top" constant="22" id="pCg-Sf-n9d"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
