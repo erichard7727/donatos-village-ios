@@ -231,7 +231,7 @@ extension OtherGroupsListViewController: UITableViewDelegate {
 
         let dataSource = GroupStreamDataSource(stream: group, isUserSubscribed: false)
         let vc = StreamViewController(dataSource: dataSource)
-        self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+        self.show(vc, sender: self)
     }
     
 }
