@@ -68,6 +68,8 @@ final class OtherGroupsListViewController: UIViewController {
     /// Allows the user's search to be "debounced" as the user is typing
     /// their query so that we don't query the API too frequently
     private let searchDebouncer = Debouncer()
+
+    private var previousSearchTerm = ""
     
     // MARK: Outlets
     
@@ -103,6 +105,14 @@ final class OtherGroupsListViewController: UIViewController {
 // MARK: - UIViewController Overrides
 
 extension OtherGroupsListViewController {
+
+    /// This is set to `true` to prevent the navigation bar from being hidden
+    /// when pushing viewControllers while `hidesNavigationBarDuringPresentation`
+    /// is enabled and the user is searching.
+    override var definesPresentationContext: Bool {
+        get { return true }
+        set { }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -313,6 +323,12 @@ extension OtherGroupsListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
 
+        guard searchText != previousSearchTerm else {
+            return
+        }
+
+        previousSearchTerm = searchText
+
         guard !searchText.isEmpty else {
             self.loadingGroupsContainer.isHidden = true
             searchedGroups = nil
@@ -320,8 +336,8 @@ extension OtherGroupsListViewController: UISearchResultsUpdating {
             return
         }
         
-        searchedGroups = Streams.searchOthersPaginated(for: searchText)
         self.loadingGroupsContainer.isHidden = false
+        searchedGroups = Streams.searchOthersPaginated(for: searchText)
         searchDebouncer.debounce(afterTimeInterval: 1) { [weak self] in
             self?.groups.fetchValues(at: [])
         }

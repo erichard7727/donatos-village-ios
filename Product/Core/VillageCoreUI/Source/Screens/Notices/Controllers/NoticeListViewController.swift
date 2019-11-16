@@ -326,6 +326,8 @@ final class NoticeListViewController: UIViewController {
     /// Allows the user's search to be "debounced" as the user is typing
     /// their query so that we don't query the API too frequently
     private let searchDebouncer = Debouncer()
+
+    private var previousSearchTerm = ""
         
     // MARK: Outlets
     
@@ -357,6 +359,14 @@ final class NoticeListViewController: UIViewController {
 // MARK: - UIViewController Overrides
 
 extension NoticeListViewController {
+
+    /// This is set to `true` to prevent the navigation bar from being hidden
+    /// when pushing viewControllers while `hidesNavigationBarDuringPresentation`
+    /// is enabled and the user is searching.
+    override var definesPresentationContext: Bool {
+        get { return true }
+        set { }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -605,7 +615,7 @@ extension NoticeListViewController: DZNEmptyDataSetSource {
 // MARK: - DZNEmptyDataSetDelegate
 
 extension NoticeListViewController: DZNEmptyDataSetDelegate {
-    
+
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         // Only show an empty data set if loading is not in-progress
         return loadingNoticesContainer.isHidden
@@ -632,13 +642,15 @@ extension NoticeListViewController: SectionedPaginationDelegate {
                           deleteSections: IndexSet,
                           insertSections: IndexSet) {
         loadingNoticesContainer.isHidden = true
-        
+
         tableView.performBatchUpdates({
             tableView.deleteRows(at: deleteRows, with: .automatic)
             tableView.insertRows(at: insertRows, with: .automatic)
             tableView.deleteSections(deleteSections, with: .automatic)
             tableView.insertSections(insertSections, with: .automatic)
-        }, completion: nil)
+        }, completion: { _ in
+            self.tableView.reloadEmptyDataSet()
+        })
     }
     
     func onFetchFailed(with error: Error) {
@@ -657,6 +669,12 @@ extension NoticeListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
 
+        guard searchText != previousSearchTerm else {
+            return
+        }
+
+        previousSearchTerm = searchText
+
         guard !searchText.isEmpty else {
             self.loadingNoticesContainer.isHidden = true
             searchedNotices = nil
@@ -664,8 +682,8 @@ extension NoticeListViewController: UISearchResultsUpdating {
             return
         }
 
-        searchedNotices = displayType.searchFor(searchText)
         self.loadingNoticesContainer.isHidden = false
+        searchedNotices = displayType.searchFor(searchText)
         searchDebouncer.debounce(afterTimeInterval: 1) { [weak self] in
             self?.notices.fetchValues(at: [])
         }

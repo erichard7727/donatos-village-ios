@@ -73,6 +73,8 @@ final class ContentLibraryViewController: UIViewController {
     /// their query so that we don't query the API too frequently
     private let searchDebouncer = Debouncer()
 
+    private var previousSearchTerm = ""
+
     // MARK: Outlets
 
     @IBOutlet private var tableView: UITableView! {
@@ -93,6 +95,14 @@ final class ContentLibraryViewController: UIViewController {
 // MARK: - UIViewController Overrides
 
 extension ContentLibraryViewController {
+
+    /// This is set to `true` to prevent the navigation bar from being hidden
+    /// when pushing viewControllers while `hidesNavigationBarDuringPresentation`
+    /// is enabled and the user is searching.
+    override var definesPresentationContext: Bool {
+        get { return true }
+        set { }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -336,6 +346,12 @@ extension ContentLibraryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
 
+        guard searchText != previousSearchTerm else {
+            return
+        }
+
+        previousSearchTerm = searchText
+
         guard !searchText.isEmpty else {
             self.loadingItemsContainer.isHidden = true
             searchedItems = nil
@@ -343,8 +359,8 @@ extension ContentLibraryViewController: UISearchResultsUpdating {
             return
         }
 
-        searchedItems = ContentLibrary.searchLibraryPaginated(searchText)
         self.loadingItemsContainer.isHidden = false
+        searchedItems = ContentLibrary.searchLibraryPaginated(searchText)
         searchDebouncer.debounce(afterTimeInterval: 1) { [weak self] in
             self?.items.fetchValues(at: [])
         }
