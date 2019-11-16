@@ -165,6 +165,10 @@ class KudosListController: UIViewController, StatefulUserInterface {
         firstly {
             kudosPromise
         }.then { (kudos) in
+            if self.kudosList.isEmpty && kudos.isEmpty {
+                self.setState(.empty)
+            }
+
             guard !kudos.isEmpty else {
                 return
             }
