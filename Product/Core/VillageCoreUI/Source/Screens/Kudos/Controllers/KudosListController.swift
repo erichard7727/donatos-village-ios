@@ -11,8 +11,19 @@ import AlamofireImage
 import Promises
 import VillageCore
 
+protocol KudosListViewControllerDelegate: class {
+
+    /// Whether the controller should show a profile for the selected person.
+    ///
+    /// - Parameters:
+    ///   - kudosListController: the KudosListController instance
+    ///   - person: The Person to present the profile for
+    /// - Returns: Default behavior is to present the profile. Return `false` to suppress this behavior.
+    func kudosListController(_ kudosListController: KudosListController, shouldShowProfileFor person: Person) -> Bool
+}
+
 class KudosListController: UIViewController, StatefulUserInterface {
-    
+
     enum List {
         case allStream
         case received(receiver: Person)
@@ -43,6 +54,7 @@ class KudosListController: UIViewController, StatefulUserInterface {
     // MARK: - Pulic Vars
     
     var list: List!
+    weak var delegate: KudosListViewControllerDelegate?
     
     // MARK: - Private Outlets
     
@@ -312,12 +324,15 @@ extension KudosListController: KudoStreamViewDelegate {
     }
 
     func kudoStreamView(_ view: KudoStreamView, didSelectPerson person: Person) {
+        guard delegate?.kudosListController(self, shouldShowProfileFor: person) ?? true else {
+            return
+        }
+
         let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
         vc.person = person
         vc.delegate = self
         self.show(vc, sender: self)
     }
-
 
 }
 
