@@ -233,6 +233,9 @@ private extension StreamViewController {
                 switch response {
                 case .didSubscribe(let success):
                     if success {
+                        if let dataSource = (self?.dataSource as? GroupStreamDataSource) {
+                            dataSource.isUserSubscribed = true
+                        }
                         self?.setGroupSubscriptionCTAHidden(true, animated: false)
                     } else {
                         let alert = UIAlertController(
@@ -247,6 +250,9 @@ private extension StreamViewController {
                 case .viewDetails(let stream):
                     let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupSettingsController") as! GroupSettingsController
                     vc.group = stream
+                    if let dataSource = (self?.dataSource as? GroupStreamDataSource) {
+                        vc.isUserSubscribed = dataSource.isUserSubscribed
+                    }
                     vc.delegate = self?.dataSource as? GroupStreamDataSource
                     self?.show(vc, sender: self)
 

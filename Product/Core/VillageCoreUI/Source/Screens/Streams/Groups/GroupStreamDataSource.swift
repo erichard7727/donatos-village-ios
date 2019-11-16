@@ -18,7 +18,7 @@ fileprivate let HEADER_HEIGHT_CONST: CGFloat = 200
 
 class GroupStreamDataSource: StreamDataSource {
 
-    private(set) var isUserSubscribed: Bool
+    var isUserSubscribed: Bool
 
     init(stream: VillageCore.Stream, isUserSubscribed: Bool) {
         self.isUserSubscribed = isUserSubscribed
