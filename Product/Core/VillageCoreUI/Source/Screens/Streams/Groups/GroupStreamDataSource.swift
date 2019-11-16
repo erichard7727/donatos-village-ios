@@ -474,10 +474,15 @@ extension GroupStreamDataSource {
 
 extension GroupStreamDataSource: GroupSettingsControllerDelegate {
     
-    func shouldLeaveGroup(_ group: VillageCore.Stream, controller: GroupSettingsController) {
+    func didLeave(_ group: VillageCore.Stream, controller: GroupSettingsController) {
         let vc = UIStoryboard(name: "OtherGroupsListViewController", bundle: Constants.bundle).instantiateInitialViewController() as! OtherGroupsListViewController
         viewController.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         viewController.sideMenuController?.hideMenu()
+    }
+
+    func didSubscribeTo(_ group: VillageCore.Stream, controller: GroupSettingsController) {
+        isUserSubscribed = true
+        viewController.navigationController?.popViewController(animated: true)
     }
     
 }

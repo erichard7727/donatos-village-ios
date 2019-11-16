@@ -11,7 +11,8 @@ import UIKit
 import VillageCore
 
 protocol GroupSettingsControllerDelegate {
-    func shouldLeaveGroup(_ group: VillageCore.Stream, controller: GroupSettingsController)
+    func didLeave(_ group: VillageCore.Stream, controller: GroupSettingsController)
+    func didSubscribeTo(_ group: VillageCore.Stream, controller: GroupSettingsController)
 }
 
 /// Group settings editor controller.
@@ -19,10 +20,16 @@ final class GroupSettingsController: UIViewController {
     // MARK: Properties
     
     var group: VillageCore.Stream?
+    var isUserSubscribed = false
     var delegate: GroupSettingsControllerDelegate?
     var progressIndicator: ProgressIndicator!
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.rowHeight = UITableView.automaticDimension
+            tableView.estimatedRowHeight = 65
+        }
+    }
     
     @IBOutlet weak var leaveGroupButton: UIButton!
     // MARK: UIViewController
@@ -65,13 +72,26 @@ final class GroupSettingsController: UIViewController {
             group.getDetails()
         }.then { [weak self] group in
             guard let `self` = self else { return }
-            
-            if self.group?.details?.streamType == .global {
-                self.leaveGroupButton.isUserInteractionEnabled = false
-                self.leaveGroupButton.setTitle("You can't leave a global group.", for: .normal)
-                self.leaveGroupButton.setTitleColor(UIColor.gray, for: .normal)
-                self.leaveGroupButton.backgroundColor = UIColor.vlgGray
+
+            if !self.isUserSubscribed {
+                self.leaveGroupButton.isUserInteractionEnabled = true
+                self.leaveGroupButton.setTitle("Join Group", for: .normal)
+                self.leaveGroupButton.setTitleColor(.white, for: .normal)
+                self.leaveGroupButton.backgroundColor = UIColor.vlgGreen
+            } else {
+                if self.group?.details?.streamType == .global {
+                    self.leaveGroupButton.isUserInteractionEnabled = false
+                    self.leaveGroupButton.setTitle("You can't leave a global group.", for: .normal)
+                    self.leaveGroupButton.setTitleColor(UIColor.gray, for: .normal)
+                    self.leaveGroupButton.backgroundColor = UIColor.vlgGray
+                } else {
+                    self.leaveGroupButton.isUserInteractionEnabled = true
+                    self.leaveGroupButton.setTitle("Leave Group", for: .normal)
+                    self.leaveGroupButton.setTitleColor(.white, for: .normal)
+                    self.leaveGroupButton.backgroundColor = UIColor.vlgRed
+                }
             }
+
             self.group = group
             self.tableView.reloadData()
         }
@@ -94,22 +114,33 @@ final class GroupSettingsController: UIViewController {
     
     @IBAction func didTouchLeaveGroup(_ sender: UIButton) {
         guard let group = group else { return }
-        
-        let alert = UIAlertController(title: "Warning", message: "Are you sure you want to leave \(group.name)?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Leave Group", style: .destructive) { action in
+
+        if isUserSubscribed {
+            let alert = UIAlertController(title: "Warning", message: "Are you sure you want to leave \(group.name)?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Leave Group", style: .destructive) { action in
+                self.progressIndicator.show()
+
+                firstly {
+                    group.unsubscribe()
+                }.always { [weak self] in
+                    guard let `self` = self else { return }
+                    self.progressIndicator.hide()
+                    self.delegate?.didLeave(group, controller: self)
+                }
+            })
+            present(alert, animated: true, completion: nil)
+        } else {
             self.progressIndicator.show()
-            
+
             firstly {
-                group.unsubscribe()
+                group.subscribe()
             }.always { [weak self] in
                 guard let `self` = self else { return }
                 self.progressIndicator.hide()
-                self.delegate?.shouldLeaveGroup(group, controller: self)
+                self.delegate?.didSubscribeTo(group, controller: self)
             }
-        })
-
-        present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func didTouchCancel(_ sender: UIButton) {
@@ -181,6 +212,10 @@ extension GroupSettingsController: UITableViewDelegate {
         case .members:
             // This action is handled as a Storyboard Segue
             break
+
+        case .description:
+            // Editing description is not supported
+            break
         }
     }
     
@@ -196,13 +231,6 @@ extension GroupSettingsController: UITableViewDelegate {
         headerView.textLabel?.font = UIFont(name: "ProximaNova-SemiBold", size: 20.0)
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 65
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 65
-    }
 }
 
 extension GroupSettingsController: UITableViewDataSource {
@@ -211,6 +239,7 @@ extension GroupSettingsController: UITableViewDataSource {
             case name
             case type
             case members
+            case description
         }
     }
     
@@ -258,6 +287,16 @@ extension GroupSettingsController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSettingsMembersCell") as! GroupSettingsMembersCell
             cell.selectionStyle = .gray
             cell.countLabel.text = group?.details?.memberCount.description ?? nil
+            return cell
+
+        case .description:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSettingsDescriptionCell") as! GroupSettingsDescriptionCell
+            cell.selectionStyle = .none
+            if let desc = group?.details?.description, !desc.isEmpty {
+                cell.descriptionLabel.text = desc
+            } else {
+                cell.descriptionLabel.text = "No description set."
+            }
             return cell
         }
     }
