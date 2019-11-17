@@ -139,8 +139,10 @@ struct NoticeService {
     static func acknowledge(notice: Notice) -> Promise<Notice> {
         return firstly {
             VillageService.shared.request(target: .acknowledgeNotice(noticeId: notice.id))
-        }.then { _ in
-            return notice
+        }.then { _ -> Notice in
+            var mutableNotice = notice
+            mutableNotice.isAcknowledged = true
+            return mutableNotice
         }
     }
 
