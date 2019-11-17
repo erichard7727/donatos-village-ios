@@ -43,12 +43,12 @@ class DataSourcedStackView: UIStackView {
         //insert new views that don't exist in the stackview currently in the correct position
         newArrangedSubviews.filter({ self.arrangedSubviews.contains($0) == false }).forEach {
             //print("added: \($0.description)")
-            self.insertArrangedSubview($0, at: newArrangedSubviews.index(of: $0) ?? 0)
+            self.insertArrangedSubview($0, at: newArrangedSubviews.firstIndex(of: $0) ?? 0)
         }
         
         //make sure views are ordred correctly
         newArrangedSubviews.forEach({
-            if let newIndex = newArrangedSubviews.index(of: $0), let currentIndex = arrangedSubviews.index(of: $0), newIndex != currentIndex {
+            if let newIndex = newArrangedSubviews.firstIndex(of: $0), let currentIndex = arrangedSubviews.firstIndex(of: $0), newIndex != currentIndex {
                 //print("moved (from: \(currentIndex), to: \(newIndex)): \($0.description)")
                 self.removeArrangedSubview($0)
                 self.insertArrangedSubview($0, at: newIndex)
