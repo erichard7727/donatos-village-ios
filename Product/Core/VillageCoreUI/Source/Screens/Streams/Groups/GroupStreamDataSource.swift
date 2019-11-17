@@ -126,14 +126,6 @@ class GroupStreamDataSource: StreamDataSource {
             cell.showMoreOptions = { [weak self] in
                 let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(
-                    title: cell.message?.isLiked == true ? "Unstar" : "Star",
-                    style: .default,
-                    handler: { [weak cell] (_) in
-                        guard let cell = cell, let starButton = cell.starButton else { return }
-                        cell.starButtonPressed(starButton)
-                    })
-                )
-                alert.addAction(UIAlertAction(
                     title: "Report as Inappropriate",
                     style: .destructive,
                     handler: { [weak self] (_) in
@@ -279,14 +271,6 @@ class GroupStreamDataSource: StreamDataSource {
 
             cell.showMoreOptions = { [weak self] in
                 let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(
-                    title: cell.message?.isLiked == true ? "Unstar" : "Star",
-                    style: .default,
-                    handler: { [weak cell] (_) in
-                        guard let cell = cell, let starButton = cell.starButton else { return }
-                        cell.starButtonPressed(starButton)
-                    })
-                )
                 alert.addAction(UIAlertAction(
                     title: "Report as Inappropriate",
                     style: .destructive,

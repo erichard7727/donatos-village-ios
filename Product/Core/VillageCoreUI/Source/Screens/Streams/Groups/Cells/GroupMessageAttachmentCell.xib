@@ -45,19 +45,20 @@
                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVf-V1-igp">
-                        <rect key="frame" x="220.5" y="14.5" width="25" height="25"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVf-V1-igp">
+                        <rect key="frame" x="220.5" y="11.5" width="31" height="31"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="25" id="bHS-aQ-XaO"/>
+                            <constraint firstAttribute="width" constant="31" id="bHS-aQ-XaO"/>
                             <constraint firstAttribute="width" secondItem="pVf-V1-igp" secondAttribute="height" multiplier="1:1" id="kFn-Cq-w5a"/>
                         </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="7" maxX="14" maxY="7"/>
                         <state key="normal" image="star-off"/>
                         <connections>
                             <action selector="starButtonPressed:" destination="Vpw-qy-UrX" eventType="touchUpInside" id="OIQ-Yc-ese"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zk-cK-bhw">
-                        <rect key="frame" x="245.5" y="23" width="0.0" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zk-cK-bhw">
+                        <rect key="frame" x="246.5" y="19" width="11.5" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="Oh2-3R-FM8"/>
                         </constraints>
@@ -111,11 +112,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="cVq-MA-Qie" secondAttribute="bottom" id="5Yq-u1-V3m"/>
-                    <constraint firstItem="4zk-cK-bhw" firstAttribute="centerY" secondItem="pVf-V1-igp" secondAttribute="centerY" constant="4" id="5yJ-xr-its"/>
+                    <constraint firstItem="4zk-cK-bhw" firstAttribute="centerY" secondItem="pVf-V1-igp" secondAttribute="centerY" id="5yJ-xr-its"/>
                     <constraint firstItem="Yd0-k1-DHQ" firstAttribute="centerY" secondItem="Ohc-JL-DeW" secondAttribute="centerY" id="6jH-j9-TIP"/>
                     <constraint firstItem="ppx-Gw-fAo" firstAttribute="centerY" secondItem="H6N-yJ-qpA" secondAttribute="centerY" id="CYs-AA-kfv"/>
                     <constraint firstItem="H6N-yJ-qpA" firstAttribute="top" secondItem="sv6-LP-Q1j" secondAttribute="topMargin" id="Hto-Xm-Jgs"/>
-                    <constraint firstItem="4zk-cK-bhw" firstAttribute="leading" secondItem="pVf-V1-igp" secondAttribute="trailing" id="Ijo-SN-4AE"/>
+                    <constraint firstItem="4zk-cK-bhw" firstAttribute="leading" secondItem="pVf-V1-igp" secondAttribute="trailing" constant="-5" id="Ijo-SN-4AE"/>
                     <constraint firstItem="cVq-MA-Qie" firstAttribute="leading" secondItem="ppx-Gw-fAo" secondAttribute="leading" id="K50-L6-8EA"/>
                     <constraint firstItem="Tsb-ED-VLe" firstAttribute="leading" secondItem="ppx-Gw-fAo" secondAttribute="trailing" constant="8" id="Nxo-kD-Gej"/>
                     <constraint firstItem="cVq-MA-Qie" firstAttribute="top" secondItem="Tsb-ED-VLe" secondAttribute="bottom" constant="8" id="RJP-do-mEj"/>
