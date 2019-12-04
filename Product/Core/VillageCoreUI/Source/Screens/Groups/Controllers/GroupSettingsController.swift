@@ -31,7 +31,13 @@ final class GroupSettingsController: UIViewController {
         }
     }
     
-    @IBOutlet weak var leaveGroupButton: UIButton!
+    @IBOutlet weak var leaveGroupButton: UIButton! {
+        didSet {
+            // Start out with this button hidden
+            leaveGroupButton.isHidden = true
+        }
+    }
+
     // MARK: UIViewController
     
     override func viewDidLoad() {
@@ -47,13 +53,6 @@ final class GroupSettingsController: UIViewController {
         
         // Configure title.
         title = group.name + " Settings"
-        
-        if group.details?.streamType == .global {
-            leaveGroupButton.isUserInteractionEnabled = false
-            leaveGroupButton.setTitle("You can't leave a global group.", for: .normal)
-            leaveGroupButton.setTitleColor(UIColor.vlgGray, for: .normal)
-            leaveGroupButton.backgroundColor = UIColor.white
-        }
         
         // Configure tableview.
         tableView.estimatedRowHeight = UITableView.automaticDimension
@@ -75,22 +74,32 @@ final class GroupSettingsController: UIViewController {
 
             if !self.isUserSubscribed {
                 self.leaveGroupButton.isUserInteractionEnabled = true
-                self.leaveGroupButton.setTitle("Join Group", for: .normal)
-                self.leaveGroupButton.setTitleColor(.white, for: .normal)
+                UIView.performWithoutAnimation {
+                    self.leaveGroupButton.setTitle("Join Group", for: .normal)
+                    self.leaveGroupButton.setTitleColor(.white, for: .normal)
+                    self.leaveGroupButton.layoutIfNeeded()
+                }
                 self.leaveGroupButton.backgroundColor = UIColor.vlgGreen
             } else {
                 if self.group?.details?.streamType == .global {
                     self.leaveGroupButton.isUserInteractionEnabled = false
-                    self.leaveGroupButton.setTitle("You can't leave a global group.", for: .normal)
-                    self.leaveGroupButton.setTitleColor(UIColor.gray, for: .normal)
+                    UIView.performWithoutAnimation {
+                        self.leaveGroupButton.setTitle("You can't leave a global group.", for: .normal)
+                        self.leaveGroupButton.setTitleColor(UIColor.gray, for: .normal)
+                    }
                     self.leaveGroupButton.backgroundColor = UIColor.vlgGray
                 } else {
                     self.leaveGroupButton.isUserInteractionEnabled = true
-                    self.leaveGroupButton.setTitle("Leave Group", for: .normal)
-                    self.leaveGroupButton.setTitleColor(.white, for: .normal)
+                    UIView.performWithoutAnimation {
+                        self.leaveGroupButton.setTitle("Leave Group", for: .normal)
+                        self.leaveGroupButton.setTitleColor(.white, for: .normal)
+                    }
                     self.leaveGroupButton.backgroundColor = UIColor.vlgRed
                 }
             }
+
+            // Now that we know the button's configuration, display it
+            self.leaveGroupButton.isHidden = false
 
             self.group = group
             self.tableView.reloadData()
