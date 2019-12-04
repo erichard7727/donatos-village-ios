@@ -36,7 +36,7 @@ end
 def core_ui_pods
   pod 'Nantes', :git => 'https://github.com/instacart/Nantes', :branch => 'master' #pointing to master branch until version > v0.0.8 is available
   pod 'AlamofireImage'
-  pod 'MessageViewController'
+  pod 'MessageViewController', :git => 'https://github.com/GitHawkApp/MessageViewController.git', :branch => 'master'
   pod 'DZNEmptyDataSet', :modular_headers => true
 end
 

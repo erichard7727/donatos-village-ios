@@ -13,21 +13,24 @@ public final class MessageView: UIView, MessageTextViewListener {
     public let textView = MessageTextView()
 
     internal weak var delegate: MessageViewDelegate?
-    internal let leftButton = UIButton()
-    internal let rightButton = UIButton()
+    internal let leftButton = ExpandedHitTestButton()
+    internal let rightButton = ExpandedHitTestButton()
     internal let UITextViewContentSizeKeyPath = #keyPath(UITextView.contentSize)
     internal let topBorderLayer = CALayer()
     internal var contentView: UIView?
-    internal var leftButtonAction: Selector?
     internal var rightButtonAction: Selector?
     internal var leftButtonInset: CGFloat = 0
     internal var rightButtonInset: CGFloat = 0
-
+    internal var ignoreLineHeight = false
+    internal var suppressKVO = false
+    
     public enum ButtonPosition {
         case left
         case right
     }
 
+    internal var heightOffset: CGFloat = 0
+    
     internal override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -108,7 +111,7 @@ public final class MessageView: UIView, MessageTextViewListener {
         }
     }
 
-    public var inset: UIEdgeInsets {
+    public var textViewInset: UIEdgeInsets {
         set {
             textView.textContainerInset = newValue
             setNeedsLayout()
@@ -117,7 +120,18 @@ public final class MessageView: UIView, MessageTextViewListener {
         get { return textView.textContainerInset }
     }
 
-    public func setButton(icon: UIImage?, for state: UIControlState, position: ButtonPosition) {
+    public var contentInset: UIEdgeInsets {
+        set {
+            textView.contentInset = newValue
+            setNeedsLayout()
+            delegate?.wantsLayout(messageView: self)
+        }
+        get { return textView.contentInset }
+    }
+
+    /// - Parameter accessibilityLabel: A custom `accessibilityLabel` to set on the button.
+    /// If none is supplied, it will default to the icon's `accessibilityLabel`.
+    public func setButton(icon: UIImage?, for state: UIControl.State, position: ButtonPosition, accessibilityLabel: String? = nil) {
         let button: UIButton
         switch position {
         case .left:
@@ -126,10 +140,13 @@ public final class MessageView: UIView, MessageTextViewListener {
             button = rightButton
         }
         button.setImage(icon, for: state)
+        button.accessibilityLabel = accessibilityLabel ?? icon?.accessibilityIdentifier
         buttonLayoutDidChange(button: button)
     }
 
-    public func setButton(title: String, for state: UIControlState, position: ButtonPosition) {
+    /// - Parameter accessibilityLabel: A custom `accessibilityLabel` to set on the button.
+    /// If none is supplied, it will default to the the supplied `title`.
+    public func setButton(title: String, for state: UIControl.State, position: ButtonPosition, accessibilityLabel: String? = nil) {
         let button: UIButton
         switch position {
         case .left:
@@ -138,6 +155,7 @@ public final class MessageView: UIView, MessageTextViewListener {
             button = rightButton
         }
         button.setTitle(title, for: state)
+        button.accessibilityLabel = accessibilityLabel ?? title
         buttonLayoutDidChange(button: button)
     }
 
@@ -157,13 +175,27 @@ public final class MessageView: UIView, MessageTextViewListener {
             rightButton.imageView?.tintColor = newValue
         }
     }
-
-    public var maxLineCount: Int = 4 {
+    
+    public var maxHeight: CGFloat = CGFloat.greatestFiniteMagnitude {
         didSet {
             delegate?.wantsLayout(messageView: self)
         }
     }
+    
+    public var maxLineCount: Int = 4 {
+        didSet {
+            ignoreLineHeight = maxLineHeight == 0
+            delegate?.wantsLayout(messageView: self)
+        }
+    }
 
+    public var maxScreenRatio: CGFloat = 1 {
+        didSet {
+            maxScreenRatio = 0...1 ~= maxScreenRatio ? maxScreenRatio : 0
+            delegate?.wantsLayout(messageView: self)
+        }
+    }
+    
     public func add(contentView: UIView) {
         self.contentView?.removeFromSuperview()
         assert(contentView.bounds.height > 0, "Must have a non-zero content height")
@@ -183,7 +215,6 @@ public final class MessageView: UIView, MessageTextViewListener {
         switch position {
         case .left:
             button = leftButton
-            leftButtonAction = action
         case .right:
             button = rightButton
             rightButtonAction = action
@@ -219,6 +250,12 @@ public final class MessageView: UIView, MessageTextViewListener {
         buttonLayoutDidChange(button: button)
     }
 
+    public var bottomInset: CGFloat = 0 {
+        didSet {
+            delegate?.wantsLayout(messageView: self)
+        }
+    }
+
     // MARK: Overrides
 
     public override func layoutSubviews() {
@@ -245,87 +282,105 @@ public final class MessageView: UIView, MessageTextViewListener {
         let textViewHeight = self.textViewHeight
         let textViewMaxY = textViewY + textViewHeight
 
+        // adjust for font descender so button aligns with the text baseline
+        let descender, pointSize: CGFloat
+        if let font = textView.font {
+            descender = floor(font.descender)
+            pointSize = ceil(font.pointSize)
+        } else {
+            descender = 0
+            pointSize = 0
+        }
+        let buttonYStarter = textViewMaxY - textViewInset.bottom - (pointSize - descender)/2
+
         // adjust by bottom offset so content is flush w/ text view
         let leftButtonFrame = CGRect(
-            x: safeBounds.minX + inset.left,
-            y: textViewMaxY - leftButtonSize.height + leftButton.bottomHeightOffset - inset.bottom,
+            x: safeBounds.minX + leftButtonInset,
+            y: buttonYStarter - leftButtonSize.height/2 + leftButton.bottomHeightOffset,
             width: leftButtonSize.width,
             height: leftButtonSize.height
         )
         leftButton.frame = showLeftButton ? leftButtonFrame : .zero
 
+        let leftButtonMaxX = (showLeftButton ? leftButtonFrame.maxX : 0)
         let textViewFrame = CGRect(
-            x: leftButtonFrame.maxX + leftButtonInset,
+            x: (showLeftButton ? leftButtonMaxX + leftButtonInset : 0),
             y: textViewY,
-            width: safeBounds.width - leftButtonFrame.maxX - rightButtonSize.width - rightButtonInset - inset.right,
+            width: safeBounds.width - leftButtonMaxX - rightButtonSize.width - rightButtonInset,
             height: textViewHeight
         )
+
+        suppressKVO = true
         textView.frame = textViewFrame
+        suppressKVO = false
 
         // adjust by bottom offset so content is flush w/ text view
         let rightButtonFrame = CGRect(
-            x: textViewFrame.maxX + rightButtonInset,
-            y: textViewMaxY - rightButtonSize.height + rightButton.bottomHeightOffset - inset.bottom,
+            x: textViewFrame.maxX,
+            y: buttonYStarter - rightButtonSize.height/2 + rightButton.bottomHeightOffset,
             width: rightButtonSize.width,
             height: rightButtonSize.height
         )
         rightButton.frame = rightButtonFrame
 
-        let contentY = textViewFrame.maxY + inset.bottom
         contentView?.frame = CGRect(
             x: safeBounds.minX,
-            y: contentY,
+            y: textViewFrame.maxY,
             width: safeBounds.width,
-            height: bounds.height - contentY - util_safeAreaInsets.bottom
+            height: contentView?.frame.height ?? 0
         )
     }
 
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == UITextViewContentSizeKeyPath {
+        if suppressKVO == false, keyPath == UITextViewContentSizeKeyPath {
             textViewContentSizeDidChange()
         }
     }
-
+    
     public override func resignFirstResponder() -> Bool {
         return textView.resignFirstResponder()
     }
-
+    
     // MARK: Private API
-
+    
     internal var height: CGFloat {
-        return textViewHeight + (contentView?.bounds.height ?? 0)
+        return textViewHeight
+            + (contentView?.bounds.height ?? 0)
+            + bottomInset
     }
-
-    internal var textViewHeight: CGFloat {
-        return ceil(min(
-            maxHeight,
-            max(
-                textView.font?.lineHeight ?? 0,
-                textView.contentSize.height
-            )
-        ))
-    }
-
-    internal var maxHeight: CGFloat {
+    
+    internal var maxLineHeight: CGFloat {
         return (font?.lineHeight ?? 0) * CGFloat(maxLineCount)
     }
-
+    
+    internal var maxScreenRatioHeight: CGFloat {
+        return maxScreenRatio * ((superview?.frame.height ?? 0) - heightOffset)
+    }
+    
+    internal var calculatedMaxHeight: CGFloat {
+        return ignoreLineHeight == true ? min(maxScreenRatioHeight, maxHeight) : min(maxScreenRatioHeight, maxLineHeight, maxHeight)
+    }
+    
+    internal var textViewHeight: CGFloat {
+        return ceil(min(calculatedMaxHeight, textView.contentSize.height))
+    }
+    
     internal func updateEmptyTextStates() {
         let isEmpty = text.isEmpty
         rightButton.isEnabled = !isEmpty
         rightButton.alpha = isEmpty ? 0.25 : 1
     }
-
+    
     internal func buttonLayoutDidChange(button: UIButton) {
         button.sizeToFit()
         setNeedsLayout()
     }
-
+    
     internal func textViewContentSizeDidChange() {
         delegate?.sizeDidChange(messageView: self)
-        textView.alwaysBounceVertical = textView.contentSize.height > maxHeight
+        textView.alwaysBounceVertical = textView.contentSize.height > calculatedMaxHeight
     }
-
+    
     // MARK: MessageTextViewListener
 
     public func didChange(textView: MessageTextView) {

@@ -39,6 +39,7 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         cache()
+        messageView.textView.resignFirstResponder()
     }
 
     // MARK: Public API
@@ -70,6 +71,8 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
         }
     }
 
+    open func didLayout() { }
+
     // MARK: Private API
 
     // keyboard management
@@ -89,11 +92,11 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
         messageAutocompleteController.layoutDelegate = self
 
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(appWillResignActive(notification:)), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appWillResignActive(notification:)), name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     internal var safeAreaAdditionalHeight: CGFloat {
@@ -103,7 +106,7 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
         }
     }
 
-    internal func layout() {
+    internal func layout(updateOffset: Bool = false) {
         guard let scrollView = self.scrollView else { return }
 
         let bounds = view.bounds
@@ -123,6 +126,9 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
         // required for the nested UITextView to layout its internals correctly
         messageView.layoutIfNeeded()
 
+        let originalOffset = scrollView.contentOffset
+        let heightChange = scrollView.frame.height - messageViewFrame.minY
+
         scrollView.frame = CGRect(
             x: bounds.minX,
             y: bounds.minY,
@@ -130,7 +136,16 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
             height: messageViewFrame.minY
         )
 
+        if updateOffset, heightChange != 0 {
+            scrollView.contentOffset = CGPoint(
+                x: originalOffset.x,
+                y: max(originalOffset.y + heightChange, -scrollView.util_adjustedContentInset.top)
+            )
+        }
+
         messageAutocompleteController.layout(in: view, bottomY: messageViewFrame.minY)
+
+        didLayout()
     }
 
     internal var fullCacheKey: String? {
@@ -157,8 +172,8 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
     // MARK: Notifications
 
     @objc internal func keyboardWillShow(notification: Notification) {
-        guard let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect,
-            let animationDuration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+            let animationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
             else { return }
 
         scrollView?.stopScrolling()
@@ -166,7 +181,8 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
 
         let previousKeyboardHeight = keyboardHeight
         keyboardHeight = keyboardFrame.height
-
+        messageView.heightOffset = keyboardHeight + (scrollView?.util_safeAreaInsets.top ?? 0)
+        
         UIView.animate(withDuration: animationDuration) {
             guard let scrollView = self.scrollView else { return }
             // capture before changing the frame which might have weird side effects
@@ -176,15 +192,15 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
 
             let scrollViewHeight = scrollView.bounds.height
             let contentHeight = scrollView.contentSize.height
-            let topInset = scrollView.util_adjustedContentInset.top
+            let inset = scrollView.util_adjustedContentInset
             let bottomSafeInset = self.view.util_safeAreaInsets.bottom
 
             let newOffset = max(
                 min(
-                    contentHeight - scrollViewHeight,
+                    contentHeight - scrollViewHeight + inset.bottom,
                     contentOffset.y + self.keyboardHeight - previousKeyboardHeight - bottomSafeInset
                 ),
-                -topInset
+                -inset.top
             )
             scrollView.contentOffset = CGPoint(x: contentOffset.x, y: newOffset)
         }
@@ -195,7 +211,7 @@ open class MessageViewController: UIViewController, MessageAutocompleteControlle
     }
 
     @objc internal func keyboardWillHide(notification: Notification) {
-        guard let animationDuration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval
+        guard let animationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
             else { return }
 
         keyboardState = .hiding

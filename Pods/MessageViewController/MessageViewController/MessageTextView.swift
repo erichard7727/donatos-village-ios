@@ -15,19 +15,48 @@ public protocol MessageTextViewListener: class {
 
 open class MessageTextView: UITextView, UITextViewDelegate {
 
-    private let placeholderLabel = UILabel()
-
-    private var listeners: NSHashTable<AnyObject> = NSHashTable.weakObjects()
+    internal let placeholderLabel = UILabel()
+    internal var listeners: NSHashTable<AnyObject> = NSHashTable.weakObjects()
 
     open override var delegate: UITextViewDelegate? {
         get { return self }
         set {}
     }
 
+    open var defaultFont = UIFont.preferredFont(forTextStyle: .body) {
+        didSet {
+            defaultTextAttributes[.font] = defaultFont
+        }
+    }
+
+    open var defaultTextColor = UIColor.black {
+        didSet {
+            defaultTextAttributes[NSAttributedString.Key.foregroundColor] = defaultTextColor
+        }
+    }
+
+    internal var defaultTextAttributes: [NSAttributedString.Key: Any] = {
+        let style = NSMutableParagraphStyle()
+        style.paragraphSpacingBefore = 2
+        style.lineHeightMultiple = 1
+        return [NSAttributedString.Key.paragraphStyle: style]
+        }() {
+        didSet {
+            typingAttributes = defaultTextAttributes
+        }
+    }
+
     open override var font: UIFont? {
         didSet {
+            defaultFont = font ?? .preferredFont(forTextStyle: .body)
             placeholderLabel.font = font
             placeholderLayoutDidChange()
+        }
+    }
+
+    open override var textColor: UIColor? {
+        didSet {
+            defaultTextColor = textColor ?? .black
         }
     }
 
@@ -38,15 +67,14 @@ open class MessageTextView: UITextView, UITextViewDelegate {
         }
     }
 
-    open override var text: String! {
-        didSet {
-            updatePlaceholderVisibility()
-        }
-    }
-
     open override var attributedText: NSAttributedString! {
-        didSet {
-            updatePlaceholderVisibility()
+        get { return super.attributedText }
+        set {
+            let didChange = super.attributedText != newValue
+            super.attributedText = newValue
+            if didChange {
+                textViewDidChange(self)
+            }
         }
     }
 
@@ -101,12 +129,14 @@ open class MessageTextView: UITextView, UITextViewDelegate {
         placeholderLabel.font = font
         placeholderLabel.textColor = textColor
         placeholderLabel.textAlignment = textAlignment
-
         addSubview(placeholderLabel)
         updatePlaceholderVisibility()
+
+        defaultTextAttributes[NSAttributedString.Key.font] = defaultFont
+        defaultTextAttributes[NSAttributedString.Key.foregroundColor] = defaultTextColor
     }
 
-    private func enumerateListeners(block: (MessageTextViewListener) -> Void) {
+    internal func enumerateListeners(block: (MessageTextViewListener) -> Void) {
         for listener in listeners.objectEnumerator() {
             guard let listener = listener as? MessageTextViewListener else { continue }
             block(listener)
@@ -125,6 +155,7 @@ open class MessageTextView: UITextView, UITextViewDelegate {
     // MARK: UITextViewDelegate
 
     public func textViewDidChange(_ textView: UITextView) {
+        typingAttributes = defaultTextAttributes
         updatePlaceholderVisibility()
         enumerateListeners { $0.didChange(textView: self) }
     }
