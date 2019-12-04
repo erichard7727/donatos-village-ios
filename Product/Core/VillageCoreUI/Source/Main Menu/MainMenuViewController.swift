@@ -60,7 +60,7 @@ final class MainMenuViewController: UIViewController {
     @IBOutlet private weak var menuOptionKudosStream: UIView!
     @IBOutlet private weak var menuOptionKudosStreamLabel: UILabel! {
         didSet {
-            menuOptionKudosStreamLabel.text = Constants.Settings.kudosSingularLong + " Stream"
+            menuOptionKudosStreamLabel.text = "All " + Constants.Settings.kudosPluralLong
         }
     }
     @IBOutlet private weak var menuOptionKudosMyKudos: UIView!

@@ -135,7 +135,7 @@ class KudosListController: UIViewController, StatefulUserInterface {
         
         switch self.list! {
         case .allStream:
-            self.title = Constants.Settings.kudosSingularShort + " Stream"
+            self.title = "All " + Constants.Settings.kudosPluralShort
         case .received(_), .given(_):
             self.title = "My " + Constants.Settings.kudosPluralShort
         }
