@@ -31,7 +31,8 @@ extension Constants {
         static let kudosSingularLong = "Promise in Action" // Kudo
         static let kudosSingularShort = "PIA" // Kudo
         static let kudosPointsEnabled = false
-        
+
+        static let contentLibraryEnabled = false
         static let achievementsEnabled = false
         static let manageNoticesEnabled = false
         static let createGroupsEnabled = true

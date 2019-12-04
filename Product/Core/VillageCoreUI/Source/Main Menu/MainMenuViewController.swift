@@ -69,26 +69,14 @@ final class MainMenuViewController: UIViewController {
             menuOptionKudosMyKudosLabel.text = "My " + Constants.Settings.kudosPluralLong
         }
     }
-    @IBOutlet private weak var menuOptionKudosAchievements: UIView! {
-        didSet {
-            if !Constants.Settings.achievementsEnabled {
-                menuOptionKudosAchievements.removeFromSuperview()
-            }
-        }
-    }
+    @IBOutlet private weak var menuOptionKudosAchievements: UIView!
     @IBOutlet private weak var menuOptionKudosGiveKudos: UIView!
     @IBOutlet private weak var menuOptionKudosGiveKudosLabel: UILabel! {
         didSet {
             menuOptionKudosGiveKudosLabel.text = "Give " + Constants.Settings.kudosSingularLong
         }
     }
-    @IBOutlet private weak var menuOptionKudosLeaderboard: UIView! {
-        didSet {
-            if !Constants.Settings.achievementsEnabled {
-                menuOptionKudosLeaderboard.removeFromSuperview()
-            }
-        }
-    }
+    @IBOutlet private weak var menuOptionKudosLeaderboard: UIView!
     
     @IBOutlet private weak var menuOptionContentLibrary: UIView!
     
@@ -190,7 +178,16 @@ extension MainMenuViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        if !Constants.Settings.achievementsEnabled {
+            menuOptionKudosAchievements.removeFromSuperview()
+            menuOptionKudosLeaderboard.removeFromSuperview()
+        }
+
+        if !Constants.Settings.contentLibraryEnabled {
+            menuOptionContentLibrary.removeFromSuperview()
+        }
+
         subscribeToNotifications()
         
         self.updateSubscribedGroups()
