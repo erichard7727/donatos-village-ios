@@ -115,10 +115,19 @@ struct NoticeService {
     }
     
     public static func detailRequest(notice: Notice) throws -> URLRequest {
-        guard let detailUrl = URL(string: "\(ClientConfiguration.current.appBaseURL)notice/1.0/\(notice.id)") else {
+
+        guard var detailComponents = URLComponents(string: "\(ClientConfiguration.current.appBaseURL)notice/1.0/\(notice.id)") else {
             throw NoticeServiceError.invalidUrl
         }
-        
+
+        detailComponents.queryItems = [
+            URLQueryItem(name: "timeZoneId", value: TimeZone.current.identifier),
+        ]
+
+        guard let detailUrl = detailComponents.url else {
+            throw NoticeServiceError.invalidUrl
+        }
+
         var request = URLRequest(url: detailUrl)
         let cookieHeaders = HTTPCookieStorage.shared.cookies.map({ HTTPCookie.requestHeaderFields(with: $0) }) ?? [:]
         let combinedHeaders = (request.allHTTPHeaderFields ?? [:])?.merging(cookieHeaders, uniquingKeysWith: {(_, new) in return new })

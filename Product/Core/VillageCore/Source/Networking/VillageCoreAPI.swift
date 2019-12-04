@@ -6,6 +6,7 @@
 //  Copyright © 2019 Dynamirt. All rights reserved.
 //
 
+import Foundation
 import Moya
 
 /// Creates an NSDateFormatter specifically for usage with this API.
@@ -403,7 +404,6 @@ extension VillageCoreAPI: TargetType {
              .me,
              .securityPolicies,
              .getPersonDetails,
-             .noticeDetail,
              .acknowledgeNotice,
              .streamsHistory,
              .streamMembers,
@@ -581,6 +581,15 @@ extension VillageCoreAPI: TargetType {
             }
 
             return Task.requestParameters(parameters: parameters, encoding: URLEncoding.default)
+
+        case .noticeDetail(_):
+            return Task.requestParameters(
+                parameters: [
+                    "diagId": User.current.diagnosticId,
+                    "timeZoneId": TimeZone.current.identifier
+                ],
+                encoding: URLEncoding.default
+            )
             
         case .searchNotices(let noticeType, _, let page):
             let diagId = User.current.diagnosticId
