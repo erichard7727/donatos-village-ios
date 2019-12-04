@@ -206,8 +206,7 @@ extension VillageCoreAPI: TargetType {
             return "notice/1.0/\(noticeId)"
 
         case let .searchNotices(_, term, _):
-            let escapedTerm = term.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            return "notice/1.0/search/\(escapedTerm)"
+            return "notice/1.0/search/\(term)"
             
         case let .noticeAcknowledgedList(noticeId, _),
              let .acknowledgeNotice(noticeId):
@@ -611,7 +610,7 @@ extension VillageCoreAPI: TargetType {
                     "paging": paging,
                 ]
             }
-            
+
             return Task.requestParameters(parameters: parameters, encoding: URLEncoding.default)
 
         case let .kudos(kudoType, personId, achievementId, page):
