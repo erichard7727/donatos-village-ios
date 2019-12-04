@@ -335,7 +335,7 @@ final class NoticeListViewController: UIViewController {
         didSet {
             tableView.rowHeight = UITableView.automaticDimension
             tableView.estimatedRowHeight = 100
-            tableView.alwaysBounceVertical = false
+            tableView.alwaysBounceVertical = true
             tableView.tableFooterView = UIView()
             tableView.emptyDataSetSource = self
             tableView.emptyDataSetDelegate = self
