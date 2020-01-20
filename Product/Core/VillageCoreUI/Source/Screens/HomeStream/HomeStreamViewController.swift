@@ -143,11 +143,19 @@ private extension HomeStreamViewController {
         
         if let unreadNotices = unreads?.notices, unreadNotices - 1 > 0 {
             let additionalNoticeCount = unreadNotices - 1
-            additionalNoticesView.isHidden = false
-            additionalNoticesLabel.text = "\(additionalNoticeCount) OTHER NOTICE\(additionalNoticeCount == 1 ? "":"S") NEED\(additionalNoticeCount == 1 ? "S":"") ACTION"
+            if additionalNoticesView != nil {
+                additionalNoticesView.isHidden = false
+            }
+            if additionalNoticesLabel != nil {
+                additionalNoticesLabel.text = "\(additionalNoticeCount) OTHER NOTICE\(additionalNoticeCount == 1 ? "":"S") NEED\(additionalNoticeCount == 1 ? "S":"") ACTION"
+            }
         } else {
-            additionalNoticesView.isHidden = true
-            additionalNoticesLabel.text = nil
+            if additionalNoticesView != nil {
+                additionalNoticesView.isHidden = true
+            }
+            if additionalNoticesLabel != nil {
+                additionalNoticesLabel.text = nil
+            }
         }
         
         
