@@ -89,7 +89,8 @@ class ViewNoticeViewController: UIViewController {
             
             firstly {
                 notice.acknowledge()
-            }.then { [weak self] _ in
+            }.then { [weak self] notice in
+                self?.didUpdateNotice?(notice)
                 self?.navigationController?.popViewController(animated: true)
             }.catch { [weak self] error in
                 let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)

@@ -10,9 +10,37 @@ import Foundation
 
 public extension Notification.Name {
     struct Stream {
+        public static let streamKey = "directMessageConversationKey"
+
         /// Posted whenever a DM stream is on screen.
-        public static let directMessageConversationKey = "directMessageConversationKey"
-        public static let IsViewingDirectMessageConversation = Notification.Name(rawValue: "com.dynamit.villagecore.notification.name.stream.isviewingdirectmessageconversation")
+        ///
+        /// Obtain the stream object in the `userInfo` dictionary by using
+        /// the `streamKey`.
+        ///
+        /// Example:
+        ///
+        ///   `let stream = notification.userInfo?[Notification.Name.Stream.streamKey] as? VillageCore.Stream`
+        public static let isViewingDirectMessageConversation = Notification.Name(rawValue: "com.dynamit.villagecore.notification.name.stream.isviewingdirectmessageconversation")
+
+        /// Posted whenever a stream is subscribed to.
+        ///
+        /// Obtain the stream object in the `userInfo` dictionary by using
+        /// the `streamKey`.
+        ///
+        /// Example:
+        ///
+        ///   `let stream = notification.userInfo?[Notification.Name.Stream.streamKey] as? VillageCore.Stream`
+        public static let userDidSubscribe = Notification.Name(rawValue: "com.dynamit.villagecore.notification.name.stream.userDidSubscribe")
+
+        /// Posted whenever a stream is unsubscribed from.
+        ///
+        /// Obtain the stream object in the `userInfo` dictionary by using
+        /// the `streamKey`.
+        ///
+        /// Example:
+        ///
+        ///   `let stream = notification.userInfo?[Notification.Name.Stream.streamKey] as? VillageCore.Stream`
+        public static let userDidUnsubscribe = Notification.Name(rawValue: "com.dynamit.villagecore.notification.name.stream.userDidUnsubscribe")
     }
 }
 

@@ -24,7 +24,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
     
     @IBOutlet private var giveKudosTitleLabel: UILabel! {
         didSet {
-            giveKudosTitleLabel.text = "Give " + Constants.Settings.kudosSingularShort
+            giveKudosTitleLabel.text = "Give a " + Constants.Settings.kudosSingularLong
         }
     }
     

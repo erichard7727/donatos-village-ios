@@ -19,6 +19,7 @@ class SettingsController: UITableViewController {
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var storeLocationTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
@@ -73,6 +74,7 @@ class SettingsController: UITableViewController {
         firstNameTextField.text = person.firstName
         lastNameTextField.text = person.lastName
         titleTextField.text = person.jobTitle
+        storeLocationTextField.text = person.department
         emailTextField.text = person.emailAddress
         phoneTextField.text = person.phone
         twitterTextField.text = person.twitter

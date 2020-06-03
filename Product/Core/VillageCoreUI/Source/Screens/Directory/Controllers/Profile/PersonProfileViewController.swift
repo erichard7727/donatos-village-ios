@@ -130,6 +130,7 @@ final class PersonProfileViewController: UIViewController {
                 // Received Kudos
                 let received = storyboard.instantiateViewController(withIdentifier: kudosListControllerId) as! KudosListController
                 received.list = .received(receiver: profilePerson)
+                received.delegate = self
                 self.pages.append(received)
                 
                 if Constants.Settings.achievementsEnabled {
@@ -328,6 +329,16 @@ extension PersonProfileViewController: UIPageViewControllerDataSource, UIPageVie
     }
 }
 
+// MARK: - KudosListViewControllerDelegate
+
+extension PersonProfileViewController: KudosListViewControllerDelegate {
+
+    func kudosListController(_ kudosListController: KudosListController, shouldShowProfileFor person: Person) -> Bool {
+        return self.person != person
+    }
+
+}
+
 extension UIPageViewController {
     
     var currentScrollView: UIScrollView? {
@@ -350,5 +361,3 @@ extension UIPageViewController {
         return nil
     }
 }
-
-

@@ -26,5 +26,9 @@ extension Message {
     public func unlike() -> Promise<Message> {
         return StreamsService.dislike(message: self)
     }
+
+    public func flag() -> Promise<Message> {
+        return StreamsService.flag(message: self)
+    }
     
 }

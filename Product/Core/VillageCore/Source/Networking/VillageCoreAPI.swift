@@ -6,6 +6,7 @@
 //  Copyright © 2019 Dynamirt. All rights reserved.
 //
 
+import Foundation
 import Moya
 
 /// Creates an NSDateFormatter specifically for usage with this API.
@@ -105,15 +106,17 @@ public enum VillageCoreAPI {
     case getPersonDetails(personId: String)
     
     // Notices
-    case notices(_ noticeType: NoticeType, page: Int)
+    case notices(_ noticeType: NoticeType, page: Int, acknowledgedFilter: Bool?)
     case noticeDetail(noticeId: String)
+    case searchNotices(type: NoticeType, term: String, page: Int)
     case noticeAcknowledgedList(noticeId: String, page: Int)
     case acknowledgeNotice(noticeId: String)
     case rsvpEvent(noticeId: String, response: RSVPResponse)
     
     // Content Library
     case contentLibraryRoot(page: Int)
-    case contentLibraryDirectory(contentId: String)
+    case searchContentLibrary(term: String, page: Int)
+    case contentLibraryDirectory(contentId: String, page: Int)
     
     // Kudos
     case kudos(_ kudoType: KudoType, personId: String, achievementId: String?, page: Int)
@@ -125,9 +128,7 @@ public enum VillageCoreAPI {
     
     // Streams
     case streamsHistory
-    #warning("JACK - Remove old homeStream call once DONV-345 is complete")
     case homeStream(page: Int)
-    case newHomeStream(page: Int)
     case subscribedStreams
     case otherStreams(page: Int)
     case searchOtherStreams(term: String, page: Int)
@@ -140,6 +141,7 @@ public enum VillageCoreAPI {
     case setSubscribed(subscribed: Bool, streamId: String)
     case sendMessage(streamId: String, messageId: String, body: String, attachment: MessageAttachment?)
     case setMessageLiked(isLiked: Bool, messageId: String, streamId: String)
+    case flagMessage(messageId: String, streamId: String)
     
     // Direct Messages
     case directMessageStreams
@@ -202,6 +204,9 @@ extension VillageCoreAPI: TargetType {
             
         case let .noticeDetail(noticeId):
             return "notice/1.0/\(noticeId)"
+
+        case let .searchNotices(_, term, _):
+            return "notice/1.0/search/\(term)"
             
         case let .noticeAcknowledgedList(noticeId, _),
              let .acknowledgeNotice(noticeId):
@@ -212,8 +217,12 @@ extension VillageCoreAPI: TargetType {
             
         case .contentLibraryRoot:
             return "content/1.0"
+
+        case let .searchContentLibrary(term, _):
+            let escapedTerm = term.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            return "content/1.0/search/\(escapedTerm)"
             
-        case let .contentLibraryDirectory(contentId):
+        case let .contentLibraryDirectory(contentId, _):
             return "content/1.0/@\(contentId)"
             
         case .kudos, .giveKudo:
@@ -226,9 +235,6 @@ extension VillageCoreAPI: TargetType {
             return "kudos/1.0/leaders"
 
         case .homeStream:
-            return "streams/1.0/home"
-
-        case .newHomeStream:
             return "streams/2.0/home"
             
         case .streamsHistory:
@@ -251,6 +257,9 @@ extension VillageCoreAPI: TargetType {
             
         case let .setMessageLiked(isLiked, messageId, streamId):
             return "streams/1.0/messages/\(streamId)/\(messageId)/\(isLiked ? "like" : "dislike")"
+
+        case let .flagMessage(messageId, streamId):
+            return "streams/1.0/messages/\(streamId)/\(messageId)/flag"
 
         case .otherStreams, .searchOtherStreams:
             return "streams/1.0/streams"
@@ -291,8 +300,10 @@ extension VillageCoreAPI: TargetType {
              .getPersonDetails,
              .notices,
              .noticeDetail,
+             .searchNotices,
              .noticeAcknowledgedList,
              .contentLibraryRoot,
+             .searchContentLibrary,
              .contentLibraryDirectory,
              .kudos,
              .achievements,
@@ -301,7 +312,6 @@ extension VillageCoreAPI: TargetType {
              .searchDirectory,
              .streamsHistory,
              .homeStream,
-             .newHomeStream,
              .streamMembers,
              .streamMessages,
              .streamMessagesStartingAfter,
@@ -327,6 +337,7 @@ extension VillageCoreAPI: TargetType {
              .createOrUpdateStream,
              .inviteToStream,
              .setMessageLiked,
+             .flagMessage,
              .setSubscribed,
              .sendMessage,
              .flagKudo,
@@ -351,10 +362,12 @@ extension VillageCoreAPI: TargetType {
              .getPersonDetails,
              .notices,
              .noticeDetail,
+             .searchNotices,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
              .rsvpEvent,
              .contentLibraryRoot,
+             .searchContentLibrary,
              .contentLibraryDirectory,
              .kudos,
              .giveKudo,
@@ -364,13 +377,13 @@ extension VillageCoreAPI: TargetType {
              .searchDirectory,
              .streamsHistory,
              .homeStream,
-             .newHomeStream,
              .streamMembers,
              .streamMessages,
              .streamMessagesStartingAfter,
              .createOrUpdateStream,
              .inviteToStream,
              .setMessageLiked,
+             .flagMessage,
              .otherStreams,
              .searchOtherStreams,
              .subscribedStreams,
@@ -390,12 +403,11 @@ extension VillageCoreAPI: TargetType {
              .me,
              .securityPolicies,
              .getPersonDetails,
-             .noticeDetail,
              .acknowledgeNotice,
-             .contentLibraryDirectory,
              .streamsHistory,
              .streamMembers,
              .setMessageLiked,
+             .flagMessage,
              .subscribedStreams,
              .streamDetails,
              .directMessageStreams,
@@ -541,32 +553,66 @@ extension VillageCoreAPI: TargetType {
                 ],
                 encoding: URLEncoding.default
             )
+
+        case let .notices(noticeType, page, acknowledgedFilter):
+            let diagId = User.current.diagnosticId
+            let paging = "\(page)-\(defaultPageSize)"
+
+            var parameters: [String:Any] = [:]
+
+            switch noticeType {
+            case .news, .notice, .events:
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                    "filter": "type:\(noticeType.apiValue)",
+                ]
+
+            case .all:
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                ]
+            }
+
+            if let acknowledgedFilter = acknowledgedFilter {
+                parameters["filter"] = "type:\(noticeType.apiValue),acknowledged:\(acknowledgedFilter)"
+            }
+
+            return Task.requestParameters(parameters: parameters, encoding: URLEncoding.default)
+
+        case .noticeDetail(_):
+            return Task.requestParameters(
+                parameters: [
+                    "diagId": User.current.diagnosticId,
+                    "timeZoneId": TimeZone.current.identifier
+                ],
+                encoding: URLEncoding.default
+            )
             
-        case let .notices(noticeType, page):
+        case .searchNotices(let noticeType, _, let page):
             let diagId = User.current.diagnosticId
             let paging = "\(page)-\(defaultPageSize)"
             
+            var parameters: [String:Any] = [:]
+            
             switch noticeType {
             case .news, .notice, .events:
-                return Task.requestParameters(
-                    parameters: [
-                        "diagId": diagId,
-                        "paging": paging,
-                        "filter": "type:\(noticeType.apiValue)",
-                    ],
-                    encoding: URLEncoding.default
-                )
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                    "filter": "type:\(noticeType.apiValue)",
+                ]
                 
             case .all:
-                return Task.requestParameters(
-                    parameters: [
-                        "diagId": diagId,
-                        "paging": paging,
-                    ],
-                    encoding: URLEncoding.default
-                )
+                parameters = [
+                    "diagId": diagId,
+                    "paging": paging,
+                ]
             }
-            
+
+            return Task.requestParameters(parameters: parameters, encoding: URLEncoding.default)
+
         case let .kudos(kudoType, personId, achievementId, page):
             let filters: [String?] = [
                 (kudoType == .all) ? nil : kudoType.rawValue,
@@ -634,8 +680,9 @@ extension VillageCoreAPI: TargetType {
         case let .searchDirectory(_, page),
              let .noticeAcknowledgedList(_, page),
              let .contentLibraryRoot(page),
+             let .searchContentLibrary(_, page),
+             let .contentLibraryDirectory(_, page),
              let .homeStream(page),
-             let .newHomeStream(page),
              let .streamMessages(_, page),
              let .streamMessagesStartingAfter(_, _, page):
             return Task.requestParameters(
@@ -767,10 +814,12 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .getPersonDetails,
              .notices,
              .noticeDetail,
+             .searchNotices,
              .noticeAcknowledgedList,
              .acknowledgeNotice,
              .rsvpEvent,
              .contentLibraryRoot,
+             .searchContentLibrary,
              .contentLibraryDirectory,
              .kudos,
              .giveKudo,
@@ -779,7 +828,6 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .kudosLeaderboard,
              .searchDirectory,
              .homeStream,
-             .newHomeStream,
              .streamsHistory,
              .streamMembers,
              .streamMessages,
@@ -787,6 +835,7 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .createOrUpdateStream,
              .inviteToStream,
              .setMessageLiked,
+             .flagMessage,
              .otherStreams,
              .searchOtherStreams,
              .subscribedStreams,

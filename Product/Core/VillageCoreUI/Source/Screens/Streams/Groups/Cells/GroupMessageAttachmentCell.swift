@@ -17,6 +17,7 @@ class GroupMessageAttachmentCell: UITableViewCell {
     var stream: VillageCore.Stream?
     var didSelectLink: ((URL) -> Void)?
     var didSelectPerson:((Person) -> Void)?
+    var showMoreOptions: () -> Void = { }
     
     @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
@@ -282,6 +283,10 @@ class GroupMessageAttachmentCell: UITableViewCell {
     @objc private func viewAuthor() {
         guard let author = message?.author else { return }
         didSelectPerson?(author)
+    }
+
+    @IBAction private func moreOptions(_ sender: Any? = nil) {
+        showMoreOptions()
     }
 
     deinit {

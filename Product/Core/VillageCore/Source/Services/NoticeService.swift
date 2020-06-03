@@ -22,20 +22,44 @@ struct NoticeService {
     static func getNoticesAndNewsPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.all)
     }
+
+    static func searchNoticesAndNewsPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.all, searchTerm: term)
+    }
     
     static func getNoticesPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.notice)
+    }
+
+    static func searchNoticesPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.notice, searchTerm: term)
+    }
+
+    static func getUnacknowledgedNoticesPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.notice, acknowledgedFilter: false)
     }
     
     static func getNewsPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.news)
     }
+
+    static func searchNewsPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.news, searchTerm: term)
+    }
     
     static func getEventsPaginated() -> SectionedPaginated<Notice> {
         return self.getNoticesPaginated(.events)
     }
+
+    static func searchEventsPaginated(for term: String) -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.events, searchTerm: term)
+    }
+
+    static func getUnrespondedEventsPaginated() -> SectionedPaginated<Notice> {
+        return self.getNoticesPaginated(.events, acknowledgedFilter: false)
+    }
     
-    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType) -> SectionedPaginated<Notice> {
+    private static func getNoticesPaginated(_ noticeType: VillageCoreAPI.NoticeType, acknowledgedFilter: Bool? = nil, searchTerm: String? = nil) -> SectionedPaginated<Notice> {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
@@ -43,7 +67,12 @@ struct NoticeService {
         return SectionedPaginated<Notice>.init(
             fetchValues: { (page) -> Promise<PaginatedResults<Notice>> in
                 return firstly {
-                    let notices = VillageCoreAPI.notices(noticeType, page: page)
+                    let notices: VillageCoreAPI
+                    if let term = searchTerm {
+                        notices = VillageCoreAPI.searchNotices(type: noticeType, term: term, page: page)
+                    } else {
+                        notices = VillageCoreAPI.notices(noticeType, page: page, acknowledgedFilter: acknowledgedFilter)
+                    }
                     return VillageService.shared.request(target: notices)
                 }.then { (json: JSON) -> PaginatedResults<Notice> in
                     let notices = json["content"].arrayValue.compactMap({ Notice(from: $0) })
@@ -86,10 +115,19 @@ struct NoticeService {
     }
     
     public static func detailRequest(notice: Notice) throws -> URLRequest {
-        guard let detailUrl = URL(string: "\(ClientConfiguration.current.appBaseURL)notice/1.0/\(notice.id)") else {
+
+        guard var detailComponents = URLComponents(string: "\(ClientConfiguration.current.appBaseURL)notice/1.0/\(notice.id)") else {
             throw NoticeServiceError.invalidUrl
         }
-        
+
+        detailComponents.queryItems = [
+            URLQueryItem(name: "timeZoneId", value: TimeZone.current.identifier),
+        ]
+
+        guard let detailUrl = detailComponents.url else {
+            throw NoticeServiceError.invalidUrl
+        }
+
         var request = URLRequest(url: detailUrl)
         let cookieHeaders = HTTPCookieStorage.shared.cookies.map({ HTTPCookie.requestHeaderFields(with: $0) }) ?? [:]
         let combinedHeaders = (request.allHTTPHeaderFields ?? [:])?.merging(cookieHeaders, uniquingKeysWith: {(_, new) in return new })
@@ -110,8 +148,10 @@ struct NoticeService {
     static func acknowledge(notice: Notice) -> Promise<Notice> {
         return firstly {
             VillageService.shared.request(target: .acknowledgeNotice(noticeId: notice.id))
-        }.then { _ in
-            return notice
+        }.then { _ -> Notice in
+            var mutableNotice = notice
+            mutableNotice.isAcknowledged = true
+            return mutableNotice
         }
     }
 

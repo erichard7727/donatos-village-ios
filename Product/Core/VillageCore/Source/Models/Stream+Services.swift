@@ -11,19 +11,10 @@ import Promises
 
 // Mark: - StreamService
 
-#warning("JACK - Remove old HomeStream extension once DONV-345 is complete")
 public extension HomeStream {
-    
+
     static func fetch(page: Int = 1) -> Promise<HomeStream> {
         return StreamsService.getHomeStream(page: page)
-    }
-    
-}
-
-public extension NewHomeStream {
-
-    static func fetch(page: Int = 1) -> Promise<NewHomeStream> {
-        return StreamsService.getNewHomeStream(page: page)
     }
 
 }
@@ -64,10 +55,28 @@ public extension Stream {
     
     func subscribe() -> Promise<Void> {
         return StreamsService.subscribeTo(self)
+            .then({
+                NotificationCenter.default.post(
+                    name: Notification.Name.Stream.userDidSubscribe,
+                    object: self,
+                    userInfo: [
+                        Notification.Name.Stream.streamKey: self,
+                    ]
+                )
+            })
     }
     
     func unsubscribe() -> Promise<Void> {
         return StreamsService.unsubscribeFrom(self)
+            .then({
+                NotificationCenter.default.post(
+                    name: Notification.Name.Stream.userDidUnsubscribe,
+                    object: self,
+                    userInfo: [
+                        Notification.Name.Stream.streamKey: self,
+                    ]
+                )
+            })
     }
     
     func send(message: String, attachment: (data: Data, mimeType: String)? = nil, from author: Person, progress progressBlock: ((Double) -> Void)? = nil) -> Promise<Message> {

@@ -265,8 +265,9 @@ private class AnimatedImage {
     }
     
     fileprivate static func getFrameDisplayTimes(from frameDelayLengths: [Float]) -> [Float] {
+        guard frameDelayLengths.count > 0 else { return [] }
+
         var frameDisplayTimes: [Float] = frameDelayLengths
-        
         for currentFrameDisplayTime in 1 ..< frameDisplayTimes.count {
             frameDisplayTimes[currentFrameDisplayTime] += frameDisplayTimes[currentFrameDisplayTime - 1]
         }
@@ -275,6 +276,8 @@ private class AnimatedImage {
     }
     
     fileprivate static func getNumberOfFramesLostAtCurrentFrameRate(for frameDisplayPositions: [Int]) -> Int {
+        guard frameDisplayPositions.count > 0 else { return 0 }
+
         var numberOfFramesLostAtCurrentFrameRate = 0
         for displayPositionIndex in 1 ..< frameDisplayPositions.count {
             if frameDisplayPositions[displayPositionIndex] == frameDisplayPositions[displayPositionIndex - 1] {
