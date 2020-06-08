@@ -57,7 +57,7 @@ platform :ios do
   lane :build_staging do
     build(
       configuration: "Debug",
-      teamID: "7W7U4UG3FM", #todo
+      teamID: "PH47MC4D6A", #todo
       exportMethod: "enterprise",
       scheme: "DonatosVillage"
     )
