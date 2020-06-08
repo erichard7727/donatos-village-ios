@@ -56,8 +56,8 @@ platform :ios do
 
   lane :build_staging do
     build(
-      configuration: "AdHoc-Stage",
-      teamID: "", #todo
+      configuration: "Debug",
+      teamID: "7W7U4UG3FM", #todo
       exportMethod: "enterprise",
       scheme: "DonatosVillage"
     )
@@ -78,15 +78,15 @@ platform :ios do
     import_certificate(
       keychain_name: keychain_name,
       keychain_password: keychain_name,
-      certificate_path: "./fastlane/cert/PE_Development_5_21_19.p12",
+      certificate_path: "./fastlane/cert/DV_Development.p12",
       certificate_password: ENV['DONATOSVILLAGE_DEVELOPMENT_P12_PASSWORD'] #todo
     )
-    import_certificate(
-      keychain_name: keychain_name,
-      keychain_password: keychain_name,
-      certificate_path: "./fastlane/cert/PE_Distribution_5_21_19.p12",
-      certificate_password: ENV['DONATOSVILLAGE_DISTRIBUTION_P12_PASSWORD'] #todo
-    )
+    # import_certificate(
+    #   keychain_name: keychain_name,
+    #   keychain_password: keychain_name,
+    #   certificate_path: "./fastlane/cert/PE_Distribution_5_21_19.p12",
+    #   certificate_password: ENV['DONATOSVILLAGE_DISTRIBUTION_P12_PASSWORD'] #todo
+    # )
   end
 
   ############################# Installing Local Provisioning Profiles ##############################
@@ -124,10 +124,10 @@ platform :ios do
     install_local_provisioning_profiles
 
     # Set build number
-    increment_build_number(
-      build_number: ENV['donatos.village.shared.build.counter'], #todo
-      xcodeproj: "./Clients/DonatosVillage/DonatosVillage.xcodeproj"
-    )
+    # increment_build_number(
+    #   build_number: ENV['donatos.village.shared.build.counter'], #todo
+    #   xcodeproj: "./Clients/DonatosVillage/DonatosVillage.xcodeproj"
+    # )
 
     configuration = options[:configuration]
     teamID = options[:teamID]
