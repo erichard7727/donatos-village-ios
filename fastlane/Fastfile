@@ -58,7 +58,7 @@ platform :ios do
     build(
       configuration: "Debug",
       teamID: "PH47MC4D6A", #todo
-      exportMethod: "enterprise",
+      exportMethod: "development",
       scheme: "DonatosVillage"
     )
   end
@@ -81,7 +81,7 @@ platform :ios do
       certificate_path: "./fastlane/cert/DV_Development.p12",
       certificate_password: ENV['DONATOSVILLAGE_DEVELOPMENT_P12_PASSWORD'] #todo
     )
-    # import_certificate(
+    # import_certificate( TODO This is necessary even for staging apparently
     #   keychain_name: keychain_name,
     #   keychain_password: keychain_name,
     #   certificate_path: "./fastlane/cert/PE_Distribution_5_21_19.p12",
@@ -138,7 +138,7 @@ platform :ios do
 
     # Set variables used for build
 
-    if options[:exportMethod] == "enterprise"
+    if options[:exportMethod] == "development"
       profile_path = "./fastlane/sigh/DonatosVillage_Internal.mobileprovision" #todo
     elsif options[:exportMethod] == "app-store"
       profile_path = "./fastlane/sigh/DonatosVillage_Main_Distribution.mobileprovision" #todo
