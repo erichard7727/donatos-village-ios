@@ -10,7 +10,6 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
-#todo ensure proper schemes
 
 
 default_platform(:ios)
@@ -57,7 +56,7 @@ platform :ios do
   lane :build_staging do
     build(
       configuration: "Debug",
-      teamID: "PH47MC4D6A", #todo
+      teamID: "PH47MC4D6A",
       exportMethod: "development",
       scheme: "DonatosVillage"
     )
@@ -67,7 +66,7 @@ platform :ios do
 
     build(
       configuration: "AppStore",
-      teamID: "", #todo
+      teamID: "", #TODO Generate profile and find Team ID for it
       exportMethod: "app-store",
       scheme: "DonatosVillage"
     )
@@ -79,13 +78,14 @@ platform :ios do
       keychain_name: keychain_name,
       keychain_password: keychain_name,
       certificate_path: "./fastlane/cert/DV_Development.p12",
-      certificate_password: ENV['DONATOSVILLAGE_DEVELOPMENT_P12_PASSWORD'] #todo
+      certificate_password: ENV['DONATOSVILLAGE_DEVELOPMENT_P12_PASSWORD']
     )
-    # import_certificate( TODO This is necessary even for staging apparently
+    # TODO
+    # import_certificate(
     #   keychain_name: keychain_name,
     #   keychain_password: keychain_name,
     #   certificate_path: "./fastlane/cert/PE_Distribution_5_21_19.p12",
-    #   certificate_password: ENV['DONATOSVILLAGE_DISTRIBUTION_P12_PASSWORD'] #todo
+    #   certificate_password: ENV['DONATOSVILLAGE_DISTRIBUTION_P12_PASSWORD']
     # )
   end
 
@@ -123,9 +123,10 @@ platform :ios do
     install_local_certs
     install_local_provisioning_profiles
 
+    # TODO
     # Set build number
     # increment_build_number(
-    #   build_number: ENV['donatos.village.shared.build.counter'], #todo
+    #   build_number: ENV['donatos.village.shared.build.counter'],
     #   xcodeproj: "./Clients/DonatosVillage/DonatosVillage.xcodeproj"
     # )
 
@@ -139,9 +140,9 @@ platform :ios do
     # Set variables used for build
 
     if options[:exportMethod] == "development"
-      profile_path = "./fastlane/sigh/DonatosVillage_Internal.mobileprovision" #todo
+      profile_path = "./fastlane/sigh/DonatosVillage_Internal.mobileprovision"
     elsif options[:exportMethod] == "app-store"
-      profile_path = "./fastlane/sigh/DonatosVillage_Main_Distribution.mobileprovision" #todo
+      profile_path = "./fastlane/sigh/DonatosVillage_Main_Distribution.mobileprovision" #TODO Generate this profile
     end
 
     disable_automatic_code_signing(path: "./Clients/DonatosVillage/DonatosVillage.xcodeproj")
@@ -182,7 +183,7 @@ platform :ios do
     api_token: ENV["APPCENTER_API_KEY"],
     owner_name: ENV["APPCENTER_ORG_NAME"],
     app_name: ENV["APPCENTER_APP_NAME"],
-    file: "./artifacts/enterprise/" + "/DonatosVillage.ipa", #todo PeppTalk?
+    file: "./artifacts/enterprise/" + "/DonatosVillage.ipa",
     notify_testers: false
    )
    end
@@ -195,7 +196,7 @@ platform :ios do
   derived_data_path = "#{$root_dir}/tmp/DerivedData"
   generate_simulator_build(
       workspace: "#{$root_dir}/Village.xcworkspace",
-      scheme: 'DonatosVillage', #todo debug dev
+      scheme: 'DonatosVillage', #TODO Point to proper scheme
       configuration: 'Debug',
       destination: 'platform=iOS Simulator,name=iPhone 6,OS=latest',
       build_sdk: 'iphonesimulator',
@@ -210,7 +211,7 @@ platform :ios do
   desc "Run tests"
   lane :tests do
     run_tests(
-        scheme: "DonatosVillage", #todo debug test
+        scheme: "DonatosVillage", #TODO Point to proper scheme
         xcargs: "-UseModernBuildSystem=NO"
       )
   end
@@ -221,7 +222,7 @@ platform :ios do
   desc "Run UI tests"
   lane :ui_tests do
     run_tests(
-        scheme: "DonatosVillage", #todo debug uitest
+        scheme: "DonatosVillage", #TODO Point to proper scheme
         xcargs: "-UseModernBuildSystem=NO",
         result_bundle: true,
         output_files: "UITests.html,UITests.junit",
@@ -243,7 +244,7 @@ platform :ios do
       changelog = changelog.split("\n").flat_map { |s| s.scan(/DNV\-[0-9]{3,}/) }.uniq.join("\n")
     end
     p "Filtered Changelog:\n" + changelog
-    upload_to_testflight(ipa: "#{$root_dir}/artifacts/app-store/DonatosVillage.ipa", #todo PeppTalk?
+    upload_to_testflight(ipa: "#{$root_dir}/artifacts/app-store/DonatosVillage.ipa",
                          changelog: changelog,
                          groups: ["Internal testers"])
     # Disabling for now, as we're missing entitlements to push the repo
