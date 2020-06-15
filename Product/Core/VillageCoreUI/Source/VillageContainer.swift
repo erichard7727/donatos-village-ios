@@ -149,7 +149,7 @@ extension VillageContainer: UIApplicationDelegate {
             print(error.localizedDescription)
         }
         
-        print(ClientConfiguration.current)
+        print("Using Environment:", Environment.current)
         
         applyTheme()
         

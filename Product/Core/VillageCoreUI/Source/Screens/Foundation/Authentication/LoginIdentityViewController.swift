@@ -40,7 +40,7 @@ final class LoginIdentityViewController: UIViewController {
                     ]
                 )
                 let applicationNameText = NSAttributedString(
-                    string: ClientConfiguration.current.applicationName,
+                    string: Constants.applicationName,
                     attributes: [
                         NSAttributedString.Key.font: UIFont(name: "ProximaNova-SemiBold", size: 17.0)!
                     ]

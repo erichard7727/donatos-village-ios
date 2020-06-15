@@ -116,7 +116,7 @@ struct NoticeService {
     
     public static func detailRequest(notice: Notice) throws -> URLRequest {
 
-        guard var detailComponents = URLComponents(string: "\(ClientConfiguration.current.appBaseURL)notice/1.0/\(notice.id)") else {
+        guard var detailComponents = URLComponents(string: "\(Environment.current.appBaseURL.absoluteString)notice/1.0/\(notice.id)") else {
             throw NoticeServiceError.invalidUrl
         }
 

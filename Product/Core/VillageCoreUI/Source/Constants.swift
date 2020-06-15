@@ -21,6 +21,9 @@ class Constants {
 }
 
 extension Constants {
+    
+    static let applicationName: String = "Pepp Talk"
+    
     struct Settings {
         static let invitationsEnabled = true
         static let directMessagesEnabled = true

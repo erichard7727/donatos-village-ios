@@ -154,7 +154,7 @@ public enum VillageCoreAPI {
 extension VillageCoreAPI: TargetType {
     
     public var baseURL: URL {
-        return URL(string: ClientConfiguration.current.appBaseURL)!
+        return Environment.current.appBaseURL
     }
 
     public var path: String {
@@ -433,7 +433,7 @@ extension VillageCoreAPI: TargetType {
         case let .validateIdentity(identity):
             return Task.requestCompositeParameters(
                 bodyParameters: [
-                    "licenseKey": ClientConfiguration.current.licenseKey,
+                    "licenseKey": Environment.Constants.licenseKey,
                     "identity": identity,
                 ],
                 bodyEncoding: JSONEncoding.default,
@@ -445,7 +445,7 @@ extension VillageCoreAPI: TargetType {
         case let .initiateDomain(mode, emailAddress):
             return Task.requestCompositeParameters(
                 bodyParameters: [
-                    "licenseKey": ClientConfiguration.current.licenseKey,
+                    "licenseKey": Environment.Constants.licenseKey,
                     "inviteToken": mode.rawValue,
                     "emailAddress": emailAddress,
                 ],
@@ -458,7 +458,7 @@ extension VillageCoreAPI: TargetType {
         case let .initiateResetPassword(emailAddress):
             return Task.requestCompositeParameters(
                 bodyParameters: [
-                    "licenseKey": ClientConfiguration.current.licenseKey,
+                    "licenseKey": Environment.Constants.licenseKey,
                     "emailAddress": emailAddress,
                 ],
                 bodyEncoding: JSONEncoding.default,
@@ -487,7 +487,7 @@ extension VillageCoreAPI: TargetType {
             return Task.requestCompositeParameters(
                 bodyParameters: {
                     var params: [String: Any] = [
-                        "licenseKey": ClientConfiguration.current.licenseKey,
+                        "licenseKey": Environment.Constants.licenseKey,
                         "identity": identity,
                         "password": password,
                         "pushType": pushType,

@@ -88,7 +88,7 @@ struct ContentLibraryService {
             throw ContentLibraryServiceError.notContentItem
         }
         
-        guard let itemUrl = URL(string: "\(ClientConfiguration.current.appBaseURL)content/1.0/@\(item.id)") else {
+        guard let itemUrl = URL(string: "\(Environment.current.appBaseURL.absoluteString)content/1.0/@\(item.id)") else {
             throw ContentLibraryServiceError.invalidUrl
         }
         
