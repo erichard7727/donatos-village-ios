@@ -63,7 +63,6 @@ platform :ios do
   end
 
   lane :build_release do
-
     build(
       configuration: "AppStore",
       teamID: "", #TODO Generate profile and find Team ID for it
@@ -123,12 +122,11 @@ platform :ios do
     install_local_certs
     install_local_provisioning_profiles
 
-    # TODO
     # Set build number
-    # increment_build_number(
-    #   build_number: ENV['donatos.village.shared.build.counter'],
-    #   xcodeproj: "./Clients/DonatosVillage/DonatosVillage.xcodeproj"
-    # )
+    increment_build_number(
+      build_number: ENV['donatos.village.shared.build.counter'],
+      xcodeproj: "./Clients/DonatosVillage/DonatosVillage.xcodeproj"
+    )
 
     configuration = options[:configuration]
     teamID = options[:teamID]
@@ -231,32 +229,6 @@ platform :ios do
         buildlog_path: "./artifacts"
       )
   end
-
-  ############################# Upload to TestFlight ##############################
-
-  desc "Upload to Testflight"
-  lane :testflight_upload do
-    changelog = changelog_from_git_commits(between: ["@{yesterday}", "HEAD"])
-    if changelog == "" || changelog.nil?
-      changelog = "New build available!"
-    else
-      # We grep for DNV-XXXX and print just bug numbers
-      changelog = changelog.split("\n").flat_map { |s| s.scan(/DNV\-[0-9]{3,}/) }.uniq.join("\n")
-    end
-    p "Filtered Changelog:\n" + changelog
-    upload_to_testflight(ipa: "#{$root_dir}/artifacts/app-store/DonatosVillage.ipa",
-                         changelog: changelog,
-                         groups: ["Internal testers"])
-    # Disabling for now, as we're missing entitlements to push the repo
-    # add_git_tag(build_number: version_number + "." + get_build_number)
-    # push_git_tags(tag:last_git_tag)
-  end
-end
-
-def self.find_app_file(dir)
-   # Finds last modified .ipa in the destination directory
-   Dir[File.join(dir, '**', '*.app')].sort { |a, b| File.mtime(b) <=> File.mtime(a) }.first
-end
 
 ############################# Upload dSYM to Firebase ######################################
 
