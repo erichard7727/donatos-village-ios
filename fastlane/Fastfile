@@ -83,7 +83,7 @@ platform :ios do
     # import_certificate(
     #   keychain_name: keychain_name,
     #   keychain_password: keychain_name,
-    #   certificate_path: "./fastlane/cert/PE_Distribution_5_21_19.p12",
+    #   certificate_path: "./fastlane/cert/",
     #   certificate_password: ENV['DONATOSVILLAGE_DISTRIBUTION_P12_PASSWORD']
     # )
   end
@@ -196,7 +196,7 @@ platform :ios do
       workspace: "#{$root_dir}/Village.xcworkspace",
       scheme: 'DonatosVillage', #TODO Point to proper scheme
       configuration: 'Debug',
-      destination: 'platform=iOS Simulator,name=iPhone 6,OS=latest',
+      destination: 'platform=iOS Simulator,name=iPhone X,OS=latest',
       build_sdk: 'iphonesimulator',
       derived_data_path: derived_data_path,
       output_directory: output_directory
