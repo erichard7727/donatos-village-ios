@@ -230,6 +230,13 @@ platform :ios do
       )
   end
 
+end
+
+def self.find_app_file(dir)
+   # Finds last modified .ipa in the destination directory
+   Dir[File.join(dir, '**', '*.app')].sort { |a, b| File.mtime(b) <=> File.mtime(a) }.first
+end
+
 ############################# Upload dSYM to Firebase ######################################
 
 desc "Fetch and upload dSYM files to Firebase Crashlytics"
