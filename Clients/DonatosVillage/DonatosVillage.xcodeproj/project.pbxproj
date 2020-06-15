@@ -194,7 +194,6 @@
 				D4CC29C722075D070091BEFB /* Sources */,
 				D4CC29C822075D070091BEFB /* Frameworks */,
 				D4CC29C922075D070091BEFB /* Resources */,
-				D4C037F12269482B00BA7D9D /* Set Build Number */,
 				96B8A8B94E2B3EDFEBB337F1 /* [CP] Embed Pods Frameworks */,
 				D492EA2622A32DA4004DAA2F /* Embed Frameworks */,
 			);
@@ -333,24 +332,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		D4C037F12269482B00BA7D9D /* Set Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Set Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Source: https://blog.curtisherbert.com/automated-xcode-build-numbers-early-2019-edition/?utm_campaign=iOS%2BDev%2BWeekly&utm_medium=web&utm_source=iOS%2BDev%2BWeekly%2BIssue%2B397\ngit=`sh /etc/profile; which git`\nbundleVersion=`\"$git\" rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersion\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\necho \"Updated build number in ${TARGET_BUILD_DIR}/${INFOPLIST_PATH} to $bundleVersion\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
