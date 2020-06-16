@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="12l-6f-HTu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="12l-6f-HTu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -139,6 +139,7 @@
                         <outlet property="detailLabel" destination="ipL-9I-O5I" id="08E-PR-xGm"/>
                         <outlet property="identityField" destination="aTt-NO-cq0" id="of0-zs-Jmk"/>
                         <outlet property="invalidIdentityLabel" destination="9HB-fr-clW" id="uTd-bM-Hmt"/>
+                        <outlet property="logoImageView" destination="vKB-zS-vo0" id="ELh-ta-Mbm"/>
                         <outlet property="scrollView" destination="LXA-Xy-zbT" id="vIZ-3m-bhy"/>
                         <outlet property="submitButton" destination="vUE-sl-Qar" id="gsj-AL-bzS"/>
                         <outlet property="titleLabel" destination="KF2-eI-yC0" id="TQ8-mF-HcT"/>
@@ -169,7 +170,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
         <image name="client-logo" width="130" height="130"/>
         <image name="forward-arrow" width="28" height="28"/>
     </resources>

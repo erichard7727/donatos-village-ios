@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Environment: String, Codable {
+public enum Environment: String, Codable, CaseIterable {
     case staging
     case production
 }
@@ -25,7 +25,7 @@ extension Environment {
 
     private struct BaseURL {
         static let staging = URL(string: "https://donatos.villageappdev.com")!
-        static let production = URL(string: "https://www.donatospepptalk.com")!
+        static let production = URL(string: "https://donatospepptalk.com")!
         static let apiComponent = "api"
     }
     
@@ -64,6 +64,27 @@ extension Environment {
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: key)
         }
+    }
+    
+    // MARK: - Environment Picker
+    
+    public static func environmentPickerAlert() -> UIAlertController {
+        let current = Environment.current
+        let alert = UIAlertController(title: "Choose an environment", message: "Current environment: \(current.rawValue)", preferredStyle: .actionSheet)
+
+        var actions = Environment.allCases.map { env -> UIAlertAction in
+            let title: String = env.rawValue
+            return UIAlertAction(title: title, style: .default) { _ in
+                Environment.current = env
+            }
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        actions.append(cancelAction)
+
+        actions.forEach(alert.addAction(_:))
+
+        return alert
     }
 
     

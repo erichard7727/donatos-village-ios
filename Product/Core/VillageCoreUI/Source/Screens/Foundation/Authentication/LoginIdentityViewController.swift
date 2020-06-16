@@ -68,7 +68,7 @@ final class LoginIdentityViewController: UIViewController {
     }
     
     @IBOutlet private weak var submitButton: UIButton!
-    
+    @IBOutlet private weak var logoImageView: UIImageView!
 }
 
 // MARK: - UIViewController Overrides
@@ -81,6 +81,8 @@ extension LoginIdentityViewController {
         addBehaviors([
             LeftBarButtonBehavior(showing: .back)
         ])
+        
+        enableDebugMenu(in: clientLogoImageView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,9 +110,19 @@ extension LoginIdentityViewController {
             break
         }
     }
+    
+    // MARK: - Adding Tap Gesture Recognizer
+    
+    private func enableDebugMenu(in view: UIView) {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(presentEnvironmentPicker))
+        recognizer.numberOfTapsRequired = 10
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(recognizer)
+    }
+    
 }
 
-// MARK: Target/Action
+// MARK: - Target/Action
 
 private extension LoginIdentityViewController {
     
@@ -140,6 +152,11 @@ private extension LoginIdentityViewController {
         }.always { [weak self] in
             self?.setLoading(false)
         }
+    }
+    
+    @IBAction func presentEnvironmentPicker() {
+        let pickerAlert = Environment.environmentPickerAlert()
+        present(pickerAlert, animated: true, completion: nil)
     }
     
 }
