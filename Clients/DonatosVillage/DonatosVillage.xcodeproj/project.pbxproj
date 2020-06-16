@@ -16,6 +16,7 @@
 		D4CC29CF22075D070091BEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29CE22075D070091BEFB /* AppDelegate.swift */; };
 		D4CC29D622075D080091BEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D522075D080091BEFB /* Assets.xcassets */; };
 		D4CC29D922075D080091BEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CC29D722075D080091BEFB /* LaunchScreen.storyboard */; };
+		DA32BC272499608A005C0FF7 /* DonatosVillageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA32BC262499608A005C0FF7 /* DonatosVillageTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,13 @@
 			remoteGlobalIDString = D4CC29AB220756D60091BEFB;
 			remoteInfo = VillageCoreUI;
 		};
+		DA32BC292499608A005C0FF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4CC29C322075D070091BEFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4CC29CA22075D070091BEFB;
+			remoteInfo = DonatosVillage;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +95,9 @@
 		D4CC29D822075D080091BEFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4CC29DA22075D080091BEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4F8356C228234D100481FCC /* DonatosVillage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DonatosVillage.entitlements; sourceTree = "<group>"; };
+		DA32BC242499608A005C0FF7 /* DonatosVillageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DonatosVillageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA32BC262499608A005C0FF7 /* DonatosVillageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosVillageTests.swift; sourceTree = "<group>"; };
+		DA32BC282499608A005C0FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +109,13 @@
 				D492EA2222A32DA3004DAA2F /* VillageCoreUI.framework in Frameworks */,
 				D492EA3222A34FC4004DAA2F /* Pods_DonatosVillage.framework in Frameworks */,
 				A5D1CDC273BE7AF63E28FC6B /* Pods_DonatosVillage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA32BC212499608A005C0FF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				D4CC29CD22075D070091BEFB /* DonatosVillage */,
+				DA32BC252499608A005C0FF7 /* DonatosVillageTests */,
 				D4CC29CC22075D070091BEFB /* Products */,
 				D54C3D91F4C5144E14E60397 /* Frameworks */,
 				D1F148F12F5CDF3C90A9D091 /* Pods */,
@@ -155,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				D4CC29CB22075D070091BEFB /* DonatosVillage.app */,
+				DA32BC242499608A005C0FF7 /* DonatosVillageTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +203,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DA32BC252499608A005C0FF7 /* DonatosVillageTests */ = {
+			isa = PBXGroup;
+			children = (
+				DA32BC262499608A005C0FF7 /* DonatosVillageTests.swift */,
+				DA32BC282499608A005C0FF7 /* Info.plist */,
+			);
+			path = DonatosVillageTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,13 +237,31 @@
 			productReference = D4CC29CB22075D070091BEFB /* DonatosVillage.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DA32BC232499608A005C0FF7 /* DonatosVillageTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA32BC2B2499608A005C0FF7 /* Build configuration list for PBXNativeTarget "DonatosVillageTests" */;
+			buildPhases = (
+				DA32BC202499608A005C0FF7 /* Sources */,
+				DA32BC212499608A005C0FF7 /* Frameworks */,
+				DA32BC222499608A005C0FF7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA32BC2A2499608A005C0FF7 /* PBXTargetDependency */,
+			);
+			name = DonatosVillageTests;
+			productName = DonatosVillageTests;
+			productReference = DA32BC242499608A005C0FF7 /* DonatosVillageTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D4CC29C322075D070091BEFB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Donatos;
 				TargetAttributes = {
@@ -226,6 +273,10 @@
 								enabled = 1;
 							};
 						};
+					};
+					DA32BC232499608A005C0FF7 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = D4CC29CA22075D070091BEFB;
 					};
 				};
 			};
@@ -253,6 +304,7 @@
 			projectRoot = "";
 			targets = (
 				D4CC29CA22075D070091BEFB /* DonatosVillage */,
+				DA32BC232499608A005C0FF7 /* DonatosVillageTests */,
 			);
 		};
 /* End PBXProject section */
@@ -288,6 +340,13 @@
 			files = (
 				D4CC29D922075D080091BEFB /* LaunchScreen.storyboard in Resources */,
 				D4CC29D622075D080091BEFB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA32BC222499608A005C0FF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +403,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DA32BC202499608A005C0FF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA32BC272499608A005C0FF7 /* DonatosVillageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -356,6 +423,11 @@
 			isa = PBXTargetDependency;
 			name = VillageCoreUI;
 			targetProxy = D492EA2422A32DA3004DAA2F /* PBXContainerItemProxy */;
+		};
+		DA32BC2A2499608A005C0FF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4CC29CA22075D070091BEFB /* DonatosVillage */;
+			targetProxy = DA32BC292499608A005C0FF7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -536,6 +608,46 @@
 			};
 			name = Release;
 		};
+		DA32BC2C2499608A005C0FF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DonatosVillageTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.willowtree.DonatosVillageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DonatosVillage.app/DonatosVillage";
+			};
+			name = Debug;
+		};
+		DA32BC2D2499608A005C0FF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DonatosVillageTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.willowtree.DonatosVillageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DonatosVillage.app/DonatosVillage";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -553,6 +665,15 @@
 			buildConfigurations = (
 				D4CC29DE22075D080091BEFB /* Debug */,
 				D4CC29DF22075D080091BEFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA32BC2B2499608A005C0FF7 /* Build configuration list for PBXNativeTarget "DonatosVillageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA32BC2C2499608A005C0FF7 /* Debug */,
+				DA32BC2D2499608A005C0FF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

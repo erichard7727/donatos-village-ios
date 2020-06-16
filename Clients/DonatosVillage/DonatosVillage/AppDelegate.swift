@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let isUnitTesting = ProcessInfo.processInfo.environment["TESTING"] != nil
+        if isUnitTesting {
+            // Returning here to not launch application for unit tests
+            return true
+        }
+        
         MSAppCenter.start("fdf9955b-10a9-4468-bce7-6952461c143c", withServices:[
             MSAnalytics.self,
             MSCrashes.self
