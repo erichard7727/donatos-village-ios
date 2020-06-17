@@ -152,10 +152,10 @@
                                                     <rect key="frame" x="15" y="11" width="319" height="78"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lGC-UI-7aH">
-                                                            <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="84" height="47.5"/>
                                                             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="84" id="Na2-OZ-8oa"/>
+                                                                <constraint firstAttribute="width" secondItem="lGC-UI-7aH" secondAttribute="height" multiplier="16:9" id="fX6-Cm-FEA"/>
                                                                 <constraint firstAttribute="width" constant="84" id="olL-UG-jAX"/>
                                                             </constraints>
                                                         </imageView>
