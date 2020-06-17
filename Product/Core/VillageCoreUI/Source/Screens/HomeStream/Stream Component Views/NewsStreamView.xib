@@ -39,16 +39,11 @@
                             <rect key="frame" x="0.0" y="0.0" width="297" height="60"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DqI-Ri-juu">
-                                    <rect key="frame" x="0.0" y="2.5" width="55" height="55"/>
+                                    <rect key="frame" x="0.0" y="14.5" width="55" height="31"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="55" id="ELL-hl-yjI"/>
+                                        <constraint firstAttribute="width" secondItem="DqI-Ri-juu" secondAttribute="height" multiplier="16:9" id="2u7-cN-dqd"/>
                                         <constraint firstAttribute="width" constant="55" id="bLh-qX-f01"/>
                                     </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <real key="value" value="27.5"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="LR7-VA-rXq">
                                     <rect key="frame" x="67" y="0.0" width="230" height="60"/>
