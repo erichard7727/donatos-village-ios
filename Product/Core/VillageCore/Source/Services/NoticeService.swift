@@ -116,10 +116,14 @@ struct NoticeService {
     
     public static func detailRequest(notice: Notice) throws -> URLRequest {
 
-        guard var detailComponents = URLComponents(string: Environment.current.appBaseURL.appendingPathComponent("notice/1.0/\(notice.id)").absoluteString) else {
+        guard var detailComponents = URLComponents(string: Environment.current.appBaseURL.absoluteString) else {
             throw NoticeServiceError.invalidUrl
         }
 
+        detailComponents.path.append("/notice")
+        detailComponents.path.append("/1.0")
+        detailComponents.path.append("/\(notice.id)")
+        
         detailComponents.queryItems = [
             URLQueryItem(name: "timeZoneId", value: TimeZone.current.identifier),
         ]
