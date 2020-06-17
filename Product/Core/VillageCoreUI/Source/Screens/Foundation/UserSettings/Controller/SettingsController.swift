@@ -33,7 +33,7 @@ class SettingsController: UITableViewController {
     
     @IBOutlet weak var appVersionLabel: UILabel! {
         didSet {
-            appVersionLabel.text = "\(ClientConfiguration.current.applicationName) - \(Bundle.main.vlg_markingVersion) #(\(Bundle.main.vlg_buildVersion))"
+            appVersionLabel.text = "\(Constants.applicationName) - \(Bundle.main.vlg_markingVersion) #(\(Bundle.main.vlg_buildVersion))"
         }
     }
     

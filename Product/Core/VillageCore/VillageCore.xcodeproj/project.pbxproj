@@ -17,7 +17,6 @@
 		D4173893220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4173892220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift */; };
 		D42CF71C227BD34A003D8CF4 /* HomeStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CF71B227BD34A003D8CF4 /* HomeStream.swift */; };
 		D434D415227133E8002C5EA0 /* NSDate+TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D434D414227133E8002C5EA0 /* NSDate+TimeAgo.swift */; };
-		D43663D5222AD23D006354F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43663D4222AD23D006354F2 /* Assets.xcassets */; };
 		D4445545228397CC004BDE0F /* StreamSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4445544228397CC004BDE0F /* StreamSocket.swift */; };
 		D4464BAA2287B1A500618FDE /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4464BA92287B1A500618FDE /* Pagination.swift */; };
 		D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B5F082229875300941CCE /* Optional+Utils.swift */; };
@@ -53,7 +52,7 @@
 		D4B4E895223B3C47002DED70 /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4E894223B3C47002DED70 /* Achievements.swift */; };
 		D4CC2995220754850091BEFB /* VillageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC2994220754850091BEFB /* VillageProviderTests.swift */; };
 		D4CC2997220754850091BEFB /* VillageCore.h in Headers */ = {isa = PBXBuildFile; fileRef = D4CC2989220754850091BEFB /* VillageCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D4CC29BD220759410091BEFB /* ClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29BC220759410091BEFB /* ClientConfiguration.swift */; };
+		D4CC29BD220759410091BEFB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC29BC220759410091BEFB /* Environment.swift */; };
 		D4CEB2D92276521B00C656DA /* DirectMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CEB2D82276521B00C656DA /* DirectMessageService.swift */; };
 		D4E462F2226CF00F00E23363 /* Message+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E462F1226CF00F00E23363 /* Message+Services.swift */; };
 		D4F465992288852C00732317 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F465982288852C00732317 /* Debouncer.swift */; };
@@ -81,7 +80,6 @@
 		D4173892220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+CaseInsensitive.swift"; sourceTree = "<group>"; };
 		D42CF71B227BD34A003D8CF4 /* HomeStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStream.swift; sourceTree = "<group>"; };
 		D434D414227133E8002C5EA0 /* NSDate+TimeAgo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+TimeAgo.swift"; sourceTree = "<group>"; };
-		D43663D4222AD23D006354F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4445544228397CC004BDE0F /* StreamSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSocket.swift; sourceTree = "<group>"; };
 		D4464BA92287B1A500618FDE /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		D44B5F082229875300941CCE /* Optional+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Utils.swift"; sourceTree = "<group>"; };
@@ -121,7 +119,7 @@
 		D4CC298F220754850091BEFB /* VillageCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VillageCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4CC2994220754850091BEFB /* VillageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillageProviderTests.swift; sourceTree = "<group>"; };
 		D4CC2996220754850091BEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4CC29BC220759410091BEFB /* ClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfiguration.swift; sourceTree = "<group>"; };
+		D4CC29BC220759410091BEFB /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		D4CEB2D82276521B00C656DA /* DirectMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageService.swift; sourceTree = "<group>"; };
 		D4E462F1226CF00F00E23363 /* Message+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+Services.swift"; sourceTree = "<group>"; };
 		D4F465982288852C00732317 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
@@ -257,7 +255,7 @@
 		D4CC2988220754850091BEFB /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D4CC29BC220759410091BEFB /* ClientConfiguration.swift */,
+				D4CC29BC220759410091BEFB /* Environment.swift */,
 				D4615845220F1AD30072D224 /* Models */,
 				D4615850220F30160072D224 /* Services */,
 				D4173888220C4FC200F5B1F6 /* Extensions */,
@@ -282,7 +280,6 @@
 		D4CC29A0220755D40091BEFB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D43663D4222AD23D006354F2 /* Assets.xcassets */,
 				D4CC2989220754850091BEFB /* VillageCore.h */,
 				D4CC298A220754850091BEFB /* Info.plist */,
 			);
@@ -400,7 +397,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D43663D5222AD23D006354F2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,7 +469,7 @@
 				D48A6A1D225133A000411518 /* StreamsService.swift in Sources */,
 				D4445545228397CC004BDE0F /* StreamSocket.swift in Sources */,
 				D48A6A212251393F00411518 /* Unread+Services.swift in Sources */,
-				D4CC29BD220759410091BEFB /* ClientConfiguration.swift in Sources */,
+				D4CC29BD220759410091BEFB /* Environment.swift in Sources */,
 				D48A6A282252230B00411518 /* ContentLibrary+Services.swift in Sources */,
 				D4A6976C22622BA100ECC0A8 /* Kudo+Services.swift in Sources */,
 				D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */,

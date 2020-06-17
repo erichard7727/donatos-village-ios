@@ -34,7 +34,7 @@ public final class StreamSocket {
 
         var urlComponents = URLComponents()
         urlComponents.scheme = "wss"
-        urlComponents.host = URL(string: ClientConfiguration.current.appBaseURL)!.host
+        urlComponents.host = Environment.current.appBaseURL.host
         urlComponents.path = "/api/streams/1.0/messages/\(stream.id)"
         urlComponents.query = "diagId=\(User.current.diagnosticId)"
         
