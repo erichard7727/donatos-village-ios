@@ -88,10 +88,7 @@ struct ContentLibraryService {
             throw ContentLibraryServiceError.notContentItem
         }
         
-        guard let itemUrl = URL(string: "\(Environment.current.appBaseURL.absoluteString)content/1.0/@\(item.id)") else {
-            throw ContentLibraryServiceError.invalidUrl
-        }
-        
+        let itemUrl = Environment.current.appBaseURL.appendingPathComponent("content/1.0/@\(item.id))")
         var request = URLRequest(url: itemUrl)
         let cookieHeaders = HTTPCookieStorage.shared.cookies.map({ HTTPCookie.requestHeaderFields(with: $0) }) ?? [:]
         let combinedHeaders = (request.allHTTPHeaderFields ?? [:])?.merging(cookieHeaders, uniquingKeysWith: {(_, new) in return new })
