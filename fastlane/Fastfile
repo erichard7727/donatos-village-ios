@@ -182,7 +182,7 @@ platform :ios do
     api_token: ENV["APPCENTER_API_KEY"],
     owner_name: ENV["APPCENTER_ORG_NAME"],
     app_name: ENV["APPCENTER_APP_NAME"],
-    file: "./artifacts/enterprise/" + "/DonatosVillage.ipa",
+    file: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"],
     notify_testers: false
    )
    end
