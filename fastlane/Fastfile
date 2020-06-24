@@ -136,8 +136,10 @@ platform :ios do
 
     # Set variables used for build
 
-    if options[:exportMethod] == "development"
+    if options[:exportMethod] == "adhoc"
       profile_path = "./fastlane/sigh/DonatosVillage_Internal.mobileprovision"
+    elsif options[:exportMethod] == "development"
+      profile_path = "./fastlane/sigh/Development_comdonatosiosvillage.mobileprovision"
     elsif options[:exportMethod] == "app-store"
       profile_path = "./fastlane/sigh/DonatosVillage_App_Store_Distribution.mobileprovision"
     end
