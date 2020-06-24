@@ -65,7 +65,7 @@ platform :ios do
   lane :build_release do
     build(
       configuration: "AppStore",
-      teamID: "", #TODO Generate profile and find Team ID for it
+      teamID: "PH47MC4D6A",
       exportMethod: "app-store",
       scheme: "DonatosVillage (Release)"
     )
@@ -79,13 +79,12 @@ platform :ios do
       certificate_path: "./fastlane/cert/DV_Development.p12",
       certificate_password: ENV['DONATOSVILLAGE_DEVELOPMENT_P12_PASSWORD']
     )
-    # TODO
-    # import_certificate(
-    #   keychain_name: keychain_name,
-    #   keychain_password: keychain_name,
-    #   certificate_path: "./fastlane/cert/",
-    #   certificate_password: ENV['DONATOSVILLAGE_DISTRIBUTION_P12_PASSWORD']
-    # )
+    import_certificate(
+      keychain_name: keychain_name,
+      keychain_password: keychain_name,
+      certificate_path: "./fastlane/cert/DV_dist.p12",
+      certificate_password: ENV['DONATOSVILLAGE_DISTRIBUTION_P12_PASSWORD']
+    )
   end
 
   ############################# Installing Local Provisioning Profiles ##############################
@@ -140,7 +139,7 @@ platform :ios do
     if options[:exportMethod] == "development"
       profile_path = "./fastlane/sigh/DonatosVillage_Internal.mobileprovision"
     elsif options[:exportMethod] == "app-store"
-      profile_path = "./fastlane/sigh/DonatosVillage_Main_Distribution.mobileprovision" #TODO Generate this profile
+      profile_path = "./fastlane/sigh/DonatosVillage_App_Store_Distribution.mobileprovision"
     end
 
     disable_automatic_code_signing(path: "./Clients/DonatosVillage/DonatosVillage.xcodeproj")
@@ -194,7 +193,7 @@ platform :ios do
   derived_data_path = "#{$root_dir}/tmp/DerivedData"
   generate_simulator_build(
       workspace: "#{$root_dir}/Village.xcworkspace",
-      scheme: 'DonatosVillage (Development)', #TODO Point to proper scheme
+      scheme: 'DonatosVillage (Development)',
       configuration: 'Debug',
       destination: 'platform=iOS Simulator,name=iPhone X,OS=latest',
       build_sdk: 'iphonesimulator',
@@ -209,7 +208,7 @@ platform :ios do
   desc "Run tests"
   lane :tests do
     run_tests(
-        scheme: "DonatosVillage (Development)", #TODO Point to proper scheme
+        scheme: "DonatosVillage (Development)",
         xcargs: "-UseModernBuildSystem=NO"
       )
   end
@@ -220,7 +219,7 @@ platform :ios do
   desc "Run UI tests"
   lane :ui_tests do
     run_tests(
-        scheme: "DonatosVillage (Development)", #TODO Point to proper scheme
+        scheme: "DonatosVillage (Development)",
         xcargs: "-UseModernBuildSystem=NO",
         result_bundle: true,
         output_files: "UITests.html,UITests.junit",
