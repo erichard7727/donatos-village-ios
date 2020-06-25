@@ -305,7 +305,9 @@ private extension VillageContainer {
                 return loginIdentityVC
             }()
             DispatchQueue.main.async {
-                self.present(UINavigationController(rootViewController: loginIdentityVC), animated: false, completion: nil)
+                let navigationController = UINavigationController(rootViewController: loginIdentityVC)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: false, completion: nil)
             }
         } else {
             firstly {
