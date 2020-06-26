@@ -19,6 +19,8 @@
             <connections>
                 <outlet property="backgroundImageView" destination="GFx-d8-lOP" id="6OB-OR-e4I"/>
                 <outlet property="dateLabel" destination="VW2-M6-kfj" id="Rrl-he-CQN"/>
+                <outlet property="imageContainerView" destination="aMi-Bp-mSj" id="L01-VN-UQB"/>
+                <outlet property="imageContainerViewHeightConstraint" destination="Aah-JC-LF1" id="u7M-Qz-4Sb"/>
                 <outlet property="maybeButton" destination="QBq-Ux-GQP" id="xQE-pw-zlf"/>
                 <outlet property="noButton" destination="4UK-ie-Dkq" id="2dk-6j-CJh"/>
                 <outlet property="rsvpStatusLabel" destination="gje-Yk-Q9T" id="zJR-AG-REF"/>
@@ -38,10 +40,10 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMi-Bp-mSj">
                             <rect key="frame" x="0.0" y="0.0" width="345" height="345"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GFx-d8-lOP">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GFx-d8-lOP">
                                     <rect key="frame" x="0.0" y="0.0" width="345" height="345"/>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event-image-gradient" translatesAutoresizingMaskIntoConstraints="NO" id="QbB-Cg-pcb">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event-image-gradient" translatesAutoresizingMaskIntoConstraints="NO" id="QbB-Cg-pcb">
                                     <rect key="frame" x="0.0" y="215" width="345" height="130"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="130" id="xA5-WN-ZgV"/>
@@ -56,7 +58,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="aMi-Bp-mSj" secondAttribute="height" multiplier="1:1" id="26d-jh-KZE"/>
+                                <constraint firstAttribute="height" constant="345" id="Aah-JC-LF1"/>
                                 <constraint firstAttribute="trailing" secondItem="Ahp-ER-gKH" secondAttribute="trailing" constant="25" id="JE9-Xw-90n"/>
                                 <constraint firstAttribute="bottom" secondItem="Ahp-ER-gKH" secondAttribute="bottom" constant="30" id="LwF-oc-Sc5"/>
                                 <constraint firstAttribute="bottom" secondItem="GFx-d8-lOP" secondAttribute="bottom" id="Mwm-5K-yyn"/>
@@ -184,19 +186,17 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="41" id="GDh-Ba-zCM"/>
                                 <constraint firstItem="Lhi-tp-jOw" firstAttribute="top" secondItem="7lw-nJ-B3A" secondAttribute="top" id="YgL-lu-tZ0"/>
                                 <constraint firstItem="Lhi-tp-jOw" firstAttribute="leading" secondItem="7lw-nJ-B3A" secondAttribute="leading" constant="25" id="hfJ-Yu-bFW"/>
                             </constraints>
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="370" id="rYW-Ln-85I"/>
+                        <constraint firstItem="aMi-Bp-mSj" firstAttribute="top" secondItem="RSM-Po-nKA" secondAttribute="top" id="4WE-4x-axP"/>
+                        <constraint firstItem="aMi-Bp-mSj" firstAttribute="leading" secondItem="RSM-Po-nKA" secondAttribute="leading" id="bDX-Hf-Dz1"/>
+                        <constraint firstAttribute="trailing" secondItem="aMi-Bp-mSj" secondAttribute="trailing" id="vGp-vl-zjN"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="rYW-Ln-85I"/>
-                        </mask>
-                    </variation>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

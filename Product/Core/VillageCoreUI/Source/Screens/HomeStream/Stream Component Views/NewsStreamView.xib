@@ -39,9 +39,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="297" height="60"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DqI-Ri-juu">
-                                    <rect key="frame" x="0.0" y="14.5" width="55" height="31"/>
+                                    <rect key="frame" x="0.0" y="2.5" width="55" height="55"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="DqI-Ri-juu" secondAttribute="height" multiplier="16:9" id="2u7-cN-dqd"/>
+                                        <constraint firstAttribute="width" secondItem="DqI-Ri-juu" secondAttribute="height" multiplier="1:1" id="2u7-cN-dqd"/>
                                         <constraint firstAttribute="width" constant="55" id="bLh-qX-f01"/>
                                     </constraints>
                                 </imageView>
