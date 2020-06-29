@@ -76,9 +76,9 @@ public class VillageService {
     
     private lazy var provider: VillageProvider<VillageCoreAPI> = {
         
-        let getTokens: VillageProvider.GetTokenClosure = { self.user.xsrfToken }
+        let getTokens: VillageProvider<VillageCoreAPI>.GetTokenClosure = { self.user.xsrfToken }
         
-        let setTokens: VillageProvider.SetTokenClosure = { xsrfToken in
+        let setTokens: VillageProvider<VillageCoreAPI>.SetTokenClosure = { xsrfToken in
             self.user.xsrfToken = xsrfToken
         }
         
