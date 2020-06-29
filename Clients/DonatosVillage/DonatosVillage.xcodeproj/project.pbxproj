@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		90150C9524AA7A8800DA5739 /* DonatosVillageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */; };
+		90150C9D24AA7D6300DA5739 /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */; };
 		A5D1CDC273BE7AF63E28FC6B /* Pods_DonatosVillage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0440720B0149DAE2B3BB1462 /* Pods_DonatosVillage.framework */; };
 		D492EA1E22A32DA3004DAA2F /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492EA1522A32D89004DAA2F /* VillageCore.framework */; };
 		D492EA1F22A32DA3004DAA2F /* VillageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D492EA1522A32D89004DAA2F /* VillageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -96,6 +97,7 @@
 		90150C9224AA7A8800DA5739 /* DonatosVillageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DonatosVillageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosVillageUITests.swift; sourceTree = "<group>"; };
 		90150C9624AA7A8800DA5739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArguments.swift; sourceTree = "<group>"; };
 		D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		D4879A3E224196B500CBA8FB /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				D4CC29D722075D080091BEFB /* LaunchScreen.storyboard */,
 				D4CC29DA22075D080091BEFB /* Info.plist */,
 				D4879A3C2241967300CBA8FB /* Vendor */,
+				90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */,
 			);
 			path = DonatosVillage;
 			sourceTree = "<group>";
