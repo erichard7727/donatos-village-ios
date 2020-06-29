@@ -414,32 +414,7 @@ extension GroupStreamDataSource {
         }.then { [weak self] author in
             guard let `self` = self else { return }
             
-            if let imageURL = info[UIImagePickerController.InfoKey.phAsset] as? URL,
-                let photo = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil).firstObject {
-                PHImageManager.default().requestImageData(for: photo, options: nil, resultHandler: {
-                    data, name, orientation, info in
-                    
-                    guard let imageData = data else {
-                        let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
-                        self.viewController.present(alert, animated: true, completion: nil)
-                        return
-                    }
-                    
-                    var mimeType: String {
-                        if let name = name {
-                            if name.contains("gif") {
-                                return "image/gif"
-                            } else {
-                                return "image/png"
-                            }
-                        } else {
-                            return "image/png"
-                        }
-                    }
-                    
-                    self.send(attachment: (imageData, mimeType))
-                })
-            } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 guard let imageData = image.vlg_orientedUp().pngData() else {
                     let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
                     self.viewController.present(alert, animated: true, completion: nil)
