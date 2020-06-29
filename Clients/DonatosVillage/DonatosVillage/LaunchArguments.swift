@@ -10,9 +10,9 @@ import Foundation
 
 public class LaunchArguments {
 	public enum Key: String {
-		case IsUITesting = "PeppTalkIsUITesting"
+		case isUITesting = "PeppTalkIsUITesting"
 	}
 	
-	public lazy var isUITesting: Bool = { UserDefaults().bool(forKey: Key.IsUITesting.rawValue ) }()
+	public lazy var isUITesting: Bool = { UserDefaults().bool(forKey: Key.isUITesting.rawValue ) }()
 	
 }
