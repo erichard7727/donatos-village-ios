@@ -14,6 +14,22 @@ class DonatosVillageUITests: XCTestCase {
 			.login(with: .Admin)
 			.logout()
     }
+	
+	func testOpeningMySchedule() throws {
+		Application()
+			.login(with: .Admin, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+			.then { app in app.scrollViews.otherElements.buttons["My Schedule"].tap() }
+	}
+	
+	func testViewingAllNoticesFromHomescreen() throws {
+		Application()
+			.login(with: .Admin, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+			.then { app in
+				app.scrollViews.containing(.other, identifier:"Vertical scroll bar, 5 pages").children(matching: .other).element(boundBy: 0).children(matching: .other).element(boundBy: 2)/*@START_MENU_TOKEN@*/.staticTexts["View All"]/*[[".buttons[\"View All\"].staticTexts[\"View All\"]",".staticTexts[\"View All\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+				app.tables/*@START_MENU_TOKEN@*/.staticTexts["New Holiday Pizzas"]/*[[".cells.staticTexts[\"New Holiday Pizzas\"]",".staticTexts[\"New Holiday Pizzas\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+				XCTAssertTrue(app.webViews.webViews.textViews/*@START_MENU_TOKEN@*/.staticTexts["Checking to see that the ™, the © and the ® all work in a notice."]/*[[".otherElements[\"Content Library Page Preview\"]",".otherElements[\"main\"].staticTexts[\"Checking to see that the ™, the © and the ® all work in a notice.\"]",".staticTexts[\"Checking to see that the ™, the © and the ® all work in a notice.\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.waitForExistence(timeout: 2.0))
+		}
+	}
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
