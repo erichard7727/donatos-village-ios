@@ -7,6 +7,12 @@
 //
 import XCTest
 
+public enum LoginBehavior {
+	case logoutIfAlreadyLoggedIn
+	case ignoreAndContinueIfAlreadyLoggedIn
+	case throwErrorIfAlreadyLoggedIn
+}
+
 public final class Application {
 	private let app: XCUIApplication = {
 		let tmp = XCUIApplication()
@@ -18,20 +24,26 @@ public final class Application {
 		app.launch()
 	}
 	
-	public func login(with user: User) -> Application {
+	public func login(with user: User, behavior: LoginBehavior = .ignoreAndContinueIfAlreadyLoggedIn) -> Application {
 		let elementsQuery = app.scrollViews.otherElements
-		elementsQuery/*@START_MENU_TOKEN@*/.textFields["enter_email_field"]/*[[".textFields[\"Enter your Email\"]",".textFields[\"enter_email_field\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-		elementsQuery/*@START_MENU_TOKEN@*/.textFields["enter_email_field"]/*[[".textFields[\"Enter your Email\"]",".textFields[\"enter_email_field\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.typeText("\(user.email)\n")
-
-		let passwordField = elementsQuery.secureTextFields["login_password_field"]
-		XCTAssertTrue(passwordField.waitForExistence(timeout: 1.0))
-		passwordField.tap()
+		let emailField = elementsQuery/*@START_MENU_TOKEN@*/.textFields["enter_email_field"]/*[[".textFields[\"Enter your Email\"]",".textFields[\"enter_email_field\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
 		
-		// Workaround for secure text field issue reporting that it doesn't have focus
-		UIPasteboard.general.string = user.password
-		app.menuItems["Paste"].tap()
-		sleep(1)
-		app.buttons["login_password_submit_button"].tap()
+		var shouldDoLogin: Bool = emailField.exists
+		if !emailField.exists {
+			switch behavior {
+			case .logoutIfAlreadyLoggedIn:
+				logout()
+				shouldDoLogin = true
+			case .ignoreAndContinueIfAlreadyLoggedIn:
+				shouldDoLogin = false
+			case .throwErrorIfAlreadyLoggedIn:
+				shouldDoLogin = true
+			}
+		}
+		
+		if shouldDoLogin {
+			doLogin(emailField, user, elementsQuery)
+		}
 
 		return self
 	}
@@ -50,5 +62,22 @@ public final class Application {
 	public func then(block:(XCUIApplication) -> Void ) -> Application {
 		block(app)
 		return self
+	}
+	
+	// MARK: - Private
+	
+	private func doLogin(_ emailField: XCUIElement, _ user: User, _ elementsQuery: XCUIElementQuery) {
+		emailField.tap()
+		emailField.typeText("\(user.email)\n")
+		
+		let passwordField = elementsQuery.secureTextFields["login_password_field"]
+		XCTAssertTrue(passwordField.waitForExistence(timeout: 1.0))
+		passwordField.tap()
+		
+		// Workaround for secure text field issue reporting that it doesn't have focus
+		UIPasteboard.general.string = user.password
+		app.menuItems["Paste"].tap()
+		sleep(1)
+		app.buttons["login_password_submit_button"].tap()
 	}
 }
