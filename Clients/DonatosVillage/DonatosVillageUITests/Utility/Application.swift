@@ -50,11 +50,17 @@ public final class Application {
 	
 	@discardableResult
 	public func logout() -> Application {
+		openMenuBar()
+		app/*@START_MENU_TOKEN@*/.buttons["settings_gear_button"]/*[[".buttons[\"settings\"]",".buttons[\"settings_gear_button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+		app.buttons["logout_button"].tap()
+		return self
+	}
+	
+	@discardableResult
+	public func openMenuBar() -> Application {
 		let navBar = app.navigationBars["Home Stream"]
 		XCTAssertTrue(navBar.waitForExistence(timeout: 10.0))
 		navBar.buttons["menu_button"].tap()
-		app/*@START_MENU_TOKEN@*/.buttons["settings_gear_button"]/*[[".buttons[\"settings\"]",".buttons[\"settings_gear_button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-		app.buttons["logout_button"].tap()
 		return self
 	}
 	
