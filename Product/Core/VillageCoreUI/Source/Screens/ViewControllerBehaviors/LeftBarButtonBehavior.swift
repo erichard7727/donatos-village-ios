@@ -72,6 +72,7 @@ class LeftBarButtonBehavior: ViewControllerLifecycleBehavior {
         
         if buttonStyle.showsMenuButton && hasSideMenu && isRootViewController {
             let barButton = UIBarButtonItem(badge: badgeText, image: UIImage.named("menu-icon")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), target: viewController, action: #selector(viewController.vlg_showMenu(_:)))
+			barButton.accessibilityLabel = "menu_button"
             viewController.navigationItem.leftBarButtonItem = barButton
             self.barButtonItem = barButton
         }

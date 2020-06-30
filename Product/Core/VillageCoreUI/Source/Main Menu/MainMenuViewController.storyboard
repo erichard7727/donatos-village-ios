@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aKE-cR-QVD">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aKE-cR-QVD">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -73,6 +71,7 @@
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="home_menu_item"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="zI7-MZ-9TP" firstAttribute="leading" secondItem="xz0-AL-ce4" secondAttribute="leadingMargin" constant="8" id="1kK-Zz-XIO"/>
@@ -133,6 +132,7 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
+                                                <accessibility key="accessibilityConfiguration" identifier="notices_menu_item"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottomMargin" secondItem="YUh-4C-8ir" secondAttribute="bottom" constant="8" id="Vvn-NJ-Fpn"/>
@@ -194,6 +194,7 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
+                                                <accessibility key="accessibilityConfiguration" identifier="events_menu_item"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="tk7-WO-YAK" firstAttribute="leading" secondItem="Qlf-6K-15a" secondAttribute="leadingMargin" constant="8" id="0Ch-d3-h6r"/>
@@ -1163,13 +1164,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YfJ-fT-8JI">
-                                <rect key="frame" x="0.0" y="0.0" width="318.66666666666669" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="318.66666666666669" height="134"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mRJ-zq-6fF">
-                                        <rect key="frame" x="8" y="52" width="302.66666666666669" height="40"/>
+                                        <rect key="frame" x="8" y="52" width="302.66666666666669" height="74"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bfH-aB-466">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                <rect key="frame" x="0.0" y="17" width="40" height="40"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bqg-IJ-Xam">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -1192,16 +1193,16 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="r1G-Um-BfB">
-                                                <rect key="frame" x="49.999999999999986" y="2.6666666666666643" width="226.66666666666663" height="35"/>
+                                                <rect key="frame" x="49.999999999999986" y="20.333333333333332" width="214.66666666666663" height="33.333333333333343"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-qR-6j1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="226.66666666666666" height="17.666666666666668"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="214.66666666666666" height="17"/>
                                                         <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="@username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="MAl-tz-HNL">
-                                                        <rect key="frame" x="0.0" y="19.666666666666664" width="226.66666666666666" height="15.333333333333336"/>
+                                                        <rect key="frame" x="0.0" y="19" width="214.66666666666666" height="14.333333333333336"/>
                                                         <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="13"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1209,7 +1210,8 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaN-xw-Nqd">
-                                                <rect key="frame" x="286.66666666666669" y="9" width="16" height="22"/>
+                                                <rect key="frame" x="274.66666666666669" y="23" width="28" height="28"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="settings_gear_button"/>
                                                 <state key="normal" image="settings"/>
                                             </button>
                                         </subviews>
@@ -1260,7 +1262,7 @@
     </scenes>
     <resources>
         <image name="add-icon" width="24" height="24"/>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
         <image name="menu-collapse" width="28" height="28"/>
         <image name="menu-content-library" width="29" height="24"/>
         <image name="menu-direct-messages" width="28" height="28"/>
