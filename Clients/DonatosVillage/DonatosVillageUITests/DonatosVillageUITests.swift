@@ -8,10 +8,11 @@ class DonatosVillageUITests: XCTestCase {
 
     override func tearDownWithError() throws {
     }
-
-    func testExample() throws {
-        let app = XCUIApplication()
-		app.launch()
+	
+	func testLoginAndLogout() throws {
+		Application()
+			.login(with: .Admin)
+			.logout()
     }
 
     func testLaunchPerformance() throws {
