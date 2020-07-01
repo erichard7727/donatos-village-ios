@@ -1,3 +1,4 @@
+
 //
 //  PeopleViewController.swift
 //  VillageCore
@@ -16,7 +17,7 @@ protocol PeopleViewControllerDelegate {
     func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: PeopleViewController)
 }
 
-final class PeopleViewController: UIViewController {
+final class PeopleViewController: UIViewController, NavBarDisplayable {
 
     // MARK: - Public Properties
 
@@ -104,7 +105,7 @@ extension PeopleViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        setNavbarAppearance(for: navigationItem)
         if people.needsFetching {
             loadingPeopleContainer.isHidden = false
             people.fetchValues(at: [])

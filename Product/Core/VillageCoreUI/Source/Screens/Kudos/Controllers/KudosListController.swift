@@ -22,7 +22,7 @@ protocol KudosListViewControllerDelegate: class {
     func kudosListController(_ kudosListController: KudosListController, shouldShowProfileFor person: Person) -> Bool
 }
 
-class KudosListController: UIViewController, StatefulUserInterface {
+class KudosListController: UIViewController, StatefulUserInterface, NavBarDisplayable {
 
     enum List {
         case allStream
@@ -132,7 +132,7 @@ class KudosListController: UIViewController, StatefulUserInterface {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         switch self.list! {
         case .allStream:
             self.title = "All " + Constants.Settings.kudosPluralShort
