@@ -27,7 +27,7 @@ class GroupTableViewCellConfiguartor {
     
 }
 
-final class OtherGroupsListViewController: UIViewController {
+final class OtherGroupsListViewController: UIViewController, NavBarDisplayable {
     
     // MARK: - Public Properties
     
@@ -134,7 +134,7 @@ extension OtherGroupsListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         if groups.needsFetching {
             loadingGroupsContainer.isHidden = false
             groups.fetchValues(at: [])
