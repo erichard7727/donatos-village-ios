@@ -575,7 +575,7 @@
 					"@executable_path/Frameworks",
 					"$(CONFIGURATION_BUILD_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.donatos.ios.village;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donatos.ios.village.abm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Development com.donatos.ios.village";
 				SWIFT_VERSION = 5.0;
@@ -600,9 +600,9 @@
 					"@executable_path/Frameworks",
 					"$(CONFIGURATION_BUILD_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.donatos.ios.village;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donatos.ios.village.abm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Donatos Village - App Store Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "Donatos Village ABM Distribution";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
