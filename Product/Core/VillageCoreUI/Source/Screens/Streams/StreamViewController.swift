@@ -12,7 +12,7 @@ import SafariServices
 import VillageCore
 import Promises
 
-class StreamViewController: MessageViewController {
+class StreamViewController: MessageViewController, NavBarDisplayable {
     
     // MARK: - Public Properties
     
@@ -90,7 +90,7 @@ class StreamViewController: MessageViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        setNavbarAppearance(for: navigationItem)
         // Update title.
         if dataSource.stream.id.lowercased().starts(with: "dm") {
             let currentUser = User.current
