@@ -64,7 +64,7 @@ platform :ios do
 
   lane :build_release do
     build(
-      configuration: "AppStore",
+      configuration: "Release",
       teamID: "PH47MC4D6A",
       exportMethod: "app-store",
       scheme: "DonatosVillage (Release)"

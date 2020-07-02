@@ -197,7 +197,7 @@ class EventTableViewCellConfiguartor {
 
 }
 
-final class NoticeListViewController: UIViewController {
+final class NoticeListViewController: UIViewController, NavBarDisplayable {
     
     // MARK: - Public Properties
     
@@ -370,7 +370,6 @@ extension NoticeListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addBehaviors([
             LeftBarButtonBehavior(showing: .menuOrBack),
         ])
@@ -386,7 +385,7 @@ extension NoticeListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         if notices.needsFetching {
             loadingNoticesContainer.isHidden = false
             notices.fetchValues(at: [])
@@ -397,7 +396,6 @@ extension NoticeListViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }

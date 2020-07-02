@@ -32,7 +32,9 @@ class EventStreamView: NibView {
     @IBOutlet private weak var maybeButton: RSVPButton!
     @IBOutlet private weak var noButton: RSVPButton!
     @IBOutlet private weak var seeDetailsButton: UIButton!
-
+    @IBOutlet weak var imageContainerView: UIView!
+    @IBOutlet weak var imageContainerViewHeightConstraint: NSLayoutConstraint!
+    
     override func setupViews() {
         self.applyCardStyle()
     }
@@ -49,7 +51,11 @@ class EventStreamView: NibView {
         
         if let imageUrl = event?.mediaAttachments.compactMap({ $0.url }).first {
             Alamofire.DataRequest.addAcceptableImageContentTypes(["binary/octet-stream"])
-            backgroundImageView.af_setImage(withURL: imageUrl)
+            backgroundImageView.af_setImage(withURL: imageUrl) { response in
+                guard let image = response.value else { return }
+                let aspectRatio = image.size.width / image.size.height
+                self.imageContainerViewHeightConstraint.constant = self.imageContainerView.frame.width / aspectRatio
+            }
         }
 
         if (event?.eventRsvpStatus ?? .none) == Notice.RSVPResponse.none && event?.acknowledgeRequired == true {
