@@ -139,7 +139,7 @@ platform :ios do
     if options[:exportMethod] == "adhoc"
       profile_path = "./fastlane/sigh/DonatosVillage_Internal.mobileprovision"
     elsif options[:exportMethod] == "development"
-      profile_path = "./fastlane/sigh/Development_comdonatosiosvillage.mobileprovision"
+      profile_path = "./fastlane/sigh/Donatos_Village_ABM_Development.mobileprovision"
     elsif options[:exportMethod] == "app-store"
       profile_path = "./fastlane/sigh/DonatosVillage_App_Store_Distribution.mobileprovision"
     end
