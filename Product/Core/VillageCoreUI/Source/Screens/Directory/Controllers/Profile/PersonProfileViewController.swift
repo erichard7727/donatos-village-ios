@@ -10,7 +10,7 @@ import UIKit
 import VillageCore
 
 /// Person profile controller.
-final class PersonProfileViewController: UIViewController {
+final class PersonProfileViewController: UIViewController, NavBarDisplayable {
 
     var person: Person?
     
@@ -187,7 +187,7 @@ final class PersonProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         let originalHeight = bottomContainerView.frame.height
         var navBarHeight: CGFloat = 0
         if let navController = navigationController {
