@@ -15,6 +15,8 @@ import AppCenterCrashes
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+	
+	public let launchArguments = LaunchArguments()
 
     var window: UIWindow?
     var villageContainer = VillageContainer.make()
@@ -31,10 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         
-        MSAppCenter.start("fdf9955b-10a9-4468-bce7-6952461c143c", withServices:[
-            MSAnalytics.self,
-            MSCrashes.self
-        ])
+		if !launchArguments.isUITesting {
+			MSAppCenter.start("fdf9955b-10a9-4468-bce7-6952461c143c", withServices:[
+				MSAnalytics.self,
+				MSCrashes.self
+			])
+		}
 
         return villageContainer.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
