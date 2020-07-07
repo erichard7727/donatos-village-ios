@@ -13,7 +13,7 @@ protocol SelectPeopleViewControllerDelegate: class {
     func didSelectPeople(_ people: People)
 }
 
-class SelectPeopleViewController: UIViewController {
+class SelectPeopleViewController: UIViewController, NavBarDisplayable {
     
     @IBOutlet weak var completionBarButtonItem: UIBarButtonItem?
     @IBOutlet weak var searchTextView: UITextView!
@@ -103,6 +103,11 @@ class SelectPeopleViewController: UIViewController {
         searchViewController.stopAnimating = nil
         searchViewController.displayEmptyLabel = nil
         self.groupMembers = []
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavbarAppearance(for: navigationItem)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
