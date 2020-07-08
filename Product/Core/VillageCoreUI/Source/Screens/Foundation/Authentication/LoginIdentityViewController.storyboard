@@ -84,6 +84,10 @@
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUE-sl-Qar">
                                                                 <rect key="frame" x="307" y="0.0" width="28" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="vUE-sl-Qar" secondAttribute="height" multiplier="1:1" id="PsR-1l-pM4"/>
+                                                                    <constraint firstAttribute="width" constant="28" id="boG-Z5-Flg"/>
+                                                                </constraints>
                                                                 <state key="normal" image="forward-arrow"/>
                                                                 <connections>
                                                                     <action selector="onSubmit:" destination="12l-6f-HTu" eventType="touchUpInside" id="ttr-7n-NkR"/>
