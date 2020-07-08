@@ -282,6 +282,9 @@ extension SelectPeopleViewController: UITextViewDelegate {
                 backspacePressedInTextView(textView)
             }
         }
+        if text == "\n" {
+            return false
+        }
         return true
     }
     
