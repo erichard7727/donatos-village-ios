@@ -9,7 +9,7 @@
 import UIKit
 import VillageCore
 
-class MyKudosViewController: UIViewController {
+class MyKudosViewController: UIViewController, NavBarDisplayable {
     
     // MARK: - Pulic (Internal) Vars
     
@@ -71,6 +71,7 @@ class MyKudosViewController: UIViewController {
         self.title = "My " + Constants.Settings.kudosPluralShort
         
         loadPages()
+        setNavbarAppearance(for: navigationItem)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
