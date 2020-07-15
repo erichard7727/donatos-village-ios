@@ -16,7 +16,7 @@ protocol GroupSettingsControllerDelegate {
 }
 
 /// Group settings editor controller.
-final class GroupSettingsController: UIViewController {
+final class GroupSettingsController: UIViewController, NavBarDisplayable {
     // MARK: Properties
     
     var group: VillageCore.Stream?
@@ -62,7 +62,7 @@ final class GroupSettingsController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         guard let group = self.group else {
             fatalError("group not set")
         }
