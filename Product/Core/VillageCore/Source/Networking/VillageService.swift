@@ -22,7 +22,7 @@ public enum ServiceError: Error {
     }
     
     public static var genericFailureMessage: String {
-        return NSLocalizedString("A network connection error has occurred. Please ensure you have a stable internet connection and try again.", comment: "")
+        return NSLocalizedString("A network connection error has occurred.", comment: "")
     }
 }
 
