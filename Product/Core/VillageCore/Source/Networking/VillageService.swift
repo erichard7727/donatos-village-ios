@@ -15,9 +15,14 @@ public enum ServiceError: Error {
     
     public var userDisplayableMessage: String {
         switch self {
-        case .connectionFailed:
-            return "A network connection error has occurred. Please ensure you have a stable internet connection and try again."
+        case .connectionFailed(let error):
+            return error.localizedDescription.isEmpty ?
+                ServiceError.genericFailureMessage : error.localizedDescription
         }
+    }
+    
+    public static var genericFailureMessage: String {
+        return NSLocalizedString("A network connection error has occurred. Please ensure you have a stable internet connection and try again.", comment: "")
     }
 }
 

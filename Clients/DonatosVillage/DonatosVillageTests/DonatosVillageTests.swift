@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import VillageCore
 
 class DonatosVillageTests: XCTestCase {
 
@@ -20,6 +21,23 @@ class DonatosVillageTests: XCTestCase {
 
     func testExample() {
         XCTAssertTrue(true)
+    }
+    
+    func testConnectionFailedServiceErrorUsesErrorMessage() {
+        let error = CocoaError(.coderInvalidValue) // Random error that will have a localized description
+        let serviceError = ServiceError.connectionFailed(error)
+        XCTAssertTrue(serviceError.userDisplayableMessage != ServiceError.genericFailureMessage) // Test that the serviceError uses the error's description rather than the generic one
+    }
+    
+    func testConnectionFailedServiceErrorIgnoresEmptyErrorMessage() {
+        class EmptyError: LocalizedError {
+            public var errorDescription: String? {
+                return NSLocalizedString("", comment: "")
+            }
+        }
+        let error = EmptyError() // An error with no localized description
+        let serviceError = ServiceError.connectionFailed(error)
+        XCTAssertTrue(serviceError.userDisplayableMessage == ServiceError.genericFailureMessage) // Test that the service error uses a generic error message rather than the empty one
     }
 
     func testPerformanceExample() {
