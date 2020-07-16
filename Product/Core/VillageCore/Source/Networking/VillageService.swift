@@ -12,6 +12,13 @@ import SwiftyJSON
 
 public enum ServiceError: Error {
     case connectionFailed(Error)
+    
+    public var userDisplayableMessage: String {
+        switch self {
+        case .connectionFailed:
+            return "A network connection error has occurred. Please ensure you have a stable internet connection and try again."
+        }
+    }
 }
 
 public enum VillageServiceError: Swift.Error {
@@ -36,6 +43,7 @@ public enum VillageServiceError: Swift.Error {
 public extension Error {
     var vlg_userDisplayableMessage: String {
         return (self as? VillageServiceError)?.userDisplayableMessage
+            ?? (self as? ServiceError)?.userDisplayableMessage
             ?? VillageServiceError.genericFailureMessage
     }
 }
