@@ -12,6 +12,7 @@
 		90150C9D24AA7D6300DA5739 /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */; };
 		90E07CAD24ABACCF00FC71F9 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E07CAC24ABACCF00FC71F9 /* Application.swift */; };
 		90E07CAF24ABACF500FC71F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E07CAE24ABACF500FC71F9 /* User.swift */; };
+		90EAA79A24C1DE05008C2B45 /* PeopleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */; };
 		A5D1CDC273BE7AF63E28FC6B /* Pods_DonatosVillage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0440720B0149DAE2B3BB1462 /* Pods_DonatosVillage.framework */; };
 		D492EA1E22A32DA3004DAA2F /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492EA1522A32D89004DAA2F /* VillageCore.framework */; };
 		D492EA1F22A32DA3004DAA2F /* VillageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D492EA1522A32D89004DAA2F /* VillageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -96,14 +97,13 @@
 		17AB18F215EBFF5B330EEDDB /* Pods-DonatosVillage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.debug.xcconfig"; path = "Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.debug.xcconfig"; sourceTree = "<group>"; };
 		48C2003924C21E96002DFC2C /* NoticeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewTests.swift; sourceTree = "<group>"; };
 		5E2D734EC0C6B18F9F1AEA00 /* Pods-DonatosVillage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.release.xcconfig"; path = "Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.release.xcconfig"; sourceTree = "<group>"; };
-		90150C8524AA77F300DA5739 /* DonatosVillageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosVillageUITests.swift; sourceTree = "<group>"; };
-		90150C8724AA77F300DA5739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90150C9224AA7A8800DA5739 /* DonatosVillageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DonatosVillageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosVillageUITests.swift; sourceTree = "<group>"; };
 		90150C9624AA7A8800DA5739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArguments.swift; sourceTree = "<group>"; };
 		90E07CAC24ABACCF00FC71F9 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		90E07CAE24ABACF500FC71F9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewTests.swift; sourceTree = "<group>"; };
 		D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		D4879A3E224196B500CBA8FB /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
@@ -150,22 +150,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		90150C8424AA77F300DA5739 /* DonatosVillageUITests */ = {
-			isa = PBXGroup;
-			children = (
-				90E07CAA24ABACB400FC71F9 /* Utility */,
-				90150C8524AA77F300DA5739 /* DonatosVillageUITests.swift */,
-				90150C8724AA77F300DA5739 /* Info.plist */,
-			);
-			path = DonatosVillageUITests;
-			sourceTree = "<group>";
-		};
 		90150C9324AA7A8800DA5739 /* DonatosVillageUITests */ = {
 			isa = PBXGroup;
 			children = (
 				48C2003924C21E96002DFC2C /* NoticeViewTests.swift */,
+				90E07CAA24ABACB400FC71F9 /* Utility */,
 				90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */,
 				90150C9624AA7A8800DA5739 /* Info.plist */,
+				90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */,
 			);
 			path = DonatosVillageUITests;
 			sourceTree = "<group>";
@@ -221,7 +213,6 @@
 			children = (
 				D4CC29CD22075D070091BEFB /* DonatosVillage */,
 				DA32BC252499608A005C0FF7 /* DonatosVillageTests */,
-				90150C8424AA77F300DA5739 /* DonatosVillageUITests */,
 				90150C9324AA7A8800DA5739 /* DonatosVillageUITests */,
 				D4CC29CC22075D070091BEFB /* Products */,
 				D54C3D91F4C5144E14E60397 /* Frameworks */,
@@ -494,6 +485,7 @@
 				90E07CAD24ABACCF00FC71F9 /* Application.swift in Sources */,
 				90150C9524AA7A8800DA5739 /* DonatosVillageUITests.swift in Sources */,
 				90E07CAF24ABACF500FC71F9 /* User.swift in Sources */,
+				90EAA79A24C1DE05008C2B45 /* PeopleViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
