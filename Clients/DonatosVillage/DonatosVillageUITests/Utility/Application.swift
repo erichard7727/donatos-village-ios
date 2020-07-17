@@ -51,7 +51,7 @@ public final class Application {
 	@discardableResult
 	public func logout() -> Application {
 		openMenuBar()
-		app/*@START_MENU_TOKEN@*/.buttons["settings_gear_button"]/*[[".buttons[\"settings\"]",".buttons[\"settings_gear_button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+		app.staticTexts["user_settings_name"].tap()
 		app.buttons["logout_button"].tap()
 		return self
 	}
