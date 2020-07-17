@@ -56,6 +56,17 @@ class PeopleViewTests: XCTestCase {
 			XCTAssert(app.navigationBars.matching(identifier: "Allie Galuska").firstMatch.waitForExistence(timeout: 3.0))
 		}
 	}
+	
+	func testCancellingSearch() throws {
+		Application()
+		.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+		.openPeopleMenu()
+		.searchPeople(for: "Allie Galuska", waitForSearchToComplete: true)
+		.then { app in
+			app.navigationBars.buttons.matching(NSPredicate(format: "label == %@", "Cancel")).firstMatch.tap()
+			XCTAssert(app.tables.cells.count != 1)
+		}
+	}
 }
 
 extension Application {
@@ -66,11 +77,15 @@ extension Application {
 	}
 	
 	@discardableResult
-	func searchPeople(for text: String) -> Application {
+	func searchPeople(for text: String, waitForSearchToComplete: Bool = false) -> Application {
 		then {
 			let searchField = $0.searchFields.firstMatch
 			searchField.tap()
 			searchField.typeText(text)
+			
+			if (waitForSearchToComplete) {
+				XCTAssert($0.tables.cells.firstMatch.waitForExistence(timeout: 10.0))
+			}
 		}
 		return self
 	}
