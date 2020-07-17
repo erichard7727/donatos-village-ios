@@ -141,7 +141,7 @@ platform :ios do
     elsif options[:exportMethod] == "development"
       profile_path = "./fastlane/sigh/Donatos_Village_ABM_Development.mobileprovision"
     elsif options[:exportMethod] == "app-store"
-      profile_path = "./fastlane/sigh/DonatosVillage_App_Store_Distribution.mobileprovision"
+      profile_path = "./fastlane/sigh/Donatos_Village_ABM_Distribution.mobileprovision"
     end
 
     disable_automatic_code_signing(path: "./Clients/DonatosVillage/DonatosVillage.xcodeproj")
