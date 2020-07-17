@@ -13,7 +13,7 @@ import VillageCore
 
 // MARK: PeopleViewController
 /// View controller for browsing and searching people.
-final class MemberSelectionController: UITableViewController {
+final class MemberSelectionController: UITableViewController, NavBarDisplayable {
     // MARK: Properties
     
     /// Table view's data source.
@@ -56,6 +56,7 @@ final class MemberSelectionController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        setNavbarAppearance(for: navigationItem)
     }
     
     func getStreamMemberShip() {
