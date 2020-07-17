@@ -29,7 +29,7 @@ class PeopleViewTests: XCTestCase {
 		Application()
 		.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
 		.openPeopleMenu()
-		.searchPeople(for: "Automation Two", waitForSearchToComplete: true)
+		.searchTable(for: "Automation Two", waitForSearchToComplete: true)
 		.then { app in
 			app.tables.cells.firstMatch.tap()
 			XCTAssert(app.navigationBars.matching(identifier: "Profile").firstMatch.waitForExistence(timeout: 3.0))
@@ -40,7 +40,7 @@ class PeopleViewTests: XCTestCase {
 		Application()
 		.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
 		.openPeopleMenu()
-		.searchPeople(for: "Allie Galuska", waitForSearchToComplete: true)
+		.searchTable(for: "Allie Galuska", waitForSearchToComplete: true)
 		.then { app in
 			app.tables.cells.firstMatch.tap()
 			app.staticTexts["people_profile_new_chat"].tap()
@@ -52,7 +52,7 @@ class PeopleViewTests: XCTestCase {
 		Application()
 		.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
 		.openPeopleMenu()
-		.searchPeople(for: "Allie Galuska", waitForSearchToComplete: true)
+		.searchTable(for: "Allie Galuska", waitForSearchToComplete: true)
 		.then { app in
 			app.navigationBars.buttons.matching(NSPredicate(format: "label == %@", "Cancel")).firstMatch.tap()
 			XCTAssert(app.tables.cells.count != 1)
@@ -64,20 +64,6 @@ extension Application {
 	@discardableResult
 	func openPeopleMenu() -> Application {
 		openMenuBar().then { $0.staticTexts["main_menu_people_label"].tap() }
-		return self
-	}
-	
-	@discardableResult
-	func searchPeople(for text: String, waitForSearchToComplete: Bool = false) -> Application {
-		then {
-			let searchField = $0.searchFields.firstMatch
-			searchField.tap()
-			searchField.typeText(text)
-			
-			if (waitForSearchToComplete) {
-				XCTAssert($0.tables.cells.firstMatch.waitForExistence(timeout: 10.0))
-			}
-		}
 		return self
 	}
 }

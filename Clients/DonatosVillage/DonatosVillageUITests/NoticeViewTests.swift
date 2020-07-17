@@ -28,7 +28,7 @@ class NoticesViewTests: XCTestCase {
         Application()
             .login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
             .openNoticesMenu()
-            .searchNotices(for: testNoticeTitle, waitForSearchToComplete: true)
+            .searchTable(for: testNoticeTitle, waitForSearchToComplete: true)
             .then { app in
                 app.tables.cells.firstMatch.tap()
                 XCTAssert(app.navigationBars.matching(identifier: testNoticeTitle).firstMatch.waitForExistence(timeout: 3.0))
@@ -39,7 +39,7 @@ class NoticesViewTests: XCTestCase {
         Application()
             .login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
             .openNoticesMenu()
-            .searchNotices(for: testNoticeTitle, waitForSearchToComplete: true)
+            .searchTable(for: testNoticeTitle, waitForSearchToComplete: true)
             .then { app in
                 let cellsDuringSearch = app.tables.cells.count
                 app.navigationBars.buttons.matching(NSPredicate(format: "label == %@", "Cancel")).firstMatch.tap()
@@ -52,20 +52,6 @@ extension Application {
     @discardableResult
     func openNoticesMenu() -> Application {
         openMenuBar().then { $0.staticTexts["main_menu_notices_label"].tap() }
-        return self
-    }
-    
-    @discardableResult
-    func searchNotices(for text: String, waitForSearchToComplete: Bool = false) -> Application {
-        then {
-            let searchField = $0.searchFields.firstMatch
-            searchField.tap()
-            searchField.typeText(text)
-            
-            if (waitForSearchToComplete) {
-                XCTAssert($0.tables.cells.firstMatch.waitForExistence(timeout: 10.0))
-            }
-        }
         return self
     }
 }
