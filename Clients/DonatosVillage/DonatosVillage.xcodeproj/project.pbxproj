@@ -94,8 +94,6 @@
 		0440720B0149DAE2B3BB1462 /* Pods_DonatosVillage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonatosVillage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17AB18F215EBFF5B330EEDDB /* Pods-DonatosVillage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.debug.xcconfig"; path = "Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.debug.xcconfig"; sourceTree = "<group>"; };
 		5E2D734EC0C6B18F9F1AEA00 /* Pods-DonatosVillage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.release.xcconfig"; path = "Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.release.xcconfig"; sourceTree = "<group>"; };
-		90150C8524AA77F300DA5739 /* DonatosVillageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosVillageUITests.swift; sourceTree = "<group>"; };
-		90150C8724AA77F300DA5739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90150C9224AA7A8800DA5739 /* DonatosVillageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DonatosVillageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosVillageUITests.swift; sourceTree = "<group>"; };
 		90150C9624AA7A8800DA5739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,19 +146,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		90150C8424AA77F300DA5739 /* DonatosVillageUITests */ = {
-			isa = PBXGroup;
-			children = (
-				90E07CAA24ABACB400FC71F9 /* Utility */,
-				90150C8524AA77F300DA5739 /* DonatosVillageUITests.swift */,
-				90150C8724AA77F300DA5739 /* Info.plist */,
-			);
-			path = DonatosVillageUITests;
-			sourceTree = "<group>";
-		};
 		90150C9324AA7A8800DA5739 /* DonatosVillageUITests */ = {
 			isa = PBXGroup;
 			children = (
+				90E07CAA24ABACB400FC71F9 /* Utility */,
 				90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */,
 				90150C9624AA7A8800DA5739 /* Info.plist */,
 			);
@@ -218,7 +207,6 @@
 			children = (
 				D4CC29CD22075D070091BEFB /* DonatosVillage */,
 				DA32BC252499608A005C0FF7 /* DonatosVillageTests */,
-				90150C8424AA77F300DA5739 /* DonatosVillageUITests */,
 				90150C9324AA7A8800DA5739 /* DonatosVillageUITests */,
 				D4CC29CC22075D070091BEFB /* Products */,
 				D54C3D91F4C5144E14E60397 /* Frameworks */,
