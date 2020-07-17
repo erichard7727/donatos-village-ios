@@ -17,6 +17,16 @@ class PeopleViewTests: XCTestCase {
 				XCTAssert(app.staticTexts["main_menu_people_label"].exists)
 			}
     }
+	
+	func testOpeningAddPersonView() throws {
+		Application()
+		.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+		.openPeopleMenu()
+		.then { app in
+			app.navigationBars.buttons.element(boundBy: 1).tap()
+			XCTAssert(app.navigationBars.matching(identifier: "Add New User").count != 0)
+		}
+	}
 }
 
 extension Application {
