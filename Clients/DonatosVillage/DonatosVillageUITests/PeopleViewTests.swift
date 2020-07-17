@@ -27,6 +27,22 @@ class PeopleViewTests: XCTestCase {
 			XCTAssert(app.navigationBars.matching(identifier: "Add New User").count != 0)
 		}
 	}
+	
+	func testSearchingForUser() throws {
+		Application()
+		.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+		.openPeopleMenu()
+		.then { app in
+			let searchField = app.searchFields.firstMatch
+			searchField.tap()
+			searchField.typeText("Automation Two")
+			
+			XCTAssert(app.tables.cells.firstMatch.waitForExistence(timeout: 10.0))
+			
+			app.tables.cells.firstMatch.tap()
+			XCTAssert(			app.navigationBars.matching(identifier: "Profile").firstMatch.waitForExistence(timeout: 3.0))
+		}
+	}
 }
 
 extension Application {
