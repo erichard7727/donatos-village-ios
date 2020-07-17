@@ -43,12 +43,35 @@ class PeopleViewTests: XCTestCase {
 			XCTAssert(			app.navigationBars.matching(identifier: "Profile").firstMatch.waitForExistence(timeout: 3.0))
 		}
 	}
+	
+	func testOpeningChat() throws {
+		Application()
+		.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+		.openPeopleMenu()
+		.searchPeople(for: "Allie Galuska")
+		.then { app in
+			XCTAssert(app.tables.cells.firstMatch.waitForExistence(timeout: 10.0))
+			app.tables.cells.firstMatch.tap()
+			app.staticTexts["people_profile_new_chat"].tap()
+			XCTAssert(app.navigationBars.matching(identifier: "Allie Galuska").firstMatch.waitForExistence(timeout: 3.0))
+		}
+	}
 }
 
 extension Application {
 	@discardableResult
 	func openPeopleMenu() -> Application {
 		openMenuBar().then { $0.staticTexts["main_menu_people_label"].tap() }
+		return self
+	}
+	
+	@discardableResult
+	func searchPeople(for text: String) -> Application {
+		then {
+			let searchField = $0.searchFields.firstMatch
+			searchField.tap()
+			searchField.typeText(text)
+		}
 		return self
 	}
 }
