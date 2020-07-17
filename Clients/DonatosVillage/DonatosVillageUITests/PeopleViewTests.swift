@@ -5,9 +5,6 @@ class PeopleViewTests: XCTestCase {
         continueAfterFailure = false
     }
 
-    override func tearDownWithError() throws {
-    }
-	
 	func testOpeningPeopleMenuAndOpeningMainMenu() throws {
 		Application()
 			.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
@@ -32,15 +29,10 @@ class PeopleViewTests: XCTestCase {
 		Application()
 		.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
 		.openPeopleMenu()
+		.searchPeople(for: "Automation Two", waitForSearchToComplete: true)
 		.then { app in
-			let searchField = app.searchFields.firstMatch
-			searchField.tap()
-			searchField.typeText("Automation Two")
-			
-			XCTAssert(app.tables.cells.firstMatch.waitForExistence(timeout: 10.0))
-			
 			app.tables.cells.firstMatch.tap()
-			XCTAssert(			app.navigationBars.matching(identifier: "Profile").firstMatch.waitForExistence(timeout: 3.0))
+			XCTAssert(app.navigationBars.matching(identifier: "Profile").firstMatch.waitForExistence(timeout: 3.0))
 		}
 	}
 	
@@ -48,9 +40,8 @@ class PeopleViewTests: XCTestCase {
 		Application()
 		.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
 		.openPeopleMenu()
-		.searchPeople(for: "Allie Galuska")
+		.searchPeople(for: "Allie Galuska", waitForSearchToComplete: true)
 		.then { app in
-			XCTAssert(app.tables.cells.firstMatch.waitForExistence(timeout: 10.0))
 			app.tables.cells.firstMatch.tap()
 			app.staticTexts["people_profile_new_chat"].tap()
 			XCTAssert(app.navigationBars.matching(identifier: "Allie Galuska").firstMatch.waitForExistence(timeout: 3.0))
