@@ -69,6 +69,20 @@ public final class Application {
 		block(app)
 		return self
 	}
+    
+    @discardableResult
+    public func searchTable(for text: String, waitForSearchToComplete: Bool = false) -> Application {
+        then {
+            let searchField = $0.searchFields.firstMatch
+            searchField.tap()
+            searchField.typeText(text)
+            
+            if (waitForSearchToComplete) {
+                XCTAssert($0.tables.cells.firstMatch.waitForExistence(timeout: 10.0))
+            }
+        }
+        return self
+    }
 	
 	// MARK: - Private
 	
