@@ -24,7 +24,7 @@ class NoticesViewTests: XCTestCase {
         }
     }
     
-    func testSearchingForUser() throws {
+    func testSearchingForNotice() throws {
         Application()
             .login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
             .openNoticesMenu()

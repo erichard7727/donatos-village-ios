@@ -27,7 +27,7 @@ class DonatosVillageUITests: XCTestCase {
 			.then { app in
 				app.scrollViews.containing(.other, identifier:"Vertical scroll bar, 4 pages").children(matching: .other).element(boundBy: 0).children(matching: .other).element(boundBy: 2)/*@START_MENU_TOKEN@*/.staticTexts["View All"]/*[[".buttons[\"View All\"].staticTexts[\"View All\"]",".staticTexts[\"View All\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
 				app.tables/*@START_MENU_TOKEN@*/.staticTexts["New Holiday Pizzas"]/*[[".cells.staticTexts[\"New Holiday Pizzas\"]",".staticTexts[\"New Holiday Pizzas\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-				XCTAssertTrue(app.webViews.webViews.textViews/*@START_MENU_TOKEN@*/.staticTexts["Checking to see that the ™, the © and the ® all work in a notice."]/*[[".otherElements[\"Content Library Page Preview\"]",".otherElements[\"main\"].staticTexts[\"Checking to see that the ™, the © and the ® all work in a notice.\"]",".staticTexts[\"Checking to see that the ™, the © and the ® all work in a notice.\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.waitForExistence(timeout: 2.0))
+				XCTAssertTrue(app.webViews.staticTexts["Checking to see that the ™, the © and the ® all work in a notice."].waitForExistence(timeout: 3.0))
 		}
 	}
 	
@@ -38,15 +38,15 @@ class DonatosVillageUITests: XCTestCase {
 			.then {
 				let staticTexts = $0.scrollViews.otherElements.staticTexts
 				XCTAssertTrue(staticTexts["Home"].waitForExistence(timeout: 2.0))
-				XCTAssertTrue(staticTexts["Notices"].exists)
-				XCTAssertTrue(staticTexts["Events"].exists)
-				XCTAssertTrue(staticTexts["News"].exists)
-				XCTAssertTrue(staticTexts["Chats"].exists)
-				XCTAssertTrue(staticTexts["Promise in Actions"].exists)
-				XCTAssertTrue(staticTexts["My Schedule"].exists)
-				XCTAssertTrue(staticTexts["My Groups"].exists)
-				XCTAssertTrue(staticTexts["Other Groups"].exists)
-				XCTAssertTrue(staticTexts["People"].exists)
+				XCTAssertTrue(staticTexts["main_menu_notices_label"].exists)
+				XCTAssertTrue(staticTexts["main_menu_events_label"].exists)
+				XCTAssertTrue(staticTexts["main_menu_news_label"].exists)
+				XCTAssertTrue(staticTexts["main_menu_chats_label"].exists)
+				XCTAssertTrue(staticTexts["main_menu_kudos_label"].exists)
+				XCTAssertTrue(staticTexts["main_menu_schedule_label"].exists)
+				XCTAssertTrue(staticTexts["main_menu_my_groups_label"].exists)
+				XCTAssertTrue(staticTexts["main_menu_other_groups_label"].exists)
+				XCTAssertTrue(staticTexts["main_menu_people_label"].exists)
 		}
 	}
 
