@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00C3A33B24C8920B0027CE2A /* NewsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */; };
 		48C2003A24C21E96002DFC2C /* NoticeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C2003924C21E96002DFC2C /* NoticeViewTests.swift */; };
 		90150C9524AA7A8800DA5739 /* DonatosVillageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */; };
 		90150C9D24AA7D6300DA5739 /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */; };
@@ -93,6 +94,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewTests.swift; sourceTree = "<group>"; };
 		0440720B0149DAE2B3BB1462 /* Pods_DonatosVillage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonatosVillage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17AB18F215EBFF5B330EEDDB /* Pods-DonatosVillage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.debug.xcconfig"; path = "Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.debug.xcconfig"; sourceTree = "<group>"; };
 		48C2003924C21E96002DFC2C /* NoticeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewTests.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */,
 				90150C9624AA7A8800DA5739 /* Info.plist */,
 				90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */,
+				00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */,
 			);
 			path = DonatosVillageUITests;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				48C2003A24C21E96002DFC2C /* NoticeViewTests.swift in Sources */,
 				90E07CAD24ABACCF00FC71F9 /* Application.swift in Sources */,
 				90150C9524AA7A8800DA5739 /* DonatosVillageUITests.swift in Sources */,
+				00C3A33B24C8920B0027CE2A /* NewsViewTests.swift in Sources */,
 				90E07CAF24ABACF500FC71F9 /* User.swift in Sources */,
 				90EAA79A24C1DE05008C2B45 /* PeopleViewTests.swift in Sources */,
 			);
