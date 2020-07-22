@@ -17,13 +17,13 @@ class DonatosVillageUITests: XCTestCase {
 	
 	func testOpeningMySchedule() throws {
 		Application()
-			.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+			.login(with: .AutomationStoreAssociation)
 			.then { app in app.scrollViews.otherElements.buttons["My Schedule"].tap() }
 	}
 	
 	func testViewingAllNoticesFromHomescreen() throws {
 		Application()
-			.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+			.login(with: .AutomationStoreAssociation)
 			.then { app in
 				app.scrollViews.containing(.other, identifier:"Vertical scroll bar, 4 pages").children(matching: .other).element(boundBy: 0).children(matching: .other).element(boundBy: 2)/*@START_MENU_TOKEN@*/.staticTexts["View All"]/*[[".buttons[\"View All\"].staticTexts[\"View All\"]",".staticTexts[\"View All\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
 				app.tables/*@START_MENU_TOKEN@*/.staticTexts["New Holiday Pizzas"]/*[[".cells.staticTexts[\"New Holiday Pizzas\"]",".staticTexts[\"New Holiday Pizzas\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
@@ -33,7 +33,7 @@ class DonatosVillageUITests: XCTestCase {
 	
 	func testMenuBar() throws {
 		Application()
-			.login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+			.login(with: .AutomationStoreAssociation)
 			.openMenuBar()
 			.then {
 				let staticTexts = $0.scrollViews.otherElements.staticTexts

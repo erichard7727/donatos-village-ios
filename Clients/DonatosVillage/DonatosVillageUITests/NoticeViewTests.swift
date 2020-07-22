@@ -16,7 +16,7 @@ class NoticesViewTests: XCTestCase {
     
     func testOpeningNoticesMenuAndOpeningMainMenu() throws {
         Application()
-            .login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+            .login(with: .AutomationStoreAssociation)
             .openNoticesMenu()
             .then { app in
                 app.navigationBars.buttons["menu_button"].tap()
@@ -26,7 +26,7 @@ class NoticesViewTests: XCTestCase {
     
     func testSearchingForNotice() throws {
         Application()
-            .login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+            .login(with: .AutomationStoreAssociation)
             .openNoticesMenu()
             .searchTable(for: testNoticeTitle, waitForSearchToComplete: true)
             .then { app in
@@ -37,7 +37,7 @@ class NoticesViewTests: XCTestCase {
     
     func testCancellingSearch() throws {
         Application()
-            .login(with: .AutomationStoreAssociation, behavior: .ignoreAndContinueIfAlreadyLoggedIn)
+            .login(with: .AutomationStoreAssociation)
             .openNoticesMenu()
             .searchTable(for: testNoticeTitle, waitForSearchToComplete: true)
             .then { app in
