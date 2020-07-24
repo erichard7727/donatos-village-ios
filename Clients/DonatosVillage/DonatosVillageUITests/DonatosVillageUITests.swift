@@ -70,6 +70,16 @@ class DonatosVillageUITests: XCTestCase {
         }
     }
     
+    func testOpeningEventsFromTheMenuBar() throws {
+        Application()
+            .login(with: .automationStoreAssociation)
+            .openMenuBar()
+            .then { app in
+                let otherElements = app.scrollViews.otherElements
+                otherElements.staticTexts["main_menu_events_label"].tap()
+        }
+    }
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
