@@ -57,6 +57,7 @@ class DonatosVillageUITests: XCTestCase {
             .then { app in
                 let otherElements = app.scrollViews.otherElements
                 otherElements.staticTexts["Home"].tap()
+                XCTAssert(app.navigationBars.matching(identifier: "Home Stream").count != 0, "Cannot reach Home Stream screen")
         }
     }
     
@@ -67,6 +68,7 @@ class DonatosVillageUITests: XCTestCase {
             .then { app in
                 let otherElements = app.scrollViews.otherElements
                 otherElements.staticTexts["main_menu_notices_label"].tap()
+                XCTAssert(app.navigationBars.matching(identifier: "Notices").count != 0, "Cannot reach Notices screen")
         }
     }
     
@@ -77,6 +79,7 @@ class DonatosVillageUITests: XCTestCase {
             .then { app in
                 let otherElements = app.scrollViews.otherElements
                 otherElements.staticTexts["main_menu_events_label"].tap()
+                XCTAssert(app.navigationBars.matching(identifier: "Events").count != 0, "Cannot reach Events screen")
         }
     }
     
@@ -87,6 +90,7 @@ class DonatosVillageUITests: XCTestCase {
             .then { app in
                 let otherElements = app.scrollViews.otherElements
                 otherElements.staticTexts["main_menu_news_label"].tap()
+                XCTAssert(app.navigationBars.matching(identifier: "News").count != 0, "Cannot reach News screen")
         }
     }
     
