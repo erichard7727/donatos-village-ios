@@ -50,6 +50,16 @@ class DonatosVillageUITests: XCTestCase {
 		}
 	}
     
+    func testGoingBackToTheHomeScreenFromTheMenuBar() {
+        Application()
+            .login(with: .automationStoreAssociation)
+            .openMenuBar()
+            .then { app in
+                let otherElements = app.scrollViews.otherElements
+                otherElements.staticTexts["Home"].tap()
+        }
+    }
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
