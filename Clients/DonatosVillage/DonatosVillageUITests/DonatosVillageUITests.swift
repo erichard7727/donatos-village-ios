@@ -25,7 +25,7 @@ class DonatosVillageUITests: XCTestCase {
 		Application()
 			.login(with: .automationStoreAssociation)
 			.then { app in
-				app.scrollViews.containing(.other, identifier:"Vertical scroll bar, 4 pages").children(matching: .other).element(boundBy: 0).children(matching: .other).element(boundBy: 2)/*@START_MENU_TOKEN@*/.staticTexts["View All"]/*[[".buttons[\"View All\"].staticTexts[\"View All\"]",".staticTexts[\"View All\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+				app.scrollViews["scrollView"].otherElements.buttons["view_all_notices"].staticTexts["View All"].tap()
 				app.tables/*@START_MENU_TOKEN@*/.staticTexts["New Holiday Pizzas"]/*[[".cells.staticTexts[\"New Holiday Pizzas\"]",".staticTexts[\"New Holiday Pizzas\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
 				XCTAssertTrue(app.webViews.staticTexts["Checking to see that the ™, the © and the ® all work in a notice."].waitForExistence(timeout: 3.0))
 		}
