@@ -11,6 +11,7 @@
 		48C2003A24C21E96002DFC2C /* NoticeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C2003924C21E96002DFC2C /* NoticeViewTests.swift */; };
 		90150C9524AA7A8800DA5739 /* DonatosVillageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */; };
 		90150C9D24AA7D6300DA5739 /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */; };
+		90493B8224CB7B01005084FB /* EventsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90493B8124CB7B01005084FB /* EventsViewTests.swift */; };
 		90E07CAD24ABACCF00FC71F9 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E07CAC24ABACCF00FC71F9 /* Application.swift */; };
 		90E07CAF24ABACF500FC71F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E07CAE24ABACF500FC71F9 /* User.swift */; };
 		90EAA79A24C1DE05008C2B45 /* PeopleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */; };
@@ -103,6 +104,7 @@
 		90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosVillageUITests.swift; sourceTree = "<group>"; };
 		90150C9624AA7A8800DA5739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArguments.swift; sourceTree = "<group>"; };
+		90493B8124CB7B01005084FB /* EventsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewTests.swift; sourceTree = "<group>"; };
 		90E07CAC24ABACCF00FC71F9 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		90E07CAE24ABACF500FC71F9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewTests.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				90150C9624AA7A8800DA5739 /* Info.plist */,
 				90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */,
 				00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */,
+				90493B8124CB7B01005084FB /* EventsViewTests.swift */,
 			);
 			path = DonatosVillageUITests;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90493B8224CB7B01005084FB /* EventsViewTests.swift in Sources */,
 				48C2003A24C21E96002DFC2C /* NoticeViewTests.swift in Sources */,
 				90E07CAD24ABACCF00FC71F9 /* Application.swift in Sources */,
 				90150C9524AA7A8800DA5739 /* DonatosVillageUITests.swift in Sources */,
