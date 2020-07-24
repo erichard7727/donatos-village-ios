@@ -13,6 +13,21 @@ class EventsViewTests: XCTestCase {
 			XCTAssert(app.navigationBars.staticTexts["Events"].exists)
 		}
 	}
+	
+	func testOpeningFirstEvent() throws {
+		Application()
+		.login(with: .AutomationStoreAssociation)
+		.openEventsMenu()
+		.then { app in
+			XCTAssert(app.navigationBars.staticTexts["Events"].exists)
+			app.tables.cells.firstMatch.tap()
+			
+			let buttons = app.buttons
+			XCTAssert(buttons["Going"].waitForExistence(timeout: 1.0))
+			XCTAssert(buttons["Interested"].waitForExistence(timeout: 1.0))
+			XCTAssert(buttons["Not Going"].waitForExistence(timeout: 1.0))
+		}
+	}
 }
 
 extension Application {
