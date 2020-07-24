@@ -53,6 +53,18 @@ class EventsViewTests: XCTestCase {
 			testSettingStatus(app: app, buttonTitle: "Not Going", expectedLabel: "NOT GOING", expectedImageIdentifier: "notice-not-going")
 		}
 	}
+	
+	func testBadSearch() throws {
+		Application()
+		.login(with: .AutomationStoreAssociation)
+		.openEventsMenu()
+		.searchTable(for: "asdfqwerpoijxl;kjsdf")
+		.then { app in
+			let staticText = app.staticTexts["empty set detail label"]
+			XCTAssert(staticText.waitForExistence(timeout: 1.0))
+			XCTAssertEqual("No Events found matching \"asdfqwerpoijxl;kjsdf\".", staticText.label)
+		}
+	}
 }
 
 extension Application {
