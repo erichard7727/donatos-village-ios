@@ -1,5 +1,7 @@
 # Donatos Village
 
+App Description: https://willowtree.atlassian.net/wiki/spaces/DLT/pages/118149167/Pepp+Talk+formerly+Donatos+Village
+
 ## Third party services and information
 
 * [Jira](https://jira.willowtreeapps.com/projects/DV/issues)
@@ -8,3 +10,4 @@
 ## Documentation
 
 * [Workflow overview](./docs/workflow_overview.md)
+* General project info: https://willowtree.atlassian.net/wiki/spaces/DLT/pages/118149167/Pepp+Talk+formerly+Donatos+Village
