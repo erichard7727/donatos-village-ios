@@ -61,17 +61,6 @@ class DonatosVillageUITests: XCTestCase {
         }
     }
     
-    func testOpeningNoticesFromTheMenuBar() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
-            .openMenuBar()
-            .then { app in
-                let otherElements = app.scrollViews.otherElements
-                otherElements.staticTexts["main_menu_notices_label"].tap()
-                XCTAssert(app.navigationBars.matching(identifier: "Notices").count != 0, "Cannot reach Notices screen")
-        }
-    }
-    
     func testOpeningEventsFromTheMenuBar() throws {
         Application()
             .login(with: .automationStoreAssociation)
@@ -80,17 +69,6 @@ class DonatosVillageUITests: XCTestCase {
                 let otherElements = app.scrollViews.otherElements
                 otherElements.staticTexts["main_menu_events_label"].tap()
                 XCTAssert(app.navigationBars.matching(identifier: "Events").count != 0, "Cannot reach Events screen")
-        }
-    }
-    
-    func testOpeningNewsFromTheMenuBar() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
-            .openMenuBar()
-            .then { app in
-                let otherElements = app.scrollViews.otherElements
-                otherElements.staticTexts["main_menu_news_label"].tap()
-                XCTAssert(app.navigationBars.matching(identifier: "News").count != 0, "Cannot reach News screen")
         }
     }
     

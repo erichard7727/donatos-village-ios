@@ -21,6 +21,7 @@ class NoticesViewTests: XCTestCase {
             .then { app in
                 app.navigationBars.buttons["menu_button"].tap()
                 XCTAssert(app.staticTexts["main_menu_notices_label"].exists)
+                XCTAssert(app.navigationBars.matching(identifier: "Notices").count != 0, "Cannot reach Notices screen")
         }
     }
     

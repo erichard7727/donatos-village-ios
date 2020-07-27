@@ -22,6 +22,7 @@ class NewsViewTests: XCTestCase {
         .openNewsMenu()
         .then { app in
             XCTAssert(app.navigationBars.staticTexts["News"].exists)
+            XCTAssert(app.navigationBars.matching(identifier: "News").count != 0, "Cannot reach News screen")
         }
     }
     
