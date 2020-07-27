@@ -17,10 +17,10 @@ App Description: https://willowtree.atlassian.net/wiki/spaces/DLT/pages/11814916
 * [Environments overview](./docs/environments_overview.md)
 * [Workflow overview](./docs/workflow_overview.md)
 * General project info: https://willowtree.atlassian.net/wiki/spaces/DLT/pages/118149167/Pepp+Talk+formerly+Donatos+Village
-* Test user accounts can be found in the Donatos Mobile shared Live Team LastPass folder.
+* Test user accounts can be found in the Donatos Village shared Live Team LastPass folder.
 
 ## Certificates and Provisioning Profiles
 
 Certificates and profiles are created manually on the Donatos Pizzeria, LLC Apple Developer Program.
-Passphrases and passwords can be found in the Donatos Mobile secure note in the shared Live Team LastPass folder.
+Passphrases and passwords can be found in the secure notes within the Donatos Village shared Live Team LastPass folder.
 
