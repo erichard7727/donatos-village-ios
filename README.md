@@ -2,6 +2,7 @@
 
 App Description: https://willowtree.atlassian.net/wiki/spaces/DLT/pages/118149167/Pepp+Talk+formerly+Donatos+Village
 
+Screenshots:
 https://github.com/willowtreeapps/donatos-village-ios/issues/43
 
 ## Third party services and information
