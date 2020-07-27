@@ -4,12 +4,12 @@
 
 App Description: https://willowtree.atlassian.net/wiki/spaces/DLT/pages/118149167/Pepp+Talk+formerly+Donatos+Village
 
-
 ## Third party services and information
 
 * [Jira](https://jira.willowtreeapps.com/projects/DV/issues)
 * [TeamCity](https://builds.willowtreeapps.com/admin/editProject.html?projectId=PineBranch_LiveTeam_DonatosVillage_DonatosVillageIOS)
 * [Apple Business Manager] (https://support.apple.com/guide/apple-business-manager/intro-to-device-management-asm6a88f692e/web)
+
 
 ## Documentation
 
