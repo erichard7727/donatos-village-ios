@@ -1,6 +1,6 @@
 # Tooling
 
-* Xcode 11.3 / iOS 13.3 SDK
+* Xcode 11.5
 
 What things you need to install the software and how to install them
 
