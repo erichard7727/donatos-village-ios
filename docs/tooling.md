@@ -39,4 +39,4 @@ Next, use Cocoapods to make sure dependencies are installed
 
 You should now have everything you need to get working. If not, please figure out what went wrong and then update these instructions accordingly. :)
 
-	$ open open Village.xcworkspace
+	$ open Village.xcworkspace
