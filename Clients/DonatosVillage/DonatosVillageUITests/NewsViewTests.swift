@@ -18,16 +18,17 @@ class NewsViewTests: XCTestCase {
     
     func testOpeningNews() throws {
         Application()
-        .login(with: .AutomationStoreAssociation)
+        .login(with: .automationStoreAssociation)
         .openNewsMenu()
         .then { app in
             XCTAssert(app.navigationBars.staticTexts["News"].exists)
+            XCTAssert(app.navigationBars.matching(identifier: "News").count != 0, "Cannot reach News screen")
         }
     }
     
     func testOpenFirstEntryAndGoBack() throws {
         Application()
-        .login(with: .AutomationStoreAssociation)
+        .login(with: .automationStoreAssociation)
         .openNewsMenu()
         .then { app in
             app.tables.cells.firstMatch.tap()
@@ -38,7 +39,7 @@ class NewsViewTests: XCTestCase {
     
     func testOpeningNewsMenuAndOpeningMainMenu() throws {
         Application()
-        .login(with: .AutomationStoreAssociation)
+        .login(with: .automationStoreAssociation)
         .openNewsMenu()
         .then { app in
             app.navigationBars.buttons["menu_button"].tap()
@@ -48,7 +49,7 @@ class NewsViewTests: XCTestCase {
     
     func testSearchForNews() throws {
         Application()
-        .login(with: .AutomationStoreAssociation)
+        .login(with: .automationStoreAssociation)
         .openNewsMenu()
         .searchTable(for: testNewsTitle, waitForSearchToComplete: true)
         .then { app in
@@ -59,7 +60,7 @@ class NewsViewTests: XCTestCase {
     
     func testCancellingNewsSearch() throws {
         Application()
-        .login(with: .AutomationStoreAssociation)
+        .login(with: .automationStoreAssociation)
         .openNewsMenu()
         .searchTable(for: testNewsTitle, waitForSearchToComplete: true)
         .then { app in
