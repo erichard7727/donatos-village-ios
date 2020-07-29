@@ -32,6 +32,7 @@ final class GroupMessageCell: UITableViewCell {
     }
     var didSelectLink: ((URL) -> Void)?
     var didSelectPerson:((Person) -> Void)?
+    var showMoreOptions: () -> Void = { }
     
     
     @IBOutlet private var avatarImageView: UIImageView! {
@@ -55,7 +56,7 @@ final class GroupMessageCell: UITableViewCell {
     
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private weak var starCountLabel: UILabel!
-    @IBOutlet private weak var starButton: UIButton!
+    @IBOutlet weak var starButton: UIButton!
    
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -237,6 +238,10 @@ final class GroupMessageCell: UITableViewCell {
     @objc private func viewAuthor() {
         guard let author = message?.author else { return }
         didSelectPerson?(author)
+    }
+
+    @IBAction private func moreOptions(_ sender: Any? = nil) {
+        showMoreOptions()
     }
     
 }

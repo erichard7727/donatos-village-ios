@@ -17,6 +17,13 @@ import Promises
 fileprivate let HEADER_HEIGHT_CONST: CGFloat = 200
 
 class GroupStreamDataSource: StreamDataSource {
+
+    var isUserSubscribed: Bool
+
+    init(stream: VillageCore.Stream, isUserSubscribed: Bool) {
+        self.isUserSubscribed = isUserSubscribed
+        super.init(stream: stream)
+    }
     
     override func configure(delegate: StreamDataSourceDelegate, viewController: StreamViewController, tableView: UITableView) {
         super.configure(delegate: delegate, viewController: viewController, tableView: tableView)
@@ -114,6 +121,42 @@ class GroupStreamDataSource: StreamDataSource {
                     vc.delegate = self
                     self?.viewController.show(vc, sender: self)
                 }
+            }
+
+            cell.showMoreOptions = { [weak self] in
+                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(
+                    title: "Report as Inappropriate",
+                    style: .destructive,
+                    handler: { [weak self] (_) in
+                        let confirm = UIAlertController(
+                            title: "Confirm Report as Inappropriate",
+                            message: "Are you sure you want to report this message as inappropriate? It will be removed immedaitely and your name will be recorded as the reporter.",
+                            preferredStyle: .alert
+                        )
+                        confirm.addAction(UIAlertAction(
+                            title: "Report as Inappropriate",
+                            style: .destructive,
+                            handler: { (_) in
+                                // Flagging the message will cause the stream socket to receive
+                                // the deleted message and remove the message in the UI shortly
+                                _ = msg?.flag()
+                        }
+                        ))
+                        confirm.addAction(UIAlertAction(
+                            title: "Cancel",
+                            style: .cancel,
+                            handler: nil
+                        ))
+                        self?.viewController.present(confirm, animated: true, completion: nil)
+                    }
+                ))
+                alert.addAction(UIAlertAction(
+                    title: "Cancel",
+                    style: .cancel,
+                    handler: nil
+                ))
+                self?.viewController.present(alert, animated: true, completion: nil)
             }
             
             if let url = message.author.avatarURL {
@@ -225,6 +268,42 @@ class GroupStreamDataSource: StreamDataSource {
                     self?.viewController.show(vc, sender: self)
                 }
             }
+
+            cell.showMoreOptions = { [weak self] in
+                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(
+                    title: "Report as Inappropriate",
+                    style: .destructive,
+                    handler: { [weak self] (_) in
+                        let confirm = UIAlertController(
+                            title: "Confirm Report as Inappropriate",
+                            message: "Are you sure you want to report this message as inappropriate? It will be removed immedaitely and your name will be recorded as the reporter.",
+                            preferredStyle: .alert
+                        )
+                        confirm.addAction(UIAlertAction(
+                            title: "Report as Inappropriate",
+                            style: .destructive,
+                            handler: { (_) in
+                                // Flagging the message will cause the stream socket to receive
+                                // the deleted message and remove the message in the UI shortly
+                                _ = msg?.flag()
+                            }
+                        ))
+                        confirm.addAction(UIAlertAction(
+                            title: "Cancel",
+                            style: .cancel,
+                            handler: nil
+                        ))
+                        self?.viewController.present(confirm, animated: true, completion: nil)
+                    }
+                ))
+                alert.addAction(UIAlertAction(
+                    title: "Cancel",
+                    style: .cancel,
+                    handler: nil
+                ))
+                self?.viewController.present(alert, animated: true, completion: nil)
+            }
             
             if let message = msg {
                 cell.configureCell(message)
@@ -311,6 +390,7 @@ private extension GroupStreamDataSource {
     @objc func goToGroupSettings(_ sender: Any? = nil) {
         let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupSettingsController") as! GroupSettingsController
         vc.group = stream
+        vc.isUserSubscribed = isUserSubscribed
         vc.delegate = self
         viewController.show(vc, sender: self)
     }
@@ -334,32 +414,7 @@ extension GroupStreamDataSource {
         }.then { [weak self] author in
             guard let `self` = self else { return }
             
-            if let imageURL = info[UIImagePickerController.InfoKey.phAsset] as? URL,
-                let photo = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil).firstObject {
-                PHImageManager.default().requestImageData(for: photo, options: nil, resultHandler: {
-                    data, name, orientation, info in
-                    
-                    guard let imageData = data else {
-                        let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
-                        self.viewController.present(alert, animated: true, completion: nil)
-                        return
-                    }
-                    
-                    var mimeType: String {
-                        if let name = name {
-                            if name.contains("gif") {
-                                return "image/gif"
-                            } else {
-                                return "image/png"
-                            }
-                        } else {
-                            return "image/png"
-                        }
-                    }
-                    
-                    self.send(attachment: (imageData, mimeType))
-                })
-            } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 guard let imageData = image.vlg_orientedUp().pngData() else {
                     let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
                     self.viewController.present(alert, animated: true, completion: nil)
@@ -378,10 +433,15 @@ extension GroupStreamDataSource {
 
 extension GroupStreamDataSource: GroupSettingsControllerDelegate {
     
-    func shouldLeaveGroup(_ group: VillageCore.Stream, controller: GroupSettingsController) {
+    func didLeave(_ group: VillageCore.Stream, controller: GroupSettingsController) {
         let vc = UIStoryboard(name: "OtherGroupsListViewController", bundle: Constants.bundle).instantiateInitialViewController() as! OtherGroupsListViewController
         viewController.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         viewController.sideMenuController?.hideMenu()
+    }
+
+    func didSubscribeTo(_ group: VillageCore.Stream, controller: GroupSettingsController) {
+        isUserSubscribed = true
+        viewController.navigationController?.popViewController(animated: true)
     }
     
 }

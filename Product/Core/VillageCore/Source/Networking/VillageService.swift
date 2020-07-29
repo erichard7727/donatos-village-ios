@@ -12,6 +12,18 @@ import SwiftyJSON
 
 public enum ServiceError: Error {
     case connectionFailed(Error)
+    
+    public var userDisplayableMessage: String {
+        switch self {
+        case .connectionFailed(let error):
+            return error.localizedDescription.isEmpty ?
+                ServiceError.genericFailureMessage : error.localizedDescription
+        }
+    }
+    
+    public static var genericFailureMessage: String {
+        return NSLocalizedString("A network connection error has occurred.", comment: "")
+    }
 }
 
 public enum VillageServiceError: Swift.Error {
@@ -36,6 +48,7 @@ public enum VillageServiceError: Swift.Error {
 public extension Error {
     var vlg_userDisplayableMessage: String {
         return (self as? VillageServiceError)?.userDisplayableMessage
+            ?? (self as? ServiceError)?.userDisplayableMessage
             ?? VillageServiceError.genericFailureMessage
     }
 }
@@ -76,9 +89,9 @@ public class VillageService {
     
     private lazy var provider: VillageProvider<VillageCoreAPI> = {
         
-        let getTokens: VillageProvider.GetTokenClosure = { self.user.xsrfToken }
+        let getTokens: VillageProvider<VillageCoreAPI>.GetTokenClosure = { self.user.xsrfToken }
         
-        let setTokens: VillageProvider.SetTokenClosure = { xsrfToken in
+        let setTokens: VillageProvider<VillageCoreAPI>.SetTokenClosure = { xsrfToken in
             self.user.xsrfToken = xsrfToken
         }
         

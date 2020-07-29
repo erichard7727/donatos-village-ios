@@ -160,15 +160,23 @@ class DirectMessageStreamDataSource: StreamDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DMConversationOtherAttachmentCell") as! DMConversationOtherAttachmentCell
                 cell.transform = tableView.transform
                 
-                cell.configureMessage(message, didSelectLink: { [weak self] link in
-                    UIApplication.shared.open(link, options: [.universalLinksOnly: true], completionHandler: { (success) in
-                        if !success {
-                            // not a universal link or app not installed
-                            let vc = SFSafariViewController(url: link)
-                            self?.viewController.present(vc, animated: true)
-                        }
-                    })
-                })
+                cell.configureMessage(
+                    _: message,
+                    didSelectLink: { [weak self] link in
+                        UIApplication.shared.open(link, options: [.universalLinksOnly: true], completionHandler: { (success) in
+                            if !success {
+                                // not a universal link or app not installed
+                                let vc = SFSafariViewController(url: link)
+                                self?.viewController.present(vc, animated: true)
+                            }
+                        })
+                    }, didSelectAvatar: { [weak self] in
+                        let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
+                        vc.person = message.author
+                        vc.delegate = self
+                        self?.viewController.show(vc, sender: self)
+                    }
+                )
                 cell.percentageLabel.text = "0%"
                 cell.percentageLabel.alpha = 1
                 
@@ -266,15 +274,24 @@ class DirectMessageStreamDataSource: StreamDataSource {
             case (false, .none):
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DMConversationOtherMessageCell") as! DMConversationOtherMessageCell
                 cell.transform = tableView.transform
-                cell.configureCell(message, didSelectLink: { [weak self] link in
-                    UIApplication.shared.open(link, options: [.universalLinksOnly: true], completionHandler: { (success) in
-                        if !success {
-                            // not a universal link or app not installed
-                            let vc = SFSafariViewController(url: link)
-                            self?.viewController.present(vc, animated: true)
-                        }
-                    })
-                })
+                cell.configureCell(
+                    _: message,
+                    didSelectLink: { [weak self] link in
+                        UIApplication.shared.open(link, options: [.universalLinksOnly: true], completionHandler: { (success) in
+                            if !success {
+                                // not a universal link or app not installed
+                                let vc = SFSafariViewController(url: link)
+                                self?.viewController.present(vc, animated: true)
+                            }
+                        })
+                    },
+                    didSelectAvatar: { [weak self] in
+                        let vc = UIStoryboard(name: "Directory", bundle: Constants.bundle).instantiateViewController(withIdentifier: "PersonProfileViewController") as! PersonProfileViewController
+                        vc.person = message.author
+                        vc.delegate = self
+                        self?.viewController.show(vc, sender: self)
+                    }
+                )
                 if let url = message.author.avatarURL {
                     let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
                         size: cell.avatarImageView.frame.size,
@@ -389,32 +406,7 @@ extension DirectMessageStreamDataSource {
         }.then { [weak self] author in
             guard let `self` = self else { return }
             
-            if let imageURL = info[UIImagePickerController.InfoKey.phAsset] as? URL,
-               let photo = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil).firstObject {
-                PHImageManager.default().requestImageData(for: photo, options: nil, resultHandler: {
-                    data, name, orientation, info in
-                        
-                    guard let imageData = data else {
-                        let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
-                        self.viewController.present(alert, animated: true, completion: nil)
-                        return
-                    }
-                    
-                    var mimeType: String {
-                        if let name = name {
-                            if name.contains("gif") {
-                                return "image/gif"
-                            } else {
-                                return "image/png"
-                            }
-                        } else {
-                            return "image/png"
-                        }
-                    }
-                    
-                    self.send(attachment: (imageData, mimeType))
-                })
-            } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 guard let imageData = image.vlg_orientedUp().pngData() else {
                     let alert = UIAlertController.dismissable(title: "Error", message: "There was a problem sending your message.")
                     self.viewController.present(alert, animated: true, completion: nil)
@@ -447,4 +439,21 @@ class DMConversationCellConfiguartor {
         }
     }
     
+}
+
+// MARK: - PersonProfileViewControllerDelegate
+
+extension DirectMessageStreamDataSource: PersonProfileViewControllerDelegate {
+
+    func shouldShowAndStartDirectMessage(_ directMessage: VillageCore.Stream, controller: ContactPersonViewController) {
+        guard self.stream != directMessage else {
+            viewController.navigationController?.popViewController(animated: true)
+            return
+        }
+
+        let dataSource = DirectMessageStreamDataSource(stream: directMessage)
+        let vc = StreamViewController(dataSource: dataSource)
+        viewController.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
+    }
+
 }

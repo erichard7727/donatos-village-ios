@@ -17,6 +17,7 @@ public enum StreamSocketError: Error {
 public protocol StreamSocketDelegate: class {
     func streamSocket(_ streamSocket: StreamSocket, didReceiveMessage message: Message)
     func streamSocket(_ streamSocket: StreamSocket, message messageId: String, wasLiked isLiked: Bool, by personId: Int)
+    func streamSocket(_ streamSocket: StreamSocket, didDeleteMessage message: Message)
 }
 
 public final class StreamSocket {
@@ -33,7 +34,7 @@ public final class StreamSocket {
 
         var urlComponents = URLComponents()
         urlComponents.scheme = "wss"
-        urlComponents.host = URL(string: ClientConfiguration.current.appBaseURL)!.host
+        urlComponents.host = Environment.current.appBaseURL.host
         urlComponents.path = "/api/streams/1.0/messages/\(stream.id)"
         urlComponents.query = "diagId=\(User.current.diagnosticId)"
         
@@ -140,6 +141,13 @@ private extension StreamSocket {
             } else {
                 assertionFailure("Unsupported message update")
             }
+
+        case "deleted":
+            guard let deletedMessage = Message(from: json["message"]) else {
+                assertionFailure("Unsupported created item")
+                return
+            }
+            delegate?.streamSocket(self, didDeleteMessage: deletedMessage)
             
         default:
             assertionFailure("Unhandled action \(action)")

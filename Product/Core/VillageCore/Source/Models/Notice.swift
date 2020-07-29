@@ -53,7 +53,7 @@ public struct Notice {
     public let isActive: Bool
 
     public let acknowledgeRequired: Bool
-    public let isAcknowledged: Bool
+    public var isAcknowledged: Bool
     public let acceptedPercent: Float
 
     public let eventStartDateTime: Date?

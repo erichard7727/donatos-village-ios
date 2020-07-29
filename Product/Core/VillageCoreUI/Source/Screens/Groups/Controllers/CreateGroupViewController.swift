@@ -11,7 +11,7 @@ import UIKit
 import VillageCore
 
 // MARK: CreateGroupViewController
-final class CreateGroupViewController: UIViewController {
+final class CreateGroupViewController: UIViewController, NavBarDisplayable {
     
     var groupTypeViewController: CreateGroupTypeViewController!
     
@@ -28,6 +28,11 @@ final class CreateGroupViewController: UIViewController {
         addBehaviors([
             LeftBarButtonBehavior(showing: .menuOrBack)
         ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavbarAppearance(for: navigationItem)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,7 +79,7 @@ final class CreateGroupViewController: UIViewController {
         }.then { group in
             group.subscribe().then { group }
         }.then { [weak self] group in
-            let dataSource = GroupStreamDataSource(stream: group)
+            let dataSource = GroupStreamDataSource(stream: group, isUserSubscribed: true)
             let vc = StreamViewController(dataSource: dataSource)
             self?.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         }.catch { [weak self] _ in

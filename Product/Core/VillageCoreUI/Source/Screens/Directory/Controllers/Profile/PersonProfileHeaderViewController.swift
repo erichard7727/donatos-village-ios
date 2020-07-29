@@ -27,6 +27,7 @@ final class PersonProfileHeaderViewController: UIViewController {
     @IBOutlet var profileImageWidthConstraint: NSLayoutConstraint!
     
     @IBOutlet var fullNameLabel: UILabel!
+    @IBOutlet var storeLocationLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet weak var kudosLabel: UILabel!
     @IBOutlet weak var kudosButton: UIButton!
@@ -43,8 +44,14 @@ final class PersonProfileHeaderViewController: UIViewController {
         profileImageView.backgroundColor = UIColor.vlgGray
         
         fullNameLabel.text = person.displayName
+        storeLocationLabel.text = person.department
+        storeLocationLabel.isHidden = (person.department ?? "").isEmpty
         titleLabel.text = person.jobTitle
-        kudosLabel.text = (person.kudos.points > 0) ? "- \(person.kudos.points) \(Constants.Settings.kudosPluralShort) Received -" : ""
+        if Constants.Settings.kudosPointsEnabled {
+            kudosLabel.text = (person.kudos.points > 0) ? "- \(person.kudos.points) \(Constants.Settings.kudosSingularShort) Points Received -" : ""
+        } else {
+            kudosLabel.isHidden = true
+        }
         
         if let url = person.avatarURL {
             profileImageView.af_setImage(

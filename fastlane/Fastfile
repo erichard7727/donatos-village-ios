@@ -1,0 +1,284 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# New Fastlane File for Donatos Village
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+
+default_platform(:ios)
+
+before_all do
+  $root_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+end
+
+platform :ios do
+  keychain_name = "donatos-village-ios"
+  cert_output_path = "./fastlane/cert"
+  sigh_output_path = "./fastlane/sigh"
+
+  private_lane :keychain_path do
+    "~/Library/Keychains/#{keychain_name}-db"
+  end
+
+  private_lane :new_keychain do
+    begin
+      delete_keychain(name: keychain_name)
+    rescue
+      puts "ios-build keychain doesn't exist!"
+    end
+
+    create_keychain(
+      name: keychain_name,
+      password: keychain_name,
+      default_keychain: false,
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: false,
+      add_to_search_list: true
+    )
+  end
+
+  ############################# New App Store Release ##############################
+
+  desc "Push a new release build to the App Store"
+  lane :release do
+    build_app(workspace: "Village.xcworkspace", scheme: "DonatosVillage (Release)")
+    # upload_to_app_store
+  end
+
+  lane :build_staging do
+    build(
+      configuration: "Debug",
+      teamID: "PH47MC4D6A",
+      exportMethod: "development",
+      scheme: "DonatosVillage (Development)"
+    )
+  end
+
+  lane :build_release do
+    build(
+      configuration: "Release",
+      teamID: "PH47MC4D6A",
+      exportMethod: "app-store",
+      scheme: "DonatosVillage (Release)"
+    )
+  end
+  ############################# Installing Certificates ##############################
+
+  private_lane :install_local_certs do
+    import_certificate(
+      keychain_name: keychain_name,
+      keychain_password: keychain_name,
+      certificate_path: "./fastlane/cert/DV_Development.p12",
+      certificate_password: ENV['DONATOSVILLAGE_DEVELOPMENT_P12_PASSWORD']
+    )
+    import_certificate(
+      keychain_name: keychain_name,
+      keychain_password: keychain_name,
+      certificate_path: "./fastlane/cert/DV_dist.p12",
+      certificate_password: ENV['DONATOSVILLAGE_DISTRIBUTION_P12_PASSWORD']
+    )
+  end
+
+  ############################# Installing Local Provisioning Profiles ##############################
+
+  lane :install_local_provisioning_profiles do
+    $system_provisioning_path = File.expand_path("~/Library/MobileDevice/Provisioning Profiles")
+    sh(%|mkdir -p "#{$system_provisioning_path}"|)
+    sh(%|rsync -av "sigh/" "#{$system_provisioning_path}"|)
+  end
+
+  ############################# Installing Local Certificates and Profiles ##############################
+
+  desc "Install certs and profiles without fetching from Apple"
+  lane :install_all_local do
+    new_keychain
+
+    disable_automatic_code_signing(path: "./Clients/DonatosVillage/DonatosVillage.xcodeproj")
+
+    install_local_certs
+    install_local_provisioning_profiles
+
+    update_provisioning
+  end
+
+  ############################# Archive Build ##############################
+
+  desc "Archive a build. Options include: method (staging or app-store), and local
+  (whether or not to fetch certs from Apple). Example, \"fastlane ios build method:staging\""
+  # Possible options:
+  # - method: "staging" or "app-store"
+  # - local: do not ping Apple's servers, and only use locally installed certs and profiles
+  lane :build do |options|
+    new_keychain
+    install_local_certs
+    install_local_provisioning_profiles
+
+    # Set build number
+    increment_build_number(
+      build_number: ENV['donatos.village.shared.build.counter'],
+      xcodeproj: "./Clients/DonatosVillage/DonatosVillage.xcodeproj"
+    )
+
+    configuration = options[:configuration]
+    teamID = options[:teamID]
+    exportMethod = options[:exportMethod]
+    scheme = options[:scheme]
+
+    output_directory = "./artifacts/" + exportMethod
+
+    # Set variables used for build
+
+    if options[:exportMethod] == "adhoc"
+      profile_path = "./fastlane/sigh/DonatosVillage_Internal.mobileprovision"
+    elsif options[:exportMethod] == "development"
+      profile_path = "./fastlane/sigh/Donatos_Village_ABM_Development.mobileprovision"
+    elsif options[:exportMethod] == "app-store"
+      profile_path = "./fastlane/sigh/Donatos_Village_ABM_Distribution.mobileprovision"
+    end
+
+    disable_automatic_code_signing(path: "./Clients/DonatosVillage/DonatosVillage.xcodeproj")
+    update_project_provisioning(
+      xcodeproj: "./Clients/DonatosVillage/DonatosVillage.xcodeproj",
+      target_filter: "Donatos Village",
+      profile: profile_path,
+      build_configuration: configuration
+    )
+
+    gym(
+      workspace: "Village.xcworkspace",
+      scheme: scheme,
+      configuration: configuration,
+      export_options: {
+        method: exportMethod,
+        teamID: teamID,
+        uploadBitcode: false,
+        stripSwiftSymbols: true,
+        signingStyle: "manual"
+      },
+      export_method: exportMethod,
+      output_directory: output_directory,
+      buildlog_path: output_directory,
+      clean: true,
+      skip_profile_detection: false
+    )
+
+    # Delete the temp keychain
+    delete_keychain(name: keychain_name)
+  end
+
+  ############################# AppCenter Internal Upload ##############################
+
+  desc "Upload Internal Build to AppCenter"
+  lane :appcenter_internal_upload do
+  appcenter_upload(
+    api_token: ENV["APPCENTER_API_KEY"],
+    owner_name: ENV["APPCENTER_ORG_NAME"],
+    app_name: ENV["APPCENTER_APP_NAME"],
+    file: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"],
+    notify_testers: false
+   )
+   end
+
+  ############################# Building Debug Build ##############################
+
+  desc "Build the Debug configuration (iOS Simulator)"
+  lane :simulator_debug do
+  output_directory = "#{$root_dir}/artifacts/donatosvillage-ios-simulator"
+  derived_data_path = "#{$root_dir}/tmp/DerivedData"
+  generate_simulator_build(
+      workspace: "#{$root_dir}/Village.xcworkspace",
+      scheme: 'DonatosVillage (Development)',
+      configuration: 'Debug',
+      destination: 'platform=iOS Simulator,name=iPhone X,OS=latest',
+      build_sdk: 'iphonesimulator',
+      derived_data_path: derived_data_path,
+      output_directory: output_directory
+    )
+  end
+
+  ############################# Running Unit Tests ##############################
+
+  # TODO: - Get Tests Working
+  desc "Run tests"
+  lane :tests do
+    run_tests(
+        scheme: "DonatosVillage (Development)",
+        xcargs: "-UseModernBuildSystem=NO"
+      )
+  end
+
+  ############################# Running UI Tests ##############################
+
+  # TODO: - Get Tests Working
+  desc "Run UI tests"
+  lane :ui_tests do
+    run_tests(
+        scheme: "DonatosVillage (Development)",
+        xcargs: "-UseModernBuildSystem=NO",
+        result_bundle: true,
+        output_files: "UITests.html,UITests.junit",
+        output_types: "html,junit",
+        output_directory: "./artifacts",
+        buildlog_path: "./artifacts"
+      )
+  end
+
+end
+
+def self.find_app_file(dir)
+   # Finds last modified .ipa in the destination directory
+   Dir[File.join(dir, '**', '*.app')].sort { |a, b| File.mtime(b) <=> File.mtime(a) }.first
+end
+
+############################# Upload dSYM to Firebase ######################################
+
+desc "Fetch and upload dSYM files to Firebase Crashlytics"
+desc "Implemented in last build step of iOS Realease Only Team City job"
+desc "Firebase Crashlytics automatically processes debug symbol (dSYM) files providing deobfuscated/human-readable crash reports"
+lane :upload_dsym_to_firebase do
+  upload_symbols_to_crashlytics()
+end
+
+############################# Generate Simulator Build ##############################
+
+desc "Generates simulator build"
+private_lane :generate_simulator_build do |options|
+  workspace_dir = options[:workspace]
+  scheme = options[:scheme]
+  configuration = options[:configuration]
+  destination = options[:destination]
+  build_sdk = options[:build_sdk]
+  output_directory = options[:output_directory]
+  derived_data_path = options[:derived_data_path]
+
+  sh(%|\
+    "#{$root_dir}/fastlane/generate-app.sh" -v \
+      -w "#{workspace_dir}" \
+      -s "#{scheme}" \
+      -c "#{configuration}" \
+      -d "#{destination}" \
+      -b "#{build_sdk}" \
+      -o "#{derived_data_path}" \
+      -t "-DQA_AUTOMATION_BUILD" \
+      \| xcpretty
+  |)
+
+  app_location = find_app_file(derived_data_path)
+
+  begin
+    FileUtils.remove_dir(output_directory, force = true)
+    FileUtils.mkdir_p output_directory
+    FileUtils.mv(app_location, output_directory)
+  rescue
+    # in case it already exists
+  end
+
+end

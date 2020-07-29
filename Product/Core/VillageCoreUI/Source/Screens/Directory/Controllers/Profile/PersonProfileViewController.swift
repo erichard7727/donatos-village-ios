@@ -10,7 +10,7 @@ import UIKit
 import VillageCore
 
 /// Person profile controller.
-final class PersonProfileViewController: UIViewController {
+final class PersonProfileViewController: UIViewController, NavBarDisplayable {
 
     var person: Person?
     
@@ -130,6 +130,7 @@ final class PersonProfileViewController: UIViewController {
                 // Received Kudos
                 let received = storyboard.instantiateViewController(withIdentifier: kudosListControllerId) as! KudosListController
                 received.list = .received(receiver: profilePerson)
+                received.delegate = self
                 self.pages.append(received)
                 
                 if Constants.Settings.achievementsEnabled {
@@ -186,7 +187,7 @@ final class PersonProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         let originalHeight = bottomContainerView.frame.height
         var navBarHeight: CGFloat = 0
         if let navController = navigationController {
@@ -328,6 +329,16 @@ extension PersonProfileViewController: UIPageViewControllerDataSource, UIPageVie
     }
 }
 
+// MARK: - KudosListViewControllerDelegate
+
+extension PersonProfileViewController: KudosListViewControllerDelegate {
+
+    func kudosListController(_ kudosListController: KudosListController, shouldShowProfileFor person: Person) -> Bool {
+        return self.person != person
+    }
+
+}
+
 extension UIPageViewController {
     
     var currentScrollView: UIScrollView? {
@@ -350,5 +361,3 @@ extension UIPageViewController {
         return nil
     }
 }
-
-

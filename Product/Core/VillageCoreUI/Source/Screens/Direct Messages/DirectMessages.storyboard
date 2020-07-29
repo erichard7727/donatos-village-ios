@@ -21,7 +21,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Direct Messages-->
+        <!--Chats-->
         <scene sceneID="PO0-3R-Ix0">
             <objects>
                 <viewController storyboardIdentifier="DMViewController" automaticallyAdjustsScrollViewInsets="NO" id="eny-Gn-tXL" customClass="DMViewController" customModule="VillageCoreUI" customModuleProvider="target" sceneMemberID="viewController">
@@ -193,7 +193,7 @@
                             <constraint firstItem="49f-mo-0Hd" firstAttribute="centerX" secondItem="fdj-bF-78k" secondAttribute="centerX" id="tEo-II-2Q3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Direct Messages" id="Lfz-ad-v78">
+                    <navigationItem key="navigationItem" title="Chats" id="Lfz-ad-v78">
                         <barButtonItem key="rightBarButtonItem" image="add-icon" id="LKo-l9-aw1">
                             <connections>
                                 <segue destination="Ktp-Gg-VGw" kind="show" identifier="PushNewMessagesSegue" id="Q7F-3n-Dg0"/>

@@ -30,41 +30,22 @@ class StreamDataSource: NSObject {
         oldMessages.delegate = self
     }
     
-    func send(message: String) {
-//        let placeholderId = UUID().uuidString
-        
+    func send(message: String, errorHandler: @escaping (() -> Void)) {
         firstly { () -> Promise<(VillageCore.Stream, Person)> in
             User.current.getPerson().then { (self.stream, $0) }
         }.then { (stream, author) -> Promise<Message> in
-//            let placeholder = Message(
-//                id: placeholderId,
-//                author: author,
-//                authorId: author.id,
-//                authorDisplayName: author.displayName ?? "",
-//                streamId: stream.id,
-//                body: message,
-//                isLiked: false,
-//                likesCount: 0,
-//                created: "",
-//                updated: "",
-//                isSystem: false,
-//                attachment: nil
-//            )
-//
-//            self.newMessages.insert(placeholder, at: 0)
-//            self.tableView.insertRows(at: [IndexPath(row: 0, section: Section.newMessages.rawValue)], with: .automatic)
-//
             return stream.send(message: message, from: author)
         }.then { [weak self] message in
             guard
-                let `self` = self/*,
-                let placeholderIndex = self.newMessages.firstIndex(where: { $0.id == placeholderId })*/
+                let `self` = self
             else { return }
             
-            self.upsert(message, /*placeholderIndex: placeholderIndex,*/ in: self.tableView, scrollToMessage: false)
+            self.upsert(message, in: self.tableView, scrollToMessage: false)
         }.catch { [weak self] error in
             let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
-            self?.viewController.present(alert, animated: true, completion: nil)
+            self?.viewController.present(alert, animated: true, completion: {
+                errorHandler()
+            })
         }
     }
     
@@ -165,7 +146,11 @@ class StreamDataSource: NSObject {
         tableView.keyboardDismissMode = .interactive
     }
     
-    private(set) var oldMessages: Paginated<Message>
+    private(set) var oldMessages: Paginated<Message> {
+        didSet {
+            oldMessages.delegate = self
+        }
+    }
     
     private(set) var newMessages: Messages = []
 
@@ -330,6 +315,19 @@ extension StreamDataSource: StreamSocketDelegate {
     }
     
     func streamSocket(_ streamSocket: StreamSocket, message messageId: String, wasLiked isLiked: Bool, by personId: Int) { }
+
+    func streamSocket(_ streamSocket: StreamSocket, didDeleteMessage message: Message) {
+        if let index = newMessages.firstIndex(where: { $0.id == message.id }) {
+            newMessages.remove(at: index)
+            tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        } else {
+            streamSocket.closeConnection()
+            newMessages.removeAll()
+            newMessagesCountOffet = 0
+            oldMessages = stream.getMessagesPaginated()
+            oldMessages.fetchValues(at: [])
+        }
+    }
     
 }
 

@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import SlackTextViewController
+import MessageViewController
 import SafariServices
 import VillageCore
 import Promises
 
-class StreamViewController: SLKTextViewController {
+class StreamViewController: MessageViewController, NavBarDisplayable {
     
     // MARK: - Public Properties
     
@@ -25,55 +25,83 @@ class StreamViewController: SLKTextViewController {
     private var imagePicker = UIImagePickerController()
     
     private var background: UIImageView?
+
+    private var groupSubscriptionCTA: GroupSubscriptionCTA?
     
     // MARK: - Init
     
     init(dataSource: StreamDataSource) {
         self.dataSource = dataSource
-        super.init(tableViewStyle: .plain)!
+        super.init(nibName: nil, bundle: nil)
         self.dataSource.configure(delegate: self, viewController: self, tableView: tableView)
     }
     
     required init?(coder decoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override var tableView: UITableView {
-        return super.tableView!
-    }
+
+    lazy var tableView: UITableView = {
+        let tv = UITableView()
+        tv.transform = CGAffineTransform(scaleX: 1, y: -1)
+        return tv
+    }()
     
     // MARK: - UIViewController Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(tableView)
+
+        // Configure MessageView
+        borderColor = .gray
+        messageView.font = UIFont(name: "ProximaNova-Regular", size: 16)!
+        messageView.maxLineCount = 6
+
+        messageView.addButton(target: self, action: #selector(didPressLeftButton), position: .left)
+        messageView.setButton(icon: UIImage.named("add-icon")?.withRenderingMode(.alwaysTemplate), for: .normal, position: .left)
+        messageView.setButton(inset: 10, position: .left)
+        messageView.leftButtonTint = .vlgGray
+        messageView.showLeftButton = true
+
+        messageView.textView.textContainerInset = UIEdgeInsets(top: 9, left: 8, bottom: 9, right: 16)
+        messageView.textView.placeholderText = "Message"
+        messageView.textView.placeholderTextColor = .lightGray
+
+        messageView.addButton(target: self, action: #selector(didPressRightButton), position: .right)
+        messageView.setButton(title: "Send", for: .normal, position: .right)
+        messageView.setButton(font: UIFont(name: "ProximaNova-Semibold", size: 16)!, position: .right)
+        messageView.setButton(inset: 10, position: .right)
+        messageView.rightButtonTint = .vlgRed
+
+        setup(scrollView: tableView)
         
         navigationItem.largeTitleDisplayMode = .never
         
         addBehaviors([
             LeftBarButtonBehavior(showing: .menuOrBack),
-            StandardStreamEditingUIBehavior()
         ])
         
         if dataSource.stream.id.lowercased().starts(with: "stream") {
             background = UIImageView(image: UIImage.named("app-background"))
             tableView.backgroundView = background
         }
-        
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         // Update title.
         if dataSource.stream.id.lowercased().starts(with: "dm") {
             let currentUser = User.current
             let otherParticipants = dataSource.stream.details?.closedParties.filter({ $0.id != currentUser.personId }).compactMap({ $0.displayName })
             self.title = otherParticipants?.joined(separator: ", ") ?? "Conversation"
+            self.setMessageView(hidden: false, animated: false)
         } else {
             self.title = dataSource.stream.name
+            let isUserSubscribed = (dataSource as? GroupStreamDataSource)?.isUserSubscribed ?? false
+            setGroupSubscriptionCTAHidden(isUserSubscribed, animated: false)
         }
-        
-        self.textInputbar.textView.keyboardType = .default
         
         if dataSource.oldMessages.needsFetching {
 //            loadingGroupsContainer.isHidden = false
@@ -91,10 +119,10 @@ class StreamViewController: SLKTextViewController {
         dataSource.streamSocket?.establishConnection()
         
         NotificationCenter.default.post(
-            name: Notification.Name.Stream.IsViewingDirectMessageConversation,
+            name: Notification.Name.Stream.isViewingDirectMessageConversation,
             object: self,
             userInfo: [
-                Notification.Name.Stream.directMessageConversationKey: dataSource.stream,
+                Notification.Name.Stream.streamKey: dataSource.stream,
             ]
         )
         
@@ -105,13 +133,16 @@ class StreamViewController: SLKTextViewController {
         super.viewDidLayoutSubviews()
         
         background?.frame = tableView.frame
+
+        let topInset = groupSubscriptionCTA?.bounds.height ?? 0
+        tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if !dataSource.hasMessages {
-            self.textView.becomeFirstResponder()
+            messageView.becomeFirstResponder()
         }
     }
     
@@ -122,14 +153,11 @@ class StreamViewController: SLKTextViewController {
             dataSource.streamSocket?.closeConnection()
         }
         
-        NotificationCenter.default.post(name: Notification.Name.Stream.IsViewingDirectMessageConversation, object: self, userInfo: [:])
+        NotificationCenter.default.post(name: Notification.Name.Stream.isViewingDirectMessageConversation, object: self, userInfo: [:])
     }
     
-    // MARK: - SLKTextViewController Overrides
-    
-    override func didPressLeftButton(_ sender: Any!) {
-        super.didPressLeftButton(sender)
-        
+    @objc func didPressLeftButton() {
+
         let actionSheetController: UIAlertController = UIAlertController(
             title: "Attach Media",
             message: "Choose an image from the following options.",
@@ -179,18 +207,114 @@ class StreamViewController: SLKTextViewController {
         
     }
     
-    override func didPressRightButton(_ sender: Any!) {
-        guard let text = textView.text, !text.isEmpty else { return }
-        
-        dataSource.send(message: text.trimmingCharacters(in: .whitespacesAndNewlines))
-        
-        super.didPressRightButton(sender)
+    @objc func didPressRightButton() {
+        guard !messageView.text.isEmpty else { return }
+
+        let text = messageView.text
+        messageView.text = ""
+
+        dataSource.send(
+            message: text.trimmingCharacters(in: .whitespacesAndNewlines),
+            errorHandler: { [weak self] in
+                self?.messageView.text = text
+            }
+        )
     }
 }
 
 // MARK: - Private Methods
 
 private extension StreamViewController {
+
+    func makeGroupSubscriptionCTA() -> GroupSubscriptionCTA {
+        let cta = GroupSubscriptionCTA(
+            stream: self.dataSource.stream,
+            responseHandler: { [weak self] (response) in
+                switch response {
+                case .didSubscribe(let success):
+                    if success {
+                        if let dataSource = (self?.dataSource as? GroupStreamDataSource) {
+                            dataSource.isUserSubscribed = true
+                        }
+                        self?.setGroupSubscriptionCTAHidden(true, animated: false)
+                    } else {
+                        let alert = UIAlertController(
+                            title: "Subscription Error",
+                            message: "There was a problem subscribing to this group. Please try again.",
+                            preferredStyle: .alert
+                        )
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                        self?.present(alert, animated: true, completion: nil)
+                    }
+
+                case .viewDetails(let stream):
+                    let vc = UIStoryboard(name: "Groups", bundle: Constants.bundle).instantiateViewController(withIdentifier: "GroupSettingsController") as! GroupSettingsController
+                    vc.group = stream
+                    if let dataSource = (self?.dataSource as? GroupStreamDataSource) {
+                        vc.isUserSubscribed = dataSource.isUserSubscribed
+                    }
+                    vc.delegate = self?.dataSource as? GroupStreamDataSource
+                    self?.show(vc, sender: self)
+
+                case .fetchDetailsErrored:
+                    let alert = UIAlertController(
+                        title: "Group Error",
+                        message: "There was a problem fetching details for this group. Please try again.",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                }
+            }
+        )
+        cta.translatesAutoresizingMaskIntoConstraints = false
+        return cta
+    }
+
+    func setGroupSubscriptionCTAHidden(_ isHidden: Bool, animated: Bool) {
+        let animationBlock: () -> Void
+        let completionBlock: (Bool) -> Void
+
+        if isHidden {
+            animationBlock = {
+                self.groupSubscriptionCTA?.alpha = 0
+            }
+            completionBlock = { _ in
+                self.groupSubscriptionCTA = nil
+                self.setMessageView(hidden: !isHidden, animated: animated)
+            }
+        } else {
+            let groupSubscriptionCTA: GroupSubscriptionCTA
+            if let cta = self.groupSubscriptionCTA {
+                // Keep whatever existing alpha is already there
+                groupSubscriptionCTA = cta
+            } else {
+                groupSubscriptionCTA = makeGroupSubscriptionCTA()
+                self.groupSubscriptionCTA = groupSubscriptionCTA
+                view.addSubview(groupSubscriptionCTA)
+                view.addConstraints([
+                    view.leadingAnchor.constraint(equalTo: groupSubscriptionCTA.leadingAnchor),
+                    view.bottomAnchor.constraint(equalTo: groupSubscriptionCTA.bottomAnchor),
+                    view.trailingAnchor.constraint(equalTo: groupSubscriptionCTA.trailingAnchor),
+                ])
+                groupSubscriptionCTA.alpha = 0
+            }
+
+            animationBlock = {
+                self.groupSubscriptionCTA?.alpha = 1
+            }
+            completionBlock = { _ in
+                self.setMessageView(hidden: !isHidden, animated: animated)
+            }
+        }
+
+        if animated {
+            UIView.animate(withDuration: 0.25, animations: animationBlock, completion: completionBlock)
+        } else {
+            animationBlock()
+            completionBlock(true)
+        }
+    }
 
     func saveImage(image: UIImage) {
         if let pngRepresentation = image.pngData(),

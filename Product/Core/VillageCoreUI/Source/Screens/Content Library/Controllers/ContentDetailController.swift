@@ -88,7 +88,7 @@ extension ContentDetailController: WKNavigationDelegate {
         }
         
         guard let url = navigationAction.request.url,
-              !url.absoluteString.contains(ClientConfiguration.current.appBaseURL)
+              !url.absoluteString.contains(Environment.current.appBaseURL.absoluteString)
         else {
             // Allow this webview to process Village links so the user will remain authenticated
             decisionHandler(.allow)

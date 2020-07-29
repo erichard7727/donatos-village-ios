@@ -79,7 +79,7 @@ class NoticeAcknowledgementsViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
         definesPresentationContext = true
         
         searchController.searchBar.searchBarStyle = .prominent

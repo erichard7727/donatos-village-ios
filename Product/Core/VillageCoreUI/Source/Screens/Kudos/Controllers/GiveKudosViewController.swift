@@ -9,7 +9,7 @@
 import UIKit
 import VillageCore
 
-class GiveKudosViewController: UIViewController, KeyboardExpandable {
+class GiveKudosViewController: UIViewController, KeyboardExpandable, NavBarDisplayable {
     
     lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -24,7 +24,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
     
     @IBOutlet private var giveKudosTitleLabel: UILabel! {
         didSet {
-            giveKudosTitleLabel.text = "Give " + Constants.Settings.kudosSingularShort
+            giveKudosTitleLabel.text = "Give a " + Constants.Settings.kudosSingularLong
         }
     }
     
@@ -147,6 +147,7 @@ class GiveKudosViewController: UIViewController, KeyboardExpandable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNavbarAppearance(for: navigationItem)
     }
     
     // MARK: - Target/Action

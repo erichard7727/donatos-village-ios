@@ -20,6 +20,7 @@ public struct Person {
 
     public var firstName: String?
     public var lastName: String?
+    public var department: String?
     public var jobTitle: String?
     public var phone: String?
     public var twitter: String?

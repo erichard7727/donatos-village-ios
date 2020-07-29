@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="proximanova-reg-webfont.ttf">
+            <string>ProximaNova-Regular</string>
+        </array>
+        <array key="proximanova-sbold-webfont.ttf">
+            <string>ProximaNova-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GroupSubscriptionCTA" customModule="VillageCoreUI" customModuleProvider="target">
+            <connections>
+                <outlet property="detailLoader" destination="tXx-lg-ncK" id="FZT-Oh-0YQ"/>
+                <outlet property="subscribeButton" destination="oge-Nt-WJQ" id="h42-To-XNC"/>
+                <outlet property="subscribeLoader" destination="yV7-BB-5GI" id="YyB-Ob-5Z2"/>
+                <outlet property="titleLabel" destination="xyk-nK-xQE" id="ufJ-ti-9lK"/>
+                <outlet property="viewDetailsButton" destination="VEt-va-nV6" id="7Mp-9p-Ozo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="168"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jgm-7C-elw">
+                    <rect key="frame" x="20" y="20" width="374" height="94"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Your are viewing {{ group }}." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyk-nK-xQE">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="I5v-WW-8Mz">
+                            <rect key="frame" x="0.0" y="44" width="374" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oge-Nt-WJQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="177" height="50"/>
+                                    <color key="backgroundColor" name="vlgGreen"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="yso-jL-L0u"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Subscribe"/>
+                                    <connections>
+                                        <action selector="subscribe" destination="-1" eventType="touchUpInside" id="la1-Rp-h0f"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEt-va-nV6">
+                                    <rect key="frame" x="197" y="0.0" width="177" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="ccb-uj-LAA"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
+                                    <state key="normal" title="Group Details">
+                                        <color key="titleColor" name="vlgGreen"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="viewDetails" destination="-1" eventType="touchUpInside" id="rpi-Kf-xoS"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="yV7-BB-5GI">
+                    <rect key="frame" x="98.5" y="79" width="20" height="20"/>
+                </activityIndicatorView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tXx-lg-ncK">
+                    <rect key="frame" x="295.5" y="79" width="20" height="20"/>
+                    <color key="color" name="vlgGreen"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94509803921568625" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jgm-7C-elw" secondAttribute="trailing" constant="20" id="4NV-a6-X9V"/>
+                <constraint firstItem="jgm-7C-elw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="LSs-Oz-GgL"/>
+                <constraint firstItem="yV7-BB-5GI" firstAttribute="centerX" secondItem="oge-Nt-WJQ" secondAttribute="centerX" id="Q0z-7Z-Tzf"/>
+                <constraint firstItem="tXx-lg-ncK" firstAttribute="centerY" secondItem="VEt-va-nV6" secondAttribute="centerY" id="Qqi-JL-CzZ"/>
+                <constraint firstItem="tXx-lg-ncK" firstAttribute="centerX" secondItem="VEt-va-nV6" secondAttribute="centerX" id="U1B-mL-vRF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="jgm-7C-elw" secondAttribute="bottom" constant="20" id="dTb-gU-8aq"/>
+                <constraint firstItem="jgm-7C-elw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="f9f-rB-kaf"/>
+                <constraint firstItem="yV7-BB-5GI" firstAttribute="centerY" secondItem="oge-Nt-WJQ" secondAttribute="centerY" id="kei-rT-sHX"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="50.724637681159422" y="45.200892857142854"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="vlgGreen">
+            <color red="0.54509803921568623" green="0.60392156862745094" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -197,15 +197,17 @@ class EventTableViewCellConfiguartor {
 
 }
 
-final class NoticeListViewController: UIViewController {
+final class NoticeListViewController: UIViewController, NavBarDisplayable {
     
     // MARK: - Public Properties
     
     enum DisplayType {
         case all
         case notices
+        case unacknowledgedNotices
         case news
         case events
+        case unrespondedEvents
         
         fileprivate var title: String {
             switch self {
@@ -215,10 +217,13 @@ final class NoticeListViewController: UIViewController {
             case .notices:
                 return "Notices"
                 
+            case .unacknowledgedNotices:
+                return "Notices Needing Action"
+                
             case.news:
                 return "News"
                 
-            case .events:
+            case .events, .unrespondedEvents:
                 return "Events"
             }
         }
@@ -231,23 +236,45 @@ final class NoticeListViewController: UIViewController {
             case .notices:
                 return Notices.allNoticesPaginated()
                 
+            case .unacknowledgedNotices:
+                return Notices.unacknowledgedNoticesPaginated()
+                
             case.news:
                 return Notices.allNewsPaginated()
                 
             case .events:
                 return Notices.allEventsPaginated()
+                
+            case .unrespondedEvents:
+                return Notices.unrespondedEventsPaginated()
+            }
+        }
+
+        fileprivate func searchFor(_ searchText: String) -> SectionedPaginated<Notice> {
+            switch self {
+            case .all:
+                return Notices.searchNoticesAndNewsPaginated(for: searchText)
+
+            case .notices, .unacknowledgedNotices:
+                return Notices.searchNoticesPaginated(for: searchText)
+
+            case.news:
+                return Notices.searchNewsPaginated(for: searchText)
+
+            case .events, .unrespondedEvents:
+                return Notices.searchEventsPaginated(for: searchText)
             }
         }
         
         fileprivate var emptyMessage: String {
             switch self {
-            case .all, .notices:
+            case .all, .notices, .unacknowledgedNotices:
                 return "There are no notices to display."
                 
             case.news:
                 return "There is no news to display."
                 
-            case .events:
+            case .events, .unrespondedEvents:
                 return "There are no events to display."
             }
         }
@@ -256,21 +283,51 @@ final class NoticeListViewController: UIViewController {
     var displayType: DisplayType = .all {
         didSet {
             self.title = displayType.title
-            notices = displayType.paginated()
+            allNotices = displayType.paginated()
         }
     }
     
     // MARK: - Private Properties
     
-    /// All paginated notices available to the user
+    /// Returns the appropriate paginated notices based on whether
+    /// the user is performing a search or browsing all available notices
     private var notices: SectionedPaginated<Notice>! {
+        return searchedNotices ?? allNotices
+    }
+
+    /// All paginated notices available to the user
+    private var allNotices: SectionedPaginated<Notice>! {
         didSet {
-            notices.delegate = self
+            allNotices.delegate = self
             if isViewLoaded {
                 tableView.reloadData()
             }
         }
     }
+
+    /// Paginated notices represented the user's search. This will be `nil`
+    /// if the user is not currently searching
+    private var searchedNotices: SectionedPaginated<Notice>? {
+        didSet {
+            searchedNotices?.delegate = self
+            guard searchedNotices != nil else { return }
+            tableView.reloadData()
+        }
+    }
+
+    private lazy var searchController: UISearchController = {
+        let searchController = TintedSearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
+        return searchController
+    }()
+
+    /// Allows the user's search to be "debounced" as the user is typing
+    /// their query so that we don't query the API too frequently
+    private let searchDebouncer = Debouncer()
+
+    private var previousSearchTerm = ""
         
     // MARK: Outlets
     
@@ -278,7 +335,7 @@ final class NoticeListViewController: UIViewController {
         didSet {
             tableView.rowHeight = UITableView.automaticDimension
             tableView.estimatedRowHeight = 100
-            tableView.alwaysBounceVertical = false
+            tableView.alwaysBounceVertical = true
             tableView.tableFooterView = UIView()
             tableView.emptyDataSetSource = self
             tableView.emptyDataSetDelegate = self
@@ -302,24 +359,33 @@ final class NoticeListViewController: UIViewController {
 // MARK: - UIViewController Overrides
 
 extension NoticeListViewController {
+
+    /// This is set to `true` to prevent the navigation bar from being hidden
+    /// when pushing viewControllers while `hidesNavigationBarDuringPresentation`
+    /// is enabled and the user is searching.
+    override var definesPresentationContext: Bool {
+        get { return true }
+        set { }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addBehaviors([
             LeftBarButtonBehavior(showing: .menuOrBack),
         ])
         
         title = displayType.title
         
-        if notices == nil {
-            notices = displayType.paginated()
+        if allNotices == nil {
+            allNotices = displayType.paginated()
         }
+
+        navigationItem.searchController = searchController
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         if notices.needsFetching {
             loadingNoticesContainer.isHidden = false
             notices.fetchValues(at: [])
@@ -330,7 +396,6 @@ extension NoticeListViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
@@ -422,6 +487,11 @@ private extension NoticeListViewController {
             return Calendar.current.isDate(lhs.date, equalTo: rhs.date, toGranularity: .day)
         }
     }
+
+    func setSearchBarEnabled(_ isEnabled: Bool) {
+        searchController.searchBar.isUserInteractionEnabled = isEnabled
+        searchController.searchBar.alpha = isEnabled ? 1.0 : 0.75
+    }
     
 }
 
@@ -510,7 +580,7 @@ extension NoticeListViewController: UITableViewDelegate {
                 AnalyticsParameterItemName: selectedNotice.title
             ]
         )
-        
+
         performSegue(withIdentifier: "ViewNotice", sender: indexPath)
     }
     
@@ -521,7 +591,21 @@ extension NoticeListViewController: UITableViewDelegate {
 extension NoticeListViewController: DZNEmptyDataSetSource {
     
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: displayType.emptyMessage, attributes: nil)
+        if searchController.isActive {
+            let title = NSMutableAttributedString(string: "No \(displayType.title) found", attributes: nil) // reg
+            if let searchTerm = searchController.searchBar.text {
+                let term = NSMutableAttributedString(string: " matching \"", attributes: nil) // reg
+                term.append(NSAttributedString(string: searchTerm, attributes: [
+                    .foregroundColor: UIColor.darkText,
+                    ]))
+                term.append(NSAttributedString(string: "\"", attributes: nil)) // reg
+                title.append(term)
+            }
+            title.append(NSAttributedString(string: ".", attributes: nil)) // reg
+            return title
+        } else {
+            return NSAttributedString(string: displayType.emptyMessage, attributes: nil) // reg
+        }
     }
     
 }
@@ -529,10 +613,20 @@ extension NoticeListViewController: DZNEmptyDataSetSource {
 // MARK: - DZNEmptyDataSetDelegate
 
 extension NoticeListViewController: DZNEmptyDataSetDelegate {
-    
+
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         // Only show an empty data set if loading is not in-progress
         return loadingNoticesContainer.isHidden
+    }
+
+    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        // Disable search if the main dataset is empty
+        // Always leave search enabled if the user is searching
+        setSearchBarEnabled(searchController.isActive)
+    }
+
+    func emptyDataSetWillDisappear(_ scrollView: UIScrollView!) {
+        setSearchBarEnabled(true)
     }
     
 }
@@ -546,13 +640,15 @@ extension NoticeListViewController: SectionedPaginationDelegate {
                           deleteSections: IndexSet,
                           insertSections: IndexSet) {
         loadingNoticesContainer.isHidden = true
-        
+
         tableView.performBatchUpdates({
             tableView.deleteRows(at: deleteRows, with: .automatic)
             tableView.insertRows(at: insertRows, with: .automatic)
             tableView.deleteSections(deleteSections, with: .automatic)
             tableView.insertSections(insertSections, with: .automatic)
-        }, completion: nil)
+        }, completion: { _ in
+            self.tableView.reloadEmptyDataSet()
+        })
     }
     
     func onFetchFailed(with error: Error) {
@@ -562,4 +658,33 @@ extension NoticeListViewController: SectionedPaginationDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension NoticeListViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchText = searchController.searchBar.text ?? ""
+
+        guard searchText != previousSearchTerm else {
+            return
+        }
+
+        previousSearchTerm = searchText
+
+        guard !searchText.isEmpty else {
+            self.loadingNoticesContainer.isHidden = true
+            searchedNotices = nil
+            tableView.reloadData()
+            return
+        }
+
+        self.loadingNoticesContainer.isHidden = false
+        searchedNotices = displayType.searchFor(searchText)
+        searchDebouncer.debounce(afterTimeInterval: 1) { [weak self] in
+            self?.notices.fetchValues(at: [])
+        }
+    }
+
 }

@@ -16,6 +16,8 @@ struct PaginatedCounts {
     let totalPages: Int
     let currentPage: Int
     let perPage: Int
+
+    static var zero = PaginatedCounts(totalCount: 0, totalPages: 0, currentPage: 0, perPage: 0)
 }
 
 internal extension PaginatedCounts {
@@ -118,11 +120,19 @@ public protocol PaginatedType: class {
     ///       comes from the `onFetchCompleted(with:)` method of `PaginationDelegate`
     /// - Returns: The indexPaths that should be reloaded, if any
     func visibleIndexPathsToReload(_ indexPathsForVisibleRows: [IndexPath], intersecting indexPaths: [IndexPath]) -> [IndexPath]
-    
+
     /// Informs the `PaginatedType` to fetch a new set of values; either the
-    /// first page, or the next page. It is safe to call this method repeatedly
-    /// in quick succession.
+    /// first page, or the next page.
+    ///
+    /// It is safe to call this method repeatedly in quick succession.
+    ///
+    /// - Parameters:
+    ///   - indexPaths: The specific IndexPaths to fetch, or an empty array.
     func fetchValues(at indexPaths: [IndexPath])
+
+    /// Informs the `PaginatedType` to fetch and replace the
+    /// first page of values.
+    func reloadValues()
     
 }
 
@@ -150,7 +160,7 @@ public class Paginated<T>: PaginatedType {
     /// methods to modify this value instead of accessing directly.
     private var fetchQueue: Set<Int> = []
     
-    private var paginatedCounts: PaginatedCounts = PaginatedCounts(totalCount: 0, totalPages: 0, currentPage: 0, perPage: 0)
+    private var paginatedCounts: PaginatedCounts = .zero
     
     enum FetchStatus {
         case idle
@@ -242,7 +252,19 @@ public class Paginated<T>: PaginatedType {
         fetchPage(nextPage)
         
     }
-    
+
+    public func reloadValues() {
+        // Reset
+        self.values = []
+        self.fetched = []
+        self.fetchQueue = []
+        self.paginatedCounts = .zero
+        self.fetchStatus = .idle
+        self.needsFetching = true
+
+        fetchValues(at: [])
+    }
+
     private func fetchPage(_ page: Int) {
         firstly {
             performFetch(page)
@@ -279,11 +301,19 @@ public class Paginated<T>: PaginatedType {
             
         }
     }
-    
+
+    /// Adds the range of pages to the fetchQueue.
+    ///
+    /// - Parameters:
+    ///   - pages: The pages to add to the queue
     private func addQueued(_ pages: ClosedRange<Int>) {
         fetchQueue = fetchQueue.union(pages).subtracting(fetched)
     }
-    
+
+    /// Removes the range of pages from the fetchQueue.
+    ///
+    /// - Parameters:
+    ///   - pages: The pages to add to the queue
     private func removeQueued(_ page: Int) {
         fetchQueue.remove(page)
         fetched.insert(page)
@@ -367,11 +397,18 @@ public protocol SectionedPaginatedType: class {
     /// - Returns: `true` if the item has not been fetched yet, otherwise `false`
     func isLoadingValue(at indexPath: IndexPath) -> Bool
     
-    /// Informs the `PaginatedType` to fetch a new set of values; either the
-    /// first page, or the next page. It is safe to call this method repeatedly
-    /// in quick succession.
+    /// Informs the `SectionedPaginatedType` to fetch a new set of values; either the
+    /// first page, or the next page.
+    ///
+    /// It is safe to call this method repeatedly in quick succession.
+    ///
+    /// - Parameters:
+    ///   - indexPaths: The specific IndexPaths to fetch, or an empty array.
     func fetchValues(at indexPaths: [IndexPath])
-    
+
+    /// Informs the `SectionedPaginatedType` to fetch and replace the
+    /// first page of values.
+    func reloadValues()
 }
 
 /// A concrete type that exposes the `PaginatedType` API and implements
@@ -447,7 +484,7 @@ public class SectionedPaginated<T: Equatable>: SectionedPaginatedType {
     /// methods to modify this value instead of accessing directly.
     private var fetchQueue: Set<Int> = []
     
-    private var paginatedCounts: PaginatedCounts = PaginatedCounts(totalCount: 0, totalPages: 0, currentPage: 0, perPage: 0)
+    private var paginatedCounts: PaginatedCounts = .zero
     
     enum FetchStatus {
         case idle
@@ -508,7 +545,7 @@ public class SectionedPaginated<T: Equatable>: SectionedPaginatedType {
     public func isLoadingValue(at indexPath: IndexPath) -> Bool {
         return sections[indexPath.section].isLoadingSection
     }
-    
+
     public func fetchValues(at indexPaths: [IndexPath]) {
         let firstPage: Int
         let lastPage: Int
@@ -557,6 +594,18 @@ public class SectionedPaginated<T: Equatable>: SectionedPaginatedType {
         
         fetchPage(nextPage)
         
+    }
+
+    public func reloadValues() {
+        // Reset
+        self.sections = []
+        self.fetched = []
+        self.fetchQueue = []
+        self.paginatedCounts = .zero
+        self.fetchStatus = .idle
+        self.needsFetching = true
+
+        fetchValues(at: [])
     }
     
     private func fetchPage(_ page: Int) {
@@ -651,11 +700,19 @@ public class SectionedPaginated<T: Equatable>: SectionedPaginatedType {
             }
         }
     }
-    
+
+    /// Adds the range of pages to the fetchQueue.
+    ///
+    /// - Parameters:
+    ///   - pages: The pages to add to the queue
     private func addQueued(_ pages: ClosedRange<Int>) {
         fetchQueue = fetchQueue.union(pages).subtracting(fetched)
     }
-    
+
+    /// Removes the range of pages from the fetchQueue.
+    ///
+    /// - Parameters:
+    ///   - pages: The pages to add to the queue
     private func removeQueued(_ page: Int) {
         fetchQueue.remove(page)
         fetched.insert(page)

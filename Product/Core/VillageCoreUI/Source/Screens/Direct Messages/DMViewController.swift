@@ -14,7 +14,7 @@ import AlamofireImage
 import VillageCore
 
 // MARK: DirectMessagesViewController
-final class DMViewController: UIViewController {
+final class DMViewController: UIViewController, NavBarDisplayable {
     
     var directMessages: VillageCore.Streams = []
         
@@ -59,7 +59,7 @@ final class DMViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         refreshTableView()
     }
     

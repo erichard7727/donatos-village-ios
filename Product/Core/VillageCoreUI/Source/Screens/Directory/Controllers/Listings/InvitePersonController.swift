@@ -12,7 +12,7 @@ protocol InvitePersonControllerDelegate: class {
     func personInvited(emailAddress: String?)
 }
 
-final class InvitePersonController: UIViewController, UIGestureRecognizerDelegate {
+final class InvitePersonController: UIViewController, UIGestureRecognizerDelegate, NavBarDisplayable {
     
     weak var delegate: InvitePersonControllerDelegate?
     
@@ -28,6 +28,11 @@ extension InvitePersonController {
         addBehaviors([
             LeftBarButtonBehavior(showing: .menuOrBack)
         ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavbarAppearance(for: navigationItem)
     }
     
 }

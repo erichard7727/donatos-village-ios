@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import VillageCore
+import Promises
 
 public class VillageContainer: SideMenuController {
     
@@ -24,16 +25,9 @@ public class VillageContainer: SideMenuController {
         }
     }
 
-    #warning("JACK - Remove old homeVC once DONV-345 is complete")
     private lazy var homeVC: UIViewController = {
-        let storyboard = UIStoryboard(name: "Home", bundle: Constants.bundle)
-        let homeVC = storyboard.instantiateInitialViewController() as! HomeController
-        return UINavigationController(rootViewController: homeVC)
-    }()
-
-    private lazy var newHomeVC: UIViewController = {
-        let storyboard = UIStoryboard(name: "NewHomeStream", bundle: Constants.bundle)
-        let homeVC = storyboard.instantiateInitialViewController() as! NewHomeStreamViewController
+        let storyboard = UIStoryboard(name: "HomeStream", bundle: Constants.bundle)
+        let homeVC = storyboard.instantiateInitialViewController() as! HomeStreamViewController
         return UINavigationController(rootViewController: homeVC)
     }()
     
@@ -89,10 +83,10 @@ public class VillageContainer: SideMenuController {
             }
         }
         
-        NotificationCenter.default.addObserver(forName: Notification.Name.Stream.IsViewingDirectMessageConversation, object: nil, queue: .main) {
+        NotificationCenter.default.addObserver(forName: Notification.Name.Stream.isViewingDirectMessageConversation, object: nil, queue: .main) {
             [weak self] notification in
             
-            self?.openDirectMessageStream = notification.userInfo?[Notification.Name.Stream.directMessageConversationKey] as? VillageCore.Stream
+            self?.openDirectMessageStream = notification.userInfo?[Notification.Name.Stream.streamKey] as? VillageCore.Stream
         }
     }
     
@@ -100,8 +94,7 @@ public class VillageContainer: SideMenuController {
         super.viewWillAppear(animated)
     }
 
-    #warning("JACK - Remove isNew param once DONV-345 is complete")
-    func showHome(isNew: Bool) {
+    func showHome() {
         func setHomeVC(animated: Bool) {
             if self.contentViewController != self.homeVC {
                 self.setContentViewController(homeVC, fadeAnimation: animated)
@@ -109,12 +102,6 @@ public class VillageContainer: SideMenuController {
             self.hideMenu()
         }
 
-        func setNewHomeVC(animated: Bool) {
-            if self.contentViewController != self.newHomeVC {
-                self.setContentViewController(newHomeVC, fadeAnimation: animated)
-            }
-            self.hideMenu()
-        }
         
         func performPendingRoute(_ route: Route) {
             self.performRoute(route)
@@ -125,11 +112,7 @@ public class VillageContainer: SideMenuController {
             if isReadyToPerformPendingRoute {
                 performPendingRoute(route)
             } else {
-                if !isNew {
-                    setHomeVC(animated: false)
-                } else {
-                    setNewHomeVC(animated: false)
-                }
+                setHomeVC(animated: false)
                 DispatchQueue.main.async {
                     if self.isReadyToPerformPendingRoute {
                         performPendingRoute(route)
@@ -140,11 +123,7 @@ public class VillageContainer: SideMenuController {
                 }
             }
         } else {
-            if !isNew {
-                setHomeVC(animated: true)
-            } else {
-                setNewHomeVC(animated: true)
-            }
+            setHomeVC(animated: true)
         }
     }
 
@@ -153,6 +132,11 @@ public class VillageContainer: SideMenuController {
 // MARK: UIApplicationDelegate
 
 extension VillageContainer: UIApplicationDelegate {
+
+    public func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        UIViewController.doBadSwizzleStuff()
+        return true
+    }
  
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
@@ -165,7 +149,7 @@ extension VillageContainer: UIApplicationDelegate {
             print(error.localizedDescription)
         }
         
-        print(ClientConfiguration.current)
+        print("Using Environment:", Environment.current)
         
         applyTheme()
         
@@ -314,20 +298,22 @@ private extension VillageContainer {
     @objc func runAppStartupFlow() {
         
         if User.current.isGuest {
-            showHome(isNew: false)
+            showHome()
             let loginIdentityVC: LoginIdentityViewController = {
                 let storyboard = UIStoryboard(name: "LoginIdentityViewController", bundle: Constants.bundle)
                 let loginIdentityVC = storyboard.instantiateInitialViewController() as! LoginIdentityViewController
                 return loginIdentityVC
             }()
             DispatchQueue.main.async {
-                self.present(UINavigationController(rootViewController: loginIdentityVC), animated: false, completion: nil)
+                let navigationController = UINavigationController(rootViewController: loginIdentityVC)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: false, completion: nil)
             }
         } else {
             firstly {
                 User.current.loginWithDetails()
             }.then { [weak self] _ in
-                self?.showHome(isNew: false)
+                self?.showHome()
                 self?.registerForPushNotifications(shouldRequestAuthorization: true)
             }.catch { [weak self] error in
                 if case ServiceError.connectionFailed(_) = error {
@@ -409,6 +395,7 @@ private extension VillageContainer {
                 return Route.notices
                 
             case "kudos"?:
+                // This may be legacy code but I'm afraid to remove it?
                 return Route.myReceivedKudos
                 
             default:
@@ -423,6 +410,9 @@ private extension VillageContainer {
                 break
             }
             return Route.group(streamId: streamId)
+
+        case "kudos":
+            return Route.myReceivedKudos
             
         case "unread":
             // We have chosen to ignore unread notifications but they do exist
@@ -474,8 +464,13 @@ private extension VillageContainer {
     func goToGroup(id: String) {
         firstly {
             return VillageCore.Stream.getBy(id)
-        }.then { [weak self] stream in
-            let dataSource = GroupStreamDataSource(stream: stream)
+        }.then { stream -> Promise<(VillageCore.Stream, Bool)> in
+            return VillageCore.Streams.subscribed().then { streams in
+                let isSubscribed = streams.contains(stream)
+                return Promise((stream, isSubscribed))
+            }
+        }.then { [weak self] (stream, isSubscribed) in
+            let dataSource = GroupStreamDataSource(stream: stream, isUserSubscribed: isSubscribed)
             let vc = StreamViewController(dataSource: dataSource)
             self?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
             self?.hideMenu()

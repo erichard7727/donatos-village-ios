@@ -34,11 +34,19 @@ class LeftBarButtonBehavior: ViewControllerLifecycleBehavior {
         }
     }
     
+    var badgeText: String? {
+        didSet {
+            self.barButtonItem?.badgeString = badgeText
+        }
+    }
+    
     init(showing buttonStyle: ButtonStyle) {
         self.buttonStyle = buttonStyle
     }
     
     private let buttonStyle: ButtonStyle?
+    
+    private var barButtonItem: UIBarButtonItem?
     
     private init() {
         self.buttonStyle = .none
@@ -63,12 +71,10 @@ class LeftBarButtonBehavior: ViewControllerLifecycleBehavior {
         let hasSideMenu = viewController.sideMenuController != nil
         
         if buttonStyle.showsMenuButton && hasSideMenu && isRootViewController {
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
-                image: UIImage.named("menu-icon")?.withRenderingMode(.alwaysTemplate),
-                style: .plain,
-                target: viewController,
-                action: #selector(viewController.vlg_showMenu(_:))
-            )
+            let barButton = UIBarButtonItem(badge: badgeText, image: UIImage.named("menu-icon")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), target: viewController, action: #selector(viewController.vlg_showMenu(_:)))
+			barButton.accessibilityLabel = "menu_button"
+            viewController.navigationItem.leftBarButtonItem = barButton
+            self.barButtonItem = barButton
         }
         
     }

@@ -14,7 +14,6 @@ import SafariServices
 final class MainMenuViewController: UIViewController {
     
     @IBOutlet private weak var menuOptionHome: UIView!
-    @IBOutlet private weak var menuOptionNewHome: UIView!
     @IBOutlet private weak var menuOptionNotices: UIView!
     @IBOutlet private weak var menuOptionEvents: UIView!
     @IBOutlet private weak var menuOptionNews: UIView!
@@ -61,7 +60,7 @@ final class MainMenuViewController: UIViewController {
     @IBOutlet private weak var menuOptionKudosStream: UIView!
     @IBOutlet private weak var menuOptionKudosStreamLabel: UILabel! {
         didSet {
-            menuOptionKudosStreamLabel.text = Constants.Settings.kudosSingularLong + " Stream"
+            menuOptionKudosStreamLabel.text = "All " + Constants.Settings.kudosPluralLong
         }
     }
     @IBOutlet private weak var menuOptionKudosMyKudos: UIView!
@@ -70,26 +69,14 @@ final class MainMenuViewController: UIViewController {
             menuOptionKudosMyKudosLabel.text = "My " + Constants.Settings.kudosPluralLong
         }
     }
-    @IBOutlet private weak var menuOptionKudosAchievements: UIView! {
-        didSet {
-            if !Constants.Settings.achievementsEnabled {
-                menuOptionKudosAchievements.removeFromSuperview()
-            }
-        }
-    }
+    @IBOutlet private weak var menuOptionKudosAchievements: UIView!
     @IBOutlet private weak var menuOptionKudosGiveKudos: UIView!
     @IBOutlet private weak var menuOptionKudosGiveKudosLabel: UILabel! {
         didSet {
             menuOptionKudosGiveKudosLabel.text = "Give " + Constants.Settings.kudosSingularLong
         }
     }
-    @IBOutlet private weak var menuOptionKudosLeaderboard: UIView! {
-        didSet {
-            if !Constants.Settings.achievementsEnabled {
-                menuOptionKudosLeaderboard.removeFromSuperview()
-            }
-        }
-    }
+    @IBOutlet private weak var menuOptionKudosLeaderboard: UIView!
     
     @IBOutlet private weak var menuOptionContentLibrary: UIView!
     
@@ -156,9 +143,11 @@ final class MainMenuViewController: UIViewController {
         didSet {
             noticesUnreadBadge.text = unread?.notices.description
             noticesUnreadBadge.isHidden = (unread?.notices ?? 0) == 0
+
+            eventsUnreadBadge.text = unread?.events.description
+            eventsUnreadBadge.isHidden = (unread?.events ?? 0) == 0
             
-            // These aren't available in the API yet
-            eventsUnreadBadge.isHidden = true
+            // News isn't available in the API yet
             newsUnreadBadge.isHidden = true
             
             let groupMenuItems = menuOptionGroupsChildrenContainer.arrangedSubviews
@@ -189,7 +178,16 @@ extension MainMenuViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        if !Constants.Settings.achievementsEnabled {
+            menuOptionKudosAchievements.removeFromSuperview()
+            menuOptionKudosLeaderboard.removeFromSuperview()
+        }
+
+        if !Constants.Settings.contentLibraryEnabled {
+            menuOptionContentLibrary.removeFromSuperview()
+        }
+
         subscribeToNotifications()
         
         self.updateSubscribedGroups()
@@ -229,15 +227,7 @@ private extension MainMenuViewController {
             assertionFailure();
             return
         }
-        villageContainer.showHome(isNew: false)
-    }
-
-    @IBAction func onGoToNewHome(_ sender: Any? = nil) {
-        guard let villageContainer = self.sideMenuController as? VillageContainer else {
-            assertionFailure();
-            return
-        }
-        villageContainer.showHome(isNew: true)
+        villageContainer.showHome()
     }
     
     @IBAction func onGoToNotices(_ sender: Any? = nil) {
@@ -415,7 +405,7 @@ extension MainMenuViewController: GroupMenuItemDelegate {
     
     func groupMenuItem(_ item: GroupMenuItem, didSelectGroup group: VillageCore.Stream) {
         group.ensureHasDetails { (group) in
-            let dataSource = GroupStreamDataSource(stream: group)
+            let dataSource = GroupStreamDataSource(stream: group, isUserSubscribed: true)
             let vc = StreamViewController(dataSource: dataSource)
             self.sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
             self.sideMenuController?.hideMenu()

@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import VillageCore
 
-class ViewNoticeViewController: UIViewController {
+class ViewNoticeViewController: UIViewController, NavBarDisplayable {
     
     var notice: Notice!
 
@@ -36,7 +36,7 @@ class ViewNoticeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setNavbarAppearance(for: navigationItem)
         self.progressIndicator = ProgressIndicator.progressIndicatorInView(self.view)
 
         if notice.type == .event {
@@ -89,7 +89,8 @@ class ViewNoticeViewController: UIViewController {
             
             firstly {
                 notice.acknowledge()
-            }.then { [weak self] _ in
+            }.then { [weak self] notice in
+                self?.didUpdateNotice?(notice)
                 self?.navigationController?.popViewController(animated: true)
             }.catch { [weak self] error in
                 let alert = UIAlertController.dismissable(title: "Error", message: error.vlg_userDisplayableMessage)
