@@ -11,10 +11,10 @@ import XCTest
 
 extension XCTestCase {
     
-    func waitforAsync(_ test: (_ expectation: XCTestExpectation) -> Void, timeout: TimeInterval = 10,  description: String = #function) {
-        let expect = expectation(description: description)
-        test(expect)
-        wait(for: [expect], timeout: timeout)
-    }
-    
+//    func waitforAsync(_ test: (_ expectation: XCTestExpectation) -> Void, timeout: TimeInterval = 10,  description: String = #function) {
+//        let expect = expectation(description: description)
+//        test(expect)
+//        wait(for: [expect], timeout: timeout)
+//    }
+//    
 }
