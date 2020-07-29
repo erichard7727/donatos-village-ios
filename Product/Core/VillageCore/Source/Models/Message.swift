@@ -8,24 +8,25 @@
 
 import Foundation
 
+/// An alias name that represents a list of messages
 public typealias Messages = [Message]
 
+
 public struct Message {
-    public let id: String
     
+    // MARK: - Constants
+    
+    public let id: String
     public let author: Person
     public let authorId: Int
     public let authorDisplayName: String
-
     public let streamId: String
     public let body: String
     public var isLiked: Bool
     public var likesCount: Int
-
     public let created: String
     public let updated: String
     public let isSystem: Bool
-    
     public let attachment: Attachment?
     
     public init(
@@ -41,7 +42,7 @@ public struct Message {
         updated: String,
         isSystem: Bool,
         attachment: Message.Attachment?
-        ) {
+    ) {
         self.id = id
         self.author = author
         self.authorId = authorId
@@ -55,10 +56,14 @@ public struct Message {
         self.isSystem = isSystem
         self.attachment = attachment
     }
-}
+ }
 
 public extension Message {
+    
     struct Attachment {
+        
+        // MARK: - Constants
+        
         public let content: String
         public let type: String
         public let title: String
