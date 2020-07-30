@@ -206,9 +206,10 @@ platform :ios do
 
   ############################# Running Unit Tests ##############################
 
-  # TODO: - Get Tests Working
-  desc "Run tests"
-  lane :tests do
+  desc "Runs all unit tests in the DonatosVillage (Development) scheme"
+  desc "Donatos Village Tests"
+  desc "Donatos VillageCoreTests"
+  lane :run_unit_tests do
     run_tests(
         scheme: "DonatosVillage (Development)",
         xcargs: "-UseModernBuildSystem=NO"
@@ -217,19 +218,14 @@ platform :ios do
 
   ############################# Running UI Tests ##############################
 
-  # TODO: - Get Tests Working
-  desc "Run UI tests"
-  lane :ui_tests do
-    run_tests(
-        scheme: "DonatosVillage (Development)",
-        xcargs: "-UseModernBuildSystem=NO",
-        result_bundle: true,
-        output_files: "UITests.html,UITests.junit",
-        output_types: "html,junit",
-        output_directory: "./artifacts",
-        buildlog_path: "./artifacts"
-      )
-  end
+    desc "Runs all uUI tests in the DonatosVillageUITests scheme"
+    desc "DonatosVillage Tests"
+    lane :run_ui_tests do
+      run_tests(
+          scheme: "DonatosVillageUITests",
+          xcargs: "-UseModernBuildSystem=NO",
+        )
+    end
 
 end
 

@@ -161,8 +161,8 @@
 		90150C9324AA7A8800DA5739 /* DonatosVillageUITests */ = {
 			isa = PBXGroup;
 			children = (
-				90150C9424AA7A8800DA5739 /* HomeStreamTests.swift */,
 				937986BC24D0596C0036D56C /* LoginTests.swift */,
+				90150C9424AA7A8800DA5739 /* HomeStreamTests.swift */,
 				937986BF24D059E00036D56C /* MenuTests.swift */,
 				00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */,
 				48C2003924C21E96002DFC2C /* NoticeViewTests.swift */,

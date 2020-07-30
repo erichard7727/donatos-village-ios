@@ -48,6 +48,34 @@
                ReferencedContainer = "container:DonatosVillage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D4CC298E220754850091BEFB"
+               BuildableName = "VillageCoreTests.xctest"
+               BlueprintName = "VillageCoreTests"
+               ReferencedContainer = "container:../../Product/Core/VillageCore/VillageCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DA32BC232499608A005C0FF7"
+               BuildableName = "DonatosVillageTests.xctest"
+               BlueprintName = "DonatosVillageTests"
+               ReferencedContainer = "container:DonatosVillage.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -76,30 +104,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DA32BC232499608A005C0FF7"
-               BuildableName = "DonatosVillageTests.xctest"
-               BlueprintName = "DonatosVillageTests"
-               ReferencedContainer = "container:DonatosVillage.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "90150C9124AA7A8800DA5739"
-               BuildableName = "DonatosVillageUITests.xctest"
-               BlueprintName = "DonatosVillageUITests"
-               ReferencedContainer = "container:DonatosVillage.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4CC298E220754850091BEFB"
                BuildableName = "VillageCoreTests.xctest"
                BlueprintName = "VillageCoreTests"
                ReferencedContainer = "container:../../Product/Core/VillageCore/VillageCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DA32BC232499608A005C0FF7"
+               BuildableName = "DonatosVillageTests.xctest"
+               BlueprintName = "DonatosVillageTests"
+               ReferencedContainer = "container:DonatosVillage.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
