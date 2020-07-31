@@ -20,4 +20,3 @@ class LoginTests: XCTestCase {
             .logout()
     }
 }
-
