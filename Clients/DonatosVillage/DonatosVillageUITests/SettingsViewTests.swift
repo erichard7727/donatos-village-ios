@@ -57,4 +57,17 @@ class SettingsViewTests: XCTestCase {
                 XCTAssertTrue(app.alerts["Success"].exists, "The alert should appear when the Save button is pressed")
         }
     }
+    
+    func testTheDismissingOfTheAlert() throws {
+        Application()
+            .login(with: .automationStoreAssociation)
+            .openMenuBar()
+            .then { app in
+                app.otherElements["current_user_container"].tap()
+                XCTAssert(app.navigationBars.matching(identifier: "Edit Settings").count != 0, "Cannot reach Edit Settings screen")
+                app.navigationBars["Edit Settings"].buttons["Save"].tap()
+                XCTAssertTrue(app.alerts["Success"].exists, "The alert should appear when the Save button is pressed")
+                app.alerts["Success"].scrollViews.otherElements.buttons["Dismiss"].tap()
+        }
+    }
 }
