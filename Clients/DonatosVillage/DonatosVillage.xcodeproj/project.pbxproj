@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00C3A33B24C8920B0027CE2A /* NewsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */; };
+		0E688DA924D42D67003E7F06 /* ChatsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E688DA824D42D67003E7F06 /* ChatsViewTests.swift */; };
 		48C2003A24C21E96002DFC2C /* NoticeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C2003924C21E96002DFC2C /* NoticeViewTests.swift */; };
 		90150C9524AA7A8800DA5739 /* HomeStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9424AA7A8800DA5739 /* HomeStreamTests.swift */; };
 		90150C9D24AA7D6300DA5739 /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */; };
@@ -98,6 +99,7 @@
 /* Begin PBXFileReference section */
 		00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewTests.swift; sourceTree = "<group>"; };
 		0440720B0149DAE2B3BB1462 /* Pods_DonatosVillage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonatosVillage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E688DA824D42D67003E7F06 /* ChatsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewTests.swift; sourceTree = "<group>"; };
 		17AB18F215EBFF5B330EEDDB /* Pods-DonatosVillage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.debug.xcconfig"; path = "Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.debug.xcconfig"; sourceTree = "<group>"; };
 		48C2003924C21E96002DFC2C /* NoticeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewTests.swift; sourceTree = "<group>"; };
 		5E2D734EC0C6B18F9F1AEA00 /* Pods-DonatosVillage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.release.xcconfig"; path = "Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,13 +161,14 @@
 		90150C9324AA7A8800DA5739 /* DonatosVillageUITests */ = {
 			isa = PBXGroup;
 			children = (
+				0E688DA824D42D67003E7F06 /* ChatsViewTests.swift */,
 				90150C9424AA7A8800DA5739 /* HomeStreamTests.swift */,
+				90150C9624AA7A8800DA5739 /* Info.plist */,
 				937986BC24D0596C0036D56C /* LoginTests.swift */,
 				937986BF24D059E00036D56C /* MenuTests.swift */,
 				00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */,
 				48C2003924C21E96002DFC2C /* NoticeViewTests.swift */,
 				90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */,
-				90150C9624AA7A8800DA5739 /* Info.plist */,
 				90E07CAA24ABACB400FC71F9 /* Utility */,
 			);
 			path = DonatosVillageUITests;
@@ -491,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48C2003A24C21E96002DFC2C /* NoticeViewTests.swift in Sources */,
+				0E688DA924D42D67003E7F06 /* ChatsViewTests.swift in Sources */,
 				90E07CAD24ABACCF00FC71F9 /* Application.swift in Sources */,
 				937986C024D059E00036D56C /* MenuTests.swift in Sources */,
 				90150C9524AA7A8800DA5739 /* HomeStreamTests.swift in Sources */,
