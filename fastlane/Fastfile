@@ -218,7 +218,7 @@ platform :ios do
 
   ############################# Running UI Tests ##############################
 
-    desc "Runs all uUI tests in the DonatosVillageUITests scheme"
+    desc "Runs all UI tests in the DonatosVillageUITests scheme"
     desc "DonatosVillage Tests"
     lane :run_ui_tests do
       run_tests(
