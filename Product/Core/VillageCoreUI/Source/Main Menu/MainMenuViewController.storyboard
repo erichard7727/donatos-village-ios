@@ -1276,7 +1276,7 @@
     </scenes>
     <resources>
         <image name="add-icon" width="24" height="24"/>
-        <image name="app-background" width="375" height="667"/>
+        <image name="app-background" width="375" height="812"/>
         <image name="menu-collapse" width="28" height="28"/>
         <image name="menu-content-library" width="29" height="24"/>
         <image name="menu-direct-messages" width="28" height="28"/>
