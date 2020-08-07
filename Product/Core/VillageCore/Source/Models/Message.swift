@@ -77,7 +77,7 @@ public struct Message {
 public extension Message {
     
     /// A media file that is sent along with a message such as an image, meme or video
-    struct Attachment {
+    struct Attachment: Equatable {
         
         // MARK: - Constants
         
@@ -114,4 +114,5 @@ public extension Message {
             self.url = url
         }
     }
+
 }
