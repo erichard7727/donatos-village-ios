@@ -77,7 +77,7 @@ public struct Message {
 public extension Message {
     
     /// A media file that is sent along with a message such as an image, meme or video
-    struct Attachment {
+    struct Attachment: Equatable {
         
         // MARK: - Constants
         
@@ -115,19 +115,4 @@ public extension Message {
         }
     }
 
-}
-
-// MARK - Equatable Protocol
-
-// Added Equatable for unit testing purposes
-extension Message.Attachment: Equatable {
-    
-  public static func == (lhs: Message.Attachment, rhs: Message.Attachment) -> Bool {
-    return lhs.content == rhs.content &&
-    lhs.type == rhs.type &&
-    lhs.width == rhs.width &&
-    lhs.height == rhs.height &&
-    lhs.url == rhs.url
-  }
-    
 }
