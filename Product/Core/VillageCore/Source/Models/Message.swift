@@ -114,4 +114,20 @@ public extension Message {
             self.url = url
         }
     }
+
+}
+
+// MARK - Equatable Protocol
+
+// Added Equatable for unit testing purposes
+extension Message.Attachment: Equatable {
+    
+  public static func == (lhs: Message.Attachment, rhs: Message.Attachment) -> Bool {
+    return lhs.content == rhs.content &&
+    lhs.type == rhs.type &&
+    lhs.width == rhs.width &&
+    lhs.height == rhs.height &&
+    lhs.url == rhs.url
+  }
+    
 }
