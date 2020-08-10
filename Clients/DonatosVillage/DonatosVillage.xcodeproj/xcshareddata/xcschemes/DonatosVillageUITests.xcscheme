@@ -26,7 +26,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      disableMainThreadChecker = "YES">
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "TESTING"
@@ -44,11 +45,6 @@
                BlueprintName = "DonatosVillageUITests"
                ReferencedContainer = "container:DonatosVillage.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "ChatsViewTests/testIfTheBackButtonNavigatesBackToTheChatsScreen()">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

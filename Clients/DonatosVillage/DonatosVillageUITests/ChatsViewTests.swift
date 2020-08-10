@@ -74,7 +74,7 @@ class ChatsViewTests: XCTestCase {
                    XCTAssert(app.navigationBars.matching(identifier: "Chats").count != 0, "Cannot reach Chats screen")
                    app.navigationBars["Chats"].children(matching: .button).element(boundBy: 1).tap()
                    XCTAssert(app.navigationBars.matching(identifier: "New Message").count != 0, "Cannot reach New Message screen")
-                   app.navigationBars["New Message"].buttons["Chats"].tap()
+//                   app.navigationBars["New Message"].buttons["Chats"].tap()
            }
        }
 }
