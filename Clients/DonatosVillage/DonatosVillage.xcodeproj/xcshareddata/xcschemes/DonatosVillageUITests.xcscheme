@@ -44,6 +44,11 @@
                BlueprintName = "DonatosVillageUITests"
                ReferencedContainer = "container:DonatosVillage.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ChatsViewTests/testIfTheBackButtonNavigatesBackToTheChatsScreen()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
