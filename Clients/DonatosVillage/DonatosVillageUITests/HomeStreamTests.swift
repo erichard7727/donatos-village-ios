@@ -2,18 +2,22 @@ import XCTest
 
 class HomeStreamTests: XCTestCase {
     
+    var application: Application!
+    
     override func setUpWithError() throws {
+        application = Application()
         continueAfterFailure = false
     }
     
     override func tearDownWithError() throws {
+        application = nil
     }
     
     
     func testViewingAllNoticesFromHomescreen() throws {
         
-        Application()
-            .login(with: .automationStoreAssociation)
+       
+            application.login(with: .automationStoreAssociation)
             .then { app in
                 app.scrollViews["scrollView"].otherElements.buttons["view_all_notices"].staticTexts["View All"].tap()
                 app.tables/*@START_MENU_TOKEN@*/.staticTexts["New Holiday Pizzas"]/*[[".cells.staticTexts[\"New Holiday Pizzas\"]",".staticTexts[\"New Holiday Pizzas\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
@@ -30,8 +34,7 @@ class HomeStreamTests: XCTestCase {
     }
     
     func testOpeningMySchedule() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .then { app in app.scrollViews.otherElements.buttons["My Schedule"].tap() }
     }
     

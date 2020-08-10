@@ -10,13 +10,19 @@ import XCTest
 
 class MenuTests: XCTestCase {
     
+    var application: Application!
+    
     override func setUpWithError() throws {
+        application = Application()
         continueAfterFailure = false
     }
     
+    override func tearDownWithError() throws {
+        application = nil
+    }
+    
     func testMenuBar() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openMenuBar()
             .then {
                 let staticTexts = $0.scrollViews.otherElements.staticTexts
@@ -34,8 +40,7 @@ class MenuTests: XCTestCase {
     }
     
     func testGoingBackToTheHomeScreenFromTheMenuBar() {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openMenuBar()
             .then { app in
                 let otherElements = app.scrollViews.otherElements
@@ -45,8 +50,7 @@ class MenuTests: XCTestCase {
     }
     
     func testOpeningEventsFromTheMenuBar() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openMenuBar()
             .then { app in
                 let otherElements = app.scrollViews.otherElements

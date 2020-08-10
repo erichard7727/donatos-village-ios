@@ -9,14 +9,21 @@
 import XCTest
 
 class NoticesViewTests: XCTestCase {
+    
+    var application: Application!
     let testNoticeTitle = "Test Notice 7-14-2020"
+    
     override func setUpWithError() throws {
+        application = Application()
         continueAfterFailure = false
     }
     
+    override func tearDownWithError() throws {
+        application = nil
+    }
+    
     func testOpeningNoticesMenuAndOpeningMainMenu() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openNoticesMenu()
             .then { app in
                 app.navigationBars.buttons["menu_button"].tap()
@@ -26,8 +33,7 @@ class NoticesViewTests: XCTestCase {
     }
     
     func testSearchingForNotice() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openNoticesMenu()
             .searchTable(for: testNoticeTitle, waitForSearchToComplete: true)
             .then { app in
@@ -37,8 +43,7 @@ class NoticesViewTests: XCTestCase {
     }
     
     func testCancellingSearch() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openNoticesMenu()
             .searchTable(for: testNoticeTitle, waitForSearchToComplete: true)
             .then { app in

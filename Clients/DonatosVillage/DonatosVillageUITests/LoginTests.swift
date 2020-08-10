@@ -10,13 +10,19 @@ import XCTest
 
 class LoginTests: XCTestCase {
 
+    var application: Application!
+    
     override func setUpWithError() throws {
+        application = Application()
         continueAfterFailure = false
     }
     
+    override func tearDownWithError() throws {
+        application = nil
+    }
+    
     func testLoginAndLogout() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
-            .logout()
+        application.login(with: .automationStoreAssociation)
+        .logout()
     }
 }
