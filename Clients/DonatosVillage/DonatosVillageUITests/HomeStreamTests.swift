@@ -1,6 +1,6 @@
 import XCTest
 
-class HomeStreamTests: XCTestCase {
+class HomeStreamTests: DonatosUITests {
     
     var application: Application!
     

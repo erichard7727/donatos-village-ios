@@ -27,6 +27,7 @@ public final class Application {
 	public func login(with user: User, behavior: LoginBehavior = .ignoreAndContinueIfAlreadyLoggedIn) -> Application {
 		let elementsQuery = app.scrollViews.otherElements
 		let emailField = elementsQuery/*@START_MENU_TOKEN@*/.textFields["enter_email_field"]/*[[".textFields[\"Enter your Email\"]",".textFields[\"enter_email_field\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        emailField.waitForExistence(timeout: 10)
 		
 		var shouldDoLogin: Bool = emailField.exists
 		if !emailField.exists {
@@ -100,4 +101,7 @@ public final class Application {
 		sleep(1)
 		app.buttons["login_password_submit_button"].tap()
 	}
+        
 }
+
+

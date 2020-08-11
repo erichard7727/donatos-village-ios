@@ -8,7 +8,7 @@
 
 import XCTest
 
-class NewsViewTests: XCTestCase {
+class NewsViewTests: DonatosUITests {
     
     var application: Application!
     let testNewsTitle = "congratulations"

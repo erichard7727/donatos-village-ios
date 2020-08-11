@@ -1,6 +1,6 @@
 import XCTest
 
-class PeopleViewTests: XCTestCase {
+class PeopleViewTests: DonatosUITests {
     
     var application: Application!
 

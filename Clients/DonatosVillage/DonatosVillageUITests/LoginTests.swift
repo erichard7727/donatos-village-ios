@@ -8,7 +8,7 @@
 
 import XCTest
 
-class LoginTests: XCTestCase {
+class LoginTests: DonatosUITests {
 
     var application: Application!
     

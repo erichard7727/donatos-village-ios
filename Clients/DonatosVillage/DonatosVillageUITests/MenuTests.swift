@@ -8,7 +8,7 @@
 
 import XCTest
 
-class MenuTests: XCTestCase {
+class MenuTests: DonatosUITests {
     
     var application: Application!
     
