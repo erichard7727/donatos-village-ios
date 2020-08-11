@@ -18,6 +18,10 @@ class NoticesViewTests: DonatosUITests {
         continueAfterFailure = false
     }
     
+    override func tearDownWithError() throws {
+        application = nil
+    }
+    
     func testOpeningNoticesMenuAndOpeningMainMenu() throws {
             application.login(with: .automationStoreAssociation)
             .openNoticesMenu()

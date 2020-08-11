@@ -17,6 +17,10 @@ class LoginTests: DonatosUITests {
         continueAfterFailure = false
     }
     
+    override func tearDownWithError() throws {
+        application = nil
+    }
+    
     func testLoginAndLogout() throws {
         application.login(with: .automationStoreAssociation)
         .logout()

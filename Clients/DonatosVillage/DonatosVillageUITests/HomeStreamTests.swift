@@ -34,8 +34,7 @@ class HomeStreamTests: DonatosUITests {
     }
     
     func testOpeningMySchedule() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .then { app in app.scrollViews.otherElements.buttons["My Schedule"].tap() }
     }
     

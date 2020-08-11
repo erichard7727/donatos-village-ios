@@ -18,6 +18,10 @@ class NewsViewTests: DonatosUITests {
         continueAfterFailure = false
     }
     
+    override func tearDownWithError() throws {
+        application = nil
+    }
+    
     func testOpeningNews() throws {
         application.login(with: .automationStoreAssociation)
         .openNewsMenu()
