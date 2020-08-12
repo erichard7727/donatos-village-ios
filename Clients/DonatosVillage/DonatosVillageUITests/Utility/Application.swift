@@ -96,8 +96,7 @@ public final class Application {
 		passwordField.tap()
 		
 		// Workaround for secure text field issue reporting that it doesn't have focus
-		UIPasteboard.general.string = user.password
-		app.menuItems["Paste"].tap()
+        passwordField.typeText(user.password)
 		sleep(1)
 		app.buttons["login_password_submit_button"].tap()
 	}
