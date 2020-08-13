@@ -221,8 +221,16 @@ platform :ios do
     desc "Runs all UI tests in the DonatosVillageUITests scheme"
     desc "DonatosVillage Tests"
     lane :run_ui_tests do
+      output_directory = "./artifacts/ios_ui_tests"
+
       run_tests(
           scheme: "DonatosVillageUITests",
+          output_directory: output_directory,
+          output_style: "standard",
+          output_types: "html,junit",
+          buildlog_path: output_directory,
+          derived_data_path: "./build/Test-iPhone",
+          result_bundle: true,
           xcargs: "-UseModernBuildSystem=NO",
         )
     end

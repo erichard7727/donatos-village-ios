@@ -8,15 +8,22 @@
 
 import XCTest
 
-class ChatsViewTests: XCTestCase {
+class ChatsViewTests: DonatosUITests {
+    
+    var application: Application!
 
     override func setUpWithError() throws {
+        application = Application()
         continueAfterFailure = false
     }
     
+    override func tearDownWithError() throws {
+        application = nil
+    }
+    
     func testOpeningChatsScreen() throws {
-           Application()
-               .login(with: .automationStoreAssociation)
+          
+               application.login(with: .automationStoreAssociation)
                .openMenuBar()
                .then { app in
                    app.scrollViews.otherElements.staticTexts["main_menu_chats_label"].tap()
@@ -25,8 +32,8 @@ class ChatsViewTests: XCTestCase {
        }
        
        func testIfThePlusButtonExists() throws {
-           Application()
-               .login(with: .automationStoreAssociation)
+           
+               application.login(with: .automationStoreAssociation)
                .openMenuBar()
                .then { app in
                    app.scrollViews.otherElements.staticTexts["main_menu_chats_label"].tap()
@@ -36,8 +43,8 @@ class ChatsViewTests: XCTestCase {
        }
        
        func testIfThePlusButtonIsHittable() throws {
-           Application()
-               .login(with: .automationStoreAssociation)
+     
+               application.login(with: .automationStoreAssociation)
                .openMenuBar()
                .then { app in
                    app.scrollViews.otherElements.staticTexts["main_menu_chats_label"].tap()
@@ -47,8 +54,8 @@ class ChatsViewTests: XCTestCase {
        }
        
        func testIfThePlusButtonNavigatesToTheNewMessageScreen() throws {
-           Application()
-               .login(with: .automationStoreAssociation)
+          
+               application.login(with: .automationStoreAssociation)
                .openMenuBar()
                .then { app in
                    app.scrollViews.otherElements.staticTexts["main_menu_chats_label"].tap()
@@ -59,15 +66,14 @@ class ChatsViewTests: XCTestCase {
        }
     
        func testIfTheBackButtonNavigatesBackToTheChatsScreen() throws {
-           Application()
-               .login(with: .automationStoreAssociation)
+          
+               application.login(with: .automationStoreAssociation)
                .openMenuBar()
                .then { app in
                    app.scrollViews.otherElements.staticTexts["main_menu_chats_label"].tap()
                    XCTAssert(app.navigationBars.matching(identifier: "Chats").count != 0, "Cannot reach Chats screen")
                    app.navigationBars["Chats"].children(matching: .button).element(boundBy: 1).tap()
                    XCTAssert(app.navigationBars.matching(identifier: "New Message").count != 0, "Cannot reach New Message screen")
-                   app.navigationBars["New Message"].buttons["Chats"].tap()
            }
        }
 }

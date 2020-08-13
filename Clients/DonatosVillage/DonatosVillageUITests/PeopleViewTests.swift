@@ -1,13 +1,20 @@
 import XCTest
 
-class PeopleViewTests: XCTestCase {
+class PeopleViewTests: DonatosUITests {
+    
+    var application: Application!
+
     override func setUpWithError() throws {
+        application = Application()
         continueAfterFailure = false
+    }
+    
+    override func tearDownWithError() throws {
+        application = nil
     }
 
 	func testOpeningPeopleMenuAndOpeningMainMenu() throws {
-		Application()
-			.login(with: .automationStoreAssociation)
+			application.login(with: .automationStoreAssociation)
 			.openPeopleMenu()
 			.then { app in
 				app.navigationBars.buttons["menu_button"].tap()
@@ -16,8 +23,7 @@ class PeopleViewTests: XCTestCase {
     }
 	
 	func testOpeningAddPersonView() throws {
-		Application()
-		.login(with: .automationStoreAssociation)
+		application.login(with: .automationStoreAssociation)
 		.openPeopleMenu()
 		.then { app in
 			app.navigationBars.buttons.element(boundBy: 1).tap()
@@ -26,8 +32,7 @@ class PeopleViewTests: XCTestCase {
 	}
 	
 	func testSearchingForUser() throws {
-		Application()
-		.login(with: .automationStoreAssociation)
+        application.login(with: .automationStoreAssociation)
 		.openPeopleMenu()
 		.searchTable(for: "Automation Two", waitForSearchToComplete: true)
 		.then { app in
@@ -37,8 +42,7 @@ class PeopleViewTests: XCTestCase {
 	}
 	
 	func testOpeningChat() throws {
-		Application()
-		.login(with: .automationStoreAssociation)
+		application.login(with: .automationStoreAssociation)
 		.openPeopleMenu()
 		.searchTable(for: "Allie Galuska", waitForSearchToComplete: true)
 		.then { app in
@@ -49,8 +53,7 @@ class PeopleViewTests: XCTestCase {
 	}
 	
 	func testCancellingSearch() throws {
-		Application()
-		.login(with: .automationStoreAssociation)
+		application.login(with: .automationStoreAssociation)
 		.openPeopleMenu()
 		.searchTable(for: "Allie Galuska", waitForSearchToComplete: true)
 		.then { app in

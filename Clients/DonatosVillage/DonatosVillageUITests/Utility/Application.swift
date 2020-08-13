@@ -27,6 +27,7 @@ public final class Application {
 	public func login(with user: User, behavior: LoginBehavior = .ignoreAndContinueIfAlreadyLoggedIn) -> Application {
 		let elementsQuery = app.scrollViews.otherElements
 		let emailField = elementsQuery/*@START_MENU_TOKEN@*/.textFields["enter_email_field"]/*[[".textFields[\"Enter your Email\"]",".textFields[\"enter_email_field\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        emailField.waitForExistence(timeout: 10)
 		
 		var shouldDoLogin: Bool = emailField.exists
 		if !emailField.exists {
@@ -95,9 +96,11 @@ public final class Application {
 		passwordField.tap()
 		
 		// Workaround for secure text field issue reporting that it doesn't have focus
-		UIPasteboard.general.string = user.password
-		app.menuItems["Paste"].tap()
+        passwordField.typeText(user.password)
 		sleep(1)
 		app.buttons["login_password_submit_button"].tap()
 	}
+        
 }
+
+

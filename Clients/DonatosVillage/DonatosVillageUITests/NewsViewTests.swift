@@ -8,17 +8,22 @@
 
 import XCTest
 
-class NewsViewTests: XCTestCase {
+class NewsViewTests: DonatosUITests {
     
+    var application: Application!
     let testNewsTitle = "congratulations"
     
     override func setUpWithError() throws {
+        application = Application()
         continueAfterFailure = false
     }
     
+    override func tearDownWithError() throws {
+        application = nil
+    }
+    
     func testOpeningNews() throws {
-        Application()
-        .login(with: .automationStoreAssociation)
+        application.login(with: .automationStoreAssociation)
         .openNewsMenu()
         .then { app in
             XCTAssert(app.navigationBars.staticTexts["News"].exists)
@@ -27,8 +32,7 @@ class NewsViewTests: XCTestCase {
     }
     
     func testOpenFirstEntryAndGoBack() throws {
-        Application()
-        .login(with: .automationStoreAssociation)
+        application.login(with: .automationStoreAssociation)
         .openNewsMenu()
         .then { app in
             app.tables.cells.firstMatch.tap()
@@ -38,8 +42,7 @@ class NewsViewTests: XCTestCase {
     }
     
     func testOpeningNewsMenuAndOpeningMainMenu() throws {
-        Application()
-        .login(with: .automationStoreAssociation)
+        application.login(with: .automationStoreAssociation)
         .openNewsMenu()
         .then { app in
             app.navigationBars.buttons["menu_button"].tap()
@@ -48,8 +51,7 @@ class NewsViewTests: XCTestCase {
     }
     
     func testSearchForNews() throws {
-        Application()
-        .login(with: .automationStoreAssociation)
+        application.login(with: .automationStoreAssociation)
         .openNewsMenu()
         .searchTable(for: testNewsTitle, waitForSearchToComplete: true)
         .then { app in
@@ -59,8 +61,7 @@ class NewsViewTests: XCTestCase {
     }
     
     func testCancellingNewsSearch() throws {
-        Application()
-        .login(with: .automationStoreAssociation)
+        application.login(with: .automationStoreAssociation)
         .openNewsMenu()
         .searchTable(for: testNewsTitle, waitForSearchToComplete: true)
         .then { app in

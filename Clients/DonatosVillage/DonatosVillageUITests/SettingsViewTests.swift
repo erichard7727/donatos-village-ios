@@ -8,15 +8,21 @@
 
 import XCTest
 
-class SettingsViewTests: XCTestCase {
+class SettingsViewTests: DonatosUITests {
+    
+    var application: Application!
     
     override func setUpWithError() throws {
+        application = Application()
         continueAfterFailure = false
     }
     
+    override func tearDownWithError() throws {
+        application = nil
+    }
+    
     func testOpeningSettingsScreen() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openMenuBar()
             .then { app in
                 app.otherElements["current_user_container"].tap()
@@ -25,8 +31,7 @@ class SettingsViewTests: XCTestCase {
     }
     
     func testIfTheSaveButtonExists() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openMenuBar()
             .then { app in
                 app.otherElements["current_user_container"].tap()
@@ -36,8 +41,7 @@ class SettingsViewTests: XCTestCase {
     }
     
     func testIfTheSaveButtonIsHittable() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openMenuBar()
             .then { app in
                 app.otherElements["current_user_container"].tap()
@@ -47,8 +51,7 @@ class SettingsViewTests: XCTestCase {
     }
     
     func testIfTheAlertAppearsWhenTheSaveButtonIsPressed() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openMenuBar()
             .then { app in
                 app.otherElements["current_user_container"].tap()
@@ -59,8 +62,7 @@ class SettingsViewTests: XCTestCase {
     }
     
     func testTheDismissingOfTheAlert() throws {
-        Application()
-            .login(with: .automationStoreAssociation)
+            application.login(with: .automationStoreAssociation)
             .openMenuBar()
             .then { app in
                 app.otherElements["current_user_container"].tap()

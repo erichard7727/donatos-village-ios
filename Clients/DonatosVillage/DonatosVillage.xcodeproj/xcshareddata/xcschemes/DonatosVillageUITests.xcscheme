@@ -27,6 +27,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Kill any exisiting Simulator instance to ensure that the utilized Simulator receives the command to set ConnectHardwareKeyboard to False&#10;killall Simulator&#10;# Set ConnectHardwareKeyboard to false as this can interfere with XCUITest interacting with SecureTextFields &#10;defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool false&#10;&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "TESTING"
