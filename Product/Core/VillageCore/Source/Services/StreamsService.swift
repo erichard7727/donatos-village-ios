@@ -337,9 +337,9 @@ internal extension Stream {
         }
         
         self = Stream(
+            details: Stream.Details(from: response),
             id: id,
-            name: name,
-            details: Stream.Details(from: response)
+            name: name
         )
     }
     

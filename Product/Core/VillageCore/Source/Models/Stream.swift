@@ -10,8 +10,9 @@ import Foundation
 
 public extension Notification.Name {
     struct Stream {
+        
         public static let streamKey = "directMessageConversationKey"
-
+        
         /// Posted whenever a DM stream is on screen.
         ///
         /// Obtain the stream object in the `userInfo` dictionary by using
@@ -20,8 +21,9 @@ public extension Notification.Name {
         /// Example:
         ///
         ///   `let stream = notification.userInfo?[Notification.Name.Stream.streamKey] as? VillageCore.Stream`
+        
         public static let isViewingDirectMessageConversation = Notification.Name(rawValue: "com.dynamit.villagecore.notification.name.stream.isviewingdirectmessageconversation")
-
+        
         /// Posted whenever a stream is subscribed to.
         ///
         /// Obtain the stream object in the `userInfo` dictionary by using
@@ -30,8 +32,9 @@ public extension Notification.Name {
         /// Example:
         ///
         ///   `let stream = notification.userInfo?[Notification.Name.Stream.streamKey] as? VillageCore.Stream`
+        
         public static let userDidSubscribe = Notification.Name(rawValue: "com.dynamit.villagecore.notification.name.stream.userDidSubscribe")
-
+        
         /// Posted whenever a stream is unsubscribed from.
         ///
         /// Obtain the stream object in the `userInfo` dictionary by using
@@ -40,14 +43,30 @@ public extension Notification.Name {
         /// Example:
         ///
         ///   `let stream = notification.userInfo?[Notification.Name.Stream.streamKey] as? VillageCore.Stream`
+        
         public static let userDidUnsubscribe = Notification.Name(rawValue: "com.dynamit.villagecore.notification.name.stream.userDidUnsubscribe")
+        
     }
 }
 
 public typealias Streams = [Stream]
 
 public struct Stream: Hashable {
-
+    
+    // MARK - Public Properties
+    
+    public var details: Details?
+    public var hasDetails: Bool {
+        return details != nil
+    }
+    
+    // MARK - Public Constants
+    
+    public let id: String
+    public let name: String
+    
+    // MARK: - Public Associated Data
+    
     public enum StreamType {
         case open
         case memberInvites
@@ -57,8 +76,15 @@ public struct Stream: Hashable {
     
     public struct Details {
         
-        // Available + Create
+        // MARK - Public Properties
+        
         public var streamType: StreamType?
+        public var isUnread: Bool {
+            return !self.isRead
+        }
+        
+        // MARK - Public Constants
+        
         public let description: String
         public let ownerId: String
         public let messageCount: Int
@@ -72,19 +98,10 @@ public struct Stream: Hashable {
         public let lastMessageText: String?
         public let lastMessageDate: String?
         public let deactivated: Bool
-
-        public var isUnread: Bool {
-            return !self.isRead
-        }
+        
     }
     
-    public let id: String
-    public let name: String
-    public var details: Details?
-    
-    public var hasDetails: Bool {
-        return details != nil
-    }
+    // MARK: - Public Methods
     
     public static func == (lhs: Stream, rhs: Stream) -> Bool {
         return lhs.id == rhs.id
