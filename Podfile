@@ -42,8 +42,6 @@ end
 
 def client_pods
   pod 'AppCenter'
-  pod 'Fabric'
-  pod 'Crashlytics'
   pod 'Firebase/Core'
 end
 
