@@ -210,9 +210,23 @@ platform :ios do
   desc "Donatos Village Tests"
   desc "Donatos VillageCoreTests"
   lane :run_unit_tests do
-    run_tests(
+      run_tests(
         scheme: "DonatosVillage (Development)",
-        xcargs: "-UseModernBuildSystem=NO"
+        xcargs: "-UseModernBuildSystem=NO",
+        device: "iPhone 11 Pro"
+      )
+
+      slather(
+        scheme: "DonatosVillage (Development)",
+        workspace: "Village.xcworkspace",
+        proj: "Clients/DonatosVillage/DonatosVillage.xcodeproj",
+        use_bundle_exec: true,
+        teamcity: true,
+        ignore: [
+          "Pods/*", 
+          "Product/Core/VillageCoreUI/*",
+          "Product/Core/VillageCore/Tests/*"
+        ]
       )
   end
 
