@@ -105,7 +105,7 @@ extension PeopleViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         if people.needsFetching {
             loadingPeopleContainer.isHidden = false
             people.fetchValues(at: [])

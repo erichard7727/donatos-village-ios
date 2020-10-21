@@ -187,7 +187,7 @@ final class PersonProfileViewController: UIViewController, NavBarDisplayable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         let originalHeight = bottomContainerView.frame.height
         var navBarHeight: CGFloat = 0
         if let navController = navigationController {

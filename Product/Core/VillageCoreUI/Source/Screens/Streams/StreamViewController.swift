@@ -90,7 +90,7 @@ class StreamViewController: MessageViewController, NavBarDisplayable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         // Update title.
         if dataSource.stream.id.lowercased().starts(with: "dm") {
             let currentUser = User.current
