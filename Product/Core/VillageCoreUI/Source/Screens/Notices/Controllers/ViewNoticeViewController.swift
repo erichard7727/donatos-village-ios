@@ -77,12 +77,14 @@ class ViewNoticeViewController: UIViewController, NavBarDisplayable {
     
     @IBAction func acknowledgeButtonPressed(_ sender: UIButton) {
         let acknowledgeAlertController = UIAlertController(
-            title: "Do you Acknowledge?",
-            message: "Please review this notice and any attachments. After reviewing, click the Yes button below and your acknowledgement will be recorded.", preferredStyle: .alert)
+            title: NSLocalizedString("Confirm", comment: ""),
+            message: NSLocalizedString("By confirming here you are agreeing that you have read this notice and any attachments", comment: ""),
+            preferredStyle: .alert
+        )
         
-        let noAlertAction = UIAlertAction(title: "No", style: .default, handler: nil)
+        let noAlertAction = UIAlertAction(title: NSLocalizedString("No, take me back", comment: ""), style: .default, handler: nil)
         
-        let yesAlertAction = UIAlertAction(title: "Yes", style: .default, handler: { action in
+        let yesAlertAction = UIAlertAction(title: NSLocalizedString("Yes, I read it", comment: ""), style: .default, handler: { action in
             guard let notice = self.notice else {
                 return
             }
