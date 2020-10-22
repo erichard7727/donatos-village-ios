@@ -132,7 +132,7 @@ class KudosListController: UIViewController, StatefulUserInterface, NavBarDispla
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         switch self.list! {
         case .allStream:
             self.title = "All " + Constants.Settings.kudosPluralShort

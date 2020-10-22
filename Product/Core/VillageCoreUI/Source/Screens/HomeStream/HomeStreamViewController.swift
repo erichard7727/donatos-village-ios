@@ -11,7 +11,7 @@ import VillageCore
 import SafariServices
 
 
-final class HomeStreamViewController: UIViewController {
+final class HomeStreamViewController: UIViewController, NavBarDisplayable {
 
     fileprivate var homeStream: HomeStream?
     fileprivate var unreads: Unread?
@@ -63,25 +63,8 @@ extension HomeStreamViewController {
 
         getHomeStream()
         
-        if let navController = self.navigationController {
-            navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-            navController.navigationBar.isTranslucent = true
-            navController.navigationBar.shadowImage = UIImage()
-        }
+        setTransparentNavbarAppearance(for: navigationItem, in: navigationController)
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if let navController = self.navigationController {
-            navController.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
-            navController.navigationBar.isTranslucent = false
-            navController.navigationBar.shadowImage = nil
-        }
-    }
-    
-    
-
 }
 
 // MARK: - Private Methods

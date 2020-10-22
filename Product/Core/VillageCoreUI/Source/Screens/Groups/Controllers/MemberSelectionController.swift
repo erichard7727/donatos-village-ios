@@ -56,7 +56,7 @@ final class MemberSelectionController: UITableViewController, NavBarDisplayable 
         super.viewWillAppear(animated)
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
     }
     
     func getStreamMemberShip() {

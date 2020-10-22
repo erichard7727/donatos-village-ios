@@ -36,7 +36,7 @@ class ViewNoticeViewController: UIViewController, NavBarDisplayable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         self.progressIndicator = ProgressIndicator.progressIndicatorInView(self.view)
 
         if notice.type == .event {

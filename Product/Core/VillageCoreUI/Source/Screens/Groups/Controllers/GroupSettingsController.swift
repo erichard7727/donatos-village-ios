@@ -62,7 +62,7 @@ final class GroupSettingsController: UIViewController, NavBarDisplayable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         guard let group = self.group else {
             fatalError("group not set")
         }
