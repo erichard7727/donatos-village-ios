@@ -147,6 +147,8 @@ public enum VillageCoreAPI {
     case directMessageStreams
     case inviteToDirectMessage(userIds: [String])
 
+	// MySchedule
+	case fetchCredentials
 }
 
 // MARK: - TargetType
@@ -281,6 +283,9 @@ extension VillageCoreAPI: TargetType {
 
         case let .flagKudo(kudoId):
             return "kudos/1.0/kudos/\(kudoId)/flag"
+
+		case .fetchCredentials:
+			return "schedule/credentials"
         }
     }
 
@@ -319,7 +324,8 @@ extension VillageCoreAPI: TargetType {
              .searchOtherStreams,
              .subscribedStreams,
              .streamDetails,
-             .directMessageStreams:
+             .directMessageStreams,
+			 .fetchCredentials:
             return .get
             
         case .validateIdentity,
@@ -392,6 +398,7 @@ extension VillageCoreAPI: TargetType {
              .sendMessage,
              .directMessageStreams,
              .inviteToDirectMessage,
+			 .fetchCredentials,
              .flagKudo:
             return Data()
         }
@@ -790,6 +797,9 @@ extension VillageCoreAPI: TargetType {
                     "diagId": User.current.diagnosticId
                 ]
             )
+
+		case .fetchCredentials:
+			return Task.requestPlain
         }
     }
 }
@@ -844,7 +854,8 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .sendMessage,
              .directMessageStreams,
              .inviteToDirectMessage,
-             .flagKudo:
+             .flagKudo,
+			 .fetchCredentials:
             return true
         }
     }
