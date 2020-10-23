@@ -175,14 +175,15 @@ private extension HomeStreamViewController {
 extension HomeStreamViewController {
     
     @IBAction func showMySchedule() {
-        let url = Constants.URL.schedulerLink
-        let sfvc = SFSafariViewController(url: url)
-        sfvc.preferredBarTintColor = UINavigationBar.appearance().barTintColor
-        sfvc.preferredControlTintColor = UINavigationBar.appearance().tintColor
-        sfvc.delegate = self
-        sfvc.modalTransitionStyle = .coverVertical
-        self.present(sfvc, animated: true, completion: nil)
-    }
+		MySchedule.fetchCredentials(using: VillageService.shared)
+			.then { credentials in
+				DispatchQueue.main.async { [weak self] in
+					let controller = MyScheduleViewController.create()
+					controller.load(credentials: credentials)
+					self?.present(controller, animated: true) {}
+				}
+			}
+	}
     
     private func showNoticeDetail(notice: Notice) {
         guard let noticeViewController = UIStoryboard(name: "Notices", bundle: Constants.bundle).instantiateViewController(withIdentifier: "ViewNoticeVC") as? ViewNoticeViewController else {
