@@ -274,7 +274,7 @@ extension KudosListController: UITableViewDataSource {
             
         }
         
-        cell.configure(kudo: kudo, delegate: self)
+        cell.configure(kudo: kudo, senderAndReceiverInfo: title, delegate: self)
 
         return cell
         

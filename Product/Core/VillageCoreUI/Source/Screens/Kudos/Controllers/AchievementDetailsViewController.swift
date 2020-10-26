@@ -163,7 +163,7 @@ extension AchievementDetailsViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "KudoCell") as! KudoCell
             let kudo = kudos[indexPath.row]
-            cell.configure(kudo: kudo, delegate: self)            
+            cell.configure(kudo: kudo, senderAndReceiverInfo: NSAttributedString(), delegate: self)            
             return cell
         }
     }
