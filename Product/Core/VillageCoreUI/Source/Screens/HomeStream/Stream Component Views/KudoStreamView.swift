@@ -113,8 +113,7 @@ class KudoStreamView: NibView {
     private func updateContentLabel() {
         contentLabel.attributedText = nil
         guard let kudo = kudo else { return }
-        let contentString = NSMutableAttributedString()
-        contentString.append(NSAttributedString(string: kudo.comment + "\n"))
+        let contentString = NSMutableAttributedString(string: kudo.comment + "\n")
         contentString.append(senderAndReceiverInfo)
         contentLabel.attributedText = contentString
     }
