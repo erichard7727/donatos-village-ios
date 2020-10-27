@@ -22,6 +22,7 @@
 		04819B5623390A00000C46E0 /* NoticeStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819B5523390A00000C46E0 /* NoticeStreamView.swift */; };
 		04819B5823391422000C46E0 /* UILabel+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819B5723391422000C46E0 /* UILabel+HTML.swift */; };
 		04DA45EC233D2E5D001958A6 /* UIBarButtonItem+Badging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA45EB233D2E5D001958A6 /* UIBarButtonItem+Badging.swift */; };
+		0E8B847F2547139B00E3306E /* UIImageView+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8B847E2547139B00E3306E /* UIImageView+Alamofire.swift */; };
 		6C312AC924ACC8760050484D /* NavBarDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C312AC824ACC8760050484D /* NavBarDisplayable.swift */; };
 		85C47475CDC845F2891ABE88 /* Pods_VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3320DDC8D7CF7409112B3ABB /* Pods_VillageCoreUI.framework */; };
 		D40CD43E233E4E33001A7DA1 /* NewContentLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40CD43D233E4E33001A7DA1 /* NewContentLibraryViewController.swift */; };
@@ -224,6 +225,7 @@
 		04819B5523390A00000C46E0 /* NoticeStreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeStreamView.swift; sourceTree = "<group>"; };
 		04819B5723391422000C46E0 /* UILabel+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+HTML.swift"; sourceTree = "<group>"; };
 		04DA45EB233D2E5D001958A6 /* UIBarButtonItem+Badging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Badging.swift"; sourceTree = "<group>"; };
+		0E8B847E2547139B00E3306E /* UIImageView+Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Alamofire.swift"; sourceTree = "<group>"; };
 		296AE51F8D70009B1EB7FC93 /* Pods-VillageCoreUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.debug.xcconfig"; path = "Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.debug.xcconfig"; sourceTree = "<group>"; };
 		3320DDC8D7CF7409112B3ABB /* Pods_VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C312AC824ACC8760050484D /* NavBarDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarDisplayable.swift; sourceTree = "<group>"; };
@@ -654,6 +656,7 @@
 				04819B5723391422000C46E0 /* UILabel+HTML.swift */,
 				04DA45EB233D2E5D001958A6 /* UIBarButtonItem+Badging.swift */,
 				D4F3C0312363015E0078CBBD /* UIViewController+BadSwizzleStuff.swift */,
+				0E8B847E2547139B00E3306E /* UIImageView+Alamofire.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1221,6 +1224,7 @@
 				D460B81F224AC434003DCA2C /* CreateNoticeViewController.swift in Sources */,
 				D434D41922714007002C5EA0 /* UIImage+AnimatedImage.swift in Sources */,
 				D4CEAE84225FFCCB00A215E4 /* ContentLibraryCell.swift in Sources */,
+				0E8B847F2547139B00E3306E /* UIImageView+Alamofire.swift in Sources */,
 				D4A6977F226411DF00ECC0A8 /* LeaderboardViewController.swift in Sources */,
 				D4441935237F5D9A00758E15 /* GroupSettingsDescriptionCell.swift in Sources */,
 				D434D40F2270ED09002C5EA0 /* PreviewActionCell.swift in Sources */,

@@ -48,7 +48,7 @@ class NewsStreamView: NibView {
         
         if let imageUrl = news.mediaAttachments.first(where: { $0.isThumbnailImage })?.url {
             Alamofire.DataRequest.addAcceptableImageContentTypes(["binary/octet-stream"])
-            imageView.af_setImage(withURL: imageUrl)
+            imageView.vlg_setImage(withURL: imageUrl)
         }
     }
     

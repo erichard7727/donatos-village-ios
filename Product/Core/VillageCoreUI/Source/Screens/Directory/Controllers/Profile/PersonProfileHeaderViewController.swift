@@ -54,7 +54,7 @@ final class PersonProfileHeaderViewController: UIViewController {
         }
         
         if let url = person.avatarURL {
-            profileImageView.af_setImage(
+            profileImageView.vlg_setImage(
                 withURL: url,
                 filter: AspectScaledToFillSizeWithRoundedCornersFilter(
                     size: profileImageView.frame.size,

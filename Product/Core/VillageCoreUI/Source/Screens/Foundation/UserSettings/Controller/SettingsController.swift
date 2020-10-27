@@ -85,7 +85,7 @@ class SettingsController: UITableViewController {
                 radius: avatarImageViewWidthConstraint.constant / 2
             )
             
-            avatarImageView.af_setImage(withURL: url, filter: filter)
+            avatarImageView.vlg_setImage(withURL: url, filter: filter)
         }
         
         userNameLabel.text = person.displayName

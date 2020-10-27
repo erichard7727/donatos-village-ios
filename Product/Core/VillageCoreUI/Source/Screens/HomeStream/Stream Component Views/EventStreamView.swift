@@ -51,7 +51,7 @@ class EventStreamView: NibView {
         
         if let imageUrl = event?.mediaAttachments.compactMap({ $0.url }).first {
             Alamofire.DataRequest.addAcceptableImageContentTypes(["binary/octet-stream"])
-            backgroundImageView.af_setImage(withURL: imageUrl) { response in
+            backgroundImageView.vlg_setImage(withURL: imageUrl) { response in
                 guard let image = response.value else { return }
                 let aspectRatio = image.size.width / image.size.height
                 self.imageContainerViewHeightConstraint.constant = self.imageContainerView.frame.width / aspectRatio

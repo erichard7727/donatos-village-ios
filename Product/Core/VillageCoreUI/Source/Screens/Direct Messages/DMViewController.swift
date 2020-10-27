@@ -203,7 +203,7 @@ extension DMViewController: UITableViewDataSource {
                     radius: threadCell.avatarImageView.frame.size.height / 2
                 )
                 
-                threadCell.avatarImageView.af_setImage(withURL: url, filter: filter)
+                threadCell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
             }
         }
         

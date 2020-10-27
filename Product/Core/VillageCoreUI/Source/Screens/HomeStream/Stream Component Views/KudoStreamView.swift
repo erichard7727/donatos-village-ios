@@ -96,10 +96,10 @@ class KudoStreamView: NibView {
         dateLabel.text = kudo.date.longformFormat.uppercased()
         contentLabel.text = kudo.comment
         if let senderImage = kudo.sender.avatarURL {
-            leftImageView.af_setImage(withURL: senderImage)
+            leftImageView.vlg_setImage(withURL: senderImage)
         }
         if let receiverImage = kudo.receiver.avatarURL {
-            rightImageView.af_setImage(withURL: receiverImage)
+            rightImageView.vlg_setImage(withURL: receiverImage)
         }
     }
 }
