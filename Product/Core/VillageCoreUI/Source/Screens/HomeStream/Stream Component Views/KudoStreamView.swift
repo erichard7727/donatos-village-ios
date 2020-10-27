@@ -23,6 +23,12 @@ class KudoStreamView: NibView {
         }
     }
     
+    var senderAndReceiverInfo: NSAttributedString = NSAttributedString() {
+        didSet {
+            updateContentLabel()
+        }
+    }
+    
     // Delegate
     weak var delegate: KudoStreamViewDelegate?
     
@@ -90,16 +96,34 @@ class KudoStreamView: NibView {
     }
 
     private func updateViewForKudo() {
+        resetValues()
         guard let kudo = kudo else { return }
-
+        
         titleLabel.text = kudo.achievementTitle
         dateLabel.text = kudo.date.longformFormat.uppercased()
-        contentLabel.text = kudo.comment
+        updateContentLabel()
         if let senderImage = kudo.sender.avatarURL {
             leftImageView.vlg_setImage(withURL: senderImage)
         }
         if let receiverImage = kudo.receiver.avatarURL {
             rightImageView.vlg_setImage(withURL: receiverImage)
         }
+    }
+    
+    private func updateContentLabel() {
+        contentLabel.attributedText = nil
+        guard let kudo = kudo else { return }
+        let contentString = NSMutableAttributedString(string: kudo.comment + "\n")
+        contentString.append(senderAndReceiverInfo)
+        contentLabel.attributedText = contentString
+    }
+    
+    private func resetValues() {
+        titleLabel.text = nil
+        dateLabel.text = nil
+        contentLabel.attributedText = nil
+        contentLabel.text = nil
+        leftImageView.image = nil
+        rightImageView.image = nil
     }
 }

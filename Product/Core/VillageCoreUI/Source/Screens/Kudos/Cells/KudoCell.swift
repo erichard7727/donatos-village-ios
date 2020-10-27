@@ -13,8 +13,9 @@ class KudoCell: UITableViewCell {
 
     @IBOutlet private var kudoStreamView: KudoStreamView!
 
-    func configure(kudo: Kudo, delegate: KudoStreamViewDelegate? = nil) {
+    func configure(kudo: Kudo, senderAndReceiverInfo: NSAttributedString, delegate: KudoStreamViewDelegate? = nil) {
         kudoStreamView.kudo = kudo
+        kudoStreamView.senderAndReceiverInfo = senderAndReceiverInfo
         kudoStreamView.delegate = delegate
     }
     
