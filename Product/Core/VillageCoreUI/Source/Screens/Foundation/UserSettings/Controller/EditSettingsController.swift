@@ -40,7 +40,7 @@ final class EditSettingsController: UIViewController {
                 radius:  self.settingsController.avatarImageView.frame.size.height / 2
             )
             
-             self.settingsController.avatarImageView.af_setImage(withURL: url, filter: filter)
+             self.settingsController.avatarImageView.vlg_setImage(withURL: url, filter: filter)
         }
     }
     

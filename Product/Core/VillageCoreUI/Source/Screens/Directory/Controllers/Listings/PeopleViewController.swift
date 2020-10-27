@@ -193,7 +193,7 @@ extension PeopleViewController: UITableViewDataSource {
                 radius: cell.avatarImageView.frame.size.height / 2
             )
 
-            cell.avatarImageView.af_setImage(withURL: url, filter: filter)
+            cell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
         }
 
         return cell
@@ -579,7 +579,7 @@ extension PeopleViewController: InvitePersonControllerDelegate {
 //                radius: cell.avatarImageView.frame.size.height / 2
 //            )
 //
-//            cell.avatarImageView.af_setImage(withURL: url, filter: filter)
+//            cell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
 //        }
 //
 //        return cell

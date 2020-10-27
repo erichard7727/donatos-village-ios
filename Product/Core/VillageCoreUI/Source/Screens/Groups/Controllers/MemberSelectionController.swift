@@ -138,7 +138,7 @@ extension MemberSelectionController {
                 radius: cell.avatarImageView.frame.size.height / 2
             )
             
-            cell.avatarImageView.af_setImage(withURL: url, filter: filter)
+            cell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
         }
         cell.selectionStyle = .none
         return cell

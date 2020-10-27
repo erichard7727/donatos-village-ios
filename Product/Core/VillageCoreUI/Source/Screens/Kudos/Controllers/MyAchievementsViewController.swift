@@ -127,7 +127,7 @@ extension MyAchievementsViewController: UICollectionViewDataSource {
                 radius: imageView.frame.size.height / 2
             )
             cell.activityIndicator.alpha = 1
-            imageView.af_setImage(withURL: url, filter: filter, completion: { result in
+            imageView.vlg_setImage(withURL: url, filter: filter, completion: { result in
                 if achievement.pointsCap > 0 && ((achievement.userPoints ?? 0) / achievement.pointsCap) < 1 {
                     cell.achievementImageView?.imageView.alpha = 0.6
                 } else {

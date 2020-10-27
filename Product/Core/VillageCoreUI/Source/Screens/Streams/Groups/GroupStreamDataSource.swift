@@ -165,7 +165,7 @@ class GroupStreamDataSource: StreamDataSource {
                     radius: cell.avatarImageView.frame.size.height / 2
                 )
                 
-                cell.avatarImageView.af_setImage(withURL: url, filter: filter)
+                cell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
             }
             
             if attachment.type == "image/gif" {
@@ -209,7 +209,7 @@ class GroupStreamDataSource: StreamDataSource {
                         size: CGSize(width: (attachment.width > 0 ? CGFloat(attachment.width) : cell.attachmentView.frame.width), height: (attachment.height > 0 ? CGFloat(attachment.height) : cell.attachmentView.frame.height))
                     )
                     
-                    cell.attachmentView.af_setImage(
+                    cell.attachmentView.vlg_setImage(
                         withURL: attachment.url,
                         filter: filter,
                         progress: {

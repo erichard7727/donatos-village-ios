@@ -36,7 +36,7 @@ class NewsCell: UITableViewCell {
     var thumbnailImageURL: URL? {
         didSet {
             if let url = thumbnailImageURL {
-                self.newsImageView.af_setImage(
+                self.newsImageView.vlg_setImage(
                     withURL: url,
                     placeholderImage: UIImage.named("default-notice-header")!,
                     filter: AspectScaledToFillSizeFilter(

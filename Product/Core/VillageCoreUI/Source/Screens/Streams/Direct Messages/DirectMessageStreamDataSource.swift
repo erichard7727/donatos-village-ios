@@ -107,7 +107,7 @@ class DirectMessageStreamDataSource: StreamDataSource {
                             )
                         )
                         cell.showProgressIndicator(true)
-                        cell.attachmentImageView.af_setImage(
+                        cell.attachmentImageView.vlg_setImage(
                             withURL: attachment.url,
                             filter: filter,
                             progress: {
@@ -230,7 +230,7 @@ class DirectMessageStreamDataSource: StreamDataSource {
                             size: CGSize(width: (attachment.width > 0 ? CGFloat(attachment.width) : cell.attachmentImageView.frame.width), height: (attachment.height > 0 ? CGFloat(attachment.height) : cell.attachmentImageView.frame.height))
                         )
                         cell.showProgressIndicator(true)
-                        cell.attachmentImageView.af_setImage(
+                        cell.attachmentImageView.vlg_setImage(
                             withURL: attachment.url,
                             filter: filter,
                             progress: {
@@ -266,7 +266,7 @@ class DirectMessageStreamDataSource: StreamDataSource {
                         radius: cell.avatarImageView.frame.size.height / 2
                     )
                     
-                    cell.avatarImageView.af_setImage(withURL: url, filter: filter)
+                    cell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
                 }
                 
                 return cell
@@ -298,7 +298,7 @@ class DirectMessageStreamDataSource: StreamDataSource {
                         radius: cell.avatarImageView.frame.size.height / 2
                     )
                     
-                    cell.avatarImageView.af_setImage(withURL: url, filter: filter)
+                    cell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
                 }
                 return cell
             }

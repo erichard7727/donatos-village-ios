@@ -126,7 +126,7 @@ final class GroupMessageCell: UITableViewCell {
                 size: avatarImageView.frame.size,
                 radius: avatarImageView.frame.size.height / 2
             )
-            avatarImageView.af_setImage(withURL: url, filter: filter)
+            avatarImageView.vlg_setImage(withURL: url, filter: filter)
         }
         setNeedsLayout()
     }
