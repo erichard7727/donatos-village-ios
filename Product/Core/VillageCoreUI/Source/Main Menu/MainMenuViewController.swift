@@ -322,7 +322,11 @@ private extension MainMenuViewController {
 				DispatchQueue.main.async { [weak self] in
 					let controller = MyScheduleViewController.create()
 					controller.load(credentials: credentials)
-					self?.present(controller, animated: true) {}
+                    self?.sideMenuController?.setContentViewController(
+                        UINavigationController(rootViewController: controller),
+                        fadeAnimation: true
+                    )
+                    self?.sideMenuController?.hideMenu()
 				}
 			}
     }

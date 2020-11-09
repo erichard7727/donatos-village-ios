@@ -180,7 +180,7 @@ extension HomeStreamViewController {
 				DispatchQueue.main.async { [weak self] in
 					let controller = MyScheduleViewController.create()
 					controller.load(credentials: credentials)
-					self?.present(controller, animated: true) {}
+					self?.show(controller, sender: nil)
 				}
 			}
 	}
