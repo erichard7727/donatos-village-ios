@@ -11,6 +11,7 @@
 		23F4651B2268C2AE00032A63 /* Stream+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F4651A2268C2AE00032A63 /* Stream+Services.swift */; };
 		589DA50E4F73EA7233820A09 /* Pods_VillageCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFAE0AE80D5D944F4F84A113 /* Pods_VillageCoreTests.framework */; };
 		6CADF29C24D3041800175DD7 /* MessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CADF29B24D3041800175DD7 /* MessageTests.swift */; };
+		905C9508254344770062A6B1 /* MyScheduleUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C9507254344770062A6B1 /* MyScheduleUtility.swift */; };
 		A6FB2D3A853BBDE883304C27 /* Pods_VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D7D6AFBF7082FB206E09702 /* Pods_VillageCore.framework */; };
 		D4164B6B2267EF3E0025E6E9 /* Achievements+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */; };
 		D417388A220C4FD500F5B1F6 /* URL+StaticString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */; };
@@ -76,6 +77,7 @@
 		2821796FE6835A9E71FAFBFA /* Pods-VillageCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCore.debug.xcconfig"; path = "Target Support Files/Pods-VillageCore/Pods-VillageCore.debug.xcconfig"; sourceTree = "<group>"; };
 		33FDFA47635E26E6D0872C1F /* Pods-VillageCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreTests.debug.xcconfig"; path = "Target Support Files/Pods-VillageCoreTests/Pods-VillageCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6CADF29B24D3041800175DD7 /* MessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTests.swift; sourceTree = "<group>"; };
+		905C9507254344770062A6B1 /* MyScheduleUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleUtility.swift; sourceTree = "<group>"; };
 		9D7D6AFBF7082FB206E09702 /* Pods_VillageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4164B6A2267EF3E0025E6E9 /* Achievements+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Achievements+Services.swift"; sourceTree = "<group>"; };
 		D4173889220C4FD500F5B1F6 /* URL+StaticString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+StaticString.swift"; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			children = (
 				D4F465982288852C00732317 /* Debouncer.swift */,
 				D4464BA92287B1A500618FDE /* Pagination.swift */,
+				905C9507254344770062A6B1 /* MyScheduleUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				2317A1E222679593002240D4 /* Message.swift in Sources */,
 				D4464BAA2287B1A500618FDE /* Pagination.swift in Sources */,
 				D4702EC8228B5EC400D3DB46 /* IndexPath+Utilities.swift in Sources */,
+				905C9508254344770062A6B1 /* MyScheduleUtility.swift in Sources */,
 				D46724F22248163E00F4D7E5 /* Bundle+Version.swift in Sources */,
 				D4173893220C5C5200F5B1F6 /* Dictionary+CaseInsensitive.swift in Sources */,
 				D417388A220C4FD500F5B1F6 /* URL+StaticString.swift in Sources */,
