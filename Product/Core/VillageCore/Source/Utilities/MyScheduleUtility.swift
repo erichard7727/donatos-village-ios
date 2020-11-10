@@ -10,21 +10,49 @@ public struct MySchedule {
 	public enum Errors: Error {
 		case missingProperty(name: String)
 	}
+    
+    private static let loginUrl = URL(string: "https://schedule.donatos.com/schedule/pepptalk/getloginUser")!
 
-	public static let loginUrl = URL(string: "https://schedule.donatos.com/schedule/pepptalk/getloginUser")!
-
-	public static func fetchCredentials(using service: VillageService) -> Promise<Credentials> {
-		return service.request(target: VillageCoreAPI.fetchCredentials)
-			.then { json -> Credentials in
-				guard let encryptedEmail = json["credentials", "encryptedEmail"].string else {
-					throw Errors.missingProperty(name: "encryptedEmail")
-				}
-				guard let securityKey = json["credentials", "securityKey"].string else {
-					throw Errors.missingProperty(name: "securityKey")
-				}
-				return Credentials(encryptedEmail: encryptedEmail, securityKey: securityKey)
-			}
-	}
+    public static func makeUrlRequest() -> Promise<URLRequest> {
+        return firstly {
+            fetchCredentials(using: VillageService.shared)
+        }.then {
+            composeUrlRequest(with: $0)
+        }
+    }
 
 	private init() {}
+}
+
+// MARK: - Private Methods
+
+private extension MySchedule {
+    
+    static func fetchCredentials(using service: VillageService) -> Promise<Credentials> {
+        return service
+            .request(target: VillageCoreAPI.fetchCredentials)
+            .then { json -> Credentials in
+                guard let encryptedEmail = json["credentials", "encryptedEmail"].string else {
+                    throw Errors.missingProperty(name: "encryptedEmail")
+                }
+                guard let securityKey = json["credentials", "securityKey"].string else {
+                    throw Errors.missingProperty(name: "securityKey")
+                }
+                return Credentials(encryptedEmail: encryptedEmail, securityKey: securityKey)
+            }
+    }
+
+    static func composeUrlRequest(with credentials: MySchedule.Credentials) -> Promise<URLRequest> {
+        return Promise<URLRequest> { fulfull, reject in
+            let body = "email=\(credentials.encryptedEmail)&securityKey=\(credentials.securityKey)"
+            do {
+                var request = try URLRequest(url: Self.loginUrl, method: .post)
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.httpBody = body.data(using: .utf8)
+                fulfull(request)
+            } catch {
+                reject(error)
+            }
+        }
+    }
 }

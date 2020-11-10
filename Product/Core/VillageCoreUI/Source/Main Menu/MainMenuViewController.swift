@@ -317,18 +317,12 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToSchedular(_ sender: Any? = nil) {
-		MySchedule.fetchCredentials(using: VillageService.shared)
-			.then { credentials in
-				DispatchQueue.main.async { [weak self] in
-					let controller = MyScheduleViewController.create()
-					controller.load(credentials: credentials)
-                    self?.sideMenuController?.setContentViewController(
-                        UINavigationController(rootViewController: controller),
-                        fadeAnimation: true
-                    )
-                    self?.sideMenuController?.hideMenu()
-				}
-			}
+		let myScheduleViewController = MyScheduleViewController.create()
+        sideMenuController?.setContentViewController(
+            UINavigationController(rootViewController: myScheduleViewController),
+            fadeAnimation: true
+        )
+        sideMenuController?.hideMenu()
     }
     
     @IBAction func onGoToContentLibrary(_ sender: Any? = nil) {
