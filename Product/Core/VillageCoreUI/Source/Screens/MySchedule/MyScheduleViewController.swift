@@ -56,7 +56,7 @@ private extension MyScheduleViewController {
     func loadMySchedule() {
         add(loadingViewController)
         
-        MySchedule
+        MyScheduleUtility
             .makeUrlRequest()
             .then { [weak self] request in
                 guard let self = self else { return }
