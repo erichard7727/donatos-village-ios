@@ -268,7 +268,11 @@ desc "Fetch and upload dSYM files to Firebase Crashlytics"
 desc "Implemented in last build step of iOS Realease Only Team City job"
 desc "Firebase Crashlytics automatically processes debug symbol (dSYM) files providing deobfuscated/human-readable crash reports"
 lane :upload_dsym_to_firebase do
-  upload_symbols_to_crashlytics()
+  upload_symbols_to_crashlytics(
+    dsym_path: ENV["ARTIFACT_DIRECTORY"] + ENV["DSYM_NAME"],
+    gsp_path: "./Donatos/Donatos App/Other Files/Resources/GoogleService-Info.plist",
+    debug: true
+  )
 end
 
 ############################# Generate Simulator Build ##############################
