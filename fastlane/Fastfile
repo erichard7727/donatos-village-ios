@@ -187,6 +187,12 @@ platform :ios do
    )
    end
 
+   ############################# Testflight Upload ##############################
+
+   lane :testflight_upload do |options|
+    upload_to_testflight(skip_submission: true, ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"])
+  end
+
   ############################# Building Debug Build ##############################
 
   desc "Build the Debug configuration (iOS Simulator)"
