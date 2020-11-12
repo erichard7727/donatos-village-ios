@@ -18,7 +18,7 @@ public struct MyScheduleUtility {
         self.service = service
     }
 
-    public func makeUrlRequest() -> Promise<URLRequest> {
+    public func makeSingleSignOnUrlRequest() -> Promise<URLRequest> {
         return fetchCredentials(using: service).then(composeUrlRequest)
     }
 

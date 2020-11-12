@@ -60,7 +60,7 @@ private extension MyScheduleViewController {
         add(loadingViewController)
         
         myScheduleUtility
-            .makeUrlRequest()
+            .makeSingleSignOnUrlRequest()
             .then { [weak self] request in
                 guard let webView = self?.webView else { return }
                 webView.load(request)
