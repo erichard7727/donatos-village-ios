@@ -223,7 +223,7 @@ platform :ios do
         use_bundle_exec: true,
         teamcity: true,
         ignore: [
-          "Pods/*", 
+          "Pods/*",
           "Product/Core/VillageCoreUI/*",
           "Product/Core/VillageCore/Tests/*"
         ]
@@ -257,7 +257,7 @@ def self.find_app_file(dir)
 end
 
 lane :get_git_branch do
-  puts git_branch
+  puts git_branch + " test "
 end
 
 ############################# Upload dSYM to Firebase ######################################
