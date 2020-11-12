@@ -11,6 +11,7 @@ final class MyScheduleViewController: UIViewController, NavBarDisplayable {
     
     // MARK: Private Properties
     
+    private var myScheduleUtility: MyScheduleUtility!
     private lazy var loadingViewController = LoadingViewController()
     private var webViewObservation: NSKeyValueObservation?
     
@@ -43,9 +44,11 @@ final class MyScheduleViewController: UIViewController, NavBarDisplayable {
     
     // MARK: Create
     
-    public static func create() -> MyScheduleViewController {
+    public static func create(myScheduleUtility: MyScheduleUtility) -> MyScheduleViewController {
         let storyboard = UIStoryboard(name: "MySchedule", bundle: Constants.bundle)
-        return storyboard.instantiateInitialViewController() as! MyScheduleViewController
+        let controller = storyboard.instantiateInitialViewController() as! MyScheduleViewController
+        controller.myScheduleUtility = myScheduleUtility
+        return controller
     }
 }
 
@@ -56,11 +59,11 @@ private extension MyScheduleViewController {
     func loadMySchedule() {
         add(loadingViewController)
         
-        MyScheduleUtility
+        myScheduleUtility
             .makeUrlRequest()
             .then { [weak self] request in
-                guard let self = self else { return }
-                self.webView?.load(request)
+                guard let webView = self?.webView else { return }
+                webView.load(request)
             }
             .catch { [weak self] error in
                 guard let self = self else { return }

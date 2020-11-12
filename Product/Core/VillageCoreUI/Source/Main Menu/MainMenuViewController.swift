@@ -317,12 +317,15 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToSchedular(_ sender: Any? = nil) {
-		let myScheduleViewController = MyScheduleViewController.create()
-        sideMenuController?.setContentViewController(
+        guard let sideMenuController = sideMenuController else { return }
+		let myScheduleViewController = MyScheduleViewController.create(
+            myScheduleUtility: MyScheduleUtility(service: VillageService.shared)
+        )
+        sideMenuController.setContentViewController(
             UINavigationController(rootViewController: myScheduleViewController),
             fadeAnimation: true
         )
-        sideMenuController?.hideMenu()
+        sideMenuController.hideMenu()
     }
     
     @IBAction func onGoToContentLibrary(_ sender: Any? = nil) {

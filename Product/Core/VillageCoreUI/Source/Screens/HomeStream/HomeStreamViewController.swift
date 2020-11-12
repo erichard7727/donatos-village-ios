@@ -175,7 +175,9 @@ private extension HomeStreamViewController {
 extension HomeStreamViewController {
     
     @IBAction func showMySchedule() {
-		let myScheduleViewController = MyScheduleViewController.create()
+        let myScheduleViewController = MyScheduleViewController.create(
+            myScheduleUtility: MyScheduleUtility(service: VillageService.shared)
+        )
         show(myScheduleViewController, sender: nil)
 	}
     
