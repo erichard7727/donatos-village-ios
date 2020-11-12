@@ -257,7 +257,9 @@ def self.find_app_file(dir)
 end
 
 lane :get_git_branch do
-  puts git_branch + " test "
+  puts "test"
+  x = git_branch
+  puts x
 end
 
 ############################# Upload dSYM to Firebase ######################################
