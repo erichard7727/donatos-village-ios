@@ -262,19 +262,6 @@ def self.find_app_file(dir)
    Dir[File.join(dir, '**', '*.app')].sort { |a, b| File.mtime(b) <=> File.mtime(a) }.first
 end
 
-############################# Upload dSYM to Firebase ######################################
-
-desc "Fetch and upload dSYM files to Firebase Crashlytics"
-desc "Implemented in last build step of iOS Realease Only Team City job"
-desc "Firebase Crashlytics automatically processes debug symbol (dSYM) files providing deobfuscated/human-readable crash reports"
-lane :upload_dsym_to_firebase do
-  upload_symbols_to_crashlytics(
-    dsym_path: ENV["ARTIFACT_DIRECTORY"] + ENV["DSYM_NAME"],
-    gsp_path: "./Donatos/Donatos App/Other Files/Resources/GoogleService-Info.plist",
-    debug: true
-  )
-end
-
 ############################# Generate Simulator Build ##############################
 
 desc "Generates simulator build"
