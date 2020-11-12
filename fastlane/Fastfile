@@ -256,6 +256,10 @@ def self.find_app_file(dir)
    Dir[File.join(dir, '**', '*.app')].sort { |a, b| File.mtime(b) <=> File.mtime(a) }.first
 end
 
+lane :get_git_branch do
+  puts git_branch
+end
+
 ############################# Upload dSYM to Firebase ######################################
 
 desc "Fetch and upload dSYM files to Firebase Crashlytics"
