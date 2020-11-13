@@ -175,14 +175,10 @@ private extension HomeStreamViewController {
 extension HomeStreamViewController {
     
     @IBAction func showMySchedule() {
-		MySchedule.fetchCredentials(using: VillageService.shared)
-			.then { credentials in
-				DispatchQueue.main.async { [weak self] in
-					let controller = MyScheduleViewController.create()
-					controller.load(credentials: credentials)
-					self?.show(controller, sender: nil)
-				}
-			}
+        let myScheduleViewController = MyScheduleViewController.create(
+            myScheduleUtility: MyScheduleUtility(service: VillageService.shared)
+        )
+        show(myScheduleViewController, sender: nil)
 	}
     
     private func showNoticeDetail(notice: Notice) {
