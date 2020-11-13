@@ -259,7 +259,11 @@ end
 lane :get_git_branch do
   puts "test"
   x = git_branch
+  y = ENV['BRANCH']
   puts x
+  puts y
+  puts ENV['BRANCH']
+  puts "done"
 end
 
 ############################# Upload dSYM to Firebase ######################################
