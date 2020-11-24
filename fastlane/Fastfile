@@ -258,13 +258,12 @@ end
 
 lane :get_git_branch do |options|
   puts "test"
-  x = git_branch
-  y = ENV['BRANCH']
-  puts x
-  puts y
+  # x = git_branch
+  branch = ENV['BRANCH']
+  # puts x
+  puts branch
   puts ENV['BRANCH']
-  puts "done"
-  z = get_github_release(url: "willowtreeapps/donatos-village-ios", version: "1.0.3", api_token: options[:apiToken])
+  z = get_github_release(url: "willowtreeapps/donatos-village-ios", version: branch, api_token: options[:apiToken])
   puts z
   puts z["body"]
   puts z["name"]
