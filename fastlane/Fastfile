@@ -264,7 +264,7 @@ lane :get_git_branch do
   puts y
   puts ENV['BRANCH']
   puts "done"
-  z = get_github_release(url: "willowtreeapps/donatos-village-ios", version: "1.0.3")
+  z = get_github_release(url: "willowtreeapps/donatos-village-ios", version: "1.0.3", api_token: SYSTEM["githubAccessToken"])
   puts z
   puts z["body"]
   puts z["name"]
