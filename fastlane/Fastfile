@@ -256,7 +256,7 @@ def self.find_app_file(dir)
    Dir[File.join(dir, '**', '*.app')].sort { |a, b| File.mtime(b) <=> File.mtime(a) }.first
 end
 
-lane :get_git_branch do
+lane :get_git_branch do |options|
   puts "test"
   x = git_branch
   y = ENV['BRANCH']
@@ -264,7 +264,7 @@ lane :get_git_branch do
   puts y
   puts ENV['BRANCH']
   puts "done"
-  z = get_github_release(url: "willowtreeapps/donatos-village-ios", version: "1.0.3", api_token: SYSTEM["githubAccessToken"])
+  z = get_github_release(url: "willowtreeapps/donatos-village-ios", version: "1.0.3", api_token: options[:apiToken])
   puts z
   puts z["body"]
   puts z["name"]
