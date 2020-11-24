@@ -71,7 +71,7 @@ class MyKudosViewController: UIViewController, NavBarDisplayable {
         self.title = "My " + Constants.Settings.kudosPluralShort
         
         loadPages()
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -9,18 +9,18 @@
 import Foundation
 
 public enum User {
-	case AutomationStoreAssociation
+	case automationStoreAssociation
 	
 	public var email: String {
 		switch self {
-		case .AutomationStoreAssociation:
+		case .automationStoreAssociation:
 			return "support+testautomation2@willowtreeapps.com"
 		}
 	}
 	
 	public var password: String {
 		switch self {
-		case .AutomationStoreAssociation:
+		case .automationStoreAssociation:
 			return "8ZNA9G5@d1vH"
 		}
 	}

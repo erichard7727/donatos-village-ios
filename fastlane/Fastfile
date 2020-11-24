@@ -206,30 +206,48 @@ platform :ios do
 
   ############################# Running Unit Tests ##############################
 
-  # TODO: - Get Tests Working
-  desc "Run tests"
-  lane :tests do
-    run_tests(
+  desc "Runs all unit tests in the DonatosVillage (Development) scheme"
+  desc "Donatos Village Tests"
+  desc "Donatos VillageCoreTests"
+  lane :run_unit_tests do
+      run_tests(
         scheme: "DonatosVillage (Development)",
-        xcargs: "-UseModernBuildSystem=NO"
+        xcargs: "-UseModernBuildSystem=NO",
+        device: "iPhone 11 Pro"
+      )
+
+      slather(
+        scheme: "DonatosVillage (Development)",
+        workspace: "Village.xcworkspace",
+        proj: "Clients/DonatosVillage/DonatosVillage.xcodeproj",
+        use_bundle_exec: true,
+        teamcity: true,
+        ignore: [
+          "Pods/*", 
+          "Product/Core/VillageCoreUI/*",
+          "Product/Core/VillageCore/Tests/*"
+        ]
       )
   end
 
   ############################# Running UI Tests ##############################
 
-  # TODO: - Get Tests Working
-  desc "Run UI tests"
-  lane :ui_tests do
-    run_tests(
-        scheme: "DonatosVillage (Development)",
-        xcargs: "-UseModernBuildSystem=NO",
-        result_bundle: true,
-        output_files: "UITests.html,UITests.junit",
-        output_types: "html,junit",
-        output_directory: "./artifacts",
-        buildlog_path: "./artifacts"
-      )
-  end
+    desc "Runs all UI tests in the DonatosVillageUITests scheme"
+    desc "DonatosVillage Tests"
+    lane :run_ui_tests do
+      output_directory = "./artifacts/ios_ui_tests"
+
+      run_tests(
+          scheme: "DonatosVillageUITests",
+          output_directory: output_directory,
+          output_style: "standard",
+          output_types: "html,junit",
+          buildlog_path: output_directory,
+          derived_data_path: "./build/Test-iPhone",
+          result_bundle: true,
+          xcargs: "-UseModernBuildSystem=NO",
+        )
+    end
 
 end
 

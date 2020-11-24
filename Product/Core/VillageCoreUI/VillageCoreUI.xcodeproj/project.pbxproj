@@ -22,8 +22,12 @@
 		04819B5623390A00000C46E0 /* NoticeStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819B5523390A00000C46E0 /* NoticeStreamView.swift */; };
 		04819B5823391422000C46E0 /* UILabel+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04819B5723391422000C46E0 /* UILabel+HTML.swift */; };
 		04DA45EC233D2E5D001958A6 /* UIBarButtonItem+Badging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA45EB233D2E5D001958A6 /* UIBarButtonItem+Badging.swift */; };
+		0E8B847F2547139B00E3306E /* UIImageView+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8B847E2547139B00E3306E /* UIImageView+Alamofire.swift */; };
+		0EA156462559C883006F2156 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA156452559C883006F2156 /* LoadingViewController.swift */; };
 		6C312AC924ACC8760050484D /* NavBarDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C312AC824ACC8760050484D /* NavBarDisplayable.swift */; };
 		85C47475CDC845F2891ABE88 /* Pods_VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3320DDC8D7CF7409112B3ABB /* Pods_VillageCoreUI.framework */; };
+		905C950F25434EF20062A6B1 /* MySchedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 905C950E25434EF20062A6B1 /* MySchedule.storyboard */; };
+		905C951125434F190062A6B1 /* MyScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C951025434F190062A6B1 /* MyScheduleViewController.swift */; };
 		D40CD43E233E4E33001A7DA1 /* NewContentLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40CD43D233E4E33001A7DA1 /* NewContentLibraryViewController.swift */; };
 		D411BC3B2247B3EE003D2F08 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC332247B3EE003D2F08 /* SettingsController.swift */; };
 		D411BC3C2247B3EE003D2F08 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC342247B3EE003D2F08 /* EditSettingsController.swift */; };
@@ -224,9 +228,13 @@
 		04819B5523390A00000C46E0 /* NoticeStreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeStreamView.swift; sourceTree = "<group>"; };
 		04819B5723391422000C46E0 /* UILabel+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+HTML.swift"; sourceTree = "<group>"; };
 		04DA45EB233D2E5D001958A6 /* UIBarButtonItem+Badging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Badging.swift"; sourceTree = "<group>"; };
+		0E8B847E2547139B00E3306E /* UIImageView+Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Alamofire.swift"; sourceTree = "<group>"; };
+		0EA156452559C883006F2156 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		296AE51F8D70009B1EB7FC93 /* Pods-VillageCoreUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.debug.xcconfig"; path = "Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.debug.xcconfig"; sourceTree = "<group>"; };
 		3320DDC8D7CF7409112B3ABB /* Pods_VillageCoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillageCoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C312AC824ACC8760050484D /* NavBarDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarDisplayable.swift; sourceTree = "<group>"; };
+		905C950E25434EF20062A6B1 /* MySchedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MySchedule.storyboard; sourceTree = "<group>"; };
+		905C951025434F190062A6B1 /* MyScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleViewController.swift; sourceTree = "<group>"; };
 		92C9A6D1A4C71EB1F82DBA61 /* Pods-VillageCoreUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.release.xcconfig"; path = "Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.release.xcconfig"; sourceTree = "<group>"; };
 		D40CD43D233E4E33001A7DA1 /* NewContentLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContentLibraryViewController.swift; sourceTree = "<group>"; };
 		D411BC332247B3EE003D2F08 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -425,6 +433,15 @@
 				6C312AC824ACC8760050484D /* NavBarDisplayable.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		905C950C25434ED80062A6B1 /* MySchedule */ = {
+			isa = PBXGroup;
+			children = (
+				905C950E25434EF20062A6B1 /* MySchedule.storyboard */,
+				905C951025434F190062A6B1 /* MyScheduleViewController.swift */,
+			);
+			path = MySchedule;
 			sourceTree = "<group>";
 		};
 		A250009B28DE177DE27511AF /* Pods */ = {
@@ -654,6 +671,7 @@
 				04819B5723391422000C46E0 /* UILabel+HTML.swift */,
 				04DA45EB233D2E5D001958A6 /* UIBarButtonItem+Badging.swift */,
 				D4F3C0312363015E0078CBBD /* UIViewController+BadSwizzleStuff.swift */,
+				0E8B847E2547139B00E3306E /* UIImageView+Alamofire.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -913,6 +931,7 @@
 		D4F8A57222109BDE005FDB6A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				905C950C25434ED80062A6B1 /* MySchedule */,
 				D4702EBA228A3E0700D3DB46 /* Streams */,
 				D4CEAE8B2260016500A215E4 /* ViewControllerBehaviors */,
 				D4164B6E226800BD0025E6E9 /* Common */,
@@ -952,6 +971,7 @@
 				D4984E9F223E83E700793CFE /* StatefulUserInterface.swift */,
 				D411BC422247E687003D2F08 /* ProgressIndicator.swift */,
 				D4164B79226801660025E6E9 /* PersonLabel.swift */,
+				0EA156452559C883006F2156 /* LoadingViewController.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -1145,6 +1165,7 @@
 				D4984EA3223FCD7C00793CFE /* KudoCell.xib in Resources */,
 				D494678B2286FCC900C7F4D6 /* OtherGroupsListViewController.storyboard in Resources */,
 				D4F8A5962210B6DE005FDB6A /* proximanova-extrabold-webfont.ttf in Resources */,
+				905C950F25434EF20062A6B1 /* MySchedule.storyboard in Resources */,
 				D4F8A57722109E55005FDB6A /* LoginIdentityViewController.storyboard in Resources */,
 				04819B4B23352E67000C46E0 /* KudoStreamView.xib in Resources */,
 				D4F8A5932210B6DE005FDB6A /* proximanova-light-webfont.ttf in Resources */,
@@ -1192,6 +1213,7 @@
 				D460B81E224AC434003DCA2C /* NoticeAcknowledgementsViewController.swift in Sources */,
 				04819B5623390A00000C46E0 /* NoticeStreamView.swift in Sources */,
 				D4EA5090227BC03900BE7E52 /* TintedSearchBar.swift in Sources */,
+				905C951125434F190062A6B1 /* MyScheduleViewController.swift in Sources */,
 				D43663D8222C4E37006354F2 /* CurrentUserViewController.swift in Sources */,
 				D4990FFD229C63A800DE2E73 /* NoticeListViewController.swift in Sources */,
 				D4164B752268011A0025E6E9 /* PersonCell.swift in Sources */,
@@ -1221,6 +1243,7 @@
 				D460B81F224AC434003DCA2C /* CreateNoticeViewController.swift in Sources */,
 				D434D41922714007002C5EA0 /* UIImage+AnimatedImage.swift in Sources */,
 				D4CEAE84225FFCCB00A215E4 /* ContentLibraryCell.swift in Sources */,
+				0E8B847F2547139B00E3306E /* UIImageView+Alamofire.swift in Sources */,
 				D4A6977F226411DF00ECC0A8 /* LeaderboardViewController.swift in Sources */,
 				D4441935237F5D9A00758E15 /* GroupSettingsDescriptionCell.swift in Sources */,
 				D434D40F2270ED09002C5EA0 /* PreviewActionCell.swift in Sources */,
@@ -1260,6 +1283,7 @@
 				D43663C72229BBC8006354F2 /* UIViewController+NavigationBar.swift in Sources */,
 				D4B4E85E223AF3AE002DED70 /* UIColor+Named.swift in Sources */,
 				04819B4D23352E71000C46E0 /* KudoStreamView.swift in Sources */,
+				0EA156462559C883006F2156 /* LoadingViewController.swift in Sources */,
 				D44B5F07222970BB00941CCE /* TintedTextField.swift in Sources */,
 				D4EA50892279CEBE00BE7E52 /* DMViewController.swift in Sources */,
 				D4F8A5822210A1DC005FDB6A /* HomeViewController.swift in Sources */,
@@ -1374,7 +1398,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1432,7 +1456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1465,7 +1489,7 @@
 				);
 				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1476,9 +1500,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1496,7 +1521,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1507,8 +1532,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

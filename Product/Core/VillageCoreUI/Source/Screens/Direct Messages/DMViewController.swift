@@ -59,7 +59,7 @@ final class DMViewController: UIViewController, NavBarDisplayable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         refreshTableView()
     }
     
@@ -203,7 +203,7 @@ extension DMViewController: UITableViewDataSource {
                     radius: threadCell.avatarImageView.frame.size.height / 2
                 )
                 
-                threadCell.avatarImageView.af_setImage(withURL: url, filter: filter)
+                threadCell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
             }
         }
         

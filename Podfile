@@ -13,7 +13,7 @@ source 'https://cdn.cocoapods.org/'
 #    :generate_multiple_pod_projects => true,
 #    :incremental_installation => true
 
-platform :ios, '11'
+platform :ios, '12'
 use_frameworks!
 #use_modular_headers!
 inhibit_all_warnings!
@@ -42,12 +42,15 @@ end
 
 def client_pods
   pod 'AppCenter'
-  pod 'Fabric'
-  pod 'Crashlytics'
   pod 'Firebase/Core'
 end
 
 target 'VillageCore' do
+  project './Product/Core/VillageCore/VillageCore.xcodeproj'
+  core_pods
+end
+
+target 'VillageCoreTests' do
   project './Product/Core/VillageCore/VillageCore.xcodeproj'
   core_pods
 end

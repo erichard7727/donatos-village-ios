@@ -134,7 +134,7 @@ extension OtherGroupsListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         if groups.needsFetching {
             loadingGroupsContainer.isHidden = false
             groups.fetchValues(at: [])

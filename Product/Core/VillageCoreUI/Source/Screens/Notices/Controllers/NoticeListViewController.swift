@@ -385,7 +385,7 @@ extension NoticeListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         if notices.needsFetching {
             loadingNoticesContainer.isHidden = false
             notices.fetchValues(at: [])

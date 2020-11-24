@@ -146,7 +146,7 @@ extension AchievementDetailsViewController: UITableViewDataSource {
                         size: cell.achievementImageView.imageView.frame.size,
                         radius: cell.achievementImageView.imageView.frame.size.height / 2
                     )
-                    cell.achievementImageView.imageView.af_setImage(withURL: url, filter: filter, completion: { result in
+                    cell.achievementImageView.imageView.vlg_setImage(withURL: url, filter: filter, completion: { result in
                         if (self.achievement.userPoints ?? 0) / self.achievement.pointsCap < 1 {
                             cell.achievementImageView.imageView.alpha = 0.6
                         } else {
@@ -163,7 +163,7 @@ extension AchievementDetailsViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "KudoCell") as! KudoCell
             let kudo = kudos[indexPath.row]
-            cell.configure(kudo: kudo, delegate: self)            
+            cell.configure(kudo: kudo, senderAndReceiverInfo: NSAttributedString(), delegate: self)            
             return cell
         }
     }

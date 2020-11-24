@@ -48,13 +48,43 @@
                ReferencedContainer = "container:DonatosVillage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D4CC298E220754850091BEFB"
+               BuildableName = "VillageCoreTests.xctest"
+               BlueprintName = "VillageCoreTests"
+               ReferencedContainer = "container:../../Product/Core/VillageCore/VillageCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DA32BC232499608A005C0FF7"
+               BuildableName = "DonatosVillageTests.xctest"
+               BlueprintName = "DonatosVillageTests"
+               ReferencedContainer = "container:DonatosVillage.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "NO">
+      shouldUseLaunchSchemeArgsEnv = "NO"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -71,7 +101,33 @@
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D4CC29CA22075D070091BEFB"
+            BuildableName = "DonatosVillage.app"
+            BlueprintName = "DonatosVillage"
+            ReferencedContainer = "container:DonatosVillage.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D4CC2985220754850091BEFB"
+            BuildableName = "VillageCore.framework"
+            BlueprintName = "VillageCore"
+            ReferencedContainer = "container:../../Product/Core/VillageCore/VillageCore.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D4CC298E220754850091BEFB"
+               BuildableName = "VillageCoreTests.xctest"
+               BlueprintName = "VillageCoreTests"
+               ReferencedContainer = "container:../../Product/Core/VillageCore/VillageCore.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -79,16 +135,6 @@
                BlueprintIdentifier = "DA32BC232499608A005C0FF7"
                BuildableName = "DonatosVillageTests.xctest"
                BlueprintName = "DonatosVillageTests"
-               ReferencedContainer = "container:DonatosVillage.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "90150C9124AA7A8800DA5739"
-               BuildableName = "DonatosVillageUITests.xctest"
-               BlueprintName = "DonatosVillageUITests"
                ReferencedContainer = "container:DonatosVillage.xcodeproj">
             </BuildableReference>
          </TestableReference>

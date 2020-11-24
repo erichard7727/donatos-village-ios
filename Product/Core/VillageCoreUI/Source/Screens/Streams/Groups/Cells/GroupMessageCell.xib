@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,42 +22,42 @@
             <rect key="frame" x="0.0" y="0.0" width="496" height="124"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vpw-qy-UrX" id="sv6-LP-Q1j">
-                <rect key="frame" x="0.0" y="0.0" width="496" height="123.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="496" height="124"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xd0-pi-Hu1">
-                        <rect key="frame" x="20" y="11" width="456" height="102"/>
+                        <rect key="frame" x="15" y="11" width="466" height="102"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="74x-fB-Cwp">
-                                <rect key="frame" x="0.0" y="0.0" width="456" height="70"/>
+                                <rect key="frame" x="0.0" y="0.0" width="466" height="32"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H6N-yJ-qpA">
-                                        <rect key="frame" x="0.0" y="19" width="32" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="0Yg-bt-knK"/>
-                                            <constraint firstAttribute="width" secondItem="H6N-yJ-qpA" secondAttribute="height" multiplier="1:1" id="p0U-ai-9C9"/>
+                                            <constraint firstAttribute="width" secondItem="H6N-yJ-qpA" secondAttribute="height" multiplier="1:1" priority="750" id="p0U-ai-9C9"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Maxine Cryper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppx-Gw-fAo">
-                                        <rect key="frame" x="40" y="26.5" width="98" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Maxine Cryper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppx-Gw-fAo">
+                                        <rect key="frame" x="40" y="7.5" width="98.5" height="17.5"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="4:15 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsb-ED-VLe">
-                                        <rect key="frame" x="146" y="26.5" width="50.5" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="4:15 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsb-ED-VLe">
+                                        <rect key="frame" x="146.5" y="7.5" width="55.5" height="17.5"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="Ku2-ZB-8TE">
-                                        <rect key="frame" x="204.5" y="19.5" width="251.5" height="31"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ku2-ZB-8TE">
+                                        <rect key="frame" x="210" y="0.5" width="256" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f79-jI-qO4">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="31"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="f79-jI-qO4" secondAttribute="height" multiplier="1:1" id="MN3-da-1LH"/>
-                                                    <constraint firstAttribute="width" constant="31" id="Oq5-jA-R8B"/>
+                                                    <constraint firstAttribute="height" priority="750" constant="31" id="Pib-bR-cms"/>
+                                                    <constraint firstAttribute="width" constant="31" id="l9w-Fa-wrB"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="7" maxX="14" maxY="7"/>
                                                 <state key="normal" image="star-off"/>
@@ -68,10 +66,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ib-1S-dH7">
-                                                <rect key="frame" x="26" y="7.5" width="225.5" height="16"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="eew-wh-pDA"/>
-                                                </constraints>
+                                                <rect key="frame" x="31" y="10.5" width="225" height="10.5"/>
                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="9"/>
                                                 <color key="textColor" red="0.48461174239999999" green="0.48461174239999999" blue="0.48461174239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -80,22 +75,22 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zXL-i3-fYw">
-                                <rect key="frame" x="0.0" y="70" width="456" height="32"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zXL-i3-fYw">
+                                <rect key="frame" x="0.0" y="32" width="466" height="70"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="9oa-A7-NCT">
-                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVq-MA-Qie" customClass="NantesLabel" customModule="Nantes">
-                                        <rect key="frame" x="40" y="0.0" width="376" height="32"/>
+                                        <rect key="frame" x="40" y="0.0" width="386" height="70"/>
                                         <string key="text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWc-Gd-XPF">
-                                        <rect key="frame" x="424" y="0.0" width="32" height="32"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWc-Gd-XPF">
+                                        <rect key="frame" x="434" y="0.0" width="32" height="32"/>
                                         <state key="normal" image="more-icon"/>
                                         <connections>
                                             <action selector="moreOptions:" destination="Vpw-qy-UrX" eventType="touchUpInside" id="OQ8-CA-J5Z"/>
@@ -106,14 +101,13 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="9oa-A7-NCT" firstAttribute="width" secondItem="H6N-yJ-qpA" secondAttribute="width" id="F6A-p7-ur4"/>
-                            <constraint firstItem="9oa-A7-NCT" firstAttribute="height" secondItem="H6N-yJ-qpA" secondAttribute="height" id="hJJ-QD-WaB"/>
                         </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Xd0-pi-Hu1" firstAttribute="leading" secondItem="sv6-LP-Q1j" secondAttribute="leadingMargin" id="8Ud-Mx-oH2"/>
                     <constraint firstItem="Xd0-pi-Hu1" firstAttribute="top" secondItem="sv6-LP-Q1j" secondAttribute="topMargin" id="9jL-wq-EJV"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Xd0-pi-Hu1" secondAttribute="bottom" id="Blr-p6-nhQ"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Xd0-pi-Hu1" secondAttribute="bottom" id="Blr-p6-nhQ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Xd0-pi-Hu1" secondAttribute="trailing" id="rtI-6V-fyD"/>
                 </constraints>
             </tableViewCellContentView>

@@ -49,7 +49,7 @@ extension CurrentUserViewController {
                 radius: avatarImageViewHeightConstraint.constant / 2
             )
             
-            avatarImageView.af_setImage(withURL: url, placeholderImage: UIImage.named("default-avatar"), filter: filter)
+            avatarImageView.vlg_setImage(withURL: url, placeholderImage: UIImage.named("default-avatar"), filter: filter)
         }
     }
 }

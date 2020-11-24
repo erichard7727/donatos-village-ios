@@ -105,7 +105,7 @@ extension PeopleViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavbarAppearance(for: navigationItem)
+        setOpaqueNavbarAppearance(for: navigationItem, in: navigationController)
         if people.needsFetching {
             loadingPeopleContainer.isHidden = false
             people.fetchValues(at: [])
@@ -193,7 +193,7 @@ extension PeopleViewController: UITableViewDataSource {
                 radius: cell.avatarImageView.frame.size.height / 2
             )
 
-            cell.avatarImageView.af_setImage(withURL: url, filter: filter)
+            cell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
         }
 
         return cell
@@ -579,7 +579,7 @@ extension PeopleViewController: InvitePersonControllerDelegate {
 //                radius: cell.avatarImageView.frame.size.height / 2
 //            )
 //
-//            cell.avatarImageView.af_setImage(withURL: url, filter: filter)
+//            cell.avatarImageView.vlg_setImage(withURL: url, filter: filter)
 //        }
 //
 //        return cell

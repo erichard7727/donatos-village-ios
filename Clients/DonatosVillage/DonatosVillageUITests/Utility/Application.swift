@@ -27,6 +27,7 @@ public final class Application {
 	public func login(with user: User, behavior: LoginBehavior = .ignoreAndContinueIfAlreadyLoggedIn) -> Application {
 		let elementsQuery = app.scrollViews.otherElements
 		let emailField = elementsQuery/*@START_MENU_TOKEN@*/.textFields["enter_email_field"]/*[[".textFields[\"Enter your Email\"]",".textFields[\"enter_email_field\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        emailField.waitForExistence(timeout: 10)
 		
 		var shouldDoLogin: Bool = emailField.exists
 		if !emailField.exists {
@@ -51,7 +52,7 @@ public final class Application {
 	@discardableResult
 	public func logout() -> Application {
 		openMenuBar()
-		app/*@START_MENU_TOKEN@*/.buttons["settings_gear_button"]/*[[".buttons[\"settings\"]",".buttons[\"settings_gear_button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+		app.otherElements["current_user_container"].tap()
 		app.buttons["logout_button"].tap()
 		return self
 	}
@@ -69,6 +70,20 @@ public final class Application {
 		block(app)
 		return self
 	}
+    
+    @discardableResult
+    public func searchTable(for text: String, waitForSearchToComplete: Bool = false) -> Application {
+        then {
+            let searchField = $0.searchFields.firstMatch
+            searchField.tap()
+            searchField.typeText(text)
+            
+            if (waitForSearchToComplete) {
+                XCTAssert($0.tables.cells.firstMatch.waitForExistence(timeout: 10.0))
+            }
+        }
+        return self
+    }
 	
 	// MARK: - Private
 	
@@ -81,9 +96,11 @@ public final class Application {
 		passwordField.tap()
 		
 		// Workaround for secure text field issue reporting that it doesn't have focus
-		UIPasteboard.general.string = user.password
-		app.menuItems["Paste"].tap()
+        passwordField.typeText(user.password)
 		sleep(1)
 		app.buttons["login_password_submit_button"].tap()
 	}
+        
 }
+
+

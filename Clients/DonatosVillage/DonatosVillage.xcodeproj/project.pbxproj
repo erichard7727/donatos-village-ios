@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90150C9524AA7A8800DA5739 /* DonatosVillageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */; };
+		00C3A33B24C8920B0027CE2A /* NewsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */; };
+		0E688DA924D42D67003E7F06 /* ChatsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E688DA824D42D67003E7F06 /* ChatsViewTests.swift */; };
+		48C2003A24C21E96002DFC2C /* NoticeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C2003924C21E96002DFC2C /* NoticeViewTests.swift */; };
+		83C4751D24E1EA3B004A2A1F /* DonatosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4751C24E1EA3B004A2A1F /* DonatosUITests.swift */; };
+		90150C9524AA7A8800DA5739 /* HomeStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9424AA7A8800DA5739 /* HomeStreamTests.swift */; };
 		90150C9D24AA7D6300DA5739 /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */; };
 		90E07CAD24ABACCF00FC71F9 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E07CAC24ABACCF00FC71F9 /* Application.swift */; };
 		90E07CAF24ABACF500FC71F9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E07CAE24ABACF500FC71F9 /* User.swift */; };
+		90EAA79A24C1DE05008C2B45 /* PeopleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */; };
+		935260C124D41F9300B6A41D /* SettingsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935260C024D41F9300B6A41D /* SettingsViewTests.swift */; };
+		937986BD24D0596C0036D56C /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937986BC24D0596C0036D56C /* LoginTests.swift */; };
+		937986C024D059E00036D56C /* MenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937986BF24D059E00036D56C /* MenuTests.swift */; };
 		A5D1CDC273BE7AF63E28FC6B /* Pods_DonatosVillage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0440720B0149DAE2B3BB1462 /* Pods_DonatosVillage.framework */; };
 		D492EA1E22A32DA3004DAA2F /* VillageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492EA1522A32D89004DAA2F /* VillageCore.framework */; };
 		D492EA1F22A32DA3004DAA2F /* VillageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D492EA1522A32D89004DAA2F /* VillageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -91,17 +99,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewTests.swift; sourceTree = "<group>"; };
 		0440720B0149DAE2B3BB1462 /* Pods_DonatosVillage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonatosVillage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E688DA824D42D67003E7F06 /* ChatsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewTests.swift; sourceTree = "<group>"; };
 		17AB18F215EBFF5B330EEDDB /* Pods-DonatosVillage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.debug.xcconfig"; path = "Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.debug.xcconfig"; sourceTree = "<group>"; };
+		48C2003924C21E96002DFC2C /* NoticeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewTests.swift; sourceTree = "<group>"; };
 		5E2D734EC0C6B18F9F1AEA00 /* Pods-DonatosVillage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonatosVillage.release.xcconfig"; path = "Target Support Files/Pods-DonatosVillage/Pods-DonatosVillage.release.xcconfig"; sourceTree = "<group>"; };
-		90150C8524AA77F300DA5739 /* DonatosVillageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosVillageUITests.swift; sourceTree = "<group>"; };
-		90150C8724AA77F300DA5739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83C4751C24E1EA3B004A2A1F /* DonatosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosUITests.swift; sourceTree = "<group>"; };
 		90150C9224AA7A8800DA5739 /* DonatosVillageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DonatosVillageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatosVillageUITests.swift; sourceTree = "<group>"; };
+		90150C9424AA7A8800DA5739 /* HomeStreamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStreamTests.swift; sourceTree = "<group>"; };
 		90150C9624AA7A8800DA5739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90150C9C24AA7D6300DA5739 /* LaunchArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchArguments.swift; sourceTree = "<group>"; };
 		90E07CAC24ABACCF00FC71F9 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		90E07CAE24ABACF500FC71F9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewTests.swift; sourceTree = "<group>"; };
+		935260C024D41F9300B6A41D /* SettingsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewTests.swift; sourceTree = "<group>"; };
+		937986BC24D0596C0036D56C /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
+		937986BF24D059E00036D56C /* MenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTests.swift; sourceTree = "<group>"; };
 		D4879A3D224196B400CBA8FB /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		D4879A3E224196B500CBA8FB /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		D4879A3F224196B600CBA8FB /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
@@ -148,21 +162,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		90150C8424AA77F300DA5739 /* DonatosVillageUITests */ = {
-			isa = PBXGroup;
-			children = (
-				90E07CAA24ABACB400FC71F9 /* Utility */,
-				90150C8524AA77F300DA5739 /* DonatosVillageUITests.swift */,
-				90150C8724AA77F300DA5739 /* Info.plist */,
-			);
-			path = DonatosVillageUITests;
-			sourceTree = "<group>";
-		};
 		90150C9324AA7A8800DA5739 /* DonatosVillageUITests */ = {
 			isa = PBXGroup;
 			children = (
-				90150C9424AA7A8800DA5739 /* DonatosVillageUITests.swift */,
+				0E688DA824D42D67003E7F06 /* ChatsViewTests.swift */,
+				90150C9424AA7A8800DA5739 /* HomeStreamTests.swift */,
+				937986BC24D0596C0036D56C /* LoginTests.swift */,
+				937986BF24D059E00036D56C /* MenuTests.swift */,
+				00C3A33A24C8920B0027CE2A /* NewsViewTests.swift */,
+				48C2003924C21E96002DFC2C /* NoticeViewTests.swift */,
+				90EAA79924C1DE05008C2B45 /* PeopleViewTests.swift */,
+				935260C024D41F9300B6A41D /* SettingsViewTests.swift */,
 				90150C9624AA7A8800DA5739 /* Info.plist */,
+				90E07CAA24ABACB400FC71F9 /* Utility */,
 			);
 			path = DonatosVillageUITests;
 			sourceTree = "<group>";
@@ -172,6 +184,7 @@
 			children = (
 				90E07CAC24ABACCF00FC71F9 /* Application.swift */,
 				90E07CAE24ABACF500FC71F9 /* User.swift */,
+				83C4751C24E1EA3B004A2A1F /* DonatosUITests.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -218,7 +231,6 @@
 			children = (
 				D4CC29CD22075D070091BEFB /* DonatosVillage */,
 				DA32BC252499608A005C0FF7 /* DonatosVillageTests */,
-				90150C8424AA77F300DA5739 /* DonatosVillageUITests */,
 				90150C9324AA7A8800DA5739 /* DonatosVillageUITests */,
 				D4CC29CC22075D070091BEFB /* Products */,
 				D54C3D91F4C5144E14E60397 /* Frameworks */,
@@ -487,9 +499,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C2003A24C21E96002DFC2C /* NoticeViewTests.swift in Sources */,
+				0E688DA924D42D67003E7F06 /* ChatsViewTests.swift in Sources */,
 				90E07CAD24ABACCF00FC71F9 /* Application.swift in Sources */,
-				90150C9524AA7A8800DA5739 /* DonatosVillageUITests.swift in Sources */,
+				935260C124D41F9300B6A41D /* SettingsViewTests.swift in Sources */,
+				937986C024D059E00036D56C /* MenuTests.swift in Sources */,
+				90150C9524AA7A8800DA5739 /* HomeStreamTests.swift in Sources */,
+				83C4751D24E1EA3B004A2A1F /* DonatosUITests.swift in Sources */,
+				00C3A33B24C8920B0027CE2A /* NewsViewTests.swift in Sources */,
 				90E07CAF24ABACF500FC71F9 /* User.swift in Sources */,
+				937986BD24D0596C0036D56C /* LoginTests.swift in Sources */,
+				90EAA79A24C1DE05008C2B45 /* PeopleViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,7 +573,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y32EQUAEWX;
 				INFOPLIST_FILE = DonatosVillageUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,7 +582,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowtreeapps.DonatosVillageUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = DonatosVillage;
 			};
 			name = Debug;
@@ -573,7 +593,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y32EQUAEWX;
 				INFOPLIST_FILE = DonatosVillageUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -582,7 +602,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowtreeapps.DonatosVillageUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = DonatosVillage;
 			};
 			name = Release;
@@ -710,7 +730,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DonatosVillage/DonatosVillage.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PH47MC4D6A;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DonatosVillage/Info.plist;
@@ -720,7 +740,7 @@
 					"@executable_path/Frameworks",
 					"$(CONFIGURATION_BUILD_DIR)",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.donatos.ios.village.abm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Donatos Village ABM Development";
@@ -737,7 +757,7 @@
 				CODE_SIGN_ENTITLEMENTS = DonatosVillage/DonatosVillage.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PH47MC4D6A;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DonatosVillage/Info.plist;
@@ -747,7 +767,7 @@
 					"@executable_path/Frameworks",
 					"$(CONFIGURATION_BUILD_DIR)",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.donatos.ios.village.abm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Donatos Village ABM Distribution";
@@ -762,7 +782,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DonatosVillageTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -771,7 +791,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowtree.DonatosVillageTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DonatosVillage.app/DonatosVillage";
 			};
 			name = Debug;
@@ -782,7 +802,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DonatosVillageTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -791,7 +811,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowtree.DonatosVillageTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DonatosVillage.app/DonatosVillage";
 			};
 			name = Release;

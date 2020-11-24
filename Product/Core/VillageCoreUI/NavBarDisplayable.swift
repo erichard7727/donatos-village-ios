@@ -9,13 +9,28 @@
 import Foundation
 
 
-protocol NavBarDisplayable {
-    func setNavbarAppearance(for navigationItem: UINavigationItem)
+protocol NavBarDisplayable: AnyObject {
+    func setTransparentNavbarAppearance(for navigationItem: UINavigationItem, in navigationController: UINavigationController?)
+    func setOpaqueNavbarAppearance(for navigationItem: UINavigationItem, in navigationController: UINavigationController?)
 }
 
 extension NavBarDisplayable {
     
-    func setNavbarAppearance(for navigationItem: UINavigationItem) {
+    func setTransparentNavbarAppearance(for navigationItem: UINavigationItem, in navigationController: UINavigationController?) {
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithTransparentBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navigationItem.standardAppearance = navBarAppearance
+            navigationItem.scrollEdgeAppearance = navBarAppearance
+        } else {
+            navigationController?.navigationBar.isTranslucent = true
+            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationController?.navigationBar.shadowImage = UIImage()
+        }
+    }
+    
+    func setOpaqueNavbarAppearance(for navigationItem: UINavigationItem, in navigationController: UINavigationController?) {
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
@@ -24,7 +39,9 @@ extension NavBarDisplayable {
             navBarAppearance.backgroundColor = .vlgRed
             navigationItem.standardAppearance = navBarAppearance
             navigationItem.scrollEdgeAppearance = navBarAppearance
+        } else {
+            navigationController?.navigationBar.isTranslucent = false
+            navigationController?.navigationBar.barTintColor = .vlgRed
         }
     }
-    
 }

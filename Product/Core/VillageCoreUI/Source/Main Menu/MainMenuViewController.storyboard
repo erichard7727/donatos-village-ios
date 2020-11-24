@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aKE-cR-QVD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aKE-cR-QVD">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -98,6 +98,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Notices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbm-1s-Y0M">
                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="60" height="20.333333333333329"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_notices_label"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -160,6 +161,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQA-3H-TJf">
                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="52.666666666666664" height="20.333333333333329"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_events_label"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -222,6 +224,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aG-Sg-muS">
                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="43.666666666666664" height="20.333333333333329"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_news_label"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -283,6 +286,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Chats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOd-bh-UCU">
                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="46" height="20.333333333333329"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_chats_label"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -351,6 +355,7 @@
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Kudos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6s-mY-8Sc">
                                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="49.333333333333336" height="20.333333333333329"/>
+                                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_kudos_label"/>
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
@@ -681,6 +686,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="My Schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxQ-2l-AR0">
                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="101.66666666666667" height="20.333333333333329"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_schedule_label"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -736,6 +742,7 @@
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="My Groups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joa-oQ-EW2">
                                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="85.666666666666671" height="20.333333333333329"/>
+                                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_my_groups_label"/>
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
@@ -864,6 +871,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Other Groups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAO-kN-8Bb">
                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="106.33333333333333" height="20.333333333333329"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_other_groups_label"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -913,6 +921,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="People" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKw-mh-xrM">
                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="53.666666666666664" height="20.333333333333329"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_people_label"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -961,6 +970,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Content Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDg-iw-uu2">
                                                                         <rect key="frame" x="0.0" y="14.999999999999998" width="122.33333333333333" height="20.333333333333329"/>
+                                                                        <accessibility key="accessibilityConfiguration" label="main_menu_content_library_label"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1197,6 +1207,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="pOV-qR-6j1">
                                                         <rect key="frame" x="0.0" y="0.0" width="214.66666666666666" height="17"/>
+                                                        <accessibility key="accessibilityConfiguration" label="user_settings_name"/>
                                                         <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1230,6 +1241,9 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" label="current_user_container">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="YfJ-fT-8JI" firstAttribute="leading" secondItem="wC2-me-J4t" secondAttribute="leading" id="3lR-6c-ddS"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YfJ-fT-8JI" secondAttribute="trailing" id="ZgA-VS-KnO"/>

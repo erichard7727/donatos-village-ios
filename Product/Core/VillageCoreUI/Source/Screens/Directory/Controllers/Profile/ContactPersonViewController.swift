@@ -91,20 +91,24 @@ final class ContactPersonViewController: UITableViewController {
         
         switch row {
         case .directMessage:
-            cell.buttonTextLabel.text = "New Chat"
+			cell.buttonTextLabel.text = NSLocalizedString("New Chat", comment: "Profile page action item")
+			cell.buttonTextLabel.accessibilityLabel = "people_profile_new_chat"
             cell.iconImageView.image = UIImage.named("profile-email-icon")
             
         case .email(let emailAddress):
             cell.buttonTextLabel.text = emailAddress
+			cell.buttonTextLabel.accessibilityLabel = "people_profile_email"
             cell.iconImageView.image = UIImage.named("profile-email-icon")
             
         case .phone(let phoneNumber):
             cell.buttonTextLabel.text = phoneNumber
+			cell.buttonTextLabel.accessibilityLabel = "people_profile_phone_number"
             cell.buttonTextLabel.textColor = UIColor.darkGray
             cell.iconImageView.image = UIImage.named("profile-phone-icon")
             
         case .twitter(let twitter):
             cell.buttonTextLabel.text = twitter
+			cell.buttonTextLabel.accessibilityLabel = "people_profile_twitter"
             cell.buttonTextLabel.textColor = UIColor.darkGray
             cell.iconImageView.image = UIImage.named("profile-twitter-icon")
         }

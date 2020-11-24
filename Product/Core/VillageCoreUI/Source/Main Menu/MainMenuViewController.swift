@@ -317,13 +317,15 @@ private extension MainMenuViewController {
     }
     
     @IBAction func onGoToSchedular(_ sender: Any? = nil) {
-        let url = Constants.URL.schedulerLink
-        let sfvc = SFSafariViewController(url: url)
-        sfvc.preferredBarTintColor = UINavigationBar.appearance().barTintColor
-        sfvc.preferredControlTintColor = UINavigationBar.appearance().tintColor
-        sfvc.delegate = self
-        sfvc.modalTransitionStyle = .coverVertical
-        self.present(sfvc, animated: true, completion: nil)
+        guard let sideMenuController = sideMenuController else { return }
+		let myScheduleViewController = MyScheduleViewController.create(
+            myScheduleUtility: MyScheduleUtility(service: VillageService.shared)
+        )
+        sideMenuController.setContentViewController(
+            UINavigationController(rootViewController: myScheduleViewController),
+            fadeAnimation: true
+        )
+        sideMenuController.hideMenu()
     }
     
     @IBAction func onGoToContentLibrary(_ sender: Any? = nil) {
