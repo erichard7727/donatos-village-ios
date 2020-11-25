@@ -263,10 +263,26 @@ lane :get_git_branch do |options|
   # puts x
   puts branch
   puts ENV['BRANCH']
-  z = get_github_release(url: "willowtreeapps/donatos-village-ios", version: branch, api_token: options[:apiToken])
-  puts z
-  puts z["body"]
-  puts z["name"]
+  release = get_github_release(
+    url: "willowtreeapps/donatos-village-ios",
+    version: branch,
+    api_token: options[:apiToken]
+  )
+  puts release
+  puts release["body"]
+  puts release["name"]
+  upload_to_testflight(skip_submission: true, ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"])
+
+  # deliver(
+  #   submit_for_review: false,
+  #   automatic_release: false,
+  #   skip_screenshots: true,
+  #   ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"],
+  #   skip_metadata: true,
+  #   skip_screenshots: true,
+  #   # metadata_path: "./metadata",
+  #   force: true
+  # )
 end
 
 ############################# Upload dSYM to Firebase ######################################

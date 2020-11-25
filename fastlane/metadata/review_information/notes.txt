@@ -1,0 +1,3 @@
+If testing chat feature, please only send messages to Allie Galuska (allie.galuska@willowtreeapps.com). 
+
+If testing group feature, please only create a Closed or Member Invite group - and again, only invite / send messages to Allie Galuska (allie.galuska@willowtreeapps.com)

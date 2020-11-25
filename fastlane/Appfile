@@ -1,4 +1,4 @@
-app_identifier("com.donatos.ios.village") # The bundle identifier of your app
+app_identifier("com.donatos.ios.village.abm") # The bundle identifier of your app
 apple_id("apple-dev@dynamit.com") # Your Apple email address
 
 #itc_team_id("") # App Store Connect Team ID
