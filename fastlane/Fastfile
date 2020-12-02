@@ -256,33 +256,37 @@ def self.find_app_file(dir)
    Dir[File.join(dir, '**', '*.app')].sort { |a, b| File.mtime(b) <=> File.mtime(a) }.first
 end
 
-lane :get_git_branch do |options|
-  puts "test"
-  # x = git_branch
-  branch = ENV['BRANCH']
-  # puts x
-  puts branch
-  puts ENV['BRANCH']
+lane :upload_to_store do |options|
+
   release = get_github_release(
     url: "willowtreeapps/donatos-village-ios",
-    version: branch,
+    version: ENV['BRANCH'], # This env var is a property from TeamCity and the name of branch, and in this case, the tag name, e.g. 1.0.4
     api_token: options[:apiToken]
   )
-  puts release
-  puts release["body"]
-  puts release["name"]
-  upload_to_testflight(skip_submission: true, ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"])
 
-  # deliver(
-  #   submit_for_review: false,
-  #   automatic_release: false,
-  #   skip_screenshots: true,
-  #   ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"],
-  #   skip_metadata: true,
-  #   skip_screenshots: true,
-  #   # metadata_path: "./metadata",
-  #   force: true
-  # )
+  # Edit the release notes in the metadata. When submitting the app to the app store via 'deliver',
+  # 'deliver' uses metadata to update release notes, among other things.
+  # Use the body text of the github release for the new release notes.
+  set_release_notes(notes: release["body"])
+
+  # Send the app to the app store.
+  deliver(
+    submit_for_review: false,
+    automatic_release: false,
+    skip_screenshots: true,
+    ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"],
+    metadata_path: "./metadata",
+    force: true
+  )
+end
+
+lane :upload_to_testflight do
+  upload_to_testflight(skip_submission: true, ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"])
+end
+
+lane :set_release_notes do |options|
+  path = "./metadata/en-US/release_notes.txt"
+  File.open(path, "w") { |f| f.write options[:notes] }
 end
 
 ############################# Upload dSYM to Firebase ######################################
