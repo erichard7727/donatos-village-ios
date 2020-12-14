@@ -223,7 +223,7 @@ platform :ios do
         use_bundle_exec: true,
         teamcity: true,
         ignore: [
-          "Pods/*", 
+          "Pods/*",
           "Product/Core/VillageCoreUI/*",
           "Product/Core/VillageCore/Tests/*"
         ]
@@ -254,6 +254,39 @@ end
 def self.find_app_file(dir)
    # Finds last modified .ipa in the destination directory
    Dir[File.join(dir, '**', '*.app')].sort { |a, b| File.mtime(b) <=> File.mtime(a) }.first
+end
+
+lane :upload_to_store do |options|
+
+  release = get_github_release(
+    url: "willowtreeapps/donatos-village-ios",
+    version: ENV['BRANCH'], # This env var is a property from TeamCity and the name of branch, and in this case, the tag name, e.g. 1.0.4
+    api_token: options[:apiToken]
+  )
+
+  # Edit the release notes in the metadata. When submitting the app to the app store via 'deliver',
+  # 'deliver' uses metadata to update release notes, among other things.
+  # Use the body text of the github release for the new release notes.
+  set_release_notes(notes: release["body"])
+
+  # Send the app to the app store.
+  deliver(
+    submit_for_review: false,
+    automatic_release: false,
+    skip_screenshots: true,
+    ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"],
+    metadata_path: "./metadata",
+    force: true
+  )
+end
+
+lane :testflight_upload do
+  upload_to_testflight(skip_submission: true, ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"])
+end
+
+lane :set_release_notes do |options|
+  path = "./metadata/en-US/release_notes.txt"
+  File.open(path, "w") { |f| f.write options[:notes] }
 end
 
 ############################# Upload dSYM to Firebase ######################################
