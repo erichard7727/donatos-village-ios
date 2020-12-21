@@ -28,6 +28,10 @@
 		85C47475CDC845F2891ABE88 /* Pods_VillageCoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3320DDC8D7CF7409112B3ABB /* Pods_VillageCoreUI.framework */; };
 		905C950F25434EF20062A6B1 /* MySchedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 905C950E25434EF20062A6B1 /* MySchedule.storyboard */; };
 		905C951125434F190062A6B1 /* MyScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C951025434F190062A6B1 /* MyScheduleViewController.swift */; };
+		9365FD29258BFF9500C4D7A3 /* LinkMenuItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9365FD28258BFF9500C4D7A3 /* LinkMenuItem.xib */; };
+		9365FD2C258C00C800C4D7A3 /* LinkMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9365FD2B258C00C800C4D7A3 /* LinkMenuItem.swift */; };
+		9365FD2F2590D03900C4D7A3 /* UIScrollView+Scrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9365FD2E2590D03900C4D7A3 /* UIScrollView+Scrolling.swift */; };
+		9365FD312590D0C500C4D7A3 /* LinkMenuItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9365FD302590D0C500C4D7A3 /* LinkMenuItemModel.swift */; };
 		D40CD43E233E4E33001A7DA1 /* NewContentLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40CD43D233E4E33001A7DA1 /* NewContentLibraryViewController.swift */; };
 		D411BC3B2247B3EE003D2F08 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC332247B3EE003D2F08 /* SettingsController.swift */; };
 		D411BC3C2247B3EE003D2F08 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D411BC342247B3EE003D2F08 /* EditSettingsController.swift */; };
@@ -236,6 +240,10 @@
 		905C950E25434EF20062A6B1 /* MySchedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MySchedule.storyboard; sourceTree = "<group>"; };
 		905C951025434F190062A6B1 /* MyScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleViewController.swift; sourceTree = "<group>"; };
 		92C9A6D1A4C71EB1F82DBA61 /* Pods-VillageCoreUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCoreUI.release.xcconfig"; path = "Target Support Files/Pods-VillageCoreUI/Pods-VillageCoreUI.release.xcconfig"; sourceTree = "<group>"; };
+		9365FD28258BFF9500C4D7A3 /* LinkMenuItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinkMenuItem.xib; sourceTree = "<group>"; };
+		9365FD2B258C00C800C4D7A3 /* LinkMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkMenuItem.swift; sourceTree = "<group>"; };
+		9365FD2E2590D03900C4D7A3 /* UIScrollView+Scrolling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Scrolling.swift"; sourceTree = "<group>"; };
+		9365FD302590D0C500C4D7A3 /* LinkMenuItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkMenuItemModel.swift; sourceTree = "<group>"; };
 		D40CD43D233E4E33001A7DA1 /* NewContentLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContentLibraryViewController.swift; sourceTree = "<group>"; };
 		D411BC332247B3EE003D2F08 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D411BC342247B3EE003D2F08 /* EditSettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
@@ -557,6 +565,9 @@
 				D4D3116B226F53BE006C3C3F /* GroupMenuItem.swift */,
 				D4D3116D226F53C8006C3C3F /* GroupMenuItem.xib */,
 				D4F8A5872210A274005FDB6A /* MainMenuViewController.storyboard */,
+				9365FD28258BFF9500C4D7A3 /* LinkMenuItem.xib */,
+				9365FD2B258C00C800C4D7A3 /* LinkMenuItem.swift */,
+				9365FD302590D0C500C4D7A3 /* LinkMenuItemModel.swift */,
 			);
 			path = "Main Menu";
 			sourceTree = "<group>";
@@ -672,6 +683,7 @@
 				04DA45EB233D2E5D001958A6 /* UIBarButtonItem+Badging.swift */,
 				D4F3C0312363015E0078CBBD /* UIViewController+BadSwizzleStuff.swift */,
 				0E8B847E2547139B00E3306E /* UIImageView+Alamofire.swift */,
+				9365FD2E2590D03900C4D7A3 /* UIScrollView+Scrolling.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1151,6 +1163,7 @@
 				D4F8A5982210B6DE005FDB6A /* proximanova-regitalic-webfont.ttf in Resources */,
 				D4F8A5922210B6DE005FDB6A /* proximanova-sbolditalic-webfont.ttf in Resources */,
 				D4EA508A2279CEBE00BE7E52 /* DirectMessages.storyboard in Resources */,
+				9365FD29258BFF9500C4D7A3 /* LinkMenuItem.xib in Resources */,
 				04363CF32333CEBF00B963CA /* EventStreamView.xib in Resources */,
 				D4B4E897223B3D0E002DED70 /* AchievementCollectionViewCell.xib in Resources */,
 				D4F8A5972210B6DE005FDB6A /* proximanova-lightitalic-webfont.ttf in Resources */,
@@ -1269,6 +1282,7 @@
 				D4B4E864223AFFF6002DED70 /* ContactPersonViewController.swift in Sources */,
 				D434D4102270ED09002C5EA0 /* PreviewImageCell.swift in Sources */,
 				D4702EC4228A440600D3DB46 /* StreamDataSource.swift in Sources */,
+				9365FD2C258C00C800C4D7A3 /* LinkMenuItem.swift in Sources */,
 				04363CF62333CECA00B963CA /* EventStreamView.swift in Sources */,
 				D4A69771226400E800ECC0A8 /* AchievementHeaderCell.swift in Sources */,
 				D4A6977B226411D100ECC0A8 /* GiveKudosViewController.swift in Sources */,
@@ -1293,6 +1307,7 @@
 				D411BC3D2247B3EE003D2F08 /* UserSettingsHeaderController.swift in Sources */,
 				D4D3116C226F53BE006C3C3F /* GroupMenuItem.swift in Sources */,
 				D4F8A5862210A267005FDB6A /* MainMenuViewController.swift in Sources */,
+				9365FD312590D0C500C4D7A3 /* LinkMenuItemModel.swift in Sources */,
 				D434D41722713F92002C5EA0 /* UIImageView+AnimatedImageView.swift in Sources */,
 				D4B4E861223AFEF7002DED70 /* PersonProfileViewController.swift in Sources */,
 				D434D40B2270ED09002C5EA0 /* GroupSettingsNameCell.swift in Sources */,
@@ -1324,6 +1339,7 @@
 				6C312AC924ACC8760050484D /* NavBarDisplayable.swift in Sources */,
 				D4F8A57D22109FDA005FDB6A /* SideMenuControllerDelegate.swift in Sources */,
 				D460B81B224AC434003DCA2C /* NoticeCell.swift in Sources */,
+				9365FD2F2590D03900C4D7A3 /* UIScrollView+Scrolling.swift in Sources */,
 				D4F8A59C2210D556005FDB6A /* KeyboardAwareScrollView.swift in Sources */,
 				04819B5823391422000C46E0 /* UILabel+HTML.swift in Sources */,
 				D4164B7C226802570025E6E9 /* PersonSearchViewController.swift in Sources */,

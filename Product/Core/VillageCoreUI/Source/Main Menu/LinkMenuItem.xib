@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LinkMenuItem" customModule="VillageCoreUI" customModuleProvider="target">
+            <connections>
+                <outlet property="title" destination="66K-hr-WNw" id="mCE-WT-9tC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEU-n5-jhB">
+            <rect key="frame" x="0.0" y="0.0" width="318.5" height="50"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="tvp-Ch-jif">
+                    <rect key="frame" x="24" y="0.0" width="270.5" height="50"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nbi-er-Hsz" userLabel="Spacer">
+                            <rect key="frame" x="0.0" y="24.5" width="30" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="Irj-SM-qHN"/>
+                                <constraint firstAttribute="width" constant="30" id="RJ8-aT-dIg"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="1uV-7x-vA3">
+                            <rect key="frame" x="45" y="16.5" width="225.5" height="17"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" text="Google" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66K-hr-WNw">
+                                    <rect key="frame" x="0.0" y="0.0" width="225.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="rNL-2L-SaI"/>
+                </stackView>
+            </subviews>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="bottomMargin" secondItem="tvp-Ch-jif" secondAttribute="bottom" id="6Sj-kW-ZC2"/>
+                <constraint firstItem="tvp-Ch-jif" firstAttribute="leading" secondItem="VEU-n5-jhB" secondAttribute="leadingMargin" constant="8" id="9AC-Gz-GDJ"/>
+                <constraint firstItem="tvp-Ch-jif" firstAttribute="top" secondItem="VEU-n5-jhB" secondAttribute="topMargin" id="EvX-cO-0iI"/>
+                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="gMb-iJ-C69"/>
+                <constraint firstAttribute="trailingMargin" secondItem="tvp-Ch-jif" secondAttribute="trailing" constant="8" id="hAx-eM-A8O"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="68U-6l-meK"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="boM-ZO-W2H" appends="YES" id="QJU-o8-63k"/>
+            </connections>
+            <point key="canvasLocation" x="-993" y="-597"/>
+        </view>
+        <tapGestureRecognizer id="boM-ZO-W2H">
+            <connections>
+                <action selector="onTap:" destination="-1" id="GVi-YW-hgG"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

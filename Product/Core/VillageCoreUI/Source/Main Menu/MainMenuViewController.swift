@@ -13,6 +13,7 @@ import SafariServices
 
 final class MainMenuViewController: UIViewController {
     
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var menuOptionHome: UIView!
     @IBOutlet private weak var menuOptionNotices: UIView!
     @IBOutlet private weak var menuOptionEvents: UIView!
@@ -63,6 +64,19 @@ final class MainMenuViewController: UIViewController {
             menuOptionKudosStreamLabel.text = "All " + Constants.Settings.kudosPluralLong
         }
     }
+    
+    @IBOutlet private weak var menuOptionLinksChildrenContainer: UIStackView! {
+        didSet {
+            menuOptionLinksChildrenContainer.arrangedSubviews.forEach { view in
+                view.alpha = areLinksCollapsed ? 0 : 1
+                view.isHidden = areLinksCollapsed
+            }
+        }
+    }
+    
+    @IBOutlet private weak var menuOptionLinksExpandButton: UIButton!
+    
+    
     @IBOutlet private weak var menuOptionKudosMyKudos: UIView!
     @IBOutlet private weak var menuOptionKudosMyKudosLabel: UILabel! {
         didSet {
@@ -137,6 +151,19 @@ final class MainMenuViewController: UIViewController {
         }
     }
     
+    private var areLinksCollapsed = true {
+        didSet {
+            UIView.animate(withDuration: 0.25) {
+                self.menuOptionLinksExpandButton.transform = self.menuOptionLinksExpandButton.transform.rotated(by: .pi / 1) // 180 degrees
+                self.menuOptionLinksChildrenContainer.arrangedSubviews.forEach { view in
+                    view.alpha = self.areLinksCollapsed ? 0 : 1
+                    view.isHidden = self.areLinksCollapsed
+                }
+                self.menuOptionLinksChildrenContainer.layoutIfNeeded()
+            }
+        }
+    }
+    
     private weak var currentUserViewController: CurrentUserViewController!
     
     private var unread: Unread? {
@@ -191,6 +218,7 @@ extension MainMenuViewController {
         subscribeToNotifications()
         
         self.updateSubscribedGroups()
+        setupLinksItems()
     }
     
     override func viewDidLayoutSubviews() {
@@ -215,7 +243,6 @@ extension MainMenuViewController {
         
         currentUserViewController.configure(with: User.current)
     }
-    
 }
 
 // MARK: - Target/Action
@@ -333,6 +360,13 @@ private extension MainMenuViewController {
         sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
+    
+    @IBAction func onToggleLinks(_ sender: Any? = nil) {
+        areLinksCollapsed.toggle()
+        if !areLinksCollapsed {
+            scrollView.scrollToBottom()
+        }
+    }
 }
 
 // MARK: - Private Methods
@@ -387,6 +421,28 @@ private extension MainMenuViewController {
         }.asVoid()
     }
     
+    
+    func setupLinksItems() {
+        menuOptionLinksChildrenContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        // TODO: This will be replaced with the data fetched from the API call
+        
+        let linkMenuItems = [
+            LinkMenuItemModel(title: "Google", url: URL(string: "https://www.google.com/")!, order: 1),
+            LinkMenuItemModel(title: "Donatos", url: URL(string: "https://donatos.com/")!, order: 2),
+            LinkMenuItemModel(title: "Careers", url: URL(string: "https://donatos.com/careers")!, order: 0)
+        ]
+        
+        let sortedLinkMenuItems = linkMenuItems.sorted(by: { $0.order < $1.order })
+
+        sortedLinkMenuItems.forEach {
+            let linkMenuItem = LinkMenuItem()
+            linkMenuItem.linkMenuItemModel = $0
+            linkMenuItem.delegate = self
+            linkMenuItem.isHidden = true
+            menuOptionLinksChildrenContainer.addArrangedSubview(linkMenuItem)
+        }
+    }
 }
 
 // MARK: - PeopleViewControllerDelegate
@@ -414,6 +470,19 @@ extension MainMenuViewController: GroupMenuItemDelegate {
         }
     }
     
+}
+
+// MARK: - LinkMenuItemDelegate
+
+extension MainMenuViewController: LinkMenuItemDelegate {
+    
+    func didSelectLinkMenuItem(_ linkMenuItemModel: LinkMenuItemModel) {
+        let safariViewController = SFSafariViewController(url: linkMenuItemModel.url)
+        safariViewController.delegate = self
+        safariViewController.preferredBarTintColor = UINavigationBar.appearance().barTintColor
+        safariViewController.preferredControlTintColor = UINavigationBar.appearance().tintColor
+        present(safariViewController, animated: true)
+    }
 }
 
 // MARK: - SFSafariViewControllerDelegate
