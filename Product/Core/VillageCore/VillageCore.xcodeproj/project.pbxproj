@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ECD234C25921332002C4372 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECD234B25921332002C4372 /* MenuItem.swift */; };
+		0ECD234E2592138D002C4372 /* MenuItemsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECD234D2592138D002C4372 /* MenuItemsService.swift */; };
+		0ECD235025921770002C4372 /* MenuItem+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECD234F25921770002C4372 /* MenuItem+Services.swift */; };
 		2317A1E222679593002240D4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2317A1E122679593002240D4 /* Message.swift */; };
 		23F4651B2268C2AE00032A63 /* Stream+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F4651A2268C2AE00032A63 /* Stream+Services.swift */; };
 		589DA50E4F73EA7233820A09 /* Pods_VillageCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFAE0AE80D5D944F4F84A113 /* Pods_VillageCoreTests.framework */; };
@@ -72,6 +75,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0ECD234B25921332002C4372 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		0ECD234D2592138D002C4372 /* MenuItemsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemsService.swift; sourceTree = "<group>"; };
+		0ECD234F25921770002C4372 /* MenuItem+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuItem+Services.swift"; sourceTree = "<group>"; };
 		2317A1E122679593002240D4 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		23F4651A2268C2AE00032A63 /* Stream+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stream+Services.swift"; sourceTree = "<group>"; };
 		2821796FE6835A9E71FAFBFA /* Pods-VillageCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillageCore.debug.xcconfig"; path = "Target Support Files/Pods-VillageCore/Pods-VillageCore.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,10 +198,10 @@
 		D417388B220C4FF800F5B1F6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D4445544228397CC004BDE0F /* StreamSocket.swift */,
 				D417388C220C501F00F5B1F6 /* VillageCoreAPI.swift */,
 				D417388E220C502700F5B1F6 /* VillageProvider.swift */,
 				D4615843220F19880072D224 /* VillageService.swift */,
-				D4445544228397CC004BDE0F /* StreamSocket.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -211,6 +217,8 @@
 				D4B4E83F223AA7F4002DED70 /* Kudo.swift */,
 				D4A6976B22622BA100ECC0A8 /* Kudo+Services.swift */,
 				D46724F52248E6D300F4D7E5 /* MediaAttachment.swift */,
+				0ECD234B25921332002C4372 /* MenuItem.swift */,
+				0ECD234F25921770002C4372 /* MenuItem+Services.swift */,
 				2317A1E122679593002240D4 /* Message.swift */,
 				D4E462F1226CF00F00E23363 /* Message+Services.swift */,
 				D46724F3224828C300F4D7E5 /* Notice.swift */,
@@ -238,6 +246,7 @@
 				D4CEB2D82276521B00C656DA /* DirectMessageService.swift */,
 				D4B4E83922399BE7002DED70 /* DirectoryService.swift */,
 				D4B4E83D223AA7BC002DED70 /* KudosService.swift */,
+				0ECD234D2592138D002C4372 /* MenuItemsService.swift */,
 				D46724F72248E7DF00F4D7E5 /* NoticeService.swift */,
 				D48A6A1C225133A000411518 /* StreamsService.swift */,
 			);
@@ -517,6 +526,7 @@
 				D4615856220F44250072D224 /* User+Authentication.swift in Sources */,
 				D417388D220C501F00F5B1F6 /* VillageCoreAPI.swift in Sources */,
 				D4F465992288852C00732317 /* Debouncer.swift in Sources */,
+				0ECD234C25921332002C4372 /* MenuItem.swift in Sources */,
 				D461584A220F24450072D224 /* Promises+Utilities.swift in Sources */,
 				D48A6A262251531D00411518 /* ContentLibraryService.swift in Sources */,
 				D4CEB2D92276521B00C656DA /* DirectMessageService.swift in Sources */,
@@ -530,7 +540,9 @@
 				D4A6976C22622BA100ECC0A8 /* Kudo+Services.swift in Sources */,
 				D44B5F092229875300941CCE /* Optional+Utils.swift in Sources */,
 				D48A6A1F2251373700411518 /* Unread.swift in Sources */,
+				0ECD235025921770002C4372 /* MenuItem+Services.swift in Sources */,
 				D4E462F2226CF00F00E23363 /* Message+Services.swift in Sources */,
+				0ECD234E2592138D002C4372 /* MenuItemsService.swift in Sources */,
 				D42CF71C227BD34A003D8CF4 /* HomeStream.swift in Sources */,
 				D434D415227133E8002C5EA0 /* NSDate+TimeAgo.swift in Sources */,
 				D4B4E83E223AA7BC002DED70 /* KudosService.swift in Sources */,

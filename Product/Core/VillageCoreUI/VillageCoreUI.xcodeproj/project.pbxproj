@@ -560,14 +560,14 @@
 		D434D4132270ED23002C5EA0 /* Main Menu */ = {
 			isa = PBXGroup;
 			children = (
-				D4F8A5852210A267005FDB6A /* MainMenuViewController.swift */,
 				D43663D7222C4E37006354F2 /* CurrentUserViewController.swift */,
 				D4D3116B226F53BE006C3C3F /* GroupMenuItem.swift */,
 				D4D3116D226F53C8006C3C3F /* GroupMenuItem.xib */,
-				D4F8A5872210A274005FDB6A /* MainMenuViewController.storyboard */,
-				9365FD28258BFF9500C4D7A3 /* LinkMenuItem.xib */,
 				9365FD2B258C00C800C4D7A3 /* LinkMenuItem.swift */,
+				9365FD28258BFF9500C4D7A3 /* LinkMenuItem.xib */,
 				9365FD302590D0C500C4D7A3 /* LinkMenuItemModel.swift */,
+				D4F8A5872210A274005FDB6A /* MainMenuViewController.storyboard */,
+				D4F8A5852210A267005FDB6A /* MainMenuViewController.swift */,
 			);
 			path = "Main Menu";
 			sourceTree = "<group>";
