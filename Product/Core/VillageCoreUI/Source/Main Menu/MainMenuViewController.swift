@@ -437,13 +437,22 @@ private extension MainMenuViewController {
             self.menuOptionLinks.isHidden = menuItems.isEmpty
             let linkMenuItems = menuItems.map(LinkMenuItemModel.init).sorted()
             linkMenuItems.forEach {
-                let linkMenuItem = LinkMenuItem()
-                linkMenuItem.linkMenuItemModel = $0
-                linkMenuItem.delegate = self
-                linkMenuItem.isHidden = self.areLinksCollapsed
-                self.menuOptionLinksChildrenContainer.addArrangedSubview(linkMenuItem)
+                let linkMenuItemView = LinkMenuItemView(linkMenuItemModel: $0)
+                linkMenuItemView.isHidden = self.areLinksCollapsed
+                linkMenuItemView.onTap = { [weak self] model in
+                    self?.open(url: model.url)
+                }
+                self.menuOptionLinksChildrenContainer.addArrangedSubview(linkMenuItemView)
             }
         }.asVoid()
+    }
+    
+    func open(url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.delegate = self
+        safariViewController.preferredBarTintColor = UINavigationBar.appearance().barTintColor
+        safariViewController.preferredControlTintColor = UINavigationBar.appearance().tintColor
+        present(safariViewController, animated: true)
     }
 }
 
@@ -472,19 +481,6 @@ extension MainMenuViewController: GroupMenuItemDelegate {
         }
     }
     
-}
-
-// MARK: - LinkMenuItemDelegate
-
-extension MainMenuViewController: LinkMenuItemDelegate {
-    
-    func didSelectLinkMenuItem(_ linkMenuItemModel: LinkMenuItemModel) {
-        let safariViewController = SFSafariViewController(url: linkMenuItemModel.url)
-        safariViewController.delegate = self
-        safariViewController.preferredBarTintColor = UINavigationBar.appearance().barTintColor
-        safariViewController.preferredControlTintColor = UINavigationBar.appearance().tintColor
-        present(safariViewController, animated: true)
-    }
 }
 
 // MARK: - SFSafariViewControllerDelegate
