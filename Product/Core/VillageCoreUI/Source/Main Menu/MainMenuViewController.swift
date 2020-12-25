@@ -435,7 +435,7 @@ private extension MainMenuViewController {
             guard let `self` = self else { return }
             self.menuOptionLinksChildrenContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
             self.menuOptionLinks.isHidden = menuItems.isEmpty
-            let linkMenuItems = menuItems.map(LinkMenuItemModel.init).sorted()
+            let linkMenuItems = menuItems.compactMap(LinkMenuItemModel.init).sorted()
             linkMenuItems.forEach {
                 let linkMenuItemView = LinkMenuItemView(linkMenuItemModel: $0)
                 linkMenuItemView.isHidden = self.areLinksCollapsed
