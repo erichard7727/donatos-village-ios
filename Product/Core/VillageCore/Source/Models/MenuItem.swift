@@ -12,7 +12,7 @@ import Foundation
 public typealias MenuItems = [MenuItem]
 
 public struct MenuItem {
-    public let title: String
-    public let url: URL
-    public let order: Int
+    public let title: String?
+    public let url: String?
+    public let order: Int?
 }

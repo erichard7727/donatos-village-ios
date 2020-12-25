@@ -29,8 +29,7 @@ public struct MenuItemsService {
 
 internal extension MenuItem {
     
-    init?(from response: JSON) {
-        guard let url = response["url"].url else { return nil }
-        self.init(title: response["title"].stringValue, url: url, order: response["order"].intValue)
+    init(from response: JSON) {
+        self.init(title: response["title"].string, url: response["url"].string, order: response["order"].int)
     }
 }
