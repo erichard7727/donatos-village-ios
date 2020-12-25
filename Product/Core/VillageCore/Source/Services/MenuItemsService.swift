@@ -10,11 +10,11 @@ import Foundation
 import Promises
 import SwiftyJSON
 
-struct MenuItemsService {
+public struct MenuItemsService {
     
     private init() {}
     
-    static func getMenuItems() -> Promise<MenuItems> {
+    public static func getMenuItems() -> Promise<MenuItems> {
         return firstly {
             let menuItems = VillageCoreAPI.menuItems
             return VillageService.shared.request(target: menuItems)

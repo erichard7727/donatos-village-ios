@@ -430,7 +430,7 @@ private extension MainMenuViewController {
     @discardableResult
     func setupLinksItems() -> Promise<Void> {
         return firstly {
-            MenuItem.getMenuItems()
+            MenuItemsService.getMenuItems()
         }.then { [weak self] menuItems in
             guard let `self` = self else { return }
             self.menuOptionLinksChildrenContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
