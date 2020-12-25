@@ -3,7 +3,7 @@
 //  VillageCore
 //
 //  Created by Sasho Jadrovski on 12/22/20.
-//  Copyright © 2020 Dynamit. All rights reserved.
+//  Copyright © 2020 WillowTree. All rights reserved.
 //
 
 import Foundation
