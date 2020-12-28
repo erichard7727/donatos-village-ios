@@ -65,18 +65,6 @@ final class MainMenuViewController: UIViewController {
         }
     }
     
-    @IBOutlet private weak var menuOptionLinksChildrenContainer: UIStackView! {
-        didSet {
-            menuOptionLinksChildrenContainer.arrangedSubviews.forEach { view in
-                view.alpha = areLinksCollapsed ? 0 : 1
-                view.isHidden = areLinksCollapsed
-            }
-        }
-    }
-    
-    @IBOutlet private weak var menuOptionLinksExpandButton: UIButton!
-    
-    
     @IBOutlet private weak var menuOptionKudosMyKudos: UIView!
     @IBOutlet private weak var menuOptionKudosMyKudosLabel: UILabel! {
         didSet {
@@ -121,6 +109,23 @@ final class MainMenuViewController: UIViewController {
             directMessagesUnreadBadge.isHidden = true
         }
     }
+    
+    @IBOutlet private weak var menuOptionLinks: UIView! {
+        didSet {
+            menuOptionLinks.isHidden = true
+        }
+    }
+    
+    @IBOutlet private weak var menuOptionLinksChildrenContainer: UIStackView! {
+        didSet {
+            menuOptionLinksChildrenContainer.arrangedSubviews.forEach { view in
+                view.alpha = areLinksCollapsed ? 0 : 1
+                view.isHidden = areLinksCollapsed
+            }
+        }
+    }
+    
+    @IBOutlet private weak var menuOptionLinksExpandButton: UIButton!
     
     private var areGroupsCollapsed = false {
         didSet {
@@ -216,8 +221,7 @@ extension MainMenuViewController {
         }
 
         subscribeToNotifications()
-        
-        self.updateSubscribedGroups()
+        updateSubscribedGroups()
         setupLinksItems()
     }
     
@@ -382,6 +386,8 @@ private extension MainMenuViewController {
             }.then {
                 self.updateUnreadCounts()
             }
+            
+            self.setupLinksItems()
         }
         
         NotificationCenter.default.addObserver(forName: Notification.Name.Notice.WasAcknowledged, object: nil, queue: nil) { [weak self] (_) in
@@ -421,27 +427,24 @@ private extension MainMenuViewController {
         }.asVoid()
     }
     
-    
-    func setupLinksItems() {
-        menuOptionLinksChildrenContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        
-        // TODO: This will be replaced with the data fetched from the API call
-        
-        let linkMenuItems = [
-            LinkMenuItemModel(title: "Google", url: URL(string: "https://www.google.com/")!, order: 1),
-            LinkMenuItemModel(title: "Donatos", url: URL(string: "https://donatos.com/")!, order: 2),
-            LinkMenuItemModel(title: "Careers", url: URL(string: "https://donatos.com/careers")!, order: 0)
-        ]
-        
-        let sortedLinkMenuItems = linkMenuItems.sorted(by: { $0.order < $1.order })
-
-        sortedLinkMenuItems.forEach {
-            let linkMenuItemView = LinkMenuItemView(linkMenuItemModel: $0)
-            linkMenuItemView.onTap = { [weak self] model in
-                self?.open(url: model.url)
+    @discardableResult
+    func setupLinksItems() -> Promise<Void> {
+        return firstly {
+            MenuItemsService.getMenuItems()
+        }.then { [weak self] menuItems in
+            guard let `self` = self else { return }
+            self.menuOptionLinksChildrenContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
+            self.menuOptionLinks.isHidden = menuItems.isEmpty
+            let linkMenuItems = menuItems.compactMap(LinkMenuItemModel.init).sorted()
+            linkMenuItems.forEach {
+                let linkMenuItemView = LinkMenuItemView(linkMenuItemModel: $0)
+                linkMenuItemView.isHidden = self.areLinksCollapsed
+                linkMenuItemView.onTap = { [weak self] model in
+                    self?.open(url: model.url)
+                }
+                self.menuOptionLinksChildrenContainer.addArrangedSubview(linkMenuItemView)
             }
-            menuOptionLinksChildrenContainer.addArrangedSubview(linkMenuItemView)
-        }
+        }.asVoid()
     }
     
     func open(url: URL) {
