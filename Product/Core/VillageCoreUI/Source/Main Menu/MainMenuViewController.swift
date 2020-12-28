@@ -13,6 +13,7 @@ import SafariServices
 
 final class MainMenuViewController: UIViewController {
     
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var menuOptionHome: UIView!
     @IBOutlet private weak var menuOptionNotices: UIView!
     @IBOutlet private weak var menuOptionEvents: UIView!
@@ -63,6 +64,7 @@ final class MainMenuViewController: UIViewController {
             menuOptionKudosStreamLabel.text = "All " + Constants.Settings.kudosPluralLong
         }
     }
+    
     @IBOutlet private weak var menuOptionKudosMyKudos: UIView!
     @IBOutlet private weak var menuOptionKudosMyKudosLabel: UILabel! {
         didSet {
@@ -108,6 +110,23 @@ final class MainMenuViewController: UIViewController {
         }
     }
     
+    @IBOutlet private weak var menuOptionLinks: UIView! {
+        didSet {
+            menuOptionLinks.isHidden = true
+        }
+    }
+    
+    @IBOutlet private weak var menuOptionLinksChildrenContainer: UIStackView! {
+        didSet {
+            menuOptionLinksChildrenContainer.arrangedSubviews.forEach { view in
+                view.alpha = areLinksCollapsed ? 0 : 1
+                view.isHidden = areLinksCollapsed
+            }
+        }
+    }
+    
+    @IBOutlet private weak var menuOptionLinksExpandButton: UIButton!
+    
     private var areGroupsCollapsed = false {
         didSet {
             UIView.animate(withDuration: 0.25) {
@@ -133,6 +152,19 @@ final class MainMenuViewController: UIViewController {
                     view.isHidden = self.areKudosCollapsed
                 }
                 self.menuOptionKudosChildrenContainer.layoutIfNeeded()
+            }
+        }
+    }
+    
+    private var areLinksCollapsed = true {
+        didSet {
+            UIView.animate(withDuration: 0.25) {
+                self.menuOptionLinksExpandButton.transform = self.menuOptionLinksExpandButton.transform.rotated(by: .pi / 1) // 180 degrees
+                self.menuOptionLinksChildrenContainer.arrangedSubviews.forEach { view in
+                    view.alpha = self.areLinksCollapsed ? 0 : 1
+                    view.isHidden = self.areLinksCollapsed
+                }
+                self.menuOptionLinksChildrenContainer.layoutIfNeeded()
             }
         }
     }
@@ -189,8 +221,8 @@ extension MainMenuViewController {
         }
 
         subscribeToNotifications()
-        
-        self.updateSubscribedGroups()
+        updateSubscribedGroups()
+        setupLinksItems()
     }
     
     override func viewDidLayoutSubviews() {
@@ -215,7 +247,6 @@ extension MainMenuViewController {
         
         currentUserViewController.configure(with: User.current)
     }
-    
 }
 
 // MARK: - Target/Action
@@ -333,6 +364,13 @@ private extension MainMenuViewController {
         sideMenuController?.setContentViewController(UINavigationController(rootViewController: vc), fadeAnimation: true)
         self.sideMenuController?.hideMenu()
     }
+    
+    @IBAction func onToggleLinks(_ sender: Any? = nil) {
+        areLinksCollapsed.toggle()
+        if !areLinksCollapsed {
+            scrollView.scrollToBottom()
+        }
+    }
 }
 
 // MARK: - Private Methods
@@ -348,6 +386,8 @@ private extension MainMenuViewController {
             }.then {
                 self.updateUnreadCounts()
             }
+            
+            self.setupLinksItems()
         }
         
         NotificationCenter.default.addObserver(forName: Notification.Name.Notice.WasAcknowledged, object: nil, queue: nil) { [weak self] (_) in
@@ -387,6 +427,33 @@ private extension MainMenuViewController {
         }.asVoid()
     }
     
+    @discardableResult
+    func setupLinksItems() -> Promise<Void> {
+        return firstly {
+            MenuItemsService.getMenuItems()
+        }.then { [weak self] menuItems in
+            guard let `self` = self else { return }
+            self.menuOptionLinksChildrenContainer.arrangedSubviews.forEach { $0.removeFromSuperview() }
+            self.menuOptionLinks.isHidden = menuItems.isEmpty
+            let linkMenuItems = menuItems.compactMap(LinkMenuItemModel.init).sorted()
+            linkMenuItems.forEach {
+                let linkMenuItemView = LinkMenuItemView(linkMenuItemModel: $0)
+                linkMenuItemView.isHidden = self.areLinksCollapsed
+                linkMenuItemView.onTap = { [weak self] model in
+                    self?.open(url: model.url)
+                }
+                self.menuOptionLinksChildrenContainer.addArrangedSubview(linkMenuItemView)
+            }
+        }.asVoid()
+    }
+    
+    func open(url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.delegate = self
+        safariViewController.preferredBarTintColor = UINavigationBar.appearance().barTintColor
+        safariViewController.preferredControlTintColor = UINavigationBar.appearance().tintColor
+        present(safariViewController, animated: true)
+    }
 }
 
 // MARK: - PeopleViewControllerDelegate

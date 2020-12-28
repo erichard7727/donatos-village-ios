@@ -149,6 +149,9 @@ public enum VillageCoreAPI {
 
 	// MySchedule
 	case fetchCredentials
+    
+    // Menu Items
+    case menuItems
 }
 
 // MARK: - TargetType
@@ -286,6 +289,9 @@ extension VillageCoreAPI: TargetType {
 
 		case .fetchCredentials:
 			return "schedule/credentials"
+            
+        case .menuItems:
+            return "menuitems/1.0"
         }
     }
 
@@ -325,7 +331,8 @@ extension VillageCoreAPI: TargetType {
              .subscribedStreams,
              .streamDetails,
              .directMessageStreams,
-			 .fetchCredentials:
+			 .fetchCredentials,
+             .menuItems:
             return .get
             
         case .validateIdentity,
@@ -399,7 +406,8 @@ extension VillageCoreAPI: TargetType {
              .directMessageStreams,
              .inviteToDirectMessage,
 			 .fetchCredentials,
-             .flagKudo:
+             .flagKudo,
+             .menuItems:
             return Data()
         }
     }
@@ -798,8 +806,9 @@ extension VillageCoreAPI: TargetType {
                 ]
             )
 
-		case .fetchCredentials:
-			return Task.requestPlain
+		case .fetchCredentials,
+             .menuItems:
+			return .requestPlain
         }
     }
 }
@@ -855,7 +864,8 @@ extension VillageCoreAPI: AuthorizedTargetType {
              .directMessageStreams,
              .inviteToDirectMessage,
              .flagKudo,
-			 .fetchCredentials:
+			 .fetchCredentials,
+             .menuItems:
             return true
         }
     }
