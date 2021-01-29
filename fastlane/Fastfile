@@ -267,16 +267,17 @@ lane :upload_to_store do |options|
   # Edit the release notes in the metadata. When submitting the app to the app store via 'deliver',
   # 'deliver' uses metadata to update release notes, among other things.
   # Use the body text of the github release for the new release notes.
-  set_release_notes(notes: release["body"])
+  # set_release_notes(notes: release["body"])
 
   # Send the app to the app store.
   deliver(
     submit_for_review: false,
     automatic_release: false,
     skip_screenshots: true,
+    skip_metadata: true,
     ipa: ENV["ARTIFACT_DIRECTORY"] + ENV["APP_FILE_NAME"],
-    metadata_path: "./metadata",
-    force: true
+    force: true,
+    release_notes: release["body"]
   )
 end
 
